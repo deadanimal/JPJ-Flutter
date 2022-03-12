@@ -1,11 +1,16 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:jpj_info/model/license.dart';
+import 'package:jpj_info/view/common/color_scheme.dart';
+import 'package:jpj_info/view/appBarHeader/appBarHeader.dart';
+import 'package:jpj_info/view/common/spacing.dart';
 import 'package:jpj_info/view/license/component/header.dart';
 import 'package:jpj_info/view/license/component/form.dart';
 import 'package:jpj_info/model/page_size.dart';
 import 'package:http/http.dart' as http;
 import 'package:jpj_info/view/license/result.dart';
+import 'package:jpj_info/view/navbar/navbar.dart';
 
 class License extends StatefulWidget {
   const License({Key? key}) : super(key: key);
@@ -43,7 +48,15 @@ class _License extends State<License> {
   Widget build(BuildContext context) {
     mediaWidth = (MediaQuery.of(context).size.width);
     mediaHeight = (MediaQuery.of(context).size.height);
-    return showLicensePage();
+    return MaterialApp(
+      home: SafeArea(
+        child: Scaffold(
+          endDrawer: const NavBar(),
+          appBar: appBarHeader(),
+          body: showLicensePage(),
+        ),
+      ),
+    );
   }
 
   Widget showLicensePage() {
@@ -85,51 +98,19 @@ class _License extends State<License> {
       }),
     );
     if (response.statusCode == 200) {
-      ResponseApi respond = ResponseApi.fromJson(jsonDecode(response.body));
-      print(response.body);
-      print(respond);
-      ResultInfo resultInfo = ResultInfo();
-      resultInfo.name = respond.nama;
-      resultInfo.id = respond.nokp;
-      resultInfo.plateNumber = respond.nokp;
+      LicenseInfo respond = LicenseInfo.fromJson(jsonDecode(response.body));
       Navigator.push(
         context,
         MaterialPageRoute(
           builder: (context) {
             return Result(
-              jsonResult: resultInfo,
+              result: respond,
             );
           },
         ),
-      );
-      await showDialog<void>(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: const Text('Thanks!'),
-            content: Text(respond.toString()),
-            actions: <Widget>[
-              TextButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: const Text('OK'),
-              ),
-            ],
-          );
-        },
       );
     } else {
       throw Exception('Failed to create album.');
     }
   }
-}
-
-class ResponseApi {
-  late String nama;
-  late String nokp;
-
-  ResponseApi.fromJson(Map<String, dynamic> json)
-      : nama = json['nama'],
-        nokp = json['nokp'];
 }

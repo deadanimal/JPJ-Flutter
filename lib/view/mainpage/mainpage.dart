@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jpj_info/view/common/spacing.dart';
 import 'package:jpj_info/view/license/license.dart';
 import 'package:jpj_info/view/navbar/navbar.dart';
 import 'component/button.dart';
@@ -73,7 +74,7 @@ class MainPage extends StatelessWidget {
     return Column(
       children: const [
         SizedBox(
-          height: 72,
+          height: 64,
           child: Text(
             "SERVIS",
             textAlign: TextAlign.center,
@@ -91,121 +92,31 @@ class MainPage extends StatelessWidget {
 
   Widget populateButton(context) {
     return Expanded(
-      child: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  margin: const EdgeInsets.all(12),
-                  child: button(a[0].menu, a[0].icon, () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return const License();
-                        },
-                      ),
-                    );
-                  }),
-                ),
-                Container(
-                  margin: const EdgeInsets.all(12),
+      child: Row(
+        children: [
+          const Expanded(child: SizedBox()),
+          Expanded(
+            flex: 4,
+            child: GridView.count(
+              shrinkWrap: true,
+              physics: const AlwaysScrollableScrollPhysics(),
+              scrollDirection: Axis.vertical,
+              crossAxisCount: 2,
+              children: List.generate(a.length, (index) {
+                return Padding(
+                  padding: const EdgeInsets.all(verticalPadding),
                   child: button(
-                    "btnText",
-                    const AssetImage("images/lesen_kenderaan_icon.png"),
-                    printffff,
+                    a[index].menu,
+                    a[index].icon,
+                    a[index].cbFunc,
+                    context,
                   ),
-                ),
-              ],
+                );
+              }),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  margin: const EdgeInsets.all(12),
-                  child: button(
-                    "btnText",
-                    const AssetImage("images/lesen_kenderaan_icon.png"),
-                    printffff,
-                  ),
-                ),
-                Container(
-                  margin: const EdgeInsets.all(12),
-                  child: button(
-                    "btnText",
-                    const AssetImage("images/lesen_kenderaan_icon.png"),
-                    printffff,
-                  ),
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  margin: const EdgeInsets.all(12),
-                  child: button(
-                    "btnText",
-                    const AssetImage("images/lesen_kenderaan_icon.png"),
-                    printffff,
-                  ),
-                ),
-                Container(
-                  margin: const EdgeInsets.all(12),
-                  child: button(
-                    "btnText",
-                    const AssetImage("images/lesen_kenderaan_icon.png"),
-                    printffff,
-                  ),
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  margin: const EdgeInsets.all(12),
-                  child: button(
-                    "btnText",
-                    const AssetImage("images/lesen_kenderaan_icon.png"),
-                    printffff,
-                  ),
-                ),
-                Container(
-                  margin: const EdgeInsets.all(12),
-                  child: button(
-                    "btnText",
-                    const AssetImage("images/lesen_kenderaan_icon.png"),
-                    printffff,
-                  ),
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  margin: const EdgeInsets.all(12),
-                  child: button(
-                    "btnText",
-                    const AssetImage("images/lesen_kenderaan_icon.png"),
-                    printffff,
-                  ),
-                ),
-                Container(
-                  margin: const EdgeInsets.all(12),
-                  child: button(
-                    "btnText",
-                    const AssetImage("images/lesen_kenderaan_icon.png"),
-                    printffff,
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
+          ),
+          const Expanded(child: SizedBox()),
+        ],
       ),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jpj_info/model/page_size.dart';
 import '../../common/color_scheme.dart';
 
 Widget licenseHeader() {
@@ -29,110 +30,13 @@ Widget licenseHeader() {
       top: 8,
       bottom: 8,
     ),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                languageBtn(),
-                faqBtn(),
-              ],
-            ),
-            const Spacer(),
-            menuBtn(),
-          ],
-        ),
-        title(),
-      ],
-    ),
-  );
-}
-
-Widget languageBtn() {
-  return TextButton(
-    style: ButtonStyle(
-      shape: MaterialStateProperty.all(
-        RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30.0),
-        ),
-      ),
-    ),
-    onPressed: () {},
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: const [
-        Text(
-          "EN",
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 12,
-            fontFamily: "Roboto",
-            fontWeight: FontWeight.w900,
-          ),
-        ),
-      ],
-    ),
-  );
-}
-
-Widget faqBtn() {
-  return TextButton(
-    style: ButtonStyle(
-      shape: MaterialStateProperty.all(
-        RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30.0),
-        ),
-      ),
-    ),
-    onPressed: () {},
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: const [
-        Text(
-          "FAQ",
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 12,
-            fontFamily: "Roboto",
-            fontWeight: FontWeight.w900,
-          ),
-        ),
-      ],
-    ),
-  );
-}
-
-Widget menuBtn() {
-  return TextButton(
-    style: ButtonStyle(
-      shape: MaterialStateProperty.all(
-        RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30.0),
-        ),
-      ),
-    ),
-    onPressed: () {},
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: const [
-        Icon(
-          Icons.menu_rounded,
-          color: Colors.white,
-          size: 30.0,
-        ),
-      ],
-    ),
+    child: title(),
   );
 }
 
 Widget title() {
   return Container(
-    // padding: const EdgeInsets.all(24),
+    width: mediaWidth,
     padding: const EdgeInsets.fromLTRB(24, 24, 24, 8),
     child: const Text(
       "Lesen\nMemandu",

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../common/color_scheme.dart';
 
-Widget button(btnText, btnImage, btnClickHandler) {
+Widget button(btnText, btnImage, btnClickHandler, BuildContext context) {
   return Container(
     width: 129,
     height: 129,
@@ -21,7 +21,9 @@ Widget button(btnText, btnImage, btnClickHandler) {
       style: ButtonStyle(
         foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
       ),
-      onPressed: btnClickHandler,
+      onPressed: () {
+        btnClickHandler(context);
+      },
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [

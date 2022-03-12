@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jpj_info/view/mainpage/mainpage.dart';
 import 'package:jpj_info/view/login/login.dart';
-import 'package:jpj_info/view/license/result.dart';
 import 'package:flutter/services.dart';
 
 void main() {
@@ -27,10 +25,6 @@ class StartApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // return Login();
-    return const MainPage();
-    // return const Result(
-    //   jsonResult: null,
-    // );
+    return Login();
   }
 }

@@ -62,8 +62,11 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - images/back3.jpg
+    - images/blacklist.png
     - images/car.png
     - images/close.png
+    - images/driving_license.png
+    - images/ebid.png
     - images/eb_logo-black.png
     - images/eb_logo.png
     - images/eb_logo3.png
@@ -73,16 +76,23 @@ flutter:
     - images/home_back2.jpg
     - images/ic.png
     - images/jpjlogo1.png
+    - images/jpj_logo_login.png
     - images/kejara.png
+    - images/latest_number.png
     - images/lesen copy.png
     - images/lesen-black.png
     - images/lesen.png
+    - images/lesen_kenderaan_icon.png
     - images/lkm-black.png
     - images/lkm.png
+    - images/login_bg.png
     - images/logo.png
     - images/logo2.png
     - images/mail.png
+    - images/main_bg.png
     - images/mas.png
+    - images/mata demerit.png
+    - images/my_jpj_icon.png
     - images/n1.png
     - images/n10.png
     - images/n11.png
@@ -109,11 +119,8 @@ flutter:
     - images/samanlogo copy.png
     - images/senaraihitam2 copy.png
     - images/success.png
-    - images/main_bg.png
-    - images/lesen_kenderaan_icon.png
-    - images/my_jpj_icon.png
-    - images/jpj_logo_login.png
-    - images/login_bg.png
+    - images/summons.png
+    - images/test_result.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
