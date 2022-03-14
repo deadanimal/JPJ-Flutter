@@ -1,16 +1,15 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:jpj_info/model/license.dart';
-import 'package:jpj_info/view/common/color_scheme.dart';
+import 'package:jpj_info/config/site_config.dart';
+import 'package:jpj_info/model/license_status_request.dart';
+import 'package:jpj_info/model/license_status_response.dart';
 import 'package:jpj_info/view/appBarHeader/appBarHeader.dart';
-import 'package:jpj_info/view/common/spacing.dart';
-import 'package:jpj_info/view/license/component/header.dart';
-import 'package:jpj_info/view/license/component/form.dart';
 import 'package:jpj_info/model/page_size.dart';
 import 'package:http/http.dart' as http;
 import 'package:jpj_info/view/license/result.dart';
 import 'package:jpj_info/view/navbar/navbar.dart';
+import 'package:jpj_info/view/template/template_form.dart';
 
 class License extends StatefulWidget {
   const License({Key? key}) : super(key: key);
@@ -19,7 +18,7 @@ class License extends StatefulWidget {
   State<StatefulWidget> createState() => _License();
 }
 
-class _License extends State<License> {
+class _License extends State<License> with TemplateForm {
   List<String> dropdownList = [
     'Penduduk Tetap Malaysia',
     'Orang Awam Malaysia',
@@ -68,11 +67,12 @@ class _License extends State<License> {
       submitCB: _submitCB,
       dropdownList: dropdownList,
     );
+    setHeader("Lesen\nMemandu");
     return Material(
       child: Column(
         children: [
-          licenseHeader(),
-          licenseForm(uiElement),
+          header(),
+          _licenseForm(uiElement),
         ],
       ),
     );
@@ -86,31 +86,88 @@ class _License extends State<License> {
 
   Future<void> _submitCB() async {
     var index = dropdownList.indexWhere((element) => element == dropdownValue);
-    final response = await http.post(
-      Uri.parse('http://egate.jpj.gov.my/jpjinfo-api/apps/semakstatuslesen'),
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-      body: jsonEncode(<String, String>{
-        'nokp': _controller.text,
-        'kategori': index.toString(),
-        'versi': "2.0",
-      }),
+    SiteConfig conf = SiteConfig();
+    LicenseStatusRequest req = LicenseStatusRequest(
+      kategori: index.toString(),
+      nokp: _controller.text,
     );
-    if (response.statusCode == 200) {
-      LicenseInfo respond = LicenseInfo.fromJson(jsonDecode(response.body));
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) {
-            return Result(
-              result: respond,
-            );
-          },
-        ),
+    try {
+      final response = await http.post(
+        Uri.parse(conf.licenseCheckUri),
+        headers: conf.jsonHeader,
+        body: jsonEncode(req.toJson()),
       );
-    } else {
-      throw Exception('Failed to create album.');
+      if (response.statusCode == 200) {
+        LicenseStatusResponse respond = LicenseStatusResponse.fromJson(
+          jsonDecode(response.body),
+        );
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) {
+              return Result(
+                result: respond,
+              );
+            },
+          ),
+        );
+      } else {
+        _connectionError();
+      }
+    } catch (e) {
+      _connectionError();
     }
+  }
+
+  Future<void> _connectionError() {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Center(
+            child: Text('Connection Error!'),
+          ),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: const <Widget>[
+                Center(
+                  child: Text('Please try again.'),
+                ),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Widget _licenseForm(UiElement uiElement) {
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          label(),
+          const SizedBox(height: 24),
+          dropdownSelector(uiElement.dropdownCbFunction,
+              uiElement.dropdownValues, uiElement.dropdownList),
+          const SizedBox(height: 32),
+          idNumber(uiElement.textController, uiElement.textInput,
+              uiElement.submitCB),
+          const SizedBox(height: 32),
+          submitBtn(uiElement.submitCB),
+        ],
+      ),
+    );
   }
 }
