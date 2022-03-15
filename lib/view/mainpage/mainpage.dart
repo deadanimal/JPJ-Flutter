@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:jpj_info/view/common/spacing.dart';
-import 'package:jpj_info/view/license/license.dart';
 import 'package:jpj_info/view/navbar/navbar.dart';
 import 'component/button.dart';
 import 'component/menu_list.dart';

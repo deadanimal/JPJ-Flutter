@@ -6,17 +6,19 @@ class UiElement {
   var dropdownCbFunction;
   var dropdownValues;
   var dropdownList;
-  var textController;
+  TextEditingController nricTextController;
   var textInput;
   var submitCB;
+  TextEditingController? plateTextController;
 
   UiElement({
     this.dropdownCbFunction,
     this.dropdownValues,
     this.dropdownList,
-    this.textController,
+    required this.nricTextController,
     this.textInput,
     this.submitCB,
+    this.plateTextController,
   });
 }
 
@@ -63,13 +65,15 @@ class TemplateForm {
     return Container(
       width: mediaWidth,
       padding: const EdgeInsets.fromLTRB(24, 24, 24, 8),
-      child: Text(
-        headerTitle,
-        style: const TextStyle(
-          color: Colors.white,
-          fontSize: 55,
-          fontFamily: "Poppins",
-          fontWeight: FontWeight.w600,
+      child: FittedBox(
+        child: Text(
+          headerTitle,
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 55,
+            fontFamily: "Poppins",
+            fontWeight: FontWeight.w600,
+          ),
         ),
       ),
     );
@@ -133,7 +137,7 @@ class TemplateForm {
     );
   }
 
-  Widget idNumber(TextEditingController textController, textInput, cbFunc) {
+  Widget idNumber(TextEditingController nricTextController, textInput, cbFunc) {
     return SizedBox(
       width: mediaWidth - 64,
       child: Padding(
@@ -143,7 +147,7 @@ class TemplateForm {
           elevation: 16.0,
           shadowColor: Colors.grey,
           child: TextField(
-            controller: textController,
+            controller: nricTextController,
             onSubmitted: (String value) {
               cbFunc();
             },
@@ -157,6 +161,39 @@ class TemplateForm {
         ),
       ),
     );
+  }
+
+  Widget plateNumber(
+      TextEditingController? plateTextController, textInput, cbFunc) {
+    if (plateTextController != null) {
+      return SizedBox(
+        width: mediaWidth - 64,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Material(
+            borderRadius: BorderRadius.circular(8),
+            elevation: 16.0,
+            shadowColor: Colors.grey,
+            child: TextField(
+              controller: plateTextController,
+              onSubmitted: (String value) {
+                cbFunc();
+              },
+              textAlign: TextAlign.center,
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                fillColor: Colors.white,
+                labelText: 'Plate Number',
+              ),
+            ),
+          ),
+        ),
+      );
+    } else {
+      return SizedBox(
+        width: mediaWidth - 64,
+      );
+    }
   }
 
   Widget submitBtn(cbFunc) {

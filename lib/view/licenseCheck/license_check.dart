@@ -7,18 +7,18 @@ import 'package:jpj_info/model/license_status_response.dart';
 import 'package:jpj_info/view/appBarHeader/appBarHeader.dart';
 import 'package:jpj_info/model/page_size.dart';
 import 'package:http/http.dart' as http;
-import 'package:jpj_info/view/license/result.dart';
+import 'package:jpj_info/view/licenseCheck/result.dart';
 import 'package:jpj_info/view/navbar/navbar.dart';
 import 'package:jpj_info/view/template/template_form.dart';
 
-class License extends StatefulWidget {
-  const License({Key? key}) : super(key: key);
+class LicenseCheck extends StatefulWidget {
+  const LicenseCheck({Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _License();
 }
 
-class _License extends State<License> with TemplateForm {
+class _License extends State<LicenseCheck> with TemplateForm {
   List<String> dropdownList = [
     'Penduduk Tetap Malaysia',
     'Orang Awam Malaysia',
@@ -62,7 +62,7 @@ class _License extends State<License> with TemplateForm {
     UiElement uiElement = UiElement(
       dropdownCbFunction: _setSelection,
       dropdownValues: dropdownValue,
-      textController: _controller,
+      nricTextController: _controller,
       textInput: id,
       submitCB: _submitCB,
       dropdownList: dropdownList,
@@ -162,7 +162,7 @@ class _License extends State<License> with TemplateForm {
           dropdownSelector(uiElement.dropdownCbFunction,
               uiElement.dropdownValues, uiElement.dropdownList),
           const SizedBox(height: 32),
-          idNumber(uiElement.textController, uiElement.textInput,
+          idNumber(uiElement.nricTextController, uiElement.textInput,
               uiElement.submitCB),
           const SizedBox(height: 32),
           submitBtn(uiElement.submitCB),

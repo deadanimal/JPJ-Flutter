@@ -10,7 +10,7 @@ var a = [
   MenuItem(
     "Lesen\nKenderaan Motor",
     "images/lesen_kenderaan_icon.png",
-    printffff,
+    roadTaxCheckPage,
   ),
   MenuItem(
     "Lesen\nMemandu",
