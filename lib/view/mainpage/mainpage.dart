@@ -16,7 +16,7 @@ class MainPage extends StatelessWidget {
           appBar: AppBar(
             foregroundColor: Colors.black,
             shadowColor: Colors.transparent,
-            toolbarHeight: 160,
+            toolbarHeight: 96,
             flexibleSpace: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -70,52 +70,37 @@ class MainPage extends StatelessWidget {
   }
 
   Widget mainheader() {
-    return Column(
-      children: const [
-        SizedBox(
-          height: 64,
-          child: Text(
-            "SERVIS",
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Color(0xff8b9eb0),
-              fontSize: 30,
-              fontFamily: "Roboto",
-              fontWeight: FontWeight.w700,
-            ),
-          ),
-        ),
-      ],
+    return const Text(
+      "SERVIS",
+      textAlign: TextAlign.center,
+      style: TextStyle(
+        color: Color(0xff8b9eb0),
+        fontSize: 30,
+        fontFamily: "Roboto",
+        fontWeight: FontWeight.w700,
+      ),
     );
   }
 
   Widget populateButton(context) {
     return Expanded(
-      child: Row(
-        children: [
-          const Expanded(child: SizedBox()),
-          Expanded(
-            flex: 4,
-            child: GridView.count(
-              shrinkWrap: true,
-              physics: const AlwaysScrollableScrollPhysics(),
-              scrollDirection: Axis.vertical,
-              crossAxisCount: 2,
-              children: List.generate(a.length, (index) {
-                return Padding(
-                  padding: const EdgeInsets.all(verticalPadding),
-                  child: button(
-                    a[index].menu,
-                    a[index].icon,
-                    a[index].cbFunc,
-                    context,
-                  ),
-                );
-              }),
-            ),
+      child: SingleChildScrollView(
+        child: Center(
+          child: Wrap(
+            alignment: WrapAlignment.center,
+            children: List.generate(a.length, (index) {
+              return Padding(
+                padding: const EdgeInsets.all(verticalPadding),
+                child: button(
+                  a[index].menu,
+                  a[index].icon,
+                  a[index].cbFunc,
+                  context,
+                ),
+              );
+            }),
           ),
-          const Expanded(child: SizedBox()),
-        ],
+        ),
       ),
     );
   }

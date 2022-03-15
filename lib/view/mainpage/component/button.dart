@@ -24,27 +24,29 @@ Widget button(btnText, btnImage, btnClickHandler, BuildContext context) {
       onPressed: () {
         btnClickHandler(context);
       },
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          Image(
-            image: btnImage,
-            fit: BoxFit.fitWidth,
-            alignment: Alignment.bottomCenter,
-          ),
-          const SizedBox(
-            height: 8,
-          ),
-          btnTextWidget(btnText),
-          const SizedBox(
-            height: 16,
-          ),
-          const Icon(
-            Icons.keyboard_arrow_down_rounded,
-            color: Colors.white,
-            size: 16.0,
-          ),
-        ],
+      child: FittedBox(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Image(
+              image: btnImage,
+              fit: BoxFit.fitWidth,
+              alignment: Alignment.bottomCenter,
+            ),
+            const SizedBox(
+              height: 8,
+            ),
+            btnTextWidget(btnText),
+            // const SizedBox(
+            //   height: 8,
+            // ),
+            // const Icon(
+            //   Icons.keyboard_arrow_down_rounded,
+            //   color: Colors.white,
+            //   size: 16.0,
+            // ),
+          ],
+        ),
       ),
     ),
   );
@@ -57,7 +59,7 @@ Widget btnTextWidget(btnText) {
       textAlign: TextAlign.center,
       style: const TextStyle(
         color: Colors.white,
-        fontSize: 12,
+        fontSize: 16,
         fontFamily: "Roboto",
         fontWeight: FontWeight.w900,
       ),
