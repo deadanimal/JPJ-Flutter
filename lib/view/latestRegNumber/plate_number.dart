@@ -4,6 +4,8 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:jpj_info/config/site_config.dart';
+import 'package:jpj_info/model/latest_reg_number_request.dart';
+import 'package:jpj_info/model/latest_reg_number_response.dart';
 import 'package:jpj_info/model/result_style2.dart';
 import 'package:jpj_info/model/roadtax_status_request.dart';
 import 'package:jpj_info/model/roadtax_status_response.dart';
@@ -16,38 +18,64 @@ import 'package:jpj_info/view/template/template_result2.dart';
 import 'package:jpj_info/view/navbar/navbar.dart';
 import 'package:jpj_info/view/template/template_form.dart';
 
-class RoadTaxCheck extends StatefulWidget {
-  const RoadTaxCheck({Key? key}) : super(key: key);
+class PlateNumber extends StatefulWidget {
+  const PlateNumber({Key? key}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _RoadTax();
+  State<StatefulWidget> createState() => _PlateNumber();
 }
 
-class _RoadTax extends State<RoadTaxCheck> with TemplateForm, TemplateHeader {
-  List<String> dropdownList = [
-    'Penduduk Tetap Malaysia',
-    'Orang Awam Malaysia',
-    'Anggota Polis',
-    'Anggota Tentera',
-    'Syarikat/Pertubuhan',
-    'Bukan Warganegara Malaysia'
-  ];
-  String dropdownValue = 'Penduduk Tetap Malaysia';
+class _PlateNumber extends State<PlateNumber>
+    with TemplateForm, TemplateHeader {
+  Map<String, String> stateMap = {
+    "JOHOR": "J",
+    "KEDAH": "K",
+    "LANGKAWI": "KV",
+    "KELANTAN": "D",
+    "MELAKA": "M",
+    "NEGERI SEMBILAN": "N",
+    "PAHANG": "C",
+    "PULAU PINANG": "P",
+    "PERAK": "A",
+    "PERLIS": "R",
+    "SELANGOR": "B",
+    "TERENGGANU": "T",
+    "KOTA KINABALU": "SA",
+    "SANDAKAN": "SS",
+    "KUDAT": "SK",
+    "TAWAU": "ST",
+    "BEAUFORT": "SB",
+    "KENINGAU": "SU",
+    "SANDAKAN(SM)": "SM",
+    "LAHAD DATU": "SD",
+    "KUCHING": "QA",
+    "SIBU": "QS",
+    "MIRI": "QM",
+    "SRI AMAN": "QB",
+    "SARIKEI": "QR",
+    "BINTULU": "QT",
+    "LIMBANG": "QL",
+    "KOTA SAMARAHAN": "QC",
+    "KAPIT": "QP",
+    "MUKAH": "QS",
+    "BETONG": "QB",
+    "LAWAS": "QL",
+    "W.P KUALA LUMPUR": "W",
+    "W.P LABUAN": "L",
+    "W.P PUTRAJAYA": "F",
+  };
+  late Iterable<String> dropdownList;
+  String dropdownValue = 'JOHOR';
   String id = '';
-  late TextEditingController _nric;
-  late TextEditingController _plateNumber;
 
   @override
   void initState() {
     super.initState();
-    _nric = TextEditingController();
-    _plateNumber = TextEditingController();
+    dropdownList = stateMap.keys;
   }
 
   @override
   void dispose() {
-    _nric.dispose();
-    _plateNumber.dispose();
     super.dispose();
   }
 
@@ -70,11 +98,11 @@ class _RoadTax extends State<RoadTaxCheck> with TemplateForm, TemplateHeader {
     UiElement uiElement = UiElement(
       dropdownCbFunction: _setSelection,
       dropdownValues: dropdownValue,
-      nricTextController: _nric,
+      nricTextController: null,
       textInput: id,
       submitCB: _submitCB,
       dropdownList: dropdownList,
-      plateTextController: _plateNumber,
+      plateTextController: null,
     );
     setHeader("Lesen\nKenderaan Motor");
     return Material(
@@ -96,24 +124,21 @@ class _RoadTax extends State<RoadTaxCheck> with TemplateForm, TemplateHeader {
   }
 
   Future<void> _submitCB() async {
-    var index = dropdownList.indexWhere((element) => element == dropdownValue);
     SiteConfig conf = SiteConfig();
-    RoadTaxStatusRequest req = RoadTaxStatusRequest(
-      kategori: index.toString(),
-      nokp: _nric.text,
-      nokenderaan: _plateNumber.text,
+    LatestRegNumberRequest req = LatestRegNumberRequest(
+      stateCode: stateMap[dropdownValue]!,
     );
     try {
       EasyLoading.show(
         status: 'Please wait...',
       );
       final response = await http.post(
-        Uri.parse(conf.roadTaxCheckUri),
+        Uri.parse(conf.plateNumberUri),
         headers: conf.jsonHeader,
         body: jsonEncode(req.toJson()),
       );
       if (response.statusCode == 200) {
-        RoadTaxStatusResponse respond = RoadTaxStatusResponse.fromJson(
+        LatestRegNumberResponse respond = LatestRegNumberResponse.fromJson(
           jsonDecode(response.body),
         );
         Navigator.push(
@@ -121,22 +146,34 @@ class _RoadTax extends State<RoadTaxCheck> with TemplateForm, TemplateHeader {
           MaterialPageRoute(
             builder: (context) {
               List<Result2> dataSet = [];
-              respond.lkm?.forEach((el) {
-                dataSet.add(
-                  Result2(
-                    result: _resultField(el),
-                    title: el.velinsuran,
+              dataSet.add(
+                Result2(
+                  result: Padding(
+                    padding: const EdgeInsets.all(verticalPadding),
+                    child: FittedBox(
+                      child: Text(
+                        respond.velno!,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          color: Color(secondaryColor2),
+                          fontSize: 18,
+                          fontFamily: "Poppins",
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
                   ),
-                );
-              });
+                  title: respond.stateName,
+                ),
+              );
 
               ResultStyle2 result = ResultStyle2(
-                id: respond.nokp,
-                name: respond.nama,
+                id: null,
+                name: null,
                 results: dataSet,
                 subtitle: "Keputusan Carian",
-                title: "Lesen\nKenderaan Motor",
-                vehicalRegNumber: respond.nokenderaan,
+                title: "Nombor\nKenderaan Terkini",
+                vehicalRegNumber: null,
               );
               return templateResult2(
                 data: result,
@@ -154,37 +191,6 @@ class _RoadTax extends State<RoadTaxCheck> with TemplateForm, TemplateHeader {
     }
   }
 
-  Widget _resultField(Lkm el) {
-    return Padding(
-      padding: const EdgeInsets.all(verticalPadding),
-      child: Column(
-        children: [
-          const Text(
-            "Tarikh Luput",
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Color(secondaryColor2),
-              fontSize: 18,
-              fontFamily: "Poppins",
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-          const SizedBox(height: horizontalPadding),
-          Text(
-            el.expiredate!,
-            textAlign: TextAlign.center,
-            style: const TextStyle(
-              color: Color(secondaryColor2),
-              fontSize: 13,
-              fontFamily: "Poppins",
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
   Widget _roadTaxForm(UiElement uiElement) {
     return SingleChildScrollView(
       child: Column(
@@ -196,12 +202,6 @@ class _RoadTax extends State<RoadTaxCheck> with TemplateForm, TemplateHeader {
           const SizedBox(height: 24),
           dropdownSelector(uiElement.dropdownCbFunction,
               uiElement.dropdownValues, uiElement.dropdownList),
-          const SizedBox(height: 32),
-          idNumber(uiElement.nricTextController, uiElement.textInput,
-              uiElement.submitCB),
-          const SizedBox(height: 32),
-          plateNumber(uiElement.plateTextController, uiElement.textInput,
-              uiElement.submitCB),
           const SizedBox(height: 32),
           submitBtn(uiElement.submitCB),
         ],

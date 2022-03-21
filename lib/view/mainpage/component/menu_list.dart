@@ -25,7 +25,7 @@ var a = [
   MenuItem(
     "Nombor\nTerkini",
     "images/latest_number.png",
-    printffff,
+    latestPlatePage,
   ),
   MenuItem(
     "Mata\nDemerit",

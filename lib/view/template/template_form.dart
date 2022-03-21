@@ -6,7 +6,7 @@ class UiElement {
   var dropdownCbFunction;
   var dropdownValues;
   var dropdownList;
-  TextEditingController nricTextController;
+  TextEditingController? nricTextController;
   var textInput;
   var submitCB;
   TextEditingController? plateTextController;
@@ -15,7 +15,7 @@ class UiElement {
     this.dropdownCbFunction,
     this.dropdownValues,
     this.dropdownList,
-    required this.nricTextController,
+    this.nricTextController,
     this.textInput,
     this.submitCB,
     this.plateTextController,
@@ -80,7 +80,8 @@ class TemplateForm {
     );
   }
 
-  Widget idNumber(TextEditingController nricTextController, textInput, cbFunc) {
+  Widget idNumber(
+      TextEditingController? nricTextController, textInput, cbFunc) {
     return SizedBox(
       width: mediaWidth - 64,
       child: Padding(

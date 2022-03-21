@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:jpj_info/view/login/login.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter/services.dart';
+import 'package:jpj_info/view/mainpage/mainpage.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -10,14 +11,20 @@ void main() {
     ),
   );
   runApp(
-    const MaterialApp(
-      home: SafeArea(
+    MaterialApp(
+      home: const SafeArea(
         child: Scaffold(
           body: Center(child: StartApp()),
         ),
       ),
+      builder: EasyLoading.init(),
     ),
   );
+
+  EasyLoading.instance.indicatorType = EasyLoadingIndicatorType.wave;
+  EasyLoading.instance.dismissOnTap = false;
+  EasyLoading.instance.maskType = EasyLoadingMaskType.black;
+  EasyLoading.instance.maskColor = Colors.blue.withOpacity(0.5);
 }
 
 class StartApp extends StatelessWidget {
@@ -25,6 +32,6 @@ class StartApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Login();
+    return const MainPage();
   }
 }

@@ -8,6 +8,7 @@ class SiteConfig {
   final String registrationCheckUri =
       url + "/jpjinfo-api/apps/semaknopendaftaran";
   final String locationCheckUri = url + "/jpjinfo-api/apps/semaklokasi";
+  final String plateNumberUri = url + "/jpjinfo-api/apps/semaknopendaftaran";
 
   Map<String, String> jsonHeader = {
     'Content-Type': 'application/json; charset=UTF-8',

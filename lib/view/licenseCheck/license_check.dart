@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:jpj_info/config/site_config.dart';
 import 'package:jpj_info/model/license_status_request.dart';
 import 'package:jpj_info/model/license_status_response.dart';
@@ -94,6 +95,9 @@ class _License extends State<LicenseCheck> with TemplateForm, TemplateHeader {
       nokp: _controller.text,
     );
     try {
+      EasyLoading.show(
+        status: 'Please wait...',
+      );
       final response = await http.post(
         Uri.parse(conf.licenseCheckUri),
         headers: conf.jsonHeader,
@@ -137,6 +141,8 @@ class _License extends State<LicenseCheck> with TemplateForm, TemplateHeader {
       }
     } catch (e) {
       connectionError(context);
+    } finally {
+      EasyLoading.dismiss();
     }
   }
 

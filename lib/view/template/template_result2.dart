@@ -36,7 +36,7 @@ class templateResult2 extends StatelessWidget with TemplateHeader {
         const SizedBox(height: verticalPadding),
         subTitle(),
         const SizedBox(height: verticalPadding),
-        resultMainInfo(),
+        if (data.id != null) resultMainInfo(),
         const SizedBox(height: verticalPadding),
         const Divider(
           color: Colors.black54,
