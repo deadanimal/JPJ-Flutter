@@ -4,12 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:jpj_info/config/site_config.dart';
 import 'package:jpj_info/model/license_status_request.dart';
 import 'package:jpj_info/model/license_status_response.dart';
+import 'package:jpj_info/model/result_style1.dart';
 import 'package:jpj_info/view/appBarHeader/appBarHeader.dart';
 import 'package:jpj_info/model/page_size.dart';
 import 'package:http/http.dart' as http;
-import 'package:jpj_info/view/licenseCheck/result.dart';
 import 'package:jpj_info/view/navbar/navbar.dart';
 import 'package:jpj_info/view/template/template_form.dart';
+import 'package:jpj_info/view/template/template_header.dart';
+import 'package:jpj_info/view/template/template_result1.dart';
 
 class LicenseCheck extends StatefulWidget {
   const LicenseCheck({Key? key}) : super(key: key);
@@ -18,7 +20,7 @@ class LicenseCheck extends StatefulWidget {
   State<StatefulWidget> createState() => _License();
 }
 
-class _License extends State<LicenseCheck> with TemplateForm {
+class _License extends State<LicenseCheck> with TemplateForm, TemplateHeader {
   List<String> dropdownList = [
     'Penduduk Tetap Malaysia',
     'Orang Awam Malaysia',
@@ -105,49 +107,37 @@ class _License extends State<LicenseCheck> with TemplateForm {
           context,
           MaterialPageRoute(
             builder: (context) {
-              return Result(
-                result: respond,
+              List<Result1> dataSet = [];
+              respond.lesen?.forEach((el) {
+                dataSet.add(
+                  Result1(
+                    leftTitle: "Jenis Lesen",
+                    leftContent: el.jenisLesen,
+                    rightTitle: "Tarikh Luput",
+                    rightContent: el.tempohTamat,
+                  ),
+                );
+              });
+
+              ResultStyle1 resultData = ResultStyle1(
+                name: respond.nama,
+                id: respond.nokp,
+                title: "Lesen\nMemandu",
+                subtitle: "Keputusan Carian",
+                results: dataSet,
+              );
+              return TemplateResult1(
+                data: resultData,
               );
             },
           ),
         );
       } else {
-        _connectionError();
+        connectionError(context);
       }
     } catch (e) {
-      _connectionError();
+      connectionError(context);
     }
-  }
-
-  Future<void> _connectionError() {
-    return showDialog<void>(
-      context: context,
-      barrierDismissible: false, // user must tap button!
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Center(
-            child: Text('Connection Error!'),
-          ),
-          content: SingleChildScrollView(
-            child: ListBody(
-              children: const <Widget>[
-                Center(
-                  child: Text('Please try again.'),
-                ),
-              ],
-            ),
-          ),
-          actions: <Widget>[
-            TextButton(
-              child: const Text('OK'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
   }
 
   Widget _licenseForm(UiElement uiElement) {

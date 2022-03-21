@@ -23,62 +23,6 @@ class UiElement {
 }
 
 class TemplateForm {
-  late String headerTitle;
-
-  void setHeader(String title) {
-    headerTitle = title;
-  }
-
-  Widget header() {
-    return Container(
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(0),
-          topRight: Radius.circular(0),
-          bottomLeft: Radius.circular(30),
-          bottomRight: Radius.circular(30),
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: Color(boxShadow),
-            blurRadius: 8,
-            offset: Offset(0, 4),
-          ),
-        ],
-        gradient: LinearGradient(
-          begin: Alignment.bottomLeft,
-          end: Alignment.topRight,
-          colors: [Color(heederGradient1), Color(heederGradient2)],
-        ),
-      ),
-      padding: const EdgeInsets.only(
-        left: 4,
-        right: 4,
-        top: 8,
-        bottom: 8,
-      ),
-      child: title(),
-    );
-  }
-
-  Widget title() {
-    return Container(
-      width: mediaWidth,
-      padding: const EdgeInsets.fromLTRB(24, 24, 24, 8),
-      child: FittedBox(
-        child: Text(
-          headerTitle,
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 55,
-            fontFamily: "Poppins",
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-      ),
-    );
-  }
-
   Widget label() {
     return const Padding(
       padding: EdgeInsets.all(8.0),
@@ -97,24 +41,23 @@ class TemplateForm {
   }
 
   Widget dropdownSelector(cbFunc, dropdownValue, dropdownList) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Container(
-        width: mediaWidth - 48,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
-          boxShadow: const [
-            BoxShadow(
-              color: Color(btnShadow),
-              blurRadius: 4,
-              offset: Offset(0, 4),
-            ),
-          ],
-          color: Colors.white,
-        ),
-        alignment: Alignment.center,
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
+    return SizedBox(
+      width: mediaWidth - 64,
+      child: Padding(
+        padding: const EdgeInsets.all(8),
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            boxShadow: const [
+              BoxShadow(
+                color: Color(btnShadow),
+                blurRadius: 4,
+                offset: Offset(0, 4),
+              ),
+            ],
+            color: Colors.white,
+          ),
+          alignment: Alignment.center,
           child: DropdownButton<String>(
             value: dropdownValue,
             icon: const Icon(Icons.arrow_downward),
@@ -235,6 +178,37 @@ class TemplateForm {
           ),
         ),
       ),
+    );
+  }
+
+  Future<void> connectionError(context) {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Center(
+            child: Text('Connection Error!'),
+          ),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: const <Widget>[
+                Center(
+                  child: Text('Please try again.'),
+                ),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }

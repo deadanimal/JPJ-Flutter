@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:jpj_info/model/license_status_response.dart';
+import 'package:jpj_info/model/result_style2.dart';
+import 'package:jpj_info/model/roadtax_status_response.dart';
 import 'package:jpj_info/view/appBarHeader/appBarHeader.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/common/spacing.dart';
 import 'package:jpj_info/model/page_size.dart';
 import 'package:jpj_info/view/navbar/navbar.dart';
-import 'package:jpj_info/view/template/template_form.dart';
+import 'package:jpj_info/view/template/template_header.dart';
 
-class Result extends StatelessWidget with TemplateForm {
-  Result({Key? key, required this.result}) : super(key: key);
+class templateResult2 extends StatelessWidget with TemplateHeader {
+  templateResult2({Key? key, required this.data}) : super(key: key);
 
-  final LicenseStatusResponse result;
+  final ResultStyle2 data;
 
   @override
   Widget build(BuildContext context) {
@@ -21,14 +22,14 @@ class Result extends StatelessWidget with TemplateForm {
         child: Scaffold(
           endDrawer: const NavBar(),
           appBar: appBarHeader(),
-          body: showLicensePage(context),
+          body: showRoadTaxPage(context),
         ),
       ),
     );
   }
 
-  Widget showLicensePage(context) {
-    setHeader("Lesen\nMemandu");
+  Widget showRoadTaxPage(context) {
+    setHeader(data.title!);
     return Column(
       children: [
         header(),
@@ -44,24 +45,24 @@ class Result extends StatelessWidget with TemplateForm {
           thickness: 0.8,
         ),
         Expanded(
-          child: displayValidResult(result.lesen),
+          child: displayValidResult(data.results),
         ),
       ],
     );
   }
 
-  Widget displayValidResult(List<Lesen>? licenses) {
-    if (licenses != null) {
+  Widget displayValidResult(List<Result2>? result) {
+    if (result != null && result.isNotEmpty) {
       return ListView.builder(
         physics: const AlwaysScrollableScrollPhysics(),
         scrollDirection: Axis.vertical,
         shrinkWrap: true,
-        itemCount: licenses.length,
+        itemCount: result.length,
         itemBuilder: (context, index) {
           return Column(
             children: [
               const SizedBox(height: verticalPadding),
-              displayResult(licenses[index]),
+              displayResult(result[index]),
             ],
           );
         },
@@ -73,7 +74,7 @@ class Result extends StatelessWidget with TemplateForm {
     }
   }
 
-  Widget displayResult(Lesen licenses) {
+  Widget displayResult(Result2 result) {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(9),
@@ -86,72 +87,33 @@ class Result extends StatelessWidget with TemplateForm {
           ),
         ],
       ),
-      child: Row(
+      child: Column(
         children: [
-          Expanded(
-            child: Material(
+          Container(
+            width: double.infinity,
+            decoration: BoxDecoration(
               color: const Color(btnColor),
               borderRadius: BorderRadius.circular(9),
-              child: Padding(
-                padding: const EdgeInsets.all(verticalPadding),
-                child: Column(
-                  children: [
-                    const Text(
-                      "Jenis Lesen",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontFamily: "Poppins",
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    const SizedBox(height: horizontalPadding),
-                    Text(
-                      licenses.jenisLesen!,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 13,
-                        fontFamily: "Poppins",
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
             ),
-          ),
-          Expanded(
             child: Padding(
               padding: const EdgeInsets.all(verticalPadding),
               child: Column(
                 children: [
-                  const Text(
-                    "Tarikh Luput",
+                  Text(
+                    result.title!,
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Color(secondaryColor2),
+                    style: const TextStyle(
+                      color: Colors.white,
                       fontSize: 18,
                       fontFamily: "Poppins",
                       fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  const SizedBox(height: horizontalPadding),
-                  Text(
-                    licenses.tempohTamat!,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      color: Color(secondaryColor2),
-                      fontSize: 13,
-                      fontFamily: "Poppins",
-                      fontWeight: FontWeight.w500,
                     ),
                   ),
                 ],
               ),
             ),
           ),
+          result.result,
         ],
       ),
       width: 0.7 * mediaWidth,
@@ -181,7 +143,7 @@ class Result extends StatelessWidget with TemplateForm {
                 ),
               ),
               Text(
-                result.nama!,
+                data.name!,
                 style: const TextStyle(
                   color: Color(secondaryColor2),
                   fontSize: 13,
@@ -203,7 +165,29 @@ class Result extends StatelessWidget with TemplateForm {
                 ),
               ),
               Text(
-                result.nokp!,
+                data.id!,
+                style: const TextStyle(
+                  color: Color(secondaryColor2),
+                  fontSize: 13,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: verticalPadding),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text(
+                "No Pendaftaran Kenderaan",
+                style: TextStyle(
+                  color: Color(secondaryColor2),
+                  fontSize: 13,
+                  fontFamily: "Poppins",
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              Text(
+                data.vehicalRegNumber!.toUpperCase(),
                 style: const TextStyle(
                   color: Color(secondaryColor2),
                   fontSize: 13,
@@ -221,12 +205,12 @@ class Result extends StatelessWidget with TemplateForm {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.max,
-      children: const [
+      children: [
         Padding(
-          padding: EdgeInsets.all(verticalPadding),
+          padding: const EdgeInsets.all(verticalPadding),
           child: Text(
-            "Keputusan Carian",
-            style: TextStyle(
+            data.subtitle!,
+            style: const TextStyle(
               color: Color(secondaryColor2),
               fontSize: 18,
               fontFamily: "Poppins",

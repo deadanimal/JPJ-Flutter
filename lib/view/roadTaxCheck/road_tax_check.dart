@@ -1,13 +1,17 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+
 import 'package:jpj_info/config/site_config.dart';
+import 'package:jpj_info/model/result_style2.dart';
 import 'package:jpj_info/model/roadtax_status_request.dart';
 import 'package:jpj_info/model/roadtax_status_response.dart';
 import 'package:jpj_info/view/appBarHeader/appBarHeader.dart';
 import 'package:jpj_info/model/page_size.dart';
-import 'package:http/http.dart' as http;
-import './result.dart';
+import 'package:jpj_info/view/common/color_scheme.dart';
+import 'package:jpj_info/view/common/spacing.dart';
+import 'package:jpj_info/view/template/template_header.dart';
+import 'package:jpj_info/view/template/template_result2.dart';
 import 'package:jpj_info/view/navbar/navbar.dart';
 import 'package:jpj_info/view/template/template_form.dart';
 
@@ -18,7 +22,7 @@ class RoadTaxCheck extends StatefulWidget {
   State<StatefulWidget> createState() => _RoadTax();
 }
 
-class _RoadTax extends State<RoadTaxCheck> with TemplateForm {
+class _RoadTax extends State<RoadTaxCheck> with TemplateForm, TemplateHeader {
   List<String> dropdownList = [
     'Penduduk Tetap Malaysia',
     'Orang Awam Malaysia',
@@ -112,48 +116,66 @@ class _RoadTax extends State<RoadTaxCheck> with TemplateForm {
           context,
           MaterialPageRoute(
             builder: (context) {
-              return Result(
-                result: respond,
+              List<Result2> dataSet = [];
+              respond.lkm?.forEach((el) {
+                dataSet.add(
+                  Result2(
+                    result: _resultField(el),
+                    title: el.velinsuran,
+                  ),
+                );
+              });
+
+              ResultStyle2 result = ResultStyle2(
+                id: respond.nokp,
+                name: respond.nama,
+                results: dataSet,
+                subtitle: "Keputusan Carian",
+                title: "Lesen\nKenderaan Motor",
+                vehicalRegNumber: respond.nokenderaan,
+              );
+              return templateResult2(
+                data: result,
               );
             },
           ),
         );
       } else {
-        _connectionError();
+        connectionError(context);
       }
     } catch (e) {
-      _connectionError();
+      connectionError(context);
     }
   }
 
-  Future<void> _connectionError() {
-    return showDialog<void>(
-      context: context,
-      barrierDismissible: false, // user must tap button!
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Center(
-            child: Text('Connection Error!'),
-          ),
-          content: SingleChildScrollView(
-            child: ListBody(
-              children: const <Widget>[
-                Center(
-                  child: Text('Please try again.'),
-                ),
-              ],
+  Widget _resultField(Lkm el) {
+    return Padding(
+      padding: const EdgeInsets.all(verticalPadding),
+      child: Column(
+        children: [
+          const Text(
+            "Tarikh Luput",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Color(secondaryColor2),
+              fontSize: 18,
+              fontFamily: "Poppins",
+              fontWeight: FontWeight.w600,
             ),
           ),
-          actions: <Widget>[
-            TextButton(
-              child: const Text('OK'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
+          const SizedBox(height: horizontalPadding),
+          Text(
+            el.expiredate!,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              color: Color(secondaryColor2),
+              fontSize: 13,
+              fontFamily: "Poppins",
+              fontWeight: FontWeight.w500,
             ),
-          ],
-        );
-      },
+          ),
+        ],
+      ),
     );
   }
 

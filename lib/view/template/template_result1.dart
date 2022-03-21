@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:jpj_info/model/roadtax_status_response.dart';
+import 'package:jpj_info/model/result_style1.dart';
 import 'package:jpj_info/view/appBarHeader/appBarHeader.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/common/spacing.dart';
 import 'package:jpj_info/model/page_size.dart';
 import 'package:jpj_info/view/navbar/navbar.dart';
 import 'package:jpj_info/view/template/template_form.dart';
+import 'package:jpj_info/view/template/template_header.dart';
 
-class Result extends StatelessWidget with TemplateForm {
-  Result({Key? key, required this.result}) : super(key: key);
+class TemplateResult1 extends StatelessWidget
+    with TemplateForm, TemplateHeader {
+  TemplateResult1({Key? key, required this.data}) : super(key: key);
 
-  final RoadTaxStatusResponse result;
+  final ResultStyle1 data;
 
   @override
   Widget build(BuildContext context) {
@@ -21,14 +23,14 @@ class Result extends StatelessWidget with TemplateForm {
         child: Scaffold(
           endDrawer: const NavBar(),
           appBar: appBarHeader(),
-          body: showRoadTaxPage(context),
+          body: showResultPage(context),
         ),
       ),
     );
   }
 
-  Widget showRoadTaxPage(context) {
-    setHeader("Lesen\nKenderaan Motor");
+  Widget showResultPage(context) {
+    setHeader(data.title!);
     return Column(
       children: [
         header(),
@@ -44,24 +46,24 @@ class Result extends StatelessWidget with TemplateForm {
           thickness: 0.8,
         ),
         Expanded(
-          child: displayValidResult(result.lkm),
+          child: displayValidResult(data.results),
         ),
       ],
     );
   }
 
-  Widget displayValidResult(List<Lkm>? lkm) {
-    if (lkm != null) {
+  Widget displayValidResult(List<Result1>? result) {
+    if (result != null && result.isNotEmpty) {
       return ListView.builder(
         physics: const AlwaysScrollableScrollPhysics(),
         scrollDirection: Axis.vertical,
         shrinkWrap: true,
-        itemCount: lkm.length,
+        itemCount: result.length,
         itemBuilder: (context, index) {
           return Column(
             children: [
               const SizedBox(height: verticalPadding),
-              displayResult(lkm[index]),
+              displayResult(result[index]),
             ],
           );
         },
@@ -73,7 +75,7 @@ class Result extends StatelessWidget with TemplateForm {
     }
   }
 
-  Widget displayResult(Lkm lkm) {
+  Widget displayResult(Result1 result) {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(9),
@@ -97,13 +99,24 @@ class Result extends StatelessWidget with TemplateForm {
                 child: Column(
                   children: [
                     Text(
-                      lkm.velinsuran!,
+                      result.leftTitle!,
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                         color: Colors.white,
                         fontSize: 18,
                         fontFamily: "Poppins",
                         fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    const SizedBox(height: horizontalPadding),
+                    Text(
+                      result.leftContent!,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 13,
+                        fontFamily: "Poppins",
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                   ],
@@ -116,10 +129,10 @@ class Result extends StatelessWidget with TemplateForm {
               padding: const EdgeInsets.all(verticalPadding),
               child: Column(
                 children: [
-                  const Text(
-                    "Tarikh Luput",
+                  Text(
+                    result.rightTitle!,
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Color(secondaryColor2),
                       fontSize: 18,
                       fontFamily: "Poppins",
@@ -128,7 +141,7 @@ class Result extends StatelessWidget with TemplateForm {
                   ),
                   const SizedBox(height: horizontalPadding),
                   Text(
-                    lkm.expiredate!,
+                    result.rightContent!,
                     textAlign: TextAlign.center,
                     style: const TextStyle(
                       color: Color(secondaryColor2),
@@ -170,7 +183,7 @@ class Result extends StatelessWidget with TemplateForm {
                 ),
               ),
               Text(
-                result.nama!,
+                data.name!,
                 style: const TextStyle(
                   color: Color(secondaryColor2),
                   fontSize: 13,
@@ -192,29 +205,7 @@ class Result extends StatelessWidget with TemplateForm {
                 ),
               ),
               Text(
-                result.nokp!,
-                style: const TextStyle(
-                  color: Color(secondaryColor2),
-                  fontSize: 13,
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: verticalPadding),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Text(
-                "No Pendaftaran Kenderaan",
-                style: TextStyle(
-                  color: Color(secondaryColor2),
-                  fontSize: 13,
-                  fontFamily: "Poppins",
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              Text(
-                result.nokenderaan!.toUpperCase(),
+                data.id!,
                 style: const TextStyle(
                   color: Color(secondaryColor2),
                   fontSize: 13,
