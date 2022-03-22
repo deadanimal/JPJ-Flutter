@@ -2,24 +2,37 @@ import 'package:flutter/material.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/common/spacing.dart';
 
-PreferredSizeWidget appBarHeader() {
-  return AppBar(
-    flexibleSpace: Container(
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.bottomLeft,
-          end: Alignment.topRight,
-          colors: [Color(heederGradient1), Color(heederGradient2)],
-        ),
+PreferredSizeWidget appBarHeader({
+  int gradient1 = heederGradient1,
+  int gradient2 = heederGradient2,
+}) {
+  BoxDecoration decor;
+  bool darkBtn = false;
+  if (gradient1 != gradient2) {
+    decor = BoxDecoration(
+      gradient: LinearGradient(
+        begin: Alignment.bottomLeft,
+        end: Alignment.topRight,
+        colors: [Color(gradient1), Color(gradient2)],
       ),
+    );
+  } else {
+    darkBtn = true;
+    decor = const BoxDecoration();
+  }
+  return AppBar(
+    backgroundColor: Colors.transparent,
+    elevation: 0,
+    flexibleSpace: Container(
+      decoration: decor,
       child: SizedBox(
         height: 100,
         child: Row(
           children: [
             const SizedBox(width: horizontalPadding),
-            languageBtn(),
+            languageBtn(darkBtn),
             const SizedBox(width: horizontalPadding),
-            faqBtn(),
+            faqBtn(darkBtn),
           ],
         ),
       ),
@@ -27,15 +40,15 @@ PreferredSizeWidget appBarHeader() {
   );
 }
 
-Widget languageBtn() {
+Widget languageBtn(bool darkBtn) {
   return InkWell(
     onTap: () {},
-    child: const SizedBox(
+    child: SizedBox(
       child: Text(
         "EN",
         textAlign: TextAlign.center,
         style: TextStyle(
-          color: Colors.white,
+          color: darkBtn == true ? const Color(secondaryColor) : Colors.white,
           fontSize: 12,
           fontFamily: "Roboto",
           fontWeight: FontWeight.w900,
@@ -45,15 +58,15 @@ Widget languageBtn() {
   );
 }
 
-Widget faqBtn() {
+Widget faqBtn(bool darkBtn) {
   return InkWell(
     onTap: () {},
-    child: const SizedBox(
+    child: SizedBox(
       child: Text(
         "FAQ",
         textAlign: TextAlign.center,
         style: TextStyle(
-          color: Colors.white,
+          color: darkBtn == true ? const Color(secondaryColor) : Colors.white,
           fontSize: 12,
           fontFamily: "Roboto",
           fontWeight: FontWeight.w900,

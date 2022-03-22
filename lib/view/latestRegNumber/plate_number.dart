@@ -13,7 +13,7 @@ import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/common/spacing.dart';
 import 'package:jpj_info/view/template/template_header.dart';
 import 'package:jpj_info/view/template/template_result2.dart';
-import 'package:jpj_info/view/navbar/navbar.dart';
+import 'package:jpj_info/view/navbar/menu.dart';
 import 'package:jpj_info/view/template/template_form.dart';
 
 class PlateNumber extends StatefulWidget {

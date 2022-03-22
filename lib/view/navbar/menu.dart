@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jpj_info/view/login/login.dart';
 
 class NavBar extends StatelessWidget {
   const NavBar({Key? key}) : super(key: key);
@@ -63,9 +64,18 @@ class NavBar extends StatelessWidget {
           ),
           const Divider(),
           ListTile(
-            title: const Text('Exit'),
+            title: const Text('Log Out'),
             leading: const Icon(Icons.exit_to_app),
-            onTap: () => null,
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return const Login();
+                  },
+                ),
+              );
+            },
           ),
         ],
       ),

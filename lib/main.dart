@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter/services.dart';
+import 'package:jpj_info/view/login/login.dart';
 import 'package:jpj_info/view/mainpage/mainpage.dart';
 
 void main() {
@@ -32,6 +33,7 @@ class StartApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MainPage();
+    // return const MainPage();
+    return const Login();
   }
 }

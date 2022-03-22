@@ -4,7 +4,7 @@ import 'package:jpj_info/view/appBarHeader/appBarHeader.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/common/spacing.dart';
 import 'package:jpj_info/model/page_size.dart';
-import 'package:jpj_info/view/navbar/navbar.dart';
+import 'package:jpj_info/view/navbar/menu.dart';
 import 'package:jpj_info/view/template/template_form.dart';
 import 'package:jpj_info/view/template/template_header.dart';
 
