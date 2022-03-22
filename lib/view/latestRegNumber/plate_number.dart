@@ -7,8 +7,6 @@ import 'package:jpj_info/config/site_config.dart';
 import 'package:jpj_info/model/latest_reg_number_request.dart';
 import 'package:jpj_info/model/latest_reg_number_response.dart';
 import 'package:jpj_info/model/result_style2.dart';
-import 'package:jpj_info/model/roadtax_status_request.dart';
-import 'package:jpj_info/model/roadtax_status_response.dart';
 import 'package:jpj_info/view/appBarHeader/appBarHeader.dart';
 import 'package:jpj_info/model/page_size.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
@@ -66,7 +64,7 @@ class _PlateNumber extends State<PlateNumber>
   };
   late Iterable<String> dropdownList;
   String dropdownValue = 'JOHOR';
-  String id = '';
+  String pageTitle = "Nombor\nKenderaan Terkini";
 
   @override
   void initState() {
@@ -99,12 +97,12 @@ class _PlateNumber extends State<PlateNumber>
       dropdownCbFunction: _setSelection,
       dropdownValues: dropdownValue,
       nricTextController: null,
-      textInput: id,
+      textInput: null,
       submitCB: _submitCB,
       dropdownList: dropdownList,
       plateTextController: null,
     );
-    setHeader("Lesen\nKenderaan Motor");
+    setHeader(pageTitle);
     return Material(
       child: Column(
         children: [
@@ -172,7 +170,7 @@ class _PlateNumber extends State<PlateNumber>
                 name: null,
                 results: dataSet,
                 subtitle: "Keputusan Carian",
-                title: "Nombor\nKenderaan Terkini",
+                title: pageTitle,
                 vehicalRegNumber: null,
               );
               return templateResult2(

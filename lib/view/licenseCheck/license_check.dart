@@ -33,6 +33,7 @@ class _License extends State<LicenseCheck> with TemplateForm, TemplateHeader {
   String dropdownValue = 'Penduduk Tetap Malaysia';
   String id = '';
   late TextEditingController _controller;
+  String pageTitle = "Lesen\nMemandu";
 
   @override
   void initState() {
@@ -70,7 +71,7 @@ class _License extends State<LicenseCheck> with TemplateForm, TemplateHeader {
       submitCB: _submitCB,
       dropdownList: dropdownList,
     );
-    setHeader("Lesen\nMemandu");
+    setHeader(pageTitle);
     return Material(
       child: Column(
         children: [
@@ -126,7 +127,7 @@ class _License extends State<LicenseCheck> with TemplateForm, TemplateHeader {
               ResultStyle1 resultData = ResultStyle1(
                 name: respond.nama,
                 id: respond.nokp,
-                title: "Lesen\nMemandu",
+                title: pageTitle,
                 subtitle: "Keputusan Carian",
                 results: dataSet,
               );

@@ -36,6 +36,7 @@ class _RoadTax extends State<RoadTaxCheck> with TemplateForm, TemplateHeader {
   String id = '';
   late TextEditingController _nric;
   late TextEditingController _plateNumber;
+  String pageTitle = "Lesen\nKenderaan Motor";
 
   @override
   void initState() {
@@ -76,7 +77,7 @@ class _RoadTax extends State<RoadTaxCheck> with TemplateForm, TemplateHeader {
       dropdownList: dropdownList,
       plateTextController: _plateNumber,
     );
-    setHeader("Lesen\nKenderaan Motor");
+    setHeader(pageTitle);
     return Material(
       child: Column(
         children: [
@@ -135,7 +136,7 @@ class _RoadTax extends State<RoadTaxCheck> with TemplateForm, TemplateHeader {
                 name: respond.nama,
                 results: dataSet,
                 subtitle: "Keputusan Carian",
-                title: "Lesen\nKenderaan Motor",
+                title: pageTitle,
                 vehicalRegNumber: respond.nokenderaan,
               );
               return templateResult2(
