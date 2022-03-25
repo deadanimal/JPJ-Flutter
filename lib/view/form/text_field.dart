@@ -5,11 +5,15 @@ class TextFieldForm extends StatelessWidget {
     Key? key,
     this.label = "",
     this.width = 64,
+    this.obscureText = false,
+    this.inputType = TextInputType.text,
     required this.textController,
   }) : super(key: key);
 
   final String label;
   final double width;
+  final TextInputType inputType;
+  final bool obscureText;
   final TextEditingController textController;
 
   @override
@@ -25,6 +29,8 @@ class TextFieldForm extends StatelessWidget {
           child: TextField(
             controller: textController,
             textAlign: TextAlign.center,
+            keyboardType: inputType,
+            obscureText: obscureText,
             decoration: InputDecoration(
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(15.0),

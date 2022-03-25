@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jpj_info/view/login/login.dart';
+import 'package:jpj_info/controller/login_controller.dart';
 
 class NavBar extends StatelessWidget {
   const NavBar({Key? key}) : super(key: key);
@@ -71,7 +71,7 @@ class NavBar extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                   builder: (context) {
-                    return const Login();
+                    return const LoginController();
                   },
                 ),
               );

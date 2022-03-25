@@ -1,60 +1,36 @@
 import 'package:flutter/material.dart';
-import 'package:jpj_info/view/appBarHeader/appBarHeader.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/common/spacing.dart';
 import 'package:jpj_info/view/form/custom_button.dart';
 import 'package:jpj_info/view/form/label.dart';
 import 'package:jpj_info/view/form/text_field.dart';
-import 'package:jpj_info/view/mainpage/mainpage.dart';
-import 'package:jpj_info/view/navbar/menu.dart';
 
-class Login extends StatefulWidget {
-  const Login({Key? key}) : super(key: key);
+class Login extends StatelessWidget {
+  Login({
+    Key? key,
+    this.screenHeight,
+    this.screenWidth,
+    required this.userId,
+    required this.userPwd,
+    this.newAccountCB,
+    this.logInCB,
+    this.logAsGuessCB,
+    this.forgotPasswordCB,
+  }) : super(key: key);
 
-  @override
-  State<StatefulWidget> createState() => _Login();
-}
-
-// class _License extends State<LicenseCheck>
-class _Login extends State<Login> {
   double? screenHeight;
   double? screenWidth;
-  late TextEditingController _userId;
-  late TextEditingController _userPwd;
-
-  @override
-  void initState() {
-    super.initState();
-    _userId = TextEditingController();
-    _userPwd = TextEditingController();
-  }
-
-  @override
-  void dispose() {
-    _userId.dispose();
-    _userPwd.dispose();
-    super.dispose();
-  }
+  final TextEditingController userId;
+  final TextEditingController userPwd;
+  final void Function(BuildContext)? newAccountCB;
+  final void Function(BuildContext)? logInCB;
+  final void Function(BuildContext)? logAsGuessCB;
+  final void Function(BuildContext)? forgotPasswordCB;
 
   @override
   Widget build(BuildContext context) {
     screenWidth = (MediaQuery.of(context).size.width);
     screenHeight = (MediaQuery.of(context).size.height);
-    return MaterialApp(
-      home: SafeArea(
-        child: Scaffold(
-          endDrawer: const NavBar(),
-          appBar: appBarHeader(
-            gradient1: 0,
-            gradient2: 0,
-          ),
-          body: showLoginPage(context),
-        ),
-      ),
-    );
-  }
-
-  Widget showLoginPage(context) {
     return Material(
       child: Container(
         height: screenHeight,
@@ -114,13 +90,14 @@ class _Login extends State<Login> {
           ),
           const SizedBox(height: 8),
           TextFieldForm(
-            textController: _userId,
+            textController: userId,
             label: "ID Pengguna",
             width: screenWidth! - 64,
           ),
           const SizedBox(height: 8),
           TextFieldForm(
-            textController: _userId,
+            obscureText: true,
+            textController: userPwd,
             label: "Kata Laluan",
             width: screenWidth! - 64,
           ),
@@ -128,17 +105,24 @@ class _Login extends State<Login> {
             width: screenWidth! - 64,
             child: Padding(
               padding: const EdgeInsets.all(4.0),
-              child: Text(
-                "Terlupa Kata Laluan?",
-                textAlign: TextAlign.right,
-                style: TextStyle(
-                  color: Colors.grey.shade200,
-                  shadows: const [
-                    Shadow(color: Colors.grey, blurRadius: 4.0),
-                  ],
-                  fontSize: 12,
-                  fontFamily: "Poppins",
-                  fontWeight: FontWeight.w600,
+              child: InkWell(
+                onTap: () {
+                  if (forgotPasswordCB != null) {
+                    forgotPasswordCB!(context);
+                  }
+                },
+                child: Text(
+                  "Terlupa Kata Laluan?",
+                  textAlign: TextAlign.right,
+                  style: TextStyle(
+                    color: Colors.grey.shade200,
+                    shadows: const [
+                      Shadow(color: Colors.grey, blurRadius: 4.0),
+                    ],
+                    fontSize: 12,
+                    fontFamily: "Poppins",
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
             ),
@@ -149,14 +133,9 @@ class _Login extends State<Login> {
             label: "Log Masuk",
             decoration: orangeGradientBtnDeco,
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return const MainPage();
-                  },
-                ),
-              );
+              if (logInCB != null) {
+                logInCB!(context);
+              }
             },
           ),
           const SizedBox(height: 8),
@@ -205,7 +184,11 @@ class _Login extends State<Login> {
             label: "Pelawat",
             decoration: whiteBtnDeco,
             textColor: const Color(themeOrange),
-            onPressed: _logAsGuess,
+            onPressed: () {
+              if (logAsGuessCB != null) {
+                logAsGuessCB!(context);
+              }
+            },
           ),
           const SizedBox(height: 8),
           CustomButton(
@@ -213,29 +196,14 @@ class _Login extends State<Login> {
             label: "Daftar Akaun Baru",
             decoration: whiteBtnDeco,
             textColor: const Color(themeOrange),
-            onPressed: _newRegistration,
+            onPressed: () {
+              if (newAccountCB != null) {
+                newAccountCB!(context);
+              }
+            },
           ),
         ],
       ),
     );
-  }
-
-  void _login() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) {
-          return const MainPage();
-        },
-      ),
-    );
-  }
-
-  void _logAsGuess() {
-    _login();
-  }
-
-  void _newRegistration() {
-    _login();
   }
 }

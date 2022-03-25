@@ -6,10 +6,12 @@ class CustomLabel extends StatelessWidget {
     Key? key,
     this.label = "NO LABEL",
     this.fontSize = 20,
+    this.fontWeight = FontWeight.w700,
   }) : super(key: key);
 
   final String label;
   final double fontSize;
+  final FontWeight? fontWeight;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,7 @@ class CustomLabel extends StatelessWidget {
         color: const Color(themeNavy),
         fontSize: fontSize,
         fontFamily: "Poppins",
-        fontWeight: FontWeight.w700,
+        fontWeight: fontWeight,
       ),
     );
   }
