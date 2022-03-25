@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:jpj_info/view/appBarHeader/appBarHeader.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/common/spacing.dart';
+import 'package:jpj_info/view/form/custom_button.dart';
+import 'package:jpj_info/view/form/label.dart';
+import 'package:jpj_info/view/form/text_field.dart';
 import 'package:jpj_info/view/mainpage/mainpage.dart';
+import 'package:jpj_info/view/navbar/menu.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -39,6 +43,7 @@ class _Login extends State<Login> {
     return MaterialApp(
       home: SafeArea(
         child: Scaffold(
+          endDrawer: const NavBar(),
           appBar: appBarHeader(
             gradient1: 0,
             gradient2: 0,
@@ -50,17 +55,18 @@ class _Login extends State<Login> {
   }
 
   Widget showLoginPage(context) {
-    return SingleChildScrollView(
-      child: Material(
-        child: Container(
-          height: screenHeight,
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage("images/login_bg.png"),
-              fit: BoxFit.fitWidth,
-              alignment: Alignment.bottomCenter,
-            ),
+    return Material(
+      child: Container(
+        height: screenHeight,
+        width: screenWidth,
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("images/login_bg.png"),
+            fit: BoxFit.fitWidth,
+            alignment: Alignment.bottomCenter,
           ),
+        ),
+        child: SingleChildScrollView(
           child: Column(
             children: [
               _foreground(context),
@@ -69,336 +75,167 @@ class _Login extends State<Login> {
         ),
       ),
     );
-    return Material(
-      child: Container(
-        // height: screenHeight,
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            alignment: Alignment.bottomCenter,
-            fit: BoxFit.fill,
-            image: AssetImage("images/login_bg.png"),
-          ),
-        ),
-        child: _foreground(context),
-      ),
-    );
   }
 
   Widget _foreground(context) {
-    return SizedBox(
+    return Container(
+      constraints: const BoxConstraints(maxWidth: 400),
       width: screenWidth,
       child: Column(
         children: [
           _logo(context),
           const SizedBox(height: verticalPadding),
           _loginField(context),
+          const SizedBox(height: verticalPadding),
         ],
       ),
     );
   }
 
   Widget _logo(context) {
-    return const Center(
+    return Center(
       child: Image(
-        image: AssetImage("images/myjpj_logo_large.png"),
+        image: const AssetImage("images/myjpj_logo_large.png"),
+        width: screenWidth! / 3,
       ),
     );
   }
 
   Widget _loginField(context) {
-    return Column(
-      children: [
-        const Text(
-          "Log Masuk",
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            color: Color(0xff171f44),
-            fontSize: 20,
-            fontFamily: "Poppins",
-            fontWeight: FontWeight.w700,
+    return Padding(
+      padding: const EdgeInsets.only(
+        left: 64,
+        right: 64,
+      ),
+      child: Column(
+        children: [
+          const CustomLabel(
+            label: "Log Masuk",
           ),
-        ),
-        const SizedBox(height: verticalPadding),
-        SizedBox(
-          width: screenWidth! - 64,
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Material(
-              borderRadius: BorderRadius.circular(15),
-              elevation: 16.0,
-              shadowColor: Colors.grey,
-              child: TextField(
-                // controller: nricTextController,
-                onSubmitted: (String value) {
-                  // cbFunc();
-                },
-                textAlign: TextAlign.center,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(15.0),
-                  ),
-                  fillColor: Colors.white,
-                  labelText: 'ID Pengguna',
-                ),
-              ),
-            ),
+          const SizedBox(height: 8),
+          TextFieldForm(
+            textController: _userId,
+            label: "ID Pengguna",
+            width: screenWidth! - 64,
           ),
-        ),
-        const SizedBox(height: verticalPadding),
-        SizedBox(
-          width: screenWidth! - 64,
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Material(
-              borderRadius: BorderRadius.circular(15),
-              elevation: 16.0,
-              shadowColor: Colors.grey,
-              child: TextField(
-                // controller: nricTextController,
-                onSubmitted: (String value) {
-                  // cbFunc();
-                },
-                textAlign: TextAlign.center,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(15.0),
-                  ),
-                  fillColor: Colors.white,
-                  labelText: 'Kata Laluan',
-                ),
-              ),
-            ),
+          const SizedBox(height: 8),
+          TextFieldForm(
+            textController: _userId,
+            label: "Kata Laluan",
+            width: screenWidth! - 64,
           ),
-        ),
-        SizedBox(
-          width: screenWidth! - 64,
-          child: const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Text(
-              "Terlupa Kata Laluan?",
-              textAlign: TextAlign.right,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 12,
-                fontFamily: "Poppins",
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ),
-        ),
-        const SizedBox(height: verticalPadding),
-        SizedBox(
-          width: screenWidth! - 64,
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-                boxShadow: const [
-                  BoxShadow(
-                    color: Color(0x3f000000),
-                    blurRadius: 4,
-                    offset: Offset(0, 4),
-                  ),
-                ],
-                gradient: const LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [Color(0xfff8b518), Color(0xffc18b0e)],
-                ),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextButton(
-                  style: ButtonStyle(
-                    foregroundColor:
-                        MaterialStateProperty.all<Color>(Colors.blue),
-                  ),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return const MainPage();
-                        },
-                      ),
-                    );
-                  },
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: const [
-                      SizedBox(
-                        child: Text(
-                          "LOGIN",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 17,
-                            fontFamily: "Poppins",
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ),
-        const SizedBox(height: verticalPadding),
-        SizedBox(
-          width: 91,
-          height: 20,
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.end,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                width: 24,
-                height: 4,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(2),
-                  color: const Color(0xccf8b518),
-                ),
-              ),
-              const SizedBox(width: 3),
-              const Text(
-                "Atau",
-                textAlign: TextAlign.center,
+          SizedBox(
+            width: screenWidth! - 64,
+            child: Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: Text(
+                "Terlupa Kata Laluan?",
+                textAlign: TextAlign.right,
                 style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 15,
+                  color: Colors.grey.shade200,
+                  shadows: const [
+                    Shadow(color: Colors.grey, blurRadius: 4.0),
+                  ],
+                  fontSize: 12,
                   fontFamily: "Poppins",
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              const SizedBox(width: 3),
-              Container(
-                width: 24,
-                height: 4,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(2),
-                  color: const Color(0xccf8b518),
-                ),
-              ),
-            ],
-          ),
-        ),
-        const SizedBox(height: verticalPadding),
-        SizedBox(
-          width: screenWidth! - 64,
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(15),
-                boxShadow: const [
-                  BoxShadow(
-                    color: Color(0x3f000000),
-                    blurRadius: 4,
-                    offset: Offset(0, 4),
-                  ),
-                ],
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextButton(
-                  style: ButtonStyle(
-                    foregroundColor:
-                        MaterialStateProperty.all<Color>(Colors.blue),
-                  ),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return const MainPage();
-                        },
-                      ),
-                    );
-                  },
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: const [
-                      SizedBox(
-                        child: Text(
-                          "Pelawat",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Color(0xffd06400),
-                            fontSize: 17,
-                            fontFamily: "Poppins",
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
             ),
           ),
-        ),
-        const SizedBox(height: 8),
-        SizedBox(
-          width: screenWidth! - 64,
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(15),
-                boxShadow: const [
-                  BoxShadow(
-                    color: Color(0x3f000000),
-                    blurRadius: 4,
-                    offset: Offset(0, 4),
-                  ),
-                ],
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextButton(
-                  style: ButtonStyle(
-                    foregroundColor:
-                        MaterialStateProperty.all<Color>(Colors.blue),
-                  ),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return const MainPage();
-                        },
-                      ),
-                    );
+          const SizedBox(height: 8),
+          CustomButton(
+            width: screenWidth! - 64,
+            label: "Log Masuk",
+            decoration: orangeGradientBtnDeco,
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return const MainPage();
                   },
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: const [
-                      SizedBox(
-                        child: Text(
-                          "Daftar Akaun Baru",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Color(0xffd06400),
-                            fontSize: 17,
-                            fontFamily: "Poppins",
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                      ),
-                    ],
+                ),
+              );
+            },
+          ),
+          const SizedBox(height: 8),
+          SizedBox(
+            width: 91,
+            height: 20,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  width: 24,
+                  height: 4,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(2),
+                    color: const Color(0xccf8b518),
                   ),
                 ),
-              ),
+                const SizedBox(width: 3),
+                const Text(
+                  "Atau",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 15,
+                    fontFamily: "Poppins",
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                const SizedBox(width: 3),
+                Container(
+                  width: 24,
+                  height: 4,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(2),
+                    color: const Color(0xccf8b518),
+                  ),
+                ),
+              ],
             ),
           ),
-        ),
-      ],
+          const SizedBox(height: 8),
+          CustomButton(
+            width: screenWidth! - 64,
+            label: "Pelawat",
+            decoration: whiteBtnDeco,
+            textColor: const Color(themeOrange),
+            onPressed: _logAsGuess,
+          ),
+          const SizedBox(height: 8),
+          CustomButton(
+            width: screenWidth! - 64,
+            label: "Daftar Akaun Baru",
+            decoration: whiteBtnDeco,
+            textColor: const Color(themeOrange),
+            onPressed: _newRegistration,
+          ),
+        ],
+      ),
     );
+  }
+
+  void _login() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) {
+          return const MainPage();
+        },
+      ),
+    );
+  }
+
+  void _logAsGuess() {
+    _login();
+  }
+
+  void _newRegistration() {
+    _login();
   }
 }

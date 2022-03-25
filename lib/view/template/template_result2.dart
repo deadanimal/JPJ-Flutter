@@ -136,7 +136,7 @@ class templateResult2 extends StatelessWidget with TemplateHeader {
               const Text(
                 "Nama",
                 style: TextStyle(
-                  color: Color(secondaryColor2),
+                  color: Color(themeNavy),
                   fontSize: 13,
                   fontFamily: "Poppins",
                   fontWeight: FontWeight.w600,
@@ -145,7 +145,7 @@ class templateResult2 extends StatelessWidget with TemplateHeader {
               Text(
                 data.name!,
                 style: const TextStyle(
-                  color: Color(secondaryColor2),
+                  color: Color(themeNavy),
                   fontSize: 13,
                 ),
               ),
@@ -158,7 +158,7 @@ class templateResult2 extends StatelessWidget with TemplateHeader {
               const Text(
                 "Nombor Kad Pengenalan",
                 style: TextStyle(
-                  color: Color(secondaryColor2),
+                  color: Color(themeNavy),
                   fontSize: 13,
                   fontFamily: "Poppins",
                   fontWeight: FontWeight.w600,
@@ -167,7 +167,7 @@ class templateResult2 extends StatelessWidget with TemplateHeader {
               Text(
                 data.id!,
                 style: const TextStyle(
-                  color: Color(secondaryColor2),
+                  color: Color(themeNavy),
                   fontSize: 13,
                 ),
               ),
@@ -180,7 +180,7 @@ class templateResult2 extends StatelessWidget with TemplateHeader {
               const Text(
                 "No Pendaftaran Kenderaan",
                 style: TextStyle(
-                  color: Color(secondaryColor2),
+                  color: Color(themeNavy),
                   fontSize: 13,
                   fontFamily: "Poppins",
                   fontWeight: FontWeight.w600,
@@ -189,7 +189,7 @@ class templateResult2 extends StatelessWidget with TemplateHeader {
               Text(
                 data.vehicalRegNumber!.toUpperCase(),
                 style: const TextStyle(
-                  color: Color(secondaryColor2),
+                  color: Color(themeNavy),
                   fontSize: 13,
                 ),
               ),
@@ -211,7 +211,7 @@ class templateResult2 extends StatelessWidget with TemplateHeader {
           child: Text(
             data.subtitle!,
             style: const TextStyle(
-              color: Color(secondaryColor2),
+              color: Color(themeNavy),
               fontSize: 18,
               fontFamily: "Poppins",
               fontWeight: FontWeight.w600,

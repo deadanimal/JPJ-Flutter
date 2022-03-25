@@ -153,7 +153,7 @@ class _PlateNumber extends State<PlateNumber>
                         respond.velno!,
                         textAlign: TextAlign.center,
                         style: const TextStyle(
-                          color: Color(secondaryColor2),
+                          color: Color(themeNavy),
                           fontSize: 18,
                           fontFamily: "Poppins",
                           fontWeight: FontWeight.w600,

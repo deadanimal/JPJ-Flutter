@@ -12,14 +12,7 @@ void main() {
     ),
   );
   runApp(
-    MaterialApp(
-      home: const SafeArea(
-        child: Scaffold(
-          body: Center(child: StartApp()),
-        ),
-      ),
-      builder: EasyLoading.init(),
-    ),
+    MaterialApp(home: Login()),
   );
 
   EasyLoading.instance.indicatorType = EasyLoadingIndicatorType.wave;

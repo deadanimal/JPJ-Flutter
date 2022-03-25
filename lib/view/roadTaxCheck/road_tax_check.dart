@@ -164,7 +164,7 @@ class _RoadTax extends State<RoadTaxCheck> with TemplateForm, TemplateHeader {
             "Tarikh Luput",
             textAlign: TextAlign.center,
             style: TextStyle(
-              color: Color(secondaryColor2),
+              color: Color(themeNavy),
               fontSize: 18,
               fontFamily: "Poppins",
               fontWeight: FontWeight.w600,
@@ -175,7 +175,7 @@ class _RoadTax extends State<RoadTaxCheck> with TemplateForm, TemplateHeader {
             el.expiredate!,
             textAlign: TextAlign.center,
             style: const TextStyle(
-              color: Color(secondaryColor2),
+              color: Color(themeNavy),
               fontSize: 13,
               fontFamily: "Poppins",
               fontWeight: FontWeight.w500,

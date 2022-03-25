@@ -133,7 +133,7 @@ class TemplateResult1 extends StatelessWidget
                     result.rightTitle!,
                     textAlign: TextAlign.center,
                     style: const TextStyle(
-                      color: Color(secondaryColor2),
+                      color: Color(themeNavy),
                       fontSize: 18,
                       fontFamily: "Poppins",
                       fontWeight: FontWeight.w600,
@@ -144,7 +144,7 @@ class TemplateResult1 extends StatelessWidget
                     result.rightContent!,
                     textAlign: TextAlign.center,
                     style: const TextStyle(
-                      color: Color(secondaryColor2),
+                      color: Color(themeNavy),
                       fontSize: 13,
                       fontFamily: "Poppins",
                       fontWeight: FontWeight.w500,
@@ -176,7 +176,7 @@ class TemplateResult1 extends StatelessWidget
               const Text(
                 "Nama",
                 style: TextStyle(
-                  color: Color(secondaryColor2),
+                  color: Color(themeNavy),
                   fontSize: 13,
                   fontFamily: "Poppins",
                   fontWeight: FontWeight.w600,
@@ -185,7 +185,7 @@ class TemplateResult1 extends StatelessWidget
               Text(
                 data.name!,
                 style: const TextStyle(
-                  color: Color(secondaryColor2),
+                  color: Color(themeNavy),
                   fontSize: 13,
                 ),
               ),
@@ -198,7 +198,7 @@ class TemplateResult1 extends StatelessWidget
               const Text(
                 "Nombor Kad Pengenalan",
                 style: TextStyle(
-                  color: Color(secondaryColor2),
+                  color: Color(themeNavy),
                   fontSize: 13,
                   fontFamily: "Poppins",
                   fontWeight: FontWeight.w600,
@@ -207,7 +207,7 @@ class TemplateResult1 extends StatelessWidget
               Text(
                 data.id!,
                 style: const TextStyle(
-                  color: Color(secondaryColor2),
+                  color: Color(themeNavy),
                   fontSize: 13,
                 ),
               ),
@@ -229,7 +229,7 @@ class TemplateResult1 extends StatelessWidget
           child: Text(
             "Keputusan Carian",
             style: TextStyle(
-              color: Color(secondaryColor2),
+              color: Color(themeNavy),
               fontSize: 18,
               fontFamily: "Poppins",
               fontWeight: FontWeight.w600,
