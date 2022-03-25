@@ -76,6 +76,7 @@ flutter:
     - images/my_jpj_icon.png
     - images/summons.png
     - images/test_result.png
+    - images/info_tooltip_btn.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

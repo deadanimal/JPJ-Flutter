@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:jpj_info/view/appBarHeader/appBarHeader.dart';
 import 'package:jpj_info/view/forgot_password/forgot_password.dart';
 import 'package:jpj_info/view/mainpage/mainpage.dart';
-import 'package:jpj_info/view/navbar/menu.dart';
 
 class ForgotPasswordController extends StatefulWidget {
   const ForgotPasswordController({Key? key}) : super(key: key);

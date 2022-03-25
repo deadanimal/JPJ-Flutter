@@ -7,23 +7,31 @@ class CustomLabel extends StatelessWidget {
     this.label = "NO LABEL",
     this.fontSize = 20,
     this.fontWeight = FontWeight.w700,
+    this.endWidget = const SizedBox(),
   }) : super(key: key);
 
   final String label;
   final double fontSize;
   final FontWeight? fontWeight;
+  final Widget endWidget;
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      label,
-      textAlign: TextAlign.center,
-      style: TextStyle(
-        color: const Color(themeNavy),
-        fontSize: fontSize,
-        fontFamily: "Poppins",
-        fontWeight: fontWeight,
-      ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          label,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            color: const Color(themeNavy),
+            fontSize: fontSize,
+            fontFamily: "Poppins",
+            fontWeight: fontWeight,
+          ),
+        ),
+        endWidget,
+      ],
     );
   }
 }
