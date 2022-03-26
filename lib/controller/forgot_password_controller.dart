@@ -1,7 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:jpj_info/controller/tac_controller.dart';
 import 'package:jpj_info/view/appBarHeader/appBarHeader.dart';
 import 'package:jpj_info/view/forgot_password/forgot_password.dart';
-import 'package:jpj_info/view/mainpage/mainpage.dart';
+import 'package:jpj_info/view/form/tooltip_info.dart';
 
 class ForgotPasswordController extends StatefulWidget {
   const ForgotPasswordController({Key? key}) : super(key: key);
@@ -43,11 +45,20 @@ class _ForgotPasswordController extends State<ForgotPasswordController> {
   }
 
   void submitCallback(BuildContext context) {
-    Navigator.push(
+    TooltipInfo().showInfo(
+      context,
+      "Kod TAC telah dihantar",
+      "sila semak e-mel anda",
+      (c) => _onCloseSubmitInfo(c),
+    );
+  }
+
+  void _onCloseSubmitInfo(BuildContext context) {
+    Navigator.pushReplacement(
       context,
       MaterialPageRoute(
         builder: (context) {
-          return const MainPage();
+          return const TacController();
         },
       ),
     );

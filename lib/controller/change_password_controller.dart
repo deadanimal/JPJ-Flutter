@@ -51,7 +51,7 @@ class _ChangePasswordController extends State<ChangePasswordController> {
   }
 
   void submitCallback(BuildContext context) {
-    Navigator.push(
+    Navigator.pushReplacement(
       context,
       MaterialPageRoute(
         builder: (context) {

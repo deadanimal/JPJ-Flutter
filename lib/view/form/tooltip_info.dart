@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 
 class TooltipInfo {
-  Future<String?> showInfo(BuildContext context, String info, String title) {
+  Future<String?> showInfo(
+    BuildContext context,
+    String title,
+    String info,
+    void Function(BuildContext)? callback,
+  ) {
     return showDialog<String>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
@@ -16,7 +21,10 @@ class TooltipInfo {
         ),
         actions: <Widget>[
           TextButton(
-            onPressed: () => Navigator.pop(context, 'OK'),
+            onPressed: () {
+              Navigator.pop(context, 'OK');
+              callback!(context);
+            },
             child: const Text('OK'),
           ),
         ],

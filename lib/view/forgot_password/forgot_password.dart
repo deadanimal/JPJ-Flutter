@@ -53,6 +53,7 @@ class ForgotPassword extends StatelessWidget {
           const SizedBox(height: vPaddingM),
           TextFieldForm(
             textController: emailController,
+            inputType: TextInputType.emailAddress,
             label: "Alamat e-mel",
             width: screenWidth! - 64,
           ),

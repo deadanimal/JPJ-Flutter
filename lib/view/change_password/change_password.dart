@@ -51,9 +51,11 @@ class ChangePassword extends StatelessWidget {
             endWidget: InkWell(
               onTap: () {
                 TooltipInfo().showInfo(
-                    context,
-                    "mengandungi sekurang-kurangnya 8 aksara terdiri daripada gabungan huruf besar, huruf kecil, nombor dan simbol",
-                    "Kata laluan anda perlu");
+                  context,
+                  "Kata laluan anda perlu",
+                  "mengandungi sekurang-kurangnya 8 aksara terdiri daripada gabungan huruf besar, huruf kecil, nombor dan simbol",
+                  (c) => {},
+                );
               },
               child: const Padding(
                 padding: EdgeInsets.only(

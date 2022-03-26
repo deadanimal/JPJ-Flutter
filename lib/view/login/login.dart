@@ -190,11 +190,11 @@ class Login extends StatelessWidget {
               }
             },
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 4),
           CustomButton(
             width: screenWidth! - 64,
             label: "Daftar Akaun Baru",
-            decoration: whiteBtnDeco,
+            decoration: whiteFadedBtnDeco,
             textColor: const Color(themeOrange),
             onPressed: () {
               if (newAccountCB != null) {
