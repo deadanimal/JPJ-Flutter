@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jpj_info/controller/forgot_password_controller.dart';
-import 'package:jpj_info/view/appBarHeader/appBarHeader.dart';
+import 'package:jpj_info/view/appBarHeader/custom_appbar.dart';
 import 'package:jpj_info/view/login/login.dart';
 import 'package:jpj_info/view/mainpage/mainpage.dart';
 import 'package:jpj_info/view/navbar/menu.dart';
@@ -35,9 +35,8 @@ class _LoginController extends State<LoginController> {
       home: SafeArea(
         child: Scaffold(
           endDrawer: const NavBar(),
-          appBar: appBarHeader(
-            gradient1: 0,
-            gradient2: 0,
+          appBar: const CustomAppBar(
+            darkBtn: true,
           ),
           body: Login(
             userId: _userId,

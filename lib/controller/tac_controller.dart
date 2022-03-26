@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jpj_info/controller/change_password_controller.dart';
-import 'package:jpj_info/view/appBarHeader/appBarHeader.dart';
+import 'package:jpj_info/view/appBarHeader/custom_appbar.dart';
 import 'package:jpj_info/view/tac/tac.dart';
 
 class TacController extends StatefulWidget {
@@ -26,9 +26,8 @@ class _TacController extends State<TacController> {
     return MaterialApp(
       home: SafeArea(
         child: Scaffold(
-          appBar: appBarHeader(
-            gradient1: 0,
-            gradient2: 0,
+          appBar: const CustomAppBar(
+            darkBtn: true,
           ),
           body: Tac(
             submitCB: submitCallback,

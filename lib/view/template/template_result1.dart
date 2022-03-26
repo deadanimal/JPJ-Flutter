@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jpj_info/model/result_style1.dart';
-import 'package:jpj_info/view/appBarHeader/appBarHeader.dart';
+import 'package:jpj_info/view/appBarHeader/custom_appbar.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/common/spacing.dart';
 import 'package:jpj_info/model/page_size.dart';
@@ -22,7 +22,15 @@ class TemplateResult1 extends StatelessWidget
       home: SafeArea(
         child: Scaffold(
           endDrawer: const NavBar(),
-          appBar: appBarHeader(),
+          appBar: const CustomAppBar(
+            decor: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.bottomLeft,
+                end: Alignment.topRight,
+                colors: [Color(headerGradient1), Color(headerGradient2)],
+              ),
+            ),
+          ),
           body: showResultPage(context),
         ),
       ),

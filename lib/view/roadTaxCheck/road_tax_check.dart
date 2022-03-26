@@ -7,7 +7,7 @@ import 'package:jpj_info/config/site_config.dart';
 import 'package:jpj_info/model/result_style2.dart';
 import 'package:jpj_info/model/roadtax_status_request.dart';
 import 'package:jpj_info/model/roadtax_status_response.dart';
-import 'package:jpj_info/view/appBarHeader/appBarHeader.dart';
+import 'package:jpj_info/view/appBarHeader/custom_appbar.dart';
 import 'package:jpj_info/model/page_size.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/common/spacing.dart';
@@ -60,7 +60,15 @@ class _RoadTax extends State<RoadTaxCheck> with TemplateForm, TemplateHeader {
       home: SafeArea(
         child: Scaffold(
           endDrawer: const NavBar(),
-          appBar: appBarHeader(),
+          appBar: const CustomAppBar(
+            decor: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.bottomLeft,
+                end: Alignment.topRight,
+                colors: [Color(headerGradient1), Color(headerGradient2)],
+              ),
+            ),
+          ),
           body: showRoadTaxPage(),
         ),
       ),

@@ -79,6 +79,10 @@ flutter:
     - images/summons.png
     - images/test_result.png
     - images/info_tooltip_btn.png
+    - images/faq_icon.png
+    - images/en_lg_icon.png
+    - images/faq_icon_light.png
+    - images/en_lg_icon_light.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

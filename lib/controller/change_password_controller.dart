@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jpj_info/view/appBarHeader/appBarHeader.dart';
+import 'package:jpj_info/view/appBarHeader/custom_appbar.dart';
 import 'package:jpj_info/view/change_password/change_password.dart';
 import 'package:jpj_info/view/mainpage/mainpage.dart';
 
@@ -35,9 +35,8 @@ class _ChangePasswordController extends State<ChangePasswordController> {
     return MaterialApp(
       home: SafeArea(
         child: Scaffold(
-          appBar: appBarHeader(
-            gradient1: 0,
-            gradient2: 0,
+          appBar: const CustomAppBar(
+            darkBtn: true,
           ),
           body: ChangePassword(
             oldpasswordController: _oldPassword,

@@ -29,7 +29,7 @@ class TemplateHeader {
         gradient: LinearGradient(
           begin: Alignment.bottomLeft,
           end: Alignment.topRight,
-          colors: [Color(heederGradient1), Color(heederGradient2)],
+          colors: [Color(headerGradient1), Color(headerGradient2)],
         ),
       ),
       padding: const EdgeInsets.only(

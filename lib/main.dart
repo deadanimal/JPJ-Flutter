@@ -11,7 +11,10 @@ void main() {
     ),
   );
   runApp(
-    const MaterialApp(home: LoginController()),
+    MaterialApp(
+      home: const LoginController(),
+      builder: EasyLoading.init(),
+    ),
   );
 
   EasyLoading.instance.indicatorType = EasyLoadingIndicatorType.wave;
