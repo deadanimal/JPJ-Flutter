@@ -111,7 +111,7 @@ class Tac extends StatelessWidget {
               // }
             },
             decoration: orangeGradientBtnDeco,
-            label: "Hantar",
+            label: "Sahkan",
           ),
         ],
       ),

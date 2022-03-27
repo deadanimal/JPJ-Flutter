@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jpj_info/controller/change_password_controller.dart';
+import 'package:jpj_info/controller/forgot_password_verified_controller.dart';
 import 'package:jpj_info/view/appBarHeader/custom_appbar.dart';
 import 'package:jpj_info/view/tac/tac.dart';
 
@@ -42,7 +43,7 @@ class _TacController extends State<TacController> {
       context,
       MaterialPageRoute(
         builder: (context) {
-          return const ChangePasswordController();
+          return const ForgotPasswordVerifiedController();
         },
       ),
     );
