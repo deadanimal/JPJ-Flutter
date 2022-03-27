@@ -9,43 +9,39 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: SafeArea(
-        child: Scaffold(
-          endDrawer: const NavBar(),
-          appBar: AppBar(
-            foregroundColor: Colors.black,
-            shadowColor: Colors.transparent,
-            toolbarHeight: 96,
-            flexibleSpace: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  margin: const EdgeInsets.all(8),
-                  child: const Image(
-                    image: AssetImage("images/my_jpj_icon.png"),
-                    fit: BoxFit.fitWidth,
-                    alignment: Alignment.bottomCenter,
-                  ),
-                ),
-                const SizedBox(width: 14),
-                const Text(
-                  "Selamat\nDatang",
-                  style: TextStyle(
-                    color: Color(0xff171f44),
-                    fontSize: 30,
-                    fontFamily: "Montserrat",
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-              ],
+    return Scaffold(
+      endDrawer: const NavBar(),
+      appBar: AppBar(
+        foregroundColor: Colors.black,
+        shadowColor: Colors.transparent,
+        toolbarHeight: 96,
+        flexibleSpace: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+              margin: const EdgeInsets.all(8),
+              child: const Image(
+                image: AssetImage("images/my_jpj_icon.png"),
+                fit: BoxFit.fitWidth,
+                alignment: Alignment.bottomCenter,
+              ),
             ),
-            backgroundColor: Colors.transparent,
-          ),
-          body: showMainPage(context),
+            const SizedBox(width: 14),
+            const Text(
+              "Selamat\nDatang",
+              style: TextStyle(
+                color: Color(0xff171f44),
+                fontSize: 30,
+                fontFamily: "Montserrat",
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ],
         ),
+        backgroundColor: Colors.transparent,
       ),
+      body: showMainPage(context),
     );
   }
 

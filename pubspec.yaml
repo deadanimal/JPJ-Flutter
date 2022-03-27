@@ -29,6 +29,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter  
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -40,6 +42,7 @@ dependencies:
   pin_code_fields: ^7.3.0
   flutter_countdown_timer: ^4.1.0
   flutter_svg: ^1.0.3
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:
@@ -62,6 +65,7 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+  generate: true
 
   # To add assets to your application, add an assets section, like this:
   assets:
@@ -88,6 +92,7 @@ flutter:
     - images/vector/btm_profile_icon_2.svg
     - images/vector/btm_main_menu_icon.svg
     - images/vector/btm_home_icon.svg
+    - images/vector/setting_icon_lang.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

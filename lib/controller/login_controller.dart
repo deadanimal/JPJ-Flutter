@@ -33,23 +33,19 @@ class _LoginController extends State<LoginController> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: SafeArea(
-        child: Scaffold(
-          endDrawer: const NavBar(),
-          appBar: const CustomAppBar(
-            iconColor: Color(themeNavy),
-            darkBtn: true,
-          ),
-          body: Login(
-            userId: _userId,
-            userPwd: _userPwd,
-            logAsGuessCB: logAsGuess,
-            newAccountCB: newRegistration,
-            logInCB: login,
-            forgotPasswordCB: forgotPassword,
-          ),
-        ),
+    return Scaffold(
+      endDrawer: const NavBar(),
+      appBar: const CustomAppBar(
+        iconColor: Color(themeNavy),
+        darkBtn: true,
+      ),
+      body: Login(
+        userId: _userId,
+        userPwd: _userPwd,
+        logAsGuessCB: logAsGuess,
+        newAccountCB: newRegistration,
+        logInCB: login,
+        forgotPasswordCB: forgotPassword,
       ),
     );
   }

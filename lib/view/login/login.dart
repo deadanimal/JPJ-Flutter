@@ -4,6 +4,7 @@ import 'package:jpj_info/view/common/spacing.dart';
 import 'package:jpj_info/view/form/custom_button.dart';
 import 'package:jpj_info/view/form/label.dart';
 import 'package:jpj_info/view/form/text_field.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Login extends StatelessWidget {
   Login({
@@ -85,20 +86,20 @@ class Login extends StatelessWidget {
       ),
       child: Column(
         children: [
-          const CustomLabel(
-            label: "Log Masuk",
+          CustomLabel(
+            label: AppLocalizations.of(context)!.logIn,
           ),
           const SizedBox(height: 8),
           TextFieldForm(
             textController: userId,
-            label: "ID Pengguna",
+            label: AppLocalizations.of(context)!.userID,
             width: screenWidth! - 64,
           ),
           const SizedBox(height: 8),
           TextFieldForm(
             obscureText: true,
             textController: userPwd,
-            label: "Kata Laluan",
+            label: AppLocalizations.of(context)!.password,
             width: screenWidth! - 64,
           ),
           SizedBox(
@@ -112,7 +113,7 @@ class Login extends StatelessWidget {
                   }
                 },
                 child: Text(
-                  "Terlupa Kata Laluan?",
+                  AppLocalizations.of(context)!.forgotPassword,
                   textAlign: TextAlign.right,
                   style: TextStyle(
                     color: Colors.grey.shade200,
@@ -130,7 +131,7 @@ class Login extends StatelessWidget {
           const SizedBox(height: 8),
           CustomButton(
             width: screenWidth! - 64,
-            label: "Log Masuk",
+            label: AppLocalizations.of(context)!.logIn,
             decoration: orangeGradientBtnDeco,
             onPressed: () {
               if (logInCB != null) {
@@ -181,7 +182,7 @@ class Login extends StatelessWidget {
           const SizedBox(height: 8),
           CustomButton(
             width: screenWidth! - 64,
-            label: "Pelawat",
+            label: AppLocalizations.of(context)!.visitor,
             decoration: whiteBtnDeco,
             textColor: const Color(themeOrange),
             onPressed: () {
@@ -193,7 +194,7 @@ class Login extends StatelessWidget {
           const SizedBox(height: 4),
           CustomButton(
             width: screenWidth! - 64,
-            label: "Daftar Akaun Baru",
+            label: AppLocalizations.of(context)!.registerNewAccount,
             decoration: whiteFadedBtnDeco,
             textColor: const Color(themeOrange),
             onPressed: () {

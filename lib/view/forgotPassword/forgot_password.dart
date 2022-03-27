@@ -5,6 +5,7 @@ import 'package:jpj_info/view/common/spacing.dart';
 import 'package:jpj_info/view/form/custom_button.dart';
 import 'package:jpj_info/view/form/label.dart';
 import 'package:jpj_info/view/form/text_field.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ForgotPassword extends StatelessWidget {
   ForgotPassword({
@@ -41,12 +42,12 @@ class ForgotPassword extends StatelessWidget {
       height: screenHeight! / 2,
       child: Column(
         children: [
-          const CustomLabel(
-            label: "Lupa Kata Laluan",
+          CustomLabel(
+            label: AppLocalizations.of(context)!.forgotPasswordDot,
           ),
           const SizedBox(height: vPaddingM),
-          const CustomLabel(
-            label: "Sila masukkan alamat e-mel anda",
+          CustomLabel(
+            label: AppLocalizations.of(context)!.enterEmail,
             fontWeight: FontWeight.normal,
             fontSize: 15,
           ),
@@ -54,7 +55,7 @@ class ForgotPassword extends StatelessWidget {
           TextFieldForm(
             textController: emailController,
             inputType: TextInputType.emailAddress,
-            label: "Alamat e-mel",
+            label: AppLocalizations.of(context)!.emailAddress,
             width: screenWidth! - 64,
           ),
           const SizedBox(height: vPaddingXL),
@@ -68,7 +69,7 @@ class ForgotPassword extends StatelessWidget {
               }
             },
             decoration: orangeGradientBtnDeco,
-            label: "Hantar",
+            label: AppLocalizations.of(context)!.submit,
           ),
         ],
       ),

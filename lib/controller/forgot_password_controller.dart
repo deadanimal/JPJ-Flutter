@@ -3,6 +3,7 @@ import 'package:jpj_info/controller/tac_controller.dart';
 import 'package:jpj_info/view/appBarHeader/custom_appbar.dart';
 import 'package:jpj_info/view/forgotPassword/forgot_password.dart';
 import 'package:jpj_info/view/form/tooltip_info.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ForgotPasswordController extends StatefulWidget {
   const ForgotPasswordController({Key? key}) : super(key: key);
@@ -27,16 +28,14 @@ class _ForgotPasswordController extends State<ForgotPasswordController> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: SafeArea(
-        child: Scaffold(
-          appBar: const CustomAppBar(
-            darkBtn: true,
-          ),
-          body: ForgotPassword(
-            emailController: _email,
-            submitCB: submitCallback,
-          ),
+    return SafeArea(
+      child: Scaffold(
+        appBar: const CustomAppBar(
+          darkBtn: true,
+        ),
+        body: ForgotPassword(
+          emailController: _email,
+          submitCB: submitCallback,
         ),
       ),
     );
@@ -45,8 +44,8 @@ class _ForgotPasswordController extends State<ForgotPasswordController> {
   void submitCallback(BuildContext context) {
     TooltipInfo().showInfo(
       context,
-      "Kod TAC telah dihantar",
-      "sila semak e-mel anda",
+      AppLocalizations.of(context)!.tacSubmitted,
+      AppLocalizations.of(context)!.checkEmail,
       (c) => _onCloseSubmitInfo(c),
     );
   }
