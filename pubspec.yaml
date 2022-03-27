@@ -39,6 +39,7 @@ dependencies:
   flutter_easyloading: ^3.0.3
   pin_code_fields: ^7.3.0
   flutter_countdown_timer: ^4.1.0
+  flutter_svg: ^1.0.3
 
 dev_dependencies:
   flutter_test:
@@ -83,6 +84,10 @@ flutter:
     - images/en_lg_icon.png
     - images/faq_icon_light.png
     - images/en_lg_icon_light.png
+    - images/vector/btm_profile_icon.svg
+    - images/vector/btm_profile_icon_2.svg
+    - images/vector/btm_main_menu_icon.svg
+    - images/vector/btm_home_icon.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

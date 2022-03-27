@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:jpj_info/controller/bottom_nav_controller.dart';
 import 'package:jpj_info/controller/login_controller.dart';
-import 'package:jpj_info/controller/tac_controller.dart';
 import 'package:jpj_info/view/appBarHeader/custom_appbar.dart';
 import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
-import 'package:jpj_info/view/bottomBar/bottom_bar.dart';
 import 'package:jpj_info/view/navbar/menu.dart';
 import 'package:jpj_info/view/newRegistration/new_registration.dart';
 import 'package:jpj_info/view/form/tooltip_info.dart';
@@ -44,7 +43,7 @@ class _NewRegistrationController extends State<NewRegistrationController> {
             submitCB: submitCallback,
             tncCheckedCB: _onCheckboxChanged,
           ),
-          bottomNavigationBar: const BottomBar(),
+          bottomNavigationBar: BottomNavController(),
         ),
       ),
     );
