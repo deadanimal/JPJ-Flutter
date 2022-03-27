@@ -9,6 +9,7 @@ import 'package:jpj_info/model/latest_reg_number_response.dart';
 import 'package:jpj_info/model/result_style2.dart';
 import 'package:jpj_info/view/appBarHeader/custom_appbar.dart';
 import 'package:jpj_info/model/page_size.dart';
+import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/common/spacing.dart';
 import 'package:jpj_info/view/template/template_header.dart';
@@ -23,8 +24,7 @@ class PlateNumber extends StatefulWidget {
   State<StatefulWidget> createState() => _PlateNumber();
 }
 
-class _PlateNumber extends State<PlateNumber>
-    with TemplateForm, TemplateHeader {
+class _PlateNumber extends State<PlateNumber> with TemplateForm {
   Map<String, String> stateMap = {
     "JOHOR": "J",
     "KEDAH": "K",
@@ -86,13 +86,7 @@ class _PlateNumber extends State<PlateNumber>
         child: Scaffold(
           endDrawer: const NavBar(),
           appBar: const CustomAppBar(
-            decor: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.bottomLeft,
-                end: Alignment.topRight,
-                colors: [Color(headerGradient1), Color(headerGradient2)],
-              ),
-            ),
+            decor: customGradient,
           ),
           body: showRoadTaxPage(),
         ),
@@ -110,11 +104,12 @@ class _PlateNumber extends State<PlateNumber>
       dropdownList: dropdownList,
       plateTextController: null,
     );
-    setHeader(pageTitle);
     return Material(
       child: Column(
         children: [
-          header(),
+          TemplateHeader(
+            headerTitle: pageTitle,
+          ),
           Expanded(
             child: _roadTaxForm(uiElement),
           ),
@@ -181,7 +176,7 @@ class _PlateNumber extends State<PlateNumber>
                 title: pageTitle,
                 vehicalRegNumber: null,
               );
-              return templateResult2(
+              return TemplateResult2(
                 data: result,
               );
             },

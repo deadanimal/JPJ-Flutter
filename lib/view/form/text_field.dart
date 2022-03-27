@@ -23,6 +23,7 @@ class TextFieldForm extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(4.0),
         child: Material(
+          color: Colors.white,
           borderRadius: BorderRadius.circular(15),
           elevation: 4.0,
           shadowColor: Colors.grey,
@@ -48,9 +49,7 @@ class TextFieldForm extends StatelessWidget {
                 ),
               ),
               fillColor: Colors.white,
-              label: Center(
-                child: Text(label),
-              ),
+              hintText: label,
             ),
           ),
         ),

@@ -8,26 +8,33 @@ class CustomLabel extends StatelessWidget {
     this.fontSize = 20,
     this.fontWeight = FontWeight.w700,
     this.endWidget = const SizedBox(),
+    this.align = TextAlign.center,
   }) : super(key: key);
 
   final String label;
   final double fontSize;
   final FontWeight? fontWeight;
   final Widget endWidget;
+  final TextAlign align;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(
-          label,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            color: const Color(themeNavy),
-            fontSize: fontSize,
-            fontFamily: "Poppins",
-            fontWeight: fontWeight,
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 16.0),
+            child: Text(
+              label,
+              textAlign: align,
+              style: TextStyle(
+                color: const Color(themeNavy),
+                fontSize: fontSize,
+                fontFamily: "Poppins",
+                fontWeight: fontWeight,
+              ),
+            ),
           ),
         ),
         endWidget,

@@ -16,6 +16,7 @@ class FaqBtn extends StatelessWidget {
     return InkWell(
       onTap: () {},
       child: Image(
+        height: 24,
         image: iconImage,
       ),
     );

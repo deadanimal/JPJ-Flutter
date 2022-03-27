@@ -8,6 +8,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     Key? key,
     this.decor = const BoxDecoration(),
     this.darkBtn = false,
+    this.iconColor = Colors.white,
   })  : preferredSize = const Size.fromHeight(kToolbarHeight),
         super(key: key);
 
@@ -16,9 +17,11 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   final BoxDecoration decor;
   final bool darkBtn;
+  final Color iconColor;
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      iconTheme: IconThemeData(color: iconColor),
       backgroundColor: Colors.transparent,
       elevation: 0,
       flexibleSpace: Container(

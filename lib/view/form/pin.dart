@@ -51,11 +51,8 @@ class CustomPin extends StatelessWidget {
               submitCB!(context, v);
             }
           },
-          onChanged: (value) {
-            print(value);
-          },
+          onChanged: (value) {},
           beforeTextPaste: (text) {
-            print("Allowing to paste $text");
             return true;
           },
           appContext: context,

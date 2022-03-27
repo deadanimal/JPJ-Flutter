@@ -9,6 +9,7 @@ import 'package:jpj_info/model/roadtax_status_request.dart';
 import 'package:jpj_info/model/roadtax_status_response.dart';
 import 'package:jpj_info/view/appBarHeader/custom_appbar.dart';
 import 'package:jpj_info/model/page_size.dart';
+import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/common/spacing.dart';
 import 'package:jpj_info/view/template/template_header.dart';
@@ -23,7 +24,7 @@ class RoadTaxCheck extends StatefulWidget {
   State<StatefulWidget> createState() => _RoadTax();
 }
 
-class _RoadTax extends State<RoadTaxCheck> with TemplateForm, TemplateHeader {
+class _RoadTax extends State<RoadTaxCheck> with TemplateForm {
   List<String> dropdownList = [
     'Penduduk Tetap Malaysia',
     'Orang Awam Malaysia',
@@ -61,13 +62,7 @@ class _RoadTax extends State<RoadTaxCheck> with TemplateForm, TemplateHeader {
         child: Scaffold(
           endDrawer: const NavBar(),
           appBar: const CustomAppBar(
-            decor: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.bottomLeft,
-                end: Alignment.topRight,
-                colors: [Color(headerGradient1), Color(headerGradient2)],
-              ),
-            ),
+            decor: customGradient,
           ),
           body: showRoadTaxPage(),
         ),
@@ -85,11 +80,12 @@ class _RoadTax extends State<RoadTaxCheck> with TemplateForm, TemplateHeader {
       dropdownList: dropdownList,
       plateTextController: _plateNumber,
     );
-    setHeader(pageTitle);
     return Material(
       child: Column(
         children: [
-          header(),
+          TemplateHeader(
+            headerTitle: pageTitle,
+          ),
           Expanded(
             child: _roadTaxForm(uiElement),
           ),
@@ -147,7 +143,7 @@ class _RoadTax extends State<RoadTaxCheck> with TemplateForm, TemplateHeader {
                 title: pageTitle,
                 vehicalRegNumber: respond.nokenderaan,
               );
-              return templateResult2(
+              return TemplateResult2(
                 data: result,
               );
             },

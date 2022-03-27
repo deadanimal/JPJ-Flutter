@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jpj_info/view/appBarHeader/custom_appbar.dart';
-import 'package:jpj_info/view/change_password/change_password.dart';
+import 'package:jpj_info/view/changePassword/change_password.dart';
 import 'package:jpj_info/view/mainpage/mainpage.dart';
 
 class ChangePasswordController extends StatefulWidget {

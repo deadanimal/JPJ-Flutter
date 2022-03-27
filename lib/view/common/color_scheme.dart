@@ -24,6 +24,21 @@ Decoration orangeGradientBtnDeco = BoxDecoration(
     colors: [Color(0xfff8b518), Color(0xffc18b0e)],
   ),
 );
+Decoration navyGradientBtnDeco = BoxDecoration(
+  borderRadius: BorderRadius.circular(15),
+  boxShadow: const [
+    BoxShadow(
+      color: Color(0x3f000000),
+      blurRadius: 4,
+      offset: Offset(0, 4),
+    ),
+  ],
+  gradient: const LinearGradient(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    colors: [Color(headerGradient1), Color(headerGradient2)],
+  ),
+);
 Decoration whiteBtnDeco = BoxDecoration(
   color: Colors.white,
   borderRadius: BorderRadius.circular(15),

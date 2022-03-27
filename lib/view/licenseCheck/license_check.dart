@@ -9,6 +9,7 @@ import 'package:jpj_info/model/result_style1.dart';
 import 'package:jpj_info/view/appBarHeader/custom_appbar.dart';
 import 'package:jpj_info/model/page_size.dart';
 import 'package:http/http.dart' as http;
+import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/navbar/menu.dart';
 import 'package:jpj_info/view/template/template_form.dart';
@@ -22,7 +23,7 @@ class LicenseCheck extends StatefulWidget {
   State<StatefulWidget> createState() => _License();
 }
 
-class _License extends State<LicenseCheck> with TemplateForm, TemplateHeader {
+class _License extends State<LicenseCheck> with TemplateForm {
   List<String> dropdownList = [
     'Penduduk Tetap Malaysia',
     'Orang Awam Malaysia',
@@ -57,13 +58,7 @@ class _License extends State<LicenseCheck> with TemplateForm, TemplateHeader {
         child: Scaffold(
           endDrawer: const NavBar(),
           appBar: const CustomAppBar(
-            decor: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.bottomLeft,
-                end: Alignment.topRight,
-                colors: [Color(headerGradient1), Color(headerGradient2)],
-              ),
-            ),
+            decor: customGradient,
           ),
           body: showLicensePage(),
         ),
@@ -80,11 +75,12 @@ class _License extends State<LicenseCheck> with TemplateForm, TemplateHeader {
       submitCB: _submitCB,
       dropdownList: dropdownList,
     );
-    setHeader(pageTitle);
     return Material(
       child: Column(
         children: [
-          header(),
+          TemplateHeader(
+            headerTitle: pageTitle,
+          ),
           _licenseForm(uiElement),
         ],
       ),

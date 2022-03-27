@@ -16,6 +16,7 @@ class LanguageBtn extends StatelessWidget {
     return InkWell(
       onTap: () {},
       child: Image(
+        height: 24,
         image: iconImage,
       ),
     );

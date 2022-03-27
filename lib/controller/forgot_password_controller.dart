@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jpj_info/controller/tac_controller.dart';
 import 'package:jpj_info/view/appBarHeader/custom_appbar.dart';
-import 'package:jpj_info/view/forgot_password/forgot_password.dart';
+import 'package:jpj_info/view/forgotPassword/forgot_password.dart';
 import 'package:jpj_info/view/form/tooltip_info.dart';
 
 class ForgotPasswordController extends StatefulWidget {

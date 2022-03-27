@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jpj_info/model/result_style1.dart';
 import 'package:jpj_info/view/appBarHeader/custom_appbar.dart';
+import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/common/spacing.dart';
 import 'package:jpj_info/model/page_size.dart';
@@ -8,8 +9,7 @@ import 'package:jpj_info/view/navbar/menu.dart';
 import 'package:jpj_info/view/template/template_form.dart';
 import 'package:jpj_info/view/template/template_header.dart';
 
-class TemplateResult1 extends StatelessWidget
-    with TemplateForm, TemplateHeader {
+class TemplateResult1 extends StatelessWidget with TemplateForm {
   TemplateResult1({Key? key, required this.data}) : super(key: key);
 
   final ResultStyle1 data;
@@ -23,13 +23,7 @@ class TemplateResult1 extends StatelessWidget
         child: Scaffold(
           endDrawer: const NavBar(),
           appBar: const CustomAppBar(
-            decor: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.bottomLeft,
-                end: Alignment.topRight,
-                colors: [Color(headerGradient1), Color(headerGradient2)],
-              ),
-            ),
+            decor: customGradient,
           ),
           body: showResultPage(context),
         ),
@@ -38,10 +32,11 @@ class TemplateResult1 extends StatelessWidget
   }
 
   Widget showResultPage(context) {
-    setHeader(data.title!);
     return Column(
       children: [
-        header(),
+        TemplateHeader(
+          headerTitle: data.title!,
+        ),
         const SizedBox(height: verticalPadding),
         subTitle(),
         const SizedBox(height: verticalPadding),

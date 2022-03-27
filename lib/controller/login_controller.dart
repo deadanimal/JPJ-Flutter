@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:jpj_info/controller/forgot_password_controller.dart';
+import 'package:jpj_info/controller/new_registration_controller.dart';
 import 'package:jpj_info/view/appBarHeader/custom_appbar.dart';
+import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/login/login.dart';
 import 'package:jpj_info/view/mainpage/mainpage.dart';
 import 'package:jpj_info/view/navbar/menu.dart';
@@ -36,6 +38,7 @@ class _LoginController extends State<LoginController> {
         child: Scaffold(
           endDrawer: const NavBar(),
           appBar: const CustomAppBar(
+            iconColor: Color(themeNavy),
             darkBtn: true,
           ),
           body: Login(
@@ -71,7 +74,14 @@ class _LoginController extends State<LoginController> {
   }
 
   void newRegistration(BuildContext context) {
-    login(context);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) {
+          return const NewRegistrationController();
+        },
+      ),
+    );
   }
 
   void forgotPassword(BuildContext context) {

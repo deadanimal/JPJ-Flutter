@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:jpj_info/model/result_style2.dart';
-import 'package:jpj_info/model/roadtax_status_response.dart';
 import 'package:jpj_info/view/appBarHeader/custom_appbar.dart';
+import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/common/spacing.dart';
 import 'package:jpj_info/model/page_size.dart';
 import 'package:jpj_info/view/navbar/menu.dart';
 import 'package:jpj_info/view/template/template_header.dart';
 
-class templateResult2 extends StatelessWidget with TemplateHeader {
-  templateResult2({Key? key, required this.data}) : super(key: key);
+class TemplateResult2 extends StatelessWidget {
+  const TemplateResult2({Key? key, required this.data}) : super(key: key);
 
   final ResultStyle2 data;
 
@@ -22,13 +22,7 @@ class templateResult2 extends StatelessWidget with TemplateHeader {
         child: Scaffold(
           endDrawer: const NavBar(),
           appBar: const CustomAppBar(
-            decor: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.bottomLeft,
-                end: Alignment.topRight,
-                colors: [Color(headerGradient1), Color(headerGradient2)],
-              ),
-            ),
+            decor: customGradient,
           ),
           body: showRoadTaxPage(context),
         ),
@@ -37,10 +31,11 @@ class templateResult2 extends StatelessWidget with TemplateHeader {
   }
 
   Widget showRoadTaxPage(context) {
-    setHeader(data.title!);
     return Column(
       children: [
-        header(),
+        TemplateHeader(
+          headerTitle: data.title!,
+        ),
         const SizedBox(height: verticalPadding),
         subTitle(),
         const SizedBox(height: verticalPadding),

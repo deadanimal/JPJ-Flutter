@@ -11,9 +11,11 @@ class TooltipInfo {
       context: context,
       builder: (BuildContext context) => AlertDialog(
         alignment: Alignment.center,
-        content: Text(
-          info,
-          textAlign: TextAlign.center,
+        content: SingleChildScrollView(
+          child: Text(
+            info,
+            textAlign: TextAlign.center,
+          ),
         ),
         title: Text(
           title,

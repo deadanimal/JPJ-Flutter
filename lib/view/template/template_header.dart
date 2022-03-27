@@ -2,14 +2,31 @@ import 'package:flutter/material.dart';
 import 'package:jpj_info/model/page_size.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 
-class TemplateHeader {
-  late String headerTitle;
+class TemplateHeader extends StatelessWidget {
+  const TemplateHeader({Key? key, required this.headerTitle}) : super(key: key);
+  final String headerTitle;
 
-  void setHeader(String title) {
-    headerTitle = title;
+  Widget title() {
+    return Container(
+      alignment: Alignment.centerLeft,
+      width: mediaWidth,
+      padding: const EdgeInsets.fromLTRB(24, 24, 24, 8),
+      child: FittedBox(
+        child: Text(
+          headerTitle,
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 55,
+            fontFamily: "Poppins",
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+      ),
+    );
   }
 
-  Widget header() {
+  @override
+  Widget build(BuildContext context) {
     return Container(
       height: mediaHeight / 5,
       decoration: const BoxDecoration(
@@ -39,25 +56,6 @@ class TemplateHeader {
         bottom: 8,
       ),
       child: title(),
-    );
-  }
-
-  Widget title() {
-    return Container(
-      alignment: Alignment.centerLeft,
-      width: mediaWidth,
-      padding: const EdgeInsets.fromLTRB(24, 24, 24, 8),
-      child: FittedBox(
-        child: Text(
-          headerTitle,
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 55,
-            fontFamily: "Poppins",
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-      ),
     );
   }
 }
