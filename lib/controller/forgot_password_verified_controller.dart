@@ -3,6 +3,7 @@ import 'package:jpj_info/view/appBarHeader/custom_appbar.dart';
 import 'package:jpj_info/view/forgotPasswordVerified/forgot_password_verified.dart';
 import 'package:jpj_info/view/form/tooltip_info.dart';
 import 'package:jpj_info/view/mainpage/mainpage.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ForgotPasswordVerifiedController extends StatefulWidget {
   const ForgotPasswordVerifiedController({Key? key}) : super(key: key);
@@ -31,17 +32,15 @@ class _ForgotPasswordVerifiedController
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: SafeArea(
-        child: Scaffold(
-          appBar: const CustomAppBar(
-            darkBtn: true,
-          ),
-          body: ForgotPasswordVerified(
-            passwordController: _password,
-            pwdConfirmController: _passwordConfirm,
-            submitCB: submitCallback,
-          ),
+    return SafeArea(
+      child: Scaffold(
+        appBar: const CustomAppBar(
+          darkBtn: true,
+        ),
+        body: ForgotPasswordVerified(
+          passwordController: _password,
+          pwdConfirmController: _passwordConfirm,
+          submitCB: submitCallback,
         ),
       ),
     );
@@ -50,8 +49,8 @@ class _ForgotPasswordVerifiedController
   void submitCallback(BuildContext context) {
     TooltipInfo().showInfo(
       context,
-      "Kata laluan anda",
-      "telah berjaya dikemas kini",
+      AppLocalizations.of(context)!.yourPassword,
+      AppLocalizations.of(context)!.successfullyUpdated,
       (c) => _onCloseSubmitInfo(c),
     );
   }

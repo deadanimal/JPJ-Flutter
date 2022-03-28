@@ -7,6 +7,7 @@ import 'package:jpj_info/view/common/spacing.dart';
 import 'package:jpj_info/view/form/custom_button.dart';
 import 'package:jpj_info/view/form/label.dart';
 import 'package:jpj_info/view/form/pin.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Tac extends StatelessWidget {
   Tac({
@@ -46,12 +47,12 @@ class Tac extends StatelessWidget {
       height: screenHeight! / 2,
       child: Column(
         children: [
-          const CustomLabel(
-            label: "Kod TAC",
+          CustomLabel(
+            label: AppLocalizations.of(context)!.tacCode,
           ),
           const SizedBox(height: vPaddingM),
-          const CustomLabel(
-            label: "Sila masukkan kod TAC\nyang telah dihantar ke e-mel anda",
+          CustomLabel(
+            label: AppLocalizations.of(context)!.tacDescription,
             fontWeight: FontWeight.normal,
             fontSize: 15,
           ),
@@ -68,7 +69,7 @@ class Tac extends StatelessWidget {
               widgetBuilder: (context, CurrentRemainingTime? time) {
                 String countdownText;
                 if (time == null) {
-                  countdownText = 'Send TAC again';
+                  countdownText = AppLocalizations.of(context)!.sendTacAgain;
                 } else {
                   String minutes = time.min != null ? "${time.min}" : "0";
                   String seconds = time.sec != null ? "${time.sec}" : "00";
@@ -111,7 +112,7 @@ class Tac extends StatelessWidget {
               // }
             },
             decoration: orangeGradientBtnDeco,
-            label: "Sahkan",
+            label: AppLocalizations.of(context)!.verify,
           ),
         ],
       ),

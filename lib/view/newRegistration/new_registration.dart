@@ -8,9 +8,10 @@ import 'package:jpj_info/view/form/custom_button.dart';
 import 'package:jpj_info/view/form/label.dart';
 import 'package:jpj_info/view/form/text_field.dart';
 import 'package:jpj_info/view/template/template_header.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class NewRegistration extends StatelessWidget {
-  const NewRegistration({
+  NewRegistration({
     Key? key,
     required this.emailController,
     this.submitCB,
@@ -20,12 +21,13 @@ class NewRegistration extends StatelessWidget {
 
   final TextEditingController emailController;
   final void Function(BuildContext)? submitCB;
-  final String pageTitle = "Daftar\nAkaun Baru";
+  late String pageTitle;
   final Function(bool?)? tncCheckedCB;
   final Function() readTnc;
 
   @override
   Widget build(BuildContext context) {
+    pageTitle = AppLocalizations.of(context)!.regNewAcc;
     mediaWidth = (MediaQuery.of(context).size.width);
     mediaHeight = (MediaQuery.of(context).size.height);
     return SizedBox(
@@ -48,20 +50,20 @@ class NewRegistration extends StatelessWidget {
             width: mediaWidth,
             child: Column(
               children: [
-                const CustomLabel(
-                  label: "No. MyKad/MyPr/MyKas",
+                CustomLabel(
+                  label: AppLocalizations.of(context)!.identification,
                   fontSize: 15,
                   align: TextAlign.start,
                 ),
                 const SizedBox(height: vPaddingS),
                 TextFieldForm(
                   textController: emailController,
-                  label: "No. MyKad/MyPr/MyKas",
+                  label: AppLocalizations.of(context)!.identification,
                   width: mediaWidth - 64,
                 ),
                 const SizedBox(height: vPaddingM),
-                const CustomLabel(
-                  label: "No. Telefon",
+                CustomLabel(
+                  label: AppLocalizations.of(context)!.phoneNumber,
                   fontSize: 15,
                   align: TextAlign.start,
                 ),
@@ -69,12 +71,12 @@ class NewRegistration extends StatelessWidget {
                 TextFieldForm(
                   textController: emailController,
                   inputType: TextInputType.phone,
-                  label: "No. Telefon",
+                  label: AppLocalizations.of(context)!.phoneNumber,
                   width: mediaWidth - 64,
                 ),
                 const SizedBox(height: vPaddingM),
-                const CustomLabel(
-                  label: "E-mel",
+                CustomLabel(
+                  label: AppLocalizations.of(context)!.email,
                   fontSize: 15,
                   align: TextAlign.start,
                 ),
@@ -82,12 +84,12 @@ class NewRegistration extends StatelessWidget {
                 TextFieldForm(
                   textController: emailController,
                   inputType: TextInputType.emailAddress,
-                  label: "E-mel",
+                  label: AppLocalizations.of(context)!.email,
                   width: mediaWidth - 64,
                 ),
                 const SizedBox(height: vPaddingM),
-                const CustomLabel(
-                  label: "Sahkan E-mel",
+                CustomLabel(
+                  label: AppLocalizations.of(context)!.verifyEmail,
                   fontSize: 15,
                   align: TextAlign.start,
                 ),
@@ -95,7 +97,7 @@ class NewRegistration extends StatelessWidget {
                 TextFieldForm(
                   textController: emailController,
                   inputType: TextInputType.emailAddress,
-                  label: "Sahkan E-mel",
+                  label: AppLocalizations.of(context)!.verifyEmail,
                   width: mediaWidth - 64,
                 ),
                 const SizedBox(height: vPaddingXL),
@@ -113,10 +115,9 @@ class NewRegistration extends StatelessWidget {
                         child: RichText(
                           text: TextSpan(
                             children: [
-                              const TextSpan(
-                                text:
-                                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur accumsan justo ante. Donec tincidunt vel urna at placerat. Vivamus ",
-                                style: TextStyle(
+                              TextSpan(
+                                text: AppLocalizations.of(context)!.tncShort,
+                                style: const TextStyle(
                                   fontSize: 12,
                                   fontFamily: "Poppins",
                                   fontWeight: FontWeight.w100,
@@ -129,7 +130,7 @@ class NewRegistration extends StatelessWidget {
                                   fontWeight: FontWeight.w100,
                                   color: Colors.blue,
                                 ),
-                                text: "Selanjutnya",
+                                text: AppLocalizations.of(context)!.readMore,
                                 recognizer: TapGestureRecognizer()
                                   ..onTap = readTnc,
                               ),
@@ -143,7 +144,7 @@ class NewRegistration extends StatelessWidget {
                 const SizedBox(height: vPaddingXL),
                 CustomButton(
                   decoration: navyGradientBtnDeco,
-                  label: "Hantar",
+                  label: AppLocalizations.of(context)!.submit,
                   width: (mediaWidth - 64) / 2,
                   onPressed: () {
                     if (submitCB != null) {

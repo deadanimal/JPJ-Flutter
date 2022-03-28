@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:jpj_info/view/common/color_scheme.dart';
 
 class FaqBtn extends StatelessWidget {
   const FaqBtn({Key? key, this.dark = false}) : super(key: key);
@@ -7,17 +9,19 @@ class FaqBtn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AssetImage iconImage;
+    Color tint;
     if (dark) {
-      iconImage = const AssetImage("images/faq_icon.png");
+      tint = const Color(themeNavy);
     } else {
-      iconImage = const AssetImage("images/faq_icon_light.png");
+      tint = Colors.white;
     }
     return InkWell(
       onTap: () {},
-      child: Image(
+      child: SvgPicture.asset(
+        "images/vector/faq_icon.svg",
+        semanticsLabel: 'Faq Icon',
+        color: tint,
         height: 24,
-        image: iconImage,
       ),
     );
   }

@@ -93,6 +93,9 @@ flutter:
     - images/vector/btm_main_menu_icon.svg
     - images/vector/btm_home_icon.svg
     - images/vector/setting_icon_lang.svg
+    - images/vector/faq_icon.svg
+    - images/vector/en_lang_icon.svg
+    - images/vector/ms_lang_icon.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

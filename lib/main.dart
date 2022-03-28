@@ -3,6 +3,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter/services.dart';
 import 'package:jpj_info/controller/login_controller.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:jpj_info/view/common/color_scheme.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -48,6 +49,11 @@ class _MyJpjState extends State<MyJpj> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(
+        statusBarColor: Color(themeNavy),
+      ),
+    );
     return MaterialApp(
       locale: locale,
       localizationsDelegates: AppLocalizations.localizationsDelegates,

@@ -6,6 +6,7 @@ import 'package:jpj_info/view/form/custom_button.dart';
 import 'package:jpj_info/view/form/label.dart';
 import 'package:jpj_info/view/form/text_field.dart';
 import 'package:jpj_info/view/form/tooltip_info.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ForgotPasswordVerified extends StatelessWidget {
   ForgotPasswordVerified({
@@ -45,13 +46,13 @@ class ForgotPasswordVerified extends StatelessWidget {
       child: Column(
         children: [
           CustomLabel(
-            label: "Tukar Kata Laluan",
+            label: AppLocalizations.of(context)!.changePassword,
             endWidget: InkWell(
               onTap: () {
                 TooltipInfo().showInfo(
                   context,
-                  "Kata laluan anda perlu",
-                  "mengandungi sekurang-kurangnya 8 aksara terdiri daripada gabungan huruf besar, huruf kecil, nombor dan simbol",
+                  AppLocalizations.of(context)!.yourPasswordNeed,
+                  AppLocalizations.of(context)!.passwordInfo,
                   (c) => {},
                 );
               },
@@ -74,14 +75,14 @@ class ForgotPasswordVerified extends StatelessWidget {
           TextFieldForm(
             textController: passwordController,
             obscureText: true,
-            label: "Kata Laluan Baru",
+            label: AppLocalizations.of(context)!.newPassword,
             width: screenWidth! - 64,
           ),
           const SizedBox(height: vPaddingM),
           TextFieldForm(
             textController: pwdConfirmController,
             obscureText: true,
-            label: "Pengesahan Kata Laluan Baru",
+            label: AppLocalizations.of(context)!.verifyNewPassword,
             width: screenWidth! - 64,
           ),
           const SizedBox(height: vPaddingXL),
@@ -94,7 +95,7 @@ class ForgotPasswordVerified extends StatelessWidget {
               }
             },
             decoration: orangeGradientBtnDeco,
-            label: "Hantar",
+            label: AppLocalizations.of(context)!.submit,
           ),
         ],
       ),
