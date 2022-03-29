@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/controller/forgot_password_controller.dart';
 import 'package:jpj_info/controller/new_registration_controller.dart';
-import 'package:jpj_info/view/appBarHeader/custom_appbar.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/login/login.dart';
 import 'package:jpj_info/view/mainpage/mainpage.dart';
-import 'package:jpj_info/view/navbar/menu.dart';
 
 class LoginController extends StatefulWidget {
   const LoginController({Key? key}) : super(key: key);
@@ -34,8 +33,7 @@ class _LoginController extends State<LoginController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      endDrawer: const NavBar(),
-      appBar: const CustomAppBar(
+      appBar: const AppBarController(
         iconColor: Color(themeNavy),
         darkBtn: true,
       ),

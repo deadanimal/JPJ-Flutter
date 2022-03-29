@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jpj_info/view/appBarHeader/custom_appbar.dart';
+import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/view/forgotPasswordVerified/forgot_password_verified.dart';
 import 'package:jpj_info/view/form/tooltip_info.dart';
 import 'package:jpj_info/view/mainpage/mainpage.dart';
@@ -34,7 +34,7 @@ class _ForgotPasswordVerifiedController
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: const CustomAppBar(
+        appBar: const AppBarController(
           darkBtn: true,
         ),
         body: ForgotPasswordVerified(

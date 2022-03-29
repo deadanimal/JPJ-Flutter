@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/controller/forgot_password_verified_controller.dart';
-import 'package:jpj_info/view/appBarHeader/custom_appbar.dart';
 import 'package:jpj_info/view/tac/tac.dart';
 
 class TacController extends StatefulWidget {
@@ -25,7 +25,7 @@ class _TacController extends State<TacController> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: const CustomAppBar(
+        appBar: const AppBarController(
           darkBtn: true,
         ),
         body: Tac(

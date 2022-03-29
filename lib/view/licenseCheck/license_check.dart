@@ -3,15 +3,13 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:jpj_info/config/site_config.dart';
+import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/model/license_status_request.dart';
 import 'package:jpj_info/model/license_status_response.dart';
 import 'package:jpj_info/model/result_style1.dart';
-import 'package:jpj_info/view/appBarHeader/custom_appbar.dart';
 import 'package:jpj_info/model/page_size.dart';
 import 'package:http/http.dart' as http;
 import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
-import 'package:jpj_info/view/common/color_scheme.dart';
-import 'package:jpj_info/view/navbar/menu.dart';
 import 'package:jpj_info/view/template/template_form.dart';
 import 'package:jpj_info/view/template/template_header.dart';
 import 'package:jpj_info/view/template/template_result1.dart';
@@ -56,8 +54,7 @@ class _License extends State<LicenseCheck> with TemplateForm {
     return MaterialApp(
       home: SafeArea(
         child: Scaffold(
-          endDrawer: const NavBar(),
-          appBar: const CustomAppBar(
+          appBar: const AppBarController(
             decor: customGradient,
           ),
           body: showLicensePage(),

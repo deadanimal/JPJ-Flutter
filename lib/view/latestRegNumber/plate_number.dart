@@ -4,17 +4,16 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:jpj_info/config/site_config.dart';
+import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/model/latest_reg_number_request.dart';
 import 'package:jpj_info/model/latest_reg_number_response.dart';
 import 'package:jpj_info/model/result_style2.dart';
-import 'package:jpj_info/view/appBarHeader/custom_appbar.dart';
 import 'package:jpj_info/model/page_size.dart';
 import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/common/spacing.dart';
 import 'package:jpj_info/view/template/template_header.dart';
 import 'package:jpj_info/view/template/template_result2.dart';
-import 'package:jpj_info/view/navbar/menu.dart';
 import 'package:jpj_info/view/template/template_form.dart';
 
 class PlateNumber extends StatefulWidget {
@@ -84,8 +83,7 @@ class _PlateNumber extends State<PlateNumber> with TemplateForm {
     return MaterialApp(
       home: SafeArea(
         child: Scaffold(
-          endDrawer: const NavBar(),
-          appBar: const CustomAppBar(
+          appBar: const AppBarController(
             decor: customGradient,
           ),
           body: showRoadTaxPage(),

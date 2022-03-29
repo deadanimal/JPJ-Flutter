@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/model/result_style1.dart';
-import 'package:jpj_info/view/appBarHeader/custom_appbar.dart';
 import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/common/spacing.dart';
 import 'package:jpj_info/model/page_size.dart';
-import 'package:jpj_info/view/navbar/menu.dart';
 import 'package:jpj_info/view/template/template_form.dart';
 import 'package:jpj_info/view/template/template_header.dart';
 
@@ -21,8 +20,7 @@ class TemplateResult1 extends StatelessWidget with TemplateForm {
     return MaterialApp(
       home: SafeArea(
         child: Scaffold(
-          endDrawer: const NavBar(),
-          appBar: const CustomAppBar(
+          appBar: const AppBarController(
             decor: customGradient,
           ),
           body: showResultPage(context),

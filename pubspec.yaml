@@ -43,6 +43,7 @@ dependencies:
   flutter_countdown_timer: ^4.1.0
   flutter_svg: ^1.0.3
   intl: ^0.17.0
+  bottom_drawer: ^0.0.5
 
 dev_dependencies:
   flutter_test:
@@ -96,6 +97,9 @@ flutter:
     - images/vector/faq_icon.svg
     - images/vector/en_lang_icon.svg
     - images/vector/ms_lang_icon.svg
+    - images/vector/inbox_icon.svg
+    - images/vector/share_icon.svg
+    - images/vector/logout_icon.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

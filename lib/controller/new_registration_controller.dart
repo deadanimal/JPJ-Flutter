@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/controller/bottom_nav_controller.dart';
 import 'package:jpj_info/controller/login_controller.dart';
-import 'package:jpj_info/view/appBarHeader/custom_appbar.dart';
 import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
-import 'package:jpj_info/view/navbar/menu.dart';
 import 'package:jpj_info/view/newRegistration/new_registration.dart';
 import 'package:jpj_info/view/form/tooltip_info.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -33,8 +32,7 @@ class _NewRegistrationController extends State<NewRegistrationController> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        endDrawer: const NavBar(),
-        appBar: const CustomAppBar(
+        appBar: const AppBarController(
           decor: customGradient,
         ),
         body: NewRegistration(

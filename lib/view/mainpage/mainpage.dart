@@ -10,7 +10,6 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      endDrawer: const NavBar(),
       appBar: AppBar(
         foregroundColor: Colors.black,
         shadowColor: Colors.transparent,
