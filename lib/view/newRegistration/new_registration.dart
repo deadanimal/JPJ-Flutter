@@ -118,6 +118,7 @@ class NewRegistration extends StatelessWidget {
                               TextSpan(
                                 text: AppLocalizations.of(context)!.tncShort,
                                 style: const TextStyle(
+                                  color: Colors.black,
                                   fontSize: 12,
                                   fontFamily: "Poppins",
                                   fontWeight: FontWeight.w100,
