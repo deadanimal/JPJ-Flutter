@@ -32,5 +32,8 @@
     "phoneNumber": "No. Telefon",
     "email": "E-mel",
     "verifyEmail": "Sahkan E-mel",
-    "forgotPasswordDot": "Terlupa Kata Laluan"
+    "forgotPasswordDot": "Terlupa Kata Laluan",
+    "inbox": "Peti Masuk",
+    "shareApp": "Kongsi Aplikasi",
+    "logout": "Log Keluar"
 }

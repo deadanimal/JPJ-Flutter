@@ -4,6 +4,7 @@ import 'package:jpj_info/main.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:jpj_info/view/common/spacing.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LanguageSelector {
   Future<String?> showInfo(
@@ -101,8 +102,18 @@ class LanguageSelector {
     );
   }
 
-  void _setLocale(BuildContext context, String languageCode) {
-    MyJpj.setLocale(context, Locale.fromSubtags(languageCode: languageCode));
-    Navigator.pop(context, 'OK');
+  Future<void> _setLocale(BuildContext context, String languageCode) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString("locale", languageCode).then(
+      (value) {
+        MyJpj.setLocale(
+          context,
+          Locale.fromSubtags(
+            languageCode: languageCode,
+          ),
+        );
+        Navigator.pop(context, 'OK');
+      },
+    );
   }
 }

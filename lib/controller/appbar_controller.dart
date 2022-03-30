@@ -1,5 +1,5 @@
-import 'package:bottom_drawer/bottom_drawer.dart';
 import 'package:flutter/material.dart';
+import 'package:jpj_info/helper/account_manager.dart';
 import 'package:jpj_info/view/appBarHeader/custom_appbar.dart';
 import 'package:jpj_info/view/bottomDrawer/bottom_drawer.dart';
 
@@ -23,7 +23,6 @@ class AppBarController extends StatefulWidget implements PreferredSizeWidget {
 }
 
 class _AppBarController extends State<AppBarController> {
-  BottomDrawerController controller = BottomDrawerController();
   @override
   void initState() {
     super.initState();
@@ -36,10 +35,24 @@ class _AppBarController extends State<AppBarController> {
 
   @override
   Widget build(BuildContext context) {
+    Widget bottomDrawer = CustomBottomDrawer(
+      inboxCallback: _inbox,
+      logoutCallback: _logout,
+      shareAppCallback: _shareApp,
+    );
     return CustomAppBar(
       iconColor: widget.iconColor,
       darkBtn: widget.darkBtn,
       decor: widget.decor,
+      bottomDrawer: bottomDrawer,
     );
+  }
+
+  void _inbox(BuildContext context) {}
+
+  void _shareApp(BuildContext context) {}
+
+  void _logout(BuildContext context) {
+    MyJPJAccountManager().logOut(context);
   }
 }

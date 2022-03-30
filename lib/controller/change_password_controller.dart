@@ -33,20 +33,16 @@ class _ChangePasswordController extends State<ChangePasswordController> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
-      supportedLocales: AppLocalizations.supportedLocales,
-      home: SafeArea(
-        child: Scaffold(
-          appBar: const AppBarController(
-            darkBtn: true,
-          ),
-          body: ChangePassword(
-            oldpasswordController: _oldPassword,
-            passwordController: _password,
-            pwdConfirmController: _passwordConfirm,
-            submitCB: submitCallback,
-          ),
+    return SafeArea(
+      child: Scaffold(
+        appBar: const AppBarController(
+          darkBtn: true,
+        ),
+        body: ChangePassword(
+          oldpasswordController: _oldPassword,
+          passwordController: _password,
+          pwdConfirmController: _passwordConfirm,
+          submitCB: submitCallback,
         ),
       ),
     );

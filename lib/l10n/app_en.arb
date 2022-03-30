@@ -32,5 +32,8 @@
   "phoneNumber": "Phone No",
   "email": "Email",
   "verifyEmail": "Verify Email",
-  "forgotPasswordDot": "Forgot Password"
+  "forgotPasswordDot": "Forgot Password",
+  "inbox": "Inbox",
+  "shareApp": "Share App",
+  "logout": "Logout"
 }

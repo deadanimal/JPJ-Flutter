@@ -3,6 +3,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter/services.dart';
 import 'package:jpj_info/controller/login_controller.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:jpj_info/helper/account_manager.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 
 void main() {
@@ -12,9 +13,11 @@ void main() {
       statusBarColor: Colors.transparent, // transparent status bar
     ),
   );
-  runApp(
-    MyJpj(),
-  );
+  MyJPJAccountManager().init().then(
+        (value) => runApp(
+          MyJpj(),
+        ),
+      );
 
   EasyLoading.instance.indicatorType = EasyLoadingIndicatorType.wave;
   EasyLoading.instance.dismissOnTap = false;
@@ -55,7 +58,7 @@ class _MyJpjState extends State<MyJpj> {
       ),
     );
     return MaterialApp(
-      locale: locale,
+      locale: Locale(MyJPJAccountManager().preferredLanguage),
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       home: const SafeArea(

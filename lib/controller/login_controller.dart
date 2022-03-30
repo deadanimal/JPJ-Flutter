@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/controller/forgot_password_controller.dart';
 import 'package:jpj_info/controller/new_registration_controller.dart';
+import 'package:jpj_info/helper/account_manager.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/login/login.dart';
 import 'package:jpj_info/view/mainpage/mainpage.dart';
@@ -32,6 +33,7 @@ class _LoginController extends State<LoginController> {
 
   @override
   Widget build(BuildContext context) {
+    // print(MyJPJAccountManager().name);
     return Scaffold(
       appBar: const AppBarController(
         iconColor: Color(themeNavy),
