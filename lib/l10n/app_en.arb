@@ -37,5 +37,8 @@
   "shareApp": "Share App",
   "logout": "Logout",
   "ok": "Ok",
+  "welcome": "Welcome",
+  "service": "Service",
+  "favourite": "Favourite",
   "pleaseWait": "Please wait..."
 }

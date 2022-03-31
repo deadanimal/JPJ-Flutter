@@ -1,13 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 
 class MenuItem {
   String? menu;
-  AssetImage? icon;
+  ImageProvider? icon;
   var cbFunc;
+  bool needLoggedIn = false;
 
-  MenuItem(String menuText, String iconPath, fx) {
+  MenuItem(String? menuText, String? iconPath, fx,
+      {bool needLoggedIn = false, bool isSvg = false}) {
     menu = menuText;
-    icon = AssetImage(iconPath);
+    if (iconPath != null) {
+      if (isSvg) {
+        icon = Svg(iconPath);
+      } else {
+        icon = AssetImage(iconPath);
+      }
+    }
     cbFunc = fx;
+    needLoggedIn = needLoggedIn;
   }
 }

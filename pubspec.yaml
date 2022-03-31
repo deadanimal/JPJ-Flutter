@@ -44,6 +44,7 @@ dependencies:
   flutter_svg: ^1.0.3
   intl: ^0.17.0
   shared_preferences: ^2.0.13
+  flutter_svg_provider: ^1.0.3
 
 dev_dependencies:
   flutter_test:
@@ -100,6 +101,12 @@ flutter:
     - images/vector/inbox_icon.svg
     - images/vector/share_icon.svg
     - images/vector/logout_icon.svg
+    - images/vector/arrow_down_icon.svg
+    - images/vector/history_icon.svg
+    - images/vector/ebit_icon.svg
+    - images/vector/online_transection_icon.svg
+    - images/vector/eaduan_icon.svg
+    - images/vector/easy_pay_icon.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:jpj_info/controller/appbar_controller.dart';
+import 'package:jpj_info/controller/bottom_nav_controller.dart';
 import 'package:jpj_info/controller/forgot_password_controller.dart';
-import 'package:jpj_info/controller/mainpage_controller.dart';
 import 'package:jpj_info/controller/new_registration_controller.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
-import 'package:jpj_info/view/login/login.dart';
+import 'package:jpj_info/view/mainpage/mainpage.dart';
 
-class LoginController extends StatefulWidget {
-  const LoginController({Key? key}) : super(key: key);
+class MainpageController extends StatefulWidget {
+  const MainpageController({Key? key}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _LoginController();
+  State<StatefulWidget> createState() => _MainpageController();
 }
 
-class _LoginController extends State<LoginController> {
+class _MainpageController extends State<MainpageController> {
   late TextEditingController _userId;
   late TextEditingController _userPwd;
   @override
@@ -38,13 +38,10 @@ class _LoginController extends State<LoginController> {
           iconColor: Color(themeNavy),
           darkBtn: true,
         ),
-        body: Login(
-          userId: _userId,
-          userPwd: _userPwd,
-          logAsGuessCB: logAsGuess,
-          newAccountCB: newRegistration,
-          logInCB: login,
-          forgotPasswordCB: forgotPassword,
+        body: const MainPage(),
+        extendBody: true,
+        bottomNavigationBar: BottomNavController(
+          darkTheme: true,
         ),
       ),
     );
@@ -56,7 +53,7 @@ class _LoginController extends State<LoginController> {
       context,
       MaterialPageRoute(
         builder: (context) {
-          return const MainpageController();
+          return const MainPage();
         },
       ),
     );
@@ -71,7 +68,7 @@ class _LoginController extends State<LoginController> {
       context,
       MaterialPageRoute(
         builder: (context) {
-          return const MainpageController();
+          return const MainPage();
         },
       ),
     );

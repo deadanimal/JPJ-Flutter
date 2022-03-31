@@ -10,4 +10,26 @@ class CustomTextStyle {
       fontSize: 12,
     );
   }
+
+  TextStyle mainHeader({
+    fontColor = const Color(themeNavy),
+  }) {
+    return TextStyle(
+      color: fontColor,
+      fontSize: 30,
+      fontFamily: "Poppins",
+      fontWeight: FontWeight.w900,
+    );
+  }
+
+  TextStyle subHeader({
+    fontColor = const Color(themeGray),
+  }) {
+    return TextStyle(
+      color: fontColor,
+      fontSize: 25,
+      fontFamily: "Poppins",
+      fontWeight: FontWeight.w700,
+    );
+  }
 }

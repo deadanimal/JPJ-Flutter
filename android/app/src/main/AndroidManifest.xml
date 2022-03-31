@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.jpj_info">
    <application
-        android:label="jpj_info"
+        android:label="MyJPJ"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

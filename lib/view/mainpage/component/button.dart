@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jpj_info/view/common/spacing.dart';
 import '../../common/color_scheme.dart';
 
 Widget button(btnText, btnImage, btnClickHandler, BuildContext context) {
@@ -24,32 +25,44 @@ Widget button(btnText, btnImage, btnClickHandler, BuildContext context) {
       onPressed: () {
         btnClickHandler(context);
       },
-      child: FittedBox(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Image(
-              image: btnImage,
-              fit: BoxFit.fitWidth,
-              alignment: Alignment.bottomCenter,
+      child: Column(
+        children: [
+          Expanded(
+            flex: 8,
+            child: FittedBox(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  getIcon(btnImage),
+                  btnTextWidget(btnText),
+                ],
+              ),
             ),
-            const SizedBox(
-              height: 8,
-            ),
-            btnTextWidget(btnText),
-            // const SizedBox(
-            //   height: 8,
-            // ),
-            // const Icon(
-            //   Icons.keyboard_arrow_down_rounded,
-            //   color: Colors.white,
-            //   size: 16.0,
-            // ),
-          ],
-        ),
+          ),
+          const Icon(
+            Icons.keyboard_arrow_down_rounded,
+            color: Colors.white,
+            size: 16.0,
+          ),
+        ],
       ),
     ),
   );
+}
+
+Widget getIcon(icon) {
+  if (icon != null) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: vPaddingM),
+      child: Image(
+        image: icon,
+        fit: BoxFit.fitWidth,
+        alignment: Alignment.bottomCenter,
+      ),
+    );
+  } else {
+    return Container();
+  }
 }
 
 Widget btnTextWidget(btnText) {

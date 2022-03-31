@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:jpj_info/controller/mainpage_controller.dart';
 import 'package:jpj_info/controller/user_controller.dart';
 import 'package:jpj_info/view/bottomBar/bottom_bar.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
-import 'package:jpj_info/view/mainpage/mainpage.dart';
 
 class BottomNavController extends StatelessWidget {
   BottomNavController({
@@ -34,7 +34,7 @@ class BottomNavController extends StatelessWidget {
       context,
       MaterialPageRoute(
         builder: (context) {
-          return const MainPage();
+          return const MainpageController();
         },
       ),
     );
@@ -45,7 +45,7 @@ class BottomNavController extends StatelessWidget {
       context,
       MaterialPageRoute(
         builder: (context) {
-          return const MainPage();
+          return const MainpageController();
         },
       ),
     );
@@ -56,7 +56,7 @@ class BottomNavController extends StatelessWidget {
       context,
       MaterialPageRoute(
         builder: (context) {
-          return const MainPage();
+          return const MainpageController();
         },
       ),
     );

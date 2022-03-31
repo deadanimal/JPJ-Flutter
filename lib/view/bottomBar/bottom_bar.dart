@@ -16,6 +16,7 @@ class BottomBar extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(24.0),
       child: BottomNavigationBar(
+        backgroundColor: Colors.transparent,
         unselectedItemColor: const Color(themeNavy),
         elevation: 0,
         items: items,
