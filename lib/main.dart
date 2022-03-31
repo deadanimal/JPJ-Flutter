@@ -47,7 +47,7 @@ class _MyJpjState extends State<MyJpj> {
   @override
   void initState() {
     super.initState();
-    locale = const Locale("ms");
+    locale = Locale(MyJPJAccountManager().preferredLanguage);
   }
 
   @override
@@ -58,7 +58,7 @@ class _MyJpjState extends State<MyJpj> {
       ),
     );
     return MaterialApp(
-      locale: Locale(MyJPJAccountManager().preferredLanguage),
+      locale: locale,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       home: const SafeArea(

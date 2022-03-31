@@ -35,5 +35,7 @@
     "forgotPasswordDot": "Terlupa Kata Laluan",
     "inbox": "Peti Masuk",
     "shareApp": "Kongsi Aplikasi",
-    "logout": "Log Keluar"
+    "logout": "Log Keluar",
+    "ok": "Ok",
+    "pleaseWait": "Sila Tunggu..."
 }

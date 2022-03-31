@@ -35,5 +35,7 @@
   "forgotPasswordDot": "Forgot Password",
   "inbox": "Inbox",
   "shareApp": "Share App",
-  "logout": "Logout"
+  "logout": "Logout",
+  "ok": "Ok",
+  "pleaseWait": "Please wait..."
 }

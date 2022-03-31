@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:jpj_info/main.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
@@ -103,8 +104,11 @@ class LanguageSelector {
   }
 
   Future<void> _setLocale(BuildContext context, String languageCode) async {
+    EasyLoading.show(
+      status: AppLocalizations.of(context)!.pleaseWait,
+    );
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setString("locale", languageCode).then(
+    prefs.setString("locale", languageCode).then(
       (value) {
         MyJpj.setLocale(
           context,
@@ -112,7 +116,8 @@ class LanguageSelector {
             languageCode: languageCode,
           ),
         );
-        Navigator.pop(context, 'OK');
+        EasyLoading.dismiss();
+        Navigator.pop(context, AppLocalizations.of(context)!.ok);
       },
     );
   }
