@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:jpj_info/controller/bottom_nav_controller.dart';
 import 'package:jpj_info/helper/account_manager.dart';
+import 'package:jpj_info/model/mainpage_icon.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/common/spacing.dart';
 import 'package:jpj_info/view/common/text_style.dart';
@@ -19,7 +21,6 @@ class MainPage extends StatelessWidget {
   Widget showMainPage(context) {
     return Container(
       width: double.infinity,
-      height: double.infinity,
       decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage("images/main_bg.png"),
@@ -27,15 +28,29 @@ class MainPage extends StatelessWidget {
           alignment: Alignment.bottomCenter,
         ),
       ),
-      child: Container(
-        constraints: const BoxConstraints(maxWidth: 400),
-        child: SingleChildScrollView(
+      child: SingleChildScrollView(
+        child: Container(
+          constraints: const BoxConstraints(
+            maxWidth: 400,
+            maxHeight: double.infinity,
+          ),
           child: Column(
             children: [
               mainheader(context),
-              favSubSection(context),
-              mainSubSection(context),
-              populateButton(context),
+              userInfo(context),
+              Column(
+                children: [
+                  favSubSection(context),
+                  mainSubSection(context),
+                  populateButton(context)
+                ],
+              ),
+              Container(
+                alignment: Alignment.bottomCenter,
+                child: BottomNavController(
+                  darkTheme: true,
+                ),
+              ),
             ],
           ),
         ),
@@ -43,13 +58,65 @@ class MainPage extends StatelessWidget {
     );
   }
 
+  Widget userInfo(BuildContext context) {
+    if (MyJPJAccountManager().isLoggedIn) {
+      return Padding(
+        padding: const EdgeInsets.only(top: vPaddingM, bottom: vPaddingXL),
+        child: Container(
+          alignment: Alignment.center,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                MyJPJAccountManager().name,
+                style: const TextStyle(
+                  color: Color(themeOrange),
+                  fontSize: 18,
+                  fontFamily: "Poppins",
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              Text(
+                MyJPJAccountManager().email,
+                style: const TextStyle(
+                  color: Color(themeOrange),
+                  fontSize: 10,
+                  fontFamily: "Poppins",
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              Text(
+                AppLocalizations.of(context)!.lastLoggedIn,
+                style: const TextStyle(
+                  fontSize: 9,
+                  fontFamily: "Poppins",
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              Text(
+                MyJPJAccountManager().lastLoggedIn,
+                style: const TextStyle(
+                  fontSize: 9,
+                  fontFamily: "Poppins",
+                  fontWeight: FontWeight.w600,
+                ),
+              )
+            ],
+          ),
+        ),
+      );
+    } else {
+      return Container();
+    }
+  }
+
   Widget mainheader(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Container(
-          margin: const EdgeInsets.all(8),
+          margin: const EdgeInsets.fromLTRB(8, 0, 8, 8),
           child: const Image(
             image: AssetImage("images/my_jpj_icon.png"),
             fit: BoxFit.fitWidth,
@@ -74,7 +141,7 @@ class MainPage extends StatelessWidget {
             textAlign: TextAlign.center,
             style: CustomTextStyle().subHeader(),
           ),
-          favSubsectionItems(),
+          favSubsectionItems(context),
         ],
       );
     } else {
@@ -82,7 +149,8 @@ class MainPage extends StatelessWidget {
     }
   }
 
-  Widget favSubsectionItems() {
+  Widget favSubsectionItems(BuildContext context) {
+    List<MenuItem> favMenuList = MenuList(ctx: context).getFavMenuList();
     return FittedBox(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -92,7 +160,7 @@ class MainPage extends StatelessWidget {
             favMenuList.length,
             (index) {
               return CustomFavButton(
-                item: serviceMenuList[index],
+                item: favMenuList[index],
               );
             },
           ),
@@ -110,18 +178,25 @@ class MainPage extends StatelessWidget {
   }
 
   Widget populateButton(context) {
+    List<MenuItem> serviceMenu = MenuList(ctx: context).getServisMenuList();
     return Center(
       child: Wrap(
         alignment: WrapAlignment.center,
         children: List.generate(
-          serviceMenuList.length,
+          serviceMenu.length,
           (index) {
+            bool enabled = true;
+            if (serviceMenu[index].needLoggedIn) {
+              enabled = serviceMenu[index].needLoggedIn &&
+                  MyJPJAccountManager().isLoggedIn;
+            }
             return Padding(
               padding: const EdgeInsets.all(verticalPadding),
               child: button(
-                serviceMenuList[index].menu,
-                serviceMenuList[index].icon,
-                serviceMenuList[index].cbFunc,
+                serviceMenu[index].menu,
+                serviceMenu[index].icon,
+                serviceMenu[index].cbFunc,
+                enabled,
                 context,
               ),
             );

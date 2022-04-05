@@ -40,5 +40,8 @@
     "welcome": "Selamat\nDatang",
     "service": "Servis",
     "favourite": "Kegemaran",
+    "lastLoggedIn": "Log masuk terakhir",
+    "onlineTransection": "Transaksi\nAtas Talian",
+    "transectionHistory": "Sejarah\nTransaksi",
     "pleaseWait": "Sila Tunggu..."
 }

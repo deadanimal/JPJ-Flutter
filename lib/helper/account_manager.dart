@@ -7,6 +7,8 @@ class MyJPJAccountManager {
   static final MyJPJAccountManager _singleton = MyJPJAccountManager._internal();
   String id = "";
   late String name;
+  late String email;
+  late String lastLoggedIn;
   List<String> vehicalRegNumber = [];
   String preferredLanguage = "en";
   bool isLoggedIn = false;
@@ -22,6 +24,8 @@ class MyJPJAccountManager {
     final prefs = await SharedPreferences.getInstance();
     id = "123456789012";
     name = "Sim Bin Polan";
+    lastLoggedIn = "01/04/2022 10:10 PM";
+    email = "simpolan@email.com";
     vehicalRegNumber = [
       "JJJ5555",
       "JVB5131",
@@ -41,6 +45,8 @@ class MyJPJAccountManager {
 
   void logOut(BuildContext context) {
     id = "";
+    email = "";
+    lastLoggedIn = "";
     name = AppLocalizations.of(context)!.visitor;
     vehicalRegNumber.clear();
     isLoggedIn = false;

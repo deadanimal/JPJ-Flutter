@@ -40,5 +40,8 @@
   "welcome": "Welcome",
   "service": "Service",
   "favourite": "Favourite",
+  "lastLoggedIn": "Last log in",  
+  "onlineTransection": "Online\nTransection",
+  "transectionHistory": "Transection\nHistory",
   "pleaseWait": "Please wait..."
 }

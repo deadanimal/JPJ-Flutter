@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:jpj_info/view/common/spacing.dart';
 import '../../common/color_scheme.dart';
 
-Widget button(btnText, btnImage, btnClickHandler, BuildContext context) {
-  return Container(
+Widget button(
+    btnText, btnImage, btnClickHandler, bool enabled, BuildContext context) {
+  Widget btn = Container(
     width: 129,
     height: 129,
     decoration: BoxDecoration(
@@ -23,7 +24,9 @@ Widget button(btnText, btnImage, btnClickHandler, BuildContext context) {
         foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
       ),
       onPressed: () {
-        btnClickHandler(context);
+        if (!enabled) {
+          btnClickHandler(context);
+        }
       },
       child: Column(
         children: [
@@ -39,25 +42,42 @@ Widget button(btnText, btnImage, btnClickHandler, BuildContext context) {
               ),
             ),
           ),
-          const Icon(
-            Icons.keyboard_arrow_down_rounded,
-            color: Colors.white,
-            size: 16.0,
+          const Padding(
+            padding: EdgeInsets.only(top: 8.0),
+            child: Icon(
+              Icons.keyboard_arrow_down_rounded,
+              color: Colors.white,
+              size: 16.0,
+            ),
           ),
         ],
       ),
     ),
   );
+
+  if (!enabled) {
+    btn = Opacity(
+      opacity: 0.45,
+      child: btn,
+    );
+  }
+  return btn;
 }
 
 Widget getIcon(icon) {
   if (icon != null) {
     return Padding(
       padding: const EdgeInsets.only(bottom: vPaddingM),
-      child: Image(
-        image: icon,
-        fit: BoxFit.fitWidth,
-        alignment: Alignment.bottomCenter,
+      child: Container(
+        constraints: const BoxConstraints(
+          maxHeight: 55,
+          maxWidth: 55,
+        ),
+        child: Image(
+          image: icon,
+          fit: BoxFit.fitWidth,
+          alignment: Alignment.bottomCenter,
+        ),
       ),
     );
   } else {

@@ -5,10 +5,10 @@ class MenuItem {
   String? menu;
   ImageProvider? icon;
   var cbFunc;
-  bool needLoggedIn = false;
+  late bool needLoggedIn;
 
   MenuItem(String? menuText, String? iconPath, fx,
-      {bool needLoggedIn = false, bool isSvg = false}) {
+      {bool login = false, bool isSvg = false}) {
     menu = menuText;
     if (iconPath != null) {
       if (isSvg) {
@@ -18,6 +18,6 @@ class MenuItem {
       }
     }
     cbFunc = fx;
-    needLoggedIn = needLoggedIn;
+    needLoggedIn = login;
   }
 }

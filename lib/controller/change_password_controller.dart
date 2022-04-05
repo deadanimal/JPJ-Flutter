@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/view/changePassword/change_password.dart';
 import 'package:jpj_info/view/mainpage/mainpage.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ChangePasswordController extends StatefulWidget {
   const ChangePasswordController({Key? key}) : super(key: key);

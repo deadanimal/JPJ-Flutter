@@ -32,17 +32,13 @@ class _MainpageController extends State<MainpageController> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return const SafeArea(
       child: Scaffold(
-        appBar: const AppBarController(
+        appBar: AppBarController(
           iconColor: Color(themeNavy),
           darkBtn: true,
         ),
-        body: const MainPage(),
-        extendBody: true,
-        bottomNavigationBar: BottomNavController(
-          darkTheme: true,
-        ),
+        body: MainPage(),
       ),
     );
   }
