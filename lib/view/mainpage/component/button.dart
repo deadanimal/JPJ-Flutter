@@ -24,7 +24,7 @@ Widget button(
         foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
       ),
       onPressed: () {
-        if (!enabled) {
+        if (enabled) {
           btnClickHandler(context);
         }
       },

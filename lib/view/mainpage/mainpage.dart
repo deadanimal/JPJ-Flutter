@@ -21,6 +21,7 @@ class MainPage extends StatelessWidget {
   Widget showMainPage(context) {
     return Container(
       width: double.infinity,
+      height: double.infinity,
       decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage("images/main_bg.png"),
@@ -34,24 +35,24 @@ class MainPage extends StatelessWidget {
             maxWidth: 400,
             maxHeight: double.infinity,
           ),
-          child: Column(
-            children: [
-              mainheader(context),
-              userInfo(context),
-              Column(
-                children: [
-                  favSubSection(context),
-                  mainSubSection(context),
-                  populateButton(context)
-                ],
-              ),
-              Container(
-                alignment: Alignment.bottomCenter,
-                child: BottomNavController(
-                  darkTheme: true,
+          child: IntrinsicHeight(
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                mainheader(context),
+                userInfo(context),
+                favSubSection(context),
+                mainSubSection(context),
+                populateButton(context),
+                const SizedBox(height: vPaddingXL),
+                Container(
+                  alignment: Alignment.bottomCenter,
+                  child: BottomNavController(
+                    darkTheme: true,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
