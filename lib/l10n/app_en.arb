@@ -43,5 +43,12 @@
   "lastLoggedIn": "Last log in",  
   "onlineTransection": "Online\nTransection",
   "transectionHistory": "Transection\nHistory",
+  "latestPlate": "Latest\nRegistration Number",
+  "drivingLicense": "Driving License",
+  "testResult": "Test Result",
+  "lkm": "Road Tax",
+  "ticket": "Summons",
+  "blacklist": "Blacklisted Vehicle",
+  "demeritPoints": "Demerit Points",
   "pleaseWait": "Please wait..."
 }

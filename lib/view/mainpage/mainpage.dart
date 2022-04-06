@@ -7,7 +7,7 @@ import 'package:jpj_info/view/common/spacing.dart';
 import 'package:jpj_info/view/common/text_style.dart';
 import 'package:jpj_info/view/mainpage/component/favButton.dart';
 import 'component/button.dart';
-import 'component/menu_list.dart';
+import '../../helper/menu_list.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class MainPage extends StatelessWidget {

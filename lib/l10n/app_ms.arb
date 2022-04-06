@@ -43,5 +43,12 @@
     "lastLoggedIn": "Log masuk terakhir",
     "onlineTransection": "Transaksi\nAtas Talian",
     "transectionHistory": "Sejarah\nTransaksi",
+    "latestPlate": "Nombor Terkini",
+    "drivingLicense": "Lesen Memandu",
+    "testResult": "Keputusan Ujian",
+    "lkm": "Lesen\nKenderaan Motor",
+    "ticket": "Saman",
+    "blacklist": "Senarai Hitam\nKenderaan",
+    "demeritPoints": "Mata Demerit",
     "pleaseWait": "Sila Tunggu..."
 }

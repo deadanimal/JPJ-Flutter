@@ -23,7 +23,7 @@ class MenuList {
       MenuItem(
         "eAduan",
         "images/icon/eaduan_icon.png",
-        roadTaxCheckPage,
+        () {},
         login: true,
       ),
       MenuItem(
@@ -64,6 +64,46 @@ class MenuList {
         "images/icon/eaduan_icon.png",
         roadTaxCheckPage,
         login: true,
+      ),
+    ];
+  }
+
+  List<MenuItem> getOnlineTransectionList() {
+    return [
+      MenuItem(
+        AppLocalizations.of(ctx)!.latestPlate,
+        "images/icon/latest_number_icon.png",
+        latestPlatePage,
+      ),
+      MenuItem(
+        AppLocalizations.of(ctx)!.drivingLicense,
+        "images/icon/driving_license_icon.png",
+        licensePage,
+      ),
+      MenuItem(
+        AppLocalizations.of(ctx)!.testResult,
+        "images/icon/test_result_icon.png",
+        () {},
+      ),
+      MenuItem(
+        AppLocalizations.of(ctx)!.lkm,
+        "images/icon/lkm_icon.png",
+        roadTaxCheckPage,
+      ),
+      MenuItem(
+        AppLocalizations.of(ctx)!.ticket,
+        "images/icon/ticket_icon.png",
+        () {},
+      ),
+      MenuItem(
+        AppLocalizations.of(ctx)!.blacklist,
+        "images/icon/black_list_icon.png",
+        () {},
+      ),
+      MenuItem(
+        AppLocalizations.of(ctx)!.demeritPoints,
+        "images/icon/demerit_point_icon.png",
+        () {},
       ),
     ];
   }
