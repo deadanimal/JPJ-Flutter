@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:jpj_info/controller/driving_license_controller.dart';
 import 'package:jpj_info/view/latestRegNumber/plate_number.dart';
-import 'package:jpj_info/view/licenseCheck/license_check.dart';
 import 'package:jpj_info/view/roadTaxCheck/road_tax_check.dart';
 
 void licensePage(BuildContext context) {
@@ -8,7 +8,7 @@ void licensePage(BuildContext context) {
     context,
     MaterialPageRoute(
       builder: (context) {
-        return const LicenseCheck();
+        return const DrivingLicenseController();
       },
     ),
   );

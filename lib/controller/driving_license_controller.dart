@@ -1,0 +1,129 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:jpj_info/config/site_config.dart';
+import 'package:jpj_info/controller/alert_controller.dart';
+import 'package:jpj_info/controller/appbar_controller.dart';
+import 'package:jpj_info/controller/bottom_nav_controller.dart';
+import 'package:jpj_info/helper/id_types.dart';
+import 'package:jpj_info/model/license_status_request.dart';
+import 'package:jpj_info/model/license_status_response.dart';
+import 'package:jpj_info/model/result_style1.dart';
+import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
+import 'package:jpj_info/view/licenseCheck/license_check.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:jpj_info/view/template/template_result1.dart';
+
+class DrivingLicenseController extends StatefulWidget {
+  const DrivingLicenseController({Key? key}) : super(key: key);
+
+  @override
+  State<StatefulWidget> createState() => _DrivingLicenseController();
+}
+
+class _DrivingLicenseController extends State<DrivingLicenseController> {
+  late TextEditingController _controller;
+  late List<String> dropdownList;
+  late String dropdownValue;
+  late String id;
+  @override
+  void initState() {
+    super.initState();
+    _controller = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    dropdownList = getIdType(context);
+    dropdownValue = AppLocalizations.of(context)!.malaysian;
+    id = "";
+    return SafeArea(
+      child: Scaffold(
+        appBar: const AppBarController(
+          decor: customGradient,
+        ),
+        body: LicenseCheck(
+          dropdownList: dropdownList,
+          dropdownValue: dropdownValue,
+          id: id,
+          selectionCallback: _setSelection,
+          submitCallback: _submitCallback,
+          textController: _controller,
+        ),
+        bottomNavigationBar: BottomNavController(),
+      ),
+    );
+  }
+
+  void _setSelection(String? newSelection) {
+    setState(() {
+      dropdownValue = newSelection!;
+    });
+  }
+
+  Future<void> _submitCallback(BuildContext context) async {
+    var index = dropdownList.indexWhere((element) => element == dropdownValue);
+    SiteConfig conf = SiteConfig();
+    LicenseStatusRequest req = LicenseStatusRequest(
+      kategori: index.toString(),
+      nokp: _controller.text,
+    );
+    try {
+      EasyLoading.show(
+        status: AppLocalizations.of(context)!.pleaseWait,
+      );
+      final response = await http.post(
+        Uri.parse(conf.licenseCheckUri),
+        headers: conf.jsonHeader,
+        body: jsonEncode(req.toJson()),
+      );
+      if (response.statusCode == 200) {
+        LicenseStatusResponse respond = LicenseStatusResponse.fromJson(
+          jsonDecode(response.body),
+        );
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) {
+              List<Result1> dataSet = [];
+              respond.lesen?.forEach((el) {
+                dataSet.add(
+                  Result1(
+                    leftTitle: AppLocalizations.of(context)!.licenseType,
+                    leftContent: el.jenisLesen,
+                    rightTitle: AppLocalizations.of(context)!.expiryDate,
+                    rightContent: el.tempohTamat,
+                  ),
+                );
+              });
+
+              ResultStyle1 resultData = ResultStyle1(
+                name: respond.nama,
+                id: respond.nokp,
+                title: AppLocalizations.of(context)!.drivingnLicense,
+                subtitle: AppLocalizations.of(context)!.searchResult,
+                results: dataSet,
+              );
+              return TemplateResult1(
+                data: resultData,
+              );
+            },
+          ),
+        );
+      } else {
+        AlertController(ctx: context).connectionError();
+      }
+    } catch (e) {
+      AlertController(ctx: context).connectionError();
+    } finally {
+      EasyLoading.dismiss();
+    }
+  }
+}

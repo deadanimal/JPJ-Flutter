@@ -1,170 +1,107 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:jpj_info/config/site_config.dart';
-import 'package:jpj_info/controller/appbar_controller.dart';
-import 'package:jpj_info/model/license_status_request.dart';
-import 'package:jpj_info/model/license_status_response.dart';
-import 'package:jpj_info/model/result_style1.dart';
 import 'package:jpj_info/model/page_size.dart';
-import 'package:http/http.dart' as http;
-import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
+import 'package:jpj_info/view/common/color_scheme.dart';
+import 'package:jpj_info/view/common/spacing.dart';
+import 'package:jpj_info/view/form/custom_button.dart';
+import 'package:jpj_info/view/form/dropdown.dart';
+import 'package:jpj_info/view/form/label.dart';
+import 'package:jpj_info/view/form/text_field.dart';
 import 'package:jpj_info/view/template/template_form.dart';
 import 'package:jpj_info/view/template/template_header.dart';
-import 'package:jpj_info/view/template/template_result1.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class LicenseCheck extends StatefulWidget {
-  const LicenseCheck({Key? key}) : super(key: key);
+class LicenseCheck extends StatelessWidget {
+  LicenseCheck({
+    Key? key,
+    required this.textController,
+    required this.dropdownList,
+    required this.dropdownValue,
+    required this.id,
+    required this.submitCallback,
+    required this.selectionCallback,
+  }) : super(key: key);
 
-  @override
-  State<StatefulWidget> createState() => _License();
-}
-
-class _License extends State<LicenseCheck> with TemplateForm {
-  List<String> dropdownList = [
-    'Penduduk Tetap Malaysia',
-    'Orang Awam Malaysia',
-    'Anggota Polis',
-    'Anggota Tentera',
-    'Syarikat/Pertubuhan',
-    'Bukan Warganegara Malaysia'
-  ];
-  String dropdownValue = 'Penduduk Tetap Malaysia';
-  String id = '';
-  late TextEditingController _controller;
-  String pageTitle = "Lesen\nMemandu";
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = TextEditingController();
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
+  late String pageTitle;
+  late TextEditingController textController;
+  late List<String> dropdownList;
+  late String dropdownValue;
+  late String id;
+  late void Function(BuildContext) submitCallback;
+  late Function selectionCallback;
 
   @override
   Widget build(BuildContext context) {
+    pageTitle = AppLocalizations.of(context)!.drivingnLicense;
     mediaWidth = (MediaQuery.of(context).size.width);
     mediaHeight = (MediaQuery.of(context).size.height);
-    return MaterialApp(
-      home: SafeArea(
-        child: Scaffold(
-          appBar: const AppBarController(
-            decor: customGradient,
-          ),
-          body: showLicensePage(),
-        ),
-      ),
-    );
+    return showLicensePage(context);
   }
 
-  Widget showLicensePage() {
+  Widget showLicensePage(BuildContext context) {
     UiElement uiElement = UiElement(
-      dropdownCbFunction: _setSelection,
+      dropdownCbFunction: selectionCallback,
       dropdownValues: dropdownValue,
-      nricTextController: _controller,
+      nricTextController: textController,
       textInput: id,
-      submitCB: _submitCB,
+      submitCB: submitCallback,
       dropdownList: dropdownList,
     );
-    return Material(
+    return SingleChildScrollView(
       child: Column(
         children: [
           TemplateHeader(
             headerTitle: pageTitle,
           ),
-          _licenseForm(uiElement),
+          _licenseForm(context, uiElement),
         ],
       ),
     );
   }
 
-  void _setSelection(String? newSelection) {
-    setState(() {
-      dropdownValue = newSelection!;
-    });
-  }
-
-  Future<void> _submitCB() async {
-    var index = dropdownList.indexWhere((element) => element == dropdownValue);
-    SiteConfig conf = SiteConfig();
-    LicenseStatusRequest req = LicenseStatusRequest(
-      kategori: index.toString(),
-      nokp: _controller.text,
-    );
-    try {
-      EasyLoading.show(
-        status: 'Please wait...',
-      );
-      final response = await http.post(
-        Uri.parse(conf.licenseCheckUri),
-        headers: conf.jsonHeader,
-        body: jsonEncode(req.toJson()),
-      );
-      if (response.statusCode == 200) {
-        LicenseStatusResponse respond = LicenseStatusResponse.fromJson(
-          jsonDecode(response.body),
-        );
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) {
-              List<Result1> dataSet = [];
-              respond.lesen?.forEach((el) {
-                dataSet.add(
-                  Result1(
-                    leftTitle: "Jenis Lesen",
-                    leftContent: el.jenisLesen,
-                    rightTitle: "Tarikh Luput",
-                    rightContent: el.tempohTamat,
-                  ),
-                );
-              });
-
-              ResultStyle1 resultData = ResultStyle1(
-                name: respond.nama,
-                id: respond.nokp,
-                title: pageTitle,
-                subtitle: "Keputusan Carian",
-                results: dataSet,
-              );
-              return TemplateResult1(
-                data: resultData,
-              );
-            },
-          ),
-        );
-      } else {
-        connectionError(context);
-      }
-    } catch (e) {
-      connectionError(context);
-    } finally {
-      EasyLoading.dismiss();
-    }
-  }
-
-  Widget _licenseForm(UiElement uiElement) {
-    return SingleChildScrollView(
+  Widget _licenseForm(BuildContext context, UiElement uiElement) {
+    return Container(
+      constraints: const BoxConstraints(maxWidth: 400),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          label(),
-          const SizedBox(height: 24),
-          dropdownSelector(uiElement.dropdownCbFunction,
-              uiElement.dropdownValues, uiElement.dropdownList),
-          const SizedBox(height: 32),
-          idNumber(uiElement.nricTextController, uiElement.textInput,
-              uiElement.submitCB),
-          const SizedBox(height: 32),
-          submitBtn(uiElement.submitCB),
+          const SizedBox(height: vPaddingXL),
+          CustomLabel(
+            label: AppLocalizations.of(context)!.category,
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
+          ),
+          const SizedBox(height: vPaddingXXL),
+          CustomDropdown(
+            cbFunc: selectionCallback,
+            dropdownList: dropdownList,
+            dropdownValue: dropdownValue,
+          ),
+          const SizedBox(height: vPaddingXXL),
+          TextFieldForm(
+            label: 'ID',
+            textController: textController,
+            width: mediaWidth - 64,
+          ),
+          const SizedBox(height: vPaddingXXL),
+          CustomButton(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8),
+              boxShadow: const [
+                BoxShadow(
+                  color: Color(btnShadow),
+                  blurRadius: 4,
+                  offset: Offset(0, 4),
+                ),
+              ],
+              color: const Color(btnColor),
+            ),
+            label: AppLocalizations.of(context)!.submit,
+            onPressed: () {
+              submitCallback(context);
+            },
+            width: mediaWidth - 128,
+          ),
         ],
       ),
     );
