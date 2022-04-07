@@ -64,5 +64,6 @@
   "name": "Name",
   "nricNumber": "Id Number",
   "noRecord": "No Record",
+  "vehicleReg": "Vehicle registration",
   "pleaseWait": "Please wait..."
 }

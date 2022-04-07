@@ -6,6 +6,7 @@ import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/common/spacing.dart';
 import 'package:jpj_info/model/page_size.dart';
 import 'package:jpj_info/view/template/template_header.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TemplateResult2 extends StatelessWidget {
   const TemplateResult2({Key? key, required this.data}) : super(key: key);
@@ -16,14 +17,12 @@ class TemplateResult2 extends StatelessWidget {
   Widget build(BuildContext context) {
     mediaWidth = (MediaQuery.of(context).size.width);
     mediaHeight = (MediaQuery.of(context).size.height);
-    return MaterialApp(
-      home: SafeArea(
-        child: Scaffold(
-          appBar: const AppBarController(
-            decor: customGradient,
-          ),
-          body: showRoadTaxPage(context),
+    return SafeArea(
+      child: Scaffold(
+        appBar: const AppBarController(
+          decor: customGradient,
         ),
+        body: showRoadTaxPage(context),
       ),
     );
   }
@@ -37,7 +36,7 @@ class TemplateResult2 extends StatelessWidget {
         const SizedBox(height: verticalPadding),
         subTitle(),
         const SizedBox(height: verticalPadding),
-        if (data.id != null) resultMainInfo(),
+        if (data.id != null) resultMainInfo(context),
         const SizedBox(height: verticalPadding),
         const Divider(
           color: Colors.black54,
@@ -46,13 +45,13 @@ class TemplateResult2 extends StatelessWidget {
           thickness: 0.8,
         ),
         Expanded(
-          child: displayValidResult(data.results),
+          child: displayValidResult(context, data.results),
         ),
       ],
     );
   }
 
-  Widget displayValidResult(List<Result2>? result) {
+  Widget displayValidResult(BuildContext context, List<Result2>? result) {
     if (result != null && result.isNotEmpty) {
       return ListView.builder(
         physics: const AlwaysScrollableScrollPhysics(),
@@ -69,8 +68,8 @@ class TemplateResult2 extends StatelessWidget {
         },
       );
     } else {
-      return const Center(
-        child: Text("No Record Found"),
+      return Center(
+        child: Text(AppLocalizations.of(context)!.noRecord),
       );
     }
   }
@@ -90,27 +89,16 @@ class TemplateResult2 extends StatelessWidget {
       ),
       child: Column(
         children: [
-          Container(
-            width: double.infinity,
-            decoration: BoxDecoration(
-              color: const Color(btnColor),
-              borderRadius: BorderRadius.circular(9),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(verticalPadding),
-              child: Column(
-                children: [
-                  Text(
-                    result.title!,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontFamily: "Poppins",
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ],
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              result.title!,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                color: Color(0xff354c96),
+                fontSize: 35,
+                fontFamily: "Poppins",
+                fontWeight: FontWeight.w600,
               ),
             ),
           ),
@@ -121,7 +109,7 @@ class TemplateResult2 extends StatelessWidget {
     );
   }
 
-  Widget resultMainInfo() {
+  Widget resultMainInfo(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(
         2 * horizontalPadding,
@@ -134,9 +122,9 @@ class TemplateResult2 extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
-                "Nama",
-                style: TextStyle(
+              Text(
+                AppLocalizations.of(context)!.name,
+                style: const TextStyle(
                   color: Color(themeNavy),
                   fontSize: 13,
                   fontFamily: "Poppins",
@@ -156,9 +144,9 @@ class TemplateResult2 extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
-                "Nombor Kad Pengenalan",
-                style: TextStyle(
+              Text(
+                AppLocalizations.of(context)!.nricNumber,
+                style: const TextStyle(
                   color: Color(themeNavy),
                   fontSize: 13,
                   fontFamily: "Poppins",
@@ -178,9 +166,9 @@ class TemplateResult2 extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
-                "No Pendaftaran Kenderaan",
-                style: TextStyle(
+              Text(
+                AppLocalizations.of(context)!.vehicleReg,
+                style: const TextStyle(
                   color: Color(themeNavy),
                   fontSize: 13,
                   fontFamily: "Poppins",

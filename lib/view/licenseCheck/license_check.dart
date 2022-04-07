@@ -79,7 +79,7 @@ class LicenseCheck extends StatelessWidget {
           ),
           const SizedBox(height: vPaddingXXL),
           TextFieldForm(
-            label: 'ID',
+            label: AppLocalizations.of(context)!.identification,
             textController: textController,
             width: mediaWidth - 64,
           ),
