@@ -49,6 +49,7 @@ class MainPage extends StatelessWidget {
                   alignment: Alignment.bottomCenter,
                   child: BottomNavController(
                     darkTheme: true,
+                    inHome: true,
                   ),
                 ),
               ],

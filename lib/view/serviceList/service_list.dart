@@ -37,6 +37,7 @@ class ServiceList extends StatelessWidget {
               alignment: Alignment.bottomCenter,
               child: BottomNavController(
                 darkTheme: true,
+                inMenu: true,
               ),
             ),
           ],

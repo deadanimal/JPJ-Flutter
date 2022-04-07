@@ -29,7 +29,7 @@ class MenuList {
       MenuItem(
         AppLocalizations.of(ctx)!.onlineTransection,
         "images/icon/online_transection_icon.png",
-        licensePage,
+        onlineTransectionPage,
       ),
       MenuItem(
         "EzyPay",
