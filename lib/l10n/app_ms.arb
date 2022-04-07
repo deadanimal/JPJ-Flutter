@@ -65,5 +65,7 @@
     "nricNumber": "Nombor Kad Pengenalan",
     "noRecord": "Tiada Rekod",
     "vehicleReg": "No Kenderaan",
+    "latestNNumber": "Nombor\nKenderaan Terkini",
+    "state": "Negeri",
     "pleaseWait": "Sila Tunggu..."
 }

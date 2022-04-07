@@ -65,5 +65,7 @@
   "nricNumber": "Id Number",
   "noRecord": "No Record",
   "vehicleReg": "Vehicle registration",
+  "latestNNumber": "Latest\nVehicle Registration",
+  "state": "State",
   "pleaseWait": "Please wait..."
 }

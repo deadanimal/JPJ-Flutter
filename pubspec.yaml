@@ -121,6 +121,22 @@ flutter:
     - images/icon/tnc_icon.png
     - images/icon/update_profile_icon.png
     - images/icon/vehicle_list_icon.png
+    - images/flag/n1.png
+    - images/flag/n10.png
+    - images/flag/n11.png
+    - images/flag/n12.png
+    - images/flag/n13.png
+    - images/flag/n14.png
+    - images/flag/n15.png
+    - images/flag/n16.png
+    - images/flag/n2.png
+    - images/flag/n3.png
+    - images/flag/n4.png
+    - images/flag/n5.png
+    - images/flag/n6.png
+    - images/flag/n7.png
+    - images/flag/n8.png
+    - images/flag/n9.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

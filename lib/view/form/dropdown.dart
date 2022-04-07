@@ -10,7 +10,7 @@ class CustomDropdown extends StatelessWidget {
     required this.dropdownList,
   }) : super(key: key);
   final String dropdownValue;
-  final List<String> dropdownList;
+  final dropdownList;
   final Function cbFunc;
 
   @override

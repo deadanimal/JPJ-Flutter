@@ -7,7 +7,6 @@ import 'package:jpj_info/view/form/dropdown.dart';
 import 'package:jpj_info/view/form/label.dart';
 import 'package:jpj_info/view/form/text_field.dart';
 import 'package:jpj_info/view/template/template_header.dart';
-import 'package:jpj_info/view/template/template_form.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class RoadTaxCheck extends StatelessWidget {
@@ -40,15 +39,6 @@ class RoadTaxCheck extends StatelessWidget {
   }
 
   Widget showRoadTaxPage(BuildContext context) {
-    UiElement uiElement = UiElement(
-      dropdownCbFunction: selectionCallback,
-      dropdownValues: dropdownValue,
-      nricTextController: nric,
-      textInput: id,
-      submitCB: submitCallback,
-      dropdownList: dropdownList,
-      plateTextController: plateNumber,
-    );
     return Material(
       child: Column(
         children: [
@@ -56,14 +46,14 @@ class RoadTaxCheck extends StatelessWidget {
             headerTitle: pageTitle,
           ),
           Expanded(
-            child: _roadTaxForm(context, uiElement),
+            child: _roadTaxForm(context),
           ),
         ],
       ),
     );
   }
 
-  Widget _roadTaxForm(BuildContext context, UiElement uiElement) {
+  Widget _roadTaxForm(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,

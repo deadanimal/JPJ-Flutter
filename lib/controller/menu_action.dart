@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jpj_info/controller/driving_license_controller.dart';
+import 'package:jpj_info/controller/latest_registration_number_controller.dart';
 import 'package:jpj_info/controller/online_transection_controller.dart';
 import 'package:jpj_info/controller/road_tax_controller.dart';
 import 'package:jpj_info/view/latestRegNumber/plate_number.dart';
@@ -31,7 +32,7 @@ void latestPlatePage(BuildContext context) {
     context,
     MaterialPageRoute(
       builder: (context) {
-        return const PlateNumber();
+        return const LatestRegistrationNumberController();
       },
     ),
   );
