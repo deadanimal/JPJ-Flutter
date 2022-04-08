@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:jpj_info/controller/mainpage_controller.dart';
 import 'package:jpj_info/controller/online_transection_controller.dart';
 import 'package:jpj_info/controller/user_controller.dart';
+import 'package:jpj_info/helper/account_manager.dart';
 import 'package:jpj_info/view/bottomBar/bottom_bar.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 
@@ -26,7 +27,12 @@ class BottomNavController extends StatelessWidget {
   Widget build(BuildContext context) {
     _initCallback();
     _initMenuList();
+    Color bgColor = Colors.transparent;
+    if (darkTheme) {
+      bgColor = Color(themeNavy);
+    }
     return BottomBar(
+      bgColor: bgColor,
       items: menuList,
       tappedCallback: _navCallback,
     );
@@ -98,7 +104,7 @@ class BottomNavController extends StatelessWidget {
     } else {
       tint = const Color(themeNavy);
     }
-    if (UserController().isLoggedIn()) {
+    if (MyJPJAccountManager().isLoggedIn) {
       menuList = [
         BottomNavigationBarItem(
           icon: SvgPicture.asset(

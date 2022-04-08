@@ -2,26 +2,56 @@ import 'package:flutter/material.dart';
 import 'package:jpj_info/controller/bottom_nav_controller.dart';
 import 'package:jpj_info/helper/account_manager.dart';
 import 'package:jpj_info/model/mainpage_icon.dart';
+import 'package:jpj_info/model/page_size.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/common/spacing.dart';
 import 'package:jpj_info/view/common/text_style.dart';
+import 'package:jpj_info/view/mainpage/component/custom_tab.dart';
 import 'package:jpj_info/view/mainpage/component/favButton.dart';
+import 'package:jpj_info/view/mainpage/component/services.dart';
+import 'package:jpj_info/view/mainpage/component/staff_menu.dart';
 import 'component/button.dart';
 import '../../helper/menu_list.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class MainPage extends StatelessWidget {
+class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
 
   @override
+  State<StatefulWidget> createState() => _MainPage();
+}
+
+class _MainPage extends State<MainPage> with TickerProviderStateMixin {
+  _MainPage();
+
+  late TabController tabController;
+
+  @override
   Widget build(BuildContext context) {
+    mediaWidth = (MediaQuery.of(context).size.width);
+    mediaHeight = (MediaQuery.of(context).size.height);
     return showMainPage(context);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    tabController = TabController(
+      initialIndex: 0,
+      length: 2,
+      vsync: this,
+    );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   Widget showMainPage(context) {
     return Container(
-      width: double.infinity,
-      height: double.infinity,
+      width: mediaWidth,
+      height: mediaHeight,
       decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage("images/main_bg.png"),
@@ -31,29 +61,19 @@ class MainPage extends StatelessWidget {
       ),
       child: SingleChildScrollView(
         child: Container(
-          constraints: const BoxConstraints(
+          constraints: BoxConstraints(
             maxWidth: 400,
-            maxHeight: double.infinity,
+            maxHeight: mediaHeight,
           ),
-          child: IntrinsicHeight(
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                mainheader(context),
-                userInfo(context),
-                favSubSection(context),
-                mainSubSection(context),
-                populateButton(context),
-                const SizedBox(height: vPaddingXL),
-                Container(
-                  alignment: Alignment.bottomCenter,
-                  child: BottomNavController(
-                    darkTheme: true,
-                    inHome: true,
-                  ),
-                ),
-              ],
-            ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              mainheader(context),
+              userInfo(context),
+              favSubSection(context),
+              mainSubSection(context),
+              Expanded(child: populateButton(context)),
+            ],
           ),
         ),
       ),
@@ -172,39 +192,32 @@ class MainPage extends StatelessWidget {
   }
 
   Widget mainSubSection(BuildContext context) {
-    return Text(
-      AppLocalizations.of(context)!.service,
-      textAlign: TextAlign.center,
-      style: CustomTextStyle().subHeader(),
-    );
+    if (MyJPJAccountManager().type == userType.staff) {
+      return CustomTab(tabController: tabController);
+    } else {
+      return Text(
+        AppLocalizations.of(context)!.service,
+        textAlign: TextAlign.center,
+        style: CustomTextStyle().subHeader(),
+      );
+    }
   }
 
   Widget populateButton(context) {
-    List<MenuItem> serviceMenu = MenuList(ctx: context).getServisMenuList();
-    return Center(
-      child: Wrap(
-        alignment: WrapAlignment.center,
-        children: List.generate(
-          serviceMenu.length,
-          (index) {
-            bool enabled = true;
-            if (serviceMenu[index].needLoggedIn) {
-              enabled = serviceMenu[index].needLoggedIn &&
-                  MyJPJAccountManager().isLoggedIn;
-            }
-            return Padding(
-              padding: const EdgeInsets.all(verticalPadding),
-              child: button(
-                serviceMenu[index].menu,
-                serviceMenu[index].icon,
-                serviceMenu[index].cbFunc,
-                enabled,
-                context,
-              ),
-            );
-          },
+    if (MyJPJAccountManager().type == userType.staff) {
+      return Container(
+        width: mediaWidth,
+        constraints: const BoxConstraints(maxWidth: 400),
+        child: TabBarView(
+          controller: tabController,
+          children: const [
+            Services(),
+            StaffMenu(),
+          ],
         ),
-      ),
-    );
+      );
+    } else {
+      return const Services();
+    }
   }
 }

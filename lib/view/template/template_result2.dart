@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jpj_info/controller/appbar_controller.dart';
+import 'package:jpj_info/controller/bottom_nav_controller.dart';
 import 'package:jpj_info/model/result_style2.dart';
 import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
@@ -23,6 +24,7 @@ class TemplateResult2 extends StatelessWidget {
           decor: customGradient,
         ),
         body: showRoadTaxPage(context),
+        bottomNavigationBar: BottomNavController(),
       ),
     );
   }

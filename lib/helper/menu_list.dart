@@ -107,4 +107,14 @@ class MenuList {
       ),
     ];
   }
+
+  List<MenuItem> getStaffMenuList() {
+    return [
+      MenuItem(
+        "JPJeHadir",
+        "images/icon/jpjehadir.png",
+        () {},
+      ),
+    ];
+  }
 }

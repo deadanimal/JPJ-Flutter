@@ -19,7 +19,7 @@ class ServiceList extends StatelessWidget {
       height: double.infinity,
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage("images/login_bg.png"),
+          image: AssetImage("images/main_bg.png"),
           fit: BoxFit.fitWidth,
           alignment: Alignment.bottomCenter,
         ),
