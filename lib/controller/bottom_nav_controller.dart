@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:jpj_info/controller/login_controller.dart';
 import 'package:jpj_info/controller/mainpage_controller.dart';
 import 'package:jpj_info/controller/online_transection_controller.dart';
 import 'package:jpj_info/controller/user_controller.dart';
@@ -81,8 +82,24 @@ class BottomNavController extends StatelessWidget {
     }
   }
 
+  void _loginNavigation(BuildContext context) {
+    // todo: remove this when login functionality works
+    MyJPJAccountManager().init().then(
+      (value) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) {
+              return const LoginController();
+            },
+          ),
+        );
+      },
+    );
+  }
+
   void _initCallback() {
-    if (UserController().isLoggedIn()) {
+    if (MyJPJAccountManager().isLoggedIn) {
       callbackList = [
         _homeNavigation,
         _menuNavigation,
@@ -92,7 +109,7 @@ class BottomNavController extends StatelessWidget {
       callbackList = [
         _homeNavigation,
         _menuNavigation,
-        _profileNavigation,
+        _loginNavigation,
       ];
     }
   }
