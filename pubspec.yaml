@@ -124,6 +124,11 @@ flutter:
     - images/flag/n7.png
     - images/flag/n8.png
     - images/flag/n9.png
+    - images/vector/vehicle_list_icon.svg
+    - images/vector/update_profile_icon.svg
+    - images/vector/tnc_icon.svg
+    - images/vector/feedback_icon.svg
+    - images/vector/change_password_icon.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

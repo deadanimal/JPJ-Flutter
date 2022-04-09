@@ -3,15 +3,28 @@ import 'package:jpj_info/model/page_size.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 
 class TemplateHeader extends StatelessWidget {
-  const TemplateHeader({Key? key, required this.headerTitle}) : super(key: key);
+  const TemplateHeader({
+    Key? key,
+    this.headerTitle = "",
+    this.header,
+  }) : super(key: key);
   final String headerTitle;
+  final Widget? header;
 
   Widget title() {
     return Container(
       alignment: Alignment.centerLeft,
       width: mediaWidth,
       padding: const EdgeInsets.fromLTRB(24, 24, 24, 8),
-      child: FittedBox(
+      child: getTitle(),
+    );
+  }
+
+  Widget getTitle() {
+    if (header != null && headerTitle == "") {
+      return header!;
+    } else {
+      return FittedBox(
         child: Text(
           headerTitle,
           style: const TextStyle(
@@ -21,8 +34,8 @@ class TemplateHeader extends StatelessWidget {
             fontWeight: FontWeight.w600,
           ),
         ),
-      ),
-    );
+      );
+    }
   }
 
   @override

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:jpj_info/controller/administrative_menu_controller.dart';
 import 'package:jpj_info/controller/login_controller.dart';
 import 'package:jpj_info/controller/mainpage_controller.dart';
 import 'package:jpj_info/controller/online_transaction_controller.dart';
@@ -74,7 +75,7 @@ class BottomNavController extends StatelessWidget {
         context,
         MaterialPageRoute(
           builder: (context) {
-            return const MainpageController();
+            return const AdministrativeMenuController();
           },
         ),
       );

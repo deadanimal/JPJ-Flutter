@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jpj_info/controller/bottom_nav_controller.dart';
+import 'package:jpj_info/helper/account_manager.dart';
 import 'package:jpj_info/model/mainpage_icon.dart';
 import 'package:jpj_info/model/page_size.dart';
 import 'package:jpj_info/view/common/spacing.dart';
@@ -8,8 +8,8 @@ import 'package:jpj_info/view/template/custom_wide_button.dart';
 import 'package:jpj_info/view/template/template_header.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class ServiceList extends StatelessWidget {
-  const ServiceList({Key? key}) : super(key: key);
+class AdministrativeMenu extends StatelessWidget {
+  const AdministrativeMenu({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,18 +28,35 @@ class ServiceList extends StatelessWidget {
         child: Column(
           children: [
             TemplateHeader(
-              headerTitle: AppLocalizations.of(context)!.onlineTransaction,
+              header: Center(
+                child: Column(
+                  children: [
+                    Text(
+                      MyJPJAccountManager().name,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 26,
+                        fontFamily: "Poppins",
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    const SizedBox(height: verticalPadding),
+                    Text(
+                      MyJPJAccountManager().id,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 24,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
             const SizedBox(height: vPaddingXL),
             _bodyList(context),
             const SizedBox(height: vPaddingXL),
-            Container(
-              alignment: Alignment.bottomCenter,
-              child: BottomNavController(
-                darkTheme: true,
-                inMenu: true,
-              ),
-            ),
           ],
         ),
       ),
@@ -58,8 +75,7 @@ class ServiceList extends StatelessWidget {
   }
 
   Widget serviceButton(BuildContext context) {
-    List<MenuItem> transactionList =
-        MenuList(ctx: context).getOnlineTransactionList();
+    List<MenuItem> transactionList = MenuList(ctx: context).getAdminMenuList();
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       mainAxisSize: MainAxisSize.max,

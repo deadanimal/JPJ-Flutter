@@ -76,5 +76,9 @@
   "startDate": "Start Date",
   "testNResult": "Test\nResult",
   "demeritNPoints": "Demerit\nPoints",
+  "updateProfile": "Update Profile",
+  "vehicleNList": "Vehicle List",
+  "feedback": "Feedback",
+  "viewTNC": "View Terms\nAnd Conditions",
   "pleaseWait": "Please wait..."
 }

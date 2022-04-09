@@ -3,8 +3,8 @@ import 'package:jpj_info/helper/account_manager.dart';
 import 'package:jpj_info/model/mainpage_icon.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 
-class CustomServiceButton extends StatelessWidget {
-  const CustomServiceButton({
+class CustomWideButton extends StatelessWidget {
+  const CustomWideButton({
     Key? key,
     required this.item,
   }) : super(key: key);
@@ -42,7 +42,7 @@ class CustomServiceButton extends StatelessWidget {
                   child: Image(
                     alignment: Alignment.centerRight,
                     image: item.icon!,
-                    height: 60,
+                    height: 50,
                   ),
                 ),
                 Expanded(

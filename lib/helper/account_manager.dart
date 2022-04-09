@@ -29,8 +29,8 @@ class MyJPJAccountManager {
 
   Future<void> init() async {
     final prefs = await SharedPreferences.getInstance();
-    id = "123456789012";
-    name = "Sim Bin Polan";
+    id = "901202152555";
+    name = "Muhammad Sim Bin Ahmad Polan";
     lastLoggedIn = "01/04/2022 10:10 PM";
     email = "simpolan@email.com";
     type = userType.staff;

@@ -118,4 +118,39 @@ class MenuList {
       ),
     ];
   }
+
+  List<MenuItem> getAdminMenuList() {
+    return [
+      MenuItem(
+        AppLocalizations.of(ctx)!.updateProfile,
+        "images/vector/update_profile_icon.svg",
+        () {},
+        isSvg: true,
+      ),
+      MenuItem(
+        AppLocalizations.of(ctx)!.vehicleNList,
+        "images/vector/vehicle_list_icon.svg",
+        () {},
+        isSvg: true,
+      ),
+      MenuItem(
+        AppLocalizations.of(ctx)!.feedback,
+        "images/vector/feedback_icon.svg",
+        () {},
+        isSvg: true,
+      ),
+      MenuItem(
+        AppLocalizations.of(ctx)!.viewTNC,
+        "images/vector/tnc_icon.svg",
+        () {},
+        isSvg: true,
+      ),
+      MenuItem(
+        AppLocalizations.of(ctx)!.changePassword,
+        "images/vector/change_password_icon.svg",
+        () {},
+        isSvg: true,
+      ),
+    ];
+  }
 }
