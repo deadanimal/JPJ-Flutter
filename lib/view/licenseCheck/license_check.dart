@@ -46,7 +46,7 @@ class LicenseCheck extends StatelessWidget {
     return ServiceForm(
       submitCallback: submitCallback,
       selectionCallback: selectionCallback,
-      textController: textController,
+      idTextController: textController,
       dropdownList: dropdownList,
       dropdownValue: dropdownValue,
     );

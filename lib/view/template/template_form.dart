@@ -2,26 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:jpj_info/model/page_size.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 
-class UiElement {
-  var dropdownCbFunction;
-  var dropdownValues;
-  var dropdownList;
-  TextEditingController? nricTextController;
-  var textInput;
-  var submitCB;
-  TextEditingController? plateTextController;
-
-  UiElement({
-    this.dropdownCbFunction,
-    this.dropdownValues,
-    this.dropdownList,
-    this.nricTextController,
-    this.textInput,
-    this.submitCB,
-    this.plateTextController,
-  });
-}
-
 class TemplateForm {
   Widget label() {
     return const Padding(
