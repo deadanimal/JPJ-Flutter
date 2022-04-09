@@ -32,10 +32,10 @@ class PlateNumber extends StatelessWidget {
     pageTitle = AppLocalizations.of(context)!.latestNNumber;
     mediaWidth = (MediaQuery.of(context).size.width);
     mediaHeight = (MediaQuery.of(context).size.height);
-    return showRoadTaxPage(context);
+    return showNewPlatePage(context);
   }
 
-  Widget showRoadTaxPage(BuildContext context) {
+  Widget showNewPlatePage(BuildContext context) {
     return Material(
       child: Column(
         children: [
@@ -43,14 +43,14 @@ class PlateNumber extends StatelessWidget {
             headerTitle: pageTitle,
           ),
           Expanded(
-            child: _roadTaxForm(context),
+            child: _newPlateForm(context),
           ),
         ],
       ),
     );
   }
 
-  Widget _roadTaxForm(BuildContext context) {
+  Widget _newPlateForm(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,

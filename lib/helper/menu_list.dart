@@ -98,7 +98,7 @@ class MenuList {
       MenuItem(
         AppLocalizations.of(ctx)!.blacklist,
         "images/icon/black_list_icon.png",
-        () {},
+        blacklistPage,
       ),
       MenuItem(
         AppLocalizations.of(ctx)!.demeritPoints,

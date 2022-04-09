@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jpj_info/controller/blacklist_controller.dart';
 import 'package:jpj_info/controller/driving_license_controller.dart';
 import 'package:jpj_info/controller/latest_registration_number_controller.dart';
 import 'package:jpj_info/controller/online_transaction_controller.dart';
@@ -55,6 +56,17 @@ void testResultPage(BuildContext context) {
     MaterialPageRoute(
       builder: (context) {
         return const TestResultController();
+      },
+    ),
+  );
+}
+
+void blacklistPage(BuildContext context) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) {
+        return const BlacklistController();
       },
     ),
   );

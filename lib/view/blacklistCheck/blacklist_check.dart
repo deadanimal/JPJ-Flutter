@@ -9,50 +9,54 @@ import 'package:jpj_info/view/form/text_field.dart';
 import 'package:jpj_info/view/template/template_header.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class TestResultCheck extends StatelessWidget {
-  TestResultCheck({
+class BlacklistCheck extends StatelessWidget {
+  BlacklistCheck({
     Key? key,
-    required this.textController,
     required this.dropdownList,
     required this.dropdownValue,
+    required this.nric,
+    required this.plateNumber,
     required this.submitCallback,
     required this.selectionCallback,
   }) : super(key: key);
 
-  late String pageTitle;
-  late TextEditingController textController;
   late List<String> dropdownList;
   late String dropdownValue;
+  late TextEditingController nric;
+  late TextEditingController plateNumber;
+  late String pageTitle;
   late void Function(BuildContext) submitCallback;
   late Function selectionCallback;
 
   @override
   Widget build(BuildContext context) {
-    pageTitle = AppLocalizations.of(context)!.testNResult;
+    pageTitle = AppLocalizations.of(context)!.blacklist;
     mediaWidth = (MediaQuery.of(context).size.width);
     mediaHeight = (MediaQuery.of(context).size.height);
-    return showTestResultPage(context);
+    return showBlacklistPage(context);
   }
 
-  Widget showTestResultPage(BuildContext context) {
-    return SingleChildScrollView(
+  Widget showBlacklistPage(BuildContext context) {
+    return Material(
       child: Column(
         children: [
           TemplateHeader(
             headerTitle: pageTitle,
           ),
-          _testResultForm(context),
+          Expanded(
+            child: _blacklistForm(context),
+          ),
         ],
       ),
     );
   }
 
-  Widget _testResultForm(BuildContext context) {
-    return Container(
-      constraints: const BoxConstraints(maxWidth: 400),
+  Widget _blacklistForm(BuildContext context) {
+    return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const SizedBox(height: vPaddingXL),
           CustomLabel(
@@ -69,7 +73,13 @@ class TestResultCheck extends StatelessWidget {
           const SizedBox(height: vPaddingXXL),
           TextFieldForm(
             label: AppLocalizations.of(context)!.identification,
-            textController: textController,
+            textController: nric,
+            width: mediaWidth - 64,
+          ),
+          const SizedBox(height: vPaddingXXL),
+          TextFieldForm(
+            label: AppLocalizations.of(context)!.vehicleReg,
+            textController: plateNumber,
             width: mediaWidth - 64,
           ),
           const SizedBox(height: vPaddingXXL),
