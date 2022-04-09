@@ -75,5 +75,6 @@
     "testDate": "Tarikh Ujian",
     "startDate": "Tarikh Mula",
     "testNResult": "Keputusan\nUjian",
+    "demeritNPoints": "Mata\nDemerit",
     "pleaseWait": "Sila Tunggu..."
 }

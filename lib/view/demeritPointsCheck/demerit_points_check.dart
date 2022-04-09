@@ -4,8 +4,8 @@ import 'package:jpj_info/view/template/online_services_form.dart';
 import 'package:jpj_info/view/template/template_header.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class TestResultCheck extends StatelessWidget {
-  TestResultCheck({
+class DemeritPointsCheck extends StatelessWidget {
+  DemeritPointsCheck({
     Key? key,
     required this.textController,
     required this.dropdownList,
@@ -23,26 +23,26 @@ class TestResultCheck extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    pageTitle = AppLocalizations.of(context)!.testNResult;
+    pageTitle = AppLocalizations.of(context)!.demeritNPoints;
     mediaWidth = (MediaQuery.of(context).size.width);
     mediaHeight = (MediaQuery.of(context).size.height);
-    return showTestResultPage();
+    return showDemeritPointsPage();
   }
 
-  Widget showTestResultPage() {
+  Widget showDemeritPointsPage() {
     return SingleChildScrollView(
       child: Column(
         children: [
           TemplateHeader(
             headerTitle: pageTitle,
           ),
-          _testResultForm(),
+          _demeritPointForm(),
         ],
       ),
     );
   }
 
-  Widget _testResultForm() {
+  Widget _demeritPointForm() {
     return ServiceForm(
       submitCallback: submitCallback,
       selectionCallback: selectionCallback,

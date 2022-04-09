@@ -75,5 +75,6 @@
   "testDate": "Test Date",
   "startDate": "Start Date",
   "testNResult": "Test\nResult",
+  "demeritNPoints": "Demerit\nPoints",
   "pleaseWait": "Please wait..."
 }

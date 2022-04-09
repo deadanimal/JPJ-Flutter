@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jpj_info/controller/blacklist_controller.dart';
+import 'package:jpj_info/controller/demerit_points_contoller.dart';
 import 'package:jpj_info/controller/driving_license_controller.dart';
 import 'package:jpj_info/controller/latest_registration_number_controller.dart';
 import 'package:jpj_info/controller/online_transaction_controller.dart';
@@ -67,6 +68,17 @@ void blacklistPage(BuildContext context) {
     MaterialPageRoute(
       builder: (context) {
         return const BlacklistController();
+      },
+    ),
+  );
+}
+
+void demeritPointsPage(BuildContext context) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) {
+        return const DemeritPointsController();
       },
     ),
   );

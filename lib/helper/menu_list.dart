@@ -104,7 +104,7 @@ class MenuList {
       MenuItem(
         AppLocalizations.of(ctx)!.demeritPoints,
         "images/icon/demerit_point_icon.png",
-        () {},
+        demeritPointsPage,
       ),
     ];
   }
