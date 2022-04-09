@@ -4,7 +4,6 @@ import 'package:jpj_info/config/site_config.dart';
 import 'package:jpj_info/controller/alert_controller.dart';
 import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/controller/bottom_nav_controller.dart';
-import 'package:jpj_info/helper/id_types.dart';
 import 'package:jpj_info/model/latest_reg_number_request.dart';
 import 'package:jpj_info/model/latest_reg_number_response.dart';
 import 'package:jpj_info/model/result_style2.dart';

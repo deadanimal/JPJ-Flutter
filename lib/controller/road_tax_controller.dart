@@ -6,21 +6,14 @@ import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/controller/bottom_nav_controller.dart';
 import 'package:jpj_info/helper/account_manager.dart';
 import 'package:jpj_info/helper/id_types.dart';
-import 'package:jpj_info/model/license_status_request.dart';
-import 'package:jpj_info/model/license_status_response.dart';
-import 'package:jpj_info/model/result_style1.dart';
 import 'package:jpj_info/model/result_style2.dart';
 import 'package:jpj_info/model/roadtax_status_request.dart';
 import 'package:jpj_info/model/roadtax_status_response.dart';
 import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
-import 'package:jpj_info/view/common/color_scheme.dart';
-import 'package:jpj_info/view/common/spacing.dart';
-import 'package:jpj_info/view/licenseCheck/license_check.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:http/http.dart' as http;
 import 'package:jpj_info/view/roadTaxCheck/road_tax_check.dart';
 import 'dart:convert';
-import 'package:jpj_info/view/template/template_result1.dart';
 import 'package:jpj_info/view/template/template_result2.dart';
 
 class RoadTaxController extends StatefulWidget {
@@ -35,7 +28,6 @@ class _RoadTaxController extends State<RoadTaxController> {
   late TextEditingController _plateNumber;
   late List<String> dropdownList;
   late String dropdownValue;
-  late String id;
   @override
   void initState() {
     super.initState();
@@ -54,7 +46,6 @@ class _RoadTaxController extends State<RoadTaxController> {
   Widget build(BuildContext context) {
     dropdownList = getIdType(context);
     dropdownValue = AppLocalizations.of(context)!.malaysian;
-    id = "";
     return SafeArea(
       child: Scaffold(
         appBar: const AppBarController(
@@ -65,7 +56,6 @@ class _RoadTaxController extends State<RoadTaxController> {
           plateNumber: _plateNumber,
           dropdownList: dropdownList,
           dropdownValue: dropdownValue,
-          id: id,
           selectionCallback: _setSelection,
           submitCallback: _submitCallback,
         ),

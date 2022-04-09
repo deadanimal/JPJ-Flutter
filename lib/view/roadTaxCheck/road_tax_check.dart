@@ -14,7 +14,6 @@ class RoadTaxCheck extends StatelessWidget {
     Key? key,
     required this.dropdownList,
     required this.dropdownValue,
-    required this.id,
     required this.nric,
     required this.plateNumber,
     required this.submitCallback,
@@ -23,7 +22,6 @@ class RoadTaxCheck extends StatelessWidget {
 
   late List<String> dropdownList;
   late String dropdownValue;
-  late String id;
   late TextEditingController nric;
   late TextEditingController plateNumber;
   late String pageTitle;

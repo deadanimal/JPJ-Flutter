@@ -26,7 +26,6 @@ class _TestResultController extends State<TestResultController> {
   late TextEditingController _controller;
   late List<String> dropdownList;
   late String dropdownValue;
-  late String id;
   @override
   void initState() {
     super.initState();
@@ -43,7 +42,6 @@ class _TestResultController extends State<TestResultController> {
   Widget build(BuildContext context) {
     dropdownList = getIdType(context);
     dropdownValue = AppLocalizations.of(context)!.malaysian;
-    id = "";
     return SafeArea(
       child: Scaffold(
         appBar: const AppBarController(
@@ -52,7 +50,6 @@ class _TestResultController extends State<TestResultController> {
         body: TestResultCheck(
           dropdownList: dropdownList,
           dropdownValue: dropdownValue,
-          id: id,
           selectionCallback: _setSelection,
           submitCallback: _submitCallback,
           textController: _controller,

@@ -6,7 +6,6 @@ import 'package:jpj_info/view/form/custom_button.dart';
 import 'package:jpj_info/view/form/dropdown.dart';
 import 'package:jpj_info/view/form/label.dart';
 import 'package:jpj_info/view/form/text_field.dart';
-import 'package:jpj_info/view/template/template_form.dart';
 import 'package:jpj_info/view/template/template_header.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -16,7 +15,6 @@ class LicenseCheck extends StatelessWidget {
     required this.textController,
     required this.dropdownList,
     required this.dropdownValue,
-    required this.id,
     required this.submitCallback,
     required this.selectionCallback,
   }) : super(key: key);
@@ -25,7 +23,6 @@ class LicenseCheck extends StatelessWidget {
   late TextEditingController textController;
   late List<String> dropdownList;
   late String dropdownValue;
-  late String id;
   late void Function(BuildContext) submitCallback;
   late Function selectionCallback;
 
@@ -38,27 +35,19 @@ class LicenseCheck extends StatelessWidget {
   }
 
   Widget showLicensePage(BuildContext context) {
-    UiElement uiElement = UiElement(
-      dropdownCbFunction: selectionCallback,
-      dropdownValues: dropdownValue,
-      nricTextController: textController,
-      textInput: id,
-      submitCB: submitCallback,
-      dropdownList: dropdownList,
-    );
     return SingleChildScrollView(
       child: Column(
         children: [
           TemplateHeader(
             headerTitle: pageTitle,
           ),
-          _licenseForm(context, uiElement),
+          _licenseForm(context),
         ],
       ),
     );
   }
 
-  Widget _licenseForm(BuildContext context, UiElement uiElement) {
+  Widget _licenseForm(BuildContext context) {
     return Container(
       constraints: const BoxConstraints(maxWidth: 400),
       child: Column(
