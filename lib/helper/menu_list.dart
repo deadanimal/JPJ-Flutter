@@ -94,6 +94,7 @@ class MenuList {
         AppLocalizations.of(ctx)!.ticket,
         "images/icon/ticket_icon.png",
         () {},
+        login: true,
       ),
       MenuItem(
         AppLocalizations.of(ctx)!.blacklist,

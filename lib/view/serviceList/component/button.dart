@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jpj_info/helper/account_manager.dart';
 import 'package:jpj_info/model/mainpage_icon.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 
@@ -11,7 +12,7 @@ class CustomServiceButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    Widget btn = Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
         decoration: BoxDecoration(
@@ -29,7 +30,10 @@ class CustomServiceButton extends StatelessWidget {
           height: 67,
           child: InkWell(
             onTap: () {
-              item.cbFunc!(context);
+              if (item.needLoggedIn && !MyJPJAccountManager().isLoggedIn) {
+              } else {
+                item.cbFunc!(context);
+              }
             },
             child: Row(
               children: [
@@ -60,5 +64,13 @@ class CustomServiceButton extends StatelessWidget {
         ),
       ),
     );
+
+    if (item.needLoggedIn && !MyJPJAccountManager().isLoggedIn) {
+      btn = Opacity(
+        opacity: 0.45,
+        child: btn,
+      );
+    }
+    return btn;
   }
 }
