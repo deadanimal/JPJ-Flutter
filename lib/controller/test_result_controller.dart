@@ -103,10 +103,10 @@ class _TestResultController extends State<TestResultController> {
               });
 
               ResultStyle2 resultData = ResultStyle2(
-                vehicalRegNumber: "",
+                vehicalRegNumber: null,
                 name: respond.nama,
                 id: respond.nokp,
-                title: AppLocalizations.of(context)!.drivingnLicense,
+                title: AppLocalizations.of(context)!.testNResult,
                 subtitle: AppLocalizations.of(context)!.searchResult,
                 results: dataSet,
               );
@@ -127,8 +127,8 @@ class _TestResultController extends State<TestResultController> {
   }
 
   Widget _resultField(LesenP el) {
-    print(el.toJson().toString());
-    return FittedBox(
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
       child: Column(
         children: [
           Row(
@@ -136,7 +136,7 @@ class _TestResultController extends State<TestResultController> {
             children: [
               Text(
                 AppLocalizations.of(context)!.testDate,
-                textAlign: TextAlign.center,
+                textAlign: TextAlign.start,
                 style: const TextStyle(
                   color: Color(0xff8b9eb0),
                   fontSize: 12,
@@ -146,7 +146,7 @@ class _TestResultController extends State<TestResultController> {
               ),
               Text(
                 el.tarikhujian!,
-                textAlign: TextAlign.center,
+                textAlign: TextAlign.end,
                 style: const TextStyle(
                   color: Color(0xff4e4e4e),
                   fontSize: 10,
@@ -159,7 +159,7 @@ class _TestResultController extends State<TestResultController> {
             children: [
               Text(
                 AppLocalizations.of(context)!.testLocation,
-                textAlign: TextAlign.center,
+                textAlign: TextAlign.start,
                 style: const TextStyle(
                   color: Color(0xff8b9eb0),
                   fontSize: 12,
@@ -168,8 +168,8 @@ class _TestResultController extends State<TestResultController> {
                 ),
               ),
               Text(
-                el.lokasiUjian!,
-                textAlign: TextAlign.center,
+                el.lokasiUjian!.trim(),
+                textAlign: TextAlign.end,
                 style: const TextStyle(
                   color: Color(0xff4e4e4e),
                   fontSize: 10,

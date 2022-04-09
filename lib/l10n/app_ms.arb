@@ -73,5 +73,7 @@
     "licenseClass": "Kelas Lesen",
     "result": "Keputusan",
     "testDate": "Tarikh Ujian",
+    "startDate": "Tarikh Mula",
+    "testNResult": "Keputusan\nUjian",
     "pleaseWait": "Sila Tunggu..."
 }

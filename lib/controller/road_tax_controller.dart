@@ -146,29 +146,54 @@ class _RoadTaxController extends State<RoadTaxController> {
 
   Widget _resultField(Lkm el) {
     return Padding(
-      padding: const EdgeInsets.all(verticalPadding),
+      padding: const EdgeInsets.all(8.0),
       child: Column(
         children: [
-          Text(
-            AppLocalizations.of(context)!.expiryDate,
-            textAlign: TextAlign.center,
-            style: const TextStyle(
-              color: Color(themeNavy),
-              fontSize: 18,
-              fontFamily: "Poppins",
-              fontWeight: FontWeight.w600,
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                AppLocalizations.of(context)!.startDate,
+                textAlign: TextAlign.start,
+                style: const TextStyle(
+                  color: Color(0xff8b9eb0),
+                  fontSize: 12,
+                  fontFamily: "Poppins",
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              Text(
+                el.tarikhcomment!,
+                textAlign: TextAlign.end,
+                style: const TextStyle(
+                  color: Color(0xff4e4e4e),
+                  fontSize: 10,
+                ),
+              ),
+            ],
           ),
-          const SizedBox(height: horizontalPadding),
-          Text(
-            el.expiredate!,
-            textAlign: TextAlign.center,
-            style: const TextStyle(
-              color: Color(themeNavy),
-              fontSize: 13,
-              fontFamily: "Poppins",
-              fontWeight: FontWeight.w500,
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                AppLocalizations.of(context)!.expiryDate,
+                textAlign: TextAlign.start,
+                style: const TextStyle(
+                  color: Color(0xff8b9eb0),
+                  fontSize: 12,
+                  fontFamily: "Poppins",
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              Text(
+                el.expiredate!.trim(),
+                textAlign: TextAlign.end,
+                style: const TextStyle(
+                  color: Color(0xff4e4e4e),
+                  fontSize: 10,
+                ),
+              ),
+            ],
           ),
         ],
       ),

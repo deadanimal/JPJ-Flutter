@@ -31,7 +31,7 @@ class TestResultCheck extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    pageTitle = AppLocalizations.of(context)!.testResult;
+    pageTitle = AppLocalizations.of(context)!.testNResult;
     mediaWidth = (MediaQuery.of(context).size.width);
     mediaHeight = (MediaQuery.of(context).size.height);
     return showLicensePage(context);

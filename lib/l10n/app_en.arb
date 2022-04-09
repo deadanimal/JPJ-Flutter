@@ -73,5 +73,7 @@
   "licenseClass": "License Class",
   "result": "Result",
   "testDate": "Test Date",
+  "startDate": "Start Date",
+  "testNResult": "Test\nResult",
   "pleaseWait": "Please wait..."
 }
