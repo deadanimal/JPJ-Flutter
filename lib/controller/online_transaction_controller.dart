@@ -3,14 +3,14 @@ import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
 import 'package:jpj_info/view/serviceList/service_list.dart';
 
-class OnlineTransectionController extends StatefulWidget {
-  const OnlineTransectionController({Key? key}) : super(key: key);
+class OnlineTransactionController extends StatefulWidget {
+  const OnlineTransactionController({Key? key}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _OnlineTransectionController();
+  State<StatefulWidget> createState() => _OnlineTransactionController();
 }
 
-class _OnlineTransectionController extends State<OnlineTransectionController> {
+class _OnlineTransactionController extends State<OnlineTransactionController> {
   @override
   void initState() {
     super.initState();

@@ -28,7 +28,7 @@ class ServiceList extends StatelessWidget {
         child: Column(
           children: [
             TemplateHeader(
-              headerTitle: AppLocalizations.of(context)!.onlineTransection,
+              headerTitle: AppLocalizations.of(context)!.onlineTransaction,
             ),
             const SizedBox(height: vPaddingXL),
             _bodyList(context),
@@ -58,16 +58,16 @@ class ServiceList extends StatelessWidget {
   }
 
   Widget serviceButton(BuildContext context) {
-    List<MenuItem> transectionList =
-        MenuList(ctx: context).getOnlineTransectionList();
+    List<MenuItem> transactionList =
+        MenuList(ctx: context).getOnlineTransactionList();
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       mainAxisSize: MainAxisSize.max,
       children: List.generate(
-        transectionList.length,
+        transactionList.length,
         (index) {
           return CustomServiceButton(
-            item: transectionList[index],
+            item: transactionList[index],
           );
         },
       ),

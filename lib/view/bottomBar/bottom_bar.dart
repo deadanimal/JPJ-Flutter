@@ -16,7 +16,10 @@ class BottomBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: bgColor,
+      decoration: BoxDecoration(
+        border: Border.all(style: BorderStyle.none),
+        color: bgColor,
+      ),
       child: Padding(
         padding: const EdgeInsets.fromLTRB(24.0, 8, 24, 8),
         child: BottomNavigationBar(

@@ -41,8 +41,8 @@
     "service": "Servis",
     "favourite": "Kegemaran",
     "lastLoggedIn": "Log masuk terakhir",
-    "onlineTransection": "Transaksi\nAtas Talian",
-    "transectionHistory": "Sejarah\nTransaksi",
+    "onlineTransaction": "Transaksi\nAtas Talian",
+    "transactionHistory": "Sejarah\nTransaksi",
     "latestPlate": "Nombor Terkini",
     "drivingLicense": "Lesen Memandu",
     "testResult": "Keputusan Ujian",
@@ -68,5 +68,10 @@
     "latestNNumber": "Nombor\nKenderaan Terkini",
     "state": "Negeri",
     "staff": "Staf",
+    "testType": "Jenis Ujian",
+    "testLocation": "Lokasi Ujian",
+    "licenseClass": "Kelas Lesen",
+    "result": "Keputusan",
+    "testDate": "Tarikh Ujian",
     "pleaseWait": "Sila Tunggu..."
 }

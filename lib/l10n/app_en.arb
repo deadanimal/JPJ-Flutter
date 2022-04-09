@@ -41,8 +41,8 @@
   "service": "Service",
   "favourite": "Favourite",
   "lastLoggedIn": "Last log in",  
-  "onlineTransection": "Online\nTransection",
-  "transectionHistory": "Transection\nHistory",
+  "onlineTransaction": "Online\nTransaction",
+  "transactionHistory": "Transaction\nHistory",
   "latestPlate": "Latest\nRegistration Number",
   "drivingLicense": "Driving License",
   "testResult": "Test Result",
@@ -68,5 +68,10 @@
   "latestNNumber": "Latest\nVehicle Registration",
   "state": "State",
   "staff": "Staff",
+  "testType": "Test Type",
+  "testLocation": "Test Location",
+  "licenseClass": "License Class",
+  "result": "Result",
+  "testDate": "Test Date",
   "pleaseWait": "Please wait..."
 }

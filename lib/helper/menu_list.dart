@@ -27,9 +27,9 @@ class MenuList {
         login: true,
       ),
       MenuItem(
-        AppLocalizations.of(ctx)!.onlineTransection,
-        "images/icon/online_transection_icon.png",
-        onlineTransectionPage,
+        AppLocalizations.of(ctx)!.onlineTransaction,
+        "images/icon/online_transaction_icon.png",
+        onlineTransactionPage,
       ),
       MenuItem(
         "EzyPay",
@@ -38,7 +38,7 @@ class MenuList {
         login: true,
       ),
       MenuItem(
-        AppLocalizations.of(ctx)!.transectionHistory,
+        AppLocalizations.of(ctx)!.transactionHistory,
         "images/icon/payment_history_icon.png",
         licensePage,
         login: true,
@@ -68,7 +68,7 @@ class MenuList {
     ];
   }
 
-  List<MenuItem> getOnlineTransectionList() {
+  List<MenuItem> getOnlineTransactionList() {
     return [
       MenuItem(
         AppLocalizations.of(ctx)!.latestPlate,
@@ -83,7 +83,7 @@ class MenuList {
       MenuItem(
         AppLocalizations.of(ctx)!.testResult,
         "images/icon/test_result_icon.png",
-        () {},
+        testResultPage,
       ),
       MenuItem(
         AppLocalizations.of(ctx)!.lkm,

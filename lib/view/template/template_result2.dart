@@ -91,16 +91,18 @@ class TemplateResult2 extends StatelessWidget {
       ),
       child: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              result.title!,
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                color: Color(0xff354c96),
-                fontSize: 35,
-                fontFamily: "Poppins",
-                fontWeight: FontWeight.w600,
+          FittedBox(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+              child: Text(
+                result.title!,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  color: Color(0xff354c96),
+                  fontSize: 35,
+                  fontFamily: "Poppins",
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ),
           ),

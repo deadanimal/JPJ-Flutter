@@ -6,59 +6,64 @@ import 'package:jpj_info/view/form/custom_button.dart';
 import 'package:jpj_info/view/form/dropdown.dart';
 import 'package:jpj_info/view/form/label.dart';
 import 'package:jpj_info/view/form/text_field.dart';
+import 'package:jpj_info/view/template/template_form.dart';
 import 'package:jpj_info/view/template/template_header.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class RoadTaxCheck extends StatelessWidget {
-  RoadTaxCheck({
+class TestResultCheck extends StatelessWidget {
+  TestResultCheck({
     Key? key,
+    required this.textController,
     required this.dropdownList,
     required this.dropdownValue,
     required this.id,
-    required this.nric,
-    required this.plateNumber,
     required this.submitCallback,
     required this.selectionCallback,
   }) : super(key: key);
 
+  late String pageTitle;
+  late TextEditingController textController;
   late List<String> dropdownList;
   late String dropdownValue;
   late String id;
-  late TextEditingController nric;
-  late TextEditingController plateNumber;
-  late String pageTitle;
   late void Function(BuildContext) submitCallback;
   late Function selectionCallback;
 
   @override
   Widget build(BuildContext context) {
-    pageTitle = AppLocalizations.of(context)!.lkm;
+    pageTitle = AppLocalizations.of(context)!.testResult;
     mediaWidth = (MediaQuery.of(context).size.width);
     mediaHeight = (MediaQuery.of(context).size.height);
-    return showRoadTaxPage(context);
+    return showLicensePage(context);
   }
 
-  Widget showRoadTaxPage(BuildContext context) {
-    return Material(
+  Widget showLicensePage(BuildContext context) {
+    UiElement uiElement = UiElement(
+      dropdownCbFunction: selectionCallback,
+      dropdownValues: dropdownValue,
+      nricTextController: textController,
+      textInput: id,
+      submitCB: submitCallback,
+      dropdownList: dropdownList,
+    );
+    return SingleChildScrollView(
       child: Column(
         children: [
           TemplateHeader(
             headerTitle: pageTitle,
           ),
-          Expanded(
-            child: _roadTaxForm(context),
-          ),
+          _licenseForm(context, uiElement),
         ],
       ),
     );
   }
 
-  Widget _roadTaxForm(BuildContext context) {
-    return SingleChildScrollView(
+  Widget _licenseForm(BuildContext context, UiElement uiElement) {
+    return Container(
+      constraints: const BoxConstraints(maxWidth: 400),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const SizedBox(height: vPaddingXL),
           CustomLabel(
@@ -75,13 +80,7 @@ class RoadTaxCheck extends StatelessWidget {
           const SizedBox(height: vPaddingXXL),
           TextFieldForm(
             label: AppLocalizations.of(context)!.identification,
-            textController: nric,
-            width: mediaWidth - 64,
-          ),
-          const SizedBox(height: vPaddingXXL),
-          TextFieldForm(
-            label: AppLocalizations.of(context)!.vehicleReg,
-            textController: plateNumber,
+            textController: textController,
             width: mediaWidth - 64,
           ),
           const SizedBox(height: vPaddingXXL),
