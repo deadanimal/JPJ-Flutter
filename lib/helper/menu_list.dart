@@ -142,7 +142,7 @@ class MenuList {
       MenuItem(
         AppLocalizations.of(ctx)!.viewTNC,
         "images/vector/tnc_icon.svg",
-        () {},
+        tncPage,
         isSvg: true,
       ),
       MenuItem(
