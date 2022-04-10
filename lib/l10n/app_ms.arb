@@ -80,5 +80,9 @@
     "vehicleNList": "Senarai\nKenderaan",
     "feedback": "Maklum Balas",
     "viewTNC": "Paparan Terma\nPenggunaan",
+    "details": "Keterangan",
+    "pleaseTypeHere": "Sila taip disini",
+    "yourRecord": "Rekod anda",
+    "successfullySaved": "telah berjaya disimpan",
     "pleaseWait": "Sila Tunggu..."
 }

@@ -136,7 +136,7 @@ class MenuList {
       MenuItem(
         AppLocalizations.of(ctx)!.feedback,
         "images/vector/feedback_icon.svg",
-        () {},
+        feedbackPage,
         isSvg: true,
       ),
       MenuItem(

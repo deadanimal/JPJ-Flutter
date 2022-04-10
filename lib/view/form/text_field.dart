@@ -8,6 +8,8 @@ class TextFieldForm extends StatelessWidget {
     this.obscureText = false,
     this.inputType = TextInputType.text,
     required this.textController,
+    this.maxLines = 1,
+    this.minLines,
   }) : super(key: key);
 
   final String label;
@@ -15,6 +17,8 @@ class TextFieldForm extends StatelessWidget {
   final TextInputType inputType;
   final bool obscureText;
   final TextEditingController textController;
+  final int? maxLines;
+  final int? minLines;
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +32,8 @@ class TextFieldForm extends StatelessWidget {
           elevation: 4.0,
           shadowColor: Colors.grey,
           child: TextField(
+            minLines: minLines,
+            maxLines: maxLines,
             controller: textController,
             textAlign: TextAlign.center,
             keyboardType: inputType,

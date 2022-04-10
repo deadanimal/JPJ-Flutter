@@ -80,5 +80,9 @@
   "vehicleNList": "Vehicle List",
   "feedback": "Feedback",
   "viewTNC": "View Terms\nAnd Conditions",
+  "details": "Details",
+  "pleaseTypeHere": "Please type here",
+  "yourRecord": "Rekod anda",
+  "successfullySaved": "telah berjaya disimpan",
   "pleaseWait": "Please wait..."
 }
