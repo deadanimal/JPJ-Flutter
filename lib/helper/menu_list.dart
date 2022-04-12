@@ -130,7 +130,7 @@ class MenuList {
       MenuItem(
         AppLocalizations.of(ctx)!.vehicleNList,
         "images/vector/vehicle_list_icon.svg",
-        () {},
+        vehicleListPage,
         isSvg: true,
       ),
       MenuItem(

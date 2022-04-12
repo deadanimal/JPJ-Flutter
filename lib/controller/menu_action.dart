@@ -8,6 +8,7 @@ import 'package:jpj_info/controller/online_transaction_controller.dart';
 import 'package:jpj_info/controller/road_tax_controller.dart';
 import 'package:jpj_info/controller/test_result_controller.dart';
 import 'package:jpj_info/controller/tnc_controller.dart';
+import 'package:jpj_info/controller/vehicle_list_controller.dart';
 
 void licensePage(BuildContext context) {
   Navigator.push(
@@ -103,6 +104,17 @@ void tncPage(BuildContext context) {
     MaterialPageRoute(
       builder: (context) {
         return const TermsAndConditionsController();
+      },
+    ),
+  );
+}
+
+void vehicleListPage(BuildContext context) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) {
+        return const VehicleListController();
       },
     ),
   );
