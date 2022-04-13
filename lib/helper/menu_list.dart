@@ -153,4 +153,14 @@ class MenuList {
       ),
     ];
   }
+
+  List<MenuItem> getPublicMenuList() {
+    return [
+      MenuItem(
+        AppLocalizations.of(ctx)!.directory,
+        "images/icon/directory_icon.png",
+        latestPlatePage,
+      ),
+    ];
+  }
 }

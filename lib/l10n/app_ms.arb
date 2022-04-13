@@ -94,5 +94,7 @@
     "paymentInProcess": "PEMBAYARAN SEDANG DIPROSES",
     "transactionList": "Senarai Transaksi",
     "choose": "Pilih",
+    "public": "Umum",
+    "directory": "Direktori JPJ",
     "pleaseWait": "Sila Tunggu..."
 }

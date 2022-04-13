@@ -4,6 +4,7 @@ import 'package:jpj_info/controller/administrative_menu_controller.dart';
 import 'package:jpj_info/controller/login_controller.dart';
 import 'package:jpj_info/controller/mainpage_controller.dart';
 import 'package:jpj_info/controller/online_transaction_controller.dart';
+import 'package:jpj_info/controller/public_menu_controller.dart';
 import 'package:jpj_info/helper/account_manager.dart';
 import 'package:jpj_info/view/bottomBar/bottom_bar.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
@@ -98,6 +99,19 @@ class BottomNavController extends StatelessWidget {
     );
   }
 
+  void _publicMenuNavigation(BuildContext context) {
+    if (!inMenu) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) {
+            return const PublicMenuController();
+          },
+        ),
+      );
+    }
+  }
+
   void _initCallback() {
     if (MyJPJAccountManager().isLoggedIn) {
       callbackList = [
@@ -108,7 +122,7 @@ class BottomNavController extends StatelessWidget {
     } else {
       callbackList = [
         _homeNavigation,
-        _menuNavigation,
+        _publicMenuNavigation,
         _loginNavigation,
       ];
     }
