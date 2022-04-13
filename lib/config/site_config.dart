@@ -10,6 +10,9 @@ class SiteConfig {
   final String locationCheckUri = url + "/jpjinfo-api/apps/semaklokasi";
   final String plateNumberUri = url + "/jpjinfo-api/apps/semaknopendaftaran";
 
+  //todo: change to use actual URL
+  final String summonsCheckUri = "http://test.caravel.space/summons.php";
+
   Map<String, String> jsonHeader = {
     'Content-Type': 'application/json; charset=UTF-8',
   };

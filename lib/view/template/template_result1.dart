@@ -6,6 +6,7 @@ import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/common/spacing.dart';
 import 'package:jpj_info/model/page_size.dart';
+import 'package:jpj_info/view/template/component/custom_subtitle.dart';
 import 'package:jpj_info/view/template/template_form.dart';
 import 'package:jpj_info/view/template/template_header.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -222,25 +223,8 @@ class TemplateResult1 extends StatelessWidget with TemplateForm {
   }
 
   Widget subTitle() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.max,
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(verticalPadding),
-          child: Text(
-            data.subtitle!,
-            style: const TextStyle(
-              color: Color(themeNavy),
-              fontSize: 18,
-              fontFamily: "Poppins",
-              fontWeight: FontWeight.w600,
-              letterSpacing: 0.63,
-            ),
-          ),
-        ),
-      ],
+    return CustomSubtitle(
+      subtitle: data.subtitle!,
     );
   }
 }

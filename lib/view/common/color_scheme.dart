@@ -10,6 +10,7 @@ const int headerGradient2 = 0xff171f44;
 const int themeOrange = 0xffd06400;
 const int themeNavy = 0xff171f44;
 const int themeGray = 0xff6b7b8a;
+const int errorRed = 0xffea4026;
 Decoration orangeGradientBtnDeco = BoxDecoration(
   borderRadius: BorderRadius.circular(15),
   boxShadow: const [

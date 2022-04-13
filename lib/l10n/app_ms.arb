@@ -86,5 +86,13 @@
     "successfullySaved": "telah berjaya disimpan",
     "tncN": "Terma\nPenggunaan",
     "vehicleListNumber": "Senarai Nombor\nKenderaan\nLKM",
+    "offense": "Kesalahan",
+    "ticketNo": "No. Saman",
+    "date": "Tarikh",
+    "location": "Lokasi",
+    "amount": "Amaun (RM)",
+    "paymentInProcess": "PEMBAYARAN SEDANG DIPROSES",
+    "transactionList": "Senarai Transaksi",
+    "choose": "Pilih",
     "pleaseWait": "Sila Tunggu..."
 }

@@ -5,8 +5,18 @@ class CustomCheckbox extends StatefulWidget {
   CustomCheckbox({
     Key? key,
     this.stateChangeCb,
+    this.shadow = const BoxShadow(
+      color: Color(0x3f000000),
+      blurRadius: 4,
+      offset: Offset(0, 4),
+    ),
+    this.bgColor = Colors.white,
+    this.size = 24,
   }) : super(key: key);
   void Function(bool?)? stateChangeCb;
+  late BoxShadow shadow;
+  late Color bgColor;
+  late double size;
 
   @override
   State<CustomCheckbox> createState() => _CustomCheckboxState();
@@ -28,31 +38,29 @@ class _CustomCheckboxState extends State<CustomCheckbox> {
           }
         },
         child: Container(
-          height: 24,
-          width: 24,
+          height: widget.size,
+          width: widget.size,
           decoration: BoxDecoration(
-            color: Colors.white,
-            boxShadow: const [
-              BoxShadow(
-                color: Color(0x3f000000),
-                blurRadius: 4,
-                offset: Offset(0, 4),
-              ),
+            color: widget.bgColor,
+            boxShadow: [
+              widget.shadow,
             ],
             borderRadius: BorderRadius.circular(5),
           ),
           child: Padding(
             padding: const EdgeInsets.all(1.0),
             child: isChecked
-                ? const Icon(
-                    Icons.check,
-                    // size: 30.0,
-                    color: Color(themeNavy),
+                ? const FittedBox(
+                    child: Icon(
+                      Icons.check,
+                      color: Color(themeNavy),
+                    ),
                   )
-                : const Icon(
-                    Icons.check_box_outline_blank,
-                    // size: 30.0,
-                    color: Colors.transparent,
+                : const FittedBox(
+                    child: Icon(
+                      Icons.check_box_outline_blank,
+                      color: Colors.transparent,
+                    ),
                   ),
           ),
         ),

@@ -93,7 +93,7 @@ class MenuList {
       MenuItem(
         AppLocalizations.of(ctx)!.ticket,
         "images/icon/ticket_icon.png",
-        () {},
+        summonListPage,
         login: true,
       ),
       MenuItem(

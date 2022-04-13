@@ -86,5 +86,13 @@
   "successfullySaved": "telah berjaya disimpan",
   "tncN": "Temrs and\nConditions",
   "vehicleListNumber": "List of\nVehicle\nRegistration",
+  "offense": "Offense",
+  "ticketNo": "Ticket No.",
+  "date": "Date",
+  "location": "Location",
+  "amount": "Amount (RM)",
+  "paymentInProcess": "PAYMENT IN PROCESS",
+  "transactionList": "Transaction List",
+  "choose": "Choose",
   "pleaseWait": "Please wait..."
 }
