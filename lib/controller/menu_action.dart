@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jpj_info/controller/blacklist_controller.dart';
+import 'package:jpj_info/controller/change_password_controller.dart';
 import 'package:jpj_info/controller/demerit_points_contoller.dart';
 import 'package:jpj_info/controller/driving_license_controller.dart';
 import 'package:jpj_info/controller/feedback_controller.dart';
@@ -139,6 +140,17 @@ void jpjDirectoryPage(BuildContext context) {
     MaterialPageRoute(
       builder: (context) {
         return const JpjDirectoryController();
+      },
+    ),
+  );
+}
+
+void changePasswordPage(BuildContext context) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) {
+        return const ChangePasswordController();
       },
     ),
   );

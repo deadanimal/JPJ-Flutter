@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:jpj_info/controller/alert_controller.dart';
 import 'package:jpj_info/controller/appbar_controller.dart';
+import 'package:jpj_info/controller/mainpage_controller.dart';
 import 'package:jpj_info/view/changePassword/change_password.dart';
-import 'package:jpj_info/view/mainpage/mainpage.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ChangePasswordController extends StatefulWidget {
   const ChangePasswordController({Key? key}) : super(key: key);
@@ -48,11 +50,21 @@ class _ChangePasswordController extends State<ChangePasswordController> {
   }
 
   void submitCallback(BuildContext context) {
+    AlertController(ctx: context).generalError(
+      AppLocalizations.of(context)!.passwordChangeSuccess,
+      () {
+        Navigator.of(context).pop();
+        _successCallback(context);
+      },
+    );
+  }
+
+  void _successCallback(BuildContext context) {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
         builder: (context) {
-          return const MainPage();
+          return const MainpageController();
         },
       ),
     );

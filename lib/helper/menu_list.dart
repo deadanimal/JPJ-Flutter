@@ -148,7 +148,7 @@ class MenuList {
       MenuItem(
         AppLocalizations.of(ctx)!.changePassword,
         "images/vector/change_password_icon.svg",
-        () {},
+        changePasswordPage,
         isSvg: true,
       ),
     ];

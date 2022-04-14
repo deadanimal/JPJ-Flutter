@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/controller/bottom_nav_controller.dart';
+import 'package:jpj_info/controller/popup_input_controller.dart';
 import 'package:jpj_info/helper/account_manager.dart';
 import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
@@ -41,7 +42,7 @@ class _VehicleListController extends State<VehicleListController> {
         bottomNavigationBar: BottomNavController(),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            _onPressAdd();
+            _onPressAdd(context);
           },
           backgroundColor: const Color(themeNavy),
           child: const Icon(Icons.add),
@@ -55,7 +56,18 @@ class _VehicleListController extends State<VehicleListController> {
     );
   }
 
-  void _onPressAdd() {
-    print("Hello");
+  void _onPressAdd(BuildContext context) {
+    PopupInputController(ctx: context).noDataFound(
+      AppLocalizations.of(context)!.addVehicle,
+      _addVehicle,
+    );
+  }
+
+  void _addVehicle(String plateNumber) {
+    setState(() {
+      MyJPJAccountManager()
+          .vehicalRegNumber
+          .add(plateNumber.toUpperCase().replaceAll(' ', ''));
+    });
   }
 }
