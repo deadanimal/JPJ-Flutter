@@ -96,5 +96,11 @@
     "choose": "Pilih",
     "public": "Umum",
     "directory": "Direktori JPJ",
+    "directoryN": "Direktori\nJPJ",
+    "jpjLocationInAllState": "Cawangan JPJ Diseluruh  Negara",
+    "operationHour": "Waktu Operasi",
+    "address": "Alamat",
+    "coordinate": "Koordinat",
+    "faxNo": "No. Fax",
     "pleaseWait": "Sila Tunggu..."
 }

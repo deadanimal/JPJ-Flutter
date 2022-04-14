@@ -159,7 +159,7 @@ class MenuList {
       MenuItem(
         AppLocalizations.of(ctx)!.directory,
         "images/icon/directory_icon.png",
-        latestPlatePage,
+        jpjDirectoryPage,
       ),
     ];
   }

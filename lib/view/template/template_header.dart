@@ -6,9 +6,11 @@ class TemplateHeader extends StatelessWidget {
   const TemplateHeader({
     Key? key,
     this.headerTitle = "",
+    this.headerSubTitle = "",
     this.header,
   }) : super(key: key);
   final String headerTitle;
+  final String headerSubTitle;
   final Widget? header;
 
   Widget title() {
@@ -20,19 +22,40 @@ class TemplateHeader extends StatelessWidget {
     );
   }
 
+  Widget _getSubtitle() {
+    if (headerSubTitle != "") {
+      return Text(
+        headerSubTitle,
+        textAlign: TextAlign.start,
+        style: const TextStyle(
+          color: Colors.white,
+          fontSize: 15,
+        ),
+      );
+    } else {
+      return Container();
+    }
+  }
+
   Widget getTitle() {
     if (header != null && headerTitle == "") {
       return header!;
     } else {
       return FittedBox(
-        child: Text(
-          headerTitle,
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 55,
-            fontFamily: "Poppins",
-            fontWeight: FontWeight.w600,
-          ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              headerTitle,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 55,
+                fontFamily: "Poppins",
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            _getSubtitle(),
+          ],
         ),
       );
     }

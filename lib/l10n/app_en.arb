@@ -96,5 +96,11 @@
     "choose": "Choose",
     "public": "Public",
     "directory": "JPJ Directory",
+    "directoryN": "JPJ\nDirectory",
+    "jpjLocationInAllState": "JPJ Branch in Malaysia",
+    "operationHour": "Operational Hour",
+    "address": "Address",
+    "coordinate": "Coordinate",
+    "faxNo": "Fax No.",
     "pleaseWait": "Please wait..."
 }

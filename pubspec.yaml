@@ -45,6 +45,7 @@ dependencies:
   intl: ^0.17.0
   shared_preferences: ^2.0.13
   flutter_svg_provider: ^1.0.3
+  maps_launcher: ^2.0.1
 
 dev_dependencies:
   flutter_test:
@@ -130,6 +131,8 @@ flutter:
     - images/vector/feedback_icon.svg
     - images/vector/change_password_icon.svg
     - json/summons.json
+    - json/jpj_location.json
+    - images/vector/location_icon.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

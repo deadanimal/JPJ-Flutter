@@ -1,19 +1,19 @@
-class LocateResponse {
-  List<Data>? data;
+class JpjLocationResponse {
+  List<JpjLocationResponseData>? data;
 
-  LocateResponse({this.data});
+  JpjLocationResponse({this.data});
 
-  LocateResponse.fromJson(Map<String, dynamic> json) {
+  JpjLocationResponse.fromJson(Map<String, dynamic> json) {
     if (json['data'] != null) {
-      data = <Data>[];
+      data = <JpjLocationResponseData>[];
       json['data'].forEach((v) {
-        data!.add(Data.fromJson(v));
+        data!.add(JpjLocationResponseData.fromJson(v));
       });
     }
   }
 }
 
-class Data {
+class JpjLocationResponseData {
   String? id;
   String? stateId;
   String? name;
@@ -22,8 +22,10 @@ class Data {
   String? faxNo;
   String? coordinate;
   String? coordinate2;
+  String email = "";
+  String operationalHour = "9:00 pagi - 4.00 tengahari";
 
-  Data(
+  JpjLocationResponseData(
       {this.id,
       this.stateId,
       this.name,
@@ -33,7 +35,7 @@ class Data {
       this.coordinate,
       this.coordinate2});
 
-  Data.fromJson(Map<String, dynamic> json) {
+  JpjLocationResponseData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     stateId = json['idnegeri'];
     name = json['nama'];

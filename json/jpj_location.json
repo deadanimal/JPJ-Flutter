@@ -1,0 +1,88 @@
+{
+  "title": "JPJ Location",
+  "version": "1.0",
+  "url": "http://egate.jpj.gov.my/jpjinfo-api/apps/semaklokasi",
+  "method": "post",
+  "data": [
+    {
+      "id": "17",
+      "flagPath": "images/flag/n1.png",
+      "name": "JOHOR"
+    },
+    {
+      "id": "18",
+      "flagPath": "images/flag/n2.png",
+      "name": "KEDAH"
+    },
+    {
+      "id": "19",
+      "flagPath": "images/flag/n3.png",
+      "name": "KELANTAN"
+    },
+    {
+      "id": "4",
+      "flagPath": "images/flag/n4.png",
+      "name": "MELAKA"
+    },
+    {
+      "id": "5",
+      "flagPath": "images/flag/n5.png",
+      "name": "N.SEMBILAN"
+    },
+    {
+      "id": "6",
+      "flagPath": "images/flag/n6.png",
+      "name": "PAHANG"
+    },
+    {
+      "id": "7",
+      "flagPath": "images/flag/n7.png",
+      "name": "PENANG"
+    },
+    {
+      "id": "8",
+      "flagPath": "images/flag/n8.png",
+      "name": "PERAK"
+    },
+    {
+      "id": "9",
+      "flagPath": "images/flag/n9.png",
+      "name": "PERLIS"
+    },
+    {
+      "id": "10",
+      "flagPath": "images/flag/n10.png",
+      "name": "SELANGOR"
+    },
+    {
+      "id": "11",
+      "flagPath": "images/flag/n11.png",
+      "name": "TERENGGANU"
+    },
+    {
+      "id": "12",
+      "flagPath": "images/flag/n12.png",
+      "name": "SABAH"
+    },
+    {
+      "id": "13",
+      "flagPath": "images/flag/n13.png",
+      "name": "SARAWAK"
+    },
+    {
+      "id": "14",
+      "flagPath": "images/flag/n14.png",
+      "name": "K.LUMPUR"
+    },
+    {
+      "id": "15",
+      "flagPath": "images/flag/n15.png",
+      "name": "LABUAN"
+    },
+    {
+      "id": "16",
+      "flagPath": "images/flag/n16.png",
+      "name": "PUTRAJAYA"
+    }
+  ]
+}

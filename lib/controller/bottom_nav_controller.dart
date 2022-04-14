@@ -57,19 +57,6 @@ class BottomNavController extends StatelessWidget {
     }
   }
 
-  void _menuNavigation(BuildContext context) {
-    if (!inMenu) {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) {
-            return const OnlineTransactionController();
-          },
-        ),
-      );
-    }
-  }
-
   void _profileNavigation(BuildContext context) {
     if (!inProfile) {
       Navigator.pushReplacement(
@@ -116,7 +103,7 @@ class BottomNavController extends StatelessWidget {
     if (MyJPJAccountManager().isLoggedIn) {
       callbackList = [
         _homeNavigation,
-        _menuNavigation,
+        _publicMenuNavigation,
         _profileNavigation,
       ];
     } else {
