@@ -8,6 +8,7 @@ class TooltipInfo {
     void Function(BuildContext)? callback,
   ) {
     return showDialog<String>(
+      barrierDismissible: false,
       context: context,
       builder: (BuildContext context) => AlertDialog(
         alignment: Alignment.center,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jpj_info/controller/menu_action.dart';
 import 'package:jpj_info/helper/account_manager.dart';
 import 'package:jpj_info/view/appBarHeader/custom_appbar.dart';
 import 'package:jpj_info/view/bottomDrawer/bottom_drawer.dart';
@@ -48,7 +49,9 @@ class _AppBarController extends State<AppBarController> {
     );
   }
 
-  void _inbox(BuildContext context) {}
+  void _inbox(BuildContext context) {
+    inboxPage(context);
+  }
 
   void _shareApp(BuildContext context) {}
 

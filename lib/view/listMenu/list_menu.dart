@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:jpj_info/controller/bottom_nav_controller.dart';
 import 'package:jpj_info/model/mainpage_icon.dart';
 import 'package:jpj_info/model/page_size.dart';
 import 'package:jpj_info/view/common/spacing.dart';

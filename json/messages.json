@@ -1,0 +1,34 @@
+[
+    {
+        "id":"1",
+        "header":"Lesen Tamat Tempoh",
+        "body":"Pemohonan boleh memperbaharui lesen memandu dalam tempoh minimum 1 tahun hingga maksimum 5 tahun sahaja. Sekiranya lesen memandu 1 tahun hingga maksimum 5 tahun sahaja. Sekiranya lesen memandu 1 tahun hingga maksimum 5 tahun sahaja. Sekiranya lesen memandu 1 tahun hingga maksimum 5 tahun sahaja. Sekiranya lesen memandu",
+        "read":false,
+        "date":"07/04/2022",
+        "time":"9:34 AM"
+    },
+    {
+        "id":"2",
+        "header":"Sistem JPJeQ",
+        "body":"Nombor 6005, Sila ke kaunter 6",
+        "read":true,
+        "date":"01/04/2022",
+        "time":"9:34 AM"
+    },
+    {
+        "id":"3",
+        "header":"Cukai Kenderaan",
+        "body":"Pemohonan boleh memperbaharui lesen memandu dalam tempoh minimum 1 tahun hingga maksimum 5 tahun sahaja. Sekiranya lesen memandu 1 tahun hingga maksimum 5 tahun sahaja. Sekiranya lesen memandu 1 tahun hingga maksimum 5 tahun sahaja. Sekiranya lesen memandu 1 tahun hingga maksimum 5 tahun sahaja. Sekiranya lesen memandu",
+        "read":false,
+        "date":"13/03/2022",
+        "time":"9:34 AM"
+    },
+    {
+        "id":"4",
+        "header":"Keputusan Ujian Memandu",
+        "body":"Pemohonan boleh memperbaharui lesen memandu dalam tempoh minimum 1 tahun hingga maksimum 5 tahun sahaja. Sekiranya lesen memandu 1 tahun hingga maksimum 5 tahun sahaja. Sekiranya lesen memandu 1 tahun hingga maksimum 5 tahun sahaja. Sekiranya lesen memandu 1 tahun hingga maksimum 5 tahun sahaja. Sekiranya lesen memandu",
+        "read":false,
+        "date":"07/03/2022",
+        "time":"9:34 AM"
+    }
+]
