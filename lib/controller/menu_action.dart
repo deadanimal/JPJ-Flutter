@@ -3,6 +3,7 @@ import 'package:jpj_info/controller/blacklist_controller.dart';
 import 'package:jpj_info/controller/change_password_controller.dart';
 import 'package:jpj_info/controller/demerit_points_contoller.dart';
 import 'package:jpj_info/controller/driving_license_controller.dart';
+import 'package:jpj_info/controller/ezypay_controller.dart';
 import 'package:jpj_info/controller/feedback_controller.dart';
 import 'package:jpj_info/controller/jpj_directory_controller.dart';
 import 'package:jpj_info/controller/latest_registration_number_controller.dart';
@@ -163,6 +164,17 @@ void profileUpdatePage(BuildContext context) {
     MaterialPageRoute(
       builder: (context) {
         return const ProfileUpdateController();
+      },
+    ),
+  );
+}
+
+void ezypayMenuPage(BuildContext context) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) {
+        return const EzypayMenuController();
       },
     ),
   );

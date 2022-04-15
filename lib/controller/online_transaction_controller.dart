@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:jpj_info/controller/appbar_controller.dart';
+import 'package:jpj_info/controller/bottom_nav_controller.dart';
+import 'package:jpj_info/helper/menu_list.dart';
 import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
-import 'package:jpj_info/view/serviceList/service_list.dart';
+import 'package:jpj_info/view/listMenu/list_menu.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class OnlineTransactionController extends StatefulWidget {
   const OnlineTransactionController({Key? key}) : super(key: key);
@@ -23,12 +26,18 @@ class _OnlineTransactionController extends State<OnlineTransactionController> {
 
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(
+    return SafeArea(
       child: Scaffold(
-        appBar: AppBarController(
+        appBar: const AppBarController(
           decor: customGradient,
         ),
-        body: ServiceList(),
+        body: CustomListMenu(
+          title: AppLocalizations.of(context)!.service,
+          transactionList: MenuList(ctx: context).getOnlineTransactionList(),
+        ),
+        bottomNavigationBar: BottomNavController(
+          darkTheme: true,
+        ),
       ),
     );
   }

@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:jpj_info/controller/bottom_nav_controller.dart';
 import 'package:jpj_info/model/mainpage_icon.dart';
 import 'package:jpj_info/model/page_size.dart';
 import 'package:jpj_info/view/common/spacing.dart';
-import 'package:jpj_info/helper/menu_list.dart';
 import 'package:jpj_info/view/template/custom_wide_button.dart';
 import 'package:jpj_info/view/template/template_header.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class PublicMenuList extends StatelessWidget {
-  const PublicMenuList({Key? key}) : super(key: key);
+class CustomListMenu extends StatelessWidget {
+  const CustomListMenu({
+    Key? key,
+    required this.transactionList,
+    required this.title,
+  }) : super(key: key);
+  final List<MenuItem> transactionList;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +32,7 @@ class PublicMenuList extends StatelessWidget {
         child: Column(
           children: [
             TemplateHeader(
-              headerTitle: AppLocalizations.of(context)!.public,
+              headerTitle: title,
             ),
             const SizedBox(height: vPaddingXL),
             _bodyList(context),
@@ -41,6 +46,7 @@ class PublicMenuList extends StatelessWidget {
   Widget _bodyList(BuildContext context) {
     return Container(
       constraints: const BoxConstraints(maxWidth: 400),
+      width: mediaWidth - 64,
       child: Padding(
         padding: const EdgeInsets.only(
             top: verticalPadding, bottom: verticalPadding),
@@ -50,7 +56,6 @@ class PublicMenuList extends StatelessWidget {
   }
 
   Widget serviceButton(BuildContext context) {
-    List<MenuItem> transactionList = MenuList(ctx: context).getPublicMenuList();
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       mainAxisSize: MainAxisSize.max,

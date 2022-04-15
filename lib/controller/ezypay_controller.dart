@@ -4,16 +4,15 @@ import 'package:jpj_info/controller/bottom_nav_controller.dart';
 import 'package:jpj_info/helper/menu_list.dart';
 import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
 import 'package:jpj_info/view/listMenu/list_menu.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class PublicMenuController extends StatefulWidget {
-  const PublicMenuController({Key? key}) : super(key: key);
+class EzypayMenuController extends StatefulWidget {
+  const EzypayMenuController({Key? key}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _PublicMenuController();
+  State<StatefulWidget> createState() => _EzypayMenuController();
 }
 
-class _PublicMenuController extends State<PublicMenuController> {
+class _EzypayMenuController extends State<EzypayMenuController> {
   @override
   void initState() {
     super.initState();
@@ -32,12 +31,11 @@ class _PublicMenuController extends State<PublicMenuController> {
           decor: customGradient,
         ),
         body: CustomListMenu(
-          title: AppLocalizations.of(context)!.public,
-          transactionList: MenuList(ctx: context).getPublicMenuList(),
+          title: "EzyPay",
+          transactionList: MenuList(ctx: context).getEzypayMenuList(),
         ),
         bottomNavigationBar: BottomNavController(
           darkTheme: true,
-          inMenu: true,
         ),
       ),
     );

@@ -34,13 +34,13 @@ class MenuList {
       MenuItem(
         "EzyPay",
         "images/icon/ezypay_icon.png",
-        licensePage,
+        ezypayMenuPage,
         login: true,
       ),
       MenuItem(
         AppLocalizations.of(ctx)!.transactionHistory,
         "images/icon/payment_history_icon.png",
-        licensePage,
+        () {},
         login: true,
       ),
     ];
@@ -160,6 +160,17 @@ class MenuList {
         AppLocalizations.of(ctx)!.directory,
         "images/icon/directory_icon.png",
         jpjDirectoryPage,
+      ),
+    ];
+  }
+
+  List<MenuItem> getEzypayMenuList() {
+    return [
+      MenuItem(
+        AppLocalizations.of(ctx)!.ticket,
+        "images/icon/ticket_icon.png",
+        summonListPage,
+        login: true,
       ),
     ];
   }
