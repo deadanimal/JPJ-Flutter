@@ -17,7 +17,7 @@ class TemplateHeader extends StatelessWidget {
     return Container(
       alignment: Alignment.centerLeft,
       width: mediaWidth,
-      padding: const EdgeInsets.fromLTRB(24, 24, 24, 8),
+      padding: const EdgeInsets.fromLTRB(24, 8, 24, 8),
       child: getTitle(),
     );
   }
@@ -64,7 +64,7 @@ class TemplateHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: mediaHeight / 5,
+      height: (mediaHeight / 5) - kToolbarHeight,
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(0),
