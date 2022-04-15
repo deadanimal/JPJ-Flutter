@@ -23,16 +23,14 @@ class VehicleList extends StatelessWidget {
   }
 
   Widget showFeedbackPage(BuildContext context) {
-    return Container(
-      height: mediaHeight,
+    return SingleChildScrollView(
       child: Column(
         children: [
           TemplateHeader(
             headerTitle: pageTitle,
           ),
           Container(
-            child: _VehicleList(context),
-            // height: mediaHeight,
+            child: _vehicleList(context),
             constraints: const BoxConstraints(
               maxWidth: 400,
               minHeight: 400,
@@ -43,13 +41,13 @@ class VehicleList extends StatelessWidget {
     );
   }
 
-  Widget _VehicleList(BuildContext context) {
+  Widget _vehicleList(BuildContext context) {
     return ListView.builder(
       shrinkWrap: true,
       itemBuilder: (context, index) {
         return Column(
           children: [
-            const SizedBox(height: verticalPadding),
+            const SizedBox(height: vPaddingM),
             PlateNumberContainer(plateNumber: vehiclesNumber[index]),
           ],
         );
