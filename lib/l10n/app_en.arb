@@ -105,5 +105,10 @@
     "addVehicle": "Add Vehicle",
     "cancel": "Cancel",
     "passwordChangeSuccess": "Password Change Success",
+    "updateNProfile": "Update\nProfile",
+    "fullName": "Full Name",
+    "district": "District",
+    "postcode": "Postcode",
+    "yourProfile": "Your Profile",
     "pleaseWait": "Please wait..."
 }

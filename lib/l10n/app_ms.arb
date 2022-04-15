@@ -105,5 +105,10 @@
     "addVehicle": "Tambah kenderaan",
     "cancel": "Tutup",
     "passwordChangeSuccess": "Kata Laluan Berjaya Ditukar",
+    "updateNProfile": "Kemaskini\nProfil",
+    "fullName": "Nama Penuh",
+    "district": "Daerah",
+    "postcode": "Poskod",
+    "yourProfile": "Profil Anda",
     "pleaseWait": "Sila Tunggu..."
 }

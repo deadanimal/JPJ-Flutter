@@ -124,7 +124,7 @@ class MenuList {
       MenuItem(
         AppLocalizations.of(ctx)!.updateProfile,
         "images/vector/update_profile_icon.svg",
-        () {},
+        profileUpdatePage,
         isSvg: true,
       ),
       MenuItem(

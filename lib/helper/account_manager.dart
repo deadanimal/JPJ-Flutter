@@ -15,6 +15,11 @@ class MyJPJAccountManager {
   userType type = userType.visitor;
   late String name;
   late String email;
+  late String address;
+  late String phoneNumber;
+  late String state;
+  late String district;
+  late String postcode;
   late String lastLoggedIn;
   List<String> vehicalRegNumber = [];
   String preferredLanguage = "en";
@@ -33,7 +38,12 @@ class MyJPJAccountManager {
     name = "Muhammad Sim Bin Ahmad Polan";
     lastLoggedIn = "01/04/2022 10:10 PM";
     email = "simpolan@email.com";
-    type = userType.staff;
+    address = "No 77, Jalan Sepat, Taman Bidara";
+    phoneNumber = "0164523577";
+    state = "Johor";
+    district = "Johor Bahru";
+    postcode = "81100";
+    type = userType.loggedIn;
     vehicalRegNumber = [
       "JJJ5555",
       "JVB5131",

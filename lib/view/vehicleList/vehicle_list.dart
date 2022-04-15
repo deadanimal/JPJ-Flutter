@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:jpj_info/model/page_size.dart';
 import 'package:jpj_info/view/common/spacing.dart';
 import 'package:jpj_info/view/template/template_header.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:jpj_info/view/vehicleList/component/plate_number.dart';
 
 class VehicleList extends StatelessWidget {
-  VehicleList({
+  const VehicleList({
     Key? key,
     required this.pageTitle,
     required this.vehiclesNumber,
