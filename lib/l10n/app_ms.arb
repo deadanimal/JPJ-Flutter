@@ -110,5 +110,8 @@
     "district": "Daerah",
     "postcode": "Poskod",
     "yourProfile": "Profil Anda",
+    "transactionDate": "Tarikh Transaksi",
+    "showReceipt": "Papar Resit",
+    "showDocument": "Papar Dokumen",
     "pleaseWait": "Sila Tunggu..."
 }

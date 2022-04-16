@@ -28,13 +28,13 @@ class SummonsStatus extends StatelessWidget {
         appBar: const AppBarController(
           decor: customGradient,
         ),
-        body: showSummonsPage(context),
+        body: _showPageContent(context),
         bottomNavigationBar: BottomNavController(),
       ),
     );
   }
 
-  Widget showSummonsPage(BuildContext context) {
+  Widget _showPageContent(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
         children: [

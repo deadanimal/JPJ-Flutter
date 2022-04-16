@@ -82,22 +82,6 @@ class Inbox extends StatelessWidget {
           );
         },
       ),
-      // child: Column(
-      //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      //   mainAxisSize: MainAxisSize.max,
-      //   children: List.generate(
-      //     msgList.length,
-      //     (index) {
-      //       return _slidableMessage(
-      //         msgList[index].header,
-      //         msgList[index].body,
-      //         msgList[index].id,
-      //         msgList[index].read,
-      //         context,
-      //       );
-      //     },
-      //   ),
-      // ),
     );
   }
 

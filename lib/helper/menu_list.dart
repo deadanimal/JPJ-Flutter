@@ -40,7 +40,7 @@ class MenuList {
       MenuItem(
         AppLocalizations.of(ctx)!.transactionHistory,
         "images/icon/payment_history_icon.png",
-        () {},
+        transactionHistoryPage,
         login: true,
       ),
     ];

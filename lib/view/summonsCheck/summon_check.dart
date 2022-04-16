@@ -26,10 +26,10 @@ class SummonsCheck extends StatelessWidget {
     pageTitle = AppLocalizations.of(context)!.ticket;
     mediaWidth = (MediaQuery.of(context).size.width);
     mediaHeight = (MediaQuery.of(context).size.height);
-    return showLicensePage();
+    return _showPageContent();
   }
 
-  Widget showLicensePage() {
+  Widget _showPageContent() {
     return SingleChildScrollView(
       child: Column(
         children: [

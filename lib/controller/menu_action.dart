@@ -14,6 +14,7 @@ import 'package:jpj_info/controller/road_tax_controller.dart';
 import 'package:jpj_info/controller/summons_controller.dart';
 import 'package:jpj_info/controller/test_result_controller.dart';
 import 'package:jpj_info/controller/tnc_controller.dart';
+import 'package:jpj_info/controller/transaction_history_controller.dart';
 import 'package:jpj_info/controller/vehicle_list_controller.dart';
 
 void licensePage(BuildContext context) {
@@ -187,6 +188,17 @@ void inboxPage(BuildContext context) {
     MaterialPageRoute(
       builder: (context) {
         return const MessageController();
+      },
+    ),
+  );
+}
+
+void transactionHistoryPage(BuildContext context) {
+  Navigator.pushReplacement(
+    context,
+    MaterialPageRoute(
+      builder: (context) {
+        return const TransactionHistoryController();
       },
     ),
   );

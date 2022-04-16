@@ -110,5 +110,8 @@
     "district": "District",
     "postcode": "Postcode",
     "yourProfile": "Your Profile",
+    "transactionDate": "Transaction Date",
+    "showReceipt": "Show Receipt",
+    "showDocument": "Show Document",
     "pleaseWait": "Please wait..."
 }

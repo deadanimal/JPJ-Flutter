@@ -8,6 +8,5 @@ List<String> getIdType(BuildContext context) {
     AppLocalizations.of(context)!.police,
     AppLocalizations.of(context)!.military,
     AppLocalizations.of(context)!.company,
-    AppLocalizations.of(context)!.newPassword
   ];
 }
