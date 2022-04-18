@@ -144,6 +144,9 @@ flutter:
     - images/american_express_logo.png
     - images/visa_logo.png
     - images/mastercard_logo.png
+    - images/icon/jpjeq_branch_icon.png
+    - images/icon/jpjeq_transaction_icon.png
+    - images/icon/jpjeq_info_icon.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

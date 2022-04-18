@@ -132,5 +132,9 @@
     "cardType": "Card Type",
     "unpaidAmount": "*Unpaid amount",
     "paySummon": "Pay Summons",
+    "branch": "Branch",
+    "transaction": "Transaction",
+    "info": "Info",
+    "home": "Home",
     "pleaseWait": "Please wait..."
 }

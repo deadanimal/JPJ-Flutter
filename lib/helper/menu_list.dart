@@ -17,7 +17,7 @@ class MenuList {
       MenuItem(
         "JPJeQ",
         "images/icon/jpjeq_icon.png",
-        () {},
+        jpjEqMenuPage,
         login: true,
       ),
       MenuItem(
@@ -56,7 +56,7 @@ class MenuList {
       MenuItem(
         "JPJeQ",
         "images/icon/jpjeq_icon.png",
-        () {},
+        jpjEqMenuPage,
         login: true,
       ),
       MenuItem(
@@ -171,6 +171,31 @@ class MenuList {
         "images/icon/ticket_icon.png",
         summonListPage,
         login: true,
+      ),
+    ];
+  }
+
+  List<MenuItem> getJpjEqMenuList() {
+    return [
+      MenuItem(
+        AppLocalizations.of(ctx)!.branch,
+        "images/icon/jpjeq_branch_icon.png",
+        jpjDirectoryPage,
+      ),
+      MenuItem(
+        AppLocalizations.of(ctx)!.transaction,
+        "images/icon/jpjeq_transaction_icon.png",
+        () {},
+      ),
+      MenuItem(
+        AppLocalizations.of(ctx)!.info,
+        "images/icon/jpjeq_info_icon.png",
+        () {},
+      ),
+      MenuItem(
+        AppLocalizations.of(ctx)!.home,
+        "images/icon/jpjeq_branch_icon.png",
+        () {},
       ),
     ];
   }

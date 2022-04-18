@@ -132,5 +132,9 @@
     "cardType": "Jenis Kad",
     "unpaidAmount": "*Amaun belum dibayar",
     "paySummon": "Bayar Saman",
+    "branch": "Cawangan",
+    "transaction": "Transaksi",
+    "info": "Info",
+    "home": "Home",
     "pleaseWait": "Sila Tunggu..."
 }
