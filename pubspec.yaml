@@ -137,6 +137,13 @@ flutter:
     - images/vector/location_icon.svg
     - json/messages.json
     - json/transaction_history.json
+    - images/amazon_logo.png
+    - images/google_pay_logo.png
+    - images/applepay_logo.png
+    - images/paypal_logo.png
+    - images/american_express_logo.png
+    - images/visa_logo.png
+    - images/mastercard_logo.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

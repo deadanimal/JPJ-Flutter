@@ -113,5 +113,12 @@
     "transactionDate": "Transaction Date",
     "showReceipt": "Show Receipt",
     "showDocument": "Show Document",
+    "paymentMethod": "Payment\nMethod",
+    "creditCard": "Credit Card",
+    "cardOwnerName": "Card Owner's Name",
+    "cardNumber": "Card Number",
+    "cvc": "CVC",
+    "verifyPayment": "Confirm Payment of",
+    "back": "Back",
     "pleaseWait": "Please wait..."
 }

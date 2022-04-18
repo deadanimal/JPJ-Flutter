@@ -25,7 +25,7 @@ class CustomButton extends StatelessWidget {
         child: Container(
           decoration: decoration,
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(vPaddingXs),
             child: TextButton(
               style: ButtonStyle(
                 foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),

@@ -113,5 +113,12 @@
     "transactionDate": "Tarikh Transaksi",
     "showReceipt": "Papar Resit",
     "showDocument": "Papar Dokumen",
+    "paymentMethod": "Cara\nPembayaran",
+    "creditCard": "Kredit Kad",
+    "cardOwnerName": "Nama Pemilik Kad",
+    "cardNumber": "Nombor Kad",
+    "cvc": "CVC",
+    "verifyPayment": "Sahkan Bayaran",
+    "back": "Kembali",
     "pleaseWait": "Sila Tunggu..."
 }
