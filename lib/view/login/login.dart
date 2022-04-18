@@ -179,18 +179,18 @@ class Login extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(height: 8),
-          CustomButton(
-            width: screenWidth! - 64,
-            label: AppLocalizations.of(context)!.visitor,
-            decoration: whiteBtnDeco,
-            textColor: const Color(themeOrange),
-            onPressed: () {
-              if (logAsGuessCB != null) {
-                logAsGuessCB!(context);
-              }
-            },
-          ),
+          // const SizedBox(height: 8),
+          // CustomButton(
+          //   width: screenWidth! - 64,
+          //   label: AppLocalizations.of(context)!.visitor,
+          //   decoration: whiteBtnDeco,
+          //   textColor: const Color(themeOrange),
+          //   onPressed: () {
+          //     if (logAsGuessCB != null) {
+          //       logAsGuessCB!(context);
+          //     }
+          //   },
+          // ),
           const SizedBox(height: 4),
           CustomButton(
             width: screenWidth! - 64,

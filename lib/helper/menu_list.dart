@@ -23,7 +23,7 @@ class MenuList {
       MenuItem(
         "eAduan",
         "images/icon/eaduan_icon.png",
-        () {},
+        eAduanMenuPage,
         login: true,
       ),
       MenuItem(
@@ -196,6 +196,47 @@ class MenuList {
         AppLocalizations.of(ctx)!.home,
         "images/icon/jpjeq_branch_icon.png",
         () {},
+      ),
+    ];
+  }
+
+  List<MenuItem> getEaduanMenuList() {
+    return [
+      MenuItem(
+        AppLocalizations.of(ctx)!.failToFollowRedLight,
+        "images/icon/eaduan_traffic_light_icon.png",
+        () {},
+        login: true,
+      ),
+      MenuItem(
+        AppLocalizations.of(ctx)!.emergencyLaneDriving,
+        "images/icon/eaduan_emergency_lane_icon.png",
+        () {},
+        login: true,
+      ),
+      MenuItem(
+        AppLocalizations.of(ctx)!.skipQueue,
+        "images/icon/eaduan_skip_queue_icon.png",
+        () {},
+        login: true,
+      ),
+      MenuItem(
+        AppLocalizations.of(ctx)!.leftOvertake,
+        "images/icon/eaduan_left_overtake_icon.png",
+        () {},
+        login: true,
+      ),
+      MenuItem(
+        AppLocalizations.of(ctx)!.doubleLineOvertake,
+        "images/icon/eaduan_double_line_overtake_icon.png",
+        () {},
+        login: true,
+      ),
+      MenuItem(
+        AppLocalizations.of(ctx)!.usingPhoneWhileDriving,
+        "images/icon/eaduan_using_phone_icon.png",
+        () {},
+        login: true,
       ),
     ];
   }

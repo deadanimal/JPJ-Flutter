@@ -147,6 +147,12 @@ flutter:
     - images/icon/jpjeq_branch_icon.png
     - images/icon/jpjeq_transaction_icon.png
     - images/icon/jpjeq_info_icon.png
+    - images/icon/eaduan_using_phone_icon.png
+    - images/icon/eaduan_double_line_overtake_icon.png
+    - images/icon/eaduan_left_overtake_icon.png
+    - images/icon/eaduan_skip_queue_icon.png
+    - images/icon/eaduan_emergency_lane_icon.png
+    - images/icon/eaduan_traffic_light_icon.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

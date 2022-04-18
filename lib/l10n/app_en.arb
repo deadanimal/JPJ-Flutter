@@ -136,5 +136,11 @@
     "transaction": "Transaction",
     "info": "Info",
     "home": "Home",
+    "failToFollowRedLight": "Fail to obey red light",
+    "emergencyLaneDriving": "Driving in emergency lane",
+    "skipQueue": "Skipping Queue",
+    "leftOvertake": "Overtake using left lane",
+    "doubleLineOvertake": "Overtake on double line",
+    "usingPhoneWhileDriving": "Using phone while driving",
     "pleaseWait": "Please wait..."
 }

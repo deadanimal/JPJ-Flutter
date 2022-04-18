@@ -136,5 +136,11 @@
     "transaction": "Transaksi",
     "info": "Info",
     "home": "Home",
+    "failToFollowRedLight": "Gagal Mematuhi Lampu Isyarat Merah",
+    "emergencyLaneDriving": "Memandu di Lorong Kecemasan",
+    "skipQueue": "Memotong Barisan",
+    "leftOvertake": "Memotong sebelah kiri",
+    "doubleLineOvertake": "Memotong garisan berkembar",
+    "usingPhoneWhileDriving": "Menggunakan telefon bimbit semasa memandu",
     "pleaseWait": "Sila Tunggu..."
 }
