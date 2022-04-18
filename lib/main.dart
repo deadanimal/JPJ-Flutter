@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter/services.dart';
-import 'package:jpj_info/controller/eaduan_menu_controller.dart';
 import 'package:jpj_info/controller/login_controller.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:jpj_info/helper/account_manager.dart';
@@ -62,7 +61,7 @@ class _MyJpjState extends State<MyJpj> {
       locale: locale,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      home: const EaduanMenuController(),
+      home: const LoginController(),
       builder: EasyLoading.init(),
     );
   }

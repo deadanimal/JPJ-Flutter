@@ -38,7 +38,7 @@ class CustomIconMenuButton extends StatelessWidget {
                       height: 50,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                        boxShadow: [
+                        boxShadow: const [
                           BoxShadow(
                             color: Color(0x3f000000),
                             blurRadius: 4,

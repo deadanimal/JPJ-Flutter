@@ -43,7 +43,7 @@ class MyJPJAccountManager {
     state = "Johor";
     district = "Johor Bahru";
     postcode = "81100";
-    type = userType.loggedIn;
+    type = userType.staff;
     vehicalRegNumber = [
       "JJJ5555",
       "JVB5131",
