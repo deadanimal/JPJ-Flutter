@@ -120,5 +120,17 @@
     "cvc": "CVC",
     "verifyPayment": "Confirm Payment of",
     "back": "Back",
+    "summonsVerification": "Ticket\nVerification",
+    "detail": "Details",
+    "time": "Time",
+    "summary": "Summary",
+    "summonCount": "No. of ticket",
+    "amountDue": "Amount Due",
+    "payment": "Payment",
+    "choosePaymentMethod": "Choose Payment Method",
+    "paymentMode": "Payment Mode",
+    "cardType": "Card Type",
+    "unpaidAmount": "*Unpaid amount",
+    "paySummon": "Pay Summons",
     "pleaseWait": "Please wait..."
 }

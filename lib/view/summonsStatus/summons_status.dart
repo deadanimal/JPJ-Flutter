@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/controller/bottom_nav_controller.dart';
+import 'package:jpj_info/controller/summons_verification_controller.dart';
 import 'package:jpj_info/model/expansion_list.dart';
 import 'package:jpj_info/model/page_size.dart';
 import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
@@ -61,7 +62,16 @@ class SummonsStatus extends StatelessWidget {
           ),
           CustomButton(
             width: mediaWidth - 64,
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return const SummonsVerificationController();
+                  },
+                ),
+              );
+            },
             textColor: const Color(themeNavy),
             decoration: whiteBtnDeco,
             label: AppLocalizations.of(context)!.choose +

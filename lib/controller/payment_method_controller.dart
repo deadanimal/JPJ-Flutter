@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/controller/bottom_nav_controller.dart';
+import 'package:jpj_info/controller/mainpage_controller.dart';
 import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
 import 'package:jpj_info/view/paymentMethod/payment_method.dart';
 
@@ -56,5 +57,14 @@ class _PaymentMethodController extends State<PaymentMethodController> {
   }
 
   void _submitCallback(BuildContext context) {}
-  void _backCallback(BuildContext context) {}
+  void _backCallback(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) {
+          return const MainpageController();
+        },
+      ),
+    );
+  }
 }

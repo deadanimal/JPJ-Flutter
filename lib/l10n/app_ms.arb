@@ -120,5 +120,17 @@
     "cvc": "CVC",
     "verifyPayment": "Sahkan Bayaran",
     "back": "Kembali",
+    "summonsVerification": "Pengesahan\nSaman",
+    "detail": "Butiran",
+    "time": "Masa",
+    "summary": "Ringkasan",
+    "summonCount": "Bilangan saman",
+    "amountDue": "Amaun yang perlu dibayar",
+    "payment": "Pembayaran",
+    "choosePaymentMethod": "Pilih Kaedah Pembayaran",
+    "paymentMode": "Mod Pembayaran",
+    "cardType": "Jenis Kad",
+    "unpaidAmount": "*Amaun belum dibayar",
+    "paySummon": "Bayar Saman",
     "pleaseWait": "Sila Tunggu..."
 }

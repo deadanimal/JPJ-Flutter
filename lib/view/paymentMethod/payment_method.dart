@@ -101,7 +101,7 @@ class PaymentMethod extends StatelessWidget {
           CustomButton(
             width: mediaWidth - 64,
             onPressed: () {
-              submitCallback(context);
+              backCallback(context);
             },
             label: AppLocalizations.of(context)!.back,
             decoration: whiteBtnDeco,
