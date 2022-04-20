@@ -102,27 +102,31 @@ class Login extends StatelessWidget {
             label: AppLocalizations.of(context)!.password,
             width: screenWidth! - 64,
           ),
-          SizedBox(
+          Container(
+            alignment: Alignment.centerRight,
             width: screenWidth! - 64,
             child: Padding(
-              padding: const EdgeInsets.all(4.0),
+              padding: const EdgeInsets.all(8.0),
               child: InkWell(
                 onTap: () {
                   if (forgotPasswordCB != null) {
                     forgotPasswordCB!(context);
                   }
                 },
-                child: Text(
-                  AppLocalizations.of(context)!.forgotPassword,
-                  textAlign: TextAlign.right,
-                  style: TextStyle(
-                    color: Colors.grey.shade200,
-                    shadows: const [
-                      Shadow(color: Colors.grey, blurRadius: 4.0),
-                    ],
-                    fontSize: 12,
-                    fontFamily: "Poppins",
-                    fontWeight: FontWeight.w600,
+                child: Chip(
+                  backgroundColor: const Color(themeNavy),
+                  label: Text(
+                    AppLocalizations.of(context)!.forgotPassword,
+                    textAlign: TextAlign.right,
+                    style: TextStyle(
+                      color: Colors.grey.shade200,
+                      shadows: const [
+                        Shadow(color: Colors.grey, blurRadius: 4.0),
+                      ],
+                      fontSize: 12,
+                      fontFamily: "Poppins",
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ),
               ),
@@ -179,18 +183,6 @@ class Login extends StatelessWidget {
               ],
             ),
           ),
-          // const SizedBox(height: 8),
-          // CustomButton(
-          //   width: screenWidth! - 64,
-          //   label: AppLocalizations.of(context)!.visitor,
-          //   decoration: whiteBtnDeco,
-          //   textColor: const Color(themeOrange),
-          //   onPressed: () {
-          //     if (logAsGuessCB != null) {
-          //       logAsGuessCB!(context);
-          //     }
-          //   },
-          // ),
           const SizedBox(height: 4),
           CustomButton(
             width: screenWidth! - 64,
