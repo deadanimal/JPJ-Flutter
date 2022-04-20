@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:jpj_info/controller/eaduan_form_controller.dart';
 import 'package:jpj_info/controller/menu_action.dart';
 import 'package:jpj_info/model/mainpage_icon.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -205,55 +206,73 @@ class MenuList {
       MenuItem(
         AppLocalizations.of(ctx)!.failToFollowRedLight,
         "images/icon/eaduan_traffic_light_icon.png",
-        () {},
+        (context) {
+          eAduanFormMenuPage(context, eaduanItem.redLight);
+        },
         login: true,
       ),
       MenuItem(
         AppLocalizations.of(ctx)!.emergencyLaneDriving,
         "images/icon/eaduan_emergency_lane_icon.png",
-        () {},
+        (context) {
+          eAduanFormMenuPage(context, eaduanItem.emergencyLane);
+        },
         login: true,
       ),
       MenuItem(
         AppLocalizations.of(ctx)!.skipQueue,
         "images/icon/eaduan_skip_queue_icon.png",
-        () {},
+        (context) {
+          eAduanFormMenuPage(context, eaduanItem.cutQueue);
+        },
         login: true,
       ),
       MenuItem(
         AppLocalizations.of(ctx)!.leftOvertake,
         "images/icon/eaduan_left_overtake_icon.png",
-        () {},
+        (context) {
+          eAduanFormMenuPage(context, eaduanItem.leftOvertake);
+        },
         login: true,
       ),
       MenuItem(
         AppLocalizations.of(ctx)!.doubleLineOvertake,
         "images/icon/eaduan_double_line_overtake_icon.png",
-        () {},
+        (context) {
+          eAduanFormMenuPage(context, eaduanItem.doubleLine);
+        },
         login: true,
       ),
       MenuItem(
         AppLocalizations.of(ctx)!.usingPhoneWhileDriving,
         "images/icon/eaduan_using_phone_icon.png",
-        () {},
+        (context) {
+          eAduanFormMenuPage(context, eaduanItem.usingPhone);
+        },
         login: true,
       ),
       MenuItem(
         AppLocalizations.of(ctx)!.fancyPlateNumber,
         "images/icon/eaduan_fancy_plat_icon.png",
-        () {},
+        (context) {
+          eAduanFormMenuPage(context, eaduanItem.fancyPlate);
+        },
         login: true,
       ),
       MenuItem(
         AppLocalizations.of(ctx)!.darkTint,
         "images/icon/eaduan_dark_tint_icon.png",
-        () {},
+        (context) {
+          eAduanFormMenuPage(context, eaduanItem.darkTint);
+        },
         login: true,
       ),
       MenuItem(
         AppLocalizations.of(ctx)!.notWearingSeatbelt,
         "images/icon/eaduan_not_wearing_seatbelt_icon.png",
-        () {},
+        (context) {
+          eAduanFormMenuPage(context, eaduanItem.seatBelt);
+        },
         login: true,
       ),
     ];

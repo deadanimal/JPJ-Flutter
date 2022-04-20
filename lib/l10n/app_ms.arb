@@ -145,5 +145,17 @@
     "fancyPlateNumber": "No plat fancy",
     "darkTint": "Cermin gelap",
     "notWearingSeatbelt": "Tidak memakai tali pinggang\nkeledar dan helmet",
+    "videoPicture": "Gambar / Video",
+    "videoAttachment": "Pautan Video",
+    "ifAvailable": "Jika ada",
+    "eventDate": "Tarikh Kejadian",
+    "eventTime": "Masa Kejadian",
+    "latitude": "Latitud",
+    "longitude": "Longitud",
+    "shortStatement": "Keterangan Ringkas / Lokasi Terperinci",
+    "wordsTyped": "aksara dimasukkan",
+    "eventLocation": "Lokasi Kejadian",
+    "next": "Seterusnya",
+    "saveAsDraft": "Simpan Draf",
     "pleaseWait": "Sila Tunggu..."
 }

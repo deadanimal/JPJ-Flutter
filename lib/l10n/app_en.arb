@@ -145,5 +145,17 @@
     "fancyPlateNumber": "Fancy number plate",
     "darkTint": "Dark tint",
     "notWearingSeatbelt": "Not wearing\nseatbelt and helmet",
+    "videoPicture": "Picture / Video",
+    "videoAttachment": "Video Attachment",
+    "ifAvailable": "If available",
+    "eventDate": "Event Date",
+    "eventTime": "Event Time",
+    "latitude": "Latitude",
+    "longitude": "Longitude",
+    "shortStatement": "Short Statement / Specific Location",
+    "wordsTyped": "word(s) typed",
+    "next": "Next",
+    "eventLocation": "Event Location",
+    "saveAsDraft": "Save as Draft",
     "pleaseWait": "Please wait..."
 }
