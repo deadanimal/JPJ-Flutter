@@ -34,7 +34,7 @@ class CustomIconMenuButton extends StatelessWidget {
                   child: Align(
                     alignment: Alignment.centerRight,
                     child: Container(
-                      width: mediaWidth - 120,
+                      width: mediaWidth - 130,
                       height: 50,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
@@ -52,14 +52,16 @@ class CustomIconMenuButton extends StatelessWidget {
                         right: vPaddingXL,
                       ),
                       child: Center(
-                        child: Text(
-                          item.menu!,
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            color: Color(themeNavy),
-                            fontSize: 18,
-                            fontFamily: "Poppins",
-                            fontWeight: FontWeight.w600,
+                        child: FittedBox(
+                          child: Text(
+                            item.menu!,
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              color: Color(themeNavy),
+                              fontSize: 18,
+                              fontFamily: "Poppins",
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
                         ),
                       ),
@@ -77,89 +79,7 @@ class CustomIconMenuButton extends StatelessWidget {
                   ),
                 ),
               ],
-              // children: [
-              //   Image(
-              //     alignment: Alignment.centerLeft,
-              //     image: item.icon!,
-              //     height: 80,
-              //   ),
-              //   Padding(
-              //     padding: const EdgeInsets.only(
-              //       top: vPaddingS,
-              //       bottom: vPaddingS,
-              //     ),
-              //     child: Container(
-              //       padding: EdgeInsets.all(8.0),
-              //       decoration: BoxDecoration(
-              //         borderRadius: BorderRadius.circular(10),
-              //         boxShadow: const [
-              //           BoxShadow(
-              //             color: Color(btnShadow),
-              //             blurRadius: 4,
-              //             offset: Offset(0, 4),
-              //           ),
-              //         ],
-              //         color: Colors.white,
-              //       ),
-              //       child: Text(
-              //         item.menu!,
-              //         textAlign: TextAlign.center,
-              //         style: const TextStyle(
-              //           color: Color(themeNavy),
-              //           fontSize: 18,
-              //           fontFamily: "Poppins",
-              //           fontWeight: FontWeight.w600,
-              //         ),
-              //       ),
-              //     ),
-              //   ),
-              // ],
             ),
-            // Row(
-            //   children: [
-            //     Expanded(
-            //       // flex: 3,
-            //       child: Image(
-            //         alignment: Alignment.centerLeft,
-            //         image: item.icon!,
-            //         height: 80,
-            //       ),
-            //     ),
-            //     Expanded(
-            //       flex: 7,
-            //       child: Padding(
-            //         padding: const EdgeInsets.only(
-            //           top: vPaddingS,
-            //           bottom: vPaddingS,
-            //         ),
-            //         child: Container(
-            //           padding: EdgeInsets.all(8.0),
-            //           decoration: BoxDecoration(
-            //             borderRadius: BorderRadius.circular(10),
-            //             boxShadow: const [
-            //               BoxShadow(
-            //                 color: Color(btnShadow),
-            //                 blurRadius: 4,
-            //                 offset: Offset(0, 4),
-            //               ),
-            //             ],
-            //             color: Colors.white,
-            //           ),
-            //           child: Text(
-            //             item.menu!,
-            //             textAlign: TextAlign.center,
-            //             style: const TextStyle(
-            //               color: Color(themeNavy),
-            //               fontSize: 18,
-            //               fontFamily: "Poppins",
-            //               fontWeight: FontWeight.w600,
-            //             ),
-            //           ),
-            //         ),
-            //       ),
-            //     ),
-            //   ],
-            // ),
           ),
         ),
       ),

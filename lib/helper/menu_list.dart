@@ -238,6 +238,24 @@ class MenuList {
         () {},
         login: true,
       ),
+      MenuItem(
+        AppLocalizations.of(ctx)!.fancyPlateNumber,
+        "images/icon/eaduan_fancy_plat_icon.png",
+        () {},
+        login: true,
+      ),
+      MenuItem(
+        AppLocalizations.of(ctx)!.darkTint,
+        "images/icon/eaduan_dark_tint_icon.png",
+        () {},
+        login: true,
+      ),
+      MenuItem(
+        AppLocalizations.of(ctx)!.notWearingSeatbelt,
+        "images/icon/eaduan_not_wearing_seatbelt_icon.png",
+        () {},
+        login: true,
+      ),
     ];
   }
 }
