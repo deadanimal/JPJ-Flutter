@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:jpj_info/controller/login_controller.dart';
+import 'package:jpj_info/helper/local_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 enum userType {
@@ -49,7 +50,7 @@ class MyJPJAccountManager {
       "JVB5131",
     ];
     try {
-      String? savedLanguage = await prefs.getString("locale");
+      String? savedLanguage = prefs.getString(LocalStorageHelper().locale);
       if (savedLanguage != null) {
         preferredLanguage = savedLanguage;
       } else {

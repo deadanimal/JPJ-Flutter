@@ -1,10 +1,14 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/controller/bottom_nav_controller.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/eaduanForm/eaduan_form.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 enum eaduanItem {
   redLight,
@@ -33,11 +37,12 @@ class _EaduanFormController extends State<EaduanFormController> {
   late Map<eaduanItem, String> aduanItemList;
   late Map<eaduanItem, String> aduanIconList;
   late ImagePicker picker;
-
+  late List<Uint8List> images;
   @override
   void initState() {
     super.initState();
     picker = ImagePicker();
+    images = [];
   }
 
   @override
@@ -80,13 +85,31 @@ class _EaduanFormController extends State<EaduanFormController> {
         body: EaduanForm(
           title: aduanItemList[widget.itemClass],
           image: AssetImage(aduanIconList[widget.itemClass]!),
+          openGalleryCallback: _openGallery,
+          imagesPath: images,
         ),
         bottomNavigationBar: BottomNavController(),
       ),
     );
   }
 
-  Future<void> openGallery() async {
-    final XFile? image = await picker.pickImage(source: ImageSource.gallery);
+  Future<void> _openGallery() async {
+    EasyLoading.show(
+      status: AppLocalizations.of(context)!.pleaseWait,
+    );
+    final XFile? image = await picker.pickImage(source: ImageSource.camera);
+    if (image != null) {
+      Uint8List rawImageData = await image.readAsBytes();
+      setState(() {
+        images.add(rawImageData);
+      });
+    }
+    EasyLoading.dismiss();
+  }
+
+  void _submitCallback() {}
+
+  Future<void> _saveToDraftCallback() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
   }
 }
