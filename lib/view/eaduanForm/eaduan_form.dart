@@ -18,11 +18,13 @@ class EaduanForm extends StatelessWidget {
     this.title = "",
     required this.image,
     required this.openGalleryCallback,
+    required this.submitCallback,
     required this.imagesPath,
   }) : super(key: key);
   final String? title;
   final AssetImage image;
   final Function openGalleryCallback;
+  final Function submitCallback;
   final List<Uint8List> imagesPath;
 
   @override
@@ -208,14 +210,18 @@ class EaduanForm extends StatelessWidget {
               width: mediaWidth - 64,
               label: AppLocalizations.of(context)!.submit,
               decoration: navyGradientBtnDeco,
-              onPressed: () {},
+              onPressed: () {
+                submitCallback();
+              },
             ),
             CustomButton(
               width: mediaWidth - 64,
               label: AppLocalizations.of(context)!.saveAsDraft,
               decoration: whiteBtnDeco,
               textColor: const Color(themeNavy),
-              onPressed: () {},
+              onPressed: () {
+                submitCallback();
+              },
             ),
           ],
         ),
@@ -309,9 +315,7 @@ class EaduanForm extends StatelessWidget {
                 width: 80.0,
                 height: 80.0,
                 point: LatLng(51.5, -0.09),
-                builder: (ctx) => Container(
-                  child: const Icon(Icons.pin_drop, color: Colors.red),
-                ),
+                builder: (ctx) => const Icon(Icons.pin_drop, color: Colors.red),
               ),
             ],
           ),

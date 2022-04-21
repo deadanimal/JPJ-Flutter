@@ -160,6 +160,7 @@ flutter:
     - images/icon/eaduan_dark_tint_icon.png
     - images/icon/eaduan_fancy_plat_icon.png
     - images/icon/eaduan_not_wearing_seatbelt_icon.png
+    - images/submit_image.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

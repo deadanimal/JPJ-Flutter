@@ -1,11 +1,13 @@
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
+// import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/controller/bottom_nav_controller.dart';
+import 'package:jpj_info/controller/eaduan_menu_controller.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
+import 'package:jpj_info/view/eAduanSubmit/eaduan_submit.dart';
 import 'package:jpj_info/view/eaduanForm/eaduan_form.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -86,6 +88,7 @@ class _EaduanFormController extends State<EaduanFormController> {
           title: aduanItemList[widget.itemClass],
           image: AssetImage(aduanIconList[widget.itemClass]!),
           openGalleryCallback: _openGallery,
+          submitCallback: _submitCallback,
           imagesPath: images,
         ),
         bottomNavigationBar: BottomNavController(),
@@ -94,9 +97,10 @@ class _EaduanFormController extends State<EaduanFormController> {
   }
 
   Future<void> _openGallery() async {
-    EasyLoading.show(
-      status: AppLocalizations.of(context)!.pleaseWait,
-    );
+    // info: https://github.com/flutter/flutter/issues/18095
+    // EasyLoading.show(
+    //   status: AppLocalizations.of(context)!.pleaseWait,
+    // );
     final XFile? image = await picker.pickImage(source: ImageSource.camera);
     if (image != null) {
       Uint8List rawImageData = await image.readAsBytes();
@@ -104,10 +108,33 @@ class _EaduanFormController extends State<EaduanFormController> {
         images.add(rawImageData);
       });
     }
-    EasyLoading.dismiss();
+    // EasyLoading.dismiss();
   }
 
-  void _submitCallback() {}
+  void _submitCallback() {
+    //todo: add cloud process here
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) {
+          return EaduanSubmitScreen(
+            backBtnCallback: _backBtnCallback,
+          );
+        },
+      ),
+    );
+  }
+
+  void _backBtnCallback(BuildContext context) {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) {
+          return const EaduanMenuController();
+        },
+      ),
+    );
+  }
 
   Future<void> _saveToDraftCallback() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();

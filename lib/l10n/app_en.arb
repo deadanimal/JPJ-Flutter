@@ -157,5 +157,7 @@
     "next": "Next",
     "eventLocation": "Event Location",
     "saveAsDraft": "Save as Draft",
+    "yourComplaint": "Your complaint has been sent",
+    "thankYou": "Thank You",
     "pleaseWait": "Please wait..."
 }
