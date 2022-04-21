@@ -9,12 +9,14 @@ class CustomButton extends StatelessWidget {
     required this.onPressed,
     this.decoration,
     this.textColor = Colors.white,
+    this.textSize = 17,
   }) : super(key: key);
   final String label;
   final double width;
   final VoidCallback onPressed;
   final Decoration? decoration;
   final Color textColor;
+  final double textSize;
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +44,7 @@ class CustomButton extends StatelessWidget {
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: textColor,
-                        fontSize: 17,
+                        fontSize: textSize,
                         fontFamily: "Poppins",
                         fontWeight: FontWeight.w700,
                       ),

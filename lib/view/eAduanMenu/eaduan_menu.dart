@@ -10,9 +10,11 @@ class EaduanMenu extends StatelessWidget {
     Key? key,
     required this.transactionList,
     required this.title,
+    required this.draftStatusCallback,
   }) : super(key: key);
   final List<MenuItem> transactionList;
   final String title;
+  final Function(BuildContext) draftStatusCallback;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +35,22 @@ class EaduanMenu extends StatelessWidget {
             TemplateHeader(
               headerTitle: title,
             ),
-            const SizedBox(height: vPaddingXL),
+            const SizedBox(height: vPaddingM),
+            Container(
+              alignment: Alignment.topRight,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: InkWell(
+                  onTap: () {
+                    draftStatusCallback(context);
+                  },
+                  child: const Chip(
+                    label: Text("Draft/Sent"),
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: vPaddingM),
             _bodyList(context),
             const SizedBox(height: vPaddingXL),
           ],
@@ -46,11 +63,7 @@ class EaduanMenu extends StatelessWidget {
     return Container(
       constraints: const BoxConstraints(maxWidth: 400),
       width: mediaWidth - 64,
-      child: Padding(
-        padding: const EdgeInsets.only(
-            top: verticalPadding, bottom: verticalPadding),
-        child: serviceButton(context),
-      ),
+      child: serviceButton(context),
     );
   }
 

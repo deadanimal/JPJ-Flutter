@@ -159,5 +159,9 @@
     "saveAsDraft": "Simpan Draf",
     "yourComplaint": "Aduan anda telah berjaya dihantar",
     "thankYou": "Terima Kasih",
+    "draft": "Draf",
+    "sent": "Hantar",
+    "complaintId": "ID Aduan",
+    "received": "Terima",
     "pleaseWait": "Sila Tunggu..."
 }

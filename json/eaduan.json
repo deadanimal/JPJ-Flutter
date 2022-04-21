@@ -1,0 +1,44 @@
+[
+    {
+        "id":"10016460",
+        "complaintType":"Gagal mematuhi lampu isyarat merah",
+        "submitTime":"08:37:11 AM",
+        "submitDate":"04/04/2021",
+        "complaint":{
+            "type":"Gagal mematuhi lampu isyarat merah",
+            "attachments":[
+                "http://i.gettysburgdaily.com/imgs/TrafficSignals081408/GettysburgTrafficSignals08140801.jpg",
+                "https://www.cognata.com/wp-content/uploads/2020/07/housing_1.jpg"
+            ],
+            "videoLink":"www.google.com",
+            "date":"25/03/2021",
+            "time":"09:33 AM",
+            "coordinate":"1.583443,103.729344",
+            "location":"Bandar Dato Onn",
+            "state":"Johor",
+            "plateNumber":"BBU6565",
+            "shortStatement":"Kereta Wira langgar trafik light merah pada peak hour"
+        }
+    },
+    {
+        "id":"10016461",
+        "complaintType":"Tidak Memakai tali pinggang/topi keledar",
+        "submitTime":"08:37:11 AM",
+        "submitDate":"04/04/2021",
+        "complaint":{
+            "type":"Tidak Memakai tali pinggang/topi keledar",
+            "attachments":[
+                "https://www.cognata.com/wp-content/uploads/2020/07/housing_1.jpg",
+                "http://i.gettysburgdaily.com/imgs/TrafficSignals081408/GettysburgTrafficSignals08140801.jpg"
+            ],
+            "videoLink":"www.google.com",
+            "date":"25/03/2021",
+            "time":"09:33 AM",
+            "coordinate":"1.583443,103.729344",
+            "location":"Bandar Dato Onn",
+            "state":"Johor",
+            "plateNumber":"BBU6565",
+            "shortStatement":"Kereta Wira langgar trafik light merah pada peak hour"
+        }
+    }
+]

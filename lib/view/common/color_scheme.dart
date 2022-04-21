@@ -64,3 +64,57 @@ Decoration whiteFadedBtnDeco = BoxDecoration(
     ),
   ],
 );
+
+Decoration greenGradientBtnDeco = BoxDecoration(
+  borderRadius: BorderRadius.circular(15),
+  boxShadow: const [
+    BoxShadow(
+      color: Color(0x3f000000),
+      blurRadius: 4,
+      offset: Offset(0, 4),
+    ),
+  ],
+  gradient: const LinearGradient(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    colors: [
+      Color(0xff4cac1e),
+      Color(0xff436f0b),
+    ],
+  ),
+);
+
+Decoration navyGradientBtnDecoSquare = BoxDecoration(
+  borderRadius: BorderRadius.circular(8),
+  boxShadow: const [
+    BoxShadow(
+      color: Color(0x3f000000),
+      blurRadius: 4,
+      offset: Offset(0, 4),
+    ),
+  ],
+  gradient: const LinearGradient(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    colors: [Color(headerGradient1), Color(headerGradient2)],
+  ),
+);
+
+Decoration yellowGradientBtnDeco = BoxDecoration(
+  borderRadius: BorderRadius.circular(15),
+  boxShadow: const [
+    BoxShadow(
+      color: Color(0x3f000000),
+      blurRadius: 4,
+      offset: Offset(0, 4),
+    ),
+  ],
+  gradient: const LinearGradient(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    colors: [
+      Color(0xfff8b518),
+      Color(0xffc18b0e),
+    ],
+  ),
+);

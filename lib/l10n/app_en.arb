@@ -159,5 +159,9 @@
     "saveAsDraft": "Save as Draft",
     "yourComplaint": "Your complaint has been sent",
     "thankYou": "Thank You",
+    "draft": "Draft",
+    "sent": "Sent",
+    "complaintId": "Complaint ID",
+    "received": "Received",
     "pleaseWait": "Please wait..."
 }
