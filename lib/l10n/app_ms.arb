@@ -163,5 +163,8 @@
     "sent": "Hantar",
     "complaintId": "ID Aduan",
     "received": "Terima",
+    "main": "Utama",
+    "activity": "Aktiviti",
+    "comittee": "Urusetia",
     "pleaseWait": "Sila Tunggu..."
 }

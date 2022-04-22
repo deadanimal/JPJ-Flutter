@@ -162,6 +162,9 @@ flutter:
     - images/icon/eaduan_not_wearing_seatbelt_icon.png
     - images/submit_image.png
     - json/eaduan.json
+    - images/icon/ehadir_comittee_icon.png
+    - images/icon/ehadir_activity_icon.png
+    - images/icon/ehadir_main_icon.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

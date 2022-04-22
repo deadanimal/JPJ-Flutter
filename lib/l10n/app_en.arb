@@ -163,5 +163,8 @@
     "sent": "Sent",
     "complaintId": "Complaint ID",
     "received": "Received",
+    "main": "Main",
+    "activity": "Activity",
+    "comittee": "Comittee",
     "pleaseWait": "Please wait..."
 }

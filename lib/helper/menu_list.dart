@@ -63,7 +63,7 @@ class MenuList {
       MenuItem(
         "eAduan",
         "images/icon/eaduan_icon.png",
-        roadTaxCheckPage,
+        eHadirMenuPage,
         login: true,
       ),
     ];
@@ -115,7 +115,7 @@ class MenuList {
       MenuItem(
         "JPJeHadir",
         "images/icon/jpjehadir.png",
-        () {},
+        eHadirMenuPage,
       ),
     ];
   }
@@ -274,6 +274,26 @@ class MenuList {
           eAduanFormMenuPage(context, eaduanItem.seatBelt);
         },
         login: true,
+      ),
+    ];
+  }
+
+  List<MenuItem> getJpjEHadirMenuList() {
+    return [
+      MenuItem(
+        AppLocalizations.of(ctx)!.main,
+        "images/icon/ehadir_main_icon.png",
+        jpjDirectoryPage,
+      ),
+      MenuItem(
+        AppLocalizations.of(ctx)!.activity,
+        "images/icon/ehadir_activity_icon.png",
+        () {},
+      ),
+      MenuItem(
+        AppLocalizations.of(ctx)!.comittee,
+        "images/icon/ehadir_comittee_icon.png",
+        () {},
       ),
     ];
   }
