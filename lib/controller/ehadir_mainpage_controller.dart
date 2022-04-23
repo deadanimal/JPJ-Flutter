@@ -10,6 +10,7 @@ import 'package:jpj_info/controller/bottom_nav_controller.dart';
 import 'package:jpj_info/helper/qr_scanner.dart';
 import 'package:jpj_info/model/ehadir_event_info.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
+import 'package:jpj_info/view/eHadirConfirmedAttendance/ehadir_confirmed_attendance.dart';
 import 'package:jpj_info/view/eHadirMainPage/ehadir_mainpage.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -79,6 +80,20 @@ class _EhadirMainPageController extends State<EhadirMainPageController> {
       final data = await json.decode(response);
       EHadirEventInfo eventInfo = EHadirEventInfo.fromJson(data);
       // todo: parse Data and move to next screen
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) {
+            return EhadirConfirmAttendance(
+              eventName: eventInfo.eventName!,
+              vanue: eventInfo.venue!,
+              date: eventInfo.date!,
+              startTime: eventInfo.startTime!,
+              endTime: eventInfo.endTime!,
+            );
+          },
+        ),
+      );
     } catch (e) {
       AlertController(ctx: context).generalError(
         AppLocalizations.of(context)!.invalidQrCode,

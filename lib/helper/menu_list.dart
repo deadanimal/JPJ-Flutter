@@ -283,7 +283,7 @@ class MenuList {
       MenuItem(
         AppLocalizations.of(ctx)!.main,
         "images/icon/ehadir_main_icon.png",
-        jpjDirectoryPage,
+        eHadirMainPage,
       ),
       MenuItem(
         AppLocalizations.of(ctx)!.activity,
