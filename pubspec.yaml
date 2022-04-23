@@ -50,6 +50,8 @@ dependencies:
   url_launcher: ^6.0.20
   image_picker: ^0.8.5
   flutter_map: ^0.14.0
+  qr_flutter: ^4.0.0
+  mobile_scanner: ^1.0.0
 
 dev_dependencies:
   flutter_test:
@@ -165,6 +167,15 @@ flutter:
     - images/icon/ehadir_comittee_icon.png
     - images/icon/ehadir_activity_icon.png
     - images/icon/ehadir_main_icon.png
+    - images/ehadir_attending_activity_figure.png
+    - images/ehadir_man_and_clock.png
+    - images/ehadir_men_at_work.png
+    - images/icon/ehadir_add_comittee_icon.png
+    - images/icon/ehadir_manual_register_icon.png
+    - images/icon/ehadir_add_attendee_icon.png
+    - images/icon/ehadir_new_activity_icon.png
+    - images/icon/ehadir_scan_qr_icon.png
+    - json/ehadir_event.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

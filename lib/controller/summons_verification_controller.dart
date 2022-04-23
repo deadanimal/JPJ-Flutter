@@ -6,7 +6,6 @@ import 'package:jpj_info/helper/id_types.dart';
 import 'package:jpj_info/model/expansion_list.dart';
 import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:jpj_info/view/summonsStatus/summons_status.dart';
 
 import 'package:jpj_info/view/summonsVerification/summon_verification.dart';
 
