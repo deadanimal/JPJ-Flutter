@@ -11,8 +11,10 @@ class EhadirActivityList extends StatelessWidget {
     Key? key,
     required this.refreshCallback,
     required this.events,
+    required this.viewActivityCallback,
   }) : super(key: key);
   final Function() refreshCallback;
+  final Function(BuildContext, EHadirEventInfo) viewActivityCallback;
   final List<EHadirEventInfo> events;
 
   @override
@@ -199,7 +201,7 @@ class EhadirActivityList extends StatelessWidget {
                     const SizedBox(height: vPaddingS),
                     Container(
                       alignment: Alignment.bottomRight,
-                      child: _searchIcon(),
+                      child: _searchIcon(context, event),
                     ),
                   ],
                 ),
@@ -211,7 +213,7 @@ class EhadirActivityList extends StatelessWidget {
     );
   }
 
-  Widget _searchIcon() {
+  Widget _searchIcon(BuildContext context, EHadirEventInfo event) {
     return SizedBox(
       child: Container(
         width: 40,
@@ -221,7 +223,9 @@ class EhadirActivityList extends StatelessWidget {
           style: ButtonStyle(
             foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
           ),
-          onPressed: () {},
+          onPressed: () {
+            viewActivityCallback(context, event);
+          },
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: const [

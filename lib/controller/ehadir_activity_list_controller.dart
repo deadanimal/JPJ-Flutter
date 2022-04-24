@@ -6,6 +6,7 @@ import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/controller/bottom_nav_controller.dart';
 import 'package:jpj_info/model/ehadir_event_info.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
+import 'package:jpj_info/view/eHadirActivityDetail/ehadir_event_details.dart';
 import 'package:jpj_info/view/eHadirActivityList/ehadir_activity_list.dart';
 
 class EhadirActivityListController extends StatefulWidget {
@@ -41,6 +42,7 @@ class _EhadirActivityListController
         ),
         body: EhadirActivityList(
           refreshCallback: _refreshMsgList,
+          viewActivityCallback: _viewActivityDetails,
           events: events,
         ),
         bottomNavigationBar: BottomNavController(),
@@ -60,5 +62,18 @@ class _EhadirActivityListController
         );
       }
     });
+  }
+
+  void _viewActivityDetails(BuildContext context, EHadirEventInfo event) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) {
+          return EhadirActivityDetails(
+            event: event,
+          );
+        },
+      ),
+    );
   }
 }
