@@ -186,5 +186,6 @@
     "endTime": "Masa Tamat",
     "agenda": "Keterangan/Agenda",
     "invalidQrCode": "Kod Qr Tidak Sah",
+    "pullToRefresh": "Tarik ke bawah untuk load semula",
     "pleaseWait": "Sila Tunggu..."
 }

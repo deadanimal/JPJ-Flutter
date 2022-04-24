@@ -6,9 +6,11 @@ class CustomBorderedContainer extends StatelessWidget {
     Key? key,
     required this.child,
     required this.width,
+    this.padding = const EdgeInsets.all(verticalPadding),
   }) : super(key: key);
   final Widget child;
   final double width;
+  final EdgeInsets padding;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,7 @@ class CustomBorderedContainer extends StatelessWidget {
       child: Container(
         width: width,
         constraints: const BoxConstraints(maxWidth: 400),
-        padding: const EdgeInsets.all(verticalPadding),
+        padding: padding,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(9),
           color: Colors.white,

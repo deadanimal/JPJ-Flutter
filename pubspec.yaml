@@ -176,6 +176,7 @@ flutter:
     - images/icon/ehadir_new_activity_icon.png
     - images/icon/ehadir_scan_qr_icon.png
     - json/ehadir_event.json
+    - json/ehadir_activity_list.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

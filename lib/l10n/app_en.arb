@@ -186,5 +186,6 @@
     "endTime": "End Time",
     "agenda": "Details/Agenda",
     "invalidQrCode": "Invalid Qr Code",
+    "pullToRefresh": "Pull to refresh",
     "pleaseWait": "Please wait..."
 }

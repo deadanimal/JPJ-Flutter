@@ -288,7 +288,7 @@ class MenuList {
       MenuItem(
         AppLocalizations.of(ctx)!.activity,
         "images/icon/ehadir_activity_icon.png",
-        () {},
+        eHadirActivityListPage,
       ),
       MenuItem(
         AppLocalizations.of(ctx)!.comittee,
