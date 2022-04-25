@@ -24,10 +24,10 @@ class EaduanStatus extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const SizedBox(height: vPaddingXL),
-          const Text(
-            "Senarai Aduan",
+          Text(
+            AppLocalizations.of(context)!.listOfComplaint,
             textAlign: TextAlign.center,
-            style: TextStyle(
+            style: const TextStyle(
               color: Color(0xff171f44),
               fontSize: 18,
               fontFamily: "Poppins",

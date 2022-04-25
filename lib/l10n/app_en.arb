@@ -187,5 +187,6 @@
     "agenda": "Details/Agenda",
     "invalidQrCode": "Invalid Qr Code",
     "pullToRefresh": "Pull to refresh",
+    "listOfComplaint": "List of Complaint",
     "pleaseWait": "Please wait..."
 }

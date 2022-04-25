@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/common/spacing.dart';
 
 class CustomBorderedContainer extends StatelessWidget {
@@ -25,7 +26,7 @@ class CustomBorderedContainer extends StatelessWidget {
           color: Colors.white,
           boxShadow: const [
             BoxShadow(
-              color: Color(0x3f000000),
+              color: Color(btnShadow),
               blurRadius: 4,
               offset: Offset(0, 4),
             ),
