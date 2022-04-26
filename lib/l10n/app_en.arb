@@ -188,5 +188,7 @@
     "invalidQrCode": "Invalid Qr Code",
     "pullToRefresh": "Pull to refresh",
     "listOfComplaint": "List of Complaint",
+    "erase": "Erase",
+    "event": "Event",
     "pleaseWait": "Please wait..."
 }

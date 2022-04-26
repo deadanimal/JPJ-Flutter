@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jpj_info/model/ehadir_comittee_info.dart';
+import 'package:jpj_info/model/ehadir_event_info.dart';
 import 'package:jpj_info/model/page_size.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/common/spacing.dart';
@@ -13,9 +14,11 @@ class EhadirActivityInfo extends StatelessWidget {
     Key? key,
     required this.tabController,
     required this.qrScanCallback,
+    required this.event,
   }) : super(key: key);
   final TabController tabController;
   final Function qrScanCallback;
+  final EHadirEventInfo event;
 
   @override
   Widget build(BuildContext context) {
@@ -97,7 +100,7 @@ class EhadirActivityInfo extends StatelessWidget {
       child: TabBarView(
         controller: tabController,
         children: [
-          const InfoTab(),
+          InfoTab(event: event),
           ComitteeList(
             comitteeList: [
               ComitteeInfo("nameA", "departmentC"),

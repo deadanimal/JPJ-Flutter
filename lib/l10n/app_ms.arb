@@ -188,5 +188,7 @@
     "invalidQrCode": "Kod Qr Tidak Sah",
     "pullToRefresh": "Tarik ke bawah untuk load semula",
     "listOfComplaint": "Senarai Aduan",
+    "erase": "Padam",
+    "event": "Aktiviti",
     "pleaseWait": "Sila Tunggu..."
 }

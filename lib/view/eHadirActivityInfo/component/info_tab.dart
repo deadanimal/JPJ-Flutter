@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jpj_info/model/ehadir_event_info.dart';
 import 'package:jpj_info/model/page_size.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/common/spacing.dart';
@@ -8,7 +9,9 @@ import 'package:qr_flutter/qr_flutter.dart';
 class InfoTab extends StatelessWidget {
   const InfoTab({
     Key? key,
+    required this.event,
   }) : super(key: key);
+  final EHadirEventInfo event;
 
   @override
   Widget build(BuildContext context) {
@@ -17,10 +20,10 @@ class InfoTab extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            const Text(
-              "HARI KONVENSYEN JPJ MALAYSIA 2022",
+            Text(
+              event.eventName!,
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Color(btnColor),
                 fontSize: 35,
                 fontFamily: "Poppins",
@@ -34,10 +37,17 @@ class InfoTab extends StatelessWidget {
               size: 200.0,
             ),
             const SizedBox(height: vPaddingXL),
-            const Text(
-              "Dewan Serbaguna MOT\nMAC 22 2022 - MAC 23 2022\nSESI 1 07:00:00 - 17:00:00",
+            Text(
+              event.venue! +
+                  "\n" +
+                  event.date! +
+                  "\nSESI 1 " +
+                  event.startTime! +
+                  " - " +
+                  event.endTime! +
+                  "",
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.black,
                 fontSize: 18,
               ),

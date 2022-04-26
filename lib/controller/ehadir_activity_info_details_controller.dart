@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/controller/bottom_nav_controller.dart';
 import 'package:jpj_info/helper/qr_scanner.dart';
+import 'package:jpj_info/model/ehadir_event_info.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/eHadirActivityInfo/ehadir_activity_info.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
@@ -9,7 +10,10 @@ import 'package:mobile_scanner/mobile_scanner.dart';
 class EhadirActivityInfoDetailsController extends StatefulWidget {
   const EhadirActivityInfoDetailsController({
     Key? key,
+    required this.event,
   }) : super(key: key);
+
+  final EHadirEventInfo event;
 
   @override
   State<StatefulWidget> createState() => _EhadirActivityInfoDetailsController();
@@ -45,6 +49,7 @@ class _EhadirActivityInfoDetailsController
         body: EhadirActivityInfo(
           tabController: tabController,
           qrScanCallback: _scanQrBtnCallback,
+          event: widget.event,
         ),
         bottomNavigationBar: BottomNavController(),
       ),

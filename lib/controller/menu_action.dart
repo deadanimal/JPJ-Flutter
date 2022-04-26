@@ -8,6 +8,7 @@ import 'package:jpj_info/controller/eaduan_menu_controller.dart';
 import 'package:jpj_info/controller/ehadir_activity_info_details_controller.dart';
 import 'package:jpj_info/controller/ehadir_activity_list_controller.dart';
 import 'package:jpj_info/controller/ehadir_add_comittee_controller.dart';
+import 'package:jpj_info/controller/ehadir_comittee_page_controller.dart';
 import 'package:jpj_info/controller/ehadir_mainpage_controller.dart';
 import 'package:jpj_info/controller/ehadir_manual_registration.dart';
 import 'package:jpj_info/controller/ehadir_menu_controller.dart';
@@ -25,6 +26,7 @@ import 'package:jpj_info/controller/test_result_controller.dart';
 import 'package:jpj_info/controller/tnc_controller.dart';
 import 'package:jpj_info/controller/transaction_history_controller.dart';
 import 'package:jpj_info/controller/vehicle_list_controller.dart';
+import 'package:jpj_info/model/ehadir_event_info.dart';
 
 void licensePage(BuildContext context) {
   Navigator.push(
@@ -192,7 +194,7 @@ void ezypayMenuPage(BuildContext context) {
 }
 
 void inboxPage(BuildContext context) {
-  Navigator.pushReplacement(
+  Navigator.push(
     context,
     MaterialPageRoute(
       builder: (context) {
@@ -203,7 +205,7 @@ void inboxPage(BuildContext context) {
 }
 
 void transactionHistoryPage(BuildContext context) {
-  Navigator.pushReplacement(
+  Navigator.push(
     context,
     MaterialPageRoute(
       builder: (context) {
@@ -214,7 +216,7 @@ void transactionHistoryPage(BuildContext context) {
 }
 
 void jpjEqMenuPage(BuildContext context) {
-  Navigator.pushReplacement(
+  Navigator.push(
     context,
     MaterialPageRoute(
       builder: (context) {
@@ -225,7 +227,7 @@ void jpjEqMenuPage(BuildContext context) {
 }
 
 void eAduanMenuPage(BuildContext context) {
-  Navigator.pushReplacement(
+  Navigator.push(
     context,
     MaterialPageRoute(
       builder: (context) {
@@ -236,7 +238,7 @@ void eAduanMenuPage(BuildContext context) {
 }
 
 void eAduanFormMenuPage(BuildContext context, eaduanItem item) {
-  Navigator.pushReplacement(
+  Navigator.push(
     context,
     MaterialPageRoute(
       builder: (context) {
@@ -249,7 +251,7 @@ void eAduanFormMenuPage(BuildContext context, eaduanItem item) {
 }
 
 void eHadirMenuPage(BuildContext context) {
-  Navigator.pushReplacement(
+  Navigator.push(
     context,
     MaterialPageRoute(
       builder: (context) {
@@ -260,7 +262,7 @@ void eHadirMenuPage(BuildContext context) {
 }
 
 void eHadirMainPage(BuildContext context) {
-  Navigator.pushReplacement(
+  Navigator.push(
     context,
     MaterialPageRoute(
       builder: (context) {
@@ -271,7 +273,7 @@ void eHadirMainPage(BuildContext context) {
 }
 
 void eHadirActivityListPage(BuildContext context) {
-  Navigator.pushReplacement(
+  Navigator.push(
     context,
     MaterialPageRoute(
       builder: (context) {
@@ -281,12 +283,12 @@ void eHadirActivityListPage(BuildContext context) {
   );
 }
 
-void eHadirActivityInfoPage(BuildContext context) {
-  Navigator.pushReplacement(
+void eHadirActivityInfoPage(BuildContext context, EHadirEventInfo event) {
+  Navigator.push(
     context,
     MaterialPageRoute(
       builder: (context) {
-        return const EhadirActivityInfoDetailsController();
+        return EhadirActivityInfoDetailsController(event: event);
       },
     ),
   );
@@ -309,6 +311,17 @@ void eHadirManualRegisterPage(BuildContext context) {
     MaterialPageRoute(
       builder: (context) {
         return const EhadirManualRegistrationController();
+      },
+    ),
+  );
+}
+
+void eHadirComitteePage(BuildContext context) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) {
+        return const EhadirComitteePageController();
       },
     ),
   );

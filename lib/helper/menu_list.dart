@@ -293,7 +293,7 @@ class MenuList {
       MenuItem(
         AppLocalizations.of(ctx)!.comittee,
         "images/icon/ehadir_comittee_icon.png",
-        eHadirActivityInfoPage,
+        eHadirComitteePage,
       ),
     ];
   }
