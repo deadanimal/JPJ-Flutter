@@ -226,11 +226,10 @@ class EhadirActivityList extends StatelessWidget {
           onPressed: () {
             viewActivityCallback(context, event);
           },
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: const [
-              Icon(Icons.search),
-            ],
+          child: const FittedBox(
+            child: Center(
+              child: Icon(Icons.search),
+            ),
           ),
         ),
       ),
