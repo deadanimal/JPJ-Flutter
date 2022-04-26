@@ -3,8 +3,8 @@ import 'package:jpj_info/model/page_size.dart';
 import 'package:jpj_info/view/eHadirCommon/ehadir_add_staff.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class EhadirAddComitee extends StatelessWidget {
-  const EhadirAddComitee({
+class EhadirManualRegistration extends StatelessWidget {
+  const EhadirManualRegistration({
     Key? key,
     required this.submitCallback,
     required this.staffNricController,
@@ -19,8 +19,8 @@ class EhadirAddComitee extends StatelessWidget {
     return EhadirAddStaff(
       submitCallback: submitCallback,
       staffNricController: staffNricController,
-      image: const AssetImage("images/icon/ehadir_add_comittee_icon.png"),
-      title: AppLocalizations.of(context)!.addComittee,
+      image: const AssetImage("images/icon/ehadir_add_attendee_icon.png"),
+      title: AppLocalizations.of(context)!.manualRegistration,
     );
   }
 }

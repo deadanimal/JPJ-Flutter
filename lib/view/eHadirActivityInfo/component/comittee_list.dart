@@ -5,6 +5,7 @@ import 'package:jpj_info/model/page_size.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:jpj_info/view/common/spacing.dart';
+import 'package:jpj_info/view/eHadirActivityInfo/component/ehadir_people_list.dart';
 
 class ComitteeList extends StatelessWidget {
   const ComitteeList({
@@ -21,7 +22,7 @@ class ComitteeList extends StatelessWidget {
         const SizedBox(height: vPaddingM),
         _addComitteeBtn(context),
         const SizedBox(height: vPaddingM),
-        _comitteeList(context),
+        PeopleList(comitteeList: comitteeList),
       ],
     );
   }
@@ -56,41 +57,6 @@ class ComitteeList extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-
-  Widget _comitteeList(BuildContext context) {
-    return ListView.builder(
-      scrollDirection: Axis.vertical,
-      itemCount: comitteeList.length,
-      shrinkWrap: true,
-      itemBuilder: (context, index) {
-        return _comitteeInfo(context, comitteeList[index]);
-      },
-    );
-  }
-
-  Widget _comitteeInfo(BuildContext context, ComitteeInfo info) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          info.name,
-          style: const TextStyle(
-            fontSize: 15,
-            color: Color(0xff171f44),
-            fontWeight: FontWeight.w900,
-          ),
-        ),
-        Text(
-          info.department,
-          style: const TextStyle(
-            color: Color(0xff171f44),
-            fontSize: 10,
-          ),
-        ),
-        const Divider(color: Colors.black),
-      ],
     );
   }
 }

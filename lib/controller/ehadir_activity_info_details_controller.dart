@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/controller/bottom_nav_controller.dart';
+import 'package:jpj_info/helper/qr_scanner.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/eHadirActivityInfo/ehadir_activity_info.dart';
+import 'package:mobile_scanner/mobile_scanner.dart';
 
 class EhadirActivityInfoDetailsController extends StatefulWidget {
   const EhadirActivityInfoDetailsController({
@@ -42,9 +44,27 @@ class _EhadirActivityInfoDetailsController
         ),
         body: EhadirActivityInfo(
           tabController: tabController,
+          qrScanCallback: _scanQrBtnCallback,
         ),
         bottomNavigationBar: BottomNavController(),
       ),
     );
+  }
+
+  void _scanQrBtnCallback() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) {
+          return QrScanner(
+            qrScanCallback: _qrScanCallback,
+          );
+        },
+      ),
+    );
+  }
+
+  void _qrScanCallback(Barcode barcode) {
+    Navigator.pop(context);
   }
 }

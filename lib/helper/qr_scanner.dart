@@ -11,7 +11,6 @@ class QrScanner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Mobile Scanner')),
       body: MobileScanner(
           allowDuplicates: false,
           onDetect: (barcode, args) {

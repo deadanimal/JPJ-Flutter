@@ -3,6 +3,7 @@ import 'package:jpj_info/model/ehadir_comittee_info.dart';
 import 'package:jpj_info/model/page_size.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/common/spacing.dart';
+import 'package:jpj_info/view/eHadirActivityInfo/component/attendance_list.dart';
 import 'package:jpj_info/view/eHadirActivityInfo/component/comittee_list.dart';
 import 'package:jpj_info/view/eHadirActivityInfo/component/info_tab.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -11,8 +12,11 @@ class EhadirActivityInfo extends StatelessWidget {
   const EhadirActivityInfo({
     Key? key,
     required this.tabController,
+    required this.qrScanCallback,
   }) : super(key: key);
   final TabController tabController;
+  final Function qrScanCallback;
+
   @override
   Widget build(BuildContext context) {
     mediaWidth = (MediaQuery.of(context).size.width);
@@ -96,12 +100,19 @@ class EhadirActivityInfo extends StatelessWidget {
           const InfoTab(),
           ComitteeList(
             comitteeList: [
-              ComitteeInfo("name", "department"),
-              ComitteeInfo("name", "department"),
-              ComitteeInfo("name", "department"),
+              ComitteeInfo("nameA", "departmentC"),
+              ComitteeInfo("nameB", "departmentB"),
+              ComitteeInfo("nameC", "departmentA"),
             ],
           ),
-          const InfoTab(),
+          AttendanceList(
+            qrScanCallback: qrScanCallback,
+            comitteeList: [
+              ComitteeInfo("name1", "department3"),
+              ComitteeInfo("name2", "department2"),
+              ComitteeInfo("name3", "department1"),
+            ],
+          ),
         ],
       ),
     );

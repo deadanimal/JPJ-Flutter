@@ -9,6 +9,7 @@ import 'package:jpj_info/controller/ehadir_activity_info_details_controller.dart
 import 'package:jpj_info/controller/ehadir_activity_list_controller.dart';
 import 'package:jpj_info/controller/ehadir_add_comittee_controller.dart';
 import 'package:jpj_info/controller/ehadir_mainpage_controller.dart';
+import 'package:jpj_info/controller/ehadir_manual_registration.dart';
 import 'package:jpj_info/controller/ehadir_menu_controller.dart';
 import 'package:jpj_info/controller/ezypay_controller.dart';
 import 'package:jpj_info/controller/feedback_controller.dart';
@@ -297,6 +298,17 @@ void eHadirAddComitteePage(BuildContext context) {
     MaterialPageRoute(
       builder: (context) {
         return const EhadirAddComitteeController();
+      },
+    ),
+  );
+}
+
+void eHadirManualRegisterPage(BuildContext context) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) {
+        return const EhadirManualRegistrationController();
       },
     ),
   );
