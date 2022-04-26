@@ -7,6 +7,7 @@ import 'package:jpj_info/controller/eaduan_form_controller.dart';
 import 'package:jpj_info/controller/eaduan_menu_controller.dart';
 import 'package:jpj_info/controller/ehadir_activity_info_details_controller.dart';
 import 'package:jpj_info/controller/ehadir_activity_list_controller.dart';
+import 'package:jpj_info/controller/ehadir_add_activity_controller.dart';
 import 'package:jpj_info/controller/ehadir_add_comittee_controller.dart';
 import 'package:jpj_info/controller/ehadir_comittee_page_controller.dart';
 import 'package:jpj_info/controller/ehadir_mainpage_controller.dart';
@@ -311,6 +312,17 @@ void eHadirManualRegisterPage(BuildContext context) {
     MaterialPageRoute(
       builder: (context) {
         return const EhadirManualRegistrationController();
+      },
+    ),
+  );
+}
+
+void ehadirAddActivityPage(BuildContext context) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) {
+        return const EhadirAddActivityController();
       },
     ),
   );

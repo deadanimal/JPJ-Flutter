@@ -3,8 +3,7 @@ import 'package:jpj_info/model/page_size.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/common/spacing.dart';
 import 'package:jpj_info/view/form/custom_button.dart';
-import 'package:jpj_info/view/form/no_trailing_label.dart';
-import 'package:jpj_info/view/form/text_field.dart';
+import 'package:jpj_info/view/form/text_field_with_label.dart';
 import 'package:jpj_info/view/template/template_header.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -55,37 +54,33 @@ class PaymentMethod extends StatelessWidget {
           _paymentMethods(),
           const SizedBox(height: vPaddingXL),
           _creditCardRadio(context),
-          _textField(
-            context,
-            cardNamecontroller,
-            AppLocalizations.of(context)!.cardOwnerName,
-            mediaWidth - 64,
+          CustomTextFieldWithLabel(
+            controller: cardNamecontroller,
+            label: AppLocalizations.of(context)!.cardOwnerName,
+            width: mediaWidth - 64,
           ),
-          _textField(
-            context,
-            cardNumbercontroller,
-            AppLocalizations.of(context)!.cardNumber,
-            mediaWidth - 64,
+          CustomTextFieldWithLabel(
+            controller: cardNumbercontroller,
+            label: AppLocalizations.of(context)!.cardNumber,
+            width: mediaWidth - 64,
           ),
           Row(
             children: [
               Expanded(
                 flex: 5,
-                child: _textField(
-                  context,
-                  cardExpirycontroller,
-                  AppLocalizations.of(context)!.expiryDate,
-                  mediaWidth,
+                child: CustomTextFieldWithLabel(
+                  controller: cardExpirycontroller,
+                  label: AppLocalizations.of(context)!.expiryDate,
+                  width: mediaWidth,
                 ),
               ),
               const Spacer(flex: 3),
               Expanded(
                 flex: 5,
-                child: _textField(
-                  context,
-                  cardCvccontroller,
-                  AppLocalizations.of(context)!.cvc,
-                  mediaWidth,
+                child: CustomTextFieldWithLabel(
+                  controller: cardCvccontroller,
+                  label: AppLocalizations.of(context)!.cvc,
+                  width: mediaWidth,
                 ),
               ),
             ],
@@ -174,33 +169,6 @@ class PaymentMethod extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-
-  Widget _textField(
-    BuildContext context,
-    TextEditingController? controller,
-    String label,
-    double width,
-  ) {
-    return Column(
-      children: [
-        const SizedBox(height: vPaddingM),
-        CustomNoTrailingLabel(
-          label: label,
-          fontSize: 15,
-          align: TextAlign.start,
-          width: width,
-        ),
-        const SizedBox(height: vPaddingM),
-        TextFieldForm(
-          textController: controller,
-          inputType: TextInputType.emailAddress,
-          label: label,
-          width: width,
-        ),
-        const SizedBox(height: vPaddingM),
-      ],
     );
   }
 }

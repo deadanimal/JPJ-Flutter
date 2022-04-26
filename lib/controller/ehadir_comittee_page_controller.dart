@@ -50,7 +50,7 @@ class _EhadirComitteePageController
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            // Add your onPressed code here!
+            ehadirAddActivityPage(context);
           },
           backgroundColor: const Color(themeNavy),
           child: const Icon(Icons.add),

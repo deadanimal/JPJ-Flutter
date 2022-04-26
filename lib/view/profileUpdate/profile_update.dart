@@ -5,13 +5,12 @@ import 'package:jpj_info/model/page_size.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/common/spacing.dart';
 import 'package:jpj_info/view/form/custom_button.dart';
-import 'package:jpj_info/view/form/no_trailing_label.dart';
-import 'package:jpj_info/view/form/text_field.dart';
+import 'package:jpj_info/view/form/text_field_with_label.dart';
 import 'package:jpj_info/view/template/template_header.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ProfileUpdate extends StatelessWidget {
-  ProfileUpdate({
+  const ProfileUpdate({
     Key? key,
     required this.nameTextController,
     required this.emailController,
@@ -24,8 +23,8 @@ class ProfileUpdate extends StatelessWidget {
     required this.submitCallback,
   }) : super(key: key);
 
-  late void Function(BuildContext) submitCallback;
-  late TextEditingController nameTextController;
+  final void Function(BuildContext) submitCallback;
+  final TextEditingController nameTextController;
   final TextEditingController emailController;
   final TextEditingController idController;
   final TextEditingController phoneController;
@@ -62,72 +61,66 @@ class ProfileUpdate extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: vPaddingXL),
-          _textField(
-            context,
-            nameTextController,
-            AppLocalizations.of(context)!.fullName,
-            true,
-            mediaWidth - 64,
+          CustomTextFieldWithLabel(
+            controller: nameTextController,
+            label: AppLocalizations.of(context)!.fullName,
+            readOnly: true,
+            width: mediaWidth - 64,
           ),
-          _textField(
-            context,
-            idController,
-            AppLocalizations.of(context)!.nricNumber,
-            true,
-            mediaWidth - 64,
+          CustomTextFieldWithLabel(
+            controller: idController,
+            label: AppLocalizations.of(context)!.nricNumber,
+            readOnly: true,
+            width: mediaWidth - 64,
           ),
-          _textField(
-            context,
-            phoneController,
-            AppLocalizations.of(context)!.phoneNumber,
-            false,
-            mediaWidth - 64,
+          CustomTextFieldWithLabel(
+            controller: phoneController,
+            label: AppLocalizations.of(context)!.phoneNumber,
+            readOnly: false,
+            width: mediaWidth - 64,
           ),
-          _textField(
-            context,
-            emailController,
-            AppLocalizations.of(context)!.email,
-            MyJPJAccountManager().type == userType.staff ? false : true,
-            mediaWidth - 64,
+          CustomTextFieldWithLabel(
+            controller: emailController,
+            label: AppLocalizations.of(context)!.email,
+            readOnly:
+                MyJPJAccountManager().type == userType.staff ? false : true,
+            width: mediaWidth - 64,
           ),
-          _textField(
-            context,
-            addressController,
-            AppLocalizations.of(context)!.address,
-            true,
-            mediaWidth - 64,
+          CustomTextFieldWithLabel(
+            controller: addressController,
+            label: AppLocalizations.of(context)!.address,
+            readOnly: true,
+            width: mediaWidth - 64,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Expanded(
                 flex: 5,
-                child: _textField(
-                  context,
-                  districtController,
-                  AppLocalizations.of(context)!.district,
-                  true,
-                  mediaWidth,
+                child: CustomTextFieldWithLabel(
+                  controller: districtController,
+                  label: AppLocalizations.of(context)!.district,
+                  readOnly: true,
+                  width: mediaWidth,
                 ),
               ),
               Expanded(
                 flex: 5,
-                child: _textField(
-                  context,
-                  stateController,
-                  AppLocalizations.of(context)!.state,
-                  true,
-                  mediaWidth,
+                child: CustomTextFieldWithLabel(
+                  controller: stateController,
+                  label: AppLocalizations.of(context)!.state,
+                  readOnly: true,
+                  width: mediaWidth,
                 ),
               ),
             ],
           ),
-          _textField(
-            context,
-            postcodeController,
-            AppLocalizations.of(context)!.postcode,
-            true,
-            ((Responsive().isMobile(context) ? mediaWidth : 400) / 2) - 64,
+          CustomTextFieldWithLabel(
+            controller: postcodeController,
+            label: AppLocalizations.of(context)!.postcode,
+            readOnly: true,
+            width:
+                ((Responsive().isMobile(context) ? mediaWidth : 400) / 2) - 64,
           ),
           const SizedBox(height: vPaddingXL),
           CustomButton(
@@ -148,35 +141,6 @@ class ProfileUpdate extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-
-  Widget _textField(
-    BuildContext context,
-    TextEditingController controller,
-    String label,
-    bool readOnly,
-    double width,
-  ) {
-    return Column(
-      children: [
-        CustomNoTrailingLabel(
-          label: label,
-          fontSize: 15,
-          align: TextAlign.start,
-          width: width,
-        ),
-        const SizedBox(height: vPaddingS),
-        TextFieldForm(
-          textColor: readOnly ? Colors.grey : Colors.black,
-          textController: controller,
-          readOnly: readOnly,
-          inputType: TextInputType.emailAddress,
-          label: label,
-          width: width,
-        ),
-        const SizedBox(height: vPaddingM),
-      ],
     );
   }
 }
