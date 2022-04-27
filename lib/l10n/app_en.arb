@@ -224,5 +224,7 @@
     "yes":"YA",
     "no":"TIDAK",
     "areYouSureCancelQueue":"Are you sure you want\nto cancel your number?",
+    "day":"Day",
+    "closed":"Close",
     "pleaseWait": "Please wait..."
 }

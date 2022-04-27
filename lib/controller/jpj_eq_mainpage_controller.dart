@@ -1,17 +1,14 @@
-import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:jpj_info/controller/alert_controller.dart';
 import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/controller/bottom_nav_controller.dart';
+import 'package:jpj_info/controller/jpj_eq_operating_hour_controller.dart';
 import 'package:jpj_info/helper/qr_scanner.dart';
-import 'package:jpj_info/model/ehadir_event_info.dart';
 import 'package:jpj_info/model/jpj_location_response.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
-import 'package:jpj_info/view/eHadirConfirmedAttendance/ehadir_confirmed_attendance.dart';
 import 'package:jpj_info/view/jpjEqMainPage/jpj_eq_mainpage.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -80,22 +77,13 @@ class _JpjEqMainPageController extends State<JpjEqMainPageController> {
     Navigator.pop(context);
     try {
       // String? qrData = barcode.rawValue;
-      // todo: use qrData to query the event information
-      String response = await rootBundle.loadString('json/ehadir_event.json');
-      final data = await json.decode(response);
-      EHadirEventInfo eventInfo = EHadirEventInfo.fromJson(data);
+      // todo: use qrData to query the location information
       // todo: parse Data and move to next screen
       Navigator.push(
         context,
         MaterialPageRoute(
           builder: (context) {
-            return EhadirConfirmAttendance(
-              eventName: eventInfo.eventName!,
-              vanue: eventInfo.venue!,
-              date: eventInfo.date!,
-              startTime: eventInfo.startTime!,
-              endTime: eventInfo.endTime!,
-            );
+            return const JpjEqOperatingHourController();
           },
         ),
       );

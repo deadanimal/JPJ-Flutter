@@ -191,7 +191,7 @@
     "erase": "Padam",
     "event": "Aktiviti",
     "welcomeTo": "Selamat Datang Ke",
-    "jpjEqTitle": "SISTEM NOMBOT GILIRAN &\nTEMUJANJU BERSEPADU JPJ\n(JPJeQ)",
+    "jpjEqTitle": "SISTEM NOMBOR GILIRAN &\nTEMUJANJU BERSEPADU JPJ\n(JPJeQ)",
     "getLocation": "Dapatkan Lokasi",
     "scanQrInPermittedTime":"Sila scan kod QR didalam waktu operasi yang dibenarkan",
     "start":"Mula",
@@ -224,5 +224,7 @@
     "yes":"YA",
     "no":"TIDAK",
     "areYouSureCancelQueue":"Anda pasti untuk membatalkan\nno giliran anda?",
+    "day":"Hari",
+    "closed":"Tutup",
     "pleaseWait": "Sila Tunggu..."
 }
