@@ -5,18 +5,22 @@ class CustomButton extends StatelessWidget {
   const CustomButton({
     Key? key,
     this.label = "",
-    required this.width,
+    this.width,
     required this.onPressed,
     this.decoration,
+    this.leading = const SizedBox(),
+    this.trailing = const SizedBox(),
     this.textColor = Colors.white,
     this.textSize = 17,
   }) : super(key: key);
   final String label;
-  final double width;
+  final double? width;
   final VoidCallback onPressed;
   final Decoration? decoration;
   final Color textColor;
   final double textSize;
+  final Widget leading;
+  final Widget trailing;
 
   @override
   Widget build(BuildContext context) {
@@ -35,9 +39,10 @@ class CustomButton extends StatelessWidget {
               onPressed: () {
                 onPressed();
               },
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  leading,
                   SizedBox(
                     child: Text(
                       label,
@@ -50,6 +55,7 @@ class CustomButton extends StatelessWidget {
                       ),
                     ),
                   ),
+                  trailing,
                 ],
               ),
             ),

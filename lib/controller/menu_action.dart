@@ -16,6 +16,7 @@ import 'package:jpj_info/controller/ehadir_menu_controller.dart';
 import 'package:jpj_info/controller/ezypay_controller.dart';
 import 'package:jpj_info/controller/feedback_controller.dart';
 import 'package:jpj_info/controller/jpj_directory_controller.dart';
+import 'package:jpj_info/controller/jpj_eq_mainpage_controller.dart';
 import 'package:jpj_info/controller/jpj_eq_menu_controller.dart';
 import 'package:jpj_info/controller/latest_registration_number_controller.dart';
 import 'package:jpj_info/controller/messages_controller.dart';
@@ -334,6 +335,17 @@ void eHadirComitteePage(BuildContext context) {
     MaterialPageRoute(
       builder: (context) {
         return const EhadirComitteePageController();
+      },
+    ),
+  );
+}
+
+void jpjEqMainPage(BuildContext context) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) {
+        return const JpjEqMainPageController();
       },
     ),
   );
