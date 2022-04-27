@@ -74,7 +74,7 @@ class _EhadirMainPageController extends State<EhadirMainPageController> {
   Future<void> _qrScanCallback(Barcode barcode) async {
     Navigator.pop(context);
     try {
-      String? qrData = barcode.rawValue;
+      // String? qrData = barcode.rawValue;
       // todo: use qrData to query the event information
       String response = await rootBundle.loadString('json/ehadir_event.json');
       final data = await json.decode(response);

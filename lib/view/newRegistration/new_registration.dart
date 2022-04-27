@@ -11,7 +11,7 @@ import 'package:jpj_info/view/template/template_header.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class NewRegistration extends StatelessWidget {
-  NewRegistration({
+  const NewRegistration({
     Key? key,
     required this.emailController,
     this.submitCB,
@@ -21,13 +21,11 @@ class NewRegistration extends StatelessWidget {
 
   final TextEditingController emailController;
   final void Function(BuildContext)? submitCB;
-  late String pageTitle;
   final Function(bool?)? tncCheckedCB;
   final Function() readTnc;
 
   @override
   Widget build(BuildContext context) {
-    pageTitle = AppLocalizations.of(context)!.regNewAcc;
     mediaWidth = (MediaQuery.of(context).size.width);
     mediaHeight = (MediaQuery.of(context).size.height);
     return SizedBox(
@@ -42,7 +40,7 @@ class NewRegistration extends StatelessWidget {
       child: Column(
         children: [
           TemplateHeader(
-            headerTitle: pageTitle,
+            headerTitle: AppLocalizations.of(context)!.regNewAcc,
           ),
           const SizedBox(height: vPaddingXL),
           Container(

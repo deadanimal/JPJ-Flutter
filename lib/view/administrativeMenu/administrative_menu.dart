@@ -6,7 +6,6 @@ import 'package:jpj_info/view/common/spacing.dart';
 import 'package:jpj_info/helper/menu_list.dart';
 import 'package:jpj_info/view/template/custom_wide_button.dart';
 import 'package:jpj_info/view/template/template_header.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AdministrativeMenu extends StatelessWidget {
   const AdministrativeMenu({Key? key}) : super(key: key);

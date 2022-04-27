@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jpj_info/model/page_size.dart';
 import 'package:jpj_info/view/common/background.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/common/spacing.dart';
@@ -9,25 +10,20 @@ import 'package:jpj_info/view/form/tooltip_info.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ForgotPasswordVerified extends StatelessWidget {
-  ForgotPasswordVerified({
+  const ForgotPasswordVerified({
     Key? key,
-    this.screenHeight,
-    this.screenWidth,
     required this.passwordController,
     required this.pwdConfirmController,
     this.submitCB,
   }) : super(key: key);
-
-  double? screenHeight;
-  double? screenWidth;
   final TextEditingController passwordController;
   final TextEditingController pwdConfirmController;
   final void Function(BuildContext)? submitCB;
 
   @override
   Widget build(BuildContext context) {
-    screenWidth = (MediaQuery.of(context).size.width);
-    screenHeight = (MediaQuery.of(context).size.height);
+    mediaWidth = (MediaQuery.of(context).size.width);
+    mediaHeight = (MediaQuery.of(context).size.height);
     return Container(
       height: double.infinity,
       width: double.infinity,
@@ -41,8 +37,8 @@ class ForgotPasswordVerified extends StatelessWidget {
   Widget _foreground(context) {
     return Container(
       constraints: const BoxConstraints(maxWidth: 400),
-      width: screenWidth,
-      height: screenHeight! / 2,
+      width: mediaWidth,
+      height: mediaHeight / 2,
       child: Column(
         children: [
           CustomLabel(
@@ -76,19 +72,19 @@ class ForgotPasswordVerified extends StatelessWidget {
             textController: passwordController,
             obscureText: true,
             label: AppLocalizations.of(context)!.newPassword,
-            width: screenWidth! - 64,
+            width: mediaWidth - 64,
           ),
           const SizedBox(height: vPaddingM),
           TextFieldForm(
             textController: pwdConfirmController,
             obscureText: true,
             label: AppLocalizations.of(context)!.verifyNewPassword,
-            width: screenWidth! - 64,
+            width: mediaWidth - 64,
           ),
           const SizedBox(height: vPaddingXL),
           const SizedBox(height: vPaddingXL),
           CustomButton(
-            width: screenWidth! - 64,
+            width: mediaWidth - 64,
             onPressed: () {
               if (submitCB != null) {
                 submitCB!(context);

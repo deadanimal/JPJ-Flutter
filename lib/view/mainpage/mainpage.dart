@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:jpj_info/controller/bottom_nav_controller.dart';
 import 'package:jpj_info/helper/account_manager.dart';
 import 'package:jpj_info/model/mainpage_icon.dart';
 import 'package:jpj_info/model/page_size.dart';
@@ -7,10 +6,9 @@ import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/common/spacing.dart';
 import 'package:jpj_info/view/common/text_style.dart';
 import 'package:jpj_info/view/mainpage/component/custom_tab.dart';
-import 'package:jpj_info/view/mainpage/component/favButton.dart';
+import 'package:jpj_info/view/mainpage/component/fav_button.dart';
 import 'package:jpj_info/view/mainpage/component/services.dart';
 import 'package:jpj_info/view/mainpage/component/staff_menu.dart';
-import 'component/button.dart';
 import '../../helper/menu_list.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 

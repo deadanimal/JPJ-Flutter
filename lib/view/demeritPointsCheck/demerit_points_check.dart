@@ -5,7 +5,7 @@ import 'package:jpj_info/view/template/template_header.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class DemeritPointsCheck extends StatelessWidget {
-  DemeritPointsCheck({
+  const DemeritPointsCheck({
     Key? key,
     required this.textController,
     required this.dropdownList,
@@ -14,27 +14,25 @@ class DemeritPointsCheck extends StatelessWidget {
     required this.selectionCallback,
   }) : super(key: key);
 
-  late String pageTitle;
-  late TextEditingController textController;
-  late List<String> dropdownList;
-  late String dropdownValue;
-  late void Function(BuildContext) submitCallback;
-  late Function selectionCallback;
+  final TextEditingController textController;
+  final List<String> dropdownList;
+  final String dropdownValue;
+  final void Function(BuildContext) submitCallback;
+  final Function selectionCallback;
 
   @override
   Widget build(BuildContext context) {
-    pageTitle = AppLocalizations.of(context)!.demeritNPoints;
     mediaWidth = (MediaQuery.of(context).size.width);
     mediaHeight = (MediaQuery.of(context).size.height);
-    return showDemeritPointsPage();
+    return showDemeritPointsPage(context);
   }
 
-  Widget showDemeritPointsPage() {
+  Widget showDemeritPointsPage(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
         children: [
           TemplateHeader(
-            headerTitle: pageTitle,
+            headerTitle: AppLocalizations.of(context)!.demeritNPoints,
           ),
           _demeritPointForm(),
         ],

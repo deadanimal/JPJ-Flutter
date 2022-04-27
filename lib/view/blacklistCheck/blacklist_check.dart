@@ -5,7 +5,7 @@ import 'package:jpj_info/view/template/template_header.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class BlacklistCheck extends StatelessWidget {
-  BlacklistCheck({
+  const BlacklistCheck({
     Key? key,
     required this.dropdownList,
     required this.dropdownValue,
@@ -15,17 +15,15 @@ class BlacklistCheck extends StatelessWidget {
     required this.selectionCallback,
   }) : super(key: key);
 
-  late List<String> dropdownList;
-  late String dropdownValue;
-  late TextEditingController nric;
-  late TextEditingController plateNumber;
-  late String pageTitle;
-  late void Function(BuildContext) submitCallback;
-  late Function selectionCallback;
+  final List<String> dropdownList;
+  final String dropdownValue;
+  final TextEditingController nric;
+  final TextEditingController plateNumber;
+  final void Function(BuildContext) submitCallback;
+  final Function selectionCallback;
 
   @override
   Widget build(BuildContext context) {
-    pageTitle = AppLocalizations.of(context)!.blacklist;
     mediaWidth = (MediaQuery.of(context).size.width);
     mediaHeight = (MediaQuery.of(context).size.height);
     return showBlacklistPage(context);
@@ -36,7 +34,7 @@ class BlacklistCheck extends StatelessWidget {
       child: Column(
         children: [
           TemplateHeader(
-            headerTitle: pageTitle,
+            headerTitle: AppLocalizations.of(context)!.blacklist,
           ),
           Expanded(
             child: _blacklistForm(context),

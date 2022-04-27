@@ -3,7 +3,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:jpj_info/controller/administrative_menu_controller.dart';
 import 'package:jpj_info/controller/login_controller.dart';
 import 'package:jpj_info/controller/mainpage_controller.dart';
-import 'package:jpj_info/controller/online_transaction_controller.dart';
 import 'package:jpj_info/controller/public_menu_controller.dart';
 import 'package:jpj_info/helper/account_manager.dart';
 import 'package:jpj_info/view/bottomBar/bottom_bar.dart';
@@ -20,10 +19,10 @@ class BottomNavController extends StatelessWidget {
 
   late List<void Function(BuildContext)> callbackList;
   late List<BottomNavigationBarItem> menuList;
-  bool darkTheme;
-  bool inHome;
-  bool inMenu;
-  bool inProfile;
+  late bool darkTheme;
+  late bool inHome;
+  late bool inMenu;
+  late bool inProfile;
 
   @override
   Widget build(BuildContext context) {

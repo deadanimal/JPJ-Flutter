@@ -4,7 +4,7 @@ import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 class MenuItem {
   String? menu;
   ImageProvider? icon;
-  var cbFunc;
+  late Function cbFunc;
   late bool needLoggedIn;
 
   MenuItem(String? menuText, String? iconPath, fx,

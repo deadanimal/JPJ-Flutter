@@ -30,7 +30,7 @@ class _TermsAndConditionsController
         appBar: const AppBarController(
           decor: customGradient,
         ),
-        body: TermsAndConditions(),
+        body: const TermsAndConditions(),
         bottomNavigationBar: BottomNavController(),
       ),
     );

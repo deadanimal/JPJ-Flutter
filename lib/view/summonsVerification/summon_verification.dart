@@ -10,11 +10,11 @@ import 'package:jpj_info/view/template/template_header.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SummonsVerification extends StatelessWidget {
-  SummonsVerification({
+  const SummonsVerification({
     Key? key,
     required this.submitCallback,
   }) : super(key: key);
-  late void Function(BuildContext) submitCallback;
+  final void Function(BuildContext) submitCallback;
 
   @override
   Widget build(BuildContext context) {

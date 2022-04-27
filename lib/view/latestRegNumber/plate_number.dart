@@ -9,7 +9,7 @@ import 'package:jpj_info/view/template/template_header.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class PlateNumber extends StatelessWidget {
-  PlateNumber({
+  const PlateNumber({
     Key? key,
     required this.dropdownList,
     required this.dropdownValue,
@@ -19,17 +19,15 @@ class PlateNumber extends StatelessWidget {
     required this.flagIcon,
   }) : super(key: key);
 
-  late Iterable<String> dropdownList;
-  late String dropdownValue;
-  late String pageTitle;
-  late String? flagIcon;
-  late void Function(BuildContext) submitCallback;
-  late Function selectionCallback;
+  final Iterable<String> dropdownList;
+  final String dropdownValue;
+  final String? flagIcon;
+  final void Function(BuildContext) submitCallback;
+  final Function selectionCallback;
   final ResultStyle2? data;
 
   @override
   Widget build(BuildContext context) {
-    pageTitle = AppLocalizations.of(context)!.latestNNumber;
     mediaWidth = (MediaQuery.of(context).size.width);
     mediaHeight = (MediaQuery.of(context).size.height);
     return showNewPlatePage(context);
@@ -40,7 +38,7 @@ class PlateNumber extends StatelessWidget {
       child: Column(
         children: [
           TemplateHeader(
-            headerTitle: pageTitle,
+            headerTitle: AppLocalizations.of(context)!.latestNNumber,
           ),
           Expanded(
             child: _newPlateForm(context),

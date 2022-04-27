@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 
 class CustomCheckbox extends StatefulWidget {
-  CustomCheckbox({
+  const CustomCheckbox({
     Key? key,
     this.stateChangeCb,
     this.shadow = const BoxShadow(
@@ -13,10 +13,10 @@ class CustomCheckbox extends StatefulWidget {
     this.bgColor = Colors.white,
     this.size = 24,
   }) : super(key: key);
-  void Function(bool?)? stateChangeCb;
-  late BoxShadow shadow;
-  late Color bgColor;
-  late double size;
+  final void Function(bool?)? stateChangeCb;
+  final BoxShadow shadow;
+  final Color bgColor;
+  final double size;
 
   @override
   State<CustomCheckbox> createState() => _CustomCheckboxState();

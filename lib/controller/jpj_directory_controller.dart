@@ -114,7 +114,7 @@ class _JpjDirectoryController extends State<JpjDirectoryController> {
           jsonDecode(response.body),
         );
         if (respond.data != null && respond.data!.isNotEmpty) {
-          AssetImage flagIcon = AssetImage("");
+          AssetImage flagIcon = const AssetImage("");
           String stateName = "";
           for (var element in locationInputInfo) {
             if (element.id == locationId) {

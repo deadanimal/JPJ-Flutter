@@ -10,7 +10,6 @@ import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/eAduanSubmit/eaduan_submit.dart';
 import 'package:jpj_info/view/eaduanForm/eaduan_form.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 enum eaduanItem {
   redLight,
@@ -136,7 +135,8 @@ class _EaduanFormController extends State<EaduanFormController> {
     );
   }
 
-  Future<void> _saveToDraftCallback() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-  }
+  // Future<void> _saveToDraftCallback() async {
+  //   // todo: save to local storage
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  // }
 }

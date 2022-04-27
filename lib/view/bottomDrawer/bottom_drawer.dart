@@ -7,15 +7,15 @@ import 'package:jpj_info/view/common/spacing.dart';
 import 'package:jpj_info/view/common/text_style.dart';
 
 class CustomBottomDrawer extends StatelessWidget {
-  CustomBottomDrawer({
+  const CustomBottomDrawer({
     Key? key,
     required this.inboxCallback,
     required this.shareAppCallback,
     required this.logoutCallback,
   }) : super(key: key);
-  late Function(BuildContext) inboxCallback;
-  late Function(BuildContext) shareAppCallback;
-  late Function(BuildContext) logoutCallback;
+  final Function(BuildContext) inboxCallback;
+  final Function(BuildContext) shareAppCallback;
+  final Function(BuildContext) logoutCallback;
 
   @override
   Widget build(BuildContext context) {

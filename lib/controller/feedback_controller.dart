@@ -56,12 +56,6 @@ class _FeedbackController extends State<FeedbackController> {
     );
   }
 
-  void _setSelection(String? newSelection) {
-    setState(() {
-      dropdownValue = newSelection!;
-    });
-  }
-
   Future<void> _submitCallback(BuildContext context) async {
     var index = dropdownList.indexWhere((element) => element == dropdownValue);
     SiteConfig conf = SiteConfig();

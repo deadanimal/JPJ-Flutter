@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jpj_info/model/page_size.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/common/spacing.dart';
 import 'package:jpj_info/view/form/custom_button.dart';
@@ -7,10 +8,8 @@ import 'package:jpj_info/view/form/text_field.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Login extends StatelessWidget {
-  Login({
+  const Login({
     Key? key,
-    this.screenHeight,
-    this.screenWidth,
     required this.userId,
     required this.userPwd,
     this.newAccountCB,
@@ -19,8 +18,6 @@ class Login extends StatelessWidget {
     this.forgotPasswordCB,
   }) : super(key: key);
 
-  double? screenHeight;
-  double? screenWidth;
   final TextEditingController userId;
   final TextEditingController userPwd;
   final void Function(BuildContext)? newAccountCB;
@@ -30,12 +27,12 @@ class Login extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    screenWidth = (MediaQuery.of(context).size.width);
-    screenHeight = (MediaQuery.of(context).size.height);
+    mediaWidth = (MediaQuery.of(context).size.width);
+    mediaHeight = (MediaQuery.of(context).size.height);
     return Material(
       child: Container(
-        height: screenHeight,
-        width: screenWidth,
+        height: mediaHeight,
+        width: mediaWidth,
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage("images/login_bg.png"),
@@ -57,7 +54,7 @@ class Login extends StatelessWidget {
   Widget _foreground(context) {
     return Container(
       constraints: const BoxConstraints(maxWidth: 400),
-      width: screenWidth,
+      width: mediaWidth,
       child: Column(
         children: [
           _logo(context),
@@ -73,7 +70,7 @@ class Login extends StatelessWidget {
     return Center(
       child: Image(
         image: const AssetImage("images/myjpj_logo_large.png"),
-        width: screenWidth! / 3,
+        width: mediaWidth / 3,
       ),
     );
   }
@@ -93,18 +90,18 @@ class Login extends StatelessWidget {
           TextFieldForm(
             textController: userId,
             label: AppLocalizations.of(context)!.userID,
-            width: screenWidth! - 64,
+            width: mediaWidth - 64,
           ),
           const SizedBox(height: 8),
           TextFieldForm(
             obscureText: true,
             textController: userPwd,
             label: AppLocalizations.of(context)!.password,
-            width: screenWidth! - 64,
+            width: mediaWidth - 64,
           ),
           Container(
             alignment: Alignment.centerRight,
-            width: screenWidth! - 64,
+            width: mediaWidth - 64,
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: InkWell(
@@ -134,7 +131,7 @@ class Login extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           CustomButton(
-            width: screenWidth! - 64,
+            width: mediaWidth - 64,
             label: AppLocalizations.of(context)!.logIn,
             decoration: orangeGradientBtnDeco,
             onPressed: () {
@@ -185,7 +182,7 @@ class Login extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           CustomButton(
-            width: screenWidth! - 64,
+            width: mediaWidth - 64,
             label: AppLocalizations.of(context)!.registerNewAccount,
             decoration: whiteFadedBtnDeco,
             textColor: const Color(themeOrange),

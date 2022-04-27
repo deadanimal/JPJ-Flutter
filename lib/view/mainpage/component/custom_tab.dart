@@ -4,8 +4,8 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 
 class CustomTab extends StatelessWidget {
-  CustomTab({Key? key, required this.tabController}) : super(key: key);
-  late TabController tabController;
+  const CustomTab({Key? key, required this.tabController}) : super(key: key);
+  final TabController tabController;
 
   @override
   Widget build(BuildContext context) {

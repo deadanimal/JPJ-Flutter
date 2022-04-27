@@ -32,7 +32,7 @@ class CustomWideButton extends StatelessWidget {
             onTap: () {
               if (item.needLoggedIn && !MyJPJAccountManager().isLoggedIn) {
               } else {
-                item.cbFunc!(context);
+                item.cbFunc(context);
               }
             },
             child: Row(

@@ -18,7 +18,7 @@ import 'package:jpj_info/controller/feedback_controller.dart';
 import 'package:jpj_info/controller/jpj_directory_controller.dart';
 import 'package:jpj_info/controller/jpj_eq_menu_controller.dart';
 import 'package:jpj_info/controller/latest_registration_number_controller.dart';
-import 'package:jpj_info/controller/messagesController.dart';
+import 'package:jpj_info/controller/messages_controller.dart';
 import 'package:jpj_info/controller/online_transaction_controller.dart';
 import 'package:jpj_info/controller/profile_update_controller.dart';
 import 'package:jpj_info/controller/road_tax_controller.dart';

@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 
 class BottomBar extends StatelessWidget {
-  BottomBar({
+  const BottomBar({
     Key? key,
     required this.tappedCallback,
     required this.items,
     required this.bgColor,
   }) : super(key: key);
 
-  void Function(int index, BuildContext context) tappedCallback;
-  List<BottomNavigationBarItem> items;
-  Color bgColor;
+  final void Function(int index, BuildContext context) tappedCallback;
+  final List<BottomNavigationBarItem> items;
+  final Color bgColor;
 
   @override
   Widget build(BuildContext context) {

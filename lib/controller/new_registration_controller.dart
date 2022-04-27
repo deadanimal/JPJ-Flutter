@@ -67,7 +67,8 @@ class _NewRegistrationController extends State<NewRegistrationController> {
   }
 
   void _onCheckboxChanged(bool? checked) {
-    print(checked);
+    // print(checked);
+    // todo: check for checkbox tick before submit
   }
 
   void _moreTnc() {

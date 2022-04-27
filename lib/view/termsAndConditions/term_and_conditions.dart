@@ -6,15 +6,12 @@ import 'package:jpj_info/view/template/template_header.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TermsAndConditions extends StatelessWidget {
-  TermsAndConditions({
+  const TermsAndConditions({
     Key? key,
   }) : super(key: key);
 
-  late String pageTitle;
-
   @override
   Widget build(BuildContext context) {
-    pageTitle = AppLocalizations.of(context)!.tncN;
     mediaWidth = (MediaQuery.of(context).size.width);
     mediaHeight = (MediaQuery.of(context).size.height);
     return showFeedbackPage(context);
@@ -25,15 +22,15 @@ class TermsAndConditions extends StatelessWidget {
       child: Column(
         children: [
           TemplateHeader(
-            headerTitle: pageTitle,
+            headerTitle: AppLocalizations.of(context)!.tncN,
           ),
-          _TermsAndConditions(context),
+          _termsAndConditions(context),
         ],
       ),
     );
   }
 
-  Widget _TermsAndConditions(BuildContext context) {
+  Widget _termsAndConditions(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(vPaddingXL),
       child: Container(
@@ -58,7 +55,7 @@ class TermsAndConditions extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(vPaddingXL),
               child: Text(
-                pageTitle = AppLocalizations.of(context)!.tncLong,
+                AppLocalizations.of(context)!.tncLong,
                 textAlign: TextAlign.justify,
                 style: const TextStyle(
                   color: Color(0xff8b9eb0),

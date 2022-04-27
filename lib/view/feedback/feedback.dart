@@ -9,19 +9,17 @@ import 'package:jpj_info/view/template/template_header.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class FeedbackForm extends StatelessWidget {
-  FeedbackForm({
+  const FeedbackForm({
     Key? key,
     required this.textController,
     required this.submitCallback,
   }) : super(key: key);
 
-  late String pageTitle;
-  late TextEditingController textController;
-  late void Function(BuildContext) submitCallback;
+  final TextEditingController textController;
+  final void Function(BuildContext) submitCallback;
 
   @override
   Widget build(BuildContext context) {
-    pageTitle = AppLocalizations.of(context)!.feedback;
     mediaWidth = (MediaQuery.of(context).size.width);
     mediaHeight = (MediaQuery.of(context).size.height);
     return showFeedbackPage(context);
@@ -32,7 +30,7 @@ class FeedbackForm extends StatelessWidget {
       child: Column(
         children: [
           TemplateHeader(
-            headerTitle: pageTitle,
+            headerTitle: AppLocalizations.of(context)!.feedback,
           ),
           _feedbackForm(context),
         ],

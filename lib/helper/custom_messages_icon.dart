@@ -6,8 +6,8 @@ class CustomMessagesIcon {
   static const _kFontFam = 'CustomMessagesIcon';
   static const String? _kFontPkg = null;
 
-  static const IconData mark_unread_icon =
+  static const IconData markUnreadIcon =
       IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData delete_msg_icon =
+  static const IconData deleteMsgIcon =
       IconData(0xe801, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }

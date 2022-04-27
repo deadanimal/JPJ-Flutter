@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jpj_info/model/page_size.dart';
 import 'package:jpj_info/view/common/background.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/common/spacing.dart';
@@ -8,18 +9,13 @@ import 'package:jpj_info/view/form/text_field.dart';
 import 'package:jpj_info/view/form/tooltip_info.dart';
 
 class ChangePassword extends StatelessWidget {
-  ChangePassword({
+  const ChangePassword({
     Key? key,
-    this.screenHeight,
-    this.screenWidth,
     required this.passwordController,
     required this.pwdConfirmController,
     required this.oldpasswordController,
     this.submitCB,
   }) : super(key: key);
-
-  double? screenHeight;
-  double? screenWidth;
   final TextEditingController oldpasswordController;
   final TextEditingController passwordController;
   final TextEditingController pwdConfirmController;
@@ -27,8 +23,8 @@ class ChangePassword extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    screenWidth = (MediaQuery.of(context).size.width);
-    screenHeight = (MediaQuery.of(context).size.height);
+    mediaWidth = (MediaQuery.of(context).size.width);
+    mediaHeight = (MediaQuery.of(context).size.height);
     return Container(
       height: double.infinity,
       width: double.infinity,
@@ -42,8 +38,8 @@ class ChangePassword extends StatelessWidget {
   Widget _foreground(context) {
     return Container(
       constraints: const BoxConstraints(maxWidth: 400),
-      width: screenWidth,
-      height: screenHeight! / 2,
+      width: mediaWidth,
+      height: mediaHeight / 2,
       child: Column(
         children: [
           CustomLabel(
@@ -76,7 +72,7 @@ class ChangePassword extends StatelessWidget {
             textController: oldpasswordController,
             obscureText: true,
             label: "Kata Laluan Lama",
-            width: screenWidth! - 64,
+            width: mediaWidth - 64,
           ),
           const SizedBox(height: vPaddingM),
           const SizedBox(height: vPaddingM),
@@ -84,19 +80,19 @@ class ChangePassword extends StatelessWidget {
             textController: passwordController,
             obscureText: true,
             label: "Kata Laluan Baru",
-            width: screenWidth! - 64,
+            width: mediaWidth - 64,
           ),
           const SizedBox(height: vPaddingM),
           TextFieldForm(
             textController: pwdConfirmController,
             obscureText: true,
             label: "Pengesahan Kata Laluan Baru",
-            width: screenWidth! - 64,
+            width: mediaWidth - 64,
           ),
           const SizedBox(height: vPaddingXL),
           const SizedBox(height: vPaddingXL),
           CustomButton(
-            width: screenWidth! - 64,
+            width: mediaWidth - 64,
             onPressed: () {
               if (submitCB != null) {
                 submitCB!(context);
