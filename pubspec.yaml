@@ -177,6 +177,10 @@ flutter:
     - images/icon/ehadir_scan_qr_icon.png
     - json/ehadir_event.json
     - json/ehadir_activity_list.json
+    - images/jpj_flag.png
+    - images/jpjeq_cancel_number.png
+    - images/jpjeq_people_at_counter.png
+    - images/jpjeq_people_queue.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
