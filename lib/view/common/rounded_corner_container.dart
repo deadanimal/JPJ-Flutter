@@ -8,6 +8,7 @@ class RoundedCornerContainer extends StatelessWidget {
     this.height,
     this.child,
     this.constraints,
+    this.gradient,
     this.cornerRadius = 20,
     this.color = Colors.white,
   }) : super(key: key);
@@ -15,8 +16,9 @@ class RoundedCornerContainer extends StatelessWidget {
   final double? height;
   final double cornerRadius;
   final Widget? child;
-  final Color color;
+  final Color? color;
   final BoxConstraints? constraints;
+  final Gradient? gradient;
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +35,7 @@ class RoundedCornerContainer extends StatelessWidget {
             offset: Offset(0, 4),
           ),
         ],
+        gradient: gradient,
         color: color,
       ),
       child: child,

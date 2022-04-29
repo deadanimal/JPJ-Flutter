@@ -13,9 +13,11 @@ class JpjEqMainPage extends StatelessWidget {
     required this.qrData,
     required this.scanQrBtnCallback,
     required this.branchData,
+    required this.backBtnCallback,
   }) : super(key: key);
   final String qrData;
   final void Function() scanQrBtnCallback;
+  final void Function(BuildContext) backBtnCallback;
   final JpjLocationResponseData branchData;
 
   @override
@@ -118,7 +120,7 @@ class JpjEqMainPage extends StatelessWidget {
       children: [
         CustomButton(
           width: mediaWidth - 128,
-          onPressed: () {},
+          onPressed: () => backBtnCallback(context),
           decoration: whiteBtnDeco,
           label: AppLocalizations.of(context)!.getLocation,
           textColor: const Color(btnColor),

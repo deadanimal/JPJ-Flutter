@@ -5,8 +5,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:jpj_info/controller/alert_controller.dart';
 import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/controller/bottom_nav_controller.dart';
+import 'package:jpj_info/controller/jpj_eq_available_service_controller.dart';
 import 'package:jpj_info/controller/jpj_eq_operating_hour_controller.dart';
-import 'package:jpj_info/helper/qr_scanner.dart';
 import 'package:jpj_info/model/jpj_location_response.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/jpjEqMainPage/jpj_eq_mainpage.dart';
@@ -49,6 +49,7 @@ class _JpjEqMainPageController extends State<JpjEqMainPageController> {
           // todo: use actual qr data
           qrData: "1231321654654545454848484777765465465432132165484797",
           scanQrBtnCallback: _scanQrBtnCallback,
+          backBtnCallback: _backBtnCallback,
           branchData: JpjLocationResponseData(
               id: "1",
               address: "Jalan Teknokrat 5, Cyberjaya",
@@ -61,16 +62,18 @@ class _JpjEqMainPageController extends State<JpjEqMainPageController> {
   }
 
   void _scanQrBtnCallback() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) {
-          return QrScanner(
-            qrScanCallback: _qrScanCallback,
-          );
-        },
-      ),
-    );
+    //todo: for development use, tobe removed and enable the qr code
+    _qrScanCallback(Barcode(rawValue: ""));
+    // Navigator.push(
+    //   context,
+    //   MaterialPageRoute(
+    //     builder: (context) {
+    //       return QrScanner(
+    //         qrScanCallback: _qrScanCallback,
+    //       );
+    //     },
+    //   ),
+    // );
   }
 
   Future<void> _qrScanCallback(Barcode barcode) async {
@@ -95,5 +98,18 @@ class _JpjEqMainPageController extends State<JpjEqMainPageController> {
         },
       );
     }
+  }
+
+  void _backBtnCallback(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) {
+          return const JpjEqAvailableServiceController();
+        },
+      ),
+    );
+    // todo: this is to navigate to available service, change to pop
+    // Navigator.pop(context);
   }
 }
