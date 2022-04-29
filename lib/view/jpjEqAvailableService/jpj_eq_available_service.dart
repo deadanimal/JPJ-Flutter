@@ -11,12 +11,12 @@ import 'package:jpj_info/view/jpjEqAvailableService/component/expanded_card.dart
 class JpjEqAvailableService extends StatelessWidget {
   const JpjEqAvailableService({
     Key? key,
-    required this.backBtnCallback,
+    required this.submitBtnCallback,
     required this.services,
     required this.selectionChangeCallback,
   }) : super(key: key);
 
-  final Function(BuildContext) backBtnCallback;
+  final Function(BuildContext) submitBtnCallback;
   final List<JpjEqService> services;
   final Function(JpjEqService, bool) selectionChangeCallback;
 
@@ -81,7 +81,7 @@ class JpjEqAvailableService extends StatelessWidget {
   Widget _submitBtn(BuildContext context) {
     return CustomButton(
       onPressed: () {
-        backBtnCallback(context);
+        submitBtnCallback(context);
       },
       decoration: navyGradientBtnDeco,
       label: AppLocalizations.of(context)!.submit,

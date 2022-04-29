@@ -28,7 +28,6 @@ class PromptController {
                 CustomButton(
                   onPressed: () {
                     okCB();
-                    Navigator.of(context).pop();
                   },
                   decoration: navyGradientBtnDecoSquare,
                   label: 'OK',
@@ -36,7 +35,6 @@ class PromptController {
                 CustomButton(
                   onPressed: () {
                     cancelCB();
-                    Navigator.of(context).pop();
                   },
                   decoration: whiteBtnDecoSquare,
                   textColor: const Color(themeNavy),

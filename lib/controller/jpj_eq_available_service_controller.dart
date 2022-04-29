@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/controller/bottom_nav_controller.dart';
+import 'package:jpj_info/controller/jpj_eq_queue_info_controller.dart';
 import 'package:jpj_info/model/jpj_eq_service.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/jpjEqAvailableService/jpj_eq_available_service.dart';
@@ -45,7 +46,7 @@ class _JpjEqAvailableServiceController
         ),
         body: JpjEqAvailableService(
           services: services,
-          backBtnCallback: _backBtnCallback,
+          submitBtnCallback: _submitBtnCallback,
           selectionChangeCallback: _selectionChange,
         ),
         bottomNavigationBar: BottomNavController(),
@@ -53,8 +54,15 @@ class _JpjEqAvailableServiceController
     );
   }
 
-  void _backBtnCallback(BuildContext context) {
-    Navigator.pop(context);
+  void _submitBtnCallback(BuildContext context) {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) {
+          return const JpjEqQueueInfoController();
+        },
+      ),
+    );
   }
 
   void _selectionChange(JpjEqService selectedService, bool expanded) {

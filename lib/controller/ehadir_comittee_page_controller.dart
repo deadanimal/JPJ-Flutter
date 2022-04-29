@@ -86,8 +86,11 @@ class _EhadirComitteePageController
           "?",
       () {
         _confirmErase(event);
+        Navigator.of(context).pop();
       },
-      () {},
+      () {
+        Navigator.of(context).pop();
+      },
     );
   }
 

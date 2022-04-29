@@ -5,6 +5,7 @@ import 'package:jpj_info/controller/prompt_controller.dart';
 import 'package:jpj_info/model/jpj_eq_service.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:jpj_info/view/jpjEqCanceledQueue/jpj_eq_canceled_queue.dart';
 import 'package:jpj_info/view/jpjEqQueueInfo/jpj_eq_queue_info.dart';
 
 class JpjEqQueueInfoController extends StatefulWidget {
@@ -65,7 +66,17 @@ class _JpjEqQueueInfoController extends State<JpjEqQueueInfoController> {
       ),
     ).prompt(
       AppLocalizations.of(context)!.verification,
-      () {},
+      () {
+        Navigator.of(context).pop();
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) {
+              return const JpjEqCanceledQueue();
+            },
+          ),
+        );
+      },
       () {},
     );
   }
