@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/controller/bottom_nav_controller.dart';
+import 'package:jpj_info/controller/prompt_controller.dart';
 import 'package:jpj_info/model/jpj_eq_service.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
-import 'package:jpj_info/view/jpjEqAvailableService/jpj_eq_available_service.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:jpj_info/view/jpjEqQueueInfo/jpj_eq_queue_info.dart';
 
-class JpjEqAvailableServiceController extends StatefulWidget {
-  const JpjEqAvailableServiceController({
+class JpjEqQueueInfoController extends StatefulWidget {
+  const JpjEqQueueInfoController({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _JpjEqAvailableServiceController();
+  State<StatefulWidget> createState() => _JpjEqQueueInfoController();
 }
 
-class _JpjEqAvailableServiceController
-    extends State<JpjEqAvailableServiceController> {
+class _JpjEqQueueInfoController extends State<JpjEqQueueInfoController> {
   List<JpjEqService> services = [];
 
   @override
@@ -43,29 +44,29 @@ class _JpjEqAvailableServiceController
           iconColor: Color(themeNavy),
           darkBtn: true,
         ),
-        body: JpjEqAvailableService(
-          services: services,
-          backBtnCallback: _backBtnCallback,
-          selectionChangeCallback: _selectionChange,
+        body: JpjEqQueueInfo(
+          cancelBtnCallback: _cancelBtnCallback,
         ),
         bottomNavigationBar: BottomNavController(),
       ),
     );
   }
 
-  void _backBtnCallback(BuildContext context) {
-    Navigator.pop(context);
-  }
-
-  void _selectionChange(JpjEqService selectedService, bool expanded) {
-    setState(() {
-      for (var item in services) {
-        if (item == selectedService) {
-          item = JpjEqService(item.title, item.details, expanded);
-        } else {
-          item = JpjEqService(item.title, item.details, false);
-        }
-      }
-    });
+  void _cancelBtnCallback(BuildContext context) {
+    PromptController(
+      ctx: context,
+      content: Text(
+        AppLocalizations.of(context)!.areYouSureCancelQueue,
+        textAlign: TextAlign.center,
+        style: const TextStyle(
+          color: Color(0xff171f44),
+          fontSize: 15,
+        ),
+      ),
+    ).prompt(
+      AppLocalizations.of(context)!.verification,
+      () {},
+      () {},
+    );
   }
 }

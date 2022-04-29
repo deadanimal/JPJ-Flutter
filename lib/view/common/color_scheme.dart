@@ -134,3 +134,15 @@ Decoration redGradientBtnDeco = BoxDecoration(
     colors: [Color(0xffe42222), Color(0xff721414)],
   ),
 );
+
+Decoration whiteBtnDecoSquare = BoxDecoration(
+  color: Colors.white,
+  borderRadius: BorderRadius.circular(8),
+  boxShadow: const [
+    BoxShadow(
+      color: Color(0x3f000000),
+      blurRadius: 4,
+      offset: Offset(0, 4),
+    ),
+  ],
+);

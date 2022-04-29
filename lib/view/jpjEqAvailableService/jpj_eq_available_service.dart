@@ -76,52 +76,6 @@ class JpjEqAvailableService extends StatelessWidget {
       service: service,
       selectionChangeCallback: selectionChangeCallback,
     );
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: RoundedCornerContainer(
-        gradient: const LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [Color(headerGradient1), Color(headerGradient2)],
-        ),
-        child: ExpansionTile(
-          onExpansionChanged: (expanded) {
-            selectionChangeCallback(service, expanded);
-          },
-          initiallyExpanded: service.selected,
-          iconColor: Colors.white,
-          collapsedIconColor: Colors.white,
-          title: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              service.title,
-              textAlign: TextAlign.start,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 15,
-                letterSpacing: 1.25,
-              ),
-            ),
-          ),
-          children: [
-            Container(
-              width: double.infinity,
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(20),
-                  bottomRight: Radius.circular(20),
-                ),
-                color: Colors.white,
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(service.details),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
   }
 
   Widget _submitBtn(BuildContext context) {

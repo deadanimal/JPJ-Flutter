@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:jpj_info/view/common/color_scheme.dart';
+import 'package:jpj_info/view/form/custom_button.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class PromptController {
+  PromptController({
+    required this.ctx,
+    this.content,
+  });
+
   BuildContext ctx;
-  PromptController({required this.ctx});
+  Widget? content;
 
   Future<void> prompt(String label, Function okCB, Function cancelCB) {
     return showDialog<void>(
@@ -13,20 +21,28 @@ class PromptController {
           title: Center(
             child: Text(label),
           ),
+          content: content,
           actions: <Widget>[
-            TextButton(
-              child: const Text('OK'),
-              onPressed: () {
-                okCB();
-                Navigator.of(context).pop();
-              },
-            ),
-            TextButton(
-              child: const Text('Cancel'),
-              onPressed: () {
-                cancelCB();
-                Navigator.of(context).pop();
-              },
+            Column(
+              children: [
+                CustomButton(
+                  onPressed: () {
+                    okCB();
+                    Navigator.of(context).pop();
+                  },
+                  decoration: navyGradientBtnDecoSquare,
+                  label: 'OK',
+                ),
+                CustomButton(
+                  onPressed: () {
+                    cancelCB();
+                    Navigator.of(context).pop();
+                  },
+                  decoration: whiteBtnDecoSquare,
+                  textColor: const Color(themeNavy),
+                  label: AppLocalizations.of(context)!.cancel,
+                ),
+              ],
             ),
           ],
         );
