@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/controller/bottom_nav_controller.dart';
 import 'package:jpj_info/controller/prompt_controller.dart';
-import 'package:jpj_info/model/jpj_eq_service.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:jpj_info/view/jpjEqCanceledQueue/jpj_eq_canceled_queue.dart';
@@ -18,18 +17,9 @@ class JpjEqQueueInfoController extends StatefulWidget {
 }
 
 class _JpjEqQueueInfoController extends State<JpjEqQueueInfoController> {
-  List<JpjEqService> services = [];
-
   @override
   void initState() {
     super.initState();
-    services.add(JpjEqService("Pelbagai", "details", false));
-    services.add(JpjEqService("Pendakwaan/Semakan Saman", "details2", false));
-    services.add(JpjEqService("Penguatkuasaan", "details3", false));
-    services.add(JpjEqService(
-        "Institut Memandu",
-        "-Tempahan calon ujian bertulis/lisan\n-Tempahan Ujian Praktikal Kelas B2/B/D/DA/E/H13\n-Tempahan Ujian Amali dan Vokasional",
-        false));
   }
 
   @override
@@ -77,7 +67,9 @@ class _JpjEqQueueInfoController extends State<JpjEqQueueInfoController> {
           ),
         );
       },
-      () {},
+      () {
+        Navigator.of(context).pop();
+      },
     );
   }
 }

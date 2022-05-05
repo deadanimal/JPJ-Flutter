@@ -31,7 +31,7 @@ class JpjEqQueueInfo extends StatelessWidget {
               CustomButton(
                 onPressed: () => cancelBtnCallback(context),
                 decoration: redGradientBtnDeco,
-                label: AppLocalizations.of(context)!.cancel,
+                label: AppLocalizations.of(context)!.cancelB,
                 width: 90,
               ),
               const SizedBox(height: verticalPadding),
