@@ -226,5 +226,6 @@
     "areYouSureCancelQueue":"Anda pasti untuk membatalkan\nno giliran anda?",
     "day":"Hari",
     "closed":"Tutup",
+    "previousTransaction":"Transaksi Terdahulu",
     "pleaseWait": "Sila Tunggu..."
 }

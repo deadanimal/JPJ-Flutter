@@ -186,7 +186,7 @@ class MenuList {
       MenuItem(
         AppLocalizations.of(ctx)!.transaction,
         "images/icon/jpjeq_transaction_icon.png",
-        () {},
+        jpjEqTransactionsPage,
       ),
       MenuItem(
         AppLocalizations.of(ctx)!.info,
