@@ -191,7 +191,7 @@ class MenuList {
       MenuItem(
         AppLocalizations.of(ctx)!.info,
         "images/icon/jpjeq_info_icon.png",
-        () {},
+        jpjEqNotificationPage,
       ),
       MenuItem(
         AppLocalizations.of(ctx)!.home,
