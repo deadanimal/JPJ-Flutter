@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/controller/bottom_nav_controller.dart';
+import 'package:jpj_info/controller/jpj_eq_branch_detail_controller.dart';
 import 'package:jpj_info/model/jpj_eq_branch_info.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/jpjEqBranchList/jpj_eq_branch_list.dart';
@@ -46,18 +47,6 @@ class _JpjEqBranchListController extends State<JpjEqBranchListController> {
       coordinate: "3.2,103.1",
       faxNumber: "0388811711",
       phoneNumber: "0388811705",
-      services: [
-        AvailableService(
-          category: "Pelbagai",
-          services: [
-            "Permohonan Pembaharuan Lesen Kenderaan Motor (LKM)",
-            "Permohonan permit Pemandu Antarabangsa (IDP)",
-            "Permohonan Pembayaran Balik Lesen Kenderaan Motor (LKM)",
-            "Cetakan Lesen Memandu bagi Urusan Pembaharuan Lesen Memandu Malaysia (LMM) secara online di Portal JPJ",
-            "Permohonan Gantian Lesen Kenderaan Motor (LKM)\n- Kenderaan Persendirian Individu",
-          ],
-        ),
-      ],
       waitingListCount: "",
     ),
     JpjEqBranchInfo(
@@ -335,9 +324,11 @@ class _JpjEqBranchListController extends State<JpjEqBranchListController> {
           darkBtn: true,
         ),
         body: JpjEqBranchList(
-            backCB: _backCallback,
-            branches: transactions,
-            calculateDistanceFx: _calculateDistance),
+          backCB: _backCallback,
+          branches: transactions,
+          calculateDistanceFx: _calculateDistance,
+          showBranchDetails: _showBranchDetails,
+        ),
         bottomNavigationBar: BottomNavController(),
       ),
     );
@@ -345,6 +336,17 @@ class _JpjEqBranchListController extends State<JpjEqBranchListController> {
 
   void _backCallback(BuildContext context) {
     Navigator.of(context).pop();
+  }
+
+  void _showBranchDetails(BuildContext context, JpjEqBranchInfo branch) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) {
+          return JpjEqBranchDetailController(branchInfo: branch);
+        },
+      ),
+    );
   }
 
   double _calculateDistance(String coordinate) {

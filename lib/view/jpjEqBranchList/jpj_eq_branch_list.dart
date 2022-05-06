@@ -13,11 +13,13 @@ class JpjEqBranchList extends StatelessWidget {
     required this.backCB,
     required this.branches,
     required this.calculateDistanceFx,
+    required this.showBranchDetails,
   }) : super(key: key);
 
   final Function(BuildContext) backCB;
   final List<JpjEqBranchInfo> branches;
   final double Function(String) calculateDistanceFx;
+  final Function(BuildContext, JpjEqBranchInfo) showBranchDetails;
 
   @override
   Widget build(BuildContext context) {
@@ -86,57 +88,62 @@ class JpjEqBranchList extends StatelessWidget {
   ) {
     return Padding(
       padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
-      child: RoundedCornerContainer(
-        cornerRadius: 8.0,
-        color: const Color(themeNavy),
-        child: Row(
-          children: [
-            const Spacer(flex: 1),
-            Expanded(
-              flex: 15,
-              child: Container(
-                color: Colors.white,
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        flex: 7,
-                        child: Text(
-                          info.branch,
-                          textAlign: TextAlign.start,
-                          style: const TextStyle(
-                            color: Color(0xffd06400),
-                            fontSize: 15,
-                            fontFamily: "Poppins",
-                            fontWeight: FontWeight.w600,
+      child: InkWell(
+        onTap: () {
+          showBranchDetails(context, info);
+        },
+        child: RoundedCornerContainer(
+          cornerRadius: 8.0,
+          color: const Color(themeNavy),
+          child: Row(
+            children: [
+              const Spacer(flex: 1),
+              Expanded(
+                flex: 15,
+                child: Container(
+                  color: Colors.white,
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          flex: 7,
+                          child: Text(
+                            info.branch,
+                            textAlign: TextAlign.start,
+                            style: const TextStyle(
+                              color: Color(0xffd06400),
+                              fontSize: 15,
+                              fontFamily: "Poppins",
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
                         ),
-                      ),
-                      Expanded(
-                        flex: 3,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              calculateDistanceFx(info.coordinate!)
-                                      .toStringAsFixed(2) +
-                                  " KM",
-                              style: const TextStyle(
-                                color: Color(0xff707070),
-                                fontSize: 10,
+                        Expanded(
+                          flex: 3,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                calculateDistanceFx(info.coordinate!)
+                                        .toStringAsFixed(2) +
+                                    " KM",
+                                style: const TextStyle(
+                                  color: Color(0xff707070),
+                                  fontSize: 10,
+                                ),
                               ),
-                            ),
-                            const Icon(Icons.near_me, size: 15),
-                          ],
-                        ),
-                      )
-                    ],
+                              const Icon(Icons.near_me, size: 15),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
