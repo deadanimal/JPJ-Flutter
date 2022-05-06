@@ -227,5 +227,12 @@
     "day":"Day",
     "closed":"Close",
     "previousTransaction":"Previous Transactions",
+    "failedToRegister":"Registration Failed",
+    "userExist":"User existed",
+    "userBlocked":"User blocked",
+    "errorPleaseTryAgain":"Error, Please try again",
+    "pleaseFillAllInfo":"Please fill all required informations",
+    "emailNotSame":"Email entered not the same",
+    "pleaseTickTnc":"Please tick to agree terms and conditions",
     "pleaseWait": "Please wait..."
 }

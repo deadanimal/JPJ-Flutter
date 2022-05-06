@@ -12,6 +12,7 @@ class SiteConfig {
 
   //todo: change to use actual URL
   final String summonsCheckUri = "http://test.caravel.space/summons.php";
+  final String registrationUri = "http://test.caravel.space/rest/register.php";
 
   Map<String, String> jsonHeader = {
     'Content-Type': 'application/json; charset=UTF-8',

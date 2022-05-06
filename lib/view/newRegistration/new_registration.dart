@@ -17,9 +17,15 @@ class NewRegistration extends StatelessWidget {
     this.submitCB,
     required this.tncCheckedCB,
     required this.readTnc,
+    required this.phoneController,
+    required this.idController,
+    required this.emailVerifyController,
   }) : super(key: key);
 
   final TextEditingController emailController;
+  final TextEditingController phoneController;
+  final TextEditingController idController;
+  final TextEditingController emailVerifyController;
   final void Function(BuildContext)? submitCB;
   final Function(bool?)? tncCheckedCB;
   final Function() readTnc;
@@ -55,7 +61,7 @@ class NewRegistration extends StatelessWidget {
                 ),
                 const SizedBox(height: vPaddingS),
                 TextFieldForm(
-                  textController: emailController,
+                  textController: idController,
                   label: AppLocalizations.of(context)!.identification,
                   width: mediaWidth - 64,
                 ),
@@ -67,7 +73,7 @@ class NewRegistration extends StatelessWidget {
                 ),
                 const SizedBox(height: vPaddingS),
                 TextFieldForm(
-                  textController: emailController,
+                  textController: phoneController,
                   inputType: TextInputType.phone,
                   label: AppLocalizations.of(context)!.phoneNumber,
                   width: mediaWidth - 64,
@@ -93,7 +99,7 @@ class NewRegistration extends StatelessWidget {
                 ),
                 const SizedBox(height: vPaddingS),
                 TextFieldForm(
-                  textController: emailController,
+                  textController: emailVerifyController,
                   inputType: TextInputType.emailAddress,
                   label: AppLocalizations.of(context)!.verifyEmail,
                   width: mediaWidth - 64,

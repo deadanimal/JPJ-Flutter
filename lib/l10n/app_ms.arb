@@ -227,5 +227,12 @@
     "day":"Hari",
     "closed":"Tutup",
     "previousTransaction":"Transaksi Terdahulu",
+    "failedToRegister":"Pendaftaran Gagal",
+    "userExist":"Id telah di gunakan",
+    "userBlocked":"Id telah di senarai hitam",
+    "errorPleaseTryAgain":"Ralat, Sila cuba lagi",
+    "pleaseFillAllInfo":"Sila isi semua maklumat penting",
+    "emailNotSame":"Emel yang dimasukkan tidak sama",
+    "pleaseTickTnc":"Sila tanda pada kotak setuju terma dan syarat",
     "pleaseWait": "Sila Tunggu..."
 }
