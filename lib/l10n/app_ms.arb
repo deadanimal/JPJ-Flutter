@@ -234,5 +234,6 @@
     "pleaseFillAllInfo":"Sila isi semua maklumat penting",
     "emailNotSame":"Emel yang dimasukkan tidak sama",
     "pleaseTickTnc":"Sila tanda pada kotak setuju terma dan syarat",
+    "failToLogin":"Log Masuk Gagal",
     "pleaseWait": "Sila Tunggu..."
 }

@@ -14,7 +14,6 @@ class Login extends StatelessWidget {
     required this.userPwd,
     this.newAccountCB,
     this.logInCB,
-    this.logAsGuessCB,
     this.forgotPasswordCB,
   }) : super(key: key);
 
@@ -22,7 +21,6 @@ class Login extends StatelessWidget {
   final TextEditingController userPwd;
   final void Function(BuildContext)? newAccountCB;
   final void Function(BuildContext)? logInCB;
-  final void Function(BuildContext)? logAsGuessCB;
   final void Function(BuildContext)? forgotPasswordCB;
 
   @override

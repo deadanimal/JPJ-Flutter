@@ -1,5 +1,6 @@
 class SiteConfig {
   static String url = "http://egate.jpj.gov.my";
+  static String prodUrl = "https://myjpj.jpj.gov.my";
 
   // account api
   final String loginUri = "$url/aduantrafikmobile/login/processlogin2";
@@ -11,15 +12,24 @@ class SiteConfig {
   final String registerUserUri = "$url/jpj-api/login/register";
 
   // existing jpj info api
-  final String blacklistCheckUri = "$url/jpjinfo-api/apps/semaksenaraihitam";
-  final String demeritCheckUri = "$url/jpjinfo-api/apps/semakmatademerit";
-  final String licenseCheckUri = "$url/jpjinfo-api/apps/semakstatuslesen";
-  final String roadTaxCheckUri = "$url/jpjinfo-api/apps/semakcukaijalan";
-  final String testResultUri = "$url/jpjinfo-api/apps/semakkeputusanujian";
-  final String registrationCheckUri =
-      "$url/jpjinfo-api/apps/semaknopendaftaran";
-  final String locationCheckUri = "$url/jpjinfo-api/apps/semaklokasi";
-  final String plateNumberUri = "$url/jpjinfo-api/apps/semaknopendaftaran";
+  // final String blacklistCheckUri = "$url/jpjinfo-api/apps/semaksenaraihitam";
+  // final String demeritCheckUri = "$url/jpjinfo-api/apps/semakmatademerit";
+  // final String licenseCheckUri = "$url/jpjinfo-api/apps/semakstatuslesen";
+  // final String roadTaxCheckUri = "$url/jpjinfo-api/apps/semakcukaijalan";
+  // final String testResultUri = "$url/jpjinfo-api/apps/semakkeputusanujian";
+  // final String locationCheckUri = "$url/jpjinfo-api/apps/semaklokasi";
+  // final String plateNumberUri = "$url/jpjinfo-api/apps/semaknopendaftaran";
+
+  // new jpj api
+  final String locationCheckUri = "$prodUrl/jpjinfo-api/apps/semaklokasi";
+  final String plateNumberUri = "$prodUrl/jpjinfo-api/apps/semaknopendaftaran";
+  final String roadTaxCheckUri = "$prodUrl/jpjinfo-api/apps/semakcukaijalan";
+  final String summonCheckUri = "$prodUrl/saman_api/samanapps/inquirisaman";
+  final String licenseCheckUri = "$prodUrl/jpjinfo-api/apps/semakstatuslesen";
+  final String testResultUri = "$prodUrl/jpjinfo-api/apps/semakkeputusanujian";
+  final String blacklistCheckUri =
+      "$prodUrl/jpjinfo-api/apps/semaksenaraihitam";
+  final String demeritCheckUri = "$prodUrl/jpjinfo-api/apps/semakmatademerit";
 
   // other api
   final String feedbackUri = "$url/myjpj-api-dev/apps/maklumbalas";
