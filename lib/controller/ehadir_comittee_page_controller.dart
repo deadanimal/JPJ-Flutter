@@ -80,10 +80,7 @@ class _EhadirComitteePageController
 
   void _erasectivity(BuildContext context, EHadirEventInfo event) {
     PromptController(ctx: context).prompt(
-      AppLocalizations.of(context)!.erase +
-          " " +
-          AppLocalizations.of(context)!.event +
-          "?",
+      "${AppLocalizations.of(context)!.erase} ${AppLocalizations.of(context)!.event}?",
       () {
         _confirmErase(event);
         Navigator.of(context).pop();

@@ -170,7 +170,7 @@ class _MainPage extends State<MainPage> with TickerProviderStateMixin {
   }
 
   Widget favSubsectionItems(BuildContext context) {
-    List<MenuItem> favMenuList = MenuList(ctx: context).getFavMenuList();
+    List<CustomMenuItem> favMenuList = MenuList(ctx: context).getFavMenuList();
     return FittedBox(
       child: Padding(
         padding: const EdgeInsets.all(8.0),

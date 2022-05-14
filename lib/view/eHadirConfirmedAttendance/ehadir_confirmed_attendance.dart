@@ -68,6 +68,7 @@ class EhadirConfirmAttendance extends StatelessWidget {
             ),
             const SizedBox(height: vPaddingM),
             CustomBorderedContainer(
+              width: mediaWidth - 64,
               child: Column(
                 children: [
                   Text(
@@ -82,7 +83,7 @@ class EhadirConfirmAttendance extends StatelessWidget {
                   ),
                   const SizedBox(height: vPaddingM),
                   Text(
-                    vanue + "\n" + date + "\n" + startTime + " - " + endTime,
+                    "$vanue\n$date\n$startTime - $endTime",
                     textAlign: TextAlign.center,
                     style: const TextStyle(
                       color: Colors.black,
@@ -91,7 +92,6 @@ class EhadirConfirmAttendance extends StatelessWidget {
                   ),
                 ],
               ),
-              width: mediaWidth - 64,
             ),
             const SizedBox(height: vPaddingM),
           ],

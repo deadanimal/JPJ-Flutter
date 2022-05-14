@@ -8,37 +8,37 @@ class MenuList {
   MenuList({required this.ctx});
   late BuildContext ctx;
 
-  List<MenuItem> getServisMenuList() {
+  List<CustomMenuItem> getServisMenuList() {
     return [
-      MenuItem(
+      CustomMenuItem(
         "JPJeBid",
         "images/icon/ebit_icon.png",
         () {},
       ),
-      MenuItem(
+      CustomMenuItem(
         "JPJeQ",
         "images/icon/jpjeq_icon.png",
         jpjEqMenuPage,
         login: true,
       ),
-      MenuItem(
+      CustomMenuItem(
         "eAduan",
         "images/icon/eaduan_icon.png",
         eAduanMenuPage,
         login: true,
       ),
-      MenuItem(
+      CustomMenuItem(
         AppLocalizations.of(ctx)!.onlineTransaction,
         "images/icon/online_transaction_icon.png",
         onlineTransactionPage,
       ),
-      MenuItem(
+      CustomMenuItem(
         "EzyPay",
         "images/icon/ezypay_icon.png",
         ezypayMenuPage,
         login: true,
       ),
-      MenuItem(
+      CustomMenuItem(
         AppLocalizations.of(ctx)!.transactionHistory,
         "images/icon/payment_history_icon.png",
         transactionHistoryPage,
@@ -47,20 +47,20 @@ class MenuList {
     ];
   }
 
-  List<MenuItem> getFavMenuList() {
+  List<CustomMenuItem> getFavMenuList() {
     return [
-      MenuItem(
+      CustomMenuItem(
         "JPJeBid",
         "images/icon/ebit_icon.png",
         () {},
       ),
-      MenuItem(
+      CustomMenuItem(
         "JPJeQ",
         "images/icon/jpjeq_icon.png",
         jpjEqMenuPage,
         login: true,
       ),
-      MenuItem(
+      CustomMenuItem(
         "eAduan",
         "images/icon/eaduan_icon.png",
         eHadirMenuPage,
@@ -69,40 +69,40 @@ class MenuList {
     ];
   }
 
-  List<MenuItem> getOnlineTransactionList() {
+  List<CustomMenuItem> getOnlineTransactionList() {
     return [
-      MenuItem(
+      CustomMenuItem(
         AppLocalizations.of(ctx)!.latestPlate,
         "images/icon/latest_number_icon.png",
         latestPlatePage,
       ),
-      MenuItem(
+      CustomMenuItem(
         AppLocalizations.of(ctx)!.drivingLicense,
         "images/icon/driving_license_icon.png",
         licensePage,
       ),
-      MenuItem(
+      CustomMenuItem(
         AppLocalizations.of(ctx)!.testResult,
         "images/icon/test_result_icon.png",
         testResultPage,
       ),
-      MenuItem(
+      CustomMenuItem(
         AppLocalizations.of(ctx)!.lkm,
         "images/icon/lkm_icon.png",
         roadTaxCheckPage,
       ),
-      MenuItem(
+      CustomMenuItem(
         AppLocalizations.of(ctx)!.ticket,
         "images/icon/ticket_icon.png",
         summonListPage,
         login: true,
       ),
-      MenuItem(
+      CustomMenuItem(
         AppLocalizations.of(ctx)!.blacklist,
         "images/icon/black_list_icon.png",
         blacklistPage,
       ),
-      MenuItem(
+      CustomMenuItem(
         AppLocalizations.of(ctx)!.demeritPoints,
         "images/icon/demerit_point_icon.png",
         demeritPointsPage,
@@ -110,9 +110,9 @@ class MenuList {
     ];
   }
 
-  List<MenuItem> getStaffMenuList() {
+  List<CustomMenuItem> getStaffMenuList() {
     return [
-      MenuItem(
+      CustomMenuItem(
         "JPJeHadir",
         "images/icon/jpjehadir.png",
         eHadirMenuPage,
@@ -120,33 +120,33 @@ class MenuList {
     ];
   }
 
-  List<MenuItem> getAdminMenuList() {
+  List<CustomMenuItem> getAdminMenuList() {
     return [
-      MenuItem(
+      CustomMenuItem(
         AppLocalizations.of(ctx)!.updateProfile,
         "images/vector/update_profile_icon.svg",
         profileUpdatePage,
         isSvg: true,
       ),
-      MenuItem(
+      CustomMenuItem(
         AppLocalizations.of(ctx)!.vehicleNList,
         "images/vector/vehicle_list_icon.svg",
         vehicleListPage,
         isSvg: true,
       ),
-      MenuItem(
+      CustomMenuItem(
         AppLocalizations.of(ctx)!.feedback,
         "images/vector/feedback_icon.svg",
         feedbackPage,
         isSvg: true,
       ),
-      MenuItem(
+      CustomMenuItem(
         AppLocalizations.of(ctx)!.viewTNC,
         "images/vector/tnc_icon.svg",
         tncPage,
         isSvg: true,
       ),
-      MenuItem(
+      CustomMenuItem(
         AppLocalizations.of(ctx)!.changePassword,
         "images/vector/change_password_icon.svg",
         changePasswordPage,
@@ -155,9 +155,9 @@ class MenuList {
     ];
   }
 
-  List<MenuItem> getPublicMenuList() {
+  List<CustomMenuItem> getPublicMenuList() {
     return [
-      MenuItem(
+      CustomMenuItem(
         AppLocalizations.of(ctx)!.directory,
         "images/icon/directory_icon.png",
         jpjDirectoryPage,
@@ -165,9 +165,9 @@ class MenuList {
     ];
   }
 
-  List<MenuItem> getEzypayMenuList() {
+  List<CustomMenuItem> getEzypayMenuList() {
     return [
-      MenuItem(
+      CustomMenuItem(
         AppLocalizations.of(ctx)!.ticket,
         "images/icon/ticket_icon.png",
         summonListPage,
@@ -176,24 +176,24 @@ class MenuList {
     ];
   }
 
-  List<MenuItem> getJpjEqMenuList() {
+  List<CustomMenuItem> getJpjEqMenuList() {
     return [
-      MenuItem(
+      CustomMenuItem(
         AppLocalizations.of(ctx)!.branch,
         "images/icon/jpjeq_branch_icon.png",
         jpjEqBranchListPage,
       ),
-      MenuItem(
+      CustomMenuItem(
         AppLocalizations.of(ctx)!.transaction,
         "images/icon/jpjeq_transaction_icon.png",
         jpjEqTransactionsPage,
       ),
-      MenuItem(
+      CustomMenuItem(
         AppLocalizations.of(ctx)!.info,
         "images/icon/jpjeq_info_icon.png",
         jpjEqNotificationPage,
       ),
-      MenuItem(
+      CustomMenuItem(
         AppLocalizations.of(ctx)!.home,
         "images/icon/jpjeq_branch_icon.png",
         jpjEqMainPage,
@@ -201,9 +201,9 @@ class MenuList {
     ];
   }
 
-  List<MenuItem> getEaduanMenuList() {
+  List<CustomMenuItem> getEaduanMenuList() {
     return [
-      MenuItem(
+      CustomMenuItem(
         AppLocalizations.of(ctx)!.failToFollowRedLight,
         "images/icon/eaduan_traffic_light_icon.png",
         (context) {
@@ -211,7 +211,7 @@ class MenuList {
         },
         login: true,
       ),
-      MenuItem(
+      CustomMenuItem(
         AppLocalizations.of(ctx)!.emergencyLaneDriving,
         "images/icon/eaduan_emergency_lane_icon.png",
         (context) {
@@ -219,7 +219,7 @@ class MenuList {
         },
         login: true,
       ),
-      MenuItem(
+      CustomMenuItem(
         AppLocalizations.of(ctx)!.skipQueue,
         "images/icon/eaduan_skip_queue_icon.png",
         (context) {
@@ -227,7 +227,7 @@ class MenuList {
         },
         login: true,
       ),
-      MenuItem(
+      CustomMenuItem(
         AppLocalizations.of(ctx)!.leftOvertake,
         "images/icon/eaduan_left_overtake_icon.png",
         (context) {
@@ -235,7 +235,7 @@ class MenuList {
         },
         login: true,
       ),
-      MenuItem(
+      CustomMenuItem(
         AppLocalizations.of(ctx)!.doubleLineOvertake,
         "images/icon/eaduan_double_line_overtake_icon.png",
         (context) {
@@ -243,7 +243,7 @@ class MenuList {
         },
         login: true,
       ),
-      MenuItem(
+      CustomMenuItem(
         AppLocalizations.of(ctx)!.usingPhoneWhileDriving,
         "images/icon/eaduan_using_phone_icon.png",
         (context) {
@@ -251,7 +251,7 @@ class MenuList {
         },
         login: true,
       ),
-      MenuItem(
+      CustomMenuItem(
         AppLocalizations.of(ctx)!.fancyPlateNumber,
         "images/icon/eaduan_fancy_plat_icon.png",
         (context) {
@@ -259,7 +259,7 @@ class MenuList {
         },
         login: true,
       ),
-      MenuItem(
+      CustomMenuItem(
         AppLocalizations.of(ctx)!.darkTint,
         "images/icon/eaduan_dark_tint_icon.png",
         (context) {
@@ -267,7 +267,7 @@ class MenuList {
         },
         login: true,
       ),
-      MenuItem(
+      CustomMenuItem(
         AppLocalizations.of(ctx)!.notWearingSeatbelt,
         "images/icon/eaduan_not_wearing_seatbelt_icon.png",
         (context) {
@@ -278,19 +278,19 @@ class MenuList {
     ];
   }
 
-  List<MenuItem> getJpjEHadirMenuList() {
+  List<CustomMenuItem> getJpjEHadirMenuList() {
     return [
-      MenuItem(
+      CustomMenuItem(
         AppLocalizations.of(ctx)!.main,
         "images/icon/ehadir_main_icon.png",
         eHadirMainPage,
       ),
-      MenuItem(
+      CustomMenuItem(
         AppLocalizations.of(ctx)!.activity,
         "images/icon/ehadir_activity_icon.png",
         eHadirActivityListPage,
       ),
-      MenuItem(
+      CustomMenuItem(
         AppLocalizations.of(ctx)!.comittee,
         "images/icon/ehadir_comittee_icon.png",
         eHadirComitteePage,

@@ -148,6 +148,7 @@ class PlateNumber extends StatelessWidget {
           ),
         ],
       ),
+      width: mediaWidth - 64,
       child: Row(
         children: [
           Expanded(flex: 3, child: Image(image: AssetImage(flagIcon!))),
@@ -176,7 +177,6 @@ class PlateNumber extends StatelessWidget {
           ),
         ],
       ),
-      width: mediaWidth - 64,
     );
   }
 }

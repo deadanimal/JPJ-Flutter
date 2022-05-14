@@ -24,7 +24,7 @@ class JpjDirectoryController extends StatefulWidget {
 }
 
 class _JpjDirectoryController extends State<JpjDirectoryController> {
-  List<MenuItem> dirctoryMenuItem = [];
+  List<CustomMenuItem> dirctoryCustomMenuItem = [];
   late List<JpjLocationResponseData> results;
   late List<JpjLocationInfo> locationInputInfo;
 
@@ -46,10 +46,10 @@ class _JpjDirectoryController extends State<JpjDirectoryController> {
         appBar: const AppBarController(
           decor: customGradient,
         ),
-        body: FutureBuilder<List<MenuItem>>(
+        body: FutureBuilder<List<CustomMenuItem>>(
           future: _getDirectoryInfo(),
-          builder:
-              (BuildContext context, AsyncSnapshot<List<MenuItem>> snapshot) {
+          builder: (BuildContext context,
+              AsyncSnapshot<List<CustomMenuItem>> snapshot) {
             if (!snapshot.hasData) {
               // while data is loading:
               EasyLoading.show(
@@ -74,7 +74,7 @@ class _JpjDirectoryController extends State<JpjDirectoryController> {
     );
   }
 
-  Future<List<MenuItem>> _getDirectoryInfo() async {
+  Future<List<CustomMenuItem>> _getDirectoryInfo() async {
     final String response =
         await rootBundle.loadString('json/jpj_location.json');
     final data = await json.decode(response);
@@ -82,8 +82,8 @@ class _JpjDirectoryController extends State<JpjDirectoryController> {
       (element) {
         JpjLocationInfo b = JpjLocationInfo.fromJson(element);
         locationInputInfo.add(b);
-        dirctoryMenuItem.add(
-          MenuItem(
+        dirctoryCustomMenuItem.add(
+          CustomMenuItem(
             b.name,
             b.flagPath,
             (BuildContext context) {
@@ -93,7 +93,7 @@ class _JpjDirectoryController extends State<JpjDirectoryController> {
         );
       },
     );
-    return dirctoryMenuItem;
+    return dirctoryCustomMenuItem;
   }
 
   Future<void> _submitCallback(BuildContext context, String locationId) async {

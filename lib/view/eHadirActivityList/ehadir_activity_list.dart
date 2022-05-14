@@ -54,10 +54,7 @@ class EhadirActivityList extends StatelessWidget {
                     : ListView(
                         children: [
                           Text(
-                            AppLocalizations.of(context)!.noRecord +
-                                "\n(" +
-                                AppLocalizations.of(context)!.pullToRefresh +
-                                ")",
+                            "${AppLocalizations.of(context)!.noRecord}\n(${AppLocalizations.of(context)!.pullToRefresh})",
                             textAlign: TextAlign.center,
                             style: const TextStyle(
                               color: Color(themeGray),
@@ -82,8 +79,8 @@ class EhadirActivityList extends StatelessWidget {
         constraints: const BoxConstraints(maxWidth: 400),
         child: CustomBorderedContainer(
           padding: const EdgeInsets.all(0),
-          child: _cardContent(context, event),
           width: mediaWidth - 64,
+          child: _cardContent(context, event),
         ),
       ),
     );
@@ -128,7 +125,7 @@ class EhadirActivityList extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                AppLocalizations.of(context)!.vanue + ":",
+                                "${AppLocalizations.of(context)!.vanue}:",
                                 textAlign: TextAlign.start,
                                 style: const TextStyle(
                                   color: Color(themeNavy),
@@ -155,7 +152,7 @@ class EhadirActivityList extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                AppLocalizations.of(context)!.time + ":",
+                                "${AppLocalizations.of(context)!.time}:",
                                 textAlign: TextAlign.start,
                                 style: const TextStyle(
                                   color: Color(themeNavy),
@@ -166,7 +163,7 @@ class EhadirActivityList extends StatelessWidget {
                               ),
                               const SizedBox(height: vPaddingS),
                               Text(
-                                event.startTime! + " - " + event.endTime!,
+                                "${event.startTime!} - ${event.endTime!}",
                                 textAlign: TextAlign.start,
                                 style: const TextStyle(
                                   color: Color(0xff2e2e2e),
@@ -180,7 +177,7 @@ class EhadirActivityList extends StatelessWidget {
                     ),
                     const SizedBox(height: vPaddingM),
                     Text(
-                      AppLocalizations.of(context)!.date + ":",
+                      "${AppLocalizations.of(context)!.date}:",
                       textAlign: TextAlign.start,
                       style: const TextStyle(
                         color: Color(themeNavy),

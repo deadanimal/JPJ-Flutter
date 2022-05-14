@@ -103,7 +103,7 @@ class _JpjDirectoryInfo extends State<JpjDirectoryInfo> {
         Expanded(
           flex: 7,
           child: Text(
-            "JPJ " + widget.stateName,
+            "JPJ ${widget.stateName}",
             textAlign: TextAlign.center,
             style: const TextStyle(
               color: Color(0xff171f44),

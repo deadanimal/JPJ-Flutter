@@ -230,14 +230,14 @@ class EaduanForm extends StatelessWidget {
   }
 
   Widget _image() {
-    ScrollController _scrollController = ScrollController();
+    ScrollController scrollController = ScrollController();
     return Scrollbar(
-      isAlwaysShown: true,
-      controller: _scrollController,
+      thumbVisibility: true,
+      controller: scrollController,
       child: ScrollableImageContainer(
         imagesPath: imagesPath,
         openGalleryCallback: openGalleryCallback,
-        scrollController: _scrollController,
+        scrollController: scrollController,
       ),
     );
   }

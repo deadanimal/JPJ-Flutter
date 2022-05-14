@@ -10,7 +10,8 @@ class StaffMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<MenuItem> serviceMenu = MenuList(ctx: context).getStaffMenuList();
+    List<CustomMenuItem> serviceMenu =
+        MenuList(ctx: context).getStaffMenuList();
     return Wrap(
       alignment: WrapAlignment.center,
       children: List.generate(

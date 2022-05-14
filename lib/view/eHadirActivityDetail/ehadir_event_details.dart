@@ -56,13 +56,7 @@ class EhadirActivityDetails extends StatelessWidget {
                   ),
                   const SizedBox(height: vPaddingM),
                   Text(
-                    event.venue! +
-                        "\n" +
-                        event.date! +
-                        "\n" +
-                        event.startTime! +
-                        " - " +
-                        event.endTime!,
+                    "${event.venue!}\n${event.date!}\n${event.startTime!} - ${event.endTime!}",
                     textAlign: TextAlign.center,
                     style: const TextStyle(
                       color: Colors.black,

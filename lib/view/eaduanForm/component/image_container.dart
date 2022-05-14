@@ -22,7 +22,7 @@ class _ScrollableImageContainer extends State<ScrollableImageContainer> {
   @override
   void initState() {
     super.initState();
-    SchedulerBinding.instance?.addPostFrameCallback((_) {
+    SchedulerBinding.instance.addPostFrameCallback((_) {
       widget.scrollController.animateTo(
         0.0,
         curve: Curves.easeOut,
@@ -33,11 +33,11 @@ class _ScrollableImageContainer extends State<ScrollableImageContainer> {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> _children = [];
+    List<Widget> children = [];
     for (var element in widget.imagesPath) {
-      _children.add(_imageContainer(element));
+      children.add(_imageContainer(element));
     }
-    _children.add(_addImageBtn());
+    children.add(_addImageBtn());
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: SingleChildScrollView(
@@ -45,7 +45,7 @@ class _ScrollableImageContainer extends State<ScrollableImageContainer> {
         scrollDirection: Axis.horizontal,
         controller: widget.scrollController,
         child: Row(
-          children: _children,
+          children: children,
         ),
       ),
     );

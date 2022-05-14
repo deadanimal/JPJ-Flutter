@@ -74,9 +74,7 @@ class SummonsStatus extends StatelessWidget {
             },
             textColor: const Color(themeNavy),
             decoration: whiteBtnDeco,
-            label: AppLocalizations.of(context)!.choose +
-                " 1 " +
-                AppLocalizations.of(context)!.ticket,
+            label: "${AppLocalizations.of(context)!.choose} 1 ${AppLocalizations.of(context)!.ticket}",
           )
         ],
       ),

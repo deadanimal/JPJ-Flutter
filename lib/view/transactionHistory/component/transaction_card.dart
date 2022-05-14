@@ -81,7 +81,7 @@ class CustomTransactionCard extends StatelessWidget {
   Widget _priceIfAny(String? price) {
     if (price != null && price != "") {
       return Text(
-        "RM" + price,
+        "RM$price",
         textAlign: TextAlign.center,
         style: TextStyle(
           fontSize: 24,
@@ -132,8 +132,8 @@ class CustomTransactionCard extends StatelessWidget {
   }
 
   void _launchURL(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
+    if (await canLaunchUrl(Uri(host: url))) {
+      _launchURL(url);
     } else {
       throw 'Could not launch $url';
     }

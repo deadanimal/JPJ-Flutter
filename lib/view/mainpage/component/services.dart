@@ -10,7 +10,8 @@ class Services extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<MenuItem> serviceMenu = MenuList(ctx: context).getServisMenuList();
+    List<CustomMenuItem> serviceMenu =
+        MenuList(ctx: context).getServisMenuList();
     return Wrap(
       alignment: WrapAlignment.center,
       children: List.generate(

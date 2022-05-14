@@ -43,6 +43,7 @@ class SummonsVerification extends StatelessWidget {
       child: Column(
         children: [
           CustomBorderedContainer(
+            width: mediaWidth - 64,
             child: const CustomTicketContainer(
               amount: "300.00",
               date: "04/05/2021",
@@ -51,13 +52,12 @@ class SummonsVerification extends StatelessWidget {
               time: "10:44 AM",
               vehicleNo: "VAR3428",
             ),
-            width: mediaWidth - 64,
           ),
           const SizedBox(height: vPaddingXL),
           _label(AppLocalizations.of(context)!.summary),
           CustomBorderedContainer(
-            child: _summary(context),
             width: mediaWidth - 128,
+            child: _summary(context),
           ),
           const SizedBox(height: vPaddingXL),
           _label(AppLocalizations.of(context)!.payment),

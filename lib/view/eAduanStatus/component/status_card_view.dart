@@ -29,7 +29,7 @@ class StatusCardView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              AppLocalizations.of(context)!.complaintId + ":",
+              "${AppLocalizations.of(context)!.complaintId}:",
               style: const TextStyle(
                 color: Color(themeNavy),
                 fontSize: 10,
@@ -53,7 +53,7 @@ class StatusCardView extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      AppLocalizations.of(context)!.date + ":",
+                      "${AppLocalizations.of(context)!.date}:",
                       style: const TextStyle(
                         color: Color(themeNavy),
                         fontSize: 10,
@@ -75,7 +75,7 @@ class StatusCardView extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      AppLocalizations.of(context)!.time + ":",
+                      "${AppLocalizations.of(context)!.time}:",
                       style: const TextStyle(
                         color: Color(themeNavy),
                         fontSize: 10,
@@ -97,7 +97,7 @@ class StatusCardView extends StatelessWidget {
             ),
             const SizedBox(height: vPaddingM),
             Text(
-              AppLocalizations.of(context)!.offense + ":",
+              "${AppLocalizations.of(context)!.offense}:",
               style: const TextStyle(
                 color: Color(themeNavy),
                 fontSize: 10,

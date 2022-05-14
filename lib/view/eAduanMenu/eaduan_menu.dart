@@ -12,7 +12,7 @@ class EaduanMenu extends StatelessWidget {
     required this.title,
     required this.draftStatusCallback,
   }) : super(key: key);
-  final List<MenuItem> transactionList;
+  final List<CustomMenuItem> transactionList;
   final String title;
   final Function(BuildContext) draftStatusCallback;
 

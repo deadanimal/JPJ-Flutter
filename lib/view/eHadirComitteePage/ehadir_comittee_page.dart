@@ -57,10 +57,7 @@ class EhadirComitteePage extends StatelessWidget {
                     : ListView(
                         children: [
                           Text(
-                            AppLocalizations.of(context)!.noRecord +
-                                "\n(" +
-                                AppLocalizations.of(context)!.pullToRefresh +
-                                ")",
+                            "${AppLocalizations.of(context)!.noRecord}\n(${AppLocalizations.of(context)!.pullToRefresh})",
                             textAlign: TextAlign.center,
                             style: const TextStyle(
                               color: Color(themeGray),
@@ -88,8 +85,8 @@ class EhadirComitteePage extends StatelessWidget {
         constraints: const BoxConstraints(maxWidth: 400),
         child: CustomBorderedContainer(
           padding: const EdgeInsets.all(0),
-          child: _cardContent(context, event),
           width: mediaWidth - 64,
+          child: _cardContent(context, event),
         ),
       ),
     );
@@ -145,7 +142,7 @@ class EhadirComitteePage extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                AppLocalizations.of(context)!.vanue + ":",
+                                "${AppLocalizations.of(context)!.vanue}:",
                                 textAlign: TextAlign.start,
                                 style: const TextStyle(
                                   color: Color(themeNavy),

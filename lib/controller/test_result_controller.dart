@@ -94,7 +94,7 @@ class _TestResultController extends State<TestResultController> {
                 dataSet.add(
                   Result2(
                     result: _resultField(el),
-                    title: el.jenisLesen! + " - " + el.jenisUjian!,
+                    title: "${el.jenisLesen!} - ${el.jenisUjian!}",
                   ),
                 );
               });

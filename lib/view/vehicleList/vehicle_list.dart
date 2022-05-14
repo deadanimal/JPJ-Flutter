@@ -29,11 +29,11 @@ class VehicleList extends StatelessWidget {
             headerTitle: pageTitle,
           ),
           Container(
-            child: _vehicleList(context),
             constraints: const BoxConstraints(
               maxWidth: 400,
               minHeight: 400,
             ),
+            child: _vehicleList(context),
           ),
         ],
       ),

@@ -74,7 +74,8 @@ class AdministrativeMenu extends StatelessWidget {
   }
 
   Widget serviceButton(BuildContext context) {
-    List<MenuItem> transactionList = MenuList(ctx: context).getAdminMenuList();
+    List<CustomMenuItem> transactionList =
+        MenuList(ctx: context).getAdminMenuList();
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       mainAxisSize: MainAxisSize.max,

@@ -70,7 +70,7 @@ class Tac extends StatelessWidget {
                 } else {
                   String minutes = time.min != null ? "${time.min}" : "0";
                   String seconds = time.sec != null ? "${time.sec}" : "00";
-                  countdownText = minutes + ':' + seconds;
+                  countdownText = '$minutes:$seconds';
                 }
                 return Padding(
                   padding: const EdgeInsets.only(

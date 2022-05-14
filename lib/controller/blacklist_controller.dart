@@ -70,7 +70,7 @@ class _BlacklistController extends State<BlacklistController> {
     });
   }
 
-  Future<void> _submitCallback(BuildContext context) async {
+  void _submitCallback(BuildContext context) {
     var index = dropdownList.indexWhere((element) => element == dropdownValue);
     SiteConfig conf = SiteConfig();
     RoadTaxStatusRequest req = RoadTaxStatusRequest(
@@ -82,54 +82,62 @@ class _BlacklistController extends State<BlacklistController> {
       EasyLoading.show(
         status: AppLocalizations.of(context)!.pleaseWait,
       );
-      final response = await http.post(
+      http
+          .post(
         Uri.parse(conf.roadTaxCheckUri),
         headers: conf.jsonHeader,
-        body: jsonEncode(req.toJson()),
-      );
-      if (response.statusCode == 200) {
-        RoadTaxStatusResponse respond = RoadTaxStatusResponse.fromJson(
-          jsonDecode(response.body),
-        );
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) {
-              List<Result2> dataSet = [];
-              if (respond.lkm != null) {
-                for (int i = 0; i < respond.lkm!.length; i++) {
-                  if (!MyJPJAccountManager().isLoggedIn && i == 0) {
-                  } else {
-                    dataSet.add(
-                      Result2(
-                        result: _resultField(respond.lkm![i]),
-                        title: respond.lkm![i].velinsuran,
-                      ),
-                    );
+        body: jsonEncode(
+          req.toJson(),
+        ),
+      )
+          .then(
+        (response) {
+          if (response.statusCode == 200) {
+            RoadTaxStatusResponse respond = RoadTaxStatusResponse.fromJson(
+              jsonDecode(response.body),
+            );
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) {
+                  List<Result2> dataSet = [];
+                  if (respond.lkm != null) {
+                    for (int i = 0; i < respond.lkm!.length; i++) {
+                      if (!MyJPJAccountManager().isLoggedIn && i == 0) {
+                      } else {
+                        dataSet.add(
+                          Result2(
+                            result: _resultField(respond.lkm![i]),
+                            title: respond.lkm![i].velinsuran,
+                          ),
+                        );
+                      }
+                    }
                   }
-                }
-              }
 
-              ResultStyle2 result = ResultStyle2(
-                id: respond.nokp,
-                name: respond.nama,
-                results: dataSet,
-                subtitle: AppLocalizations.of(context)!.searchResult,
-                title: AppLocalizations.of(context)!.blacklist,
-                vehicalRegNumber: respond.nokenderaan,
-              );
-              return TemplateResult2(
-                data: result,
-              );
-            },
-          ),
-        );
-      } else {
-        AlertController(ctx: context).connectionError();
-      }
+                  ResultStyle2 result = ResultStyle2(
+                    id: respond.nokp,
+                    name: respond.nama,
+                    results: dataSet,
+                    subtitle: AppLocalizations.of(context)!.searchResult,
+                    title: AppLocalizations.of(context)!.blacklist,
+                    vehicalRegNumber: respond.nokenderaan,
+                  );
+                  return TemplateResult2(
+                    data: result,
+                  );
+                },
+              ),
+            );
+          } else {
+            AlertController(ctx: context).connectionError();
+          }
+
+          EasyLoading.dismiss();
+        },
+      );
     } catch (e) {
       AlertController(ctx: context).connectionError();
-    } finally {
       EasyLoading.dismiss();
     }
   }

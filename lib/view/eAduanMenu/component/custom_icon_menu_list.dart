@@ -10,7 +10,7 @@ class CustomIconMenuButton extends StatelessWidget {
     Key? key,
     required this.item,
   }) : super(key: key);
-  final MenuItem item;
+  final CustomMenuItem item;
 
   @override
   Widget build(BuildContext context) {

@@ -11,7 +11,7 @@ class JpjDirectory extends StatelessWidget {
     Key? key,
     required this.locationList,
   }) : super(key: key);
-  final List<MenuItem> locationList;
+  final List<CustomMenuItem> locationList;
 
   @override
   Widget build(BuildContext context) {

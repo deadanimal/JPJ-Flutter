@@ -37,12 +37,12 @@ class ComitteeList extends StatelessWidget {
           children: [
             ElevatedButton(
               onPressed: () {},
-              child: const Icon(Icons.add),
               style: ElevatedButton.styleFrom(
                 primary: const Color(themeNavy),
                 shape: const CircleBorder(),
                 padding: const EdgeInsets.all(19),
               ),
+              child: const Icon(Icons.add),
             ),
             Text(
               AppLocalizations.of(context)!.addComittee,

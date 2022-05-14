@@ -17,7 +17,7 @@ class Inbox extends StatelessWidget {
     required this.msgList,
     required this.refreshCallback,
   }) : super(key: key);
-  final List<MenuItem> transactionList;
+  final List<CustomMenuItem> transactionList;
   final String title;
   final List<InboxMessages> msgList;
   final Function(BuildContext, String) readActionCallback;

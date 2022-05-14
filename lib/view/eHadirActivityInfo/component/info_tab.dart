@@ -38,14 +38,7 @@ class InfoTab extends StatelessWidget {
             ),
             const SizedBox(height: vPaddingXL),
             Text(
-              event.venue! +
-                  "\n" +
-                  event.date! +
-                  "\nSESI 1 " +
-                  event.startTime! +
-                  " - " +
-                  event.endTime! +
-                  "",
+              "${event.venue!}\n${event.date!}\nSESI 1 ${event.startTime!} - ${event.endTime!}",
               textAlign: TextAlign.center,
               style: const TextStyle(
                 color: Colors.black,

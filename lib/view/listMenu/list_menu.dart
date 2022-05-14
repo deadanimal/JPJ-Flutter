@@ -11,7 +11,7 @@ class CustomListMenu extends StatelessWidget {
     required this.transactionList,
     required this.title,
   }) : super(key: key);
-  final List<MenuItem> transactionList;
+  final List<CustomMenuItem> transactionList;
   final String title;
 
   @override

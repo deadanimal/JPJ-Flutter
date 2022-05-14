@@ -104,7 +104,7 @@ class JpjEqQueueInfo extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(8, 4, 8, 4),
                 child: Text(
-                  AppLocalizations.of(context)!.session + " _ _",
+                  "${AppLocalizations.of(context)!.session} _ _",
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                     color: Color(0xff171f44),
@@ -255,7 +255,7 @@ class JpjEqQueueInfo extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                "10" + AppLocalizations.of(context)!.minutes,
+                "10${AppLocalizations.of(context)!.minutes}",
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontSize: 25,

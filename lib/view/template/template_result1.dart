@@ -89,6 +89,7 @@ class TemplateResult1 extends StatelessWidget with TemplateForm {
           ),
         ],
       ),
+      width: 0.7 * mediaWidth,
       child: Row(
         children: [
           Expanded(
@@ -157,7 +158,6 @@ class TemplateResult1 extends StatelessWidget with TemplateForm {
           ),
         ],
       ),
-      width: 0.7 * mediaWidth,
     );
   }
 

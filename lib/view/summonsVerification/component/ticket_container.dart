@@ -40,7 +40,7 @@ class CustomTicketContainer extends StatelessWidget {
             Column(
               children: [
                 Text(
-                  "RM" + amount,
+                  "RM$amount",
                   style: const TextStyle(
                     color: Color(0xffe42222),
                     fontSize: 24,
@@ -63,7 +63,7 @@ class CustomTicketContainer extends StatelessWidget {
         const SizedBox(height: vPaddingM),
         _detailsField(
           context,
-          AppLocalizations.of(context)!.detail + ":",
+          "${AppLocalizations.of(context)!.detail}:",
           details,
         ),
         const SizedBox(height: vPaddingM),
@@ -72,12 +72,12 @@ class CustomTicketContainer extends StatelessWidget {
           children: [
             _detailsField(
               context,
-              AppLocalizations.of(context)!.date + ":",
+              "${AppLocalizations.of(context)!.date}:",
               date,
             ),
             _detailsField(
               context,
-              AppLocalizations.of(context)!.time + ":",
+              "${AppLocalizations.of(context)!.time}:",
               time,
             ),
           ],
@@ -85,7 +85,7 @@ class CustomTicketContainer extends StatelessWidget {
         const SizedBox(height: vPaddingM),
         _detailsField(
           context,
-          AppLocalizations.of(context)!.ticketNo + ":",
+          "${AppLocalizations.of(context)!.ticketNo}:",
           ticketNo,
         ),
       ],

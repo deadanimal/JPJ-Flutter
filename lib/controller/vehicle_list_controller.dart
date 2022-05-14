@@ -45,12 +45,12 @@ class _VehicleListController extends State<VehicleListController> {
             _onPressAdd(context);
           },
           backgroundColor: const Color(themeNavy),
-          child: const Icon(Icons.add),
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(
               Radius.circular(8.0),
             ),
           ),
+          child: const Icon(Icons.add),
         ),
       ),
     );

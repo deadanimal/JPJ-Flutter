@@ -125,9 +125,8 @@ class JpjEqBranchList extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                calculateDistanceFx(info.coordinate!)
-                                        .toStringAsFixed(2) +
-                                    " KM",
+                                "${calculateDistanceFx(info.coordinate!)
+                                        .toStringAsFixed(2)} KM",
                                 style: const TextStyle(
                                   color: Color(0xff707070),
                                   fontSize: 10,
