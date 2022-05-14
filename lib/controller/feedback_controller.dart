@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:jpj_info/config/site_config.dart';
 import 'package:jpj_info/controller/alert_controller.dart';
 import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/controller/bottom_nav_controller.dart';
+import 'package:jpj_info/controller/http_request_controller.dart';
 import 'package:jpj_info/controller/mainpage_controller.dart';
 import 'package:jpj_info/helper/id_types.dart';
 import 'package:jpj_info/model/license_status_request.dart';
@@ -56,6 +56,19 @@ class _FeedbackController extends State<FeedbackController> {
     );
   }
 
+  void _respondHandler(http.Response response) {
+    if (response.statusCode == 200) {
+      TooltipInfo().showInfo(
+        context,
+        AppLocalizations.of(context)!.yourRecord,
+        AppLocalizations.of(context)!.successfullySaved,
+        (c) => _onCloseSubmitInfo(c),
+      );
+    } else {
+      AlertController(ctx: context).connectionError();
+    }
+  }
+
   Future<void> _submitCallback(BuildContext context) async {
     var index = dropdownList.indexWhere((element) => element == dropdownValue);
     SiteConfig conf = SiteConfig();
@@ -63,30 +76,14 @@ class _FeedbackController extends State<FeedbackController> {
       kategori: index.toString(),
       nokp: _controller.text,
     );
-    try {
-      EasyLoading.show(
-        status: AppLocalizations.of(context)!.pleaseWait,
-      );
-      final response = await http.post(
-        Uri.parse(conf.licenseCheckUri),
-        headers: conf.jsonHeader,
-        body: jsonEncode(req.toJson()),
-      );
-      if (response.statusCode == 200) {
-        TooltipInfo().showInfo(
-          context,
-          AppLocalizations.of(context)!.yourRecord,
-          AppLocalizations.of(context)!.successfullySaved,
-          (c) => _onCloseSubmitInfo(c),
-        );
-      } else {
-        AlertController(ctx: context).connectionError();
-      }
-    } catch (e) {
-      AlertController(ctx: context).connectionError();
-    } finally {
-      EasyLoading.dismiss();
-    }
+
+    jpjHttpRequest(
+      context,
+      Uri.parse(conf.licenseCheckUri),
+      headers: conf.jsonHeader,
+      body: jsonEncode(req.toJson()),
+      callback: _respondHandler,
+    );
   }
 
   void _onCloseSubmitInfo(BuildContext context) {

@@ -71,29 +71,30 @@ class _EhadirMainPageController extends State<EhadirMainPageController> {
     );
   }
 
-  Future<void> _qrScanCallback(Barcode barcode) async {
+  void _qrScanCallback(Barcode barcode) {
     Navigator.pop(context);
     try {
       // String? qrData = barcode.rawValue;
       // todo: use qrData to query the event information
-      String response = await rootBundle.loadString('json/ehadir_event.json');
-      final data = await json.decode(response);
-      EHadirEventInfo eventInfo = EHadirEventInfo.fromJson(data);
-      // todo: parse Data and move to next screen
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) {
-            return EhadirConfirmAttendance(
-              eventName: eventInfo.eventName!,
-              vanue: eventInfo.venue!,
-              date: eventInfo.date!,
-              startTime: eventInfo.startTime!,
-              endTime: eventInfo.endTime!,
-            );
-          },
-        ),
-      );
+      rootBundle.loadString('json/ehadir_event.json').then((response) {
+        final data = json.decode(response);
+        EHadirEventInfo eventInfo = EHadirEventInfo.fromJson(data);
+        // todo: parse Data and move to next screen
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) {
+              return EhadirConfirmAttendance(
+                eventName: eventInfo.eventName!,
+                vanue: eventInfo.venue!,
+                date: eventInfo.date!,
+                startTime: eventInfo.startTime!,
+                endTime: eventInfo.endTime!,
+              );
+            },
+          ),
+        );
+      });
     } catch (e) {
       AlertController(ctx: context).generalError(
         AppLocalizations.of(context)!.invalidQrCode,

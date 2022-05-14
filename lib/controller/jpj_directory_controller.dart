@@ -6,6 +6,7 @@ import 'package:jpj_info/config/site_config.dart';
 import 'package:jpj_info/controller/alert_controller.dart';
 import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/controller/bottom_nav_controller.dart';
+import 'package:jpj_info/controller/http_request_controller.dart';
 import 'package:jpj_info/model/jpj_location_info.dart';
 import 'package:jpj_info/model/jpj_location_request.dart';
 import 'package:jpj_info/model/jpj_location_response.dart';
@@ -74,10 +75,45 @@ class _JpjDirectoryController extends State<JpjDirectoryController> {
     );
   }
 
+  void _responseHandler(http.Response response, String locationId) {
+    if (response.statusCode == 200) {
+      JpjLocationResponse respond = JpjLocationResponse.fromJson(
+        jsonDecode(response.body),
+      );
+      if (respond.data != null && respond.data!.isNotEmpty) {
+        AssetImage flagIcon = const AssetImage("");
+        String stateName = "";
+        for (var element in locationInputInfo) {
+          if (element.id == locationId) {
+            flagIcon = AssetImage(element.flagPath!);
+            stateName = element.name!;
+          }
+        }
+        results = respond.data!;
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) {
+              return JpjDirectoryInfo(
+                stateFlag: flagIcon,
+                stateName: stateName,
+                data: results,
+              );
+            },
+          ),
+        );
+      } else {
+        AlertController(ctx: context).noDataFound();
+      }
+    } else {
+      AlertController(ctx: context).connectionError();
+    }
+  }
+
   Future<List<CustomMenuItem>> _getDirectoryInfo() async {
     final String response =
         await rootBundle.loadString('json/jpj_location.json');
-    final data = await json.decode(response);
+    final data = json.decode(response);
     data["data"].forEach(
       (element) {
         JpjLocationInfo b = JpjLocationInfo.fromJson(element);
@@ -96,55 +132,18 @@ class _JpjDirectoryController extends State<JpjDirectoryController> {
     return dirctoryCustomMenuItem;
   }
 
-  Future<void> _submitCallback(BuildContext context, String locationId) async {
-    try {
-      EasyLoading.show(
-        status: AppLocalizations.of(context)!.pleaseWait,
-      );
-      SiteConfig conf = SiteConfig();
-      JpjLocationRequest req = JpjLocationRequest(id: locationId);
+  void _submitCallback(BuildContext context, String locationId) {
+    SiteConfig conf = SiteConfig();
+    JpjLocationRequest req = JpjLocationRequest(id: locationId);
 
-      final response = await http.post(
-        Uri.parse(conf.locationCheckUri),
-        headers: conf.jsonHeader,
-        body: jsonEncode(req.toJson()),
-      );
-      if (response.statusCode == 200) {
-        JpjLocationResponse respond = JpjLocationResponse.fromJson(
-          jsonDecode(response.body),
-        );
-        if (respond.data != null && respond.data!.isNotEmpty) {
-          AssetImage flagIcon = const AssetImage("");
-          String stateName = "";
-          for (var element in locationInputInfo) {
-            if (element.id == locationId) {
-              flagIcon = AssetImage(element.flagPath!);
-              stateName = element.name!;
-            }
-          }
-          results = respond.data!;
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) {
-                return JpjDirectoryInfo(
-                  stateFlag: flagIcon,
-                  stateName: stateName,
-                  data: results,
-                );
-              },
-            ),
-          );
-        } else {
-          AlertController(ctx: context).noDataFound();
-        }
-      } else {
-        AlertController(ctx: context).connectionError();
-      }
-    } catch (e) {
-      AlertController(ctx: context).connectionError();
-    } finally {
-      EasyLoading.dismiss();
-    }
+    jpjHttpRequest(
+      context,
+      Uri.parse(conf.locationCheckUri),
+      headers: conf.jsonHeader,
+      body: jsonEncode(req.toJson()),
+      callback: (response) {
+        _responseHandler(response, locationId);
+      },
+    );
   }
 }

@@ -11,7 +11,7 @@ import 'package:jpj_info/view/eAduanSubmit/eaduan_submit.dart';
 import 'package:jpj_info/view/eaduanForm/eaduan_form.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-enum eaduanItem {
+enum EaduanItem {
   redLight,
   emergencyLane,
   cutQueue,
@@ -28,15 +28,15 @@ class EaduanFormController extends StatefulWidget {
     Key? key,
     required this.itemClass,
   }) : super(key: key);
-  final eaduanItem itemClass;
+  final EaduanItem itemClass;
 
   @override
   State<StatefulWidget> createState() => _EaduanFormController();
 }
 
 class _EaduanFormController extends State<EaduanFormController> {
-  late Map<eaduanItem, String> aduanItemList;
-  late Map<eaduanItem, String> aduanIconList;
+  late Map<EaduanItem, String> aduanItemList;
+  late Map<EaduanItem, String> aduanIconList;
   late ImagePicker picker;
   late List<Uint8List> images;
   @override
@@ -54,28 +54,28 @@ class _EaduanFormController extends State<EaduanFormController> {
   @override
   Widget build(BuildContext context) {
     aduanItemList = {
-      eaduanItem.redLight: AppLocalizations.of(context)!.failToFollowRedLight,
-      eaduanItem.emergencyLane:
+      EaduanItem.redLight: AppLocalizations.of(context)!.failToFollowRedLight,
+      EaduanItem.emergencyLane:
           AppLocalizations.of(context)!.emergencyLaneDriving,
-      eaduanItem.cutQueue: AppLocalizations.of(context)!.skipQueue,
-      eaduanItem.leftOvertake: AppLocalizations.of(context)!.leftOvertake,
-      eaduanItem.doubleLine: AppLocalizations.of(context)!.doubleLineOvertake,
-      eaduanItem.usingPhone:
+      EaduanItem.cutQueue: AppLocalizations.of(context)!.skipQueue,
+      EaduanItem.leftOvertake: AppLocalizations.of(context)!.leftOvertake,
+      EaduanItem.doubleLine: AppLocalizations.of(context)!.doubleLineOvertake,
+      EaduanItem.usingPhone:
           AppLocalizations.of(context)!.usingPhoneWhileDriving,
-      eaduanItem.fancyPlate: AppLocalizations.of(context)!.fancyPlateNumber,
-      eaduanItem.darkTint: AppLocalizations.of(context)!.darkTint,
-      eaduanItem.seatBelt: AppLocalizations.of(context)!.notWearingSeatbelt,
+      EaduanItem.fancyPlate: AppLocalizations.of(context)!.fancyPlateNumber,
+      EaduanItem.darkTint: AppLocalizations.of(context)!.darkTint,
+      EaduanItem.seatBelt: AppLocalizations.of(context)!.notWearingSeatbelt,
     };
     aduanIconList = {
-      eaduanItem.redLight: "images/icon/eaduan_traffic_light_icon.png",
-      eaduanItem.emergencyLane: "images/icon/eaduan_emergency_lane_icon.png",
-      eaduanItem.cutQueue: "images/icon/eaduan_skip_queue_icon.png",
-      eaduanItem.leftOvertake: "images/icon/eaduan_left_overtake_icon.png",
-      eaduanItem.doubleLine: "images/icon/eaduan_double_line_overtake_icon.png",
-      eaduanItem.usingPhone: "images/icon/eaduan_using_phone_icon.png",
-      eaduanItem.fancyPlate: "images/icon/eaduan_fancy_plat_icon.png",
-      eaduanItem.darkTint: "images/icon/eaduan_dark_tint_icon.png",
-      eaduanItem.seatBelt: "images/icon/eaduan_not_wearing_seatbelt_icon.png",
+      EaduanItem.redLight: "images/icon/eaduan_traffic_light_icon.png",
+      EaduanItem.emergencyLane: "images/icon/eaduan_emergency_lane_icon.png",
+      EaduanItem.cutQueue: "images/icon/eaduan_skip_queue_icon.png",
+      EaduanItem.leftOvertake: "images/icon/eaduan_left_overtake_icon.png",
+      EaduanItem.doubleLine: "images/icon/eaduan_double_line_overtake_icon.png",
+      EaduanItem.usingPhone: "images/icon/eaduan_using_phone_icon.png",
+      EaduanItem.fancyPlate: "images/icon/eaduan_fancy_plat_icon.png",
+      EaduanItem.darkTint: "images/icon/eaduan_dark_tint_icon.png",
+      EaduanItem.seatBelt: "images/icon/eaduan_not_wearing_seatbelt_icon.png",
     };
     return SafeArea(
       child: Scaffold(

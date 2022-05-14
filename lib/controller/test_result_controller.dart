@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:jpj_info/config/site_config.dart';
 import 'package:jpj_info/controller/alert_controller.dart';
 import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/controller/bottom_nav_controller.dart';
+import 'package:jpj_info/controller/http_request_controller.dart';
 import 'package:jpj_info/helper/id_types.dart';
 import 'package:jpj_info/model/result_style2.dart';
 import 'package:jpj_info/model/test_result_request.dart';
@@ -65,6 +65,44 @@ class _TestResultController extends State<TestResultController> {
     });
   }
 
+  void _responseHandler(http.Response response) {
+    if (response.statusCode == 200) {
+      TestResultResponse respond = TestResultResponse.fromJson(
+        jsonDecode(response.body),
+      );
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) {
+            List<Result2> dataSet = [];
+            respond.lesenP?.forEach((el) {
+              dataSet.add(
+                Result2(
+                  result: _resultField(el),
+                  title: "${el.jenisLesen!} - ${el.jenisUjian!}",
+                ),
+              );
+            });
+
+            ResultStyle2 resultData = ResultStyle2(
+              vehicalRegNumber: null,
+              name: respond.nama,
+              id: respond.nokp,
+              title: AppLocalizations.of(context)!.testNResult,
+              subtitle: AppLocalizations.of(context)!.searchResult,
+              results: dataSet,
+            );
+            return TemplateResult2(
+              data: resultData,
+            );
+          },
+        ),
+      );
+    } else {
+      AlertController(ctx: context).connectionError();
+    }
+  }
+
   Future<void> _submitCallback(BuildContext context) async {
     var index = dropdownList.indexWhere((element) => element == dropdownValue);
     SiteConfig conf = SiteConfig();
@@ -72,55 +110,13 @@ class _TestResultController extends State<TestResultController> {
       kategori: index,
       nokp: _controller.text,
     );
-    try {
-      EasyLoading.show(
-        status: AppLocalizations.of(context)!.pleaseWait,
-      );
-      final response = await http.post(
-        Uri.parse(conf.testResultUri),
-        headers: conf.jsonHeader,
-        body: jsonEncode(req.toJson()),
-      );
-      if (response.statusCode == 200) {
-        TestResultResponse respond = TestResultResponse.fromJson(
-          jsonDecode(response.body),
-        );
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) {
-              List<Result2> dataSet = [];
-              respond.lesenP?.forEach((el) {
-                dataSet.add(
-                  Result2(
-                    result: _resultField(el),
-                    title: "${el.jenisLesen!} - ${el.jenisUjian!}",
-                  ),
-                );
-              });
-
-              ResultStyle2 resultData = ResultStyle2(
-                vehicalRegNumber: null,
-                name: respond.nama,
-                id: respond.nokp,
-                title: AppLocalizations.of(context)!.testNResult,
-                subtitle: AppLocalizations.of(context)!.searchResult,
-                results: dataSet,
-              );
-              return TemplateResult2(
-                data: resultData,
-              );
-            },
-          ),
-        );
-      } else {
-        AlertController(ctx: context).connectionError();
-      }
-    } catch (e) {
-      AlertController(ctx: context).connectionError();
-    } finally {
-      EasyLoading.dismiss();
-    }
+    jpjHttpRequest(
+      context,
+      Uri.parse(conf.testResultUri),
+      headers: conf.jsonHeader,
+      body: jsonEncode(req.toJson()),
+      callback: _responseHandler,
+    );
   }
 
   Widget _resultField(LesenP el) {

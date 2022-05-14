@@ -4,7 +4,7 @@ import 'package:jpj_info/controller/login_controller.dart';
 import 'package:jpj_info/helper/local_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-enum userType {
+enum UserType {
   visitor,
   loggedIn,
   staff,
@@ -13,7 +13,7 @@ enum userType {
 class MyJPJAccountManager {
   static final MyJPJAccountManager _singleton = MyJPJAccountManager._internal();
   String id = "";
-  userType type = userType.visitor;
+  UserType type = UserType.visitor;
   late String name;
   late String email;
   late String address;
@@ -44,7 +44,7 @@ class MyJPJAccountManager {
     state = "Johor";
     district = "Johor Bahru";
     postcode = "81100";
-    type = userType.staff;
+    type = UserType.staff;
     vehicalRegNumber = [
       "JJJ5555",
       "JVB5131",
@@ -66,7 +66,7 @@ class MyJPJAccountManager {
     id = "";
     email = "";
     lastLoggedIn = "";
-    type = userType.visitor;
+    type = UserType.visitor;
     name = AppLocalizations.of(context)!.visitor;
     vehicalRegNumber.clear();
     isLoggedIn = false;

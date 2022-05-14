@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:jpj_info/config/site_config.dart';
 import 'package:jpj_info/controller/alert_controller.dart';
 import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/controller/bottom_nav_controller.dart';
+import 'package:jpj_info/controller/http_request_controller.dart';
 import 'package:jpj_info/helper/account_manager.dart';
 import 'package:jpj_info/helper/id_types.dart';
 import 'package:jpj_info/model/result_style2.dart';
@@ -70,6 +70,49 @@ class _RoadTaxController extends State<RoadTaxController> {
     });
   }
 
+  void _responseHandler(http.Response response) {
+    if (response.statusCode == 200) {
+      RoadTaxStatusResponse respond = RoadTaxStatusResponse.fromJson(
+        jsonDecode(response.body),
+      );
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) {
+            List<Result2> dataSet = [];
+            if (respond.lkm != null) {
+              for (int i = 0; i < respond.lkm!.length; i++) {
+                if (!MyJPJAccountManager().isLoggedIn && i == 0) {
+                } else {
+                  dataSet.add(
+                    Result2(
+                      result: _resultField(respond.lkm![i]),
+                      title: respond.lkm![i].velinsuran,
+                    ),
+                  );
+                }
+              }
+            }
+
+            ResultStyle2 result = ResultStyle2(
+              id: respond.nokp,
+              name: respond.nama,
+              results: dataSet,
+              subtitle: AppLocalizations.of(context)!.searchResult,
+              title: AppLocalizations.of(context)!.lkm,
+              vehicalRegNumber: respond.nokenderaan,
+            );
+            return TemplateResult2(
+              data: result,
+            );
+          },
+        ),
+      );
+    } else {
+      AlertController(ctx: context).connectionError();
+    }
+  }
+
   Future<void> _submitCallback(BuildContext context) async {
     var index = dropdownList.indexWhere((element) => element == dropdownValue);
     SiteConfig conf = SiteConfig();
@@ -78,60 +121,13 @@ class _RoadTaxController extends State<RoadTaxController> {
       nokp: _nric.text,
       nokenderaan: _plateNumber.text,
     );
-    try {
-      EasyLoading.show(
-        status: AppLocalizations.of(context)!.pleaseWait,
-      );
-      final response = await http.post(
-        Uri.parse(conf.roadTaxCheckUri),
-        headers: conf.jsonHeader,
-        body: jsonEncode(req.toJson()),
-      );
-      if (response.statusCode == 200) {
-        RoadTaxStatusResponse respond = RoadTaxStatusResponse.fromJson(
-          jsonDecode(response.body),
-        );
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) {
-              List<Result2> dataSet = [];
-              if (respond.lkm != null) {
-                for (int i = 0; i < respond.lkm!.length; i++) {
-                  if (!MyJPJAccountManager().isLoggedIn && i == 0) {
-                  } else {
-                    dataSet.add(
-                      Result2(
-                        result: _resultField(respond.lkm![i]),
-                        title: respond.lkm![i].velinsuran,
-                      ),
-                    );
-                  }
-                }
-              }
-
-              ResultStyle2 result = ResultStyle2(
-                id: respond.nokp,
-                name: respond.nama,
-                results: dataSet,
-                subtitle: AppLocalizations.of(context)!.searchResult,
-                title: AppLocalizations.of(context)!.lkm,
-                vehicalRegNumber: respond.nokenderaan,
-              );
-              return TemplateResult2(
-                data: result,
-              );
-            },
-          ),
-        );
-      } else {
-        AlertController(ctx: context).connectionError();
-      }
-    } catch (e) {
-      AlertController(ctx: context).connectionError();
-    } finally {
-      EasyLoading.dismiss();
-    }
+    jpjHttpRequest(
+      context,
+      Uri.parse(conf.roadTaxCheckUri),
+      headers: conf.jsonHeader,
+      body: jsonEncode(req.toJson()),
+      callback: _responseHandler,
+    );
   }
 
   Widget _resultField(Lkm el) {

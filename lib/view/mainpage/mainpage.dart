@@ -190,7 +190,7 @@ class _MainPage extends State<MainPage> with TickerProviderStateMixin {
   }
 
   Widget mainSubSection(BuildContext context) {
-    if (MyJPJAccountManager().type == userType.staff) {
+    if (MyJPJAccountManager().type == UserType.staff) {
       return CustomTab(tabController: tabController);
     } else {
       return Text(
@@ -202,7 +202,7 @@ class _MainPage extends State<MainPage> with TickerProviderStateMixin {
   }
 
   Widget populateButton(context) {
-    if (MyJPJAccountManager().type == userType.staff) {
+    if (MyJPJAccountManager().type == UserType.staff) {
       return Container(
         width: mediaWidth,
         constraints: const BoxConstraints(maxWidth: 400),

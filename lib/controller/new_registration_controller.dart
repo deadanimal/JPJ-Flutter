@@ -1,11 +1,11 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:jpj_info/config/site_config.dart';
 import 'package:jpj_info/controller/alert_controller.dart';
 import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/controller/bottom_nav_controller.dart';
+import 'package:jpj_info/controller/http_request_controller.dart';
 import 'package:jpj_info/controller/login_controller.dart';
 import 'package:jpj_info/model/new_registration_request.dart';
 import 'package:jpj_info/model/new_registration_response.dart';
@@ -67,6 +67,45 @@ class _NewRegistrationController extends State<NewRegistrationController> {
     );
   }
 
+  void _responseHandler(http.Response response) {
+    if (response.statusCode == 200) {
+      RegistrationResponse respond = RegistrationResponse.fromJson(
+        jsonDecode(response.body),
+      );
+      if (respond.status == '0') {
+        TooltipInfo().showInfo(
+          context,
+          AppLocalizations.of(context)!.tempPasswordSent,
+          AppLocalizations.of(context)!.checkEmail,
+          (c) => _onCloseSubmitInfo(c),
+        );
+      } else if (respond.status == '1') {
+        TooltipInfo().showInfo(
+          context,
+          AppLocalizations.of(context)!.failedToRegister,
+          AppLocalizations.of(context)!.userExist,
+          (c) {},
+        );
+      } else if (respond.status == '2') {
+        TooltipInfo().showInfo(
+          context,
+          AppLocalizations.of(context)!.failedToRegister,
+          AppLocalizations.of(context)!.userBlocked,
+          (c) {},
+        );
+      } else {
+        TooltipInfo().showInfo(
+          context,
+          AppLocalizations.of(context)!.failedToRegister,
+          AppLocalizations.of(context)!.errorPleaseTryAgain,
+          (c) {},
+        );
+      }
+    } else {
+      AlertController(ctx: context).connectionError();
+    }
+  }
+
   Future<void> _submitCallback(BuildContext context) async {
     if (_agreeToTnc &&
         _email.text != "" &&
@@ -80,56 +119,13 @@ class _NewRegistrationController extends State<NewRegistrationController> {
         idNumber: _id.text,
         phone: _phone.text,
       );
-      try {
-        EasyLoading.show(
-          status: AppLocalizations.of(context)!.pleaseWait,
-        );
-        final response = await http.post(
-          Uri.parse(conf.registrationUri),
-          headers: conf.jsonHeader,
-          body: jsonEncode(req.toJson()),
-        );
-        if (response.statusCode == 200) {
-          RegistrationResponse respond = RegistrationResponse.fromJson(
-            jsonDecode(response.body),
-          );
-          if (respond.status == '0') {
-            TooltipInfo().showInfo(
-              context,
-              AppLocalizations.of(context)!.tempPasswordSent,
-              AppLocalizations.of(context)!.checkEmail,
-              (c) => _onCloseSubmitInfo(c),
-            );
-          } else if (respond.status == '1') {
-            TooltipInfo().showInfo(
-              context,
-              AppLocalizations.of(context)!.failedToRegister,
-              AppLocalizations.of(context)!.userExist,
-              (c) {},
-            );
-          } else if (respond.status == '2') {
-            TooltipInfo().showInfo(
-              context,
-              AppLocalizations.of(context)!.failedToRegister,
-              AppLocalizations.of(context)!.userBlocked,
-              (c) {},
-            );
-          } else {
-            TooltipInfo().showInfo(
-              context,
-              AppLocalizations.of(context)!.failedToRegister,
-              AppLocalizations.of(context)!.errorPleaseTryAgain,
-              (c) {},
-            );
-          }
-        } else {
-          AlertController(ctx: context).connectionError();
-        }
-      } catch (e) {
-        AlertController(ctx: context).connectionError();
-      } finally {
-        EasyLoading.dismiss();
-      }
+      jpjHttpRequest(
+        context,
+        Uri.parse(conf.registrationUri),
+        headers: conf.jsonHeader,
+        body: jsonEncode(req.toJson()),
+        callback: _responseHandler,
+      );
     } else {
       if (_email.text != _emailVerification.text) {
         TooltipInfo().showInfo(

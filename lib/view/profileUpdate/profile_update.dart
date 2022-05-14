@@ -83,7 +83,7 @@ class ProfileUpdate extends StatelessWidget {
             controller: emailController,
             label: AppLocalizations.of(context)!.email,
             readOnly:
-                MyJPJAccountManager().type == userType.staff ? false : true,
+                MyJPJAccountManager().type == UserType.staff ? false : true,
             width: mediaWidth - 64,
           ),
           CustomTextFieldWithLabel(

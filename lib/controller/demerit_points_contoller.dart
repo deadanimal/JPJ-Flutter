@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:jpj_info/config/site_config.dart';
 import 'package:jpj_info/controller/alert_controller.dart';
 import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/controller/bottom_nav_controller.dart';
+import 'package:jpj_info/controller/http_request_controller.dart';
 import 'package:jpj_info/helper/id_types.dart';
 import 'package:jpj_info/model/license_status_request.dart';
 import 'package:jpj_info/model/license_status_response.dart';
@@ -65,62 +65,59 @@ class _DemeritPointsController extends State<DemeritPointsController> {
     });
   }
 
-  Future<void> _submitCallback(BuildContext context) async {
+  void _respondHandler(http.Response response) {
+    if (response.statusCode == 200) {
+      LicenseStatusResponse respond = LicenseStatusResponse.fromJson(
+        jsonDecode(response.body),
+      );
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) {
+            List<Result1> dataSet = [];
+            respond.lesen?.forEach((el) {
+              dataSet.add(
+                Result1(
+                  leftTitle: AppLocalizations.of(context)!.licenseType,
+                  leftContent: el.jenisLesen,
+                  rightTitle: AppLocalizations.of(context)!.expiryDate,
+                  rightContent: el.tempohTamat,
+                ),
+              );
+            });
+
+            ResultStyle1 resultData = ResultStyle1(
+              name: respond.nama,
+              id: respond.nokp,
+              title: AppLocalizations.of(context)!.demeritNPoints,
+              subtitle: AppLocalizations.of(context)!.searchResult,
+              results: dataSet,
+            );
+            return TemplateResult1(
+              data: resultData,
+            );
+          },
+        ),
+      );
+    } else {
+      AlertController(ctx: context).connectionError();
+    }
+  }
+
+  void _submitCallback(BuildContext context) {
     var index = dropdownList.indexWhere((element) => element == dropdownValue);
     SiteConfig conf = SiteConfig();
     LicenseStatusRequest req = LicenseStatusRequest(
       kategori: index.toString(),
       nokp: _controller.text,
     );
-    try {
-      EasyLoading.show(
-        status: AppLocalizations.of(context)!.pleaseWait,
-      );
-      final response = await http.post(
-        Uri.parse(conf.licenseCheckUri),
-        headers: conf.jsonHeader,
-        body: jsonEncode(req.toJson()),
-      );
-      if (response.statusCode == 200) {
-        LicenseStatusResponse respond = LicenseStatusResponse.fromJson(
-          jsonDecode(response.body),
-        );
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) {
-              List<Result1> dataSet = [];
-              respond.lesen?.forEach((el) {
-                dataSet.add(
-                  Result1(
-                    leftTitle: AppLocalizations.of(context)!.licenseType,
-                    leftContent: el.jenisLesen,
-                    rightTitle: AppLocalizations.of(context)!.expiryDate,
-                    rightContent: el.tempohTamat,
-                  ),
-                );
-              });
 
-              ResultStyle1 resultData = ResultStyle1(
-                name: respond.nama,
-                id: respond.nokp,
-                title: AppLocalizations.of(context)!.demeritNPoints,
-                subtitle: AppLocalizations.of(context)!.searchResult,
-                results: dataSet,
-              );
-              return TemplateResult1(
-                data: resultData,
-              );
-            },
-          ),
-        );
-      } else {
-        AlertController(ctx: context).connectionError();
-      }
-    } catch (e) {
-      AlertController(ctx: context).connectionError();
-    } finally {
-      EasyLoading.dismiss();
-    }
+    jpjHttpRequest(
+      context,
+      Uri.parse(conf.licenseCheckUri),
+      headers: conf.jsonHeader,
+      body: jsonEncode(req.toJson()),
+      callback: _respondHandler,
+    );
   }
 }

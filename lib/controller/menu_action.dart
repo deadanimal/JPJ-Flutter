@@ -242,7 +242,7 @@ void eAduanMenuPage(BuildContext context) {
   );
 }
 
-void eAduanFormMenuPage(BuildContext context, eaduanItem item) {
+void eAduanFormMenuPage(BuildContext context, EaduanItem item) {
   Navigator.push(
     context,
     MaterialPageRoute(

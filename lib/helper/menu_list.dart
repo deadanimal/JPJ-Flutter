@@ -207,7 +207,7 @@ class MenuList {
         AppLocalizations.of(ctx)!.failToFollowRedLight,
         "images/icon/eaduan_traffic_light_icon.png",
         (context) {
-          eAduanFormMenuPage(context, eaduanItem.redLight);
+          eAduanFormMenuPage(context, EaduanItem.redLight);
         },
         login: true,
       ),
@@ -215,7 +215,7 @@ class MenuList {
         AppLocalizations.of(ctx)!.emergencyLaneDriving,
         "images/icon/eaduan_emergency_lane_icon.png",
         (context) {
-          eAduanFormMenuPage(context, eaduanItem.emergencyLane);
+          eAduanFormMenuPage(context, EaduanItem.emergencyLane);
         },
         login: true,
       ),
@@ -223,7 +223,7 @@ class MenuList {
         AppLocalizations.of(ctx)!.skipQueue,
         "images/icon/eaduan_skip_queue_icon.png",
         (context) {
-          eAduanFormMenuPage(context, eaduanItem.cutQueue);
+          eAduanFormMenuPage(context, EaduanItem.cutQueue);
         },
         login: true,
       ),
@@ -231,7 +231,7 @@ class MenuList {
         AppLocalizations.of(ctx)!.leftOvertake,
         "images/icon/eaduan_left_overtake_icon.png",
         (context) {
-          eAduanFormMenuPage(context, eaduanItem.leftOvertake);
+          eAduanFormMenuPage(context, EaduanItem.leftOvertake);
         },
         login: true,
       ),
@@ -239,7 +239,7 @@ class MenuList {
         AppLocalizations.of(ctx)!.doubleLineOvertake,
         "images/icon/eaduan_double_line_overtake_icon.png",
         (context) {
-          eAduanFormMenuPage(context, eaduanItem.doubleLine);
+          eAduanFormMenuPage(context, EaduanItem.doubleLine);
         },
         login: true,
       ),
@@ -247,7 +247,7 @@ class MenuList {
         AppLocalizations.of(ctx)!.usingPhoneWhileDriving,
         "images/icon/eaduan_using_phone_icon.png",
         (context) {
-          eAduanFormMenuPage(context, eaduanItem.usingPhone);
+          eAduanFormMenuPage(context, EaduanItem.usingPhone);
         },
         login: true,
       ),
@@ -255,7 +255,7 @@ class MenuList {
         AppLocalizations.of(ctx)!.fancyPlateNumber,
         "images/icon/eaduan_fancy_plat_icon.png",
         (context) {
-          eAduanFormMenuPage(context, eaduanItem.fancyPlate);
+          eAduanFormMenuPage(context, EaduanItem.fancyPlate);
         },
         login: true,
       ),
@@ -263,7 +263,7 @@ class MenuList {
         AppLocalizations.of(ctx)!.darkTint,
         "images/icon/eaduan_dark_tint_icon.png",
         (context) {
-          eAduanFormMenuPage(context, eaduanItem.darkTint);
+          eAduanFormMenuPage(context, EaduanItem.darkTint);
         },
         login: true,
       ),
@@ -271,7 +271,7 @@ class MenuList {
         AppLocalizations.of(ctx)!.notWearingSeatbelt,
         "images/icon/eaduan_not_wearing_seatbelt_icon.png",
         (context) {
-          eAduanFormMenuPage(context, eaduanItem.seatBelt);
+          eAduanFormMenuPage(context, EaduanItem.seatBelt);
         },
         login: true,
       ),
