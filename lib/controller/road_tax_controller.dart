@@ -32,6 +32,8 @@ class _RoadTaxController extends State<RoadTaxController> {
   void initState() {
     super.initState();
     _nric = TextEditingController();
+
+    _nric.text = MyJPJAccountManager().id;
     _plateNumber = TextEditingController();
   }
 

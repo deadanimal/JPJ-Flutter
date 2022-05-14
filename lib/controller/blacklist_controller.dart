@@ -33,6 +33,8 @@ class _BlacklistController extends State<BlacklistController> {
     super.initState();
     _nric = TextEditingController();
     _plateNumber = TextEditingController();
+
+    _nric.text = MyJPJAccountManager().id;
   }
 
   @override

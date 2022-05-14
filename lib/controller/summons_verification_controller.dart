@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/controller/bottom_nav_controller.dart';
 import 'package:jpj_info/controller/payment_method_controller.dart';
+import 'package:jpj_info/helper/account_manager.dart';
 import 'package:jpj_info/helper/id_types.dart';
 import 'package:jpj_info/model/expansion_list.dart';
 import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
@@ -27,6 +28,7 @@ class _SummonsVerificationController
   void initState() {
     super.initState();
     _controller = TextEditingController();
+    _controller.text = MyJPJAccountManager().id;
     summonsList = [];
   }
 

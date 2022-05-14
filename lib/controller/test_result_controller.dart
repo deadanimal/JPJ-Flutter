@@ -4,6 +4,7 @@ import 'package:jpj_info/controller/alert_controller.dart';
 import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/controller/bottom_nav_controller.dart';
 import 'package:jpj_info/controller/http_request_controller.dart';
+import 'package:jpj_info/helper/account_manager.dart';
 import 'package:jpj_info/helper/id_types.dart';
 import 'package:jpj_info/model/result_style2.dart';
 import 'package:jpj_info/model/test_result_request.dart';
@@ -30,6 +31,7 @@ class _TestResultController extends State<TestResultController> {
   void initState() {
     super.initState();
     _controller = TextEditingController();
+    _controller.text = MyJPJAccountManager().id;
   }
 
   @override
