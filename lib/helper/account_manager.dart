@@ -58,11 +58,6 @@ class MyJPJAccountManager {
       name = loginResponse.nama!;
       lastLoggedIn = DateTime.now().toString();
       email = loginResponse.emel!;
-      address = "No 77, Jalan Sepat, Taman Bidara";
-      phoneNumber = "0164523577";
-      state = "Johor";
-      district = "Johor Bahru";
-      postcode = "81100";
       type = UserType.staff;
       isLoggedIn = true;
     } catch (e) {
