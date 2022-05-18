@@ -44,8 +44,8 @@ class SiteConfig {
     'Content-Type': 'application/json; charset=UTF-8',
   };
 
-  String jpjEbidAppStoreLink = '$appStoreUrl/jpjebid/id1458846863';
-  String jpjEbidPlayStoreLink = '$playStoreUrl=my.gov.jpj.ebidding';
-  String jpjEqAppStoreLink = '$appStoreUrl/jpjeq/id1545069171';
-  String jpjEqPlayStoreLink = '$playStoreUrl=my.gov.jpj.queue';
+  String jpjEbidAppStoreid = '1458846863';
+  String jpjEbidPlayStoreid = 'my.gov.jpj.ebidding';
+  String jpjEqAppStoreid = '1545069171';
+  String jpjEqPlayStoreid = 'my.gov.jpj.queue';
 }

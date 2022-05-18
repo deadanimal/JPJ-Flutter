@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jpj_info/config/site_config.dart';
 import 'package:jpj_info/controller/blacklist_controller.dart';
 import 'package:jpj_info/controller/change_password_controller.dart';
 import 'package:jpj_info/controller/demerit_points_contoller.dart';
@@ -18,7 +19,6 @@ import 'package:jpj_info/controller/feedback_controller.dart';
 import 'package:jpj_info/controller/jpj_directory_controller.dart';
 import 'package:jpj_info/controller/jpj_eq_branch_list_controller.dart';
 import 'package:jpj_info/controller/jpj_eq_mainpage_controller.dart';
-import 'package:jpj_info/controller/jpj_eq_menu_controller.dart';
 import 'package:jpj_info/controller/jpj_eq_notification_controller.dart';
 import 'package:jpj_info/controller/jpj_eq_transaction_controller.dart';
 import 'package:jpj_info/controller/latest_registration_number_controller.dart';
@@ -32,6 +32,7 @@ import 'package:jpj_info/controller/tnc_controller.dart';
 import 'package:jpj_info/controller/transaction_history_controller.dart';
 import 'package:jpj_info/controller/vehicle_list_controller.dart';
 import 'package:jpj_info/model/ehadir_event_info.dart';
+import 'package:launch_review/launch_review.dart';
 
 void licensePage(BuildContext context) {
   Navigator.push(
@@ -221,14 +222,19 @@ void transactionHistoryPage(BuildContext context) {
 }
 
 void jpjEqMenuPage(BuildContext context) {
-  Navigator.push(
-    context,
-    MaterialPageRoute(
-      builder: (context) {
-        return const JpjEqMenuController();
-      },
-    ),
+  LaunchReview.launch(
+    androidAppId: SiteConfig().jpjEqPlayStoreid,
+    iOSAppId: SiteConfig().jpjEqAppStoreid,
   );
+  // info: use the bottom navigation for new jpj eq
+  // Navigator.push(
+  //   context,
+  //   MaterialPageRoute(
+  //     builder: (context) {
+  //       return const JpjEqMenuController();
+  //     },
+  //   ),
+  // );
 }
 
 void eAduanMenuPage(BuildContext context) {
@@ -384,5 +390,12 @@ void jpjEqNotificationPage(BuildContext context) {
         return const JpjEqNotificationController();
       },
     ),
+  );
+}
+
+void jpjEbidStore(BuildContext context) {
+  LaunchReview.launch(
+    androidAppId: SiteConfig().jpjEbidPlayStoreid,
+    iOSAppId: SiteConfig().jpjEbidAppStoreid,
   );
 }

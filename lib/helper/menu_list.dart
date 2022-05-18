@@ -13,7 +13,7 @@ class MenuList {
       CustomMenuItem(
         "JPJeBid",
         "images/icon/ebit_icon.png",
-        () {},
+        jpjEbidStore,
       ),
       CustomMenuItem(
         "JPJeQ",
@@ -52,7 +52,7 @@ class MenuList {
       CustomMenuItem(
         "JPJeBid",
         "images/icon/ebit_icon.png",
-        () {},
+        jpjEbidStore,
       ),
       CustomMenuItem(
         "JPJeQ",
