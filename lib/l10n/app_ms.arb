@@ -235,5 +235,8 @@
     "emailNotSame":"Emel yang dimasukkan tidak sama",
     "pleaseTickTnc":"Sila tanda pada kotak setuju terma dan syarat",
     "failToLogin":"Log Masuk Gagal",
+    "checkLkm":"LKM check",
+    "removeVehicle":"Hapus",
+    "askRemove":"Anda Pasti Hapus?",
     "pleaseWait": "Sila Tunggu..."
 }

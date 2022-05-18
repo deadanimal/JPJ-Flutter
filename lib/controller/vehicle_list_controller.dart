@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/controller/bottom_nav_controller.dart';
 import 'package:jpj_info/controller/popup_input_controller.dart';
+import 'package:jpj_info/controller/prompt_controller.dart';
 import 'package:jpj_info/helper/account_manager.dart';
 import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
+import 'package:jpj_info/view/form/custom_button.dart';
 import 'package:jpj_info/view/vehicleList/vehicle_list.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -36,9 +38,9 @@ class _VehicleListController extends State<VehicleListController> {
           decor: customGradient,
         ),
         body: VehicleList(
-          pageTitle: AppLocalizations.of(context)!.vehicleListNumber,
-          vehiclesNumber: vehicleNumber,
-        ),
+            pageTitle: AppLocalizations.of(context)!.vehicleListNumber,
+            vehiclesNumber: vehicleNumber,
+            onPressNumber: _onPressNumber),
         bottomNavigationBar: BottomNavController(),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
@@ -66,8 +68,59 @@ class _VehicleListController extends State<VehicleListController> {
   void _addVehicle(String plateNumber) {
     setState(() {
       MyJPJAccountManager()
-          .vehicalRegNumber
-          .add(plateNumber.toUpperCase().replaceAll(' ', ''));
+          .addVehicle(plateNumber.toUpperCase().replaceAll(' ', ''));
     });
+  }
+
+  void _onPressNumber(String number) {
+    showDialog<void>(
+      context: context,
+      barrierDismissible: true,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              CustomButton(
+                onPressed: () {},
+                decoration: navyGradientBtnDeco,
+                label: AppLocalizations.of(context)!.checkLkm,
+              ),
+              CustomButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                  _promptRemoveVehicle(number);
+                },
+                decoration: redGradientBtnDeco,
+                label: AppLocalizations.of(context)!.removeVehicle,
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  void _promptRemoveVehicle(String plateNumber) {
+    PromptController(ctx: context).prompt(
+      AppLocalizations.of(context)!.askRemove,
+      () {
+        _removeVehicle(plateNumber);
+        Navigator.pop(context);
+      },
+      () {
+        Navigator.pop(context);
+      },
+    );
+  }
+
+  void _removeVehicle(String plateNumber) {
+    setState(() {
+      MyJPJAccountManager().removeVehicle(plateNumber);
+    });
+  }
+
+  void _checkLKM(String plateNumber) {
+    //todo: add functionality
   }
 }

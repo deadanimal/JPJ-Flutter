@@ -9,10 +9,12 @@ class VehicleList extends StatelessWidget {
     Key? key,
     required this.pageTitle,
     required this.vehiclesNumber,
+    required this.onPressNumber,
   }) : super(key: key);
 
   final String pageTitle;
   final List<String> vehiclesNumber;
+  final Function(String) onPressNumber;
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +49,10 @@ class VehicleList extends StatelessWidget {
         return Column(
           children: [
             const SizedBox(height: vPaddingM),
-            PlateNumberContainer(plateNumber: vehiclesNumber[index]),
+            PlateNumberContainer(
+              plateNumber: vehiclesNumber[index],
+              onPressNumber: onPressNumber,
+            ),
           ],
         );
       },

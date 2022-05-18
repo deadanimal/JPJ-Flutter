@@ -234,5 +234,9 @@
     "pleaseFillAllInfo":"Please fill all required informations",
     "emailNotSame":"Email entered not the same",
     "pleaseTickTnc":"Please tick to agree terms and conditions",
+    "failToLogin":"Login Failed",
+    "checkLkm":"LKM check",
+    "removeVehicle":"Remove Vehicle",
+    "askRemove":"Confirm Remove?",
     "pleaseWait": "Please wait..."
 }

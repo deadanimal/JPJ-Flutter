@@ -43,6 +43,13 @@ class MyJPJAccountManager {
       "JVB5131",
     ];
     try {
+      List<String>? vehicleList =
+          prefs.getStringList(LocalStorageHelper().vehicleList);
+      vehicalRegNumber = vehicleList!;
+    } catch (e) {
+      vehicalRegNumber = [];
+    }
+    try {
       String? userInfo = prefs.getString(LocalStorageHelper().userLoginInfo);
       LoginResponse loginResponse = LoginResponse.fromJson(
         jsonDecode(userInfo!),
@@ -84,6 +91,7 @@ class MyJPJAccountManager {
     notificationCount = 0;
     SharedPreferences.getInstance().then((pref) {
       pref.remove(LocalStorageHelper().userLoginInfo);
+      pref.remove(LocalStorageHelper().vehicleList);
     });
 
     Navigator.pushAndRemoveUntil(
@@ -95,5 +103,19 @@ class MyJPJAccountManager {
       ),
       (Route<dynamic> route) => false,
     );
+  }
+
+  void addVehicle(String regNumber) {
+    vehicalRegNumber.add(regNumber);
+    SharedPreferences.getInstance().then((pref) {
+      pref.setStringList(LocalStorageHelper().vehicleList, vehicalRegNumber);
+    });
+  }
+
+  void removeVehicle(String regNumber) {
+    vehicalRegNumber.remove(regNumber);
+    SharedPreferences.getInstance().then((pref) {
+      pref.setStringList(LocalStorageHelper().vehicleList, vehicalRegNumber);
+    });
   }
 }

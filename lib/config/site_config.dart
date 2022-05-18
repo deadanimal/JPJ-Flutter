@@ -1,6 +1,8 @@
 class SiteConfig {
   static String url = "http://egate.jpj.gov.my";
   static String prodUrl = "https://myjpj.jpj.gov.my";
+  static String appStoreUrl = 'itms-apps://apps.apple.com/us/app';
+  static String playStoreUrl = 'market://details?id';
 
   // account api
   final String loginUri = "$url/aduantrafikmobile/login/processlogin2";
@@ -41,4 +43,9 @@ class SiteConfig {
   Map<String, String> jsonHeader = {
     'Content-Type': 'application/json; charset=UTF-8',
   };
+
+  String jpjEbidAppStoreLink = '$appStoreUrl/jpjebid/id1458846863';
+  String jpjEbidPlayStoreLink = '$playStoreUrl=my.gov.jpj.ebidding';
+  String jpjEqAppStoreLink = '$appStoreUrl/jpjeq/id1545069171';
+  String jpjEqPlayStoreLink = '$playStoreUrl=my.gov.jpj.queue';
 }
