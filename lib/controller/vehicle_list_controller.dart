@@ -3,6 +3,7 @@ import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/controller/bottom_nav_controller.dart';
 import 'package:jpj_info/controller/popup_input_controller.dart';
 import 'package:jpj_info/controller/prompt_controller.dart';
+import 'package:jpj_info/controller/road_tax_request_controller.dart';
 import 'package:jpj_info/helper/account_manager.dart';
 import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
@@ -82,7 +83,10 @@ class _VehicleListController extends State<VehicleListController> {
             mainAxisSize: MainAxisSize.min,
             children: [
               CustomButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pop(context);
+                  _checkLKM(number);
+                },
                 decoration: navyGradientBtnDeco,
                 label: AppLocalizations.of(context)!.checkLkm,
               ),
@@ -121,6 +125,11 @@ class _VehicleListController extends State<VehicleListController> {
   }
 
   void _checkLKM(String plateNumber) {
-    //todo: add functionality
+    RoadTaxRequestController(
+      context,
+      1,
+      MyJPJAccountManager().id,
+      plateNumber,
+    );
   }
 }
