@@ -156,10 +156,19 @@ class _MainPage extends State<MainPage> with TickerProviderStateMixin {
     if (MyJPJAccountManager().isLoggedIn == true) {
       return Column(
         children: [
-          Text(
-            AppLocalizations.of(context)!.favourite,
-            textAlign: TextAlign.center,
-            style: CustomTextStyle().subHeader(),
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              color: Colors.white54,
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                AppLocalizations.of(context)!.favourite,
+                textAlign: TextAlign.center,
+                style: CustomTextStyle().subHeader(),
+              ),
+            ),
           ),
           favSubsectionItems(context),
         ],
