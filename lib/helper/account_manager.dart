@@ -58,6 +58,11 @@ class MyJPJAccountManager {
       name = loginResponse.nama!;
       lastLoggedIn = DateTime.now().toString();
       email = loginResponse.emel!;
+      phoneNumber = "";
+      state = "";
+      district = "";
+      postcode = "";
+      address = "";
       type = UserType.staff;
       isLoggedIn = true;
     } catch (e) {
@@ -79,6 +84,12 @@ class MyJPJAccountManager {
     id = "";
     email = "";
     lastLoggedIn = "";
+    phoneNumber = "";
+    phoneNumber = "";
+    state = "";
+    district = "";
+    postcode = "";
+    address = "";
     type = UserType.visitor;
     name = AppLocalizations.of(context)!.visitor;
     vehicalRegNumber.clear();

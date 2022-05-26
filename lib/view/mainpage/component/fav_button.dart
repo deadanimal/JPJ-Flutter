@@ -21,7 +21,7 @@ class CustomFavButton extends StatelessWidget {
           height: 51,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
-            color: const Color(btnColor),
+            color: Colors.white,
             boxShadow: const [
               BoxShadow(
                 color: Color(btnShadow),
@@ -43,7 +43,7 @@ class CustomFavButton extends StatelessWidget {
                     child: Text(
                       item.menu!,
                       style: const TextStyle(
-                        color: Colors.white,
+                        color: Color(themeNavy),
                       ),
                     ),
                   ),

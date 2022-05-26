@@ -16,7 +16,7 @@ Widget button(
           offset: Offset(0, 4),
         ),
       ],
-      color: const Color(btnColor),
+      color: Colors.white,
     ),
     padding: const EdgeInsets.all(8),
     child: TextButton(
@@ -46,7 +46,7 @@ Widget button(
             padding: EdgeInsets.only(top: 8.0),
             child: Icon(
               Icons.keyboard_arrow_down_rounded,
-              color: Colors.white,
+              color: Color(themeNavy),
               size: 16.0,
             ),
           ),
@@ -91,7 +91,7 @@ Widget btnTextWidget(btnText) {
       btnText,
       textAlign: TextAlign.center,
       style: const TextStyle(
-        color: Colors.white,
+        color: Color(themeNavy),
         fontSize: 16,
         fontFamily: "Roboto",
         fontWeight: FontWeight.w900,
