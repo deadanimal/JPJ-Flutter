@@ -60,7 +60,7 @@ class _VehicleListController extends State<VehicleListController> {
   }
 
   void _onPressAdd(BuildContext context) {
-    PopupInputController(ctx: context).noDataFound(
+    PopupInputController(ctx: context).show(
       AppLocalizations.of(context)!.addVehicle,
       _addVehicle,
     );

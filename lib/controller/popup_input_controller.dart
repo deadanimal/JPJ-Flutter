@@ -6,7 +6,7 @@ class PopupInputController {
   BuildContext ctx;
   PopupInputController({required this.ctx});
 
-  Future<void> noDataFound(String title, void Function(String) callback) {
+  Future<void> show(String title, void Function(String) callback) {
     TextEditingController textController = TextEditingController();
     return showDialog<void>(
       context: ctx,
@@ -23,8 +23,7 @@ class PopupInputController {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TextFieldForm(
-                        textController: textController,
-                        width: double.infinity),
+                        textController: textController, width: double.infinity),
                   ),
                 ),
               ],
@@ -34,7 +33,9 @@ class PopupInputController {
             TextButton(
               child: const Text('OK'),
               onPressed: () {
-                callback(textController.text);
+                if (textController.text.isNotEmpty) {
+                  callback(textController.text);
+                }
                 Navigator.of(context).pop();
               },
             ),
