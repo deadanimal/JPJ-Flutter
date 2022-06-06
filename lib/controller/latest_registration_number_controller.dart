@@ -29,6 +29,7 @@ class _LatestRegistrationNumberController
   late String? flag;
   late ResultStyle2? result;
   Map<String, String> stateMap = {
+    "State": "",
     "JOHOR": "J",
     "KEDAH": "K",
     "LANGKAWI": "KV",
@@ -106,7 +107,7 @@ class _LatestRegistrationNumberController
   void initState() {
     super.initState();
     dropdownList = stateMap.keys;
-    dropdownValue = 'JOHOR';
+    dropdownValue = 'State';
     result = null;
     flag = null;
   }
@@ -139,9 +140,16 @@ class _LatestRegistrationNumberController
   void _setSelection(BuildContext context, String? newSelection) {
     setState(() {
       dropdownValue = newSelection!;
-      flag = flagIcon[dropdownValue];
+      if (dropdownValue != "State") {
+        flag = flagIcon[dropdownValue];
+      } else {
+        result = null;
+        flag = null;
+      }
     });
-    _submitCallback(context);
+    if (dropdownValue != "State") {
+      _submitCallback(context);
+    }
   }
 
   Future<void> _submitCallback(BuildContext context) async {

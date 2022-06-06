@@ -57,7 +57,7 @@ class PlateNumber extends StatelessWidget {
         children: [
           const SizedBox(height: vPaddingXL),
           CustomLabel(
-            label: AppLocalizations.of(context)!.category,
+            label: AppLocalizations.of(context)!.state,
             fontSize: 18,
             fontWeight: FontWeight.w600,
           ),

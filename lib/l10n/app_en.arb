@@ -238,5 +238,6 @@
     "checkLkm":"LKM check",
     "removeVehicle":"Remove Vehicle",
     "askRemove":"Confirm Remove?",
+    "chooseState":"Choose a state",
     "pleaseWait": "Please wait..."
 }

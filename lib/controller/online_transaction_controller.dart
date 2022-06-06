@@ -32,7 +32,7 @@ class _OnlineTransactionController extends State<OnlineTransactionController> {
           decor: customGradient,
         ),
         body: CustomListMenu(
-          title: AppLocalizations.of(context)!.service,
+          title: AppLocalizations.of(context)!.onlineTransaction,
           transactionList: MenuList(ctx: context).getOnlineTransactionList(),
         ),
         bottomNavigationBar: BottomNavController(
