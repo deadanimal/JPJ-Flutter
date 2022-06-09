@@ -12,6 +12,7 @@ import 'package:jpj_info/model/test_result_response.dart';
 import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:http/http.dart' as http;
+import 'package:jpj_info/view/form/tooltip_info.dart';
 import 'dart:convert';
 import 'package:jpj_info/view/template/template_result2.dart';
 import 'package:jpj_info/view/testResultCheck/test_result_check.dart';
@@ -62,9 +63,7 @@ class _TestResultController extends State<TestResultController> {
   }
 
   void _setSelection(String? newSelection) {
-    setState(() {
-      dropdownValue = newSelection!;
-    });
+    dropdownValue = newSelection!;
   }
 
   void _responseHandler(http.Response response) {
@@ -106,19 +105,29 @@ class _TestResultController extends State<TestResultController> {
   }
 
   Future<void> _submitCallback(BuildContext context) async {
-    var index = dropdownList.indexWhere((element) => element == dropdownValue);
-    SiteConfig conf = SiteConfig();
-    TestResultRequest req = TestResultRequest(
-      kategori: index,
-      nokp: _controller.text,
-    );
-    jpjHttpRequest(
-      context,
-      Uri.parse(conf.testResultUri),
-      headers: conf.jsonHeader,
-      body: jsonEncode(req.toJson()),
-      callback: _responseHandler,
-    );
+    if (_controller.text.isNotEmpty) {
+      var index =
+          dropdownList.indexWhere((element) => element == dropdownValue);
+      SiteConfig conf = SiteConfig();
+      TestResultRequest req = TestResultRequest(
+        kategori: index,
+        nokp: _controller.text,
+      );
+      jpjHttpRequest(
+        context,
+        Uri.parse(conf.testResultUri),
+        headers: conf.jsonHeader,
+        body: jsonEncode(req.toJson()),
+        callback: _responseHandler,
+      );
+    } else {
+      TooltipInfo().showInfo(
+        context,
+        AppLocalizations.of(context)!.errorPleaseTryAgain,
+        AppLocalizations.of(context)!.pleaseFillAllInfo,
+        (c) {},
+      );
+    }
   }
 
   Widget _resultField(LesenP el) {

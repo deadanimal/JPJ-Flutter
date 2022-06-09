@@ -13,6 +13,7 @@ import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:http/http.dart' as http;
 import 'package:jpj_info/view/blacklistCheck/blacklist_check.dart';
+import 'package:jpj_info/view/form/tooltip_info.dart';
 import 'dart:convert';
 import 'package:jpj_info/view/template/template_result2.dart';
 
@@ -67,80 +68,88 @@ class _BlacklistController extends State<BlacklistController> {
   }
 
   void _setSelection(String? newSelection) {
-    setState(() {
-      dropdownValue = newSelection!;
-    });
+    dropdownValue = newSelection!;
   }
 
   void _submitCallback(BuildContext context) {
-    var index = dropdownList.indexWhere((element) => element == dropdownValue);
-    SiteConfig conf = SiteConfig();
-    RoadTaxStatusRequest req = RoadTaxStatusRequest(
-      kategori: index.toString(),
-      nokp: _nric.text,
-      nokenderaan: _plateNumber.text,
-    );
-    try {
-      EasyLoading.show(
-        status: AppLocalizations.of(context)!.pleaseWait,
+    if (_nric.text.isNotEmpty && _plateNumber.text.isNotEmpty) {
+      var index =
+          dropdownList.indexWhere((element) => element == dropdownValue);
+      SiteConfig conf = SiteConfig();
+      RoadTaxStatusRequest req = RoadTaxStatusRequest(
+        kategori: index.toString(),
+        nokp: _nric.text,
+        nokenderaan: _plateNumber.text,
       );
-      http
-          .post(
-        Uri.parse(conf.roadTaxCheckUri),
-        headers: conf.jsonHeader,
-        body: jsonEncode(
-          req.toJson(),
-        ),
-      )
-          .then(
-        (response) {
-          if (response.statusCode == 200) {
-            RoadTaxStatusResponse respond = RoadTaxStatusResponse.fromJson(
-              jsonDecode(response.body),
-            );
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) {
-                  List<Result2> dataSet = [];
-                  if (respond.lkm != null) {
-                    for (int i = 0; i < respond.lkm!.length; i++) {
-                      if (!MyJPJAccountManager().isLoggedIn && i == 0) {
-                      } else {
-                        dataSet.add(
-                          Result2(
-                            result: _resultField(respond.lkm![i]),
-                            title: respond.lkm![i].velinsuran,
-                          ),
-                        );
+      try {
+        EasyLoading.show(
+          status: AppLocalizations.of(context)!.pleaseWait,
+        );
+        http
+            .post(
+          Uri.parse(conf.roadTaxCheckUri),
+          headers: conf.jsonHeader,
+          body: jsonEncode(
+            req.toJson(),
+          ),
+        )
+            .then(
+          (response) {
+            if (response.statusCode == 200) {
+              RoadTaxStatusResponse respond = RoadTaxStatusResponse.fromJson(
+                jsonDecode(response.body),
+              );
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    List<Result2> dataSet = [];
+                    if (respond.lkm != null) {
+                      for (int i = 0; i < respond.lkm!.length; i++) {
+                        if (!MyJPJAccountManager().isLoggedIn && i == 0) {
+                        } else {
+                          dataSet.add(
+                            Result2(
+                              result: _resultField(respond.lkm![i]),
+                              title: respond.lkm![i].velinsuran,
+                            ),
+                          );
+                        }
                       }
                     }
-                  }
 
-                  ResultStyle2 result = ResultStyle2(
-                    id: respond.nokp,
-                    name: respond.nama,
-                    results: dataSet,
-                    subtitle: AppLocalizations.of(context)!.searchResult,
-                    title: AppLocalizations.of(context)!.blacklist,
-                    vehicalRegNumber: respond.nokenderaan,
-                  );
-                  return TemplateResult2(
-                    data: result,
-                  );
-                },
-              ),
-            );
-          } else {
-            AlertController(ctx: context).connectionError();
-          }
+                    ResultStyle2 result = ResultStyle2(
+                      id: respond.nokp,
+                      name: respond.nama,
+                      results: dataSet,
+                      subtitle: AppLocalizations.of(context)!.searchResult,
+                      title: AppLocalizations.of(context)!.blacklist,
+                      vehicalRegNumber: respond.nokenderaan,
+                    );
+                    return TemplateResult2(
+                      data: result,
+                    );
+                  },
+                ),
+              );
+            } else {
+              AlertController(ctx: context).connectionError();
+            }
 
-          EasyLoading.dismiss();
-        },
+            EasyLoading.dismiss();
+          },
+        );
+      } catch (e) {
+        AlertController(ctx: context).connectionError();
+        EasyLoading.dismiss();
+      }
+    } else {
+      TooltipInfo().showInfo(
+        context,
+        AppLocalizations.of(context)!.errorPleaseTryAgain,
+        AppLocalizations.of(context)!.pleaseFillAllInfo,
+        (c) {},
       );
-    } catch (e) {
-      AlertController(ctx: context).connectionError();
-      EasyLoading.dismiss();
     }
   }
 

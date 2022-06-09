@@ -6,6 +6,7 @@ import 'package:jpj_info/helper/account_manager.dart';
 import 'package:jpj_info/helper/id_types.dart';
 import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:jpj_info/view/form/tooltip_info.dart';
 import 'package:jpj_info/view/roadTaxCheck/road_tax_check.dart';
 
 class RoadTaxController extends StatefulWidget {
@@ -59,13 +60,21 @@ class _RoadTaxController extends State<RoadTaxController> {
   }
 
   void _setSelection(String? newSelection) {
-    setState(() {
-      dropdownValue = newSelection!;
-    });
+    dropdownValue = newSelection!;
   }
 
   void _submitCallback(BuildContext context) {
-    int index = dropdownList.indexWhere((element) => element == dropdownValue);
-    RoadTaxRequestController(context, index, _nric.text, _plateNumber.text);
+    if (_nric.text.isNotEmpty && _plateNumber.text.isNotEmpty) {
+      int index =
+          dropdownList.indexWhere((element) => element == dropdownValue);
+      RoadTaxRequestController(context, index, _nric.text, _plateNumber.text);
+    } else {
+      TooltipInfo().showInfo(
+        context,
+        AppLocalizations.of(context)!.errorPleaseTryAgain,
+        AppLocalizations.of(context)!.pleaseFillAllInfo,
+        (c) {},
+      );
+    }
   }
 }

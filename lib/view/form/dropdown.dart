@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:jpj_info/model/page_size.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 
-class CustomDropdown extends StatelessWidget {
+class CustomDropdown extends StatefulWidget {
   const CustomDropdown({
     Key? key,
     required this.dropdownValue,
@@ -12,6 +12,26 @@ class CustomDropdown extends StatelessWidget {
   final String dropdownValue;
   final dynamic dropdownList;
   final Function cbFunc;
+
+  @override
+  State<StatefulWidget> createState() => _CustomDropdown();
+}
+
+class _CustomDropdown extends State<CustomDropdown> {
+  _CustomDropdown();
+  late String val;
+
+  @override
+  void initState() {
+    super.initState();
+    val = widget.dropdownValue;
+  }
+
+  @override
+  void dispose() {
+    val = widget.dropdownValue;
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,16 +53,20 @@ class CustomDropdown extends StatelessWidget {
           ),
           alignment: Alignment.center,
           child: DropdownButton<String>(
-            value: dropdownValue,
+            value: val,
             icon: const Icon(Icons.arrow_downward),
             elevation: 16,
             underline: Container(
               height: 2,
             ),
             onChanged: (String? newValue) {
-              cbFunc(newValue!);
+              setState(() {
+                val = newValue!;
+              });
+              widget.cbFunc(newValue!);
             },
-            items: dropdownList.map<DropdownMenuItem<String>>((String value) {
+            items: widget.dropdownList
+                .map<DropdownMenuItem<String>>((String value) {
               return DropdownMenuItem<String>(
                 value: value,
                 child: Text(value),

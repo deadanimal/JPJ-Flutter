@@ -9,6 +9,7 @@ import 'package:jpj_info/model/expansion_list.dart';
 import 'package:jpj_info/model/license_status_request.dart';
 import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:jpj_info/view/form/tooltip_info.dart';
 import 'package:jpj_info/view/summonsCheck/summon_check.dart';
 import 'dart:convert';
 
@@ -61,23 +62,31 @@ class _SummonsController extends State<SummonsController> {
   }
 
   void _setSelection(String? newSelection) {
-    setState(() {
-      dropdownValue = newSelection!;
-    });
+    dropdownValue = newSelection!;
   }
 
   Future<void> _submitCallback(BuildContext context) async {
-    var index = dropdownList.indexWhere((element) => element == dropdownValue);
-    SiteConfig conf = SiteConfig();
-    LicenseStatusRequest req = LicenseStatusRequest(
-      kategori: index.toString(),
-      nokp: _controller.text,
-    );
-    jpjHttpRequest(
-      context,
-      Uri.parse(conf.registrationUri),
-      headers: conf.jsonHeader,
-      body: jsonEncode(req.toJson()),
-    );
+    if (_controller.text.isNotEmpty) {
+      var index =
+          dropdownList.indexWhere((element) => element == dropdownValue);
+      SiteConfig conf = SiteConfig();
+      LicenseStatusRequest req = LicenseStatusRequest(
+        kategori: index.toString(),
+        nokp: _controller.text,
+      );
+      jpjHttpRequest(
+        context,
+        Uri.parse(conf.registrationUri),
+        headers: conf.jsonHeader,
+        body: jsonEncode(req.toJson()),
+      );
+    } else {
+      TooltipInfo().showInfo(
+        context,
+        AppLocalizations.of(context)!.errorPleaseTryAgain,
+        AppLocalizations.of(context)!.pleaseFillAllInfo,
+        (c) {},
+      );
+    }
   }
 }

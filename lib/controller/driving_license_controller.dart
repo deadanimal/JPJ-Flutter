@@ -10,6 +10,7 @@ import 'package:jpj_info/model/license_status_request.dart';
 import 'package:jpj_info/model/license_status_response.dart';
 import 'package:jpj_info/model/result_style1.dart';
 import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
+import 'package:jpj_info/view/form/tooltip_info.dart';
 import 'package:jpj_info/view/licenseCheck/license_check.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:http/http.dart' as http;
@@ -62,9 +63,7 @@ class _DrivingLicenseController extends State<DrivingLicenseController> {
   }
 
   void _setSelection(String? newSelection) {
-    setState(() {
-      dropdownValue = newSelection!;
-    });
+    dropdownValue = newSelection!;
   }
 
   void _respondHandler(http.Response response) {
@@ -107,18 +106,28 @@ class _DrivingLicenseController extends State<DrivingLicenseController> {
   }
 
   Future<void> _submitCallback(BuildContext context) async {
-    var index = dropdownList.indexWhere((element) => element == dropdownValue);
-    SiteConfig conf = SiteConfig();
-    LicenseStatusRequest req = LicenseStatusRequest(
-      kategori: index.toString(),
-      nokp: _controller.text,
-    );
-    jpjHttpRequest(
-      context,
-      Uri.parse(conf.licenseCheckUri),
-      headers: conf.jsonHeader,
-      body: jsonEncode(req.toJson()),
-      callback: _respondHandler,
-    );
+    if (_controller.text.isNotEmpty) {
+      var index =
+          dropdownList.indexWhere((element) => element == dropdownValue);
+      SiteConfig conf = SiteConfig();
+      LicenseStatusRequest req = LicenseStatusRequest(
+        kategori: index.toString(),
+        nokp: _controller.text,
+      );
+      jpjHttpRequest(
+        context,
+        Uri.parse(conf.licenseCheckUri),
+        headers: conf.jsonHeader,
+        body: jsonEncode(req.toJson()),
+        callback: _respondHandler,
+      );
+    } else {
+      TooltipInfo().showInfo(
+        context,
+        AppLocalizations.of(context)!.errorPleaseTryAgain,
+        AppLocalizations.of(context)!.pleaseFillAllInfo,
+        (c) {},
+      );
+    }
   }
 }

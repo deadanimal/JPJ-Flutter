@@ -13,6 +13,7 @@ import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
 import 'package:jpj_info/view/demeritPointsCheck/demerit_points_check.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:http/http.dart' as http;
+import 'package:jpj_info/view/form/tooltip_info.dart';
 import 'dart:convert';
 import 'package:jpj_info/view/template/template_result1.dart';
 
@@ -62,9 +63,7 @@ class _DemeritPointsController extends State<DemeritPointsController> {
   }
 
   void _setSelection(String? newSelection) {
-    setState(() {
-      dropdownValue = newSelection!;
-    });
+    dropdownValue = newSelection!;
   }
 
   void _respondHandler(http.Response response) {
@@ -107,19 +106,29 @@ class _DemeritPointsController extends State<DemeritPointsController> {
   }
 
   void _submitCallback(BuildContext context) {
-    var index = dropdownList.indexWhere((element) => element == dropdownValue);
-    SiteConfig conf = SiteConfig();
-    LicenseStatusRequest req = LicenseStatusRequest(
-      kategori: index.toString(),
-      nokp: _controller.text,
-    );
+    if (_controller.text.isNotEmpty) {
+      var index =
+          dropdownList.indexWhere((element) => element == dropdownValue);
+      SiteConfig conf = SiteConfig();
+      LicenseStatusRequest req = LicenseStatusRequest(
+        kategori: index.toString(),
+        nokp: _controller.text,
+      );
 
-    jpjHttpRequest(
-      context,
-      Uri.parse(conf.licenseCheckUri),
-      headers: conf.jsonHeader,
-      body: jsonEncode(req.toJson()),
-      callback: _respondHandler,
-    );
+      jpjHttpRequest(
+        context,
+        Uri.parse(conf.licenseCheckUri),
+        headers: conf.jsonHeader,
+        body: jsonEncode(req.toJson()),
+        callback: _respondHandler,
+      );
+    } else {
+      TooltipInfo().showInfo(
+        context,
+        AppLocalizations.of(context)!.errorPleaseTryAgain,
+        AppLocalizations.of(context)!.pleaseFillAllInfo,
+        (c) {},
+      );
+    }
   }
 }
