@@ -188,7 +188,13 @@ class _LatestRegistrationNumberController
                 ),
               ),
             ),
-            title: respond.stateName,
+            title: dropdownValue == respond.stateName
+                ? respond.stateName
+                : respond.stateName == ""
+                    ? respond.stateName
+                    : respond.stateName!.contains("WILAYAH PERSEKUTUAN")
+                        ? respond.stateName
+                        : "${respond.stateName!} , $dropdownValue",
           ),
         );
         setState(
