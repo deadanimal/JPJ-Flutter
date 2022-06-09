@@ -10,6 +10,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.darkBtn = false,
     this.iconColor = Colors.white,
     required this.bottomDrawer,
+    required this.hasBackButton,
   })  : preferredSize = const Size.fromHeight(kToolbarHeight),
         super(key: key);
 
@@ -20,9 +21,17 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final bool darkBtn;
   final Color iconColor;
   final Widget bottomDrawer;
+  final bool hasBackButton;
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      leading: hasBackButton
+          ? BackButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            )
+          : null,
       automaticallyImplyLeading: false,
       iconTheme: IconThemeData(color: iconColor),
       backgroundColor: Colors.transparent,
@@ -30,44 +39,49 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       flexibleSpace: Container(
         decoration: decor,
         child: Center(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const SizedBox(width: horizontalPadding),
-                  LanguageBtn(
-                    dark: darkBtn,
-                  ),
-                  const SizedBox(width: horizontalPadding),
-                  FaqBtn(dark: darkBtn),
-                ],
-              ),
-              InkWell(
-                onTap: () {
-                  showModalBottomSheet(
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(20),
-                        topRight: Radius.circular(20),
-                      ),
+          child: Padding(
+            padding: hasBackButton
+                ? const EdgeInsets.only(left: 32.0)
+                : EdgeInsets.zero,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const SizedBox(width: horizontalPadding),
+                    LanguageBtn(
+                      dark: darkBtn,
                     ),
-                    context: context,
-                    builder: (BuildContext context) {
-                      return bottomDrawer;
-                    },
-                  );
-                },
-                child: Padding(
-                  padding: const EdgeInsets.only(right: hPaddingM),
-                  child: Icon(
-                    Icons.menu_rounded,
-                    color: iconColor,
+                    const SizedBox(width: horizontalPadding),
+                    FaqBtn(dark: darkBtn),
+                  ],
+                ),
+                InkWell(
+                  onTap: () {
+                    showModalBottomSheet(
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(20),
+                          topRight: Radius.circular(20),
+                        ),
+                      ),
+                      context: context,
+                      builder: (BuildContext context) {
+                        return bottomDrawer;
+                      },
+                    );
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: hPaddingM),
+                    child: Icon(
+                      Icons.menu_rounded,
+                      color: iconColor,
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

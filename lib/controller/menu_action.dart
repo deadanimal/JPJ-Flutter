@@ -68,7 +68,7 @@ void latestPlatePage(BuildContext context) {
 }
 
 void onlineTransactionPage(BuildContext context) {
-  Navigator.push(
+  Navigator.pushReplacement(
     context,
     MaterialPageRoute(
       builder: (context) {

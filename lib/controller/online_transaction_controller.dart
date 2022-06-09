@@ -30,6 +30,7 @@ class _OnlineTransactionController extends State<OnlineTransactionController> {
       child: Scaffold(
         appBar: const AppBarController(
           decor: customGradient,
+          hasBackButton: false,
         ),
         body: CustomListMenu(
           title: AppLocalizations.of(context)!.onlineTransaction,

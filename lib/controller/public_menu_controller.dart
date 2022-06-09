@@ -30,6 +30,7 @@ class _PublicMenuController extends State<PublicMenuController> {
       child: Scaffold(
         appBar: const AppBarController(
           decor: customGradient,
+          hasBackButton: false,
         ),
         body: CustomListMenu(
           title: AppLocalizations.of(context)!.public,

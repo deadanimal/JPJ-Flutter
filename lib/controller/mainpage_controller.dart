@@ -37,6 +37,7 @@ class _MainpageController extends State<MainpageController> {
         appBar: const AppBarController(
           iconColor: Color(themeNavy),
           darkBtn: true,
+          hasBackButton: false,
         ),
         body: const MainPage(),
         bottomNavigationBar: BottomNavController(
