@@ -54,6 +54,7 @@ dependencies:
   mobile_scanner: ^1.0.0
   latlong2: ^0.8.1
   launch_review: ^3.0.1
+  external_app_launcher: ^2.0.2
 
 dev_dependencies:
   flutter_test:

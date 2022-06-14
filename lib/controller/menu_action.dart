@@ -1,5 +1,5 @@
+import 'package:external_app_launcher/external_app_launcher.dart';
 import 'package:flutter/material.dart';
-import 'package:jpj_info/config/site_config.dart';
 import 'package:jpj_info/controller/blacklist_controller.dart';
 import 'package:jpj_info/controller/change_password_controller.dart';
 import 'package:jpj_info/controller/demerit_points_contoller.dart';
@@ -32,7 +32,6 @@ import 'package:jpj_info/controller/tnc_controller.dart';
 import 'package:jpj_info/controller/transaction_history_controller.dart';
 import 'package:jpj_info/controller/vehicle_list_controller.dart';
 import 'package:jpj_info/model/ehadir_event_info.dart';
-import 'package:launch_review/launch_review.dart';
 
 void licensePage(BuildContext context) {
   Navigator.push(
@@ -221,20 +220,12 @@ void transactionHistoryPage(BuildContext context) {
   );
 }
 
-void jpjEqMenuPage(BuildContext context) {
-  LaunchReview.launch(
-    androidAppId: SiteConfig().jpjEqPlayStoreid,
-    iOSAppId: SiteConfig().jpjEqAppStoreid,
+void jpjEqMenuPage(BuildContext context) async {
+  await LaunchApp.openApp(
+    androidPackageName: 'my.gov.jpj.queue',
+    iosUrlScheme: 'jpjeq://',
+    appStoreLink: 'itms-apps://apps.apple.com/us/app/jpjeq/id1545069171',
   );
-  // info: use the bottom navigation for new jpj eq
-  // Navigator.push(
-  //   context,
-  //   MaterialPageRoute(
-  //     builder: (context) {
-  //       return const JpjEqMenuController();
-  //     },
-  //   ),
-  // );
 }
 
 void eAduanMenuPage(BuildContext context) {
@@ -393,9 +384,10 @@ void jpjEqNotificationPage(BuildContext context) {
   );
 }
 
-void jpjEbidStore(BuildContext context) {
-  LaunchReview.launch(
-    androidAppId: SiteConfig().jpjEbidPlayStoreid,
-    iOSAppId: SiteConfig().jpjEbidAppStoreid,
+void jpjEbidStore(BuildContext context) async {
+  await LaunchApp.openApp(
+    androidPackageName: 'my.gov.jpj.ebidding',
+    iosUrlScheme: 'jpjebid://',
+    appStoreLink: 'itms-apps://apps.apple.com/us/app/jpjebid/id1458846863',
   );
 }
