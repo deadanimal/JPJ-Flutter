@@ -239,5 +239,6 @@
     "removeVehicle":"Remove Vehicle",
     "askRemove":"Confirm Remove?",
     "chooseState":"Choose a state",
+    "noLatestNumber":"No Latest Registration Number",
     "pleaseWait": "Please wait..."
 }

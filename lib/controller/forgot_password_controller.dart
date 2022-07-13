@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/controller/tac_controller.dart';
+import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/forgotPassword/forgot_password.dart';
 import 'package:jpj_info/view/form/tooltip_info.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -32,6 +33,7 @@ class _ForgotPasswordController extends State<ForgotPasswordController> {
       child: Scaffold(
         appBar: const AppBarController(
           darkBtn: true,
+          iconColor: Color(themeNavy),
         ),
         body: ForgotPassword(
           emailController: _email,

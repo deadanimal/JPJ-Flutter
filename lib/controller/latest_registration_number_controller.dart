@@ -28,8 +28,8 @@ class _LatestRegistrationNumberController
   late String dropdownValue;
   late String? flag;
   late ResultStyle2? result;
+  bool isState = false;
   Map<String, String> stateMap = {
-    "State": "",
     "JOHOR": "J",
     "KEDAH": "K",
     "LANGKAWI": "KV",
@@ -106,8 +106,6 @@ class _LatestRegistrationNumberController
   @override
   void initState() {
     super.initState();
-    dropdownList = stateMap.keys;
-    dropdownValue = 'State';
     result = null;
     flag = null;
   }
@@ -119,6 +117,8 @@ class _LatestRegistrationNumberController
 
   @override
   Widget build(BuildContext context) {
+    dropdownList = [AppLocalizations.of(context)!.state, ...stateMap.keys];
+    dropdownValue = AppLocalizations.of(context)!.state;
     return SafeArea(
       child: Scaffold(
         appBar: const AppBarController(
@@ -131,6 +131,7 @@ class _LatestRegistrationNumberController
           submitCallback: _submitCallback,
           data: result,
           flagIcon: flag,
+          isState: isState,
         ),
         bottomNavigationBar: BottomNavController(),
       ),
@@ -140,14 +141,15 @@ class _LatestRegistrationNumberController
   void _setSelection(BuildContext context, String? newSelection) {
     setState(() {
       dropdownValue = newSelection!;
-      if (dropdownValue != "State") {
+      if (dropdownValue != AppLocalizations.of(context)!.state) {
         flag = flagIcon[dropdownValue];
       } else {
         result = null;
         flag = null;
+        isState = false;
       }
     });
-    if (dropdownValue != "State") {
+    if (dropdownValue != AppLocalizations.of(context)!.state) {
       _submitCallback(context);
     }
   }
@@ -199,14 +201,19 @@ class _LatestRegistrationNumberController
         );
         setState(
           () {
-            result = ResultStyle2(
-              id: null,
-              name: null,
-              results: dataSet,
-              subtitle: AppLocalizations.of(context)!.searchResult,
-              title: AppLocalizations.of(context)!.latestNNumber,
-              vehicalRegNumber: null,
-            );
+            if (respond.stateName != "") {
+              result = ResultStyle2(
+                id: null,
+                name: null,
+                results: dataSet,
+                subtitle: AppLocalizations.of(context)!.searchResult,
+                title: AppLocalizations.of(context)!.latestNNumber,
+                vehicalRegNumber: null,
+              );
+            } else {
+              result = null;
+              isState = true;
+            }
           },
         );
       } else {

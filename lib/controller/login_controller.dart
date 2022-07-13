@@ -50,6 +50,7 @@ class _LoginController extends State<LoginController> {
         appBar: const AppBarController(
           iconColor: Color(themeNavy),
           darkBtn: true,
+          hasBackButton: false,
         ),
         body: Login(
           userId: _userId,

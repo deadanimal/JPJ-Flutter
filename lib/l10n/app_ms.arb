@@ -231,7 +231,7 @@
     "userExist":"Id telah di gunakan",
     "userBlocked":"Id telah di senarai hitam",
     "errorPleaseTryAgain":"Ralat, Sila cuba lagi",
-    "pleaseFillAllInfo":"Sila isi semua maklumat penting",
+    "pleaseFillAllInfo":"Pastikan semua maklumat telah diisi",
     "emailNotSame":"Emel yang dimasukkan tidak sama",
     "pleaseTickTnc":"Sila tanda pada kotak setuju terma dan syarat",
     "failToLogin":"Log Masuk Gagal",
@@ -239,5 +239,6 @@
     "removeVehicle":"Hapus",
     "askRemove":"Anda Pasti Hapus?",
     "chooseState":"Sila Pilih Negeri",
+    "noLatestNumber":"Tiada Nombor Pendaftaran Terkini",
     "pleaseWait": "Sila Tunggu..."
 }

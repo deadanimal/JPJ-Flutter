@@ -17,6 +17,7 @@ class PlateNumber extends StatelessWidget {
     required this.selectionCallback,
     required this.data,
     required this.flagIcon,
+    required this.isState,
   }) : super(key: key);
 
   final Iterable<String> dropdownList;
@@ -25,6 +26,7 @@ class PlateNumber extends StatelessWidget {
   final void Function(BuildContext) submitCallback;
   final Function selectionCallback;
   final ResultStyle2? data;
+  final bool isState;
 
   @override
   Widget build(BuildContext context) {
@@ -129,7 +131,9 @@ class PlateNumber extends StatelessWidget {
       );
     } else {
       return Center(
-        child: Text(AppLocalizations.of(context)!.noRecord),
+        child: isState
+            ? Text(AppLocalizations.of(context)!.noLatestNumber)
+            : Text(AppLocalizations.of(context)!.noRecord),
       );
     }
   }

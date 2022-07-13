@@ -11,6 +11,7 @@ class AppBarController extends StatefulWidget implements PreferredSizeWidget {
     this.darkBtn = false,
     this.iconColor = Colors.white,
     this.hasBackButton = true,
+    this.backCb,
   })  : preferredSize = const Size.fromHeight(kToolbarHeight),
         super(key: key);
 
@@ -23,6 +24,7 @@ class AppBarController extends StatefulWidget implements PreferredSizeWidget {
   final bool darkBtn;
   final Color iconColor;
   final bool hasBackButton;
+  final Function(BuildContext)? backCb;
 }
 
 class _AppBarController extends State<AppBarController> {
@@ -49,6 +51,7 @@ class _AppBarController extends State<AppBarController> {
       decor: widget.decor,
       bottomDrawer: bottomDrawer,
       hasBackButton: widget.hasBackButton,
+      backCb: widget.backCb,
     );
   }
 
