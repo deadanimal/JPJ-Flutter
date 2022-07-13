@@ -50,12 +50,15 @@ class RoadTaxRequestController {
               for (int i = 0; i < respond.lkm!.length; i++) {
                 if (!MyJPJAccountManager().isLoggedIn && i == 0) {
                 } else {
-                  dataSet.add(
-                    Result2(
-                      result: _resultField(context, respond.lkm![i]),
-                      title: respond.lkm![i].velinsuran,
-                    ),
-                  );
+                  if (i == 0 && respond.nokp != MyJPJAccountManager().id) {
+                  } else {
+                    dataSet.add(
+                      Result2(
+                        result: _resultField(context, respond.lkm![i]),
+                        title: respond.lkm![i].velinsuran,
+                      ),
+                    );
+                  }
                 }
               }
             }
