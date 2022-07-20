@@ -56,7 +56,7 @@ class NewRegistration extends StatelessWidget {
               children: [
                 CustomLabel(
                   label: AppLocalizations.of(context)!.identification,
-                  fontSize: 15,
+                  fontSize: 18,
                   align: TextAlign.start,
                 ),
                 const SizedBox(height: vPaddingS),
@@ -68,7 +68,7 @@ class NewRegistration extends StatelessWidget {
                 const SizedBox(height: vPaddingM),
                 CustomLabel(
                   label: AppLocalizations.of(context)!.phoneNumber,
-                  fontSize: 15,
+                  fontSize: 18,
                   align: TextAlign.start,
                 ),
                 const SizedBox(height: vPaddingS),
@@ -81,7 +81,7 @@ class NewRegistration extends StatelessWidget {
                 const SizedBox(height: vPaddingM),
                 CustomLabel(
                   label: AppLocalizations.of(context)!.email,
-                  fontSize: 15,
+                  fontSize: 18,
                   align: TextAlign.start,
                 ),
                 const SizedBox(height: vPaddingS),
@@ -94,7 +94,7 @@ class NewRegistration extends StatelessWidget {
                 const SizedBox(height: vPaddingM),
                 CustomLabel(
                   label: AppLocalizations.of(context)!.verifyEmail,
-                  fontSize: 15,
+                  fontSize: 18,
                   align: TextAlign.start,
                 ),
                 const SizedBox(height: vPaddingS),
@@ -106,7 +106,7 @@ class NewRegistration extends StatelessWidget {
                 ),
                 const SizedBox(height: vPaddingXL),
                 SizedBox(
-                  width: mediaWidth - 64,
+                  width: mediaWidth - 32,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -115,7 +115,7 @@ class NewRegistration extends StatelessWidget {
                       ),
                       const SizedBox(width: hPaddingM),
                       SizedBox(
-                        width: (mediaWidth - 64) / 2,
+                        width: (mediaWidth - 86),
                         child: RichText(
                           text: TextSpan(
                             children: [
@@ -123,14 +123,14 @@ class NewRegistration extends StatelessWidget {
                                 text: AppLocalizations.of(context)!.tncShort,
                                 style: const TextStyle(
                                   color: Colors.black,
-                                  fontSize: 12,
+                                  fontSize: 15,
                                   fontFamily: "Poppins",
                                   fontWeight: FontWeight.w100,
                                 ),
                               ),
                               TextSpan(
                                 style: const TextStyle(
-                                  fontSize: 12,
+                                  fontSize: 15,
                                   fontFamily: "Poppins",
                                   fontWeight: FontWeight.w100,
                                   color: Colors.blue,

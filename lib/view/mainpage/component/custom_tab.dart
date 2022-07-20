@@ -27,15 +27,13 @@ class CustomTab extends StatelessWidget {
             ),
             child: Padding(
               padding: const EdgeInsets.all(4.0),
-              child: FittedBox(
-                child: Text(
-                  AppLocalizations.of(context)!.service,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontSize: 25,
-                    fontFamily: "Poppins",
-                    fontWeight: FontWeight.w700,
-                  ),
+              child: Text(
+                AppLocalizations.of(context)!.service,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  fontSize: 18,
+                  fontFamily: "Poppins",
+                  fontWeight: FontWeight.w700,
                 ),
               ),
             ),
@@ -49,15 +47,13 @@ class CustomTab extends StatelessWidget {
             ),
             child: Padding(
               padding: const EdgeInsets.all(4.0),
-              child: FittedBox(
-                child: Text(
-                  AppLocalizations.of(context)!.staff,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontSize: 25,
-                    fontFamily: "Poppins",
-                    fontWeight: FontWeight.w700,
-                  ),
+              child: Text(
+                AppLocalizations.of(context)!.staff,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  fontSize: 18,
+                  fontFamily: "Poppins",
+                  fontWeight: FontWeight.w700,
                 ),
               ),
             ),

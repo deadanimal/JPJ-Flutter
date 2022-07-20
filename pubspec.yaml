@@ -185,6 +185,8 @@ flutter:
     - images/jpjeq_people_at_counter.png
     - images/jpjeq_people_queue.png
     - images/icon/refresh_icon.png
+    - images/flag/ms-flag-icon.png
+    - images/flag/en-flag-icon.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

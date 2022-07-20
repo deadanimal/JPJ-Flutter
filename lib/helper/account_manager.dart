@@ -56,7 +56,9 @@ class MyJPJAccountManager {
       );
       id = loginResponse.nokp!;
       name = loginResponse.nama!;
-      lastLoggedIn = DateTime.now().toString();
+      var date = DateTime.now();
+      lastLoggedIn = "${date.year}/${date.month}/${date.day}"
+          " ${date.hour}:${date.minute}:${date.second}"; // .toString();
       email = loginResponse.emel!;
       phoneNumber = "";
       state = "";

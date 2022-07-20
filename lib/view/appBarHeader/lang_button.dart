@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:jpj_info/view/appBarHeader/lang_selector.dart';
-import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LanguageBtn extends StatelessWidget {
@@ -11,22 +9,14 @@ class LanguageBtn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color tint;
-    if (dark) {
-      tint = const Color(themeNavy);
-    } else {
-      tint = Colors.white;
-    }
     return InkWell(
       onTap: () {
         LanguageSelector().showInfo(context);
       },
-      child: SvgPicture.asset(
+      child: Image.asset(
         AppLocalizations.of(context)!.localeName == "en"
-            ? "images/vector/en_lang_icon.svg"
-            : "images/vector/ms_lang_icon.svg",
-        semanticsLabel: 'Language Icon',
-        color: tint,
+            ? "images/flag/en-flag-icon.png"
+            : "images/flag/ms-flag-icon.png",
         height: 24,
       ),
     );

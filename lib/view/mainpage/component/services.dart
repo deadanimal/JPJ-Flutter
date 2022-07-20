@@ -23,7 +23,7 @@ class Services extends StatelessWidget {
                 MyJPJAccountManager().isLoggedIn;
           }
           return Padding(
-            padding: const EdgeInsets.all(verticalPadding),
+            padding: const EdgeInsets.all(vPaddingS),
             child: button(
               serviceMenu[index].menu,
               serviceMenu[index].icon,

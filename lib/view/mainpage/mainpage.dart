@@ -67,7 +67,6 @@ class _MainPage extends State<MainPage> with TickerProviderStateMixin {
             mainAxisSize: MainAxisSize.min,
             children: [
               mainheader(context),
-              userInfo(context),
               favSubSection(context),
               mainSubSection(context),
               Expanded(child: populateButton(context)),
@@ -88,13 +87,20 @@ class _MainPage extends State<MainPage> with TickerProviderStateMixin {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                MyJPJAccountManager().name,
-                style: const TextStyle(
-                  color: Color(themeOrange),
-                  fontSize: 18,
-                  fontFamily: "Poppins",
-                  fontWeight: FontWeight.w700,
+              Container(
+                width: mediaWidth,
+                constraints: const BoxConstraints(maxWidth: 250),
+                child: Text(
+                  MyJPJAccountManager().name,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    color: Color(themeOrange),
+                    fontSize: 18,
+                    fontFamily: "Poppins",
+                    fontWeight: FontWeight.w700,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
               ),
               Text(
@@ -141,13 +147,11 @@ class _MainPage extends State<MainPage> with TickerProviderStateMixin {
             image: AssetImage("images/my_jpj_icon.png"),
             fit: BoxFit.fitWidth,
             alignment: Alignment.bottomCenter,
+            width: 84,
           ),
         ),
-        const SizedBox(width: 14),
-        Text(
-          AppLocalizations.of(context)!.welcome,
-          style: CustomTextStyle().mainHeader(),
-        ),
+        const SizedBox(width: 8),
+        userInfo(context),
       ],
     );
   }
@@ -162,11 +166,19 @@ class _MainPage extends State<MainPage> with TickerProviderStateMixin {
               color: Colors.white54,
             ),
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.only(
+                left: 8.0,
+                right: 8.0,
+              ),
               child: Text(
                 AppLocalizations.of(context)!.favourite,
                 textAlign: TextAlign.center,
-                style: CustomTextStyle().subHeader(),
+                style: const TextStyle(
+                  color: Color(themeGray),
+                  fontSize: 18,
+                  fontFamily: "Poppins",
+                  fontWeight: FontWeight.w700,
+                ),
               ),
             ),
           ),
@@ -182,7 +194,8 @@ class _MainPage extends State<MainPage> with TickerProviderStateMixin {
     List<CustomMenuItem> favMenuList = MenuList(ctx: context).getFavMenuList();
     return FittedBox(
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding:
+            const EdgeInsets.only(left: 12.0, right: 12.0, bottom: 8.0, top: 0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: List.generate(
