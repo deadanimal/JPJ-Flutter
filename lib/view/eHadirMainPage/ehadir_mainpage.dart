@@ -95,7 +95,8 @@ class EhadirMainPage extends StatelessWidget {
       child: Column(
         children: [
           _textField(AppLocalizations.of(context)!.name, staffName),
-          _textField(AppLocalizations.of(context)!.nokpSection, nric),
+          _textField(AppLocalizations.of(context)!.nokp, nric),
+          _textField(AppLocalizations.of(context)!.section, ""),
         ],
       ),
     );

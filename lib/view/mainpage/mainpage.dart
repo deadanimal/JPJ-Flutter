@@ -107,7 +107,7 @@ class _MainPage extends State<MainPage> with TickerProviderStateMixin {
                 MyJPJAccountManager().email,
                 style: const TextStyle(
                   color: Color(themeOrange),
-                  fontSize: 10,
+                  fontSize: 15,
                   fontFamily: "Poppins",
                   fontWeight: FontWeight.w700,
                 ),
@@ -115,7 +115,7 @@ class _MainPage extends State<MainPage> with TickerProviderStateMixin {
               Text(
                 AppLocalizations.of(context)!.lastLoggedIn,
                 style: const TextStyle(
-                  fontSize: 9,
+                  fontSize: 12,
                   fontFamily: "Poppins",
                   fontWeight: FontWeight.w600,
                 ),
@@ -123,7 +123,7 @@ class _MainPage extends State<MainPage> with TickerProviderStateMixin {
               Text(
                 MyJPJAccountManager().lastLoggedIn,
                 style: const TextStyle(
-                  fontSize: 9,
+                  fontSize: 12,
                   fontFamily: "Poppins",
                   fontWeight: FontWeight.w600,
                 ),

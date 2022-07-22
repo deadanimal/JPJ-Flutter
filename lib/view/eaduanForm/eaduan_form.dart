@@ -7,6 +7,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/common/spacing.dart';
 import 'package:jpj_info/view/eaduanForm/component/image_container.dart';
+import 'package:jpj_info/view/eaduanForm/component/new_image.dart';
 import 'package:jpj_info/view/form/custom_button.dart';
 import 'package:jpj_info/view/form/label.dart';
 import 'package:jpj_info/view/form/text_field.dart';
@@ -20,12 +21,20 @@ class EaduanForm extends StatelessWidget {
     required this.openGalleryCallback,
     required this.submitCallback,
     required this.imagesPath,
+    required this.dateController,
+    required this.timeController,
+    required this.datePickerCb,
+    required this.timePickerCb,
   }) : super(key: key);
   final String? title;
   final AssetImage image;
-  final Function openGalleryCallback;
+  final Function(String) openGalleryCallback;
   final Function submitCallback;
   final List<Uint8List> imagesPath;
+  final TextEditingController dateController;
+  final TextEditingController timeController;
+  final Function() datePickerCb;
+  final Function() timePickerCb;
 
   @override
   Widget build(BuildContext context) {
@@ -122,7 +131,7 @@ class EaduanForm extends StatelessWidget {
               align: TextAlign.start,
             ),
             const SizedBox(height: vPaddingM),
-            _image(),
+            _image(context),
             const SizedBox(height: vPaddingM),
             CustomLabel(
               label: AppLocalizations.of(context)!.videoAttachment,
@@ -142,6 +151,12 @@ class EaduanForm extends StatelessWidget {
             _doubleForm(
               AppLocalizations.of(context)!.eventDate,
               AppLocalizations.of(context)!.eventTime,
+              callback1: datePickerCb,
+              controller1: dateController,
+              readOnly1: true,
+              controller2: timeController,
+              readOnly2: true,
+              callback2: timePickerCb,
             ),
             const SizedBox(height: vPaddingM),
             CustomLabel(
@@ -172,9 +187,34 @@ class EaduanForm extends StatelessWidget {
               ),
             ),
             const SizedBox(height: vPaddingM),
-            _doubleForm(
-              AppLocalizations.of(context)!.state,
-              AppLocalizations.of(context)!.vehicleReg,
+            CustomLabel(
+              label: AppLocalizations.of(context)!.state,
+              fontSize: 14,
+              fontWeight: FontWeight.w600,
+              align: TextAlign.start,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextFieldForm(
+                label: AppLocalizations.of(context)!.state,
+                // textController: idTextController,
+                width: mediaWidth,
+              ),
+            ),
+            const SizedBox(height: vPaddingM),
+            CustomLabel(
+              label: AppLocalizations.of(context)!.vehicleReg,
+              fontSize: 14,
+              fontWeight: FontWeight.w600,
+              align: TextAlign.start,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextFieldForm(
+                label: AppLocalizations.of(context)!.vehicleReg,
+                // textController: idTextController,
+                width: mediaWidth,
+              ),
             ),
             const SizedBox(height: vPaddingM),
             CustomLabel(
@@ -187,6 +227,7 @@ class EaduanForm extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: TextFieldForm(
                 maxLines: 6,
+                maxLength: 500,
                 inputType: TextInputType.multiline,
                 label: AppLocalizations.of(context)!.pleaseTypeHere,
                 // textController: textController,
@@ -229,20 +270,32 @@ class EaduanForm extends StatelessWidget {
     );
   }
 
-  Widget _image() {
+  Widget _image(BuildContext context) {
     ScrollController scrollController = ScrollController();
     return Scrollbar(
       thumbVisibility: true,
       controller: scrollController,
       child: ScrollableImageContainer(
         imagesPath: imagesPath,
-        openGalleryCallback: openGalleryCallback,
+        // openGalleryCallback: openGalleryCallback,
+        openGalleryCallback: () {
+          NewImageSelector().promptUser(context, openGalleryCallback);
+        },
         scrollController: scrollController,
       ),
     );
   }
 
-  Widget _doubleForm(String title1, String title2) {
+  Widget _doubleForm(
+    String title1,
+    String title2, {
+    TextEditingController? controller1,
+    Function()? callback1,
+    bool readOnly1 = false,
+    TextEditingController? controller2,
+    Function()? callback2,
+    bool readOnly2 = false,
+  }) {
     return Row(
       children: [
         Expanded(
@@ -259,8 +312,10 @@ class EaduanForm extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: TextFieldForm(
                   label: title1,
-                  // textController: idTextController,
+                  textController: controller1,
                   width: mediaWidth,
+                  onTap: callback1,
+                  readOnly: readOnly1,
                 ),
               ),
             ],
@@ -280,8 +335,10 @@ class EaduanForm extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: TextFieldForm(
                   label: title2,
-                  // textController: idTextController,
+                  textController: controller2,
                   width: mediaWidth,
+                  onTap: callback2,
+                  readOnly: readOnly2,
                 ),
               ),
             ],

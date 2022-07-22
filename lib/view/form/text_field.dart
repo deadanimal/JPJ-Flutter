@@ -12,6 +12,8 @@ class TextFieldForm extends StatelessWidget {
     this.maxLines = 1,
     this.minLines,
     this.textColor = Colors.black,
+    this.maxLength,
+    this.onTap,
   }) : super(key: key);
 
   final String label;
@@ -22,6 +24,8 @@ class TextFieldForm extends StatelessWidget {
   final TextEditingController? textController;
   final int? maxLines;
   final int? minLines;
+  final int? maxLength;
+  final Function()? onTap;
   final Color textColor;
 
   @override
@@ -36,7 +40,9 @@ class TextFieldForm extends StatelessWidget {
           elevation: 4.0,
           shadowColor: Colors.grey,
           child: TextField(
+            onTap: onTap,
             style: TextStyle(color: textColor),
+            maxLength: maxLength,
             readOnly: readOnly,
             minLines: minLines,
             maxLines: maxLines,

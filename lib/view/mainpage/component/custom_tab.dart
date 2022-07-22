@@ -19,7 +19,7 @@ class CustomTab extends StatelessWidget {
         controller: tabController,
         tabs: [
           Container(
-            height: 36,
+            // height: 36,
             width: (mediaWidth - 64) / 2,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
@@ -31,7 +31,7 @@ class CustomTab extends StatelessWidget {
                 AppLocalizations.of(context)!.service,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
-                  fontSize: 18,
+                  fontSize: 15,
                   fontFamily: "Poppins",
                   fontWeight: FontWeight.w700,
                 ),
@@ -39,7 +39,7 @@ class CustomTab extends StatelessWidget {
             ),
           ),
           Container(
-            height: 36,
+            // height: 36,
             width: (mediaWidth - 64) / 2,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
@@ -51,7 +51,7 @@ class CustomTab extends StatelessWidget {
                 AppLocalizations.of(context)!.staff,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
-                  fontSize: 18,
+                  fontSize: 15,
                   fontFamily: "Poppins",
                   fontWeight: FontWeight.w700,
                 ),

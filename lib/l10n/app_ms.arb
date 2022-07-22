@@ -167,7 +167,8 @@
     "activity": "Aktiviti",
     "comittee": "Urusetia",
     "staffDetail": "Maklumat Kakitangan",
-    "nokpSection": "No. KP Bahagian",
+    "nokp": "No. KP",
+    "section":"Bahagian",
     "scanQrCode": "IMBAS KOD QR",
     "youHaveAttandedThisActivity": "Anda telah menghadiri aktiviti ini",
     "activityList": "Senarai Aktiviti",
@@ -240,5 +241,10 @@
     "askRemove":"Anda Pasti Hapus?",
     "chooseState":"Sila Pilih Negeri",
     "noLatestNumber":"Tiada Nombor Pendaftaran Terkini",
+    "camera":"Kamera",
+    "gallery":"Galeri",
+    "chooseFrom":"Pilih Dari",
+    "committeeDetail":"Maklumat Urusetia",
+    "activityDetail":"Maklumat Aktiviti",
     "pleaseWait": "Sila Tunggu..."
 }

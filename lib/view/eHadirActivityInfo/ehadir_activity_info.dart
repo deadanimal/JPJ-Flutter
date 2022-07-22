@@ -8,6 +8,7 @@ import 'package:jpj_info/view/eHadirActivityInfo/component/attendance_list.dart'
 import 'package:jpj_info/view/eHadirActivityInfo/component/comittee_list.dart';
 import 'package:jpj_info/view/eHadirActivityInfo/component/info_tab.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:jpj_info/view/template/template_header.dart';
 
 class EhadirActivityInfo extends StatelessWidget {
   const EhadirActivityInfo({
@@ -28,21 +29,19 @@ class EhadirActivityInfo extends StatelessWidget {
   }
 
   Widget _body(BuildContext context) {
-    return Center(
-      child: Container(
-        width: mediaWidth,
-        constraints: const BoxConstraints(maxWidth: 400),
-        child: Column(
-          children: [
-            const Image(
-              image: AssetImage("images/ehadir_men_at_work.png"),
-            ),
-            const SizedBox(height: vPaddingXL),
-            _tabHeader(context),
-            Expanded(child: _tabView(context)),
-            const SizedBox(height: vPaddingXL),
-          ],
-        ),
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          TemplateHeader(
+            headerTitle: AppLocalizations.of(context)!.committeeDetail,
+          ),
+          const SizedBox(height: vPaddingXL),
+          _tabHeader(context),
+          Container(
+              constraints: BoxConstraints(maxHeight: mediaHeight * 0.75),
+              child: _tabView(context)),
+          const SizedBox(height: vPaddingXL),
+        ],
       ),
     );
   }

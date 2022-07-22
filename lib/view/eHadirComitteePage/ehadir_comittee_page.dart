@@ -193,7 +193,7 @@ class EhadirComitteePage extends StatelessWidget {
         },
         child: const FittedBox(
           child: Center(
-            child: Icon(Icons.search),
+            child: Icon(Icons.remove_red_eye_outlined),
           ),
         ),
       ),

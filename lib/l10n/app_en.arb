@@ -167,7 +167,8 @@
     "activity": "Activity",
     "comittee": "Comittee",
     "staffDetail": "Staff Details",
-    "nokpSection": "Section's NRIC",
+    "nokp": "NRIC",
+    "section":"Section",
     "scanQrCode": "SCAN QR CODE",
     "youHaveAttandedThisActivity": "You have attended this activity",
     "activityList": "Activity List",
@@ -240,5 +241,10 @@
     "askRemove":"Confirm Remove?",
     "chooseState":"Choose a state",
     "noLatestNumber":"No Latest Registration Number",
+    "camera":"Camera",
+    "gallery":"Gallery",
+    "chooseFrom":"Choose From",
+    "committeeDetail":"Committee Detail",
+    "activityDetail":"Activity Detail",
     "pleaseWait": "Please wait..."
 }
