@@ -6,8 +6,8 @@ import 'package:jpj_info/controller/bottom_nav_controller.dart';
 import 'package:jpj_info/controller/http_request_controller.dart';
 import 'package:jpj_info/helper/account_manager.dart';
 import 'package:jpj_info/helper/id_types.dart';
-import 'package:jpj_info/model/license_status_request.dart';
-import 'package:jpj_info/model/license_status_response.dart';
+import 'package:jpj_info/model/demerit_status_request.dart';
+import 'package:jpj_info/model/demerit_status_response.dart';
 import 'package:jpj_info/model/result_style1.dart';
 import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
 import 'package:jpj_info/view/demeritPointsCheck/demerit_points_check.dart';
@@ -68,7 +68,7 @@ class _DemeritPointsController extends State<DemeritPointsController> {
 
   void _respondHandler(http.Response response) {
     if (response.statusCode == 200) {
-      LicenseStatusResponse respond = LicenseStatusResponse.fromJson(
+      DemeritStatusResponse respond = DemeritStatusResponse.fromJson(
         jsonDecode(response.body),
       );
       Navigator.push(
@@ -76,20 +76,13 @@ class _DemeritPointsController extends State<DemeritPointsController> {
         MaterialPageRoute(
           builder: (context) {
             List<Result1> dataSet = [];
-            respond.lesen?.forEach((el) {
-              dataSet.add(
-                Result1(
-                  leftTitle: AppLocalizations.of(context)!.licenseType,
-                  leftContent: el.jenisLesen,
-                  rightTitle: AppLocalizations.of(context)!.expiryDate,
-                  rightContent: el.tempohTamat,
-                ),
-              );
+            respond.kejarapoint?.forEach((el) {
+              // todo: handle kejara point response
             });
 
             ResultStyle1 resultData = ResultStyle1(
               name: respond.nama,
-              id: respond.nokp,
+              id: respond.noic,
               title: AppLocalizations.of(context)!.demeritNPoints,
               subtitle: AppLocalizations.of(context)!.searchResult,
               results: dataSet,
@@ -110,14 +103,14 @@ class _DemeritPointsController extends State<DemeritPointsController> {
       var index =
           dropdownList.indexWhere((element) => element == dropdownValue);
       SiteConfig conf = SiteConfig();
-      LicenseStatusRequest req = LicenseStatusRequest(
+      DemeritStatusRequest req = DemeritStatusRequest(
         kategori: index.toString(),
         nokp: _controller.text,
       );
 
       jpjHttpRequest(
         context,
-        Uri.parse(conf.licenseCheckUri),
+        Uri.parse(conf.demeritCheckUri),
         headers: conf.jsonHeader,
         body: jsonEncode(req.toJson()),
         callback: _respondHandler,

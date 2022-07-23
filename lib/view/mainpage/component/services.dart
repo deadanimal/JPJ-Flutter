@@ -30,6 +30,7 @@ class Services extends StatelessWidget {
               serviceMenu[index].cbFunc,
               enabled,
               context,
+              serviceMenu[index].serviceId,
             ),
           );
         },

@@ -246,5 +246,8 @@
     "chooseFrom":"Pilih Dari",
     "committeeDetail":"Maklumat Urusetia",
     "activityDetail":"Maklumat Aktiviti",
+    "draftSent": "Draf/Dihantar",
+    "video": "Video",
+    "image": "Gambar",
     "pleaseWait": "Sila Tunggu..."
 }

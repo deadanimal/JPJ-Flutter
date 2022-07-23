@@ -246,5 +246,8 @@
     "chooseFrom":"Choose From",
     "committeeDetail":"Committee Detail",
     "activityDetail":"Activity Detail",
+    "draftSent": "Draft/Sent",
+    "video": "Video",
+    "image": "Image",
     "pleaseWait": "Please wait..."
 }

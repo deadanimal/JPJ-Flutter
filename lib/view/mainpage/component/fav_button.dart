@@ -7,15 +7,17 @@ class CustomFavButton extends StatelessWidget {
   const CustomFavButton({
     Key? key,
     required this.item,
+    required this.onTap,
   }) : super(key: key);
   final CustomMenuItem item;
+  final Function() onTap;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(verticalPadding),
       child: InkWell(
-        onTap: () {},
+        onTap: onTap,
         child: Container(
           width: 121,
           height: 51,

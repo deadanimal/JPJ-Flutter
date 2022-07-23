@@ -14,35 +14,36 @@ class MenuList {
         "JPJeBid",
         "images/icon/ebit_icon.png",
         jpjEbidStore,
+        id: 1,
       ),
-      CustomMenuItem(
-        "JPJeQ",
-        "images/icon/jpjeq_icon.png",
-        jpjEqMenuPage,
-        login: true,
-      ),
+      CustomMenuItem("JPJeQ", "images/icon/jpjeq_icon.png", jpjEqMenuPage,
+          login: true, id: 2),
       CustomMenuItem(
         "eAduan",
         "images/icon/eaduan_icon.png",
         eAduanMenuPage,
         login: true,
+        id: 3,
       ),
       CustomMenuItem(
         AppLocalizations.of(ctx)!.onlineTransaction,
         "images/icon/online_transaction_icon.png",
         onlineTransactionPage,
+        id: 4,
       ),
       CustomMenuItem(
         "EzyPay",
         "images/icon/ezypay_icon.png",
         ezypayMenuPage,
         login: true,
+        id: 5,
       ),
       CustomMenuItem(
         AppLocalizations.of(ctx)!.transactionHistory,
         "images/icon/payment_history_icon.png",
         transactionHistoryPage,
         login: true,
+        id: 6,
       ),
     ];
   }

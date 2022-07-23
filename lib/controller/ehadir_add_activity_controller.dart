@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:jpj_info/controller/alert_controller.dart';
 import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/controller/bottom_nav_controller.dart';
@@ -66,17 +67,21 @@ class _EhadirAddActivityController extends State<EhadirAddActivityController> {
           darkBtn: true,
         ),
         body: EhadirAddActivity(
-            submitCallback: _submitCallback,
-            activityName: activityName,
-            noOfDays: noOfDays,
-            date: date,
-            sessionPerDay: sessionPerDay,
-            startTime: startTime,
-            endTime: endTime,
-            location: location,
-            latitude: latitude,
-            longitude: longitude,
-            agenda: agenda),
+          submitCallback: _submitCallback,
+          activityName: activityName,
+          noOfDays: noOfDays,
+          date: date,
+          sessionPerDay: sessionPerDay,
+          startTime: startTime,
+          endTime: endTime,
+          location: location,
+          latitude: latitude,
+          longitude: longitude,
+          agenda: agenda,
+          datePicker: _pickDate,
+          endTimePicker: _endTimePicker,
+          startTimePicker: _startTimePicker,
+        ),
         bottomNavigationBar: BottomNavController(),
       ),
     );
@@ -89,5 +94,49 @@ class _EhadirAddActivityController extends State<EhadirAddActivityController> {
       Navigator.pop(context);
       Navigator.pop(context);
     });
+  }
+
+  void _pickDate() async {
+    DateTime? pickedDate = await showDatePicker(
+        context: context,
+        initialDate: DateTime.now(),
+        firstDate: DateTime(
+            2000), //DateTime.now() - not to allow to choose before today.
+        lastDate: DateTime(2101));
+
+    if (pickedDate != null) {
+      String formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate);
+
+      setState(() {
+        date.text = formattedDate;
+      });
+    } else {
+      // print("Date is not selected");
+    }
+  }
+
+  void _startTimePicker() {
+    _pickTime(startTime);
+  }
+
+  void _endTimePicker() {
+    _pickTime(endTime);
+  }
+
+  void _pickTime(TextEditingController timeController) async {
+    TimeOfDay? pickedTime = await showTimePicker(
+      initialTime: TimeOfDay.now(),
+      context: context,
+    );
+
+    if (pickedTime != null) {
+      String formattedDate = pickedTime.format(context);
+
+      setState(() {
+        timeController.text = formattedDate;
+      });
+    } else {
+      // print("Date is not selected");
+    }
   }
 }

@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:jpj_info/controller/login_controller.dart';
+import 'package:jpj_info/helper/fav_menu.dart';
 import 'package:jpj_info/helper/local_storage.dart';
 import 'package:jpj_info/model/login_response.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -42,6 +43,9 @@ class MyJPJAccountManager {
       "JJJ5555",
       "JVB5131",
     ];
+
+    FavMenu().init();
+
     try {
       List<String>? vehicleList =
           prefs.getStringList(LocalStorageHelper().vehicleList);

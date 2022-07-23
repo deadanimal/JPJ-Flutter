@@ -4,6 +4,7 @@ import 'package:jpj_info/model/page_size.dart';
 import 'package:jpj_info/view/common/spacing.dart';
 import 'package:jpj_info/view/eAduanMenu/component/custom_icon_menu_list.dart';
 import 'package:jpj_info/view/template/template_header.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class EaduanMenu extends StatelessWidget {
   const EaduanMenu({
@@ -44,8 +45,8 @@ class EaduanMenu extends StatelessWidget {
                   onTap: () {
                     draftStatusCallback(context);
                   },
-                  child: const Chip(
-                    label: Text("Draft/Sent"),
+                  child: Chip(
+                    label: Text(AppLocalizations.of(context)!.draftSent),
                   ),
                 ),
               ),

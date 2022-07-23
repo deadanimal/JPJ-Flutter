@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/controller/bottom_nav_controller.dart';
-import 'package:jpj_info/controller/ehadir_activity_list_controller.dart';
-import 'package:jpj_info/controller/ehadir_comittee_page_controller.dart';
 import 'package:jpj_info/helper/qr_scanner.dart';
 import 'package:jpj_info/model/ehadir_event_info.dart';
 import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
-import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/eHadirActivityInfo/ehadir_activity_info.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 

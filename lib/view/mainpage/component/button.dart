@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:jpj_info/helper/fav_menu.dart';
 import 'package:jpj_info/view/common/spacing.dart';
 import '../../common/color_scheme.dart';
 
 Widget button(
-    btnText, btnImage, btnClickHandler, bool enabled, BuildContext context) {
+  btnText,
+  btnImage,
+  btnClickHandler,
+  bool enabled,
+  BuildContext context,
+  int? serviceId,
+) {
   Widget btn = Container(
     width: 129,
     height: 129,
@@ -25,6 +32,10 @@ Widget button(
       ),
       onPressed: () {
         if (enabled) {
+          if (serviceId != null) {
+            print(serviceId);
+            FavMenu().clicked(serviceId);
+          }
           btnClickHandler(context);
         }
       },

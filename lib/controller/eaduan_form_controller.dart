@@ -42,6 +42,8 @@ class _EaduanFormController extends State<EaduanFormController> {
   late List<Uint8List> images;
   late TextEditingController dateController;
   late TextEditingController timeController;
+  late TextEditingController latitudeController;
+  late TextEditingController longitudeController;
   @override
   void initState() {
     super.initState();
@@ -49,6 +51,10 @@ class _EaduanFormController extends State<EaduanFormController> {
     images = [];
     dateController = TextEditingController();
     timeController = TextEditingController();
+    latitudeController = TextEditingController();
+    latitudeController.text = "3.146267";
+    longitudeController = TextEditingController();
+    longitudeController.text = "101.69";
   }
 
   @override
@@ -56,6 +62,8 @@ class _EaduanFormController extends State<EaduanFormController> {
     super.dispose();
     dateController.dispose();
     timeController.dispose();
+    latitudeController.dispose();
+    longitudeController.dispose();
   }
 
   @override
@@ -100,6 +108,9 @@ class _EaduanFormController extends State<EaduanFormController> {
           timeController: timeController,
           datePickerCb: pickDate,
           timePickerCb: pickTime,
+          latitudeController: latitudeController,
+          longitudeController: longitudeController,
+          mapTapCb: _onMapTap,
         ),
         bottomNavigationBar: BottomNavController(),
       ),
@@ -133,7 +144,6 @@ class _EaduanFormController extends State<EaduanFormController> {
 
     if (pickedTime != null) {
       String formattedDate = pickedTime.format(context);
-      // DateFormat('yyyy-MM-dd').format(pickedDate);
 
       setState(() {
         timeController.text = formattedDate;
@@ -143,14 +153,21 @@ class _EaduanFormController extends State<EaduanFormController> {
     }
   }
 
-  Future<void> _openGallery(String source) async {
+  Future<void> _openGallery(String mediaType, String source) async {
     // info: https://github.com/flutter/flutter/issues/18095
     // EasyLoading.show(
     //   status: AppLocalizations.of(context)!.pleaseWait,
     // );
-    final XFile? image = await picker.pickImage(
-      source: source == "camera" ? ImageSource.camera : ImageSource.gallery,
-    );
+    final XFile? image;
+    if (mediaType == "image") {
+      image = await picker.pickImage(
+        source: source == "camera" ? ImageSource.camera : ImageSource.gallery,
+      );
+    } else {
+      image = await picker.pickVideo(
+        source: source == "camera" ? ImageSource.camera : ImageSource.gallery,
+      );
+    }
     if (image != null) {
       Uint8List rawImageData = await image.readAsBytes();
       setState(() {
@@ -189,4 +206,11 @@ class _EaduanFormController extends State<EaduanFormController> {
   //   // todo: save to local storage
   //   SharedPreferences prefs = await SharedPreferences.getInstance();
   // }
+
+  void _onMapTap(String lat, String long) {
+    setState(() {
+      latitudeController.text = lat;
+      longitudeController.text = long;
+    });
+  }
 }

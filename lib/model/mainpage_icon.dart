@@ -6,9 +6,17 @@ class CustomMenuItem {
   ImageProvider? icon;
   late Function cbFunc;
   late bool needLoggedIn;
+  int? serviceId;
 
-  CustomMenuItem(String? menuText, String? iconPath, fx,
-      {bool login = false, bool isSvg = false}) {
+  CustomMenuItem(
+    String? menuText,
+    String? iconPath,
+    fx, {
+    bool login = false,
+    bool isSvg = false,
+    id,
+  }) {
+    serviceId = id;
     menu = menuText;
     if (iconPath != null) {
       if (isSvg) {

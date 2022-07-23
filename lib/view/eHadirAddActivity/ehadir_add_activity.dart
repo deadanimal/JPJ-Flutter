@@ -20,6 +20,9 @@ class EhadirAddActivity extends StatelessWidget {
     required this.latitude,
     required this.longitude,
     required this.agenda,
+    required this.datePicker,
+    required this.startTimePicker,
+    required this.endTimePicker,
   }) : super(key: key);
   final Function(BuildContext) submitCallback;
   final TextEditingController activityName;
@@ -32,6 +35,9 @@ class EhadirAddActivity extends StatelessWidget {
   final TextEditingController latitude;
   final TextEditingController longitude;
   final TextEditingController agenda;
+  final Function() datePicker;
+  final Function() startTimePicker;
+  final Function() endTimePicker;
 
   @override
   Widget build(BuildContext context) {
@@ -85,84 +91,48 @@ class EhadirAddActivity extends StatelessWidget {
           label: AppLocalizations.of(context)!.activityName,
           width: mediaWidth - 64,
         ),
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            Expanded(
-              flex: 3,
-              child: CustomTextFieldWithLabel(
-                controller: noOfDays,
-                label: AppLocalizations.of(context)!.noOfDays,
-                width: mediaWidth - 64,
-              ),
-            ),
-            const Spacer(flex: 1),
-            Expanded(
-              flex: 3,
-              child: CustomTextFieldWithLabel(
-                controller: date,
-                label: AppLocalizations.of(context)!.date,
-                width: mediaWidth - 64,
-              ),
-            ),
-            const Spacer(flex: 1),
-            Expanded(
-              flex: 3,
-              child: CustomTextFieldWithLabel(
-                controller: sessionPerDay,
-                label: AppLocalizations.of(context)!.noOfSessionPerDays,
-                width: mediaWidth - 64,
-              ),
-            ),
-          ],
+        CustomTextFieldWithLabel(
+          controller: noOfDays,
+          label: AppLocalizations.of(context)!.noOfDays,
+          width: mediaWidth - 64,
         ),
-        Row(
-          children: [
-            Expanded(
-              flex: 3,
-              child: CustomTextFieldWithLabel(
-                controller: startTime,
-                label: AppLocalizations.of(context)!.startTime,
-                width: mediaWidth - 64,
-              ),
-            ),
-            const Spacer(flex: 1),
-            Expanded(
-              flex: 3,
-              child: CustomTextFieldWithLabel(
-                controller: endTime,
-                label: AppLocalizations.of(context)!.endTime,
-                width: mediaWidth - 64,
-              ),
-            ),
-            const Spacer(flex: 4),
-          ],
+        CustomTextFieldWithLabel(
+          controller: date,
+          label: AppLocalizations.of(context)!.date,
+          width: mediaWidth - 64,
+          ontap: datePicker,
+        ),
+        CustomTextFieldWithLabel(
+          controller: sessionPerDay,
+          label: AppLocalizations.of(context)!.noOfSessionPerDays,
+          width: mediaWidth - 64,
+        ),
+        CustomTextFieldWithLabel(
+          controller: startTime,
+          label: AppLocalizations.of(context)!.startTime,
+          width: mediaWidth - 64,
+          ontap: startTimePicker,
+        ),
+        CustomTextFieldWithLabel(
+          controller: endTime,
+          label: AppLocalizations.of(context)!.endTime,
+          width: mediaWidth - 64,
+          ontap: endTimePicker,
         ),
         CustomTextFieldWithLabel(
           controller: location,
           label: AppLocalizations.of(context)!.location,
           width: mediaWidth - 64,
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Expanded(
-              flex: 5,
-              child: CustomTextFieldWithLabel(
-                controller: latitude,
-                label: AppLocalizations.of(context)!.latitude,
-                width: mediaWidth - 64,
-              ),
-            ),
-            Expanded(
-              flex: 5,
-              child: CustomTextFieldWithLabel(
-                controller: longitude,
-                label: AppLocalizations.of(context)!.longitude,
-                width: mediaWidth - 64,
-              ),
-            ),
-          ],
+        CustomTextFieldWithLabel(
+          controller: latitude,
+          label: AppLocalizations.of(context)!.latitude,
+          width: mediaWidth - 64,
+        ),
+        CustomTextFieldWithLabel(
+          controller: longitude,
+          label: AppLocalizations.of(context)!.longitude,
+          width: mediaWidth - 64,
         ),
         CustomTextFieldWithLabel(
           controller: agenda,

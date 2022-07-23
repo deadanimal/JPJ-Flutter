@@ -148,17 +148,19 @@ class _LatestRegistrationNumberController
         flag = null;
         isState = false;
       }
+      if (dropdownValue != AppLocalizations.of(context)!.state) {
+        _submitCallback(context);
+      }
     });
-    if (dropdownValue != AppLocalizations.of(context)!.state) {
-      _submitCallback(context);
-    }
   }
 
   Future<void> _submitCallback(BuildContext context) async {
+    String stateSelected;
     SiteConfig conf = SiteConfig();
     LatestRegNumberRequest req = LatestRegNumberRequest(
       stateCode: stateMap[dropdownValue]!,
     );
+    stateSelected = dropdownValue;
     try {
       EasyLoading.show(
         status: AppLocalizations.of(context)!.pleaseWait,
@@ -190,13 +192,13 @@ class _LatestRegistrationNumberController
                 ),
               ),
             ),
-            title: dropdownValue == respond.stateName
+            title: stateSelected == respond.stateName
                 ? respond.stateName
                 : respond.stateName == ""
                     ? respond.stateName
                     : respond.stateName!.contains("WILAYAH PERSEKUTUAN")
                         ? respond.stateName
-                        : "${respond.stateName!} , $dropdownValue",
+                        : "${respond.stateName!} , $stateSelected",
           ),
         );
         setState(

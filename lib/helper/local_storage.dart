@@ -3,4 +3,5 @@ class LocalStorageHelper {
   String eAduanDraft = "eAduanDraft";
   String userLoginInfo = "userLoginInfo";
   String vehicleList = "vehicleList";
+  String favMenuItem = "favMenuItem";
 }

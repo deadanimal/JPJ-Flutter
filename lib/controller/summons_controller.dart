@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:jpj_info/config/site_config.dart';
+import 'package:jpj_info/controller/alert_controller.dart';
 import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/controller/bottom_nav_controller.dart';
 import 'package:jpj_info/controller/http_request_controller.dart';
 import 'package:jpj_info/helper/account_manager.dart';
 import 'package:jpj_info/helper/id_types.dart';
 import 'package:jpj_info/model/expansion_list.dart';
-import 'package:jpj_info/model/license_status_request.dart';
+import 'package:jpj_info/model/result_style1.dart';
+import 'package:jpj_info/model/summons_response.dart';
+import 'package:jpj_info/model/summons_status_request.dart';
 import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:jpj_info/view/form/tooltip_info.dart';
 import 'package:jpj_info/view/summonsCheck/summon_check.dart';
 import 'dart:convert';
+import 'package:http/http.dart' as http;
+import 'package:jpj_info/view/template/template_result1.dart';
 
 class SummonsController extends StatefulWidget {
   const SummonsController({Key? key}) : super(key: key);
@@ -70,13 +75,13 @@ class _SummonsController extends State<SummonsController> {
       var index =
           dropdownList.indexWhere((element) => element == dropdownValue);
       SiteConfig conf = SiteConfig();
-      LicenseStatusRequest req = LicenseStatusRequest(
+      SummonsStatusRequest req = SummonsStatusRequest(
         kategori: index.toString(),
         nokp: _controller.text,
       );
       jpjHttpRequest(
         context,
-        Uri.parse(conf.registrationUri),
+        Uri.parse(conf.summonCheckUri),
         headers: conf.jsonHeader,
         body: jsonEncode(req.toJson()),
       );
@@ -87,6 +92,38 @@ class _SummonsController extends State<SummonsController> {
         AppLocalizations.of(context)!.pleaseFillAllInfo,
         (c) {},
       );
+    }
+  }
+
+  void _respondHandler(http.Response response) {
+    if (response.statusCode == 200) {
+      SummonsStatusResponse respond = SummonsStatusResponse.fromJson(
+        jsonDecode(response.body),
+      );
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) {
+            List<Result1> dataSet = [];
+            respond.summons?.forEach((el) {
+              // todo: handle summons response
+            });
+
+            ResultStyle1 resultData = ResultStyle1(
+              name: respond.name,
+              id: respond.id,
+              title: AppLocalizations.of(context)!.demeritNPoints,
+              subtitle: AppLocalizations.of(context)!.searchResult,
+              results: dataSet,
+            );
+            return TemplateResult1(
+              data: resultData,
+            );
+          },
+        ),
+      );
+    } else {
+      AlertController(ctx: context).connectionError();
     }
   }
 }

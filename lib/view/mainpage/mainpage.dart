@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jpj_info/helper/account_manager.dart';
+import 'package:jpj_info/helper/fav_menu.dart';
 import 'package:jpj_info/model/mainpage_icon.dart';
 import 'package:jpj_info/model/page_size.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
@@ -191,7 +192,7 @@ class _MainPage extends State<MainPage> with TickerProviderStateMixin {
   }
 
   Widget favSubsectionItems(BuildContext context) {
-    List<CustomMenuItem> favMenuList = MenuList(ctx: context).getFavMenuList();
+    List<CustomMenuItem> favMenuList = FavMenu().getFavMenuItem(context);
     return FittedBox(
       child: Padding(
         padding:
@@ -202,8 +203,10 @@ class _MainPage extends State<MainPage> with TickerProviderStateMixin {
             favMenuList.length,
             (index) {
               return CustomFavButton(
-                item: favMenuList[index],
-              );
+                  item: favMenuList[index],
+                  onTap: () {
+                    favMenuList[index].cbFunc(context);
+                  });
             },
           ),
         ),

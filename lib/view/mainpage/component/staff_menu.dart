@@ -25,12 +25,12 @@ class StaffMenu extends StatelessWidget {
           return Padding(
             padding: const EdgeInsets.all(verticalPadding),
             child: button(
-              serviceMenu[index].menu,
-              serviceMenu[index].icon,
-              serviceMenu[index].cbFunc,
-              enabled,
-              context,
-            ),
+                serviceMenu[index].menu,
+                serviceMenu[index].icon,
+                serviceMenu[index].cbFunc,
+                enabled,
+                context,
+                serviceMenu[index].serviceId),
           );
         },
       ),

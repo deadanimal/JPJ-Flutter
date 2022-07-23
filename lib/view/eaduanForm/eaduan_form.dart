@@ -8,6 +8,7 @@ import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/common/spacing.dart';
 import 'package:jpj_info/view/eaduanForm/component/image_container.dart';
 import 'package:jpj_info/view/eaduanForm/component/new_image.dart';
+import 'package:jpj_info/view/eaduanForm/component/new_media_selector.dart';
 import 'package:jpj_info/view/form/custom_button.dart';
 import 'package:jpj_info/view/form/label.dart';
 import 'package:jpj_info/view/form/text_field.dart';
@@ -25,16 +26,22 @@ class EaduanForm extends StatelessWidget {
     required this.timeController,
     required this.datePickerCb,
     required this.timePickerCb,
+    required this.latitudeController,
+    required this.longitudeController,
+    required this.mapTapCb,
   }) : super(key: key);
   final String? title;
   final AssetImage image;
-  final Function(String) openGalleryCallback;
+  final Function(String, String) openGalleryCallback;
   final Function submitCallback;
   final List<Uint8List> imagesPath;
   final TextEditingController dateController;
   final TextEditingController timeController;
+  final TextEditingController latitudeController;
+  final TextEditingController longitudeController;
   final Function() datePickerCb;
   final Function() timePickerCb;
+  final Function(String, String) mapTapCb;
 
   @override
   Widget build(BuildContext context) {
@@ -170,6 +177,10 @@ class EaduanForm extends StatelessWidget {
             _doubleForm(
               AppLocalizations.of(context)!.latitude,
               AppLocalizations.of(context)!.longitude,
+              controller1: latitudeController,
+              controller2: longitudeController,
+              readOnly1: true,
+              readOnly2: true,
             ),
             const SizedBox(height: vPaddingM),
             CustomLabel(
@@ -279,7 +290,14 @@ class EaduanForm extends StatelessWidget {
         imagesPath: imagesPath,
         // openGalleryCallback: openGalleryCallback,
         openGalleryCallback: () {
-          NewImageSelector().promptUser(context, openGalleryCallback);
+          NewMediaSelector().promptUser(
+            context,
+            (String media) {
+              NewImageSelector().promptUser(context, (source) {
+                openGalleryCallback(media, source);
+              });
+            },
+          );
         },
         scrollController: scrollController,
       ),
@@ -355,7 +373,14 @@ class EaduanForm extends StatelessWidget {
       width: mediaWidth,
       child: FlutterMap(
         options: MapOptions(
-          center: LatLng(3.165, 101.609),
+          onTap: (tapPosition, point) => {
+            // print(point.toString());
+            mapTapCb(point.latitude.toString(), point.longitude.toString()),
+          },
+          center: LatLng(
+            double.parse(latitudeController.text),
+            double.parse(longitudeController.text),
+          ),
           zoom: 13.0,
         ),
         layers: [
@@ -371,7 +396,10 @@ class EaduanForm extends StatelessWidget {
               Marker(
                 width: 80.0,
                 height: 80.0,
-                point: LatLng(3.165, 101.609),
+                point: LatLng(
+                  double.parse(latitudeController.text),
+                  double.parse(longitudeController.text),
+                ),
                 builder: (ctx) => const Icon(Icons.pin_drop, color: Colors.red),
               ),
             ],

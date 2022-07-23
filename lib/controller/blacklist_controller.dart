@@ -6,6 +6,8 @@ import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/controller/bottom_nav_controller.dart';
 import 'package:jpj_info/helper/account_manager.dart';
 import 'package:jpj_info/helper/id_types.dart';
+import 'package:jpj_info/model/black_list_request.dart';
+import 'package:jpj_info/model/black_list_response.dart';
 import 'package:jpj_info/model/result_style2.dart';
 import 'package:jpj_info/model/roadtax_status_request.dart';
 import 'package:jpj_info/model/roadtax_status_response.dart';
@@ -76,7 +78,7 @@ class _BlacklistController extends State<BlacklistController> {
       var index =
           dropdownList.indexWhere((element) => element == dropdownValue);
       SiteConfig conf = SiteConfig();
-      RoadTaxStatusRequest req = RoadTaxStatusRequest(
+      BlackListStatusRequest req = BlackListStatusRequest(
         kategori: index.toString(),
         nokp: _nric.text,
         nokenderaan: _plateNumber.text,
@@ -87,7 +89,7 @@ class _BlacklistController extends State<BlacklistController> {
         );
         http
             .post(
-          Uri.parse(conf.roadTaxCheckUri),
+          Uri.parse(conf.blacklistCheckUri),
           headers: conf.jsonHeader,
           body: jsonEncode(
             req.toJson(),
@@ -96,7 +98,8 @@ class _BlacklistController extends State<BlacklistController> {
             .then(
           (response) {
             if (response.statusCode == 200) {
-              RoadTaxStatusResponse respond = RoadTaxStatusResponse.fromJson(
+              BlackListStatusResponse respond =
+                  BlackListStatusResponse.fromJson(
                 jsonDecode(response.body),
               );
               Navigator.push(
@@ -104,18 +107,8 @@ class _BlacklistController extends State<BlacklistController> {
                 MaterialPageRoute(
                   builder: (context) {
                     List<Result2> dataSet = [];
-                    if (respond.lkm != null) {
-                      for (int i = 0; i < respond.lkm!.length; i++) {
-                        if (!MyJPJAccountManager().isLoggedIn && i == 0) {
-                        } else {
-                          dataSet.add(
-                            Result2(
-                              result: _resultField(respond.lkm![i]),
-                              title: respond.lkm![i].velinsuran,
-                            ),
-                          );
-                        }
-                      }
+                    if (respond.blacklist != null) {
+                      // todo: handle blacklist here
                     }
 
                     ResultStyle2 result = ResultStyle2(
@@ -124,7 +117,7 @@ class _BlacklistController extends State<BlacklistController> {
                       results: dataSet,
                       subtitle: AppLocalizations.of(context)!.searchResult,
                       title: AppLocalizations.of(context)!.blacklist,
-                      vehicalRegNumber: respond.nokenderaan,
+                      vehicalRegNumber: req.nokenderaan,
                     );
                     return TemplateResult2(
                       data: result,
