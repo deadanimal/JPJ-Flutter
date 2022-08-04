@@ -187,6 +187,8 @@ flutter:
     - images/icon/refresh_icon.png
     - images/flag/ms-flag-icon.png
     - images/flag/en-flag-icon.png
+    - images/vector/btm_directory_icon.svg
+    - images/vector/btm_inbox_icon.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

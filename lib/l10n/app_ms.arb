@@ -38,7 +38,7 @@
     "logout": "Log Keluar",
     "ok": "Ok",
     "welcome": "Selamat\nDatang",
-    "service": "Perkhidmatan",
+    "service": "Orang Awam",
     "favourite": "Kegemaran",
     "lastLoggedIn": "Log masuk terakhir",
     "onlineTransaction": "Transaksi\nAtas Talian",
@@ -95,7 +95,7 @@
     "transactionList": "Senarai Transaksi",
     "choose": "Pilih",
     "public": "Umum",
-    "directory": "Direktori JPJ",
+    "directory": "Direktori",
     "directoryN": "Direktori\nJPJ",
     "jpjLocationInAllState": "Cawangan JPJ Diseluruh  Negara",
     "operationHour": "Waktu Operasi",
@@ -249,5 +249,10 @@
     "draftSent": "Draf/Dihantar",
     "video": "Video",
     "image": "Gambar",
+    "profile":"Profil",
+    "supportServices":"Perkhidmatan Sokongan / Generik / Lain-lain",
+    "licensesService":"Perkhidmatan Perlesenan",
+    "driverService":"Perkhidmatan Pemandu",
+    "kSection":"Bahagian K",
     "pleaseWait": "Sila Tunggu..."
 }

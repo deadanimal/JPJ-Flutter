@@ -69,7 +69,7 @@ class _JpjDirectoryController extends State<JpjDirectoryController> {
         ),
         bottomNavigationBar: BottomNavController(
           darkTheme: true,
-          inMenu: true,
+          inDirectory: true,
         ),
       ),
     );

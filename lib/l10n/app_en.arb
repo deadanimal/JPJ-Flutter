@@ -38,7 +38,7 @@
     "logout": "Logout",
     "ok": "Ok",
     "welcome": "Welcome",
-    "service": "Service",
+    "service": "Public",
     "favourite": "Favourite",
     "lastLoggedIn": "Last log in",  
     "onlineTransaction": "Online\nTransaction",
@@ -95,7 +95,7 @@
     "transactionList": "Transaction List",
     "choose": "Choose",
     "public": "Public",
-    "directory": "JPJ Directory",
+    "directory": "Directory",
     "directoryN": "JPJ\nDirectory",
     "jpjLocationInAllState": "JPJ Branch in Malaysia",
     "operationHour": "Operational Hour",
@@ -249,5 +249,10 @@
     "draftSent": "Draft/Sent",
     "video": "Video",
     "image": "Image",
+    "profile":"Profile",
+    "supportServices":"Supporting Services / Generic / Others",
+    "licensesService":"License Services",
+    "driverService":"Driver Services",
+    "kSection":"K Section",
     "pleaseWait": "Please wait..."
 }

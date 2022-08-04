@@ -49,7 +49,7 @@ class _PublicMenuController extends State<PublicMenuController> {
         ),
         bottomNavigationBar: BottomNavController(
           darkTheme: true,
-          inMenu: true,
+          // inMenu: true,
         ),
       ),
     );

@@ -5,7 +5,7 @@ class SiteConfig {
   static String playStoreUrl = 'market://details?id';
 
   // account api
-  final String loginUri = "$url/aduantrafikmobile/login/processlogin2";
+  final String loginUri = "$prodUrl/aduantrafikmobile/login/processlogin2";
   final String getNotificationUri = "$url/jpj-api/apps/getNotification";
   final String updateProfileUri = "$url/jpj-api/apps/kemaskiniprofile";
   final String changePasswordUri = "$url/myjpj-api-dev/apps/kemaskiniprofile";

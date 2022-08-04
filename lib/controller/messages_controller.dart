@@ -65,6 +65,7 @@ class _MessageController extends State<MessageController> {
         ),
         bottomNavigationBar: BottomNavController(
           darkTheme: true,
+          inInbox: true,
         ),
       ),
     );

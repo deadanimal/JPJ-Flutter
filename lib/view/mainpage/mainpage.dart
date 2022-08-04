@@ -10,7 +10,6 @@ import 'package:jpj_info/view/mainpage/component/custom_tab.dart';
 import 'package:jpj_info/view/mainpage/component/fav_button.dart';
 import 'package:jpj_info/view/mainpage/component/services.dart';
 import 'package:jpj_info/view/mainpage/component/staff_menu.dart';
-import '../../helper/menu_list.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class MainPage extends StatefulWidget {
@@ -62,7 +61,7 @@ class _MainPage extends State<MainPage> with TickerProviderStateMixin {
         child: Container(
           constraints: BoxConstraints(
             maxWidth: 400,
-            maxHeight: mediaHeight,
+            maxHeight: mediaHeight * 1.2,
           ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -70,6 +69,7 @@ class _MainPage extends State<MainPage> with TickerProviderStateMixin {
               mainheader(context),
               favSubSection(context),
               mainSubSection(context),
+              const SizedBox(height: vPaddingXL),
               Expanded(child: populateButton(context)),
             ],
           ),

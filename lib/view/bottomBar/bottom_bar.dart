@@ -7,31 +7,37 @@ class BottomBar extends StatelessWidget {
     required this.tappedCallback,
     required this.items,
     required this.bgColor,
+    this.textColor = const Color(themeNavy),
   }) : super(key: key);
 
   final void Function(int index, BuildContext context) tappedCallback;
   final List<BottomNavigationBarItem> items;
   final Color bgColor;
+  final Color textColor;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        border: Border.all(style: BorderStyle.none),
-        color: bgColor,
+    return Padding(
+      padding: const EdgeInsets.only(
+        left: 16,
+        right: 16,
+        bottom: 8,
       ),
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(24.0, 8, 24, 8),
-        child: BottomNavigationBar(
-          backgroundColor: Colors.transparent,
-          unselectedItemColor: const Color(themeNavy),
-          elevation: 0,
-          items: items,
-          selectedItemColor: Colors.amber[800],
-          onTap: (index) {
-            tappedCallback(index, context);
-          },
-        ),
+      child: BottomNavigationBar(
+        backgroundColor: bgColor,
+        currentIndex: 0,
+        type: BottomNavigationBarType.fixed,
+        unselectedItemColor: textColor,
+        showUnselectedLabels: true,
+        showSelectedLabels: true,
+        elevation: 0,
+        selectedFontSize: 10,
+        unselectedFontSize: 10,
+        items: items,
+        selectedItemColor: textColor,
+        onTap: (index) {
+          tappedCallback(index, context);
+        },
       ),
     );
   }

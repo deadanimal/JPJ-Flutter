@@ -33,7 +33,6 @@ Widget button(
       onPressed: () {
         if (enabled) {
           if (serviceId != null) {
-            print(serviceId);
             FavMenu().clicked(serviceId);
           }
           btnClickHandler(context);
