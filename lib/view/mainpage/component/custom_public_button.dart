@@ -43,9 +43,9 @@ class CustomPublicButton extends StatelessWidget {
               textAlign: TextAlign.center,
               style: const TextStyle(
                 color: Color(0xff393939),
-                fontSize: 10,
+                fontSize: 12,
                 fontFamily: "Poppins",
-                fontWeight: FontWeight.w500,
+                fontWeight: FontWeight.w700,
               ),
             ),
           ],

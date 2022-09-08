@@ -67,6 +67,8 @@ class _LoginController extends State<LoginController> {
     if (response.statusCode == 200) {
       LoginResponse loginResponse;
       loginResponse = LoginResponse.fromJson(
+        // jsonDecode(
+        // '{"nama":"Test Name","emel":"test@email.com","nokp":"858585858555","status":0,"message":"","token":"123"}'),
         jsonDecode(response.body),
       );
       if (loginResponse.status != null) {
@@ -75,6 +77,7 @@ class _LoginController extends State<LoginController> {
             pref.setString(
               LocalStorageHelper().userLoginInfo,
               response.body,
+              // '{"nama":"Test Name","emel":"test@email.com","nokp":"858585858555","status":0,"message":"","token":"123"}',
             );
           });
           MyJPJAccountManager().init().then((value) {

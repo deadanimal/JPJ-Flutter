@@ -19,6 +19,7 @@ import 'package:jpj_info/controller/feedback_controller.dart';
 import 'package:jpj_info/controller/jpj_directory_controller.dart';
 import 'package:jpj_info/controller/jpj_eq_branch_list_controller.dart';
 import 'package:jpj_info/controller/jpj_eq_mainpage_controller.dart';
+import 'package:jpj_info/controller/jpj_eq_menu_controller.dart';
 import 'package:jpj_info/controller/jpj_eq_notification_controller.dart';
 import 'package:jpj_info/controller/jpj_eq_transaction_controller.dart';
 import 'package:jpj_info/controller/latest_registration_number_controller.dart';
@@ -220,11 +221,14 @@ void transactionHistoryPage(BuildContext context) {
   );
 }
 
-void jpjEqMenuPage(BuildContext context) async {
-  await LaunchApp.openApp(
-    androidPackageName: 'my.gov.jpj.queue',
-    iosUrlScheme: 'jpjeq://',
-    appStoreLink: 'itms-apps://apps.apple.com/us/app/jpjeq/id1545069171',
+void jpjEqMenuPage(BuildContext context) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) {
+        return const JpjEqMenuController();
+      },
+    ),
   );
 }
 

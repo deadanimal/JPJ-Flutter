@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:jpj_info/helper/account_manager.dart';
 import 'package:jpj_info/helper/fav_menu.dart';
@@ -145,7 +147,8 @@ class _MainPage extends State<MainPage> with TickerProviderStateMixin {
         Container(
           margin: const EdgeInsets.fromLTRB(8, 0, 8, 8),
           child: const Image(
-            image: AssetImage("images/my_jpj_icon.png"),
+            image: NetworkImage(
+                "https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=84"),
             fit: BoxFit.fitWidth,
             alignment: Alignment.bottomCenter,
             width: 84,
@@ -193,23 +196,19 @@ class _MainPage extends State<MainPage> with TickerProviderStateMixin {
 
   Widget favSubsectionItems(BuildContext context) {
     List<CustomMenuItem> favMenuList = FavMenu().getFavMenuItem(context);
-    return FittedBox(
-      child: Padding(
-        padding:
-            const EdgeInsets.only(left: 12.0, right: 12.0, bottom: 8.0, top: 0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: List.generate(
-            favMenuList.length,
-            (index) {
-              return CustomFavButton(
-                  item: favMenuList[index],
-                  onTap: () {
-                    favMenuList[index].cbFunc(context);
-                  });
-            },
-          ),
-        ),
+    return SizedBox(
+      height: 74,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: favMenuList.length,
+        shrinkWrap: true,
+        itemBuilder: (context, index) {
+          return CustomFavButton(
+              item: favMenuList[index],
+              onTap: () {
+                favMenuList[index].cbFunc(context);
+              });
+        },
       ),
     );
   }

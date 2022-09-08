@@ -69,6 +69,10 @@ class FavMenu {
         retFavMenu[1] = el;
       } else if (el.serviceId == favMenu[2].id) {
         retFavMenu[2] = el;
+      } else if (el.serviceId == favMenu[3].id) {
+        retFavMenu[3] = el;
+      } else if (el.serviceId == favMenu[4].id) {
+        retFavMenu[4] = el;
       }
     }
     return retFavMenu;

@@ -46,27 +46,16 @@ class LandingPage extends StatelessWidget {
               ),
             ],
           ),
-          Column(
-            children: const [
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Image(
-                  image: AssetImage("images/jpj_official_icon.png"),
-                  height: 34,
-                ),
-              ),
-              Text(
-                "JABATAN PENGANGKUTAN JALAN MALAYSIA",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 12,
-                  fontFamily: "Poppins",
-                  fontWeight: FontWeight.w600,
-                  letterSpacing: 0.42,
-                ),
-              ),
-            ],
+          const Text(
+            "JABATAN PENGANGKUTAN JALAN MALAYSIA",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 12,
+              fontFamily: "Poppins",
+              fontWeight: FontWeight.w600,
+              letterSpacing: 0.42,
+            ),
           ),
         ],
       ),

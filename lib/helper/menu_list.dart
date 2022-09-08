@@ -16,8 +16,13 @@ class MenuList {
         jpjEbidStore,
         id: 1,
       ),
-      CustomMenuItem("JPJeQ", "images/icon/jpjeq_icon.png", jpjEqMenuPage,
-          login: true, id: 2),
+      CustomMenuItem(
+        "JPJeQ",
+        "images/icon/jpjeq_icon.png",
+        jpjEqMenuPage,
+        login: true,
+        id: 2,
+      ),
       CustomMenuItem(
         "eAduan",
         "images/icon/eaduan_icon.png",
@@ -66,6 +71,19 @@ class MenuList {
         "images/icon/eaduan_icon.png",
         eHadirMenuPage,
         login: true,
+      ),
+      CustomMenuItem(
+        AppLocalizations.of(ctx)!.onlineTransaction,
+        "images/icon/online_transaction_icon.png",
+        onlineTransactionPage,
+        id: 4,
+      ),
+      CustomMenuItem(
+        AppLocalizations.of(ctx)!.transactionHistory,
+        "images/icon/payment_history_icon.png",
+        transactionHistoryPage,
+        login: true,
+        id: 6,
       ),
     ];
   }
