@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:jpj_info/config/site_config.dart';
 import 'package:jpj_info/controller/alert_controller.dart';
 import 'package:jpj_info/controller/appbar_controller.dart';
-import 'package:jpj_info/controller/bottom_nav_controller.dart';
 import 'package:jpj_info/controller/http_request_controller.dart';
 import 'package:jpj_info/controller/login_controller.dart';
 import 'package:jpj_info/model/new_registration_request.dart';
@@ -62,7 +61,6 @@ class _NewRegistrationController extends State<NewRegistrationController> {
           idController: _id,
           phoneController: _phone,
         ),
-        bottomNavigationBar: BottomNavController(),
       ),
     );
   }
@@ -72,7 +70,7 @@ class _NewRegistrationController extends State<NewRegistrationController> {
       RegistrationResponse respond = RegistrationResponse.fromJson(
         jsonDecode(response.body),
       );
-      if (respond.status == '0') {
+      if (respond.status == '01') {
         TooltipInfo().showInfo(
           context,
           AppLocalizations.of(context)!.tempPasswordSent,
@@ -122,7 +120,7 @@ class _NewRegistrationController extends State<NewRegistrationController> {
       jpjHttpRequest(
         context,
         Uri.parse(conf.registrationUri),
-        headers: conf.jsonHeader,
+        headers: conf.formHeader,
         body: jsonEncode(req.toJson()),
         callback: _responseHandler,
       );

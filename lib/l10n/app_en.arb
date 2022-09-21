@@ -254,5 +254,7 @@
     "licensesService":"License Services",
     "driverService":"Driver Services",
     "kSection":"Offenses and Penalties Service",
+    "idHasRecord":"ID Already Registered",
+    "pleaseLogin":"Please Login",
     "pleaseWait": "Please wait..."
 }

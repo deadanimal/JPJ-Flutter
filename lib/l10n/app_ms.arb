@@ -254,5 +254,7 @@
     "licensesService":"Perkhidmatan Perlesenan",
     "driverService":"Perkhidmatan Pemandu",
     "kSection":"Perkhidmatan Kesalahan dan Penalti",
+    "idHasRecord":"ID Pengguna telah wujud",
+    "pleaseLogin":"Sila Log Masuk",
     "pleaseWait": "Sila Tunggu..."
 }

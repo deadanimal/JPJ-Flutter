@@ -3,6 +3,8 @@ class SiteConfig {
   static String prodUrl = "https://myjpj.jpj.gov.my";
   static String appStoreUrl = 'itms-apps://apps.apple.com/us/app';
   static String playStoreUrl = 'market://details?id';
+  static String stagingUrl = "https://api.caravel.space/jpj";
+  // static String stagingUrl = "10.180.4.94/api";
 
   // account api
   final String loginUri = "$prodUrl/aduantrafikmobile/login/processlogin2";
@@ -33,15 +35,23 @@ class SiteConfig {
       "$prodUrl/jpjinfo-api/apps/semaksenaraihitam";
   final String demeritCheckUri = "$prodUrl/jpjinfo-api/apps/semakmatademerit";
 
+  //staging api
+  final String checkUserIdUri = "$stagingUrl/semak-id-awam/";
+  final String checkUserIdUrierr = "$stagingUrl/semak-id-awam/err.php";
+  final String registrationUri = "$stagingUrl/register_id_awam/";
+
   // other api
   final String feedbackUri = "$url/myjpj-api-dev/apps/maklumbalas";
 
   //todo: change to use actual URL
   final String summonsCheckUri = "http://test.caravel.space/summons.php";
-  final String registrationUri = "http://test.caravel.space/rest/register.php";
 
   Map<String, String> jsonHeader = {
     'Content-Type': 'application/json; charset=UTF-8',
+  };
+
+  Map<String, String> formHeader = {
+    'Content-Type': 'multipart/form-data; charset=UTF-8',
   };
 
   String jpjEbidAppStoreid = '1458846863';

@@ -7,7 +7,7 @@ import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/controller/forgot_password_controller.dart';
 import 'package:jpj_info/controller/http_request_controller.dart';
 import 'package:jpj_info/controller/mainpage_controller.dart';
-import 'package:jpj_info/controller/new_registration_controller.dart';
+import 'package:jpj_info/controller/new_user_check_id.dart';
 import 'package:jpj_info/helper/account_manager.dart';
 import 'package:jpj_info/helper/local_storage.dart';
 import 'package:jpj_info/model/login_request.dart';
@@ -67,17 +67,17 @@ class _LoginController extends State<LoginController> {
     if (response.statusCode == 200) {
       LoginResponse loginResponse;
       loginResponse = LoginResponse.fromJson(
-        // jsonDecode(
-        // '{"nama":"Test Name","emel":"test@email.com","nokp":"858585858555","status":0,"message":"","token":"123"}'),
-        jsonDecode(response.body),
+        jsonDecode(
+            '{"nama":"Test Name","emel":"test@email.com","nokp":"858585858555","status":0,"message":"","token":"123"}'),
+        // jsonDecode(response.body),
       );
       if (loginResponse.status != null) {
         if (loginResponse.status == 0) {
           SharedPreferences.getInstance().then((pref) {
             pref.setString(
               LocalStorageHelper().userLoginInfo,
-              response.body,
-              // '{"nama":"Test Name","emel":"test@email.com","nokp":"858585858555","status":0,"message":"","token":"123"}',
+              // response.body,
+              '{"nama":"Test Name","emel":"test@email.com","nokp":"858585858555","status":0,"message":"","token":"123"}',
             );
           });
           MyJPJAccountManager().init().then((value) {
@@ -144,7 +144,7 @@ class _LoginController extends State<LoginController> {
       context,
       MaterialPageRoute(
         builder: (context) {
-          return const NewRegistrationController();
+          return const NewUserCheckIdController();
         },
       ),
     );
