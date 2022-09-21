@@ -256,5 +256,10 @@
     "kSection":"Offenses and Penalties Service",
     "idHasRecord":"ID Already Registered",
     "pleaseLogin":"Please Login",
+    "firstTimeLogin":"First Time Login",
+    "firstQuestion":"First Question",
+    "secondQuestion":"Second Question",
+    "thirdQuestion":"Third Question",
+    "answer":"Answer",
     "pleaseWait": "Please wait..."
 }

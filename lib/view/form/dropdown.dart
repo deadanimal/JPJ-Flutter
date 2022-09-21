@@ -35,6 +35,7 @@ class _CustomDropdown extends State<CustomDropdown> {
 
   @override
   Widget build(BuildContext context) {
+    val = widget.dropdownValue;
     return SizedBox(
       width: mediaWidth - 64,
       child: Padding(
@@ -52,26 +53,33 @@ class _CustomDropdown extends State<CustomDropdown> {
             color: Colors.white,
           ),
           alignment: Alignment.center,
-          child: DropdownButton<String>(
-            value: val,
-            icon: const Icon(Icons.arrow_downward),
-            elevation: 16,
-            underline: Container(
-              height: 2,
+          child: ButtonTheme(
+            alignedDropdown: true,
+            child: DropdownButton<String>(
+              value: val,
+              icon: const Icon(Icons.arrow_downward),
+              elevation: 16,
+              isExpanded: true,
+              underline: Container(
+                height: 2,
+              ),
+              onChanged: (String? newValue) {
+                setState(() {
+                  val = newValue!;
+                });
+                widget.cbFunc(newValue!);
+              },
+              items: widget.dropdownList
+                  .map<DropdownMenuItem<String>>((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(
+                    value,
+                    overflow: TextOverflow.clip,
+                  ),
+                );
+              }).toList(),
             ),
-            onChanged: (String? newValue) {
-              setState(() {
-                val = newValue!;
-              });
-              widget.cbFunc(newValue!);
-            },
-            items: widget.dropdownList
-                .map<DropdownMenuItem<String>>((String value) {
-              return DropdownMenuItem<String>(
-                value: value,
-                child: Text(value),
-              );
-            }).toList(),
           ),
         ),
       ),

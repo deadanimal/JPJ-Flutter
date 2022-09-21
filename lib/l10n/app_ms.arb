@@ -256,5 +256,10 @@
     "kSection":"Perkhidmatan Kesalahan dan Penalti",
     "idHasRecord":"ID Pengguna telah wujud",
     "pleaseLogin":"Sila Log Masuk",
+    "firstTimeLogin":"Log Masuk Kali Pertama",
+    "firstQuestion":"Soalan Pertama",
+    "secondQuestion":"Soalan Kedua",
+    "thirdQuestion":"Soalan Ketiga",
+    "answer":"Jawapan",
     "pleaseWait": "Sila Tunggu..."
 }

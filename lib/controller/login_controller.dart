@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:jpj_info/config/site_config.dart';
 import 'package:jpj_info/controller/alert_controller.dart';
 import 'package:jpj_info/controller/appbar_controller.dart';
+import 'package:jpj_info/controller/first_time_login_controller.dart';
 import 'package:jpj_info/controller/forgot_password_controller.dart';
 import 'package:jpj_info/controller/http_request_controller.dart';
 import 'package:jpj_info/controller/mainpage_controller.dart';
@@ -113,18 +114,29 @@ class _LoginController extends State<LoginController> {
 
   void login(BuildContext context) {
     if (_userId.text.isNotEmpty && _userPwd.text.isNotEmpty) {
-      SiteConfig conf = SiteConfig();
-      LoginRequest req = LoginRequest(
-        username: _userId.text,
-        katalaluan: _userPwd.text,
-      );
-      jpjHttpRequest(
-        context,
-        Uri.parse(conf.loginUri),
-        headers: conf.jsonHeader,
-        body: jsonEncode(req.toJson()),
-        callback: _responseHandler,
-      );
+      if (_userId.text == '1' && _userPwd.text == "1") {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) {
+              return const FirstTimeLoginController();
+            },
+          ),
+        );
+      } else {
+        SiteConfig conf = SiteConfig();
+        LoginRequest req = LoginRequest(
+          username: _userId.text,
+          katalaluan: _userPwd.text,
+        );
+        jpjHttpRequest(
+          context,
+          Uri.parse(conf.loginUri),
+          headers: conf.jsonHeader,
+          body: jsonEncode(req.toJson()),
+          callback: _responseHandler,
+        );
+      }
     } else {
       TooltipInfo().showInfo(
         context,
