@@ -1,25 +1,25 @@
 class LatestRegNumberResponse {
-  String? stateName;
-  String? velno;
-  int? bil;
+  int? status;
+  String? areaName;
+  String? regnNo;
 
   LatestRegNumberResponse({
-    this.stateName,
-    this.velno,
-    this.bil,
+    this.status,
+    this.areaName,
+    this.regnNo,
   });
 
   LatestRegNumberResponse.fromJson(Map<String, dynamic> json) {
-    stateName = json['stateName'];
-    velno = json['velno'];
-    bil = json['bil'];
+    status = json['status'];
+    areaName = json['areaName'];
+    regnNo = json['regnNo'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['stateName'] = stateName;
-    data['velno'] = velno;
-    data['bil'] = bil;
+    data['status'] = status;
+    data['areaName'] = areaName;
+    data['regnNo'] = regnNo;
     return data;
   }
 }

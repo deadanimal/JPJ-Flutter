@@ -1,16 +1,13 @@
 class LatestRegNumberRequest {
-  late String stateCode;
-  String version;
+  late String areaCode;
 
   LatestRegNumberRequest({
-    required this.stateCode,
-    this.version = "2.0",
+    required this.areaCode,
   });
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['kod'] = stateCode;
-    data['versi'] = version;
+    data['areaCode'] = areaCode;
     return data;
   }
 }

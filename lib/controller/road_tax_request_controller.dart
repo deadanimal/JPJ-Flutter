@@ -46,16 +46,16 @@ class RoadTaxRequestController {
         MaterialPageRoute(
           builder: (context) {
             List<Result2> dataSet = [];
-            if (respond.lkm != null) {
-              for (int i = 0; i < respond.lkm!.length; i++) {
+            if (respond.vehicleInfo != null) {
+              for (int i = 0; i < respond.vehicleInfo!.length; i++) {
                 if (!MyJPJAccountManager().isLoggedIn && i == 0) {
                 } else {
                   if (i == 0 && respond.nokp != MyJPJAccountManager().id) {
                   } else {
                     dataSet.add(
                       Result2(
-                        result: _resultField(context, respond.lkm![i]),
-                        title: respond.lkm![i].velinsuran,
+                        result: _resultField(context, respond.vehicleInfo![i]),
+                        title: respond.vehicleInfo![i].vehicleInsurance,
                       ),
                     );
                   }
@@ -65,11 +65,11 @@ class RoadTaxRequestController {
 
             ResultStyle2 result = ResultStyle2(
               id: respond.nokp,
-              name: respond.nama,
+              name: respond.user,
               results: dataSet,
               subtitle: AppLocalizations.of(context)!.searchResult,
               title: AppLocalizations.of(context)!.lkm,
-              vehicalRegNumber: respond.nokenderaan,
+              vehicalRegNumber: respond.vehicleInfo![1].vehicleInsurance,
             );
             return TemplateResult2(
               data: result,
@@ -82,7 +82,7 @@ class RoadTaxRequestController {
     }
   }
 
-  Widget _resultField(BuildContext context, Lkm el) {
+  Widget _resultField(BuildContext context, VehicleInfo el) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
@@ -101,7 +101,7 @@ class RoadTaxRequestController {
                 ),
               ),
               Text(
-                el.tarikhcomment!,
+                el.dateOfCommencement!,
                 textAlign: TextAlign.end,
                 style: const TextStyle(
                   color: Color(0xff4e4e4e),
@@ -124,7 +124,7 @@ class RoadTaxRequestController {
                 ),
               ),
               Text(
-                el.expiredate!.trim(),
+                el.expired!.trim(),
                 textAlign: TextAlign.end,
                 style: const TextStyle(
                   color: Color(0xff4e4e4e),

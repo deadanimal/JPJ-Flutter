@@ -9,7 +9,6 @@ import 'package:jpj_info/helper/id_types.dart';
 import 'package:jpj_info/model/black_list_request.dart';
 import 'package:jpj_info/model/black_list_response.dart';
 import 'package:jpj_info/model/result_style2.dart';
-import 'package:jpj_info/model/roadtax_status_response.dart';
 import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:http/http.dart' as http;
@@ -143,61 +142,5 @@ class _BlacklistController extends State<BlacklistController> {
         (c) {},
       );
     }
-  }
-
-  Widget _resultField(Lkm el) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                AppLocalizations.of(context)!.startDate,
-                textAlign: TextAlign.start,
-                style: const TextStyle(
-                  color: Color(0xff8b9eb0),
-                  fontSize: 12,
-                  fontFamily: "Poppins",
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              Text(
-                el.tarikhcomment!,
-                textAlign: TextAlign.end,
-                style: const TextStyle(
-                  color: Color(0xff4e4e4e),
-                  fontSize: 10,
-                ),
-              ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                AppLocalizations.of(context)!.expiryDate,
-                textAlign: TextAlign.start,
-                style: const TextStyle(
-                  color: Color(0xff8b9eb0),
-                  fontSize: 12,
-                  fontFamily: "Poppins",
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              Text(
-                el.expiredate!.trim(),
-                textAlign: TextAlign.end,
-                style: const TextStyle(
-                  color: Color(0xff4e4e4e),
-                  fontSize: 10,
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
   }
 }

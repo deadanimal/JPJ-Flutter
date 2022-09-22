@@ -23,6 +23,10 @@ class SiteConfig {
   //staging api
   final String checkUserIdUrierr = "$prodUrl/semak-id-awam/err.php";
 
+  // Map<String, String> jsonHeader = {
+  //   'Content-Type': 'application/json; charset=UTF-8',
+  // };
+
   Map<String, String> formHeader = {
     'Content-Type': 'multipart/form-data; charset=UTF-8',
   };

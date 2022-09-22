@@ -158,7 +158,7 @@ class _LatestRegistrationNumberController
     String stateSelected;
     SiteConfig conf = SiteConfig();
     LatestRegNumberRequest req = LatestRegNumberRequest(
-      stateCode: stateMap[dropdownValue]!,
+      areaCode: stateMap[dropdownValue]!,
     );
     stateSelected = dropdownValue;
     try {
@@ -181,7 +181,7 @@ class _LatestRegistrationNumberController
               padding: const EdgeInsets.all(verticalPadding),
               child: FittedBox(
                 child: Text(
-                  respond.velno!,
+                  respond.regnNo!,
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                     color: Color(themeNavy),
@@ -192,18 +192,18 @@ class _LatestRegistrationNumberController
                 ),
               ),
             ),
-            title: stateSelected == respond.stateName
-                ? respond.stateName
-                : respond.stateName == ""
-                    ? respond.stateName
-                    : respond.stateName!.contains("WILAYAH PERSEKUTUAN")
-                        ? respond.stateName
-                        : "${respond.stateName!} , $stateSelected",
+            title: stateSelected == respond.areaName
+                ? respond.areaName
+                : respond.areaName == ""
+                    ? respond.areaName
+                    : respond.areaName!.contains("WILAYAH PERSEKUTUAN")
+                        ? respond.areaName
+                        : "${respond.areaName!} , $stateSelected",
           ),
         );
         setState(
           () {
-            if (respond.stateName != "") {
+            if (respond.areaName != "") {
               result = ResultStyle2(
                 id: null,
                 name: null,
