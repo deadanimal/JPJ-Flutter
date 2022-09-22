@@ -167,7 +167,7 @@ class _LatestRegistrationNumberController
       );
       final response = await http.post(
         Uri.parse(conf.plateNumberUri),
-        headers: conf.jsonHeader,
+        headers: conf.formHeader,
         body: jsonEncode(req.toJson()),
       );
       if (response.statusCode == 200) {

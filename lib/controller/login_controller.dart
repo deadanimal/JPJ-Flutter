@@ -137,7 +137,7 @@ class _LoginController extends State<LoginController> {
         jpjHttpRequest(
           context,
           Uri.parse(conf.loginUri),
-          headers: conf.jsonHeader,
+          headers: conf.formHeader,
           body: jsonEncode(req.toJson()),
           callback: _responseHandler,
         );

@@ -82,7 +82,7 @@ class _SummonsController extends State<SummonsController> {
       jpjHttpRequest(
         context,
         Uri.parse(conf.summonCheckUri),
-        headers: conf.jsonHeader,
+        headers: conf.formHeader,
         body: jsonEncode(req.toJson()),
       );
     } else {

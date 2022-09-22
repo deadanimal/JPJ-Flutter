@@ -111,7 +111,7 @@ class _DemeritPointsController extends State<DemeritPointsController> {
       jpjHttpRequest(
         context,
         Uri.parse(conf.demeritCheckUri),
-        headers: conf.jsonHeader,
+        headers: conf.formHeader,
         body: jsonEncode(req.toJson()),
         callback: _respondHandler,
       );

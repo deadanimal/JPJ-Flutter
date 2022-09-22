@@ -29,7 +29,7 @@ class RoadTaxRequestController {
     jpjHttpRequest(
       context,
       Uri.parse(conf.roadTaxCheckUri),
-      headers: conf.jsonHeader,
+      headers: conf.formHeader,
       body: jsonEncode(req.toJson()),
       callback: (response) {
         _responseHandler(context, response);

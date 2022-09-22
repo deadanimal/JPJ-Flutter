@@ -116,7 +116,7 @@ class _TestResultController extends State<TestResultController> {
       jpjHttpRequest(
         context,
         Uri.parse(conf.testResultUri),
-        headers: conf.jsonHeader,
+        headers: conf.formHeader,
         body: jsonEncode(req.toJson()),
         callback: _responseHandler,
       );

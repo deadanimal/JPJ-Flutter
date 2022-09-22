@@ -139,7 +139,7 @@ class _JpjDirectoryController extends State<JpjDirectoryController> {
     jpjHttpRequest(
       context,
       Uri.parse(conf.locationCheckUri),
-      headers: conf.jsonHeader,
+      headers: conf.formHeader,
       body: jsonEncode(req.toJson()),
       callback: (response) {
         _responseHandler(response, locationId);

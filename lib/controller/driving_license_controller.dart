@@ -117,7 +117,7 @@ class _DrivingLicenseController extends State<DrivingLicenseController> {
       jpjHttpRequest(
         context,
         Uri.parse(conf.licenseCheckUri),
-        headers: conf.jsonHeader,
+        headers: conf.formHeader,
         body: jsonEncode(req.toJson()),
         callback: _respondHandler,
       );

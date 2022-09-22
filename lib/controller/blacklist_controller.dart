@@ -89,7 +89,7 @@ class _BlacklistController extends State<BlacklistController> {
         http
             .post(
           Uri.parse(conf.blacklistCheckUri),
-          headers: conf.jsonHeader,
+          headers: conf.formHeader,
           body: jsonEncode(
             req.toJson(),
           ),
