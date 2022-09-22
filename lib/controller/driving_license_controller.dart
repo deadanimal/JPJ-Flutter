@@ -88,7 +88,7 @@ class _DrivingLicenseController extends State<DrivingLicenseController> {
             });
 
             ResultStyle1 resultData = ResultStyle1(
-              name: respond.nama,
+              name: respond.user,
               id: respond.nokp,
               title: AppLocalizations.of(context)!.drivingnLicense,
               subtitle: AppLocalizations.of(context)!.searchResult,

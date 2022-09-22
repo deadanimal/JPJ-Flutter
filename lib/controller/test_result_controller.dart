@@ -12,6 +12,7 @@ import 'package:jpj_info/model/test_result_response.dart';
 import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:http/http.dart' as http;
+import 'package:jpj_info/view/common/spacing.dart';
 import 'package:jpj_info/view/form/tooltip_info.dart';
 import 'dart:convert';
 import 'package:jpj_info/view/template/template_result2.dart';
@@ -76,19 +77,27 @@ class _TestResultController extends State<TestResultController> {
         MaterialPageRoute(
           builder: (context) {
             List<Result2> dataSet = [];
-            respond.lesenP?.forEach((el) {
+            respond.theoryTest?.forEach((el) {
               dataSet.add(
                 Result2(
-                  result: _resultField(el),
-                  title: "${el.jenisLesen!} - ${el.jenisUjian!}",
+                  result: _parseTheoryTestResult(el),
+                  title: "${el.licenseType!} - ${el.testType!}",
+                ),
+              );
+            });
+            respond.practicalTest?.forEach((el) {
+              dataSet.add(
+                Result2(
+                  result: _parsePracticalTestResult(el),
+                  title: "${el.licenseType!} - ${el.testType!}",
                 ),
               );
             });
 
             ResultStyle2 resultData = ResultStyle2(
               vehicalRegNumber: null,
-              name: respond.nama,
-              id: respond.nokp,
+              name: respond.name,
+              id: respond.icno,
               title: AppLocalizations.of(context)!.testNResult,
               subtitle: AppLocalizations.of(context)!.searchResult,
               results: dataSet,
@@ -130,7 +139,30 @@ class _TestResultController extends State<TestResultController> {
     }
   }
 
-  Widget _resultField(LesenP el) {
+  Widget _parseTheoryTestResult(TheoryTest el) {
+    return _resultField(
+      el.testDate!,
+      el.testVenue!,
+      el.classType,
+      el.testResult!,
+    );
+  }
+
+  Widget _parsePracticalTestResult(PracticalTest el) {
+    return _resultField(
+      el.testDate!,
+      el.testVenue!,
+      el.licenseType,
+      el.overAllResult!,
+    );
+  }
+
+  Widget _resultField(
+    String testDate,
+    String testVenue,
+    String? classType,
+    String testResult,
+  ) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
@@ -149,7 +181,7 @@ class _TestResultController extends State<TestResultController> {
                 ),
               ),
               Text(
-                el.tarikhujian!,
+                testDate,
                 textAlign: TextAlign.end,
                 style: const TextStyle(
                   color: Color(0xff4e4e4e),
@@ -158,8 +190,10 @@ class _TestResultController extends State<TestResultController> {
               ),
             ],
           ),
+          const SizedBox(height: vPaddingM),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
                 AppLocalizations.of(context)!.testLocation,
@@ -171,16 +205,22 @@ class _TestResultController extends State<TestResultController> {
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              Text(
-                el.lokasiUjian!.trim(),
-                textAlign: TextAlign.end,
-                style: const TextStyle(
-                  color: Color(0xff4e4e4e),
-                  fontSize: 10,
+              Flexible(
+                child: Text(
+                  testVenue.trim(),
+                  textAlign: TextAlign.end,
+                  overflow: TextOverflow.clip,
+                  softWrap: true,
+                  maxLines: 4,
+                  style: const TextStyle(
+                      color: Color(0xff4e4e4e),
+                      fontSize: 10,
+                      overflow: TextOverflow.ellipsis),
                 ),
               ),
             ],
           ),
+          const SizedBox(height: vPaddingM),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -195,7 +235,7 @@ class _TestResultController extends State<TestResultController> {
                 ),
               ),
               Text(
-                el.kelaslesen == null ? "" : el.kelaslesen!,
+                classType ?? "",
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   color: Color(0xff4e4e4e),
@@ -204,6 +244,7 @@ class _TestResultController extends State<TestResultController> {
               ),
             ],
           ),
+          const SizedBox(height: vPaddingM),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -218,7 +259,7 @@ class _TestResultController extends State<TestResultController> {
                 ),
               ),
               Text(
-                el.keputusan!,
+                testResult,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   color: Color(0xff4e4e4e),

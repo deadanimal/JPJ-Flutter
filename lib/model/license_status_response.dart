@@ -1,35 +1,39 @@
 class LicenseStatusResponse {
-  String? nama;
+  int? status;
+  String? user;
   String? nokp;
   int? bil;
   List<Lesen>? lesen;
 
   LicenseStatusResponse({
-    this.nama,
+    this.status,
+    this.user,
     this.nokp,
     this.bil,
     this.lesen,
   });
 
   LicenseStatusResponse.fromJson(Map<String, dynamic> json) {
-    nama = json['nama'];
+    status = json['status'];
+    user = json['user'];
     nokp = json['nokp'];
     bil = json['bil'];
     if (json['lesen'] != null) {
       lesen = <Lesen>[];
       json['lesen'].forEach((v) {
-        lesen!.add(Lesen.fromJson(v));
+        lesen?.add(Lesen.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['nama'] = nama;
+    data['status'] = status;
+    data['user'] = user;
     data['nokp'] = nokp;
     data['bil'] = bil;
     if (lesen != null) {
-      data['lesen'] = lesen!.map((v) => v.toJson()).toList();
+      data['lesen'] = lesen?.map((v) => v.toJson()).toList();
     }
     return data;
   }
