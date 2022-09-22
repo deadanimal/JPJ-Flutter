@@ -30,6 +30,7 @@ class LoginController extends StatefulWidget {
 class _LoginController extends State<LoginController> {
   late TextEditingController _userId;
   late TextEditingController _userPwd;
+  bool bypass = true; //todo: remove this when login is ok
   @override
   void initState() {
     super.initState();
@@ -65,7 +66,7 @@ class _LoginController extends State<LoginController> {
   }
 
   void _responseHandler(http.Response response) {
-    if (response.statusCode == 200) {
+    if (response.statusCode == 200 || bypass) {
       LoginResponse loginResponse;
       loginResponse = LoginResponse.fromJson(
         jsonDecode(
@@ -115,6 +116,7 @@ class _LoginController extends State<LoginController> {
   void login(BuildContext context) {
     if (_userId.text.isNotEmpty && _userPwd.text.isNotEmpty) {
       if (_userId.text == '1' && _userPwd.text == "1") {
+        //todo: for mock only, tobe removed
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -123,6 +125,9 @@ class _LoginController extends State<LoginController> {
             },
           ),
         );
+      } else if (bypass) {
+        http.Response a = http.Response("", 200);
+        _responseHandler(a);
       } else {
         SiteConfig conf = SiteConfig();
         LoginRequest req = LoginRequest(

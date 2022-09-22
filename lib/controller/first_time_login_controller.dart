@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/controller/bottom_nav_controller.dart';
+import 'package:jpj_info/controller/first_time_password_change_controller.dart';
 import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:jpj_info/view/firstTimeLogin/first_time_update_profile.dart';
+import 'package:jpj_info/view/form/tooltip_info.dart';
 
 class FirstTimeLoginController extends StatefulWidget {
   const FirstTimeLoginController({Key? key}) : super(key: key);
@@ -89,5 +91,21 @@ class _FirstTimeLoginController extends State<FirstTimeLoginController> {
     );
   }
 
-  Future<void> _submitCallback(BuildContext context) async {}
+  Future<void> _submitCallback(BuildContext context) async {
+    TooltipInfo().showInfo(
+      context,
+      AppLocalizations.of(context)!.successfullySaved,
+      AppLocalizations.of(context)!.changePasswordOnNextPage,
+      (c) {
+        Navigator.push(
+          c,
+          MaterialPageRoute(
+            builder: (context) {
+              return const FirstTimePasswordChangeController();
+            },
+          ),
+        );
+      },
+    );
+  }
 }

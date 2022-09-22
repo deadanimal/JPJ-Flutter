@@ -82,8 +82,8 @@
     "viewTNC": "View Terms\nAnd Conditions",
     "details": "Details",
     "pleaseTypeHere": "Please type here",
-    "yourRecord": "Rekod anda",
-    "successfullySaved": "telah berjaya disimpan",
+    "yourRecord": "Your Record",
+    "successfullySaved": "Successfully saved",
     "tncN": "Temrs and\nConditions",
     "vehicleListNumber": "List of\nVehicle\nRegistration",
     "offense": "Offense",
@@ -261,5 +261,6 @@
     "secondQuestion":"Second Question",
     "thirdQuestion":"Third Question",
     "answer":"Answer",
+    "changePasswordOnNextPage":"Change your password on the next page",
     "pleaseWait": "Please wait..."
 }
