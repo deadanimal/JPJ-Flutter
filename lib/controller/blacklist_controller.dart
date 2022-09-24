@@ -73,11 +73,8 @@ class _BlacklistController extends State<BlacklistController> {
 
   void _submitCallback(BuildContext context) {
     if (_nric.text.isNotEmpty && _plateNumber.text.isNotEmpty) {
-      var index =
-          dropdownList.indexWhere((element) => element == dropdownValue);
       SiteConfig conf = SiteConfig();
       BlackListStatusRequest req = BlackListStatusRequest(
-        kategori: index.toString(),
         nokp: _nric.text,
         nokenderaan: _plateNumber.text,
       );

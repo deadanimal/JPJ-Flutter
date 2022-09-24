@@ -1,25 +1,29 @@
 class BlackListStatusRequest {
   String? nokp;
-  String? kategori;
   String? nokenderaan;
+  String? bltype;
+  String? blcat;
 
   BlackListStatusRequest({
     this.nokp,
-    this.kategori,
     this.nokenderaan,
+    this.bltype = "veh",
+    this.blcat = "jpj",
   });
 
   BlackListStatusRequest.fromJson(Map<String, dynamic> json) {
     nokp = json['nokp'];
-    kategori = json['kategori'];
     nokenderaan = json['nokenderaan'];
+    bltype = json['bltype'];
+    blcat = json['blcat'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['nokp'] = nokp;
-    data['kategori'] = kategori;
     data['nokenderaan'] = nokenderaan;
+    data['bltype'] = bltype;
+    data['blcat'] = blcat;
     return data;
   }
 }
