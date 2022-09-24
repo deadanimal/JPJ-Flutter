@@ -13,12 +13,19 @@ import 'package:jpj_info/view/template/component/custom_subtitle.dart';
 import 'package:jpj_info/view/template/template_header.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class SummonsStatus extends StatelessWidget {
-  const SummonsStatus({
+class SummonsStatus extends StatefulWidget {
+  SummonsStatus({
     Key? key,
     required this.data,
   }) : super(key: key);
   final List<CustomExpensionList> data;
+
+  @override
+  State<StatefulWidget> createState() => _SummonsStatus();
+}
+
+class _SummonsStatus extends State<SummonsStatus> {
+  int noOfSelectedSummons = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +53,7 @@ class SummonsStatus extends StatelessWidget {
           Container(
             constraints: const BoxConstraints(maxWidth: 400),
             width: mediaWidth - 64,
-            child: _result(context, data),
+            child: _result(context, widget.data),
           ),
           const SizedBox(
             height: vPaddingXL,
@@ -61,21 +68,21 @@ class SummonsStatus extends StatelessWidget {
             height: vPaddingM,
           ),
           CustomButton(
-            width: mediaWidth - 64,
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return const SummonsVerificationController();
-                  },
-                ),
-              );
-            },
-            textColor: const Color(themeNavy),
-            decoration: whiteBtnDeco,
-            label: "${AppLocalizations.of(context)!.choose} 1 ${AppLocalizations.of(context)!.ticket}",
-          )
+              width: mediaWidth - 64,
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return const SummonsVerificationController();
+                    },
+                  ),
+                );
+              },
+              textColor: const Color(themeNavy),
+              decoration: whiteBtnDeco,
+              label:
+                  "${AppLocalizations.of(context)!.choose} $noOfSelectedSummons ${AppLocalizations.of(context)!.ticket}")
         ],
       ),
     );
@@ -91,7 +98,22 @@ class SummonsStatus extends StatelessWidget {
           return Column(
             children: [
               const SizedBox(height: verticalPadding),
-              CustomExpandableContainer(data: summons[index].data),
+              CustomExpandableContainer(
+                data: summons[index].data,
+                checkboxCallback: (checked, id) {
+                  noOfSelectedSummons = 0;
+                  for (var el in widget.data) {
+                    if (el.data.notisId == id) {
+                      el.isSelected = checked ?? false;
+                    }
+                    if (el.isSelected) {
+                      setState(() {
+                        noOfSelectedSummons = noOfSelectedSummons + 1;
+                      });
+                    }
+                  }
+                },
+              ),
             ],
           );
         },

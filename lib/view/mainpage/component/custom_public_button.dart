@@ -33,7 +33,8 @@ class CustomPublicButton extends StatelessWidget {
                 ),
                 child: Image(
                   image: menu.icon!,
-                  fit: BoxFit.fitWidth,
+                  width: 64,
+                  fit: BoxFit.fitHeight,
                   alignment: Alignment.bottomCenter,
                 ),
               ),

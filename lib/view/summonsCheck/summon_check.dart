@@ -12,9 +12,11 @@ class SummonsCheck extends StatelessWidget {
     required this.dropdownValue,
     required this.submitCallback,
     required this.selectionCallback,
+    required this.plateTextController,
   }) : super(key: key);
 
   final TextEditingController textController;
+  final TextEditingController plateTextController;
   final List<String> dropdownList;
   final String dropdownValue;
   final void Function(BuildContext) submitCallback;
@@ -47,6 +49,7 @@ class SummonsCheck extends StatelessWidget {
       idTextController: textController,
       dropdownList: dropdownList,
       dropdownValue: dropdownValue,
+      plateNumberTextController: plateTextController,
     );
   }
 }

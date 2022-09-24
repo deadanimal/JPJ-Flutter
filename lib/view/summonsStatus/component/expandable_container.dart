@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jpj_info/model/page_size.dart';
 import 'package:jpj_info/model/summons_response.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/common/spacing.dart';
@@ -9,8 +10,10 @@ class CustomExpandableContainer extends StatefulWidget {
   const CustomExpandableContainer({
     Key? key,
     required this.data,
+    required this.checkboxCallback,
   }) : super(key: key);
-  final Summons data;
+  final Saman data;
+  final Function(bool?, String) checkboxCallback;
 
   @override
   State<CustomExpandableContainer> createState() =>
@@ -56,6 +59,9 @@ class _CustomExpandableContainer extends State<CustomExpandableContainer> {
               bgColor: Colors.grey.shade50,
               shadow: const BoxShadow(),
               size: 18,
+              stateChangeCb: (checked) {
+                widget.checkboxCallback(checked, widget.data.notisId!);
+              },
             ),
           ),
           Expanded(
@@ -65,7 +71,7 @@ class _CustomExpandableContainer extends State<CustomExpandableContainer> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  widget.data.vehicleRegistration!,
+                  widget.data.vehicleId!,
                   style: const TextStyle(
                     color: Color(0xff354c96),
                     fontSize: 24,
@@ -74,7 +80,7 @@ class _CustomExpandableContainer extends State<CustomExpandableContainer> {
                   ),
                 ),
                 Text(
-                  widget.data.summonsId!,
+                  widget.data.notisId!,
                   style: const TextStyle(
                     color: Color(0xff8b9eb0),
                     fontSize: 13,
@@ -103,12 +109,15 @@ class _CustomExpandableContainer extends State<CustomExpandableContainer> {
   }
 
   Widget _expandedContent(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        _summonInfo(context),
-        _paymentStatus(context),
-      ],
+    return SizedBox(
+      width: mediaWidth,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          _summonInfo(context),
+          _paymentStatus(context),
+        ],
+      ),
     );
   }
 
@@ -118,31 +127,25 @@ class _CustomExpandableContainer extends State<CustomExpandableContainer> {
         _summonDetail(
           context,
           AppLocalizations.of(context)!.offense,
-          widget.data.offense!,
+          widget.data.offType!,
           false,
         ),
         _summonDetail(
           context,
           AppLocalizations.of(context)!.ticketNo,
-          widget.data.summonsId!,
+          widget.data.notisId!,
           false,
         ),
         _summonDetail(
           context,
           AppLocalizations.of(context)!.date,
-          widget.data.date!,
-          false,
-        ),
-        _summonDetail(
-          context,
-          AppLocalizations.of(context)!.location,
-          widget.data.location!,
+          widget.data.createDate!,
           false,
         ),
         _summonDetail(
           context,
           AppLocalizations.of(context)!.amount,
-          widget.data.amount!,
+          widget.data.offAmount!,
           true,
         ),
       ],
@@ -156,6 +159,8 @@ class _CustomExpandableContainer extends State<CustomExpandableContainer> {
     bool amountField,
   ) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisSize: MainAxisSize.max,
       children: [
         _summonInfoLabel(context, label),
         amountField == true
@@ -175,19 +180,16 @@ class _CustomExpandableContainer extends State<CustomExpandableContainer> {
     String label, {
     Color textColor = const Color(0xff2e2e2e),
   }) {
-    return Expanded(
-      flex: 3,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Text(
-          label,
-          textAlign: TextAlign.right,
-          style: TextStyle(
-            color: textColor,
-            fontSize: 12,
-            fontFamily: "Roboto",
-            fontWeight: FontWeight.w600,
-          ),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Text(
+        label,
+        textAlign: TextAlign.right,
+        style: TextStyle(
+          color: textColor,
+          fontSize: 15,
+          fontFamily: "Roboto",
+          fontWeight: FontWeight.w600,
         ),
       ),
     );
@@ -199,22 +201,15 @@ class _CustomExpandableContainer extends State<CustomExpandableContainer> {
     Color textColor = const Color(0xff2e2e2e),
     FontWeight? fontWeight,
   }) {
-    return Expanded(
-      flex: 7,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: FittedBox(
-          alignment: Alignment.centerLeft,
-          fit: BoxFit.scaleDown,
-          child: Text(
-            detail,
-            textAlign: TextAlign.start,
-            style: TextStyle(
-              color: textColor,
-              fontSize: 12,
-              fontWeight: fontWeight,
-            ),
-          ),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Text(
+        detail,
+        textAlign: TextAlign.start,
+        style: TextStyle(
+          color: textColor,
+          fontSize: 15,
+          fontWeight: fontWeight,
         ),
       ),
     );

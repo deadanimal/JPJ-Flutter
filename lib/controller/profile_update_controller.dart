@@ -28,7 +28,6 @@ class _ProfileUpdateController extends State<ProfileUpdateController> {
   late TextEditingController _postcodeController;
   late List<String> dropdownList;
   late String dropdownValue;
-  late List<CustomExpensionList> summonsList;
 
   @override
   void initState() {
@@ -50,7 +49,6 @@ class _ProfileUpdateController extends State<ProfileUpdateController> {
     _districtController.text = MyJPJAccountManager().district;
     _stateController.text = MyJPJAccountManager().state;
     _postcodeController.text = MyJPJAccountManager().postcode;
-    summonsList = [];
   }
 
   @override
