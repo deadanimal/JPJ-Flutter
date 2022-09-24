@@ -105,17 +105,20 @@ class _BlacklistController extends State<BlacklistController> {
                 MaterialPageRoute(
                   builder: (context) {
                     List<Result2> dataSet = [];
-                    if (respond.blacklist != null) {
-                      // todo: handle blacklist here
-                    }
+                    dataSet.add(
+                      Result2(
+                        title: respond.message,
+                        result: Container(),
+                      ),
+                    );
 
                     ResultStyle2 result = ResultStyle2(
-                      id: respond.nokp,
-                      name: respond.nama,
+                      id: respond.icno,
+                      name: null,
                       results: dataSet,
                       subtitle: AppLocalizations.of(context)!.searchResult,
                       title: AppLocalizations.of(context)!.blacklist,
-                      vehicalRegNumber: req.nokenderaan,
+                      vehicalRegNumber: respond.vehicleRegno,
                     );
                     return TemplateResult2(
                       data: result,

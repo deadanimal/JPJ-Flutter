@@ -14,7 +14,7 @@ import 'package:jpj_info/view/template/template_header.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SummonsStatus extends StatefulWidget {
-  SummonsStatus({
+  const SummonsStatus({
     Key? key,
     required this.data,
   }) : super(key: key);

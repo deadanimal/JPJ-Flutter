@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:jpj_info/config/site_config.dart';
 import 'package:jpj_info/controller/alert_controller.dart';
 import 'package:jpj_info/controller/appbar_controller.dart';
-import 'package:jpj_info/controller/bottom_nav_controller.dart';
 import 'package:jpj_info/controller/http_request_controller.dart';
 import 'package:jpj_info/controller/login_controller.dart';
 import 'package:jpj_info/controller/new_registration_controller.dart';
@@ -15,7 +14,6 @@ import 'package:jpj_info/view/form/tooltip_info.dart';
 import 'package:jpj_info/view/newRegistration/check_id.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:http/http.dart' as http;
-import 'package:shared_preferences/shared_preferences.dart';
 
 class NewUserCheckIdController extends StatefulWidget {
   const NewUserCheckIdController({Key? key}) : super(key: key);

@@ -8,7 +8,6 @@ import 'package:jpj_info/helper/account_manager.dart';
 import 'package:jpj_info/helper/id_types.dart';
 import 'package:jpj_info/model/demerit_status_request.dart';
 import 'package:jpj_info/model/demerit_status_response.dart';
-import 'package:jpj_info/model/result_style1.dart';
 import 'package:jpj_info/model/result_style2.dart';
 import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
 import 'package:jpj_info/view/demeritPointsCheck/demerit_points_check.dart';
@@ -16,7 +15,6 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:http/http.dart' as http;
 import 'package:jpj_info/view/form/tooltip_info.dart';
 import 'dart:convert';
-import 'package:jpj_info/view/template/template_result1.dart';
 import 'package:jpj_info/view/template/template_result2.dart';
 
 class DemeritPointsController extends StatefulWidget {

@@ -128,7 +128,7 @@ class TemplateResult2 extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                AppLocalizations.of(context)!.name,
+                data.name != null ? AppLocalizations.of(context)!.name : "",
                 style: const TextStyle(
                   color: Color(themeNavy),
                   fontSize: 13,
@@ -137,7 +137,7 @@ class TemplateResult2 extends StatelessWidget {
                 ),
               ),
               Text(
-                data.name!,
+                data.name ?? "",
                 style: const TextStyle(
                   color: Color(themeNavy),
                   fontSize: 13,
