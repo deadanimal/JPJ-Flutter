@@ -1,21 +1,33 @@
 class DemeritStatusResponse {
-  String? nama;
-  String? noic;
-  Null? kejarapoint;
+  int? status;
+  String? name;
+  String? idNo;
+  String? category;
+  String? kejaraPoint;
 
-  DemeritStatusResponse({this.nama, this.noic, this.kejarapoint});
+  DemeritStatusResponse({
+    this.status,
+    this.name,
+    this.idNo,
+    this.category,
+    this.kejaraPoint,
+  });
 
   DemeritStatusResponse.fromJson(Map<String, dynamic> json) {
-    nama = json['nama'];
-    noic = json['noic'];
-    kejarapoint = json['kejarapoint'];
+    status = json['status'];
+    name = json['name'];
+    idNo = json['idNo'];
+    category = json['category'];
+    kejaraPoint = json['kejaraPoint'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['nama'] = nama;
-    data['noic'] = noic;
-    data['kejarapoint'] = kejarapoint;
+    data['status'] = status;
+    data['name'] = name;
+    data['idNo'] = idNo;
+    data['category'] = category;
+    data['kejaraPoint'] = kejaraPoint;
     return data;
   }
 }
