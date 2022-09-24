@@ -28,8 +28,8 @@ class CustomPublicButton extends StatelessWidget {
               padding: const EdgeInsets.only(bottom: vPaddingM),
               child: Container(
                 constraints: const BoxConstraints(
-                  maxHeight: 55,
-                  maxWidth: 55,
+                  maxHeight: 68,
+                  maxWidth: 68,
                 ),
                 child: Image(
                   image: menu.icon!,
@@ -44,7 +44,7 @@ class CustomPublicButton extends StatelessWidget {
               style: const TextStyle(
                 color: Color(0xff393939),
                 fontSize: 12,
-                fontFamily: "Poppins",
+                fontFamily: "Roboto",
                 fontWeight: FontWeight.w700,
               ),
             ),

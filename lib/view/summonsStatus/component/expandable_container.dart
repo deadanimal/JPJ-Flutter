@@ -69,7 +69,7 @@ class _CustomExpandableContainer extends State<CustomExpandableContainer> {
                   style: const TextStyle(
                     color: Color(0xff354c96),
                     fontSize: 24,
-                    fontFamily: "Poppins",
+                    fontFamily: "Roboto",
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -185,7 +185,7 @@ class _CustomExpandableContainer extends State<CustomExpandableContainer> {
           style: TextStyle(
             color: textColor,
             fontSize: 12,
-            fontFamily: "Poppins",
+            fontFamily: "Roboto",
             fontWeight: FontWeight.w600,
           ),
         ),

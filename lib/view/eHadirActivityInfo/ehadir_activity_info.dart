@@ -59,7 +59,7 @@ class EhadirActivityInfo extends StatelessWidget {
             textAlign: TextAlign.center,
             style: const TextStyle(
               fontSize: 18,
-              fontFamily: "Poppins",
+              fontFamily: "Roboto",
               fontWeight: FontWeight.w600,
               letterSpacing: 0.63,
             ),
@@ -71,7 +71,7 @@ class EhadirActivityInfo extends StatelessWidget {
             textAlign: TextAlign.center,
             style: const TextStyle(
               fontSize: 18,
-              fontFamily: "Poppins",
+              fontFamily: "Roboto",
               fontWeight: FontWeight.w600,
               letterSpacing: 0.63,
             ),
@@ -83,7 +83,7 @@ class EhadirActivityInfo extends StatelessWidget {
             textAlign: TextAlign.center,
             style: const TextStyle(
               fontSize: 18,
-              fontFamily: "Poppins",
+              fontFamily: "Roboto",
               fontWeight: FontWeight.w600,
               letterSpacing: 0.63,
             ),

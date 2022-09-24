@@ -53,7 +53,7 @@ class EhadirConfirmAttendance extends StatelessWidget {
               style: const TextStyle(
                 color: Color(0xff354c96),
                 fontSize: 20,
-                fontFamily: "Poppins",
+                fontFamily: "Roboto",
                 fontWeight: FontWeight.w900,
               ),
             ),
@@ -63,7 +63,7 @@ class EhadirConfirmAttendance extends StatelessWidget {
               style: const TextStyle(
                 color: Color(0xff354c96),
                 fontSize: 15,
-                fontFamily: "Poppins",
+                fontFamily: "Roboto",
               ),
             ),
             const SizedBox(height: vPaddingM),
@@ -77,7 +77,7 @@ class EhadirConfirmAttendance extends StatelessWidget {
                     style: const TextStyle(
                       color: Color(themeNavy),
                       fontSize: 35,
-                      fontFamily: "Poppins",
+                      fontFamily: "Roboto",
                       fontWeight: FontWeight.w700,
                     ),
                   ),

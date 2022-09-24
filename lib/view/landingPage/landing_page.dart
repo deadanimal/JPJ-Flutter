@@ -40,7 +40,7 @@ class LandingPage extends StatelessWidget {
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: 48,
-                  fontFamily: "Poppins",
+                  fontFamily: "Roboto",
                   fontWeight: FontWeight.w700,
                 ),
               ),
@@ -52,7 +52,7 @@ class LandingPage extends StatelessWidget {
             style: TextStyle(
               color: Colors.white,
               fontSize: 12,
-              fontFamily: "Poppins",
+              fontFamily: "Roboto",
               fontWeight: FontWeight.w600,
               letterSpacing: 0.42,
             ),

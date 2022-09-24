@@ -81,7 +81,7 @@ class CustomSlidableMessages extends StatelessWidget {
                         style: const TextStyle(
                           color: Color(0xffd06400),
                           fontSize: 16,
-                          fontFamily: "Poppins",
+                          fontFamily: "Roboto",
                           fontWeight: FontWeight.w600,
                         ),
                       ),

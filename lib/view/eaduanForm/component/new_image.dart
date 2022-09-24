@@ -49,7 +49,7 @@ class NewImageSelector {
                       style: const TextStyle(
                         color: Color(themeNavy),
                         fontSize: 15,
-                        fontFamily: "Poppins",
+                        fontFamily: "Roboto",
                         fontWeight: FontWeight.w600,
                       ),
                     )
@@ -90,7 +90,7 @@ class NewImageSelector {
                       style: const TextStyle(
                         color: Color(themeNavy),
                         fontSize: 15,
-                        fontFamily: "Poppins",
+                        fontFamily: "Roboto",
                         fontWeight: FontWeight.w600,
                       ),
                     )

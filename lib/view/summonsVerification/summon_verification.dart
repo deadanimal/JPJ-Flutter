@@ -69,7 +69,7 @@ class SummonsVerification extends StatelessWidget {
               style: const TextStyle(
                 color: Color(0xff2b388d),
                 fontSize: 13,
-                fontFamily: "Poppins",
+                fontFamily: "Roboto",
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -113,7 +113,7 @@ class SummonsVerification extends StatelessWidget {
         style: const TextStyle(
           color: Color(0xff171f44),
           fontSize: 18,
-          fontFamily: "Poppins",
+          fontFamily: "Roboto",
           fontWeight: FontWeight.w600,
           letterSpacing: 0.63,
         ),
@@ -151,7 +151,7 @@ class SummonsVerification extends StatelessWidget {
               style: const TextStyle(
                 color: Color(0xff2e2e2e),
                 fontSize: 12,
-                fontFamily: "Poppins",
+                fontFamily: "Roboto",
                 fontWeight: FontWeight.w600,
               ),
             ),

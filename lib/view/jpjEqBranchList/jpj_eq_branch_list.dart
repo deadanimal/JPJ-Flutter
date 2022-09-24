@@ -35,7 +35,7 @@ class JpjEqBranchList extends StatelessWidget {
               style: const TextStyle(
                 color: Color(themeNavy),
                 fontSize: 18,
-                fontFamily: "Poppins",
+                fontFamily: "Roboto",
                 fontWeight: FontWeight.w600,
                 letterSpacing: 0.63,
               ),
@@ -114,7 +114,7 @@ class JpjEqBranchList extends StatelessWidget {
                             style: const TextStyle(
                               color: Color(0xffd06400),
                               fontSize: 15,
-                              fontFamily: "Poppins",
+                              fontFamily: "Roboto",
                               fontWeight: FontWeight.w600,
                             ),
                           ),
@@ -125,8 +125,7 @@ class JpjEqBranchList extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                "${calculateDistanceFx(info.coordinate!)
-                                        .toStringAsFixed(2)} KM",
+                                "${calculateDistanceFx(info.coordinate!).toStringAsFixed(2)} KM",
                                 style: const TextStyle(
                                   color: Color(0xff707070),
                                   fontSize: 10,

@@ -26,7 +26,7 @@ class InfoTab extends StatelessWidget {
               style: const TextStyle(
                 color: Color(btnColor),
                 fontSize: 35,
-                fontFamily: "Poppins",
+                fontFamily: "Roboto",
                 fontWeight: FontWeight.w700,
               ),
             ),

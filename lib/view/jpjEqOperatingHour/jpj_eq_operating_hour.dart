@@ -119,7 +119,7 @@ class JpjEqOperatingHour extends StatelessWidget {
               style: const TextStyle(
                 color: Colors.black,
                 fontSize: 20,
-                fontFamily: "Poppins",
+                fontFamily: "Roboto",
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -139,7 +139,7 @@ class JpjEqOperatingHour extends StatelessWidget {
               style: const TextStyle(
                 color: Colors.black,
                 fontSize: 20,
-                fontFamily: "Poppins",
+                fontFamily: "Roboto",
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -152,7 +152,7 @@ class JpjEqOperatingHour extends StatelessWidget {
               style: const TextStyle(
                 color: Colors.black,
                 fontSize: 20,
-                fontFamily: "Poppins",
+                fontFamily: "Roboto",
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -199,7 +199,7 @@ class JpjEqOperatingHour extends StatelessWidget {
                 style: const TextStyle(
                   color: Colors.black,
                   fontSize: 20,
-                  fontFamily: "Poppins",
+                  fontFamily: "Roboto",
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -219,7 +219,7 @@ class JpjEqOperatingHour extends StatelessWidget {
                 style: const TextStyle(
                   color: Colors.black,
                   fontSize: 20,
-                  fontFamily: "Poppins",
+                  fontFamily: "Roboto",
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -232,7 +232,7 @@ class JpjEqOperatingHour extends StatelessWidget {
                 style: const TextStyle(
                   color: Colors.black,
                   fontSize: 20,
-                  fontFamily: "Poppins",
+                  fontFamily: "Roboto",
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -252,7 +252,7 @@ class JpjEqOperatingHour extends StatelessWidget {
                 style: const TextStyle(
                   color: Colors.black,
                   fontSize: 20,
-                  fontFamily: "Poppins",
+                  fontFamily: "Roboto",
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -272,7 +272,7 @@ class JpjEqOperatingHour extends StatelessWidget {
                 style: const TextStyle(
                   color: Colors.black,
                   fontSize: 20,
-                  fontFamily: "Poppins",
+                  fontFamily: "Roboto",
                   fontWeight: FontWeight.w600,
                 ),
               ),

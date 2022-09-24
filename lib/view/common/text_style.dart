@@ -17,7 +17,7 @@ class CustomTextStyle {
     return TextStyle(
       color: fontColor,
       fontSize: 30,
-      fontFamily: "Poppins",
+      fontFamily: "Roboto",
       fontWeight: FontWeight.w900,
     );
   }
@@ -28,7 +28,7 @@ class CustomTextStyle {
     return TextStyle(
       color: fontColor,
       fontSize: 25,
-      fontFamily: "Poppins",
+      fontFamily: "Roboto",
       fontWeight: FontWeight.w700,
     );
   }

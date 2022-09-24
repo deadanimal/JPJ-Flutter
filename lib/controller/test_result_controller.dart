@@ -176,7 +176,7 @@ class _TestResultController extends State<TestResultController> {
                 style: const TextStyle(
                   color: Color(0xff8b9eb0),
                   fontSize: 12,
-                  fontFamily: "Poppins",
+                  fontFamily: "Roboto",
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -201,7 +201,7 @@ class _TestResultController extends State<TestResultController> {
                 style: const TextStyle(
                   color: Color(0xff8b9eb0),
                   fontSize: 12,
-                  fontFamily: "Poppins",
+                  fontFamily: "Roboto",
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -230,7 +230,7 @@ class _TestResultController extends State<TestResultController> {
                 style: const TextStyle(
                   color: Color(0xff8b9eb0),
                   fontSize: 12,
-                  fontFamily: "Poppins",
+                  fontFamily: "Roboto",
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -254,7 +254,7 @@ class _TestResultController extends State<TestResultController> {
                 style: const TextStyle(
                   color: Color(0xff8b9eb0),
                   fontSize: 12,
-                  fontFamily: "Poppins",
+                  fontFamily: "Roboto",
                   fontWeight: FontWeight.w600,
                 ),
               ),

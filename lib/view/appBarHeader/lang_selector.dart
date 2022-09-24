@@ -50,7 +50,7 @@ class LanguageSelector {
                       style: TextStyle(
                         color: Color(themeNavy),
                         fontSize: 15,
-                        fontFamily: "Poppins",
+                        fontFamily: "Roboto",
                         fontWeight: FontWeight.w600,
                       ),
                     )
@@ -89,7 +89,7 @@ class LanguageSelector {
                       style: TextStyle(
                         color: Color(themeNavy),
                         fontSize: 15,
-                        fontFamily: "Poppins",
+                        fontFamily: "Roboto",
                         fontWeight: FontWeight.w600,
                       ),
                     )

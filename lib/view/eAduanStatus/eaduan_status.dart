@@ -30,7 +30,7 @@ class EaduanStatus extends StatelessWidget {
             style: const TextStyle(
               color: Color(0xff171f44),
               fontSize: 18,
-              fontFamily: "Poppins",
+              fontFamily: "Roboto",
               fontWeight: FontWeight.w600,
               letterSpacing: 0.63,
             ),
@@ -58,7 +58,7 @@ class EaduanStatus extends StatelessWidget {
             textAlign: TextAlign.center,
             style: const TextStyle(
               fontSize: 18,
-              fontFamily: "Poppins",
+              fontFamily: "Roboto",
               fontWeight: FontWeight.w600,
               letterSpacing: 0.63,
             ),
@@ -68,7 +68,7 @@ class EaduanStatus extends StatelessWidget {
             textAlign: TextAlign.center,
             style: const TextStyle(
               fontSize: 18,
-              fontFamily: "Poppins",
+              fontFamily: "Roboto",
               fontWeight: FontWeight.w600,
               letterSpacing: 0.63,
             ),

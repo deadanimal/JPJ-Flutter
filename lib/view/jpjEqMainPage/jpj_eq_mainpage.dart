@@ -52,7 +52,7 @@ class JpjEqMainPage extends StatelessWidget {
           textAlign: TextAlign.center,
           style: const TextStyle(
             fontSize: 18,
-            fontFamily: "Poppins",
+            fontFamily: "Roboto",
             fontWeight: FontWeight.w900,
             letterSpacing: 0.36,
             color: Color(btnColor),
@@ -64,7 +64,7 @@ class JpjEqMainPage extends StatelessWidget {
           textAlign: TextAlign.center,
           style: const TextStyle(
             fontSize: 25,
-            fontFamily: "Poppins",
+            fontFamily: "Roboto",
             fontWeight: FontWeight.w700,
             color: Color(btnColor),
           ),
@@ -82,7 +82,7 @@ class JpjEqMainPage extends StatelessWidget {
           style: const TextStyle(
             color: Color(btnColor),
             fontSize: 15,
-            fontFamily: "Poppins",
+            fontFamily: "Roboto",
             fontWeight: FontWeight.w500,
           ),
         ),
@@ -105,7 +105,7 @@ class JpjEqMainPage extends StatelessWidget {
               style: const TextStyle(
                 color: Color(btnColor),
                 fontSize: 12,
-                fontFamily: "Poppins",
+                fontFamily: "Roboto",
                 fontWeight: FontWeight.w500,
               ),
             ),

@@ -108,7 +108,7 @@ class _JpjDirectoryInfo extends State<JpjDirectoryInfo> {
             style: const TextStyle(
               color: Color(0xff171f44),
               fontSize: 18,
-              fontFamily: "Poppins",
+              fontFamily: "Roboto",
               fontWeight: FontWeight.w600,
               letterSpacing: 0.63,
             ),
@@ -183,7 +183,7 @@ class _JpjDirectoryInfo extends State<JpjDirectoryInfo> {
             style: const TextStyle(
               color: Color(0xff354c96),
               fontSize: 18,
-              fontFamily: "Poppins",
+              fontFamily: "Roboto",
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -280,7 +280,7 @@ class _JpjDirectoryInfo extends State<JpjDirectoryInfo> {
               style: const TextStyle(
                 color: Colors.white,
                 fontSize: 18,
-                fontFamily: "Poppins",
+                fontFamily: "Roboto",
                 fontWeight: FontWeight.w600,
               ),
             ),

@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:jpj_info/helper/account_manager.dart';
 import 'package:jpj_info/helper/fav_menu.dart';
@@ -59,22 +57,20 @@ class _MainPage extends State<MainPage> with TickerProviderStateMixin {
           alignment: Alignment.bottomCenter,
         ),
       ),
-      child: SingleChildScrollView(
-        child: Container(
-          constraints: BoxConstraints(
-            maxWidth: 400,
-            maxHeight: mediaHeight * 1.2,
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              mainheader(context),
-              favSubSection(context),
-              mainSubSection(context),
-              const SizedBox(height: vPaddingXL),
-              Expanded(child: populateButton(context)),
-            ],
-          ),
+      child: Container(
+        constraints: BoxConstraints(
+          maxWidth: 400,
+          maxHeight: mediaHeight,
+        ),
+        child: ListView(
+          shrinkWrap: true,
+          children: [
+            mainheader(context),
+            favSubSection(context),
+            mainSubSection(context),
+            const SizedBox(height: vPaddingXL),
+            populateButton(context),
+          ],
         ),
       ),
     );
@@ -91,7 +87,6 @@ class _MainPage extends State<MainPage> with TickerProviderStateMixin {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                width: mediaWidth,
                 constraints: const BoxConstraints(maxWidth: 250),
                 child: Text(
                   MyJPJAccountManager().name,
@@ -100,7 +95,7 @@ class _MainPage extends State<MainPage> with TickerProviderStateMixin {
                   style: const TextStyle(
                     color: Color(themeOrange),
                     fontSize: 18,
-                    fontFamily: "Poppins",
+                    fontFamily: "Roboto",
                     fontWeight: FontWeight.w700,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -111,7 +106,7 @@ class _MainPage extends State<MainPage> with TickerProviderStateMixin {
                 style: const TextStyle(
                   color: Color(themeOrange),
                   fontSize: 15,
-                  fontFamily: "Poppins",
+                  fontFamily: "Roboto",
                   fontWeight: FontWeight.w700,
                 ),
               ),
@@ -119,7 +114,7 @@ class _MainPage extends State<MainPage> with TickerProviderStateMixin {
                 AppLocalizations.of(context)!.lastLoggedIn,
                 style: const TextStyle(
                   fontSize: 12,
-                  fontFamily: "Poppins",
+                  fontFamily: "Roboto",
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -127,7 +122,7 @@ class _MainPage extends State<MainPage> with TickerProviderStateMixin {
                 MyJPJAccountManager().lastLoggedIn,
                 style: const TextStyle(
                   fontSize: 12,
-                  fontFamily: "Poppins",
+                  fontFamily: "Roboto",
                   fontWeight: FontWeight.w600,
                 ),
               )
@@ -142,19 +137,8 @@ class _MainPage extends State<MainPage> with TickerProviderStateMixin {
 
   Widget mainheader(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Container(
-          margin: const EdgeInsets.fromLTRB(8, 0, 8, 8),
-          child: const Image(
-            image: NetworkImage(
-                "https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=84"),
-            fit: BoxFit.fitWidth,
-            alignment: Alignment.bottomCenter,
-            width: 84,
-          ),
-        ),
-        const SizedBox(width: 8),
         userInfo(context),
       ],
     );
@@ -180,7 +164,7 @@ class _MainPage extends State<MainPage> with TickerProviderStateMixin {
                 style: const TextStyle(
                   color: Color(themeGray),
                   fontSize: 18,
-                  fontFamily: "Poppins",
+                  fontFamily: "Roboto",
                   fontWeight: FontWeight.w700,
                 ),
               ),
@@ -229,8 +213,10 @@ class _MainPage extends State<MainPage> with TickerProviderStateMixin {
     if (MyJPJAccountManager().type == UserType.staff) {
       return Container(
         width: mediaWidth,
+        height: mediaHeight * 1.2,
         constraints: const BoxConstraints(maxWidth: 400),
         child: TabBarView(
+          physics: const AlwaysScrollableScrollPhysics(),
           controller: tabController,
           children: const [
             Services(),

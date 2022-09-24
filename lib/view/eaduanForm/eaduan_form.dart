@@ -94,7 +94,7 @@ class EaduanForm extends StatelessWidget {
                           style: const TextStyle(
                             color: Colors.white,
                             fontSize: 15,
-                            fontFamily: "Poppins",
+                            fontFamily: "Roboto",
                             fontWeight: FontWeight.w600,
                             letterSpacing: 0.30,
                           ),

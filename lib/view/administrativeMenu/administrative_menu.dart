@@ -36,7 +36,7 @@ class AdministrativeMenu extends StatelessWidget {
                       style: const TextStyle(
                         color: Colors.white,
                         fontSize: 26,
-                        fontFamily: "Poppins",
+                        fontFamily: "Roboto",
                         fontWeight: FontWeight.w600,
                       ),
                     ),

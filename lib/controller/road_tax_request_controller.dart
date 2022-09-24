@@ -95,8 +95,8 @@ class RoadTaxRequestController {
                 textAlign: TextAlign.start,
                 style: const TextStyle(
                   color: Color(0xff8b9eb0),
-                  fontSize: 12,
-                  fontFamily: "Poppins",
+                  fontSize: 15,
+                  fontFamily: "Roboto",
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -105,7 +105,7 @@ class RoadTaxRequestController {
                 textAlign: TextAlign.end,
                 style: const TextStyle(
                   color: Color(0xff4e4e4e),
-                  fontSize: 10,
+                  fontSize: 15,
                 ),
               ),
             ],
@@ -118,8 +118,8 @@ class RoadTaxRequestController {
                 textAlign: TextAlign.start,
                 style: const TextStyle(
                   color: Color(0xff8b9eb0),
-                  fontSize: 12,
-                  fontFamily: "Poppins",
+                  fontSize: 15,
+                  fontFamily: "Roboto",
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -128,7 +128,7 @@ class RoadTaxRequestController {
                 textAlign: TextAlign.end,
                 style: const TextStyle(
                   color: Color(0xff4e4e4e),
-                  fontSize: 10,
+                  fontSize: 15,
                 ),
               ),
             ],

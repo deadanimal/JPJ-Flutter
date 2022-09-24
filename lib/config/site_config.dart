@@ -2,8 +2,8 @@ class SiteConfig {
   static String appStoreUrl = 'itms-apps://apps.apple.com/us/app';
   static String playStoreUrl = 'market://details?id';
   static String caravelUrl = "https://api.caravel.space/jpj";
-  static String prodUrl = "10.180.4.94/api";
-  // static String prodUrl = caravelUrl;
+  // static String prodUrl = "10.180.4.94/api";
+  static String prodUrl = caravelUrl;
 
   final String changePasswordUri = "$prodUrl/change_password_id_awam/";
   final String blacklistCheckUri = "$prodUrl/semakan_status_senarai_hitam/";

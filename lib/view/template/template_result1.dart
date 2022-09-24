@@ -106,7 +106,7 @@ class TemplateResult1 extends StatelessWidget with TemplateForm {
                       style: const TextStyle(
                         color: Colors.white,
                         fontSize: 18,
-                        fontFamily: "Poppins",
+                        fontFamily: "Roboto",
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -117,7 +117,7 @@ class TemplateResult1 extends StatelessWidget with TemplateForm {
                       style: const TextStyle(
                         color: Colors.white,
                         fontSize: 13,
-                        fontFamily: "Poppins",
+                        fontFamily: "Roboto",
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -137,7 +137,7 @@ class TemplateResult1 extends StatelessWidget with TemplateForm {
                     style: const TextStyle(
                       color: Color(themeNavy),
                       fontSize: 18,
-                      fontFamily: "Poppins",
+                      fontFamily: "Roboto",
                       fontWeight: FontWeight.w600,
                     ),
                   ),
@@ -148,7 +148,7 @@ class TemplateResult1 extends StatelessWidget with TemplateForm {
                     style: const TextStyle(
                       color: Color(themeNavy),
                       fontSize: 13,
-                      fontFamily: "Poppins",
+                      fontFamily: "Roboto",
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -181,7 +181,7 @@ class TemplateResult1 extends StatelessWidget with TemplateForm {
                   style: const TextStyle(
                     color: Color(themeNavy),
                     fontSize: 13,
-                    fontFamily: "Poppins",
+                    fontFamily: "Roboto",
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -203,7 +203,7 @@ class TemplateResult1 extends StatelessWidget with TemplateForm {
                   style: const TextStyle(
                     color: Color(themeNavy),
                     fontSize: 13,
-                    fontFamily: "Poppins",
+                    fontFamily: "Roboto",
                     fontWeight: FontWeight.w600,
                   ),
                 ),

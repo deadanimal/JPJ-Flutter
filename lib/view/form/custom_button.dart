@@ -50,7 +50,7 @@ class CustomButton extends StatelessWidget {
                       style: TextStyle(
                         color: textColor,
                         fontSize: textSize,
-                        fontFamily: "Poppins",
+                        fontFamily: "Roboto",
                         fontWeight: FontWeight.w700,
                       ),
                     ),

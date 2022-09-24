@@ -119,7 +119,7 @@ class Login extends StatelessWidget {
                         Shadow(color: Colors.grey, blurRadius: 4.0),
                       ],
                       fontSize: 12,
-                      fontFamily: "Poppins",
+                      fontFamily: "Roboto",
                       fontWeight: FontWeight.w600,
                     ),
                   ),
@@ -162,7 +162,7 @@ class Login extends StatelessWidget {
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 15,
-                    fontFamily: "Poppins",
+                    fontFamily: "Roboto",
                     fontWeight: FontWeight.w600,
                   ),
                 ),

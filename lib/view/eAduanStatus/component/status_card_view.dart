@@ -33,7 +33,7 @@ class StatusCardView extends StatelessWidget {
               style: const TextStyle(
                 color: Color(themeNavy),
                 fontSize: 10,
-                fontFamily: "Poppins",
+                fontFamily: "Roboto",
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -57,7 +57,7 @@ class StatusCardView extends StatelessWidget {
                       style: const TextStyle(
                         color: Color(themeNavy),
                         fontSize: 10,
-                        fontFamily: "Poppins",
+                        fontFamily: "Roboto",
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -79,7 +79,7 @@ class StatusCardView extends StatelessWidget {
                       style: const TextStyle(
                         color: Color(themeNavy),
                         fontSize: 10,
-                        fontFamily: "Poppins",
+                        fontFamily: "Roboto",
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -101,7 +101,7 @@ class StatusCardView extends StatelessWidget {
               style: const TextStyle(
                 color: Color(themeNavy),
                 fontSize: 10,
-                fontFamily: "Poppins",
+                fontFamily: "Roboto",
                 fontWeight: FontWeight.w600,
               ),
             ),

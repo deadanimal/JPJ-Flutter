@@ -74,7 +74,7 @@ class JpjEqQueueInfo extends StatelessWidget {
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 100,
-                fontFamily: "Poppins",
+                fontFamily: "Roboto",
                 fontWeight: FontWeight.w500,
               ),
             ),
@@ -94,7 +94,7 @@ class JpjEqQueueInfo extends StatelessWidget {
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 20,
-                fontFamily: "Poppins",
+                fontFamily: "Roboto",
                 fontWeight: FontWeight.w600,
               ),
             ),

@@ -53,7 +53,7 @@ class JpjEqNotification extends StatelessWidget {
       style: const TextStyle(
         color: Color(0xff171f44),
         fontSize: 18,
-        fontFamily: "Poppins",
+        fontFamily: "Roboto",
         fontWeight: FontWeight.w600,
         letterSpacing: 0.63,
       ),
@@ -100,7 +100,7 @@ class JpjEqNotification extends StatelessWidget {
                               style: const TextStyle(
                                 color: Color(0xffd06400),
                                 fontSize: 15,
-                                fontFamily: "Poppins",
+                                fontFamily: "Roboto",
                                 fontWeight: FontWeight.w600,
                               ),
                             ),

@@ -34,7 +34,7 @@ class JpjEqTransactions extends StatelessWidget {
                 style: const TextStyle(
                   color: Color(themeNavy),
                   fontSize: 18,
-                  fontFamily: "Poppins",
+                  fontFamily: "Roboto",
                   fontWeight: FontWeight.w600,
                   letterSpacing: 0.63,
                 ),
@@ -103,7 +103,7 @@ class JpjEqTransactions extends StatelessWidget {
                     style: const TextStyle(
                       color: Colors.white,
                       fontSize: 18,
-                      fontFamily: "Poppins",
+                      fontFamily: "Roboto",
                       fontWeight: FontWeight.w600,
                       letterSpacing: 0.63,
                     ),
@@ -154,7 +154,7 @@ class JpjEqTransactions extends StatelessWidget {
               style: const TextStyle(
                 color: Color(themeNavy),
                 fontSize: 12,
-                fontFamily: "Poppins",
+                fontFamily: "Roboto",
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -166,7 +166,7 @@ class JpjEqTransactions extends StatelessWidget {
               info,
               style: const TextStyle(
                 color: Color(themeNavy),
-                fontFamily: "Poppins",
+                fontFamily: "Roboto",
                 fontSize: 12,
               ),
             ),
@@ -189,7 +189,7 @@ class JpjEqTransactions extends StatelessWidget {
             style: const TextStyle(
               color: Color(themeNavy),
               fontSize: 12,
-              fontFamily: "Poppins",
+              fontFamily: "Roboto",
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -202,7 +202,7 @@ class JpjEqTransactions extends StatelessWidget {
             style: TextStyle(
               color: info == "BATAL" ? Colors.red : Colors.green,
               fontSize: 12,
-              fontFamily: "Poppins",
+              fontFamily: "Roboto",
               fontWeight: FontWeight.w900,
             ),
           ),

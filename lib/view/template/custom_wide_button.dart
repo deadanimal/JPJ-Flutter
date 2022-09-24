@@ -53,7 +53,7 @@ class CustomWideButton extends StatelessWidget {
                     style: const TextStyle(
                       color: Color(themeNavy),
                       fontSize: 18,
-                      fontFamily: "Poppins",
+                      fontFamily: "Roboto",
                       fontWeight: FontWeight.w600,
                     ),
                   ),

@@ -85,7 +85,7 @@ class AttendanceList extends StatelessWidget {
                       style: const TextStyle(
                         color: Color(themeNavy),
                         fontSize: 12,
-                        fontFamily: "Poppins",
+                        fontFamily: "Roboto",
                         fontWeight: FontWeight.w700,
                       ),
                     ),

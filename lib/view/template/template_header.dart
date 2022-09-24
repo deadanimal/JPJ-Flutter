@@ -49,8 +49,8 @@ class TemplateHeader extends StatelessWidget {
               headerTitle,
               style: const TextStyle(
                 color: Colors.white,
-                fontSize: 55,
-                fontFamily: "Poppins",
+                fontSize: 32,
+                fontFamily: "Roboto",
                 fontWeight: FontWeight.w600,
               ),
             ),

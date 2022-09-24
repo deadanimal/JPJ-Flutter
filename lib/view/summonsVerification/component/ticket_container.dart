@@ -44,7 +44,7 @@ class CustomTicketContainer extends StatelessWidget {
                   style: const TextStyle(
                     color: Color(0xffe42222),
                     fontSize: 24,
-                    fontFamily: "Poppins",
+                    fontFamily: "Roboto",
                     fontWeight: FontWeight.w700,
                   ),
                 ),
@@ -101,7 +101,7 @@ class CustomTicketContainer extends StatelessWidget {
           style: const TextStyle(
             color: Color(0xff2e2e2e),
             fontSize: 10,
-            fontFamily: "Poppins",
+            fontFamily: "Roboto",
             fontWeight: FontWeight.w600,
           ),
         ),

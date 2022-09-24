@@ -65,7 +65,7 @@ class EhadirActivityDetails extends StatelessWidget {
                           style: const TextStyle(
                             fontSize: 35,
                             color: Color(themeNavy),
-                            fontFamily: "Poppins",
+                            fontFamily: "Roboto",
                             fontWeight: FontWeight.w900,
                           ),
                         ),

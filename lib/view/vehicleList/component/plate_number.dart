@@ -53,7 +53,7 @@ class PlateNumberContainer extends StatelessWidget {
                 style: const TextStyle(
                   color: Color(themeNavy),
                   fontSize: 24,
-                  fontFamily: "Poppins",
+                  fontFamily: "Roboto",
                   fontWeight: FontWeight.w600,
                 ),
               ),

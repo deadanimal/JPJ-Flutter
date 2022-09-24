@@ -29,7 +29,7 @@ class EhadirActivityList extends StatelessWidget {
           style: const TextStyle(
             color: Color(0xff171f44),
             fontSize: 18,
-            fontFamily: "Poppins",
+            fontFamily: "Roboto",
             fontWeight: FontWeight.w600,
             letterSpacing: 0.63,
           ),
@@ -59,7 +59,7 @@ class EhadirActivityList extends StatelessWidget {
                             style: const TextStyle(
                               color: Color(themeGray),
                               fontSize: 12,
-                              fontFamily: "Poppins",
+                              fontFamily: "Roboto",
                               letterSpacing: 0.63,
                             ),
                           ),
@@ -111,7 +111,7 @@ class EhadirActivityList extends StatelessWidget {
                       style: const TextStyle(
                         color: Color(0xff171f44),
                         fontSize: 20,
-                        fontFamily: "Poppins",
+                        fontFamily: "Roboto",
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -130,7 +130,7 @@ class EhadirActivityList extends StatelessWidget {
                                 style: const TextStyle(
                                   color: Color(themeNavy),
                                   fontSize: 10,
-                                  fontFamily: "Poppins",
+                                  fontFamily: "Roboto",
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
@@ -157,7 +157,7 @@ class EhadirActivityList extends StatelessWidget {
                                 style: const TextStyle(
                                   color: Color(themeNavy),
                                   fontSize: 10,
-                                  fontFamily: "Poppins",
+                                  fontFamily: "Roboto",
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
@@ -182,7 +182,7 @@ class EhadirActivityList extends StatelessWidget {
                       style: const TextStyle(
                         color: Color(themeNavy),
                         fontSize: 10,
-                        fontFamily: "Poppins",
+                        fontFamily: "Roboto",
                         fontWeight: FontWeight.w600,
                       ),
                     ),

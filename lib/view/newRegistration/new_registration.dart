@@ -124,14 +124,14 @@ class NewRegistration extends StatelessWidget {
                                 style: const TextStyle(
                                   color: Colors.black,
                                   fontSize: 15,
-                                  fontFamily: "Poppins",
+                                  fontFamily: "Roboto",
                                   fontWeight: FontWeight.w100,
                                 ),
                               ),
                               TextSpan(
                                 style: const TextStyle(
                                   fontSize: 15,
-                                  fontFamily: "Poppins",
+                                  fontFamily: "Roboto",
                                   fontWeight: FontWeight.w100,
                                   color: Colors.blue,
                                 ),

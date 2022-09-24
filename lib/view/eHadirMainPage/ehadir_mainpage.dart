@@ -72,7 +72,7 @@ class EhadirMainPage extends StatelessWidget {
           style: const TextStyle(
             color: Colors.white,
             fontSize: 25,
-            fontFamily: "Poppins",
+            fontFamily: "Roboto",
             fontWeight: FontWeight.w600,
             letterSpacing: 0.50,
           ),
@@ -114,7 +114,7 @@ class EhadirMainPage extends StatelessWidget {
               textAlign: TextAlign.start,
               style: const TextStyle(
                 fontSize: 15,
-                fontFamily: "Poppins",
+                fontFamily: "Roboto",
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -127,7 +127,7 @@ class EhadirMainPage extends StatelessWidget {
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 15,
-              fontFamily: "Poppins",
+              fontFamily: "Roboto",
               fontWeight: FontWeight.w600,
             ),
           ),

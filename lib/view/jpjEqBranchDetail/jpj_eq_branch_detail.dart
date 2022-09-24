@@ -63,7 +63,7 @@ class JpjEqBranchDetail extends StatelessWidget {
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: 18,
-                  fontFamily: "Poppins",
+                  fontFamily: "Roboto",
                   fontWeight: FontWeight.w600,
                   letterSpacing: 0.63,
                 ),
@@ -129,7 +129,7 @@ class JpjEqBranchDetail extends StatelessWidget {
               style: const TextStyle(
                 color: Color(themeNavy),
                 fontSize: 12,
-                fontFamily: "Poppins",
+                fontFamily: "Roboto",
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -141,7 +141,7 @@ class JpjEqBranchDetail extends StatelessWidget {
               info,
               style: const TextStyle(
                 color: Color(themeNavy),
-                fontFamily: "Poppins",
+                fontFamily: "Roboto",
                 fontSize: 12,
               ),
             ),
@@ -166,7 +166,7 @@ class JpjEqBranchDetail extends StatelessWidget {
               textAlign: TextAlign.center,
               style: const TextStyle(
                 fontSize: 20,
-                fontFamily: "Poppins",
+                fontFamily: "Roboto",
                 fontWeight: FontWeight.w900,
                 letterSpacing: 0.70,
                 color: Color(themeNavy),
@@ -200,7 +200,7 @@ class JpjEqBranchDetail extends StatelessWidget {
                   style: const TextStyle(
                     color: Colors.black,
                     fontSize: 12,
-                    fontFamily: "Poppins",
+                    fontFamily: "Roboto",
                     fontWeight: FontWeight.w700,
                   ),
                 ),

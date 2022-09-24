@@ -64,7 +64,7 @@ class JpjEqNumberCalled extends StatelessWidget {
               style: const TextStyle(
                 color: Colors.amber,
                 fontSize: 86,
-                fontFamily: "Poppins",
+                fontFamily: "Roboto",
                 fontWeight: FontWeight.w900,
               ),
             ),
@@ -87,7 +87,7 @@ class JpjEqNumberCalled extends StatelessWidget {
               style: const TextStyle(
                 color: Color(themeNavy),
                 fontSize: 32,
-                fontFamily: "Poppins",
+                fontFamily: "Roboto",
                 fontWeight: FontWeight.w900,
               ),
             ),

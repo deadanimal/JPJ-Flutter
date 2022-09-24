@@ -31,7 +31,7 @@ class CustomLabel extends StatelessWidget {
               style: TextStyle(
                 color: const Color(themeNavy),
                 fontSize: fontSize,
-                fontFamily: "Poppins",
+                fontFamily: "Roboto",
                 fontWeight: fontWeight,
               ),
             ),

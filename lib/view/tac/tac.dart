@@ -84,7 +84,7 @@ class Tac extends StatelessWidget {
                         backgroundColor: Colors.white54,
                         color: Color(0xff171f44),
                         fontSize: 10,
-                        fontFamily: "Poppins",
+                        fontFamily: "Roboto",
                         fontWeight: FontWeight.w600,
                         shadows: [
                           BoxShadow(

@@ -20,7 +20,7 @@ class CustomIconMenuButton extends StatelessWidget {
         width: mediaWidth - 64,
         constraints: const BoxConstraints(maxWidth: 400),
         child: SizedBox(
-          height: 67,
+          height: 86,
           child: InkWell(
             onTap: () {
               if (item.needLoggedIn && !MyJPJAccountManager().isLoggedIn) {
@@ -35,7 +35,7 @@ class CustomIconMenuButton extends StatelessWidget {
                     alignment: Alignment.centerRight,
                     child: Container(
                       width: mediaWidth - 130,
-                      height: 50,
+                      height: 64,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         boxShadow: const [
@@ -59,7 +59,7 @@ class CustomIconMenuButton extends StatelessWidget {
                             style: const TextStyle(
                               color: Color(themeNavy),
                               fontSize: 18,
-                              fontFamily: "Poppins",
+                              fontFamily: "Roboto",
                               fontWeight: FontWeight.w600,
                             ),
                           ),

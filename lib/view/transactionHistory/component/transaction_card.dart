@@ -43,7 +43,7 @@ class CustomTransactionCard extends StatelessWidget {
               style: const TextStyle(
                 color: Color(0xff171f44),
                 fontSize: 16,
-                fontFamily: "Poppins",
+                fontFamily: "Roboto",
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -54,7 +54,7 @@ class CustomTransactionCard extends StatelessWidget {
               style: const TextStyle(
                 color: Color(0xff171f44),
                 fontSize: 10,
-                fontFamily: "Poppins",
+                fontFamily: "Roboto",
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -65,7 +65,7 @@ class CustomTransactionCard extends StatelessWidget {
               style: const TextStyle(
                 color: Color(0xff2e2e2e),
                 fontSize: 13,
-                fontFamily: "Poppins",
+                fontFamily: "Roboto",
               ),
             ),
             const SizedBox(height: vPaddingM),
@@ -85,7 +85,7 @@ class CustomTransactionCard extends StatelessWidget {
         textAlign: TextAlign.center,
         style: TextStyle(
           fontSize: 24,
-          fontFamily: "Poppins",
+          fontFamily: "Roboto",
           fontWeight: FontWeight.w900,
           foreground: Paint()
             ..shader = const LinearGradient(

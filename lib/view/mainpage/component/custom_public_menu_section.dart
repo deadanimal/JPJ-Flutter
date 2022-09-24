@@ -23,7 +23,7 @@ class CustomPublicMenuSection extends StatelessWidget {
         bottom: 16,
       ),
       constraints: const BoxConstraints(maxWidth: 400),
-      width: mediaWidth - 64,
+      width: mediaWidth - 32,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         border: Border.all(
@@ -47,20 +47,25 @@ class CustomPublicMenuSection extends StatelessWidget {
             subHeader,
             style: const TextStyle(
               color: Color(0xff171f44),
-              fontSize: 12,
-              fontFamily: "Poppins",
+              fontSize: 15,
+              fontFamily: "Roboto",
               fontWeight: FontWeight.w600,
             ),
           ),
           const SizedBox(height: vPaddingM),
-          Row(
-            children: List.generate(
-              serviceMenu.length,
-              (index) {
+          Container(
+            constraints: const BoxConstraints(maxHeight: 130),
+            child: ListView.builder(
+              padding: const EdgeInsets.only(top: 12),
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) {
                 return CustomPublicButton(menu: serviceMenu[index]);
               },
+              shrinkWrap: true,
+              physics: const AlwaysScrollableScrollPhysics(),
+              itemCount: serviceMenu.length,
             ),
-          )
+          ),
         ],
       ),
     );

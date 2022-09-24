@@ -93,7 +93,7 @@ class PlateNumber extends StatelessWidget {
               style: const TextStyle(
                 color: Color(themeNavy),
                 fontSize: 18,
-                fontFamily: "Poppins",
+                fontFamily: "Roboto",
                 fontWeight: FontWeight.w600,
                 letterSpacing: 0.63,
               ),
@@ -169,7 +169,7 @@ class PlateNumber extends StatelessWidget {
                       style: const TextStyle(
                         color: Color(0xff354c96),
                         fontSize: 35,
-                        fontFamily: "Poppins",
+                        fontFamily: "Roboto",
                         fontWeight: FontWeight.w600,
                       ),
                     ),
