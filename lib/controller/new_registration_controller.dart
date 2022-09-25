@@ -6,8 +6,8 @@ import 'package:jpj_info/controller/alert_controller.dart';
 import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/controller/http_request_controller.dart';
 import 'package:jpj_info/controller/login_controller.dart';
-import 'package:jpj_info/model/new_registration_request.dart';
-import 'package:jpj_info/model/new_registration_response.dart';
+import 'package:jpj_info/helper/id_types.dart';
+import 'package:jpj_info/model/new_user_registration_request.dart';
 import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
 import 'package:jpj_info/view/newRegistration/new_registration.dart';
 import 'package:jpj_info/view/form/tooltip_info.dart';
@@ -26,6 +26,10 @@ class _NewRegistrationController extends State<NewRegistrationController> {
   late TextEditingController _emailVerification;
   late TextEditingController _phone;
   late TextEditingController _id;
+  late TextEditingController _name;
+  late List<String> dropdownList;
+  late String dropdownValue;
+
   bool _agreeToTnc = false;
   @override
   void initState() {
@@ -34,6 +38,7 @@ class _NewRegistrationController extends State<NewRegistrationController> {
     _emailVerification = TextEditingController();
     _phone = TextEditingController();
     _id = TextEditingController();
+    _name = TextEditingController();
   }
 
   @override
@@ -42,11 +47,14 @@ class _NewRegistrationController extends State<NewRegistrationController> {
     _emailVerification.dispose();
     _phone.dispose();
     _id.dispose();
+    _name.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    dropdownList = getIdType(context);
+    dropdownValue = AppLocalizations.of(context)!.malaysian;
     return SafeArea(
       child: Scaffold(
         appBar: const AppBarController(
@@ -60,6 +68,10 @@ class _NewRegistrationController extends State<NewRegistrationController> {
           emailVerifyController: _emailVerification,
           idController: _id,
           phoneController: _phone,
+          nameController: _name,
+          dropdownList: dropdownList,
+          dropdownValue: dropdownValue,
+          selectionCallback: _setSelection,
         ),
       ),
     );
@@ -67,38 +79,12 @@ class _NewRegistrationController extends State<NewRegistrationController> {
 
   void _responseHandler(http.Response response) {
     if (response.statusCode == 200) {
-      RegistrationResponse respond = RegistrationResponse.fromJson(
-        jsonDecode(response.body),
+      TooltipInfo().showInfo(
+        context,
+        AppLocalizations.of(context)!.successfullySaved,
+        "",
+        (c) => _onCloseSubmitInfo(c, response.body),
       );
-      if (respond.status == '01') {
-        TooltipInfo().showInfo(
-          context,
-          AppLocalizations.of(context)!.tempPasswordSent,
-          AppLocalizations.of(context)!.checkEmail,
-          (c) => _onCloseSubmitInfo(c),
-        );
-      } else if (respond.status == '1') {
-        TooltipInfo().showInfo(
-          context,
-          AppLocalizations.of(context)!.failedToRegister,
-          AppLocalizations.of(context)!.userExist,
-          (c) {},
-        );
-      } else if (respond.status == '2') {
-        TooltipInfo().showInfo(
-          context,
-          AppLocalizations.of(context)!.failedToRegister,
-          AppLocalizations.of(context)!.userBlocked,
-          (c) {},
-        );
-      } else {
-        TooltipInfo().showInfo(
-          context,
-          AppLocalizations.of(context)!.failedToRegister,
-          AppLocalizations.of(context)!.errorPleaseTryAgain,
-          (c) {},
-        );
-      }
     } else {
       AlertController(ctx: context).connectionError();
     }
@@ -110,12 +96,17 @@ class _NewRegistrationController extends State<NewRegistrationController> {
         _id.text != "" &&
         _phone.text != "" &&
         _emailVerification.text != "" &&
+        _name.text != "" &&
         _email.text == _emailVerification.text) {
       SiteConfig conf = SiteConfig();
-      RegistrationRequest req = RegistrationRequest(
-        email: _email.text,
-        idNumber: _id.text,
-        phone: _phone.text,
+      var index =
+          dropdownList.indexWhere((element) => element == dropdownValue);
+      NewUserRegistrationRequest req = NewUserRegistrationRequest(
+        emel: _email.text,
+        nokp: _id.text,
+        telefon: _phone.text,
+        kategori: index.toString(),
+        nama: _name.text,
       );
       jpjHttpRequest(
         context,
@@ -150,12 +141,15 @@ class _NewRegistrationController extends State<NewRegistrationController> {
     }
   }
 
-  void _onCloseSubmitInfo(BuildContext context) {
+  void _onCloseSubmitInfo(BuildContext context, String tempPassword) {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
         builder: (context) {
-          return const LoginController();
+          return LoginController(
+            username: _id.text,
+            password: tempPassword,
+          );
         },
       ),
     );
@@ -172,5 +166,11 @@ class _NewRegistrationController extends State<NewRegistrationController> {
       AppLocalizations.of(context)!.tncLong,
       (c) => {},
     );
+  }
+
+  void _setSelection(String? newSelection) {
+    setState(() {
+      dropdownValue = newSelection!;
+    });
   }
 }

@@ -35,7 +35,6 @@ class _CustomDropdown extends State<CustomDropdown> {
 
   @override
   Widget build(BuildContext context) {
-    val = widget.dropdownValue;
     return SizedBox(
       width: mediaWidth - 64,
       child: Padding(
@@ -64,10 +63,11 @@ class _CustomDropdown extends State<CustomDropdown> {
                 height: 2,
               ),
               onChanged: (String? newValue) {
+                val = newValue!;
                 setState(() {
-                  val = newValue!;
+                  val;
                 });
-                widget.cbFunc(newValue!);
+                widget.cbFunc(newValue);
               },
               items: widget.dropdownList
                   .map<DropdownMenuItem<String>>((String value) {

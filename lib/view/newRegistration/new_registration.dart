@@ -5,6 +5,7 @@ import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/common/spacing.dart';
 import 'package:jpj_info/view/form/checkbox.dart';
 import 'package:jpj_info/view/form/custom_button.dart';
+import 'package:jpj_info/view/form/dropdown.dart';
 import 'package:jpj_info/view/form/label.dart';
 import 'package:jpj_info/view/form/text_field.dart';
 import 'package:jpj_info/view/template/template_header.dart';
@@ -20,15 +21,23 @@ class NewRegistration extends StatelessWidget {
     required this.phoneController,
     required this.idController,
     required this.emailVerifyController,
+    required this.selectionCallback,
+    required this.dropdownList,
+    required this.dropdownValue,
+    required this.nameController,
   }) : super(key: key);
 
   final TextEditingController emailController;
   final TextEditingController phoneController;
   final TextEditingController idController;
+  final TextEditingController nameController;
   final TextEditingController emailVerifyController;
   final void Function(BuildContext)? submitCB;
+  final void Function(String? newSelection) selectionCallback;
   final Function(bool?)? tncCheckedCB;
   final Function() readTnc;
+  final List<String> dropdownList;
+  final String dropdownValue;
 
   @override
   Widget build(BuildContext context) {
@@ -55,6 +64,18 @@ class NewRegistration extends StatelessWidget {
             child: Column(
               children: [
                 CustomLabel(
+                  label: AppLocalizations.of(context)!.category,
+                  fontSize: 18,
+                  align: TextAlign.start,
+                ),
+                const SizedBox(height: vPaddingS),
+                CustomDropdown(
+                  cbFunc: selectionCallback,
+                  dropdownList: dropdownList,
+                  dropdownValue: dropdownValue,
+                ),
+                const SizedBox(height: vPaddingM),
+                CustomLabel(
                   label: AppLocalizations.of(context)!.identification,
                   fontSize: 18,
                   align: TextAlign.start,
@@ -63,6 +84,18 @@ class NewRegistration extends StatelessWidget {
                 TextFieldForm(
                   textController: idController,
                   label: AppLocalizations.of(context)!.identification,
+                  width: mediaWidth - 64,
+                ),
+                const SizedBox(height: vPaddingM),
+                CustomLabel(
+                  label: AppLocalizations.of(context)!.name,
+                  fontSize: 18,
+                  align: TextAlign.start,
+                ),
+                const SizedBox(height: vPaddingS),
+                TextFieldForm(
+                  textController: nameController,
+                  label: AppLocalizations.of(context)!.name,
                   width: mediaWidth - 64,
                 ),
                 const SizedBox(height: vPaddingM),

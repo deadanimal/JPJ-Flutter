@@ -21,7 +21,13 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginController extends StatefulWidget {
-  const LoginController({Key? key}) : super(key: key);
+  const LoginController({
+    Key? key,
+    this.username,
+    this.password,
+  }) : super(key: key);
+  final String? username;
+  final String? password;
 
   @override
   State<StatefulWidget> createState() => _LoginController();
@@ -30,12 +36,19 @@ class LoginController extends StatefulWidget {
 class _LoginController extends State<LoginController> {
   late TextEditingController _userId;
   late TextEditingController _userPwd;
-  bool bypass = true; //todo: remove this when login is ok
+  bool bypass = false; //todo: remove this when login is ok
+
   @override
   void initState() {
     super.initState();
     _userId = TextEditingController();
     _userPwd = TextEditingController();
+    if (widget.username != null) {
+      _userId.text = widget.username!;
+    }
+    if (widget.password != null) {
+      _userPwd.text = widget.password!;
+    }
   }
 
   @override
@@ -47,6 +60,7 @@ class _LoginController extends State<LoginController> {
 
   @override
   Widget build(BuildContext context) {
+    _afterBuild();
     return SafeArea(
       child: Scaffold(
         appBar: const AppBarController(
@@ -65,29 +79,37 @@ class _LoginController extends State<LoginController> {
     );
   }
 
+  void _afterBuild() {
+    if (widget.password != null && widget.username != null) {
+      login(context);
+    }
+  }
+
   void _responseHandler(http.Response response) {
     if (response.statusCode == 200 || bypass) {
       LoginResponse loginResponse;
       loginResponse = LoginResponse.fromJson(
-        jsonDecode(
-            '{"nama":"Test Name","emel":"test@email.com","nokp":"858585858555","status":0,"message":"","token":"123"}'),
-        // jsonDecode(response.body),
+        jsonDecode(response.body),
       );
-      if (loginResponse.status != null) {
-        if (loginResponse.status == 0) {
+      if (loginResponse.idmpuStatus != null) {
+        if (loginResponse.idmpuStatus == "F" ||
+            loginResponse.idmpuStatus == "A") {
           SharedPreferences.getInstance().then((pref) {
             pref.setString(
               LocalStorageHelper().userLoginInfo,
-              // response.body,
-              '{"nama":"Test Name","emel":"test@email.com","nokp":"858585858555","status":0,"message":"","token":"123"}',
+              response.body,
             );
           });
           MyJPJAccountManager().init().then((value) {
-            Navigator.push(
+            Navigator.pushReplacement(
               context,
               MaterialPageRoute(
                 builder: (context) {
-                  return const MainpageController();
+                  if (loginResponse.idmpuStatus == "F") {
+                    return const FirstTimeLoginController();
+                  } else {
+                    return const MainpageController();
+                  }
                 },
               ),
             );

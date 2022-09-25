@@ -58,12 +58,12 @@ class MyJPJAccountManager {
       LoginResponse loginResponse = LoginResponse.fromJson(
         jsonDecode(userInfo!),
       );
-      id = loginResponse.nokp!;
-      name = loginResponse.nama!;
-      var date = DateTime.now();
-      lastLoggedIn = "${date.year}/${date.month}/${date.day}"
-          " ${date.hour}:${date.minute}:${date.second}"; // .toString();
-      email = loginResponse.emel!;
+      id = loginResponse.idmpuUsrId!;
+      name = loginResponse.idmpuUserName!;
+      var date = DateTime.parse(loginResponse.idmpuLastLoginTime!);
+      lastLoggedIn = "${date.day}/${date.month}/${date.year}"
+          " ${date.hour}:${date.minute}:${date.second}";
+      email = loginResponse.idmpuUserEmail!;
       phoneNumber = "";
       state = "";
       district = "";
