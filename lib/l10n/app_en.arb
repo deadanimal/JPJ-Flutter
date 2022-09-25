@@ -263,5 +263,6 @@
     "answer":"Answer",
     "changePasswordOnNextPage":"Change your password on the next page",
     "securityQuestionError":"Please make sure all question are answered and all question are different",
+    "enteredPasswordNotTheSame":"Entered password are not the same",
     "pleaseWait": "Please wait..."
 }
