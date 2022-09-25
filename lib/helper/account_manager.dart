@@ -26,6 +26,7 @@ class MyJPJAccountManager {
   late String district;
   late String postcode;
   late String lastLoggedIn;
+  late String firstTime;
   List<String> vehicalRegNumber = [];
   String preferredLanguage = "en";
   bool isLoggedIn = false;
@@ -69,6 +70,7 @@ class MyJPJAccountManager {
       district = "";
       postcode = "";
       address = "";
+      firstTime = loginResponse.idmpuStatus!;
       type = UserType.staff;
       isLoggedIn = true;
     } catch (e) {

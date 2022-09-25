@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jpj_info/controller/first_time_login_controller.dart';
 import 'package:jpj_info/controller/login_controller.dart';
 import 'package:jpj_info/controller/mainpage_controller.dart';
 import 'package:jpj_info/helper/account_manager.dart';
@@ -37,12 +38,23 @@ class _LandingPageController extends State<LandingPageController> {
     Future.delayed(
       const Duration(milliseconds: 3000),
       () {
-        if (MyJPJAccountManager().isLoggedIn) {
+        if (MyJPJAccountManager().isLoggedIn &&
+            MyJPJAccountManager().firstTime == "A") {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
               builder: (context) {
                 return const MainpageController();
+              },
+            ),
+          );
+        } else if (MyJPJAccountManager().isLoggedIn &&
+            MyJPJAccountManager().firstTime == "F") {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) {
+                return const FirstTimeLoginController();
               },
             ),
           );

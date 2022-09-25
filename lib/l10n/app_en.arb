@@ -262,5 +262,6 @@
     "thirdQuestion":"Third Question",
     "answer":"Answer",
     "changePasswordOnNextPage":"Change your password on the next page",
+    "securityQuestionError":"Please make sure all question are answered and all question are different",
     "pleaseWait": "Please wait..."
 }

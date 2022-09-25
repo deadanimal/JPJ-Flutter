@@ -262,5 +262,6 @@
     "thirdQuestion":"Soalan Ketiga",
     "answer":"Jawapan",
     "changePasswordOnNextPage":"Tukar kata laluan anda di halaman berikutnya",
+    "securityQuestionError":"Sila pastikan anda tidak memilih soalan yang sama dan semua soalan dijawab",
     "pleaseWait": "Sila Tunggu..."
 }
