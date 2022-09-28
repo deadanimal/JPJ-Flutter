@@ -3,14 +3,15 @@ import 'package:jpj_info/helper/account_manager.dart';
 import 'package:jpj_info/helper/fav_menu.dart';
 import 'package:jpj_info/model/mainpage_icon.dart';
 import 'package:jpj_info/model/page_size.dart';
-import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/common/spacing.dart';
 import 'package:jpj_info/view/common/text_style.dart';
+import 'package:jpj_info/view/mainpage/component/custom_public_menu_section.dart';
 import 'package:jpj_info/view/mainpage/component/custom_tab.dart';
 import 'package:jpj_info/view/mainpage/component/fav_button.dart';
 import 'package:jpj_info/view/mainpage/component/services.dart';
 import 'package:jpj_info/view/mainpage/component/staff_menu.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:jpj_info/view/template/template_header.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -65,10 +66,11 @@ class _MainPage extends State<MainPage> with TickerProviderStateMixin {
         child: ListView(
           shrinkWrap: true,
           children: [
-            mainheader(context),
+            TemplateHeader(
+              header: mainheader(context),
+            ),
+            const SizedBox(height: vPaddingM),
             favSubSection(context),
-            mainSubSection(context),
-            const SizedBox(height: vPaddingXL),
             populateButton(context),
           ],
         ),
@@ -78,57 +80,43 @@ class _MainPage extends State<MainPage> with TickerProviderStateMixin {
 
   Widget userInfo(BuildContext context) {
     if (MyJPJAccountManager().isLoggedIn) {
-      return Padding(
-        padding: const EdgeInsets.only(top: vPaddingM, bottom: vPaddingXL),
-        child: Container(
-          alignment: Alignment.center,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                constraints: const BoxConstraints(maxWidth: 250),
-                child: Text(
-                  MyJPJAccountManager().name,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                    color: Color(themeOrange),
-                    fontSize: 18,
-                    fontFamily: "Roboto",
-                    fontWeight: FontWeight.w700,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ),
+      return Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            constraints: const BoxConstraints(maxWidth: 250),
+            child: Text(
+              MyJPJAccountManager().name,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 24,
+                fontFamily: "Roboto",
+                fontWeight: FontWeight.w700,
+                overflow: TextOverflow.ellipsis,
               ),
-              Text(
-                MyJPJAccountManager().email,
-                style: const TextStyle(
-                  color: Color(themeOrange),
-                  fontSize: 15,
-                  fontFamily: "Roboto",
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-              Text(
-                AppLocalizations.of(context)!.lastLoggedIn,
-                style: const TextStyle(
-                  fontSize: 12,
-                  fontFamily: "Roboto",
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              Text(
-                MyJPJAccountManager().lastLoggedIn,
-                style: const TextStyle(
-                  fontSize: 12,
-                  fontFamily: "Roboto",
-                  fontWeight: FontWeight.w600,
-                ),
-              )
-            ],
+            ),
           ),
-        ),
+          Text(
+            MyJPJAccountManager().email,
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 16,
+              fontFamily: "Roboto",
+            ),
+          ),
+          Text(
+            "${AppLocalizations.of(context)!.lastLoggedIn}: ${MyJPJAccountManager().lastLoggedIn}",
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 16,
+              fontFamily: "Roboto",
+            ),
+          )
+        ],
       );
     } else {
       return Container();
@@ -138,39 +126,45 @@ class _MainPage extends State<MainPage> with TickerProviderStateMixin {
   Widget mainheader(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        userInfo(context),
+        Container(
+          width: 55,
+          height: 55,
+          decoration: const BoxDecoration(
+            color: Color.fromARGB(255, 255, 223, 106),
+            shape: BoxShape.circle,
+          ),
+          child: Center(
+            child: Text(
+              MyJPJAccountManager().name[0].toUpperCase(),
+              style: const TextStyle(
+                fontWeight: FontWeight.w700,
+                fontFamily: "Poppins",
+                fontSize: 32,
+              ),
+            ),
+          ),
+        ),
+        const SizedBox(width: vPaddingM),
+        Expanded(
+          child: userInfo(context),
+        ),
       ],
     );
   }
 
   Widget favSubSection(BuildContext context) {
     if (MyJPJAccountManager().isLoggedIn == true) {
+      List<CustomMenuItem> favMenuList = FavMenu().getFavMenuItem(context);
       return Column(
         children: [
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              color: Colors.white54,
-            ),
-            child: Padding(
-              padding: const EdgeInsets.only(
-                left: 8.0,
-                right: 8.0,
-              ),
-              child: Text(
-                AppLocalizations.of(context)!.favourite,
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  color: Color(themeGray),
-                  fontSize: 18,
-                  fontFamily: "Roboto",
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-            ),
+          CustomPublicMenuSection(
+            serviceMenu: favMenuList,
+            subHeader: AppLocalizations.of(context)!.favourite,
+            fav: true,
           ),
-          favSubsectionItems(context),
         ],
       );
     } else {
@@ -211,18 +205,11 @@ class _MainPage extends State<MainPage> with TickerProviderStateMixin {
 
   Widget populateButton(context) {
     if (MyJPJAccountManager().type == UserType.staff) {
-      return Container(
-        width: mediaWidth,
-        height: mediaHeight * 1.2,
-        constraints: const BoxConstraints(maxWidth: 400),
-        child: TabBarView(
-          physics: const AlwaysScrollableScrollPhysics(),
-          controller: tabController,
-          children: const [
-            Services(),
-            StaffMenu(),
-          ],
-        ),
+      return Column(
+        children: const [
+          Services(),
+          StaffMenu(),
+        ],
       );
     } else {
       return const Services();
