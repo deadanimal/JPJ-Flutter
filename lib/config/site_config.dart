@@ -21,6 +21,8 @@ class SiteConfig {
   final String securityQuestionUri = "$prodUrl/soalan_keselamatan/";
   final String locationCheckUri = "$prodUrl/jpjinfo-api/apps/semaklokasi/";
   final String aduanStatus = "$prodUrl/get_status_aduan/";
+  final String saveAduan = "$prodUrl/simpan_aduan/";
+  final String aduanImageUpload = "$prodUrl/upld_images/";
 
   //staging api
   final String checkUserIdUrierr = "$prodUrl/semak-id-awam/err.php";

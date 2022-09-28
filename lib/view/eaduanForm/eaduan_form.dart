@@ -29,6 +29,10 @@ class EaduanForm extends StatelessWidget {
     required this.latitudeController,
     required this.longitudeController,
     required this.mapTapCb,
+    required this.remarkController,
+    required this.locationController,
+    required this.stateController,
+    required this.vehicleController,
   }) : super(key: key);
   final String? title;
   final AssetImage image;
@@ -42,6 +46,10 @@ class EaduanForm extends StatelessWidget {
   final Function() datePickerCb;
   final Function() timePickerCb;
   final Function(String, String) mapTapCb;
+  final TextEditingController remarkController;
+  final TextEditingController locationController;
+  final TextEditingController stateController;
+  final TextEditingController vehicleController;
 
   @override
   Widget build(BuildContext context) {
@@ -193,7 +201,7 @@ class EaduanForm extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: TextFieldForm(
                 label: AppLocalizations.of(context)!.eventLocation,
-                // textController: idTextController,
+                textController: locationController,
                 width: mediaWidth,
               ),
             ),
@@ -208,7 +216,7 @@ class EaduanForm extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: TextFieldForm(
                 label: AppLocalizations.of(context)!.state,
-                // textController: idTextController,
+                textController: stateController,
                 width: mediaWidth,
               ),
             ),
@@ -223,7 +231,7 @@ class EaduanForm extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: TextFieldForm(
                 label: AppLocalizations.of(context)!.vehicleReg,
-                // textController: idTextController,
+                textController: vehicleController,
                 width: mediaWidth,
               ),
             ),
@@ -241,7 +249,7 @@ class EaduanForm extends StatelessWidget {
                 maxLength: 500,
                 inputType: TextInputType.multiline,
                 label: AppLocalizations.of(context)!.pleaseTypeHere,
-                // textController: textController,
+                textController: remarkController,
                 width: mediaWidth,
               ),
             ),

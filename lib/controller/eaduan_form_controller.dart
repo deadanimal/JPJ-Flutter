@@ -1,16 +1,25 @@
+import 'dart:async';
+import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 // import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:jpj_info/config/site_config.dart';
+import 'package:jpj_info/controller/alert_controller.dart';
 import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/controller/bottom_nav_controller.dart';
 import 'package:jpj_info/controller/eaduan_menu_controller.dart';
+import 'package:jpj_info/controller/http_request_controller.dart';
+import 'package:jpj_info/helper/account_manager.dart';
+import 'package:jpj_info/model/aduan_save_request.dart';
+import 'package:jpj_info/model/aduan_save_response.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/eAduanSubmit/eaduan_submit.dart';
 import 'package:jpj_info/view/eaduanForm/eaduan_form.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:http/http.dart' as http;
 
 enum EaduanItem {
   redLight,
@@ -38,12 +47,18 @@ class EaduanFormController extends StatefulWidget {
 class _EaduanFormController extends State<EaduanFormController> {
   late Map<EaduanItem, String> aduanItemList;
   late Map<EaduanItem, String> aduanIconList;
+  late Map<EaduanItem, int> offenceId;
   late ImagePicker picker;
   late List<Uint8List> images;
   late TextEditingController dateController;
   late TextEditingController timeController;
   late TextEditingController latitudeController;
   late TextEditingController longitudeController;
+  late TextEditingController remarkController;
+  late TextEditingController locationController;
+  late TextEditingController stateController;
+  late TextEditingController vehicleController;
+
   @override
   void initState() {
     super.initState();
@@ -55,6 +70,21 @@ class _EaduanFormController extends State<EaduanFormController> {
     latitudeController.text = "3.146267";
     longitudeController = TextEditingController();
     longitudeController.text = "101.69";
+    remarkController = TextEditingController();
+    locationController = TextEditingController();
+    stateController = TextEditingController();
+    vehicleController = TextEditingController();
+    offenceId = {
+      EaduanItem.redLight: 1,
+      EaduanItem.emergencyLane: 2,
+      EaduanItem.cutQueue: 3,
+      EaduanItem.leftOvertake: 4,
+      EaduanItem.doubleLine: 5,
+      EaduanItem.usingPhone: 6,
+      EaduanItem.fancyPlate: 7,
+      EaduanItem.darkTint: 8,
+      EaduanItem.seatBelt: 9,
+    };
   }
 
   @override
@@ -64,6 +94,10 @@ class _EaduanFormController extends State<EaduanFormController> {
     timeController.dispose();
     latitudeController.dispose();
     longitudeController.dispose();
+    remarkController.dispose();
+    locationController.dispose();
+    stateController.dispose();
+    vehicleController.dispose();
   }
 
   @override
@@ -110,6 +144,10 @@ class _EaduanFormController extends State<EaduanFormController> {
           timePickerCb: pickTime,
           latitudeController: latitudeController,
           longitudeController: longitudeController,
+          locationController: locationController,
+          remarkController: remarkController,
+          stateController: stateController,
+          vehicleController: vehicleController,
           mapTapCb: _onMapTap,
         ),
         bottomNavigationBar: BottomNavController(),
@@ -177,18 +215,105 @@ class _EaduanFormController extends State<EaduanFormController> {
     // EasyLoading.dismiss();
   }
 
-  void _submitCallback() {
-    //todo: add cloud process here
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-        builder: (context) {
-          return EaduanSubmitScreen(
-            backBtnCallback: _backBtnCallback,
-          );
-        },
-      ),
+  void _fileUploadResponseHandler(http.StreamedResponse response) {
+    if (response.statusCode == 200) {
+      (response.stream.bytesToString().then((value) => print(value)));
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) {
+            return EaduanSubmitScreen(
+              backBtnCallback: _backBtnCallback,
+            );
+          },
+        ),
+      );
+    } else {
+      AlertController(ctx: context).connectionError();
+    }
+  }
+
+  void _fileUpload(String aduanId) async {
+    SiteConfig conf = SiteConfig();
+    http.MultipartRequest request = http.MultipartRequest(
+      'POST',
+      Uri.parse(conf.aduanImageUpload),
     );
+
+    request.fields['no_aduan'] = aduanId;
+    List<http.MultipartFile> newList = <http.MultipartFile>[];
+
+    for (int i = 0; i < images.length; i++) {
+      final result1 = Stream.value(
+        List<int>.from(images[i]),
+      ).asBroadcastStream();
+      XFile a = XFile.fromData(images[i]);
+      var length = await a.length();
+
+      var multipartFile = http.MultipartFile("gambar", a.openRead(), length,
+          filename: "123" + i.toString());
+      newList.add(multipartFile);
+    }
+
+    request.files.addAll(newList);
+    var response = await request.send();
+    _fileUploadResponseHandler(response);
+  }
+
+  void _responseHandler(http.Response response) {
+    if (response.statusCode == 200) {
+      AduanSaveResponse res = AduanSaveResponse.fromJson(
+        jsonDecode(response.body),
+      );
+      if (res.noAduan != null) {
+        _fileUpload(res.noAduan!.toString());
+      } else {
+        AlertController(ctx: context).connectionError();
+      }
+    } else {
+      AlertController(ctx: context).connectionError();
+    }
+  }
+
+  void _submitCallback() {
+    if (dateController.text != "" &&
+        timeController.text != "" &&
+        latitudeController.text != "" &&
+        longitudeController.text != "" &&
+        remarkController.text != "" &&
+        locationController.text != "" &&
+        stateController.text != "" &&
+        vehicleController.text != "") {
+      SiteConfig conf = SiteConfig();
+      AduanSaveRequest req = AduanSaveRequest(
+          catatan: remarkController.text,
+          idkesalahan: offenceId[widget.itemClass]!.toString(),
+          latitude: latitudeController.text,
+          longlitude: longitudeController.text,
+          masa: timeController.text,
+          tarikh: dateController.text,
+          lokasi: locationController.text,
+          negeri: stateController.text,
+          nokenderaan: vehicleController.text,
+          videoName: "",
+          imageName: "",
+          pautan: "",
+          pengadu: MyJPJAccountManager().id);
+      jpjHttpRequest(
+        context,
+        Uri.parse(conf.saveAduan),
+        headers: conf.formHeader,
+        body: jsonEncode(req.toJson()),
+        callback: _responseHandler,
+      );
+    } else {
+      AlertController(ctx: context).generalError(
+        AppLocalizations.of(context)!.pleaseFillAllInfo,
+        () {
+          Navigator.pop(context);
+        },
+      );
+    }
   }
 
   void _backBtnCallback(BuildContext context) {
