@@ -6,6 +6,7 @@ import 'package:jpj_info/view/form/custom_button.dart';
 import 'package:jpj_info/view/form/label.dart';
 import 'package:jpj_info/view/form/text_field.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:jpj_info/view/template/template_header.dart';
 
 class Login extends StatelessWidget {
   const Login({
@@ -28,22 +29,11 @@ class Login extends StatelessWidget {
     mediaWidth = (MediaQuery.of(context).size.width);
     mediaHeight = (MediaQuery.of(context).size.height);
     return Material(
-      child: Container(
-        height: mediaHeight,
-        width: mediaWidth,
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("images/login_bg.png"),
-            fit: BoxFit.fitWidth,
-            alignment: Alignment.bottomCenter,
-          ),
-        ),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              _foreground(context),
-            ],
-          ),
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            _foreground(context),
+          ],
         ),
       ),
     );
@@ -55,8 +45,21 @@ class Login extends StatelessWidget {
       width: mediaWidth,
       child: Column(
         children: [
-          _logo(context),
-          const SizedBox(height: verticalPadding),
+          TemplateHeader(
+            header: Center(
+              child: Text(
+                AppLocalizations.of(context)!.logIn,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 32,
+                  fontFamily: "Roboto",
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: vPaddingXL),
           _loginField(context),
           const SizedBox(height: verticalPadding),
         ],
@@ -81,10 +84,7 @@ class Login extends StatelessWidget {
       ),
       child: Column(
         children: [
-          CustomLabel(
-            label: AppLocalizations.of(context)!.logIn,
-          ),
-          const SizedBox(height: 8),
+          const SizedBox(height: vPaddingXL),
           TextFieldForm(
             textController: userId,
             label: AppLocalizations.of(context)!.userID,
@@ -97,41 +97,11 @@ class Login extends StatelessWidget {
             label: AppLocalizations.of(context)!.password,
             width: mediaWidth - 64,
           ),
-          Container(
-            alignment: Alignment.centerRight,
-            width: mediaWidth - 64,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: InkWell(
-                onTap: () {
-                  if (forgotPasswordCB != null) {
-                    forgotPasswordCB!(context);
-                  }
-                },
-                child: Chip(
-                  backgroundColor: const Color(themeNavy),
-                  label: Text(
-                    AppLocalizations.of(context)!.forgotPassword,
-                    textAlign: TextAlign.right,
-                    style: TextStyle(
-                      color: Colors.grey.shade200,
-                      shadows: const [
-                        Shadow(color: Colors.grey, blurRadius: 4.0),
-                      ],
-                      fontSize: 12,
-                      fontFamily: "Roboto",
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
           const SizedBox(height: 8),
           CustomButton(
             width: mediaWidth - 64,
             label: AppLocalizations.of(context)!.logIn,
-            decoration: orangeGradientBtnDeco,
+            decoration: blueGradientBtnDeco,
             onPressed: () {
               if (logInCB != null) {
                 logInCB!(context);
@@ -139,12 +109,44 @@ class Login extends StatelessWidget {
             },
           ),
           const SizedBox(height: 8),
+          Text(
+            AppLocalizations.of(context)!.changePaswordInfo,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontSize: 12,
+              color: Colors.grey,
+              fontFamily: "Roboto",
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          const SizedBox(height: 8),
+          InkWell(
+            onTap: () {
+              if (forgotPasswordCB != null) {
+                forgotPasswordCB!(context);
+              }
+            },
+            child: Chip(
+              backgroundColor: Colors.white,
+              label: Text(
+                AppLocalizations.of(context)!.forgotPassword,
+                textAlign: TextAlign.right,
+                style: const TextStyle(
+                  color: Color(0xff4208BD),
+                  fontSize: 15,
+                  fontFamily: "Roboto",
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 8),
           SizedBox(
             width: 91,
             height: 20,
             child: Row(
               mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Container(
@@ -152,16 +154,16 @@ class Login extends StatelessWidget {
                   height: 4,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(2),
-                    color: const Color(0xccf8b518),
+                    color: Colors.grey,
                   ),
                 ),
                 const SizedBox(width: 3),
-                const Text(
-                  "Atau",
+                Text(
+                  AppLocalizations.of(context)!.or,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.white,
+                  style: const TextStyle(
                     fontSize: 15,
+                    color: Colors.grey,
                     fontFamily: "Roboto",
                     fontWeight: FontWeight.w600,
                   ),
@@ -172,7 +174,7 @@ class Login extends StatelessWidget {
                   height: 4,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(2),
-                    color: const Color(0xccf8b518),
+                    color: Colors.grey,
                   ),
                 ),
               ],
@@ -182,8 +184,8 @@ class Login extends StatelessWidget {
           CustomButton(
             width: mediaWidth - 64,
             label: AppLocalizations.of(context)!.registerNewAccount,
-            decoration: whiteFadedBtnDeco,
-            textColor: const Color(themeOrange),
+            decoration: greenGradientLoginBtnDeco,
+            textColor: Colors.white,
             onPressed: () {
               if (newAccountCB != null) {
                 newAccountCB!(context);

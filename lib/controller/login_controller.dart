@@ -13,6 +13,7 @@ import 'package:jpj_info/helper/account_manager.dart';
 import 'package:jpj_info/helper/local_storage.dart';
 import 'package:jpj_info/model/login_request.dart';
 import 'package:jpj_info/model/login_response.dart';
+import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/form/tooltip_info.dart';
 import 'package:jpj_info/view/login/login.dart';
@@ -64,9 +65,8 @@ class _LoginController extends State<LoginController> {
     return SafeArea(
       child: Scaffold(
         appBar: const AppBarController(
-          iconColor: Color(themeNavy),
-          darkBtn: true,
           hasBackButton: false,
+          decor: customGradient,
         ),
         body: Login(
           userId: _userId,

@@ -264,5 +264,6 @@
     "changePasswordOnNextPage":"Change your password on the next page",
     "securityQuestionError":"Please make sure all question are answered and all question are different",
     "enteredPasswordNotTheSame":"Entered password are not the same",
+    "changePaswordInfo":"** Password need to be changed every three (3) months",
     "pleaseWait": "Please wait..."
 }

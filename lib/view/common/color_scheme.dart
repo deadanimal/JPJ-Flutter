@@ -27,6 +27,36 @@ Decoration orangeGradientBtnDeco = BoxDecoration(
     colors: [Color(0xfff8b518), Color(0xffc18b0e)],
   ),
 );
+Decoration blueGradientBtnDeco = BoxDecoration(
+  borderRadius: BorderRadius.circular(15),
+  boxShadow: const [
+    BoxShadow(
+      color: Color(0x3f000000),
+      blurRadius: 4,
+      offset: Offset(0, 4),
+    ),
+  ],
+  gradient: const LinearGradient(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    colors: [Color(0xff5A72E1), Color(0xff5264D8)],
+  ),
+);
+Decoration greenGradientLoginBtnDeco = BoxDecoration(
+  borderRadius: BorderRadius.circular(15),
+  boxShadow: const [
+    BoxShadow(
+      color: Color(0x3f000000),
+      blurRadius: 4,
+      offset: Offset(0, 4),
+    ),
+  ],
+  gradient: const LinearGradient(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    colors: [Color(0xff08C031), Color(0xff3DD009)],
+  ),
+);
 Decoration navyGradientBtnDeco = BoxDecoration(
   borderRadius: BorderRadius.circular(15),
   boxShadow: const [

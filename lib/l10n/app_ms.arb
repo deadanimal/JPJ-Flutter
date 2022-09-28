@@ -264,5 +264,6 @@
     "changePasswordOnNextPage":"Tukar kata laluan anda di halaman berikutnya",
     "securityQuestionError":"Sila pastikan anda tidak memilih soalan yang sama dan semua soalan dijawab",
     "enteredPasswordNotTheSame":"Katalaluan tidak sama",
+    "changePaswordInfo":"** Kata laluan perlu ditukar setiap tiga (3) bulan",
     "pleaseWait": "Sila Tunggu..."
 }
