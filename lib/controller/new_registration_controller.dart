@@ -8,6 +8,7 @@ import 'package:jpj_info/controller/http_request_controller.dart';
 import 'package:jpj_info/controller/login_controller.dart';
 import 'package:jpj_info/helper/id_types.dart';
 import 'package:jpj_info/model/new_user_registration_request.dart';
+import 'package:jpj_info/model/new_user_registration_response.dart';
 import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
 import 'package:jpj_info/view/newRegistration/new_registration.dart';
 import 'package:jpj_info/view/form/tooltip_info.dart';
@@ -79,12 +80,20 @@ class _NewRegistrationController extends State<NewRegistrationController> {
 
   void _responseHandler(http.Response response) {
     if (response.statusCode == 200) {
-      TooltipInfo().showInfo(
-        context,
-        AppLocalizations.of(context)!.successfullySaved,
-        "",
-        (c) => _onCloseSubmitInfo(c, response.body),
+      NewUserRegistrationResponse res;
+      res = NewUserRegistrationResponse.fromJson(
+        jsonDecode(response.body),
       );
+      if (res.status != null) {
+        if (res.msg == "SUCCESS") {
+          TooltipInfo().showInfo(
+            context,
+            AppLocalizations.of(context)!.successfullySaved,
+            "",
+            (c) => _onCloseSubmitInfo(c, res.tempPwd!),
+          );
+        }
+      }
     } else {
       AlertController(ctx: context).connectionError();
     }

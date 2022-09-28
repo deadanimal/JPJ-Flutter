@@ -92,8 +92,10 @@ class _LoginController extends State<LoginController> {
         jsonDecode(response.body),
       );
       if (loginResponse.idmpuStatus != null) {
-        if (loginResponse.idmpuStatus == "F" ||
-            loginResponse.idmpuStatus == "A") {
+        if (loginResponse.idmpuStatus == "F " ||
+            loginResponse.idmpuStatus == "A ") {
+          loginResponse.idmpuUserEmail =
+              loginResponse.idmpuUserEmail!.replaceAll(" ", "");
           SharedPreferences.getInstance().then((pref) {
             pref.setString(
               LocalStorageHelper().userLoginInfo,
@@ -105,7 +107,7 @@ class _LoginController extends State<LoginController> {
               context,
               MaterialPageRoute(
                 builder: (context) {
-                  if (loginResponse.idmpuStatus == "F") {
+                  if (loginResponse.idmpuStatus == "F ") {
                     return const FirstTimeLoginController();
                   } else {
                     return const MainpageController();

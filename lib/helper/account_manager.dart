@@ -59,12 +59,12 @@ class MyJPJAccountManager {
       LoginResponse loginResponse = LoginResponse.fromJson(
         jsonDecode(userInfo!),
       );
-      id = loginResponse.idmpuUsrId!;
-      name = loginResponse.idmpuUserName!;
+      id = loginResponse.idmpuUsrId!.trim();
+      name = loginResponse.idmpuUserName!.trim();
       var date = DateTime.parse(loginResponse.idmpuLastLoginTime!);
       lastLoggedIn = "${date.day}/${date.month}/${date.year}"
           " ${date.hour}:${date.minute}:${date.second}";
-      email = loginResponse.idmpuUserEmail!;
+      email = loginResponse.idmpuUserEmail!.trim();
       phoneNumber = "";
       state = "";
       district = "";

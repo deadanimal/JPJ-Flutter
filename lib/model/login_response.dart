@@ -2,10 +2,10 @@ class LoginResponse {
   String? statusCode;
   String? statusMsg;
   String? idmpuUsrId;
-  String? idmpuPassWord;
+  String? idmpuPassword;
   String? idmpuManutiae;
   String? idmpuStatus;
-  String? idmpuAclld;
+  String? idmpuAclId;
   String? idmpuUserEmail;
   String? idmpuUserName;
   String? idmpuUserGrpId;
@@ -18,12 +18,12 @@ class LoginResponse {
   String? idmpuPrvStatus;
   String? idmpuLastLoginTime;
   String? idmpuSQ1Id;
-  String? idmpuSq1Ans;
-  String? idmpuSq2Id;
-  String? idmpuSq2Ans;
-  String? idmpuSq3Id;
-  String? idmpuSq3Ans;
-  String? idmpuSqPriority;
+  String? idmpuSQ1Ans;
+  String? idmpuSQ2Id;
+  String? idmpuSQ2Ans;
+  String? idmpuSQ3Id;
+  String? idmpuSQ3Ans;
+  String? idmpuSQPriority;
   String? idmpuIndividualInd;
   String? idmpuCompRepInd;
   String? idmpuCompAppInd;
@@ -33,10 +33,10 @@ class LoginResponse {
       {this.statusCode,
       this.statusMsg,
       this.idmpuUsrId,
-      this.idmpuPassWord,
+      this.idmpuPassword,
       this.idmpuManutiae,
       this.idmpuStatus,
-      this.idmpuAclld,
+      this.idmpuAclId,
       this.idmpuUserEmail,
       this.idmpuUserName,
       this.idmpuUserGrpId,
@@ -49,12 +49,12 @@ class LoginResponse {
       this.idmpuPrvStatus,
       this.idmpuLastLoginTime,
       this.idmpuSQ1Id,
-      this.idmpuSq1Ans,
-      this.idmpuSq2Id,
-      this.idmpuSq2Ans,
-      this.idmpuSq3Id,
-      this.idmpuSq3Ans,
-      this.idmpuSqPriority,
+      this.idmpuSQ1Ans,
+      this.idmpuSQ2Id,
+      this.idmpuSQ2Ans,
+      this.idmpuSQ3Id,
+      this.idmpuSQ3Ans,
+      this.idmpuSQPriority,
       this.idmpuIndividualInd,
       this.idmpuCompRepInd,
       this.idmpuCompAppInd,
@@ -64,10 +64,10 @@ class LoginResponse {
     statusCode = json['statusCode'];
     statusMsg = json['statusMsg'];
     idmpuUsrId = json['idmpuUsrId'];
-    idmpuPassWord = json['idmpuPassWord'];
+    idmpuPassword = json['idmpuPassword'];
     idmpuManutiae = json['idmpuManutiae'];
     idmpuStatus = json['idmpuStatus'];
-    idmpuAclld = json['idmpuAclld'];
+    idmpuAclId = json['idmpuAclId'];
     idmpuUserEmail = json['idmpuUserEmail'];
     idmpuUserName = json['idmpuUserName'];
     idmpuUserGrpId = json['idmpuUserGrpId'];
@@ -80,12 +80,12 @@ class LoginResponse {
     idmpuPrvStatus = json['idmpuPrvStatus'];
     idmpuLastLoginTime = json['idmpuLastLoginTime'];
     idmpuSQ1Id = json['idmpuSQ1Id'];
-    idmpuSq1Ans = json['idmpuSq1Ans'];
-    idmpuSq2Id = json['idmpuSq2Id'];
-    idmpuSq2Ans = json['idmpuSq2Ans'];
-    idmpuSq3Id = json['idmpuSq3Id'];
-    idmpuSq3Ans = json['idmpuSq3Ans'];
-    idmpuSqPriority = json['idmpuSqPriority'];
+    idmpuSQ1Ans = json['idmpuSQ1Ans'];
+    idmpuSQ2Id = json['idmpuSQ2Id'];
+    idmpuSQ2Ans = json['idmpuSQ2Ans'];
+    idmpuSQ3Id = json['idmpuSQ3Id'];
+    idmpuSQ3Ans = json['idmpuSQ3Ans'];
+    idmpuSQPriority = json['idmpuSQPriority'];
     idmpuIndividualInd = json['idmpuIndividualInd'];
     idmpuCompRepInd = json['idmpuCompRepInd'];
     idmpuCompAppInd = json['idmpuCompAppInd'];
@@ -97,10 +97,10 @@ class LoginResponse {
     data['statusCode'] = statusCode;
     data['statusMsg'] = statusMsg;
     data['idmpuUsrId'] = idmpuUsrId;
-    data['idmpuPassWord'] = idmpuPassWord;
+    data['idmpuPassword'] = idmpuPassword;
     data['idmpuManutiae'] = idmpuManutiae;
     data['idmpuStatus'] = idmpuStatus;
-    data['idmpuAclld'] = idmpuAclld;
+    data['idmpuAclId'] = idmpuAclId;
     data['idmpuUserEmail'] = idmpuUserEmail;
     data['idmpuUserName'] = idmpuUserName;
     data['idmpuUserGrpId'] = idmpuUserGrpId;
@@ -113,12 +113,12 @@ class LoginResponse {
     data['idmpuPrvStatus'] = idmpuPrvStatus;
     data['idmpuLastLoginTime'] = idmpuLastLoginTime;
     data['idmpuSQ1Id'] = idmpuSQ1Id;
-    data['idmpuSq1Ans'] = idmpuSq1Ans;
-    data['idmpuSq2Id'] = idmpuSq2Id;
-    data['idmpuSq2Ans'] = idmpuSq2Ans;
-    data['idmpuSq3Id'] = idmpuSq3Id;
-    data['idmpuSq3Ans'] = idmpuSq3Ans;
-    data['idmpuSqPriority'] = idmpuSqPriority;
+    data['idmpuSQ1Ans'] = idmpuSQ1Ans;
+    data['idmpuSQ2Id'] = idmpuSQ2Id;
+    data['idmpuSQ2Ans'] = idmpuSQ2Ans;
+    data['idmpuSQ3Id'] = idmpuSQ3Id;
+    data['idmpuSQ3Ans'] = idmpuSQ3Ans;
+    data['idmpuSQPriority'] = idmpuSQPriority;
     data['idmpuIndividualInd'] = idmpuIndividualInd;
     data['idmpuCompRepInd'] = idmpuCompRepInd;
     data['idmpuCompAppInd'] = idmpuCompAppInd;

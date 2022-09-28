@@ -3,7 +3,8 @@ class SiteConfig {
   static String playStoreUrl = 'market://details?id';
   static String caravelUrl = "https://api.caravel.space/jpj";
   // static String prodUrl = "10.180.4.94/api";
-  static String prodUrl = caravelUrl;
+  static String prodUrl = "https://myjpj.jpj.gov.my/api";
+  // static String prodUrl = caravelUrl;
 
   final String changePasswordUri = "$prodUrl/change_password_id_awam/";
   final String blacklistCheckUri = "$prodUrl/semakan_status_senarai_hitam/";
@@ -28,7 +29,7 @@ class SiteConfig {
   // };
 
   Map<String, String> formHeader = {
-    'Content-Type': 'multipart/form-data; charset=UTF-8',
+    'Content-Type': 'application/json; charset=UTF-8',
   };
 
   String jpjEbidAppStoreid = '1458846863';

@@ -39,7 +39,7 @@ class _LandingPageController extends State<LandingPageController> {
       const Duration(milliseconds: 3000),
       () {
         if (MyJPJAccountManager().isLoggedIn &&
-            MyJPJAccountManager().firstTime == "A") {
+            MyJPJAccountManager().firstTime == "A ") {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
@@ -49,7 +49,7 @@ class _LandingPageController extends State<LandingPageController> {
             ),
           );
         } else if (MyJPJAccountManager().isLoggedIn &&
-            MyJPJAccountManager().firstTime == "F") {
+            MyJPJAccountManager().firstTime == "F ") {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
