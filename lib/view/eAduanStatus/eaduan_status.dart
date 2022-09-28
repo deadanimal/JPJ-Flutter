@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jpj_info/model/aduan_status_response.dart';
 import 'package:jpj_info/model/page_size.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/common/spacing.dart';
@@ -10,8 +11,10 @@ class EaduanStatus extends StatelessWidget {
   const EaduanStatus({
     Key? key,
     required this.tabController,
+    required this.res,
   }) : super(key: key);
   final TabController tabController;
+  final List<AduanStatusResponse> res;
 
   @override
   Widget build(BuildContext context) {
@@ -93,45 +96,65 @@ class EaduanStatus extends StatelessWidget {
   }
 
   Widget _sentTab(BuildContext context) {
-    return Column(
-      children: [
-        StatusCardView(
+    return ListView.builder(
+      scrollDirection: Axis.vertical,
+      itemCount: res.length,
+      shrinkWrap: true,
+      itemBuilder: (context, index) {
+        return StatusCardView(
+          complaintId: res[index].id.toString(),
+          date: res[index].tarikh!,
+          time: "",
+          offense: "",
           width: mediaWidth - 64,
-          leading: _status(context),
+          leading: _status(context, res[index].keteranganStatus!),
           trailing: _searchIcon(),
-        ),
-        StatusCardView(
-          width: mediaWidth - 64,
-          leading: _status(context),
-          trailing: _searchIcon(),
-        ),
-      ],
+        );
+      },
     );
   }
 
   Widget _draftTab(BuildContext context) {
     return Column(
-      children: [
-        StatusCardView(
-          width: mediaWidth - 64,
-          leading: _draftStatus(context),
-          trailing: _draftIcon(),
-        ),
-        StatusCardView(
-          width: mediaWidth - 64,
-          leading: _draftStatus(context),
-          trailing: _draftIcon(),
+        // children: [
+        //   StatusCardView(
+        //     width: mediaWidth - 64,
+        //     leading: _draftStatus(context),
+        //     trailing: _draftIcon(),
+        //   ),
+        //   StatusCardView(
+        //     width: mediaWidth - 64,
+        //     leading: _draftStatus(context),
+        //     trailing: _draftIcon(),
+        //   ),
+        // ],
+        );
+  }
+
+  Widget _status(BuildContext context, String status) {
+    Map<String, dynamic> statusMap = {
+      "BARU": Colors.green,
+      "MAKLUMAT TIDAK LENGKAP": Colors.red,
+      "MAKLUMAT TELAH DIKEMASKINI": Colors.blue,
+      "SELESAI": Colors.purple,
+      "TUTUP": Colors.grey,
+    };
+    Decoration deco = BoxDecoration(
+      color: statusMap[status],
+      borderRadius: BorderRadius.circular(8),
+      boxShadow: const [
+        BoxShadow(
+          color: Color(0x3f000000),
+          blurRadius: 4,
+          offset: Offset(0, 4),
         ),
       ],
     );
-  }
-
-  Widget _status(BuildContext context) {
     return CustomButton(
       width: 95,
       onPressed: () {},
-      label: AppLocalizations.of(context)!.received,
-      decoration: greenGradientBtnDeco,
+      label: status,
+      decoration: deco,
       textSize: 10,
     );
   }
@@ -147,6 +170,7 @@ class EaduanStatus extends StatelessWidget {
   }
 
   Widget _searchIcon() {
+    return Container();
     return SizedBox(
       child: Padding(
         padding: const EdgeInsets.all(vPaddingM),

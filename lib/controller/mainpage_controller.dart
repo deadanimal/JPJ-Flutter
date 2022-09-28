@@ -4,7 +4,6 @@ import 'package:jpj_info/controller/bottom_nav_controller.dart';
 import 'package:jpj_info/controller/forgot_password_controller.dart';
 import 'package:jpj_info/controller/new_registration_controller.dart';
 import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
-import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/mainpage/mainpage.dart';
 
 class MainpageController extends StatefulWidget {

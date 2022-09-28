@@ -20,6 +20,7 @@ class SiteConfig {
   final String plateNumberUri = "$prodUrl/semakan_nombor_pendaftaran/";
   final String securityQuestionUri = "$prodUrl/soalan_keselamatan/";
   final String locationCheckUri = "$prodUrl/jpjinfo-api/apps/semaklokasi/";
+  final String aduanStatus = "$prodUrl/get_status_aduan/";
 
   //staging api
   final String checkUserIdUrierr = "$prodUrl/semak-id-awam/err.php";

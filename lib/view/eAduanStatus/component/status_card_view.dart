@@ -9,10 +9,18 @@ class StatusCardView extends StatelessWidget {
     required this.width,
     required this.trailing,
     required this.leading,
+    required this.complaintId,
+    required this.time,
+    required this.date,
+    required this.offense,
   }) : super(key: key);
   final double width;
   final Widget leading;
   final Widget trailing;
+  final String complaintId;
+  final String time;
+  final String date;
+  final String offense;
 
   @override
   Widget build(BuildContext context) {
@@ -38,9 +46,9 @@ class StatusCardView extends StatelessWidget {
               ),
             ),
             const SizedBox(height: vPaddingS),
-            const Text(
-              "10016460",
-              style: TextStyle(
+            Text(
+              complaintId,
+              style: const TextStyle(
                 color: Color(0xff2e2e2e),
                 fontSize: 13,
               ),
@@ -62,9 +70,9 @@ class StatusCardView extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: vPaddingS),
-                    const Text(
-                      "5 December 2021",
-                      style: TextStyle(
+                    Text(
+                      date,
+                      style: const TextStyle(
                         color: Color(0xff2e2e2e),
                         fontSize: 13,
                       ),
@@ -84,9 +92,9 @@ class StatusCardView extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: vPaddingS),
-                    const Text(
-                      "08:37:11 AM",
-                      style: TextStyle(
+                    Text(
+                      time,
+                      style: const TextStyle(
                         color: Color(0xff2e2e2e),
                         fontSize: 13,
                       ),
@@ -106,9 +114,9 @@ class StatusCardView extends StatelessWidget {
               ),
             ),
             const SizedBox(height: vPaddingS),
-            const Text(
-              "Gagal mematuhi Lampu Isyarat merah",
-              style: TextStyle(
+            Text(
+              offense,
+              style: const TextStyle(
                 color: Color(0xff2e2e2e),
                 fontSize: 13,
               ),
