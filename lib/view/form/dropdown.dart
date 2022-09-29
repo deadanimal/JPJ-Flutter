@@ -8,10 +8,12 @@ class CustomDropdown extends StatefulWidget {
     required this.dropdownValue,
     required this.cbFunc,
     required this.dropdownList,
+    this.width,
   }) : super(key: key);
   final String dropdownValue;
   final dynamic dropdownList;
   final Function cbFunc;
+  final double? width;
 
   @override
   State<StatefulWidget> createState() => _CustomDropdown();
@@ -35,8 +37,10 @@ class _CustomDropdown extends State<CustomDropdown> {
 
   @override
   Widget build(BuildContext context) {
+    double widgetWidth = widget.width ?? mediaWidth - 64;
+
     return SizedBox(
-      width: mediaWidth - 64,
+      width: widgetWidth,
       child: Padding(
         padding: const EdgeInsets.all(8),
         child: Container(

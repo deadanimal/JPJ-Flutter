@@ -10,6 +10,7 @@ import 'package:jpj_info/view/eaduanForm/component/image_container.dart';
 import 'package:jpj_info/view/eaduanForm/component/new_image.dart';
 import 'package:jpj_info/view/eaduanForm/component/new_media_selector.dart';
 import 'package:jpj_info/view/form/custom_button.dart';
+import 'package:jpj_info/view/form/dropdown.dart';
 import 'package:jpj_info/view/form/label.dart';
 import 'package:jpj_info/view/form/text_field.dart';
 import 'package:latlong2/latlong.dart';
@@ -33,6 +34,9 @@ class EaduanForm extends StatelessWidget {
     required this.locationController,
     required this.stateController,
     required this.vehicleController,
+    required this.dropdownList,
+    required this.dropdownValue,
+    required this.selectionCallback,
   }) : super(key: key);
   final String? title;
   final AssetImage image;
@@ -50,6 +54,9 @@ class EaduanForm extends StatelessWidget {
   final TextEditingController locationController;
   final TextEditingController stateController;
   final TextEditingController vehicleController;
+  final Iterable<String> dropdownList;
+  final String dropdownValue;
+  final Function(BuildContext, dynamic) selectionCallback;
 
   @override
   Widget build(BuildContext context) {
@@ -212,13 +219,13 @@ class EaduanForm extends StatelessWidget {
               fontWeight: FontWeight.w600,
               align: TextAlign.start,
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextFieldForm(
-                label: AppLocalizations.of(context)!.state,
-                textController: stateController,
-                width: mediaWidth,
-              ),
+            CustomDropdown(
+              width: mediaWidth,
+              cbFunc: (newVal) {
+                selectionCallback(context, newVal);
+              },
+              dropdownList: dropdownList,
+              dropdownValue: dropdownValue,
             ),
             const SizedBox(height: vPaddingM),
             CustomLabel(

@@ -45,6 +45,27 @@ class EaduanFormController extends StatefulWidget {
 }
 
 class _EaduanFormController extends State<EaduanFormController> {
+  late Iterable<String> dropdownList;
+  late String dropdownValue;
+  Map<String, String> stateMap = {
+    "JOHOR": "J",
+    "KEDAH": "K",
+    "LANGKAWI": "KV",
+    "KELANTAN": "D",
+    "MELAKA": "M",
+    "NEGERI SEMBILAN": "N",
+    "PAHANG": "C",
+    "PULAU PINANG": "P",
+    "PERAK": "A",
+    "PERLIS": "R",
+    "SELANGOR": "B",
+    "TERENGGANU": "T",
+    "SABAH": "SA",
+    "SERAWAK": "SRWK",
+    "W.P KUALA LUMPUR": "W",
+    "W.P LABUAN": "L",
+    "W.P PUTRAJAYA": "F",
+  };
   late Map<EaduanItem, String> aduanItemList;
   late Map<EaduanItem, String> aduanIconList;
   late Map<EaduanItem, int> offenceId;
@@ -102,6 +123,8 @@ class _EaduanFormController extends State<EaduanFormController> {
 
   @override
   Widget build(BuildContext context) {
+    dropdownList = [AppLocalizations.of(context)!.state, ...stateMap.keys];
+    dropdownValue = AppLocalizations.of(context)!.state;
     aduanItemList = {
       EaduanItem.redLight: AppLocalizations.of(context)!.failToFollowRedLight,
       EaduanItem.emergencyLane:
@@ -149,6 +172,9 @@ class _EaduanFormController extends State<EaduanFormController> {
           stateController: stateController,
           vehicleController: vehicleController,
           mapTapCb: _onMapTap,
+          dropdownList: dropdownList,
+          dropdownValue: dropdownValue,
+          selectionCallback: selectionCallback,
         ),
         bottomNavigationBar: BottomNavController(),
       ),
@@ -283,6 +309,8 @@ class _EaduanFormController extends State<EaduanFormController> {
         remarkController.text != "" &&
         locationController.text != "" &&
         stateController.text != "" &&
+        stateController.text != "Negeri" &&
+        stateController.text != "State" &&
         vehicleController.text != "") {
       SiteConfig conf = SiteConfig();
       AduanSaveRequest req = AduanSaveRequest(
@@ -337,5 +365,9 @@ class _EaduanFormController extends State<EaduanFormController> {
       latitudeController.text = lat;
       longitudeController.text = long;
     });
+  }
+
+  selectionCallback(BuildContext context, dynamic val) {
+    stateController.text = val;
   }
 }
