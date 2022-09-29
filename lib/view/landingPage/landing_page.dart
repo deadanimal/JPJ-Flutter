@@ -16,45 +16,42 @@ class LandingPage extends StatelessWidget {
       width: double.infinity,
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage("images/main_bg_half.png"),
-          fit: BoxFit.fitHeight,
+          image: AssetImage("images/splashscreen_bg.png"),
+          fit: BoxFit.cover,
           alignment: Alignment.bottomCenter,
         ),
       ),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          Image(
-            image: const AssetImage("images/myjpj_logo_large.png"),
-            height: mediaHeight / 3,
-          ),
-          Column(
-            children: [
-              const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: CircularProgressIndicator(backgroundColor: Colors.white),
-              ),
-              Text(
-                AppLocalizations.of(context)!.welcome,
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 48,
-                  fontFamily: "Roboto",
-                  fontWeight: FontWeight.w700,
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image(
+                  image: const AssetImage("images/myjpj_logo_large_backup.png"),
+                  height: mediaHeight / 3,
                 ),
-              ),
-            ],
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child:
+                      CircularProgressIndicator(backgroundColor: Colors.white),
+                ),
+              ],
+            ),
           ),
-          const Text(
-            "JABATAN PENGANGKUTAN JALAN MALAYSIA",
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 12,
-              fontFamily: "Roboto",
-              fontWeight: FontWeight.w600,
-              letterSpacing: 0.42,
+          const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Text(
+              "JABATAN PENGANGKUTAN JALAN MALAYSIA",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 12,
+                fontFamily: "Roboto",
+                fontWeight: FontWeight.w600,
+                letterSpacing: 0.42,
+              ),
             ),
           ),
         ],
