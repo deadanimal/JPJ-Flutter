@@ -174,8 +174,8 @@ class _TestResultController extends State<TestResultController> {
                 AppLocalizations.of(context)!.testDate,
                 textAlign: TextAlign.start,
                 style: const TextStyle(
-                  color: Color(0xff8b9eb0),
-                  fontSize: 12,
+                  color: Colors.black,
+                  fontSize: 13,
                   fontFamily: "Roboto",
                   fontWeight: FontWeight.w600,
                 ),
@@ -185,7 +185,7 @@ class _TestResultController extends State<TestResultController> {
                 textAlign: TextAlign.end,
                 style: const TextStyle(
                   color: Color(0xff4e4e4e),
-                  fontSize: 10,
+                  fontSize: 13,
                 ),
               ),
             ],
@@ -199,8 +199,8 @@ class _TestResultController extends State<TestResultController> {
                 AppLocalizations.of(context)!.testLocation,
                 textAlign: TextAlign.start,
                 style: const TextStyle(
-                  color: Color(0xff8b9eb0),
-                  fontSize: 12,
+                  color: Colors.black,
+                  fontSize: 13,
                   fontFamily: "Roboto",
                   fontWeight: FontWeight.w600,
                 ),
@@ -214,7 +214,7 @@ class _TestResultController extends State<TestResultController> {
                   maxLines: 4,
                   style: const TextStyle(
                       color: Color(0xff4e4e4e),
-                      fontSize: 10,
+                      fontSize: 13,
                       overflow: TextOverflow.ellipsis),
                 ),
               ),
@@ -228,8 +228,8 @@ class _TestResultController extends State<TestResultController> {
                 AppLocalizations.of(context)!.licenseClass,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
-                  color: Color(0xff8b9eb0),
-                  fontSize: 12,
+                  color: Colors.black,
+                  fontSize: 13,
                   fontFamily: "Roboto",
                   fontWeight: FontWeight.w600,
                 ),
@@ -239,7 +239,7 @@ class _TestResultController extends State<TestResultController> {
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   color: Color(0xff4e4e4e),
-                  fontSize: 10,
+                  fontSize: 13,
                 ),
               ),
             ],
@@ -252,8 +252,8 @@ class _TestResultController extends State<TestResultController> {
                 AppLocalizations.of(context)!.result,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
-                  color: Color(0xff8b9eb0),
-                  fontSize: 12,
+                  color: Colors.black,
+                  fontSize: 13,
                   fontFamily: "Roboto",
                   fontWeight: FontWeight.w600,
                 ),
@@ -263,7 +263,7 @@ class _TestResultController extends State<TestResultController> {
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   color: Color(0xff4e4e4e),
-                  fontSize: 10,
+                  fontSize: 13,
                 ),
               ),
             ],

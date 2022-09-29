@@ -51,17 +51,16 @@ class CustomFavButton extends StatelessWidget {
                 ],
                 color: const Color(0xFF202E5C),
               ),
-              child: Flexible(
-                child: Text(
-                  menu.menu!,
-                  textAlign: TextAlign.start,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 15,
-                    fontFamily: "Roboto",
-                    fontWeight: FontWeight.w700,
-                  ),
+              child: Text(
+                menu.menu!,
+                textAlign: TextAlign.start,
+                overflow: TextOverflow.clip,
+                maxLines: 1,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 15,
+                  fontFamily: "Roboto",
+                  fontWeight: FontWeight.w700,
                 ),
               ),
             ),

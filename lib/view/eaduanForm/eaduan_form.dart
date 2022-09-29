@@ -277,8 +277,8 @@ class EaduanForm extends StatelessWidget {
             CustomButton(
               width: mediaWidth - 64,
               label: AppLocalizations.of(context)!.saveAsDraft,
-              decoration: whiteBtnDeco,
-              textColor: const Color(themeNavy),
+              decoration: orangeGradientBtnDeco,
+              textColor: Colors.white,
               onPressed: () {
                 submitCallback();
               },

@@ -41,9 +41,9 @@ class CustomPublicMenuSection extends StatelessWidget {
               subHeader,
               style: const TextStyle(
                 color: Color(0xff171f44),
-                fontSize: 15,
+                fontSize: 16,
                 fontFamily: "Roboto",
-                fontWeight: FontWeight.w600,
+                fontWeight: FontWeight.w900,
               ),
             ),
           ),

@@ -23,7 +23,7 @@ class CustomPublicButton extends StatelessWidget {
         },
         child: Container(
           width: 117,
-          height: 114,
+          height: 96,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
             boxShadow: const [
@@ -47,7 +47,7 @@ class CustomPublicButton extends StatelessWidget {
                     padding: const EdgeInsets.only(right: 8.0),
                     child: Image(
                       image: menu.icon!,
-                      width: 48,
+                      width: 55,
                       fit: BoxFit.fitHeight,
                     ),
                   ),

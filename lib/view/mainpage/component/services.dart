@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jpj_info/helper/fav_menu.dart';
 import 'package:jpj_info/helper/menu_list.dart';
 import 'package:jpj_info/model/mainpage_icon.dart';
 import 'package:jpj_info/view/common/spacing.dart';
@@ -10,6 +11,7 @@ class Services extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<CustomMenuItem> favMenuList = FavMenu().getFavMenuItem(context);
     List<CustomMenuItem> serviceMenu =
         MenuList(ctx: context).getServisMenuList();
     List<CustomMenuItem> transectionMenu =
@@ -35,6 +37,12 @@ class Services extends StatelessWidget {
     ];
     return Column(
       children: [
+        CustomPublicMenuSection(
+          serviceMenu: favMenuList,
+          subHeader: AppLocalizations.of(context)!.favourite,
+          fav: true,
+        ),
+        const SizedBox(height: vPaddingM),
         CustomPublicMenuSection(
           serviceMenu: licenseMenu,
           subHeader: AppLocalizations.of(context)!.licensesService,

@@ -70,7 +70,6 @@ class _MainPage extends State<MainPage> with TickerProviderStateMixin {
               header: mainheader(context),
             ),
             const SizedBox(height: vPaddingM),
-            favSubSection(context),
             populateButton(context),
           ],
         ),
@@ -153,43 +152,6 @@ class _MainPage extends State<MainPage> with TickerProviderStateMixin {
           child: userInfo(context),
         ),
       ],
-    );
-  }
-
-  Widget favSubSection(BuildContext context) {
-    if (MyJPJAccountManager().isLoggedIn == true) {
-      List<CustomMenuItem> favMenuList = FavMenu().getFavMenuItem(context);
-      return Column(
-        children: [
-          CustomPublicMenuSection(
-            serviceMenu: favMenuList,
-            subHeader: AppLocalizations.of(context)!.favourite,
-            fav: true,
-          ),
-        ],
-      );
-    } else {
-      return Container();
-    }
-  }
-
-  Widget favSubsectionItems(BuildContext context) {
-    List<CustomMenuItem> favMenuList = FavMenu().getFavMenuItem(context);
-    return SizedBox(
-      height: 74,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemCount: favMenuList.length,
-        shrinkWrap: true,
-        physics: const BouncingScrollPhysics(),
-        itemBuilder: (context, index) {
-          return CustomFavButton(
-              item: favMenuList[index],
-              onTap: () {
-                favMenuList[index].cbFunc(context);
-              });
-        },
-      ),
     );
   }
 

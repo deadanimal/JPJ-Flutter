@@ -64,7 +64,9 @@ class TemplateHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: (mediaHeight / 6) - kToolbarHeight / 2,
+      constraints: BoxConstraints(
+        minHeight: (mediaHeight / 6) - kToolbarHeight / 2,
+      ),
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(0),
