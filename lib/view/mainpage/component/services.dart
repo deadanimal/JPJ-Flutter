@@ -36,11 +36,6 @@ class Services extends StatelessWidget {
     return Column(
       children: [
         CustomPublicMenuSection(
-          serviceMenu: supportServiceMenu,
-          subHeader: AppLocalizations.of(context)!.supportServices,
-        ),
-        const SizedBox(height: vPaddingM),
-        CustomPublicMenuSection(
           serviceMenu: licenseMenu,
           subHeader: AppLocalizations.of(context)!.licensesService,
         ),
@@ -53,6 +48,11 @@ class Services extends StatelessWidget {
         CustomPublicMenuSection(
           serviceMenu: kSectionMenu,
           subHeader: AppLocalizations.of(context)!.kSection,
+        ),
+        const SizedBox(height: vPaddingM),
+        CustomPublicMenuSection(
+          serviceMenu: supportServiceMenu,
+          subHeader: AppLocalizations.of(context)!.supportServices,
         ),
       ],
     );

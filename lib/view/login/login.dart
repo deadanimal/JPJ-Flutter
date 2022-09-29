@@ -3,7 +3,6 @@ import 'package:jpj_info/model/page_size.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/common/spacing.dart';
 import 'package:jpj_info/view/form/custom_button.dart';
-import 'package:jpj_info/view/form/label.dart';
 import 'package:jpj_info/view/form/text_field.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:jpj_info/view/template/template_header.dart';
@@ -32,6 +31,20 @@ class Login extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: [
+            TemplateHeader(
+              header: Center(
+                child: Text(
+                  AppLocalizations.of(context)!.logIn,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 32,
+                    fontFamily: "Roboto",
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+            ),
             _foreground(context),
           ],
         ),
@@ -45,20 +58,6 @@ class Login extends StatelessWidget {
       width: mediaWidth,
       child: Column(
         children: [
-          TemplateHeader(
-            header: Center(
-              child: Text(
-                AppLocalizations.of(context)!.logIn,
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 32,
-                  fontFamily: "Roboto",
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ),
-          ),
           const SizedBox(height: vPaddingXL),
           _loginField(context),
           const SizedBox(height: verticalPadding),

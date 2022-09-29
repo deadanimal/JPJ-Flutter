@@ -110,6 +110,7 @@ class _MainPage extends State<MainPage> with TickerProviderStateMixin {
           ),
           Text(
             "${AppLocalizations.of(context)!.lastLoggedIn}: ${MyJPJAccountManager().lastLoggedIn}",
+            maxLines: 1,
             style: const TextStyle(
               color: Colors.white,
               fontSize: 16,
@@ -180,6 +181,7 @@ class _MainPage extends State<MainPage> with TickerProviderStateMixin {
         scrollDirection: Axis.horizontal,
         itemCount: favMenuList.length,
         shrinkWrap: true,
+        physics: const BouncingScrollPhysics(),
         itemBuilder: (context, index) {
           return CustomFavButton(
               item: favMenuList[index],

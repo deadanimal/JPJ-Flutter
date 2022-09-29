@@ -63,7 +63,7 @@ class CustomPublicMenuSection extends StatelessWidget {
                 );
               },
               shrinkWrap: true,
-              physics: const AlwaysScrollableScrollPhysics(),
+              physics: const BouncingScrollPhysics(),
               itemCount: serviceMenu.length,
             ),
           ),
