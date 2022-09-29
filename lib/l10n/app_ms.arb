@@ -8,6 +8,7 @@
     "registerNewAccount": "Daftar Akaun Baru",
     "languageSetting": "Tetapan Bahasa",
     "enterEmail": "Sila masukkan alamat e-mel anda",
+    "enteric": "Sila masukkan nombor kad pengenalan anda",
     "emailAddress": "Alamat e-mel",
     "submit": "Hantar",
     "tacSubmitted": "Kod TAC telah dihantar",
@@ -265,5 +266,6 @@
     "securityQuestionError":"Sila pastikan anda tidak memilih soalan yang sama dan semua soalan dijawab",
     "enteredPasswordNotTheSame":"Katalaluan tidak sama",
     "changePaswordInfo":"** Kata laluan perlu ditukar setiap tiga (3) bulan",
+    "success":"Berjaya",
     "pleaseWait": "Sila Tunggu..."
 }

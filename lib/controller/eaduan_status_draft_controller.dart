@@ -79,7 +79,7 @@ class _EaduanStatusController extends State<EaduanStatusController>
     CheckIdRequest req = CheckIdRequest(nokp: MyJPJAccountManager().id);
     jpjHttpRequest(
       context,
-      Uri.parse(conf.aduanStatus),
+      Uri.parse(conf.aduanStatusUri),
       headers: conf.formHeader,
       body: jsonEncode(req.toJson()),
       callback: _responseHandler,

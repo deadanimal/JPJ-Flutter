@@ -8,6 +8,7 @@
     "registerNewAccount": "Register New Account",
     "languageSetting": "Language Setting",
     "enterEmail": "Please enter your email address",
+    "enteric": "Please enter your IC number",
     "emailAddress": "Email address",
     "submit": "Submit",
     "tacSubmitted": "TAC was sent",
@@ -265,5 +266,6 @@
     "securityQuestionError":"Please make sure all question are answered and all question are different",
     "enteredPasswordNotTheSame":"Entered password are not the same",
     "changePaswordInfo":"** Password need to be changed every three (3) months",
+    "success":"Success",
     "pleaseWait": "Please wait..."
 }

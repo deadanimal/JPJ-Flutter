@@ -237,7 +237,7 @@ class _EaduanFormController extends State<EaduanFormController> {
     SiteConfig conf = SiteConfig();
     http.MultipartRequest request = http.MultipartRequest(
       'POST',
-      Uri.parse(conf.aduanImageUpload),
+      Uri.parse(conf.aduanImageUploadUri),
     );
 
     request.fields['no_aduan'] = aduanId;
@@ -301,7 +301,7 @@ class _EaduanFormController extends State<EaduanFormController> {
           pengadu: MyJPJAccountManager().id);
       jpjHttpRequest(
         context,
-        Uri.parse(conf.saveAduan),
+        Uri.parse(conf.saveAduanUri),
         headers: conf.formHeader,
         body: jsonEncode(req.toJson()),
         callback: _responseHandler,

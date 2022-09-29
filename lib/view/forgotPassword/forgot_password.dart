@@ -12,10 +12,12 @@ class ForgotPassword extends StatelessWidget {
   const ForgotPassword({
     Key? key,
     required this.emailController,
+    required this.idController,
     this.submitCB,
   }) : super(key: key);
 
   final TextEditingController emailController;
+  final TextEditingController idController;
   final void Function(BuildContext)? submitCB;
 
   @override
@@ -53,6 +55,19 @@ class ForgotPassword extends StatelessWidget {
             textController: emailController,
             inputType: TextInputType.emailAddress,
             label: AppLocalizations.of(context)!.emailAddress,
+            width: mediaWidth - 64,
+          ),
+          const SizedBox(height: vPaddingM),
+          CustomLabel(
+            label: AppLocalizations.of(context)!.enteric,
+            fontWeight: FontWeight.normal,
+            fontSize: 15,
+          ),
+          const SizedBox(height: vPaddingM),
+          TextFieldForm(
+            textController: idController,
+            inputType: TextInputType.text,
+            label: AppLocalizations.of(context)!.identification,
             width: mediaWidth - 64,
           ),
           const SizedBox(height: vPaddingXL),

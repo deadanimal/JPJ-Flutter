@@ -20,9 +20,10 @@ class SiteConfig {
   final String plateNumberUri = "$prodUrl/semakan_nombor_pendaftaran/";
   final String securityQuestionUri = "$prodUrl/soalan_keselamatan/";
   final String locationCheckUri = "$prodUrl/jpjinfo-api/apps/semaklokasi/";
-  final String aduanStatus = "$prodUrl/get_status_aduan/";
-  final String saveAduan = "$prodUrl/simpan_aduan/";
-  final String aduanImageUpload = "$prodUrl/upld_images/";
+  final String aduanStatusUri = "$prodUrl/get_status_aduan/";
+  final String saveAduanUri = "$prodUrl/simpan_aduan/";
+  final String aduanImageUploadUri = "$prodUrl/upld_images/";
+  final String resetPasswordUri = "$prodUrl/reset_password_id_awam/";
 
   //staging api
   final String checkUserIdUrierr = "$prodUrl/semak-id-awam/err.php";

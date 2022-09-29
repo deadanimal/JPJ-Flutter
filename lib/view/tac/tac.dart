@@ -9,15 +9,18 @@ import 'package:jpj_info/view/form/custom_button.dart';
 import 'package:jpj_info/view/form/label.dart';
 import 'package:jpj_info/view/form/pin.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:jpj_info/view/form/text_field.dart';
 
 class Tac extends StatelessWidget {
   Tac({
     Key? key,
     this.submitCB,
+    required this.tacController,
   }) : super(key: key);
 
-  final void Function(BuildContext, String)? submitCB;
+  final void Function(BuildContext)? submitCB;
   final int endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 180;
+  final TextEditingController tacController;
 
   void onEnd() {
     //timer expired handle
@@ -54,49 +57,11 @@ class Tac extends StatelessWidget {
             fontSize: 15,
           ),
           const SizedBox(height: vPaddingM),
-          CustomPin(
+          TextFieldForm(
+            textController: tacController,
+            inputType: TextInputType.text,
+            label: AppLocalizations.of(context)!.tacCode,
             width: mediaWidth - 64,
-            submitCB: submitCB,
-          ),
-          SizedBox(
-            width: mediaWidth - 64,
-            child: CountdownTimer(
-              endTime: endTime,
-              onEnd: onEnd,
-              widgetBuilder: (context, CurrentRemainingTime? time) {
-                String countdownText;
-                if (time == null) {
-                  countdownText = AppLocalizations.of(context)!.sendTacAgain;
-                } else {
-                  String minutes = time.min != null ? "${time.min}" : "0";
-                  String seconds = time.sec != null ? "${time.sec}" : "00";
-                  countdownText = '$minutes:$seconds';
-                }
-                return Padding(
-                  padding: const EdgeInsets.only(
-                    left: 8,
-                    right: 8,
-                  ),
-                  child: Text(
-                    countdownText,
-                    textAlign: TextAlign.end,
-                    style: const TextStyle(
-                        backgroundColor: Colors.white54,
-                        color: Color(0xff171f44),
-                        fontSize: 10,
-                        fontFamily: "Roboto",
-                        fontWeight: FontWeight.w600,
-                        shadows: [
-                          BoxShadow(
-                            color: Color(0xffffffff),
-                            blurRadius: 4,
-                            offset: Offset(0, 4),
-                          ),
-                        ]),
-                  ),
-                );
-              },
-            ),
           ),
           const SizedBox(height: vPaddingXL),
           const SizedBox(height: vPaddingXL),
@@ -104,9 +69,9 @@ class Tac extends StatelessWidget {
           CustomButton(
             width: mediaWidth - 64,
             onPressed: () {
-              // if (submitCB != null) {
-              //   submitCB!(context);
-              // }
+              if (submitCB != null) {
+                submitCB!(context);
+              }
             },
             decoration: orangeGradientBtnDeco,
             label: AppLocalizations.of(context)!.verify,
