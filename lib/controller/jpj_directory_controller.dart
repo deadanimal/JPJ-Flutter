@@ -7,6 +7,7 @@ import 'package:jpj_info/controller/alert_controller.dart';
 import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/controller/bottom_nav_controller.dart';
 import 'package:jpj_info/controller/http_request_controller.dart';
+import 'package:jpj_info/controller/mainpage_controller.dart';
 import 'package:jpj_info/model/jpj_location_info.dart';
 import 'package:jpj_info/model/jpj_location_request.dart';
 import 'package:jpj_info/model/jpj_location_response.dart';
@@ -44,8 +45,18 @@ class _JpjDirectoryController extends State<JpjDirectoryController> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: const AppBarController(
+        appBar: AppBarController(
           decor: customGradient,
+          backCb: (c) {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) {
+                  return const MainpageController();
+                },
+              ),
+            );
+          },
         ),
         body: FutureBuilder<List<CustomMenuItem>>(
           future: _getDirectoryInfo(),
