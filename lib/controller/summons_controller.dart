@@ -85,10 +85,13 @@ class _SummonsController extends State<SummonsController> {
         kategori: index.toString(),
         nokp: _controller.text,
       );
-      jpjHttpRequest(context, Uri.parse(conf.summonCheckUri),
-          headers: conf.formHeader,
-          body: jsonEncode(req.toJson()),
-          callback: _respondHandler);
+      jpjHttpRequest(
+        context,
+        Uri.parse(conf.summonCheckUri),
+        headers: conf.formHeader,
+        body: jsonEncode(req.toJson()),
+        callback: _respondHandler,
+      );
     } else {
       TooltipInfo().showInfo(
         context,
@@ -110,10 +113,12 @@ class _SummonsController extends State<SummonsController> {
         MaterialPageRoute(
           builder: (context) {
             respond.saman?.forEach((el) {
-              summonsList.add(CustomExpensionList(
-                data: el,
-                isSelected: false,
-              ));
+              if (el.notisId!.trim() != '') {
+                summonsList.add(CustomExpensionList(
+                  data: el,
+                  isSelected: false,
+                ));
+              }
             });
             return SummonsStatus(
               data: summonsList,

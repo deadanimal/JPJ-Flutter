@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/controller/bottom_nav_controller.dart';
-import 'package:jpj_info/controller/summons_verification_controller.dart';
 import 'package:jpj_info/model/expansion_list.dart';
 import 'package:jpj_info/model/page_size.dart';
 import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
-import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/common/spacing.dart';
-import 'package:jpj_info/view/form/custom_button.dart';
 import 'package:jpj_info/view/summonsStatus/component/expandable_container.dart';
 import 'package:jpj_info/view/template/component/custom_subtitle.dart';
 import 'package:jpj_info/view/template/template_header.dart';
@@ -58,31 +55,32 @@ class _SummonsStatus extends State<SummonsStatus> {
           const SizedBox(
             height: vPaddingXL,
           ),
-          CustomButton(
-            width: mediaWidth - 64,
-            onPressed: () {},
-            decoration: navyGradientBtnDeco,
-            label: AppLocalizations.of(context)!.transactionList,
-          ),
-          const SizedBox(
-            height: vPaddingM,
-          ),
-          CustomButton(
-              width: mediaWidth - 64,
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return const SummonsVerificationController();
-                    },
-                  ),
-                );
-              },
-              textColor: const Color(themeNavy),
-              decoration: whiteBtnDeco,
-              label:
-                  "${AppLocalizations.of(context)!.choose} $noOfSelectedSummons ${AppLocalizations.of(context)!.ticket}")
+          // CustomButton(
+          //   width: mediaWidth - 64,
+          //   onPressed: () {},
+          //   decoration: navyGradientBtnDeco,
+          //   label: AppLocalizations.of(context)!.transactionList,
+          // ),
+          // const SizedBox(
+          //   height: vPaddingM,
+          // ),
+          // CustomButton(
+          //   width: mediaWidth - 64,
+          //   onPressed: () {
+          //     Navigator.push(
+          //       context,
+          //       MaterialPageRoute(
+          //         builder: (context) {
+          //           return const SummonsVerificationController();
+          //         },
+          //       ),
+          //     );
+          //   },
+          //   textColor: const Color(themeNavy),
+          //   decoration: whiteBtnDeco,
+          //   label:
+          //       "${AppLocalizations.of(context)!.choose} $noOfSelectedSummons ${AppLocalizations.of(context)!.ticket}",
+          // )
         ],
       ),
     );

@@ -3,7 +3,6 @@ import 'package:jpj_info/model/page_size.dart';
 import 'package:jpj_info/model/summons_response.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/common/spacing.dart';
-import 'package:jpj_info/view/form/checkbox.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CustomExpandableContainer extends StatefulWidget {
@@ -53,17 +52,17 @@ class _CustomExpandableContainer extends State<CustomExpandableContainer> {
       child: Row(
         mainAxisSize: MainAxisSize.max,
         children: [
-          Expanded(
-            flex: 2,
-            child: CustomCheckbox(
-              bgColor: Colors.grey.shade50,
-              shadow: const BoxShadow(),
-              size: 18,
-              stateChangeCb: (checked) {
-                widget.checkboxCallback(checked, widget.data.notisId!);
-              },
-            ),
-          ),
+          // Expanded(
+          //   flex: 2,
+          //   child: CustomCheckbox(
+          //     bgColor: Colors.grey.shade50,
+          //     shadow: const BoxShadow(),
+          //     size: 18,
+          //     stateChangeCb: (checked) {
+          //       widget.checkboxCallback(checked, widget.data.notisId!);
+          //     },
+          //   ),
+          // ),
           Expanded(
             flex: 8,
             child: Column(
