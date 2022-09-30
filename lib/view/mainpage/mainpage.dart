@@ -1,13 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jpj_info/helper/account_manager.dart';
-import 'package:jpj_info/helper/fav_menu.dart';
-import 'package:jpj_info/model/mainpage_icon.dart';
 import 'package:jpj_info/model/page_size.dart';
 import 'package:jpj_info/view/common/spacing.dart';
-import 'package:jpj_info/view/common/text_style.dart';
-import 'package:jpj_info/view/mainpage/component/custom_public_menu_section.dart';
-import 'package:jpj_info/view/mainpage/component/custom_tab.dart';
-import 'package:jpj_info/view/mainpage/component/fav_button.dart';
 import 'package:jpj_info/view/mainpage/component/services.dart';
 import 'package:jpj_info/view/mainpage/component/staff_menu.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -60,7 +54,6 @@ class _MainPage extends State<MainPage> with TickerProviderStateMixin {
       ),
       child: Container(
         constraints: BoxConstraints(
-          maxWidth: 400,
           maxHeight: mediaHeight,
         ),
         child: ListView(
@@ -153,18 +146,6 @@ class _MainPage extends State<MainPage> with TickerProviderStateMixin {
         ),
       ],
     );
-  }
-
-  Widget mainSubSection(BuildContext context) {
-    if (MyJPJAccountManager().type == UserType.staff) {
-      return CustomTab(tabController: tabController);
-    } else {
-      return Text(
-        AppLocalizations.of(context)!.service,
-        textAlign: TextAlign.center,
-        style: CustomTextStyle().subHeader(),
-      );
-    }
   }
 
   Widget populateButton(context) {

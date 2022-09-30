@@ -9,6 +9,7 @@ class CustomLabel extends StatelessWidget {
     this.fontWeight = FontWeight.w700,
     this.endWidget = const SizedBox(),
     this.align = TextAlign.center,
+    this.deco,
   }) : super(key: key);
 
   final String label;
@@ -16,6 +17,7 @@ class CustomLabel extends StatelessWidget {
   final FontWeight? fontWeight;
   final Widget endWidget;
   final TextAlign align;
+  final Decoration? deco;
 
   @override
   Widget build(BuildContext context) {
@@ -25,14 +27,17 @@ class CustomLabel extends StatelessWidget {
         Expanded(
           child: Padding(
             padding: const EdgeInsets.only(left: 16.0),
-            child: Text(
-              label,
-              textAlign: align,
-              style: TextStyle(
-                color: const Color(themeNavy),
-                fontSize: fontSize,
-                fontFamily: "Roboto",
-                fontWeight: fontWeight,
+            child: Container(
+              decoration: deco,
+              child: Text(
+                label,
+                textAlign: align,
+                style: TextStyle(
+                  color: const Color(themeNavy),
+                  fontSize: fontSize,
+                  fontFamily: "Roboto",
+                  fontWeight: fontWeight,
+                ),
               ),
             ),
           ),

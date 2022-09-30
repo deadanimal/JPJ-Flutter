@@ -176,3 +176,8 @@ Decoration whiteBtnDecoSquare = BoxDecoration(
     ),
   ],
 );
+
+Decoration whiteBoxDecoRounded = BoxDecoration(
+  borderRadius: BorderRadius.circular(20),
+  color: Colors.grey.shade100,
+);

@@ -219,5 +219,11 @@ flutter:
     - family: CustomMessagesIcon
       fonts:
         - asset: fonts/CustomMessagesIcon.ttf
+    - family: Roboto
+      fonts:
+        - asset: fonts/Roboto-Regular.ttf
+    - family: MaShanZheng
+      fonts:
+        - asset: fonts/MaShanZheng-Regular.ttf
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

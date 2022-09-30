@@ -1,5 +1,6 @@
 import 'package:external_app_launcher/external_app_launcher.dart';
 import 'package:flutter/material.dart';
+import 'package:jpj_info/config/site_config.dart';
 import 'package:jpj_info/controller/blacklist_controller.dart';
 import 'package:jpj_info/controller/change_password_controller.dart';
 import 'package:jpj_info/controller/demerit_points_contoller.dart';
@@ -19,7 +20,6 @@ import 'package:jpj_info/controller/feedback_controller.dart';
 import 'package:jpj_info/controller/jpj_directory_controller.dart';
 import 'package:jpj_info/controller/jpj_eq_branch_list_controller.dart';
 import 'package:jpj_info/controller/jpj_eq_mainpage_controller.dart';
-import 'package:jpj_info/controller/jpj_eq_menu_controller.dart';
 import 'package:jpj_info/controller/jpj_eq_notification_controller.dart';
 import 'package:jpj_info/controller/jpj_eq_transaction_controller.dart';
 import 'package:jpj_info/controller/latest_registration_number_controller.dart';
@@ -221,14 +221,12 @@ void transactionHistoryPage(BuildContext context) {
   );
 }
 
-void jpjEqMenuPage(BuildContext context) {
-  Navigator.push(
-    context,
-    MaterialPageRoute(
-      builder: (context) {
-        return const JpjEqMenuController();
-      },
-    ),
+Future<void> jpjEqMenuPage(BuildContext context) async {
+  await LaunchApp.openApp(
+    androidPackageName: SiteConfig().jpjEqPlayStoreid,
+    iosUrlScheme: 'jpjeq://',
+    appStoreLink:
+        'itms-apps://apps.apple.com/us/app/jpjeq/${SiteConfig().jpjEqAppStoreid}',
   );
 }
 
@@ -390,8 +388,9 @@ void jpjEqNotificationPage(BuildContext context) {
 
 void jpjEbidStore(BuildContext context) async {
   await LaunchApp.openApp(
-    androidPackageName: 'my.gov.jpj.ebidding',
+    androidPackageName: SiteConfig().jpjEbidPlayStoreid,
     iosUrlScheme: 'jpjebid://',
-    appStoreLink: 'itms-apps://apps.apple.com/us/app/jpjebid/id1458846863',
+    appStoreLink:
+        'itms-apps://apps.apple.com/us/app/jpjebid/${SiteConfig().jpjEbidAppStoreid}',
   );
 }

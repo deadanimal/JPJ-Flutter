@@ -20,51 +20,58 @@ class CustomPublicMenuSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(
-        left: 8,
-        right: 8,
         top: 12,
         bottom: 16,
       ),
-      constraints: const BoxConstraints(maxWidth: 400),
-      width: mediaWidth - 32,
+      constraints: const BoxConstraints(maxWidth: 500),
+      width: mediaWidth,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            padding: const EdgeInsets.only(right: 5, left: 5),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              color: Colors.grey.shade100,
-            ),
-            child: Text(
-              subHeader,
-              style: const TextStyle(
-                color: Color(0xff171f44),
-                fontSize: 16,
-                fontFamily: "Roboto",
-                fontWeight: FontWeight.w900,
+          Padding(
+            padding: const EdgeInsets.only(left: 8, right: 8),
+            child: Container(
+              padding: const EdgeInsets.only(right: 5, left: 5),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: Colors.grey.shade100,
+              ),
+              child: Text(
+                subHeader,
+                style: const TextStyle(
+                  color: Color(0xff171f44),
+                  fontSize: 16,
+                  fontFamily: "Roboto",
+                  fontWeight: FontWeight.w900,
+                ),
               ),
             ),
           ),
           const SizedBox(height: vPaddingS),
           Container(
             constraints: const BoxConstraints(maxHeight: 130),
-            child: ListView.builder(
+            child: ListView(
               scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) {
-                return Row(
-                  children: [
-                    fav
-                        ? CustomFavButton(menu: serviceMenu[index])
-                        : CustomPublicButton(menu: serviceMenu[index]),
-                    const SizedBox(width: vPaddingM),
-                  ],
-                );
-              },
-              shrinkWrap: true,
-              physics: const BouncingScrollPhysics(),
-              itemCount: serviceMenu.length,
+              children: [
+                const SizedBox(width: vPaddingM),
+                ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) {
+                    return Row(
+                      children: [
+                        fav
+                            ? CustomFavButton(menu: serviceMenu[index])
+                            : CustomPublicButton(menu: serviceMenu[index]),
+                        const SizedBox(width: vPaddingM),
+                      ],
+                    );
+                  },
+                  shrinkWrap: true,
+                  physics: const BouncingScrollPhysics(),
+                  itemCount: serviceMenu.length,
+                ),
+              ],
             ),
           ),
         ],

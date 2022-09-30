@@ -71,7 +71,9 @@ class MyJPJAccountManager {
       postcode = "";
       address = "";
       firstTime = loginResponse.idmpuStatus!;
-      type = UserType.staff;
+      type = loginResponse.idmpuStaffInd!.trim() == "true"
+          ? UserType.staff
+          : UserType.loggedIn;
       isLoggedIn = true;
     } catch (e) {
       isLoggedIn = false;

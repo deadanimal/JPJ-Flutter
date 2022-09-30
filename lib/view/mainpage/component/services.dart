@@ -20,7 +20,6 @@ class Services extends StatelessWidget {
       serviceMenu[0],
       serviceMenu[1],
       serviceMenu[2],
-      serviceMenu[4],
     ];
     List<CustomMenuItem> licenseMenu = [
       transectionMenu[0],
