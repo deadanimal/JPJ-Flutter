@@ -3,6 +3,7 @@ import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/controller/bottom_nav_controller.dart';
 import 'package:jpj_info/controller/forgot_password_controller.dart';
 import 'package:jpj_info/controller/new_registration_controller.dart';
+import 'package:jpj_info/helper/exit_prompt.dart';
 import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
 import 'package:jpj_info/view/mainpage/mainpage.dart';
 
@@ -32,16 +33,21 @@ class _MainpageController extends State<MainpageController> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: const AppBarController(
-          hasBackButton: false,
-          decor: customGradient,
-        ),
-        body: const MainPage(),
-        bottomNavigationBar: BottomNavController(
-          darkTheme: true,
-          inHome: true,
+    return WillPopScope(
+      onWillPop: () {
+        return Exitprompter().prompt(context);
+      },
+      child: SafeArea(
+        child: Scaffold(
+          appBar: const AppBarController(
+            hasBackButton: false,
+            decor: customGradient,
+          ),
+          body: const MainPage(),
+          bottomNavigationBar: BottomNavController(
+            darkTheme: true,
+            inHome: true,
+          ),
         ),
       ),
     );

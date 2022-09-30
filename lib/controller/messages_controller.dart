@@ -6,6 +6,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/controller/bottom_nav_controller.dart';
 import 'package:jpj_info/controller/mainpage_controller.dart';
+import 'package:jpj_info/helper/exit_prompt.dart';
 import 'package:jpj_info/helper/menu_list.dart';
 import 'package:jpj_info/model/inbox_messages.dart';
 import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
@@ -34,49 +35,54 @@ class _MessageController extends State<MessageController> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBarController(
-          decor: customGradient,
-          backCb: (c) {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (context) {
-                  return const MainpageController();
-                },
-              ),
-            );
-          },
-        ),
-        body: FutureBuilder<List<InboxMessages>>(
-          future: _getMessagesList(),
-          builder: (BuildContext context,
-              AsyncSnapshot<List<InboxMessages>> snapshot) {
-            if (!snapshot.hasData) {
-              EasyLoading.show(
-                status: AppLocalizations.of(context)!.pleaseWait,
+    return WillPopScope(
+      onWillPop: () {
+        return Exitprompter().prompt(context);
+      },
+      child: SafeArea(
+        child: Scaffold(
+          appBar: AppBarController(
+            decor: customGradient,
+            backCb: (c) {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return const MainpageController();
+                  },
+                ),
               );
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            } else {
-              EasyLoading.dismiss();
-              return Inbox(
-                title: AppLocalizations.of(context)!.inbox,
-                transactionList: MenuList(ctx: context).getEzypayMenuList(),
-                eraseActionCallback: _eraseCallback,
-                markActionCallback: _markCallback,
-                readActionCallback: _readCallback,
-                refreshCallback: _refreshMsgList,
-                msgList: msgList,
-              );
-            }
-          },
-        ),
-        bottomNavigationBar: BottomNavController(
-          darkTheme: true,
-          inInbox: true,
+            },
+          ),
+          body: FutureBuilder<List<InboxMessages>>(
+            future: _getMessagesList(),
+            builder: (BuildContext context,
+                AsyncSnapshot<List<InboxMessages>> snapshot) {
+              if (!snapshot.hasData) {
+                EasyLoading.show(
+                  status: AppLocalizations.of(context)!.pleaseWait,
+                );
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              } else {
+                EasyLoading.dismiss();
+                return Inbox(
+                  title: AppLocalizations.of(context)!.inbox,
+                  transactionList: MenuList(ctx: context).getEzypayMenuList(),
+                  eraseActionCallback: _eraseCallback,
+                  markActionCallback: _markCallback,
+                  readActionCallback: _readCallback,
+                  refreshCallback: _refreshMsgList,
+                  msgList: msgList,
+                );
+              }
+            },
+          ),
+          bottomNavigationBar: BottomNavController(
+            darkTheme: true,
+            inInbox: true,
+          ),
         ),
       ),
     );

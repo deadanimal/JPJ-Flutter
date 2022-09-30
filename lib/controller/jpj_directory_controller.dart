@@ -8,6 +8,7 @@ import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/controller/bottom_nav_controller.dart';
 import 'package:jpj_info/controller/http_request_controller.dart';
 import 'package:jpj_info/controller/mainpage_controller.dart';
+import 'package:jpj_info/helper/exit_prompt.dart';
 import 'package:jpj_info/model/jpj_location_info.dart';
 import 'package:jpj_info/model/jpj_location_request.dart';
 import 'package:jpj_info/model/jpj_location_response.dart';
@@ -43,44 +44,49 @@ class _JpjDirectoryController extends State<JpjDirectoryController> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBarController(
-          decor: customGradient,
-          backCb: (c) {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (context) {
-                  return const MainpageController();
-                },
-              ),
-            );
-          },
-        ),
-        body: FutureBuilder<List<CustomMenuItem>>(
-          future: _getDirectoryInfo(),
-          builder: (BuildContext context,
-              AsyncSnapshot<List<CustomMenuItem>> snapshot) {
-            if (!snapshot.hasData) {
-              // while data is loading:
-              EasyLoading.show(
-                status: AppLocalizations.of(context)!.pleaseWait,
+    return WillPopScope(
+      onWillPop: () {
+        return Exitprompter().prompt(context);
+      },
+      child: SafeArea(
+        child: Scaffold(
+          appBar: AppBarController(
+            decor: customGradient,
+            backCb: (c) {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return const MainpageController();
+                  },
+                ),
               );
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            } else {
-              EasyLoading.dismiss();
-              return JpjDirectory(
-                locationList: snapshot.data!,
-              );
-            }
-          },
-        ),
-        bottomNavigationBar: BottomNavController(
-          darkTheme: true,
-          inDirectory: true,
+            },
+          ),
+          body: FutureBuilder<List<CustomMenuItem>>(
+            future: _getDirectoryInfo(),
+            builder: (BuildContext context,
+                AsyncSnapshot<List<CustomMenuItem>> snapshot) {
+              if (!snapshot.hasData) {
+                // while data is loading:
+                EasyLoading.show(
+                  status: AppLocalizations.of(context)!.pleaseWait,
+                );
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              } else {
+                EasyLoading.dismiss();
+                return JpjDirectory(
+                  locationList: snapshot.data!,
+                );
+              }
+            },
+          ),
+          bottomNavigationBar: BottomNavController(
+            darkTheme: true,
+            inDirectory: true,
+          ),
         ),
       ),
     );

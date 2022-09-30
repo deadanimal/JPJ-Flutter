@@ -223,8 +223,8 @@
     "noOfWaiting":"No. in queue",
     "serviceProvided":"Provided Service",
     "verification":"Verification",
-    "yes":"YA",
-    "no":"TIDAK",
+    "yes":"Yes",
+    "no":"No",
     "areYouSureCancelQueue":"Are you sure you want\nto cancel your number?",
     "day":"Day",
     "closed":"Close",
@@ -267,5 +267,6 @@
     "enteredPasswordNotTheSame":"Entered password are not the same",
     "changePaswordInfo":"** Password need to be changed every three (3) months",
     "success":"Success",
+    "closeApp":"Exit?",
     "pleaseWait": "Please wait..."
 }
