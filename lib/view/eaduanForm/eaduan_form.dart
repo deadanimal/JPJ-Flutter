@@ -37,6 +37,7 @@ class EaduanForm extends StatelessWidget {
     required this.dropdownList,
     required this.dropdownValue,
     required this.selectionCallback,
+    required this.eraseImageCallback,
   }) : super(key: key);
   final String? title;
   final AssetImage image;
@@ -57,6 +58,7 @@ class EaduanForm extends StatelessWidget {
   final Iterable<String> dropdownList;
   final String dropdownValue;
   final Function(BuildContext, dynamic) selectionCallback;
+  final Function(int) eraseImageCallback;
 
   @override
   Widget build(BuildContext context) {
@@ -302,8 +304,8 @@ class EaduanForm extends StatelessWidget {
       thumbVisibility: true,
       controller: scrollController,
       child: ScrollableImageContainer(
+        eraseImageCallback: eraseImageCallback,
         imagesPath: imagesPath,
-        // openGalleryCallback: openGalleryCallback,
         openGalleryCallback: () {
           NewMediaSelector().promptUser(
             context,

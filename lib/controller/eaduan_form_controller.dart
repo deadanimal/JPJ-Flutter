@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 // import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
@@ -175,6 +176,7 @@ class _EaduanFormController extends State<EaduanFormController> {
           dropdownList: dropdownList,
           dropdownValue: dropdownValue,
           selectionCallback: selectionCallback,
+          eraseImageCallback: _eraseImage,
         ),
         bottomNavigationBar: BottomNavController(),
       ),
@@ -243,65 +245,34 @@ class _EaduanFormController extends State<EaduanFormController> {
 
   void _fileUploadResponseHandler(http.StreamedResponse response) {
     if (response.statusCode == 200) {
-      (response.stream.bytesToString().then((value) => print(value)));
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) {
-            return EaduanSubmitScreen(
-              backBtnCallback: _backBtnCallback,
+      response.stream.bytesToString().then(
+        (value) {
+          AduanSaveResponse res = AduanSaveResponse.fromJson(jsonDecode(value));
+          if (res.status == "saved") {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) {
+                  return EaduanSubmitScreen(
+                    backBtnCallback: _backBtnCallback,
+                  );
+                },
+              ),
             );
-          },
-        ),
+          } else {
+            AlertController(ctx: context).generalError(
+                AppLocalizations.of(context)!.errorPleaseTryAgain, () {
+              Navigator.pop(context);
+            });
+          }
+        },
       );
     } else {
       AlertController(ctx: context).connectionError();
     }
   }
 
-  void _fileUpload(String aduanId) async {
-    SiteConfig conf = SiteConfig();
-    http.MultipartRequest request = http.MultipartRequest(
-      'POST',
-      Uri.parse(conf.aduanImageUploadUri),
-    );
-
-    request.fields['no_aduan'] = aduanId;
-    List<http.MultipartFile> newList = <http.MultipartFile>[];
-
-    for (int i = 0; i < images.length; i++) {
-      final result1 = Stream.value(
-        List<int>.from(images[i]),
-      ).asBroadcastStream();
-      XFile a = XFile.fromData(images[i]);
-      var length = await a.length();
-
-      var multipartFile = http.MultipartFile("gambar", a.openRead(), length,
-          filename: "123" + i.toString());
-      newList.add(multipartFile);
-    }
-
-    request.files.addAll(newList);
-    var response = await request.send();
-    _fileUploadResponseHandler(response);
-  }
-
-  void _responseHandler(http.Response response) {
-    if (response.statusCode == 200) {
-      AduanSaveResponse res = AduanSaveResponse.fromJson(
-        jsonDecode(response.body),
-      );
-      if (res.noAduan != null) {
-        _fileUpload(res.noAduan!.toString());
-      } else {
-        AlertController(ctx: context).connectionError();
-      }
-    } else {
-      AlertController(ctx: context).connectionError();
-    }
-  }
-
-  void _submitCallback() {
+  void _submitCallback() async {
     if (dateController.text != "" &&
         timeController.text != "" &&
         latitudeController.text != "" &&
@@ -312,28 +283,44 @@ class _EaduanFormController extends State<EaduanFormController> {
         stateController.text != "Negeri" &&
         stateController.text != "State" &&
         vehicleController.text != "") {
-      SiteConfig conf = SiteConfig();
-      AduanSaveRequest req = AduanSaveRequest(
-          catatan: remarkController.text,
-          idkesalahan: offenceId[widget.itemClass]!.toString(),
-          latitude: latitudeController.text,
-          longlitude: longitudeController.text,
-          masa: timeController.text,
-          tarikh: dateController.text,
-          lokasi: locationController.text,
-          negeri: stateController.text,
-          nokenderaan: vehicleController.text,
-          videoName: "",
-          imageName: "",
-          pautan: "",
-          pengadu: MyJPJAccountManager().id);
-      jpjHttpRequest(
-        context,
-        Uri.parse(conf.saveAduanUri),
-        headers: conf.formHeader,
-        body: jsonEncode(req.toJson()),
-        callback: _responseHandler,
+      EasyLoading.show(
+        status: AppLocalizations.of(context)!.pleaseWait,
       );
+      SiteConfig conf = SiteConfig();
+      http.MultipartRequest request = http.MultipartRequest(
+        'POST',
+        Uri.parse(conf.saveAduanUri),
+      );
+
+      request.fields['catatan'] = remarkController.text;
+      request.fields['idkesalahan'] = offenceId[widget.itemClass]!.toString();
+      request.fields['latitude'] = latitudeController.text;
+      request.fields['longlitude'] = longitudeController.text;
+      request.fields['masa'] = timeController.text;
+      request.fields['tarikh'] = dateController.text;
+      request.fields['lokasi'] = locationController.text;
+      request.fields['negeri'] = stateController.text;
+      request.fields['nokenderaan'] = vehicleController.text;
+      request.fields['videoName'] = "";
+      request.fields['imageName'] = "";
+      request.fields['pautan'] = "";
+      request.fields['pengadu'] = MyJPJAccountManager().id;
+
+      List<http.MultipartFile> newList = <http.MultipartFile>[];
+
+      for (int i = 0; i < images.length; i++) {
+        XFile a = XFile.fromData(images[i]);
+        var length = await a.length();
+
+        var multipartFile = http.MultipartFile("gambar", a.openRead(), length,
+            filename: "attachement_$i");
+        newList.add(multipartFile);
+      }
+
+      request.files.addAll(newList);
+      var response = await request.send();
+      EasyLoading.dismiss();
+      _fileUploadResponseHandler(response);
     } else {
       AlertController(ctx: context).generalError(
         AppLocalizations.of(context)!.pleaseFillAllInfo,
@@ -369,5 +356,11 @@ class _EaduanFormController extends State<EaduanFormController> {
 
   selectionCallback(BuildContext context, dynamic val) {
     stateController.text = val;
+  }
+
+  void _eraseImage(int index) {
+    setState(() {
+      images.removeAt(index);
+    });
   }
 }

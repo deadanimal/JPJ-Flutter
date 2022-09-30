@@ -55,6 +55,7 @@ dependencies:
   latlong2: ^0.8.1
   launch_review: ^3.0.1
   external_app_launcher: ^2.0.2
+  badges: ^2.0.3
 
 dev_dependencies:
   flutter_test:

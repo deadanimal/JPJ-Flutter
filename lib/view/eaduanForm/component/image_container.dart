@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 
+import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 
@@ -9,10 +10,12 @@ class ScrollableImageContainer extends StatefulWidget {
     required this.imagesPath,
     required this.openGalleryCallback,
     required this.scrollController,
+    required this.eraseImageCallback,
   }) : super(key: key);
   final List<Uint8List> imagesPath;
   final Function openGalleryCallback;
   final ScrollController scrollController;
+  final Function(int) eraseImageCallback;
 
   @override
   State<StatefulWidget> createState() => _ScrollableImageContainer();
@@ -34,8 +37,8 @@ class _ScrollableImageContainer extends State<ScrollableImageContainer> {
   @override
   Widget build(BuildContext context) {
     List<Widget> children = [];
-    for (var element in widget.imagesPath) {
-      children.add(_imageContainer(element));
+    for (var i = 0; i < widget.imagesPath.length; i++) {
+      children.add(_imageContainer(widget.imagesPath[i], i));
     }
     children.add(_addImageBtn());
     return Padding(
@@ -51,13 +54,16 @@ class _ScrollableImageContainer extends State<ScrollableImageContainer> {
     );
   }
 
-  Widget _imageContainer(Uint8List imageData) {
+  Widget _imageContainer(Uint8List imageData, int index) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: InkWell(
-        onTap: () {
-          widget.openGalleryCallback();
-        },
+      child: Badge(
+        badgeContent: InkWell(
+          child: const Text("X"),
+          onTap: () {
+            widget.eraseImageCallback(index);
+          },
+        ),
         child: Container(
           width: 174,
           height: 174,

@@ -27,7 +27,7 @@ class NewImageSelector {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Container(
                       height: 32,
@@ -43,7 +43,6 @@ class NewImageSelector {
                         size: 32,
                       ),
                     ),
-                    const SizedBox(width: horizontalPadding),
                     Text(
                       AppLocalizations.of(context)!.camera,
                       style: const TextStyle(
@@ -68,7 +67,7 @@ class NewImageSelector {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Container(
                       height: 32,
@@ -81,10 +80,9 @@ class NewImageSelector {
                       child: const Icon(
                         Icons.browse_gallery_rounded,
                         color: Color(themeNavy),
-                        // size: 32,
+                        size: 32,
                       ),
                     ),
-                    const SizedBox(width: horizontalPadding),
                     Text(
                       AppLocalizations.of(context)!.gallery,
                       style: const TextStyle(
