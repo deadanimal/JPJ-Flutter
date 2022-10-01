@@ -4,7 +4,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-// import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_map/plugin_api.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:jpj_info/config/site_config.dart';
@@ -12,15 +12,15 @@ import 'package:jpj_info/controller/alert_controller.dart';
 import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/controller/bottom_nav_controller.dart';
 import 'package:jpj_info/controller/eaduan_menu_controller.dart';
-import 'package:jpj_info/controller/http_request_controller.dart';
 import 'package:jpj_info/helper/account_manager.dart';
-import 'package:jpj_info/model/aduan_save_request.dart';
+import 'package:jpj_info/helper/map_location_setter.dart';
 import 'package:jpj_info/model/aduan_save_response.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/eAduanSubmit/eaduan_submit.dart';
 import 'package:jpj_info/view/eaduanForm/eaduan_form.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:http/http.dart' as http;
+import 'package:latlong2/latlong.dart';
 
 enum EaduanItem {
   redLight,
@@ -80,6 +80,7 @@ class _EaduanFormController extends State<EaduanFormController> {
   late TextEditingController locationController;
   late TextEditingController stateController;
   late TextEditingController vehicleController;
+  late MapController mapController;
 
   @override
   void initState() {
@@ -96,6 +97,7 @@ class _EaduanFormController extends State<EaduanFormController> {
     locationController = TextEditingController();
     stateController = TextEditingController();
     vehicleController = TextEditingController();
+    mapController = MapController();
     offenceId = {
       EaduanItem.redLight: 1,
       EaduanItem.emergencyLane: 2,
@@ -177,6 +179,7 @@ class _EaduanFormController extends State<EaduanFormController> {
           dropdownValue: dropdownValue,
           selectionCallback: selectionCallback,
           eraseImageCallback: _eraseImage,
+          mapController: mapController,
         ),
         bottomNavigationBar: BottomNavController(),
       ),
@@ -347,11 +350,31 @@ class _EaduanFormController extends State<EaduanFormController> {
   //   SharedPreferences prefs = await SharedPreferences.getInstance();
   // }
 
-  void _onMapTap(String lat, String long) {
-    setState(() {
-      latitudeController.text = lat;
-      longitudeController.text = long;
-    });
+  Future<void> _onMapTap(String lat, String long) async {
+    final result = await Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) {
+          return MapLocationSetter(
+            lat: latitudeController.text,
+            long: longitudeController.text,
+          );
+        },
+      ),
+    );
+    if (result != null) {
+      setState(() {
+        latitudeController.text = result["lat"];
+        longitudeController.text = result["long"];
+        mapController.move(
+          LatLng(
+            double.parse(result["lat"]),
+            double.parse(result["long"]),
+          ),
+          18,
+        );
+      });
+    }
   }
 
   selectionCallback(BuildContext context, dynamic val) {

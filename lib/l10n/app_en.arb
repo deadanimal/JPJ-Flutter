@@ -268,5 +268,7 @@
     "changePaswordInfo":"** Password need to be changed every three (3) months",
     "success":"Success",
     "closeApp":"Exit?",
+    "chooseLocationOnMap":"Tap on the map to choose location",
+    "chooseThisLocation":"Choose This Location",
     "pleaseWait": "Please wait..."
 }

@@ -38,6 +38,7 @@ class EaduanForm extends StatelessWidget {
     required this.dropdownValue,
     required this.selectionCallback,
     required this.eraseImageCallback,
+    required this.mapController,
   }) : super(key: key);
   final String? title;
   final AssetImage image;
@@ -59,6 +60,7 @@ class EaduanForm extends StatelessWidget {
   final String dropdownValue;
   final Function(BuildContext, dynamic) selectionCallback;
   final Function(int) eraseImageCallback;
+  final MapController mapController;
 
   @override
   Widget build(BuildContext context) {
@@ -389,10 +391,13 @@ class EaduanForm extends StatelessWidget {
       height: mediaHeight / 3,
       width: mediaWidth,
       child: FlutterMap(
+        mapController: mapController,
         options: MapOptions(
-          onTap: (tapPosition, point) => {
-            // print(point.toString());
-            mapTapCb(point.latitude.toString(), point.longitude.toString()),
+          onTap: (tapPosition, point) {
+            mapTapCb(
+              point.latitude.toString(),
+              point.longitude.toString(),
+            );
           },
           center: LatLng(
             double.parse(latitudeController.text),

@@ -268,5 +268,7 @@
     "changePaswordInfo":"** Kata laluan perlu ditukar setiap tiga (3) bulan",
     "success":"Berjaya",
     "closeApp":"Tutup Applikasi?",
+    "chooseLocationOnMap":"Pilih lokasi di peta",
+    "chooseThisLocation":"Pilih Lokasi Ini",
     "pleaseWait": "Sila Tunggu..."
 }
