@@ -5,6 +5,7 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_map/plugin_api.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:jpj_info/config/site_config.dart';
@@ -13,6 +14,7 @@ import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/controller/bottom_nav_controller.dart';
 import 'package:jpj_info/controller/eaduan_menu_controller.dart';
 import 'package:jpj_info/helper/account_manager.dart';
+import 'package:jpj_info/helper/geolocation.dart';
 import 'package:jpj_info/helper/map_location_setter.dart';
 import 'package:jpj_info/model/aduan_save_response.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
@@ -109,6 +111,10 @@ class _EaduanFormController extends State<EaduanFormController> {
       EaduanItem.darkTint: 8,
       EaduanItem.seatBelt: 9,
     };
+    Future.delayed(
+      const Duration(milliseconds: 250),
+      getUserLocation,
+    );
   }
 
   @override
@@ -371,7 +377,7 @@ class _EaduanFormController extends State<EaduanFormController> {
             double.parse(result["lat"]),
             double.parse(result["long"]),
           ),
-          18,
+          15,
         );
       });
     }
@@ -384,6 +390,18 @@ class _EaduanFormController extends State<EaduanFormController> {
   void _eraseImage(int index) {
     setState(() {
       images.removeAt(index);
+    });
+  }
+
+  Future<void> getUserLocation() async {
+    Position userLocation = await Geolocation().determinePosition();
+    setState(() {
+      longitudeController.text = userLocation.longitude.toString();
+      latitudeController.text = userLocation.latitude.toString();
+      mapController.move(
+        LatLng(userLocation.latitude, userLocation.longitude),
+        15,
+      );
     });
   }
 }
