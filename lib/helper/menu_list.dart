@@ -31,59 +31,60 @@ class MenuList {
         id: 3,
       ),
       CustomMenuItem(
-        AppLocalizations.of(ctx)!.onlineTransaction,
-        "images/icon/online_transaction_icon.png",
-        onlineTransactionPage,
-        id: 4,
-      ),
-      CustomMenuItem(
         "EzyPay",
         "images/icon/ezypay_icon.png",
         ezypayMenuPage,
         login: true,
-        id: 5,
+        id: 4,
       ),
-      CustomMenuItem(
-        AppLocalizations.of(ctx)!.transactionHistory,
-        "images/icon/payment_history_icon.png",
-        transactionHistoryPage,
-        login: true,
-        id: 6,
-      ),
+      // CustomMenuItem(
+      //   AppLocalizations.of(ctx)!.onlineTransaction,
+      //   "images/icon/online_transaction_icon.png",
+      //   onlineTransactionPage,
+      //   id: 4,
+      // ),
+      // CustomMenuItem(
+      //   AppLocalizations.of(ctx)!.transactionHistory,
+      //   "images/icon/payment_history_icon.png",
+      //   transactionHistoryPage,
+      //   login: true,
+      //   id: 6,
+      // ),
     ];
   }
 
   List<CustomMenuItem> getFavMenuList() {
     return [
       CustomMenuItem(
-        "JPJeBid",
-        "images/icon/ebit_icon.png",
-        jpjEbidStore,
+        AppLocalizations.of(ctx)!.latestPlate,
+        "images/icon/latest_number_icon.png",
+        latestPlatePage,
+        id: 5,
       ),
       CustomMenuItem(
-        "JPJeQ",
-        "images/icon/jpjeq_icon.png",
-        jpjEqMenuPage,
-        login: true,
-      ),
-      CustomMenuItem(
-        "eAduan",
-        "images/icon/eaduan_icon.png",
-        eHadirMenuPage,
-        login: true,
-      ),
-      CustomMenuItem(
-        AppLocalizations.of(ctx)!.onlineTransaction,
-        "images/icon/online_transaction_icon.png",
-        onlineTransactionPage,
-        id: 4,
-      ),
-      CustomMenuItem(
-        AppLocalizations.of(ctx)!.transactionHistory,
-        "images/icon/payment_history_icon.png",
-        transactionHistoryPage,
-        login: true,
+        AppLocalizations.of(ctx)!.drivingLicense,
+        "images/icon/driving_license_icon.png",
+        licensePage,
         id: 6,
+      ),
+      CustomMenuItem(
+        AppLocalizations.of(ctx)!.testResult,
+        "images/icon/test_result_icon.png",
+        testResultPage,
+        id: 7,
+      ),
+      CustomMenuItem(
+        AppLocalizations.of(ctx)!.lkm,
+        "images/icon/lkm_icon.png",
+        roadTaxCheckPage,
+        id: 8,
+      ),
+      CustomMenuItem(
+        AppLocalizations.of(ctx)!.ticket,
+        "images/icon/ticket_icon.png",
+        summonListPage,
+        login: true,
+        id: 9,
       ),
     ];
   }
@@ -94,37 +95,44 @@ class MenuList {
         AppLocalizations.of(ctx)!.latestPlate,
         "images/icon/latest_number_icon.png",
         latestPlatePage,
+        id: 5,
       ),
       CustomMenuItem(
         AppLocalizations.of(ctx)!.drivingLicense,
         "images/icon/driving_license_icon.png",
         licensePage,
+        id: 6,
       ),
       CustomMenuItem(
         AppLocalizations.of(ctx)!.testResult,
         "images/icon/test_result_icon.png",
         testResultPage,
+        id: 7,
       ),
       CustomMenuItem(
         AppLocalizations.of(ctx)!.lkm,
         "images/icon/lkm_icon.png",
         roadTaxCheckPage,
+        id: 8,
       ),
       CustomMenuItem(
         AppLocalizations.of(ctx)!.ticket,
         "images/icon/ticket_icon.png",
         summonListPage,
         login: true,
+        id: 9,
       ),
       CustomMenuItem(
         AppLocalizations.of(ctx)!.blacklist,
         "images/icon/black_list_icon.png",
         blacklistPage,
+        id: 10,
       ),
       CustomMenuItem(
         AppLocalizations.of(ctx)!.demeritPoints,
         "images/icon/demerit_point_icon.png",
         demeritPointsPage,
+        id: 11,
       ),
     ];
   }

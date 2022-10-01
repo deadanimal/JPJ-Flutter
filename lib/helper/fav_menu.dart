@@ -18,6 +18,7 @@ class FavMenuItem {
     return data;
   }
 
+  @override
   String toString() {
     return jsonEncode(toJson());
   }
@@ -39,6 +40,11 @@ class FavMenu {
     FavMenuItem(4, 0),
     FavMenuItem(5, 0),
     FavMenuItem(6, 0),
+    FavMenuItem(7, 0),
+    FavMenuItem(8, 0),
+    FavMenuItem(9, 0),
+    FavMenuItem(10, 0),
+    FavMenuItem(11, 0),
   ];
 
   Future<void> init() async {
@@ -61,7 +67,9 @@ class FavMenu {
   List<CustomMenuItem> getFavMenuItem(BuildContext context) {
     List<CustomMenuItem> retFavMenu = MenuList(ctx: context).getFavMenuList();
     List<CustomMenuItem> menu = MenuList(ctx: context).getServisMenuList();
+    menu.addAll(MenuList(ctx: context).getOnlineTransactionList());
     favMenu.sort((a, b) => b.count.compareTo(a.count));
+
     for (var el in menu) {
       if (el.serviceId == favMenu[0].id) {
         retFavMenu[0] = el;
