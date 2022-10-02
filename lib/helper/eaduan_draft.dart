@@ -12,6 +12,8 @@ class EAduanDraft {
       if (el.id == item.id) {
         el.details = item.details;
         el.images = item.images;
+        el.videoThumbnails = item.videoThumbnails;
+        el.videos = item.videos;
         updateDraft = true;
       }
     }
@@ -21,6 +23,8 @@ class EAduanDraft {
         AduanDraft(
           id: item.id,
           images: item.images,
+          videoThumbnails: item.videoThumbnails,
+          videos: item.videos,
           details: item.details,
         ),
       );

@@ -11,11 +11,13 @@ class ScrollableImageContainer extends StatefulWidget {
     required this.openGalleryCallback,
     required this.scrollController,
     required this.eraseImageCallback,
+    required this.videoPath,
   }) : super(key: key);
   final List<Uint8List> imagesPath;
+  final List<Uint8List> videoPath;
   final Function openGalleryCallback;
   final ScrollController scrollController;
-  final Function(int) eraseImageCallback;
+  final Function(int, bool) eraseImageCallback;
 
   @override
   State<StatefulWidget> createState() => _ScrollableImageContainer();
@@ -40,6 +42,9 @@ class _ScrollableImageContainer extends State<ScrollableImageContainer> {
     for (var i = 0; i < widget.imagesPath.length; i++) {
       children.add(_imageContainer(widget.imagesPath[i], i));
     }
+    for (var i = 0; i < widget.videoPath.length; i++) {
+      children.add(_videoContainer(widget.videoPath[i], i));
+    }
     children.add(_addImageBtn());
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -59,9 +64,9 @@ class _ScrollableImageContainer extends State<ScrollableImageContainer> {
       padding: const EdgeInsets.all(8.0),
       child: Badge(
         badgeContent: InkWell(
-          child: const Text("X"),
+          child: const Text("X", style: TextStyle(fontSize: 24)),
           onTap: () {
-            widget.eraseImageCallback(index);
+            widget.eraseImageCallback(index, false);
           },
         ),
         child: Container(
@@ -70,7 +75,37 @@ class _ScrollableImageContainer extends State<ScrollableImageContainer> {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
           ),
-          child: Image.memory(imageData),
+          child: InkWell(
+              onTap: () {
+                widget.eraseImageCallback(index, false);
+              },
+              child: Image.memory(imageData)),
+        ),
+      ),
+    );
+  }
+
+  Widget _videoContainer(Uint8List imageData, int index) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Badge(
+        badgeContent: InkWell(
+          child: const Text("X"),
+          onTap: () {
+            widget.eraseImageCallback(index, true);
+          },
+        ),
+        child: Container(
+          width: 174,
+          height: 174,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: InkWell(
+              onTap: () {
+                widget.eraseImageCallback(index, true);
+              },
+              child: Image.memory(imageData)),
         ),
       ),
     );

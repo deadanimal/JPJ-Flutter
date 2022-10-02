@@ -26,6 +26,7 @@ import 'package:jpj_info/view/eaduanForm/eaduan_form.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:http/http.dart' as http;
 import 'package:latlong2/latlong.dart';
+import 'package:video_thumbnail/video_thumbnail.dart';
 
 enum EaduanItem {
   redLight,
@@ -81,6 +82,8 @@ class _EaduanFormController extends State<EaduanFormController> {
   late Map<EaduanItem, int> offenceId;
   late ImagePicker picker;
   late List<Uint8List> images;
+  late List<Uint8List> videosThumbnail;
+  late List<Uint8List> videos;
   late TextEditingController dateController;
   late TextEditingController timeController;
   late TextEditingController latitudeController;
@@ -96,6 +99,8 @@ class _EaduanFormController extends State<EaduanFormController> {
     super.initState();
     picker = ImagePicker();
     images = [];
+    videos = [];
+    videosThumbnail = [];
     dateController = TextEditingController();
     timeController = TextEditingController();
     latitudeController = TextEditingController();
@@ -184,6 +189,7 @@ class _EaduanFormController extends State<EaduanFormController> {
           openGalleryCallback: _openGallery,
           submitCallback: _submitCallback,
           imagesPath: images,
+          videos: videosThumbnail,
           dateController: dateController,
           timeController: timeController,
           datePickerCb: pickDate,
@@ -260,9 +266,20 @@ class _EaduanFormController extends State<EaduanFormController> {
     }
     if (image != null) {
       Uint8List rawImageData = await image.readAsBytes();
-      setState(() {
+      if (mediaType == "image") {
         images.add(rawImageData);
-      });
+      } else {
+        final uint8list = await VideoThumbnail.thumbnailData(
+          video: image.path,
+          imageFormat: ImageFormat.JPEG,
+          maxWidth: 128,
+          quality: 25,
+        );
+
+        videosThumbnail.add(uint8list!);
+        videos.add(rawImageData);
+      }
+      setState(() {});
     }
     // EasyLoading.dismiss();
   }
@@ -340,6 +357,14 @@ class _EaduanFormController extends State<EaduanFormController> {
             filename: "attachement_$i");
         newList.add(multipartFile);
       }
+      for (int i = 0; i < videos.length; i++) {
+        XFile a = XFile.fromData(videos[i]);
+        var length = await a.length();
+
+        var multipartFile = http.MultipartFile("gambar", a.openRead(), length,
+            filename: "attachement_$i");
+        newList.add(multipartFile);
+      }
 
       request.files.addAll(newList);
       var response = await request.send();
@@ -371,6 +396,8 @@ class _EaduanFormController extends State<EaduanFormController> {
     AduanDraft draftContent = AduanDraft(
       id: draftId,
       images: images,
+      videos: videos,
+      videoThumbnails: videosThumbnail,
       details: AduanSaveRequest(
         latitude: latitudeController.text,
         longlitude: longitudeController.text,
@@ -432,10 +459,14 @@ class _EaduanFormController extends State<EaduanFormController> {
     stateController.text = val;
   }
 
-  void _eraseImage(int index) {
-    setState(() {
+  void _eraseImage(int index, bool isVideo) {
+    if (isVideo) {
+      videosThumbnail.removeAt(index);
+      videos.removeAt(index);
+    } else {
       images.removeAt(index);
-    });
+    }
+    setState(() {});
   }
 
   Future<void> getUserLocation() async {
@@ -463,6 +494,12 @@ class _EaduanFormController extends State<EaduanFormController> {
       dropdownValue = stateController.text;
       for (var el in widget.draft!.images!) {
         images.add(el);
+      }
+      for (var el in widget.draft!.videoThumbnails!) {
+        videosThumbnail.add(el);
+      }
+      for (var el in widget.draft!.videos!) {
+        videos.add(el);
       }
     }
   }

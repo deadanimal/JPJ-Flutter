@@ -112,8 +112,8 @@ class EaduanStatus extends StatelessWidget {
         return StatusCardView(
           complaintId: res[index].id.toString(),
           date: res[index].tarikh!,
-          time: "",
-          offense: "",
+          time: res[index].masa!,
+          offense: res[index].kesalahan!,
           width: mediaWidth - 64,
           leading: _status(context, res[index].keteranganStatus!),
           trailing: _searchIcon(),

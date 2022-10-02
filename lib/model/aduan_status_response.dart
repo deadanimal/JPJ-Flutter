@@ -6,6 +6,8 @@ class AduanStatusResponse {
   String? keteranganStatus;
   int? sendFlag;
   String? tarikh;
+  String? masa;
+  String? kesalahan;
 
   AduanStatusResponse({
     this.nokpPengadu,
@@ -15,6 +17,8 @@ class AduanStatusResponse {
     this.keteranganStatus,
     this.sendFlag,
     this.tarikh,
+    this.masa,
+    this.kesalahan,
   });
 
   AduanStatusResponse.fromJson(Map<String, dynamic> json) {
@@ -25,6 +29,8 @@ class AduanStatusResponse {
     keteranganStatus = json['keterangan_status'];
     sendFlag = json['send_flag'];
     tarikh = json['tarikh'];
+    masa = json['masa'];
+    kesalahan = json['kesalahan'];
   }
 
   Map<String, dynamic> toJson() {
@@ -36,6 +42,8 @@ class AduanStatusResponse {
     data['keterangan_status'] = keteranganStatus;
     data['send_flag'] = sendFlag;
     data['tarikh'] = tarikh;
+    data['masa'] = masa;
+    data['kesalahan'] = kesalahan;
     return data;
   }
 }

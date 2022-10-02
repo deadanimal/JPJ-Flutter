@@ -40,12 +40,14 @@ class EaduanForm extends StatelessWidget {
     required this.eraseImageCallback,
     required this.mapController,
     required this.draftBtnCallback,
+    required this.videos,
   }) : super(key: key);
   final String? title;
   final AssetImage image;
   final Function(String, String) openGalleryCallback;
   final Function() submitCallback;
   final List<Uint8List> imagesPath;
+  final List<Uint8List> videos;
   final TextEditingController dateController;
   final TextEditingController timeController;
   final TextEditingController latitudeController;
@@ -60,7 +62,7 @@ class EaduanForm extends StatelessWidget {
   final Iterable<String> dropdownList;
   final String dropdownValue;
   final Function(BuildContext, dynamic) selectionCallback;
-  final Function(int) eraseImageCallback;
+  final Function(int, bool) eraseImageCallback;
   final MapController mapController;
   final Function() draftBtnCallback;
 
@@ -308,6 +310,7 @@ class EaduanForm extends StatelessWidget {
       thumbVisibility: true,
       controller: scrollController,
       child: ScrollableImageContainer(
+        videoPath: videos,
         eraseImageCallback: eraseImageCallback,
         imagesPath: imagesPath,
         openGalleryCallback: () {

@@ -58,6 +58,7 @@ dependencies:
   badges: ^2.0.3
   geolocator: ^9.0.2
   advance_pdf_viewer: any
+  video_thumbnail: ^0.5.3
 
 dev_dependencies:
   flutter_test:
