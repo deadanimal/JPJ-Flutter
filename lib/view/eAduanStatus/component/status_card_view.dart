@@ -9,7 +9,7 @@ class StatusCardView extends StatelessWidget {
     required this.width,
     required this.trailing,
     required this.leading,
-    required this.complaintId,
+    this.complaintId,
     required this.time,
     required this.date,
     required this.offense,
@@ -17,7 +17,7 @@ class StatusCardView extends StatelessWidget {
   final double width;
   final Widget leading;
   final Widget trailing;
-  final String complaintId;
+  final String? complaintId;
   final String time;
   final String date;
   final String offense;
@@ -36,24 +36,30 @@ class StatusCardView extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              "${AppLocalizations.of(context)!.complaintId}:",
-              style: const TextStyle(
-                color: Color(themeNavy),
-                fontSize: 10,
-                fontFamily: "Roboto",
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-            const SizedBox(height: vPaddingS),
-            Text(
-              complaintId,
-              style: const TextStyle(
-                color: Color(0xff2e2e2e),
-                fontSize: 13,
-              ),
-            ),
-            const SizedBox(height: vPaddingM),
+            complaintId != null
+                ? Column(
+                    children: [
+                      Text(
+                        "${AppLocalizations.of(context)!.complaintId}:",
+                        style: const TextStyle(
+                          color: Color(themeNavy),
+                          fontSize: 10,
+                          fontFamily: "Roboto",
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      const SizedBox(height: vPaddingS),
+                      Text(
+                        complaintId!,
+                        style: const TextStyle(
+                          color: Color(0xff2e2e2e),
+                          fontSize: 13,
+                        ),
+                      ),
+                      const SizedBox(height: vPaddingM),
+                    ],
+                  )
+                : Container(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

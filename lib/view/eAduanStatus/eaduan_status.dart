@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:jpj_info/model/aduan_draft.dart';
 import 'package:jpj_info/model/aduan_status_response.dart';
 import 'package:jpj_info/model/page_size.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
@@ -12,9 +14,15 @@ class EaduanStatus extends StatelessWidget {
     Key? key,
     required this.tabController,
     required this.res,
+    required this.draftList,
+    required this.eraseDraftCallback,
+    required this.editDraftCallback,
   }) : super(key: key);
   final TabController tabController;
   final List<AduanStatusResponse> res;
+  final List<AduanDraft> draftList;
+  final Function(String) eraseDraftCallback;
+  final Function(String) editDraftCallback;
 
   @override
   Widget build(BuildContext context) {
@@ -115,20 +123,23 @@ class EaduanStatus extends StatelessWidget {
   }
 
   Widget _draftTab(BuildContext context) {
-    return Column(
-        // children: [
-        //   StatusCardView(
-        //     width: mediaWidth - 64,
-        //     leading: _draftStatus(context),
-        //     trailing: _draftIcon(),
-        //   ),
-        //   StatusCardView(
-        //     width: mediaWidth - 64,
-        //     leading: _draftStatus(context),
-        //     trailing: _draftIcon(),
-        //   ),
-        // ],
+    return ListView.builder(
+      scrollDirection: Axis.vertical,
+      itemCount: draftList.length,
+      shrinkWrap: true,
+      itemBuilder: (context, index) {
+        AduanDraft el = draftList[index];
+        DateTime dateTime = DateTime.parse(el.id!);
+        return StatusCardView(
+          width: mediaWidth - 64,
+          leading: _draftStatus(context),
+          trailing: _draftIcon(el.id!),
+          date: DateFormat('dd-MM-yyyy').format(dateTime),
+          time: DateFormat('kk:mm a').format(dateTime),
+          offense: el.details!.idkesalahan!,
         );
+      },
+    );
   }
 
   Widget _status(BuildContext context, String status) {
@@ -171,29 +182,9 @@ class EaduanStatus extends StatelessWidget {
 
   Widget _searchIcon() {
     return Container();
-    return SizedBox(
-      child: Padding(
-        padding: const EdgeInsets.all(vPaddingM),
-        child: Container(
-          decoration: navyGradientBtnDecoSquare,
-          child: TextButton(
-            style: ButtonStyle(
-              foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-            ),
-            onPressed: () {},
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: const [
-                Icon(Icons.search),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
   }
 
-  Widget _draftIcon() {
+  Widget _draftIcon(String id) {
     return SizedBox(
       child: Padding(
         padding: const EdgeInsets.all(vPaddingM),
@@ -211,7 +202,9 @@ class EaduanStatus extends StatelessWidget {
                   foregroundColor:
                       MaterialStateProperty.all<Color>(Colors.white),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  editDraftCallback(id);
+                },
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: const [
@@ -220,6 +213,7 @@ class EaduanStatus extends StatelessWidget {
                 ),
               ),
             ),
+            const SizedBox(width: vPaddingS),
             Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
@@ -230,27 +224,13 @@ class EaduanStatus extends StatelessWidget {
                   foregroundColor:
                       MaterialStateProperty.all<Color>(Colors.white),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  eraseDraftCallback(id);
+                },
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: const [
                     Icon(Icons.delete_outline_outlined),
-                  ],
-                ),
-              ),
-            ),
-            Container(
-              decoration: navyGradientBtnDecoSquare,
-              child: TextButton(
-                style: ButtonStyle(
-                  foregroundColor:
-                      MaterialStateProperty.all<Color>(Colors.white),
-                ),
-                onPressed: () {},
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: const [
-                    Icon(Icons.search),
                   ],
                 ),
               ),

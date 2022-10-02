@@ -1,5 +1,5 @@
 class AduanUploadResponse {
-  Null? upload;
+  dynamic upload;
   String? type;
   String? size;
   String? file;

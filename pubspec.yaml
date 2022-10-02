@@ -57,6 +57,7 @@ dependencies:
   external_app_launcher: ^2.0.2
   badges: ^2.0.3
   geolocator: ^9.0.2
+  advance_pdf_viewer: any
 
 dev_dependencies:
   flutter_test:

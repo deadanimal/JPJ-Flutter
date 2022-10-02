@@ -66,15 +66,6 @@ class Login extends StatelessWidget {
     );
   }
 
-  Widget _logo(context) {
-    return Center(
-      child: Image(
-        image: const AssetImage("images/myjpj_logo_large.png"),
-        width: mediaWidth / 3,
-      ),
-    );
-  }
-
   Widget _loginField(context) {
     return Padding(
       padding: const EdgeInsets.only(

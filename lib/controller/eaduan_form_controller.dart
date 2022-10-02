@@ -14,8 +14,11 @@ import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/controller/bottom_nav_controller.dart';
 import 'package:jpj_info/controller/eaduan_menu_controller.dart';
 import 'package:jpj_info/helper/account_manager.dart';
+import 'package:jpj_info/helper/eaduan_draft.dart';
 import 'package:jpj_info/helper/geolocation.dart';
 import 'package:jpj_info/helper/map_location_setter.dart';
+import 'package:jpj_info/model/aduan_draft.dart';
+import 'package:jpj_info/model/aduan_save_request.dart';
 import 'package:jpj_info/model/aduan_save_response.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/eAduanSubmit/eaduan_submit.dart';
@@ -40,8 +43,12 @@ class EaduanFormController extends StatefulWidget {
   const EaduanFormController({
     Key? key,
     required this.itemClass,
+    this.id,
+    this.draft,
   }) : super(key: key);
   final EaduanItem itemClass;
+  final String? id;
+  final AduanDraft? draft;
 
   @override
   State<StatefulWidget> createState() => _EaduanFormController();
@@ -49,7 +56,7 @@ class EaduanFormController extends StatefulWidget {
 
 class _EaduanFormController extends State<EaduanFormController> {
   late Iterable<String> dropdownList;
-  late String dropdownValue;
+  String dropdownValue = "";
   Map<String, String> stateMap = {
     "JOHOR": "J",
     "KEDAH": "K",
@@ -111,10 +118,15 @@ class _EaduanFormController extends State<EaduanFormController> {
       EaduanItem.darkTint: 8,
       EaduanItem.seatBelt: 9,
     };
-    Future.delayed(
-      const Duration(milliseconds: 250),
-      getUserLocation,
-    );
+
+    if (widget.draft != null) {
+      populateItemFromDraft();
+    } else {
+      Future.delayed(
+        const Duration(milliseconds: 250),
+        getUserLocation,
+      );
+    }
   }
 
   @override
@@ -133,7 +145,9 @@ class _EaduanFormController extends State<EaduanFormController> {
   @override
   Widget build(BuildContext context) {
     dropdownList = [AppLocalizations.of(context)!.state, ...stateMap.keys];
-    dropdownValue = AppLocalizations.of(context)!.state;
+    if (dropdownValue == "") {
+      dropdownValue = AppLocalizations.of(context)!.state;
+    }
     aduanItemList = {
       EaduanItem.redLight: AppLocalizations.of(context)!.failToFollowRedLight,
       EaduanItem.emergencyLane:
@@ -186,6 +200,7 @@ class _EaduanFormController extends State<EaduanFormController> {
           selectionCallback: selectionCallback,
           eraseImageCallback: _eraseImage,
           mapController: mapController,
+          draftBtnCallback: _saveToDraftCallback,
         ),
         bottomNavigationBar: BottomNavController(),
       ),
@@ -351,10 +366,40 @@ class _EaduanFormController extends State<EaduanFormController> {
     );
   }
 
-  // Future<void> _saveToDraftCallback() async {
-  //   // todo: save to local storage
-  //   SharedPreferences prefs = await SharedPreferences.getInstance();
-  // }
+  Future<void> _saveToDraftCallback() async {
+    String draftId = widget.id != null ? widget.id! : DateTime.now().toString();
+    AduanDraft draftContent = AduanDraft(
+      id: draftId,
+      images: images,
+      details: AduanSaveRequest(
+        latitude: latitudeController.text,
+        longlitude: longitudeController.text,
+        lokasi: locationController.text,
+        idkesalahan: widget.itemClass.toString(),
+        masa: timeController.text,
+        tarikh: dateController.text,
+        negeri: stateController.text,
+        nokenderaan: vehicleController.text,
+        catatan: remarkController.text,
+      ),
+    );
+
+    EAduanDraft().saveAsDraft(draftContent);
+
+    AlertController(ctx: context).popup(
+      AppLocalizations.of(context)!.saveAsDraftSuccess,
+      () {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) {
+              return const EaduanMenuController();
+            },
+          ),
+        );
+      },
+    );
+  }
 
   Future<void> _onMapTap(String lat, String long) async {
     final result = await Navigator.push(
@@ -403,5 +448,22 @@ class _EaduanFormController extends State<EaduanFormController> {
         15,
       );
     });
+  }
+
+  populateItemFromDraft() {
+    if (widget.draft != null && widget.draft?.details != null) {
+      dateController.text = widget.draft!.details!.tarikh ?? "";
+      timeController.text = widget.draft!.details!.masa ?? "";
+      latitudeController.text = widget.draft!.details!.latitude ?? "";
+      longitudeController.text = widget.draft!.details!.longlitude ?? "";
+      remarkController.text = widget.draft!.details!.catatan ?? "";
+      locationController.text = widget.draft!.details!.lokasi ?? "";
+      stateController.text = widget.draft!.details!.negeri ?? "";
+      vehicleController.text = widget.draft!.details!.nokenderaan ?? "";
+      dropdownValue = stateController.text;
+      for (var el in widget.draft!.images!) {
+        images.add(el);
+      }
+    }
   }
 }

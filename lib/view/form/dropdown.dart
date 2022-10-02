@@ -69,7 +69,7 @@ class _CustomDropdown extends State<CustomDropdown> {
               onChanged: (String? newValue) {
                 val = newValue!;
                 setState(() {
-                  val;
+                  widget.dropdownValue;
                 });
                 widget.cbFunc(newValue);
               },

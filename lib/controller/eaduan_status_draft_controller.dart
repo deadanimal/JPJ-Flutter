@@ -5,12 +5,17 @@ import 'package:jpj_info/config/site_config.dart';
 import 'package:jpj_info/controller/alert_controller.dart';
 import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/controller/bottom_nav_controller.dart';
+import 'package:jpj_info/controller/eaduan_form_controller.dart';
 import 'package:jpj_info/controller/http_request_controller.dart';
+import 'package:jpj_info/controller/prompt_controller.dart';
 import 'package:jpj_info/helper/account_manager.dart';
+import 'package:jpj_info/helper/eaduan_draft.dart';
+import 'package:jpj_info/model/aduan_draft.dart';
 import 'package:jpj_info/model/aduan_status_response.dart';
 import 'package:jpj_info/model/check_id_request.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/eAduanStatus/eaduan_status.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:http/http.dart' as http;
 
 class EaduanStatusController extends StatefulWidget {
@@ -26,11 +31,13 @@ class _EaduanStatusController extends State<EaduanStatusController>
     with TickerProviderStateMixin {
   late TabController tabController;
   late List<AduanStatusResponse> res = [];
+  late List<AduanDraft> draftList = [];
   @override
   void initState() {
     super.initState();
     Future.delayed(const Duration(milliseconds: 500), () {
       getComplaintList();
+      getDraftList();
     });
     tabController = TabController(
       initialIndex: 0,
@@ -55,6 +62,9 @@ class _EaduanStatusController extends State<EaduanStatusController>
         body: EaduanStatus(
           tabController: tabController,
           res: res,
+          draftList: draftList,
+          eraseDraftCallback: eraseDraft,
+          editDraftCallback: editDraft,
         ),
         bottomNavigationBar: BottomNavController(),
       ),
@@ -84,5 +94,82 @@ class _EaduanStatusController extends State<EaduanStatusController>
       body: jsonEncode(req.toJson()),
       callback: _responseHandler,
     );
+  }
+
+  String? parseIdToComplaint(EaduanItem id) {
+    Map<EaduanItem, String> offense = {
+      EaduanItem.redLight: AppLocalizations.of(context)!.failToFollowRedLight,
+      EaduanItem.emergencyLane:
+          AppLocalizations.of(context)!.emergencyLaneDriving,
+      EaduanItem.cutQueue: AppLocalizations.of(context)!.skipQueue,
+      EaduanItem.leftOvertake: AppLocalizations.of(context)!.leftOvertake,
+      EaduanItem.doubleLine: AppLocalizations.of(context)!.doubleLineOvertake,
+      EaduanItem.usingPhone:
+          AppLocalizations.of(context)!.usingPhoneWhileDriving,
+      EaduanItem.fancyPlate: AppLocalizations.of(context)!.fancyPlateNumber,
+      EaduanItem.darkTint: AppLocalizations.of(context)!.darkTint,
+      EaduanItem.seatBelt: AppLocalizations.of(context)!.notWearingSeatbelt,
+    };
+
+    return offense[id];
+  }
+
+  void eraseDraft(String id) {
+    PromptController(
+      ctx: context,
+    ).prompt(
+      AppLocalizations.of(context)!.removeFromDraft,
+      () async {
+        Navigator.of(context).pop();
+        await EAduanDraft().erase(id);
+        getDraftList();
+      },
+      () {
+        Navigator.of(context).pop();
+      },
+      noString: AppLocalizations.of(context)!.no,
+      okString: AppLocalizations.of(context)!.yes,
+    );
+  }
+
+  void getDraftList() async {
+    draftList = await EAduanDraft().getDraftList();
+    for (var el in draftList) {
+      EaduanItem f = EaduanItem.values.firstWhere(
+        (e) {
+          return e.toString() == el.details!.idkesalahan;
+        },
+        orElse: () {
+          return EaduanItem.usingPhone;
+        },
+      );
+      el.details!.idkesalahan = parseIdToComplaint(f);
+    }
+    setState(() {});
+  }
+
+  void editDraft(String id) {
+    EAduanDraft().get(id).then((value) {
+      EaduanItem itemId = EaduanItem.values.firstWhere(
+        (e) {
+          return e.toString() == value.details!.idkesalahan;
+        },
+        orElse: () {
+          return EaduanItem.usingPhone;
+        },
+      );
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) {
+            return EaduanFormController(
+              itemClass: itemId,
+              draft: value,
+              id: value.id,
+            );
+          },
+        ),
+      );
+    });
   }
 }

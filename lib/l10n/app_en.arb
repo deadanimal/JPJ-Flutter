@@ -270,5 +270,7 @@
     "closeApp":"Exit?",
     "chooseLocationOnMap":"Tap on the map to choose location",
     "chooseThisLocation":"Choose This Location",
+    "saveAsDraftSuccess":"Successfully saved",
+    "removeFromDraft":"Remove Draft?",
     "pleaseWait": "Please wait..."
 }

@@ -12,7 +12,11 @@ class PromptController {
   BuildContext ctx;
   Widget? content;
 
-  Future<void> prompt(String label, Function okCB, Function cancelCB) {
+  Future<void> prompt(String label, Function okCB, Function cancelCB,
+      {String okString = 'OK', String noString = ""}) {
+    if (noString == "") {
+      noString = AppLocalizations.of(ctx)!.cancel;
+    }
     return showDialog<void>(
       context: ctx,
       barrierDismissible: false, // user must tap button!
@@ -30,7 +34,7 @@ class PromptController {
                     okCB();
                   },
                   decoration: navyGradientBtnDecoSquare,
-                  label: 'OK',
+                  label: okString,
                 ),
                 CustomButton(
                   onPressed: () {
@@ -38,7 +42,7 @@ class PromptController {
                   },
                   decoration: whiteBtnDecoSquare,
                   textColor: const Color(themeNavy),
-                  label: AppLocalizations.of(context)!.cancel,
+                  label: noString,
                 ),
               ],
             ),

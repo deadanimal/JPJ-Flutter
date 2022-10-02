@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:jpj_info/model/page_size.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LandingPage extends StatelessWidget {
   const LandingPage({
@@ -17,7 +16,7 @@ class LandingPage extends StatelessWidget {
       decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage("images/splashscreen_bg.png"),
-          fit: BoxFit.cover,
+          fit: BoxFit.fill,
           alignment: Alignment.bottomCenter,
         ),
       ),

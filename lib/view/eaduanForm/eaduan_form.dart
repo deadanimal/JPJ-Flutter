@@ -39,11 +39,12 @@ class EaduanForm extends StatelessWidget {
     required this.selectionCallback,
     required this.eraseImageCallback,
     required this.mapController,
+    required this.draftBtnCallback,
   }) : super(key: key);
   final String? title;
   final AssetImage image;
   final Function(String, String) openGalleryCallback;
-  final Function submitCallback;
+  final Function() submitCallback;
   final List<Uint8List> imagesPath;
   final TextEditingController dateController;
   final TextEditingController timeController;
@@ -61,6 +62,7 @@ class EaduanForm extends StatelessWidget {
   final Function(BuildContext, dynamic) selectionCallback;
   final Function(int) eraseImageCallback;
   final MapController mapController;
+  final Function() draftBtnCallback;
 
   @override
   Widget build(BuildContext context) {
@@ -291,7 +293,7 @@ class EaduanForm extends StatelessWidget {
               decoration: orangeGradientBtnDeco,
               textColor: Colors.white,
               onPressed: () {
-                submitCallback();
+                draftBtnCallback();
               },
             ),
           ],

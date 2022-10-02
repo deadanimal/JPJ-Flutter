@@ -270,5 +270,7 @@
     "closeApp":"Tutup Applikasi?",
     "chooseLocationOnMap":"Pilih lokasi di peta",
     "chooseThisLocation":"Pilih Lokasi Ini",
+    "saveAsDraftSuccess":"Berjaya disimpan",
+    "removeFromDraft":"Padam dari draf?",
     "pleaseWait": "Sila Tunggu..."
 }

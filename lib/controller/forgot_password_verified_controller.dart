@@ -10,7 +10,6 @@ import 'package:jpj_info/model/change_temp_password_request.dart';
 import 'package:jpj_info/model/change_temp_password_response.dart';
 import 'package:jpj_info/view/forgotPasswordVerified/forgot_password_verified.dart';
 import 'package:jpj_info/view/form/tooltip_info.dart';
-import 'package:jpj_info/view/mainpage/mainpage.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:http/http.dart' as http;
 
