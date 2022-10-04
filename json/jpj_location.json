@@ -7,82 +7,82 @@
     {
       "id": "17",
       "flagPath": "images/flag/n1.png",
-      "name": "JOHOR"
+      "name": "Johor"
     },
     {
       "id": "18",
       "flagPath": "images/flag/n2.png",
-      "name": "KEDAH"
+      "name": "Kedah"
     },
     {
       "id": "19",
       "flagPath": "images/flag/n3.png",
-      "name": "KELANTAN"
+      "name": "Kelantan"
     },
     {
       "id": "4",
       "flagPath": "images/flag/n4.png",
-      "name": "MELAKA"
+      "name": "Melaka"
     },
     {
       "id": "5",
       "flagPath": "images/flag/n5.png",
-      "name": "N.SEMBILAN"
+      "name": "Negeri sembilan"
     },
     {
       "id": "6",
       "flagPath": "images/flag/n6.png",
-      "name": "PAHANG"
+      "name": "Pahang"
     },
     {
       "id": "7",
       "flagPath": "images/flag/n7.png",
-      "name": "PENANG"
+      "name": "Pulau pinang"
     },
     {
       "id": "8",
       "flagPath": "images/flag/n8.png",
-      "name": "PERAK"
+      "name": "Perak"
     },
     {
       "id": "9",
       "flagPath": "images/flag/n9.png",
-      "name": "PERLIS"
+      "name": "Perlis"
     },
     {
       "id": "10",
       "flagPath": "images/flag/n10.png",
-      "name": "SELANGOR"
+      "name": "Selangor"
     },
     {
       "id": "11",
       "flagPath": "images/flag/n11.png",
-      "name": "TERENGGANU"
+      "name": "Terengganu"
     },
     {
       "id": "12",
       "flagPath": "images/flag/n12.png",
-      "name": "SABAH"
+      "name": "Sabah"
     },
     {
       "id": "13",
       "flagPath": "images/flag/n13.png",
-      "name": "SARAWAK"
+      "name": "Sarawak"
     },
     {
       "id": "14",
       "flagPath": "images/flag/n14.png",
-      "name": "K.LUMPUR"
+      "name": "Kuala lumpur"
     },
     {
       "id": "15",
       "flagPath": "images/flag/n15.png",
-      "name": "LABUAN"
+      "name": "Labuan"
     },
     {
       "id": "16",
       "flagPath": "images/flag/n16.png",
-      "name": "PUTRAJAYA"
+      "name": "Putrajaya"
     }
   ]
 }

@@ -1,3 +1,4 @@
+import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:jpj_info/model/mainpage_icon.dart';
 import 'package:jpj_info/model/page_size.dart';
@@ -23,7 +24,6 @@ class CustomPublicMenuSection extends StatelessWidget {
         top: 12,
         bottom: 16,
       ),
-      constraints: const BoxConstraints(maxWidth: 500),
       width: mediaWidth,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -37,15 +37,38 @@ class CustomPublicMenuSection extends StatelessWidget {
                 borderRadius: BorderRadius.circular(20),
                 color: Colors.grey.shade100,
               ),
-              child: Text(
-                subHeader,
-                style: const TextStyle(
-                  color: Color(0xff171f44),
-                  fontSize: 16,
-                  fontFamily: "Roboto",
-                  fontWeight: FontWeight.w900,
-                ),
-              ),
+              child: fav
+                  ? Badge(
+                      badgeContent: const Text(
+                        "Top\n5",
+                        style: TextStyle(fontSize: 8),
+                        textAlign: TextAlign.center,
+                      ),
+                      borderRadius: BorderRadius.circular(25),
+                      shape: BadgeShape.square,
+                      stackFit: StackFit.passthrough,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          subHeader,
+                          style: const TextStyle(
+                            color: Color(0xff171f44),
+                            fontSize: 16,
+                            fontFamily: "Roboto",
+                            fontWeight: FontWeight.w900,
+                          ),
+                        ),
+                      ),
+                    )
+                  : Text(
+                      subHeader,
+                      style: const TextStyle(
+                        color: Color(0xff171f44),
+                        fontSize: 16,
+                        fontFamily: "Roboto",
+                        fontWeight: FontWeight.w900,
+                      ),
+                    ),
             ),
           ),
           const SizedBox(height: vPaddingS),
@@ -63,7 +86,7 @@ class CustomPublicMenuSection extends StatelessWidget {
                         fav
                             ? CustomFavButton(menu: serviceMenu[index])
                             : CustomPublicButton(menu: serviceMenu[index]),
-                        const SizedBox(width: vPaddingM),
+                        const SizedBox(width: vPaddingXs),
                       ],
                     );
                   },

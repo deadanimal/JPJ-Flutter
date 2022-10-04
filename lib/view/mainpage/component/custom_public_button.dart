@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jpj_info/helper/fav_menu.dart';
 import 'package:jpj_info/model/mainpage_icon.dart';
+import 'package:jpj_info/view/common/spacing.dart';
 
 class CustomPublicButton extends StatelessWidget {
   const CustomPublicButton({
@@ -13,7 +14,7 @@ class CustomPublicButton extends StatelessWidget {
   @override
   Widget build(Object context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(vPaddingXs),
       child: InkWell(
         onTap: () {
           if (menu.serviceId != null) {
@@ -25,15 +26,7 @@ class CustomPublicButton extends StatelessWidget {
           width: 117,
           height: 96,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            boxShadow: const [
-              BoxShadow(
-                color: Colors.grey,
-                blurRadius: 4,
-                offset: Offset(0, 4),
-              ),
-            ],
-            color: const Color(0xFFE0E4E7),
+            color: Colors.grey.shade100,
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,

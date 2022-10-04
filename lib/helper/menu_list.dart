@@ -30,13 +30,13 @@ class MenuList {
         login: true,
         id: 3,
       ),
-      CustomMenuItem(
-        "EzyPay",
-        "images/icon/ezypay_icon.png",
-        ezypayMenuPage,
-        login: true,
-        id: 4,
-      ),
+      // CustomMenuItem(
+      //   "EzyPay",
+      //   "images/icon/ezypay_icon.png",
+      //   ezypayMenuPage,
+      //   login: true,
+      //   id: 4,
+      // ),
       // CustomMenuItem(
       //   AppLocalizations.of(ctx)!.onlineTransaction,
       //   "images/icon/online_transaction_icon.png",
@@ -132,7 +132,7 @@ class MenuList {
         AppLocalizations.of(ctx)!.demeritPoints,
         "images/icon/demerit_point_icon.png",
         demeritPointsPage,
-        id: 11,
+        id: 4,
       ),
     ];
   }
