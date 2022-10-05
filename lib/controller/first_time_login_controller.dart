@@ -129,7 +129,7 @@ class _FirstTimeLoginController extends State<FirstTimeLoginController> {
         if (res.status == "00") {
           TooltipInfo().showInfo(
             context,
-            AppLocalizations.of(context)!.successfullySaved,
+            AppLocalizations.of(context)!.recordSaved,
             AppLocalizations.of(context)!.changePasswordOnNextPage,
             (c) {
               Navigator.push(

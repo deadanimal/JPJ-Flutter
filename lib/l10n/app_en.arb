@@ -262,7 +262,7 @@
     "secondQuestion":"Second Question",
     "thirdQuestion":"Third Question",
     "answer":"Answer",
-    "changePasswordOnNextPage":"Change your password on the next page",
+    "changePasswordOnNextPage":"Please set your password on the next page",
     "securityQuestionError":"Please make sure all question are answered and all question are different",
     "enteredPasswordNotTheSame":"Entered password are not the same",
     "changePaswordInfo":"** Password need to be changed every three (3) months",
@@ -272,5 +272,9 @@
     "chooseThisLocation":"Choose This Location",
     "saveAsDraftSuccess":"Successfully saved",
     "removeFromDraft":"Remove Draft?",
+    "recordSaved":"Record Successfully Saved",
+    "setPassword":"Set Password",
+    "passwordNotComplient":"Your password need to contains at least 8 characters consisting of a combination of uppercase, lowercase letters, numbers and symbols",
+    "verifyPassword":"Verify Password",
     "pleaseWait": "Please wait..."
 }

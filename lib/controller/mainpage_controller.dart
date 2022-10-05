@@ -87,7 +87,6 @@ class _MainpageController extends State<MainpageController> {
   }
 
   void refresh() {
-    print("ppp");
     setState(() {});
     Future.delayed(
       const Duration(milliseconds: 1000),

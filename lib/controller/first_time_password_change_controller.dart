@@ -66,7 +66,7 @@ class _FirstTimePasswordChangeController
       if (res.status != null && res.status == "00") {
         TooltipInfo().showInfo(
           context,
-          AppLocalizations.of(context)!.successfullySaved,
+          AppLocalizations.of(context)!.recordSaved,
           AppLocalizations.of(context)!.pleaseLogin,
           (c) {
             MyJPJAccountManager().logOut(context);
@@ -94,18 +94,27 @@ class _FirstTimePasswordChangeController
 
   Future<void> _submitCallback(BuildContext context) async {
     if (_confirmController.text == _controller.text) {
-      SiteConfig conf = SiteConfig();
-      ChangeTempPasswordRequest req = ChangeTempPasswordRequest(
-        katalaluanBaru: _controller.text,
-        nokp: MyJPJAccountManager().id,
-      );
-      jpjHttpRequest(
-        context,
-        Uri.parse(conf.changePasswordUri),
-        headers: conf.formHeader,
-        body: jsonEncode(req.toJson()),
-        callback: _responseHandler,
-      );
+      if (validateStructure(_confirmController.text)) {
+        SiteConfig conf = SiteConfig();
+        ChangeTempPasswordRequest req = ChangeTempPasswordRequest(
+          katalaluanBaru: _controller.text,
+          nokp: MyJPJAccountManager().id,
+        );
+        jpjHttpRequest(
+          context,
+          Uri.parse(conf.changePasswordUri),
+          headers: conf.formHeader,
+          body: jsonEncode(req.toJson()),
+          callback: _responseHandler,
+        );
+      } else {
+        TooltipInfo().showInfo(
+          context,
+          AppLocalizations.of(context)!.errorPleaseTryAgain,
+          AppLocalizations.of(context)!.passwordNotComplient,
+          (c) {},
+        );
+      }
     } else {
       TooltipInfo().showInfo(
         context,
@@ -114,5 +123,12 @@ class _FirstTimePasswordChangeController
         (c) {},
       );
     }
+  }
+
+  bool validateStructure(String value) {
+    String pattern =
+        r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~.]).{8,}$';
+    RegExp regExp = RegExp(pattern);
+    return regExp.hasMatch(value);
   }
 }

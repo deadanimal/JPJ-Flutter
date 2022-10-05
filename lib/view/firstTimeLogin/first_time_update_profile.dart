@@ -124,7 +124,7 @@ class FirstTimeUpdateProfile extends StatelessWidget {
                 CustomButton(
                   width: mediaWidth - 64,
                   label: AppLocalizations.of(context)!.next,
-                  decoration: orangeGradientBtnDeco,
+                  decoration: navyGradientBtnDeco,
                   onPressed: () {
                     submitCB!(context);
                   },

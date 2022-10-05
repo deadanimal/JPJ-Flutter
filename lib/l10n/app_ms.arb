@@ -262,7 +262,7 @@
     "secondQuestion":"Soalan Kedua",
     "thirdQuestion":"Soalan Ketiga",
     "answer":"Jawapan",
-    "changePasswordOnNextPage":"Tukar kata laluan anda di halaman berikutnya",
+    "changePasswordOnNextPage":"Sila tetapkan kata laluan anda di halaman berikutnya.",
     "securityQuestionError":"Sila pastikan anda tidak memilih soalan yang sama dan semua soalan dijawab",
     "enteredPasswordNotTheSame":"Katalaluan tidak sama",
     "changePaswordInfo":"** Kata laluan perlu ditukar setiap tiga (3) bulan",
@@ -272,5 +272,9 @@
     "chooseThisLocation":"Pilih Lokasi Ini",
     "saveAsDraftSuccess":"Berjaya disimpan",
     "removeFromDraft":"Padam dari draf?",
+    "recordSaved":"Rekod Berjaya Disimpan",
+    "setPassword":"Penetapan Kata Laluan",
+    "passwordNotComplient":"Kata laluan anda perlu mengandungi sekurang-kurangnya 8 aksara terdiri daripada gabungan huruf besar, huruf kecil, nombor dan simbol",
+    "verifyPassword":"Sahkan Kata Laluan",
     "pleaseWait": "Sila Tunggu..."
 }
