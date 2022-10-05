@@ -4,6 +4,8 @@ import 'package:jpj_info/controller/bottom_nav_controller.dart';
 import 'package:jpj_info/controller/forgot_password_controller.dart';
 import 'package:jpj_info/controller/new_registration_controller.dart';
 import 'package:jpj_info/helper/exit_prompt.dart';
+import 'package:jpj_info/helper/fav_menu.dart';
+import 'package:jpj_info/model/mainpage_icon.dart';
 import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
 import 'package:jpj_info/view/mainpage/mainpage.dart';
 
@@ -22,6 +24,10 @@ class _MainpageController extends State<MainpageController> {
     super.initState();
     _userId = TextEditingController();
     _userPwd = TextEditingController();
+    Future.delayed(
+      const Duration(milliseconds: 250),
+      refresh,
+    );
   }
 
   @override
@@ -33,6 +39,7 @@ class _MainpageController extends State<MainpageController> {
 
   @override
   Widget build(BuildContext context) {
+    List<CustomMenuItem> favMenuList = FavMenu().getFavMenuItem(context);
     return WillPopScope(
       onWillPop: () {
         return Exitprompter().prompt(context);
@@ -43,7 +50,7 @@ class _MainpageController extends State<MainpageController> {
             hasBackButton: false,
             decor: customGradient,
           ),
-          body: const MainPage(),
+          body: MainPage(favMenuList: favMenuList),
           bottomNavigationBar: BottomNavController(
             darkTheme: true,
             inHome: true,
@@ -53,31 +60,8 @@ class _MainpageController extends State<MainpageController> {
     );
   }
 
-  void login(BuildContext context) {
-    // Add field checking
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) {
-          return const MainPage();
-        },
-      ),
-    );
-  }
-
   bool isLoggedIn() {
     return false; // check for saved login detail
-  }
-
-  void logAsGuess(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) {
-          return const MainPage();
-        },
-      ),
-    );
   }
 
   void newRegistration(BuildContext context) {
@@ -99,6 +83,15 @@ class _MainpageController extends State<MainpageController> {
           return const ForgotPasswordController();
         },
       ),
+    );
+  }
+
+  void refresh() {
+    print("ppp");
+    setState(() {});
+    Future.delayed(
+      const Duration(milliseconds: 1000),
+      refresh,
     );
   }
 }

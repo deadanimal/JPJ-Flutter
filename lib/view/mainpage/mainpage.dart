@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jpj_info/helper/account_manager.dart';
+import 'package:jpj_info/model/mainpage_icon.dart';
 import 'package:jpj_info/model/page_size.dart';
 import 'package:jpj_info/view/common/spacing.dart';
 import 'package:jpj_info/view/mainpage/component/services.dart';
@@ -8,7 +9,9 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:jpj_info/view/template/template_header.dart';
 
 class MainPage extends StatefulWidget {
-  const MainPage({Key? key}) : super(key: key);
+  const MainPage({Key? key, required this.favMenuList}) : super(key: key);
+
+  final List<CustomMenuItem> favMenuList;
 
   @override
   State<StatefulWidget> createState() => _MainPage();
@@ -86,7 +89,7 @@ class _MainPage extends State<MainPage> with TickerProviderStateMixin {
               style: const TextStyle(
                 color: Colors.white,
                 fontSize: 24,
-                fontFamily: "Roboto",
+                fontFamily: "Poppins",
                 fontWeight: FontWeight.w700,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -97,7 +100,7 @@ class _MainPage extends State<MainPage> with TickerProviderStateMixin {
             style: const TextStyle(
               color: Colors.white,
               fontSize: 16,
-              fontFamily: "Roboto",
+              fontFamily: "Poppins",
             ),
           ),
           Text(
@@ -106,7 +109,7 @@ class _MainPage extends State<MainPage> with TickerProviderStateMixin {
             style: const TextStyle(
               color: Colors.white,
               fontSize: 16,
-              fontFamily: "Roboto",
+              fontFamily: "Poppins",
             ),
           )
         ],
@@ -151,13 +154,17 @@ class _MainPage extends State<MainPage> with TickerProviderStateMixin {
   Widget populateButton(context) {
     if (MyJPJAccountManager().type == UserType.staff) {
       return Column(
-        children: const [
-          Services(),
-          StaffMenu(),
+        children: [
+          Services(
+            favMenuList: widget.favMenuList,
+          ),
+          const StaffMenu(),
         ],
       );
     } else {
-      return const Services();
+      return Services(
+        favMenuList: widget.favMenuList,
+      );
     }
   }
 }

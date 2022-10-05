@@ -23,42 +23,43 @@ class CustomPublicButton extends StatelessWidget {
           menu.cbFunc(context);
         },
         child: Container(
-          width: 117,
-          height: 96,
+          width: 160,
           decoration: BoxDecoration(
             color: Colors.grey.shade100,
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
-            mainAxisSize: MainAxisSize.max,
+            mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(right: 8.0),
-                    child: Image(
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    SizedBox(
+                      width: 96,
+                      height: 50,
+                      child: Center(
+                        child: Text(
+                          menu.menu!,
+                          textAlign: TextAlign.start,
+                          style: const TextStyle(
+                            color: Color(0xff393939),
+                            fontSize: 15,
+                            fontFamily: "Poppins",
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Image(
                       image: menu.icon!,
-                      width: 55,
+                      width: 48,
                       fit: BoxFit.fitHeight,
                     ),
-                  ),
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-                child: FittedBox(
-                  child: Text(
-                    menu.menu!,
-                    textAlign: TextAlign.start,
-                    style: const TextStyle(
-                      color: Color(0xff393939),
-                      fontSize: 15,
-                      fontFamily: "Roboto",
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
+                  ],
                 ),
               ),
             ],

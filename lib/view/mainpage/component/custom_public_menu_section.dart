@@ -22,12 +22,12 @@ class CustomPublicMenuSection extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.only(
         top: 12,
-        bottom: 16,
       ),
       width: mediaWidth,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
         children: [
           Padding(
             padding: const EdgeInsets.only(left: 8, right: 8),
@@ -35,7 +35,7 @@ class CustomPublicMenuSection extends StatelessWidget {
               padding: const EdgeInsets.only(right: 5, left: 5),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
-                color: Colors.grey.shade100,
+                color: const Color(0xFFF9F9F9),
               ),
               child: fav
                   ? Badge(
@@ -54,7 +54,7 @@ class CustomPublicMenuSection extends StatelessWidget {
                           style: const TextStyle(
                             color: Color(0xff171f44),
                             fontSize: 16,
-                            fontFamily: "Roboto",
+                            fontFamily: "Poppins",
                             fontWeight: FontWeight.w900,
                           ),
                         ),
@@ -65,34 +65,38 @@ class CustomPublicMenuSection extends StatelessWidget {
                       style: const TextStyle(
                         color: Color(0xff171f44),
                         fontSize: 16,
-                        fontFamily: "Roboto",
+                        fontFamily: "Poppins",
                         fontWeight: FontWeight.w900,
                       ),
                     ),
             ),
           ),
-          const SizedBox(height: vPaddingS),
           Container(
             constraints: const BoxConstraints(maxHeight: 130),
+            width: mediaWidth,
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: [
                 const SizedBox(width: vPaddingM),
-                ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) {
-                    return Row(
-                      children: [
-                        fav
-                            ? CustomFavButton(menu: serviceMenu[index])
-                            : CustomPublicButton(menu: serviceMenu[index]),
-                        const SizedBox(width: vPaddingXs),
-                      ],
-                    );
-                  },
-                  shrinkWrap: true,
-                  physics: const BouncingScrollPhysics(),
-                  itemCount: serviceMenu.length,
+                Scrollbar(
+                  thumbVisibility: true,
+                  trackVisibility: true,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) {
+                      return Row(
+                        children: [
+                          fav
+                              ? CustomFavButton(menu: serviceMenu[index])
+                              : CustomPublicButton(menu: serviceMenu[index]),
+                          const SizedBox(width: vPaddingXs),
+                        ],
+                      );
+                    },
+                    shrinkWrap: true,
+                    physics: const BouncingScrollPhysics(),
+                    itemCount: serviceMenu.length,
+                  ),
                 ),
               ],
             ),

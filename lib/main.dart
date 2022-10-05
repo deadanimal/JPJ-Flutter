@@ -62,7 +62,7 @@ class _MyJpjState extends State<MyJpj> {
       locale: locale,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      home: const MainpageController(),
+      home: const LandingPageController(),
       builder: EasyLoading.init(),
     );
   }
