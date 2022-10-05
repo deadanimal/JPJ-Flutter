@@ -25,15 +25,17 @@ class FirstTimePasswordChange extends StatelessWidget {
     return SizedBox(
       height: double.infinity,
       width: double.infinity,
-      child: ListView(children: [
-        TemplateHeader(
-          headerTitle: AppLocalizations.of(context)!.setPassword,
-        ),
-        const SizedBox(height: vPaddingXL),
-        Center(
-          child: _foreground(context),
-        ),
-      ]),
+      child: ListView(
+        children: [
+          TemplateHeader(
+            headerTitle: AppLocalizations.of(context)!.setPassword,
+          ),
+          const SizedBox(height: vPaddingXL),
+          Center(
+            child: _foreground(context),
+          ),
+        ],
+      ),
     );
   }
 

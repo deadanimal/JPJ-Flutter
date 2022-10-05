@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/controller/forgot_password_verified_controller.dart';
 import 'package:jpj_info/controller/login_controller.dart';
+import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/form/tooltip_info.dart';
 import 'package:jpj_info/view/tac/tac.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -39,6 +40,7 @@ class _TacController extends State<TacController> {
       child: Scaffold(
         appBar: const AppBarController(
           darkBtn: true,
+          iconColor: Color(themeNavy),
         ),
         body: Tac(
           submitCB: submitCallback,

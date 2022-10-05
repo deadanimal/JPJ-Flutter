@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:jpj_info/model/page_size.dart';
-import 'package:jpj_info/view/common/background.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/common/spacing.dart';
 import 'package:jpj_info/view/form/custom_button.dart';
 import 'package:jpj_info/view/form/label.dart';
 import 'package:jpj_info/view/form/text_field.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:jpj_info/view/template/template_header.dart';
 
 class ForgotPassword extends StatelessWidget {
   const ForgotPassword({
@@ -24,12 +24,18 @@ class ForgotPassword extends StatelessWidget {
   Widget build(BuildContext context) {
     mediaWidth = (MediaQuery.of(context).size.width);
     mediaHeight = (MediaQuery.of(context).size.height);
-    return Container(
+    return SizedBox(
       height: double.infinity,
       width: double.infinity,
-      decoration: Background().themeBackground(context),
-      child: Center(
-        child: _foreground(context),
+      child: ListView(
+        children: [
+          TemplateHeader(
+            headerTitle: AppLocalizations.of(context)!.forgotPasswordDot,
+          ),
+          Center(
+            child: _foreground(context),
+          ),
+        ],
       ),
     );
   }
@@ -38,12 +44,10 @@ class ForgotPassword extends StatelessWidget {
     return Container(
       constraints: const BoxConstraints(maxWidth: 400),
       width: mediaWidth,
-      height: mediaHeight / 2,
+      height: mediaHeight,
       child: Column(
         children: [
-          CustomLabel(
-            label: AppLocalizations.of(context)!.forgotPasswordDot,
-          ),
+          const SizedBox(height: vPaddingXL),
           const SizedBox(height: vPaddingXL),
           CustomLabel(
             deco: whiteBoxDecoRounded,
@@ -74,7 +78,6 @@ class ForgotPassword extends StatelessWidget {
           ),
           const SizedBox(height: vPaddingXL),
           const SizedBox(height: vPaddingXL),
-          const SizedBox(height: vPaddingXL),
           CustomButton(
             width: mediaWidth - 64,
             onPressed: () {
@@ -82,7 +85,7 @@ class ForgotPassword extends StatelessWidget {
                 submitCB!(context);
               }
             },
-            decoration: orangeGradientBtnDeco,
+            decoration: navyGradientBtnDeco,
             label: AppLocalizations.of(context)!.submit,
           ),
         ],

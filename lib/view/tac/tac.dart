@@ -30,7 +30,13 @@ class Tac extends StatelessWidget {
     return Container(
       height: double.infinity,
       width: double.infinity,
-      decoration: Background().themeBackground(context),
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage("images/main_bg.png"),
+          fit: BoxFit.fitWidth,
+          alignment: Alignment.bottomCenter,
+        ),
+      ),
       child: Center(
         child: _foreground(context),
       ),

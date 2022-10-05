@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:jpj_info/model/page_size.dart';
-import 'package:jpj_info/view/common/background.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/common/spacing.dart';
 import 'package:jpj_info/view/form/custom_button.dart';
-import 'package:jpj_info/view/form/label.dart';
 import 'package:jpj_info/view/form/text_field.dart';
-import 'package:jpj_info/view/form/tooltip_info.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:jpj_info/view/template/template_header.dart';
 
 class ForgotPasswordVerified extends StatelessWidget {
   const ForgotPasswordVerified({
@@ -27,9 +25,23 @@ class ForgotPasswordVerified extends StatelessWidget {
     return Container(
       height: double.infinity,
       width: double.infinity,
-      decoration: Background().themeBackground(context),
-      child: Center(
-        child: _foreground(context),
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage("images/main_bg.png"),
+          fit: BoxFit.fitWidth,
+          alignment: Alignment.bottomCenter,
+        ),
+      ),
+      child: ListView(
+        children: [
+          TemplateHeader(
+            headerTitle: AppLocalizations.of(context)!.changePassword,
+          ),
+          const SizedBox(height: vPaddingXL),
+          Center(
+            child: _foreground(context),
+          ),
+        ],
       ),
     );
   }
@@ -41,28 +53,25 @@ class ForgotPasswordVerified extends StatelessWidget {
       height: mediaHeight / 2,
       child: Column(
         children: [
-          CustomLabel(
-            label: AppLocalizations.of(context)!.changePassword,
-            endWidget: InkWell(
-              onTap: () {
-                TooltipInfo().showInfo(
-                  context,
-                  AppLocalizations.of(context)!.yourPasswordNeed,
-                  AppLocalizations.of(context)!.passwordInfo,
-                  (c) => {},
-                );
-              },
-              child: const Padding(
-                padding: EdgeInsets.only(
-                  left: 8.0,
-                  right: 8.0,
-                ),
-                child: Image(
-                  image: AssetImage("images/info_tooltip_btn.png"),
-                  width: 18,
-                  height: 18,
-                ),
-              ),
+          const SizedBox(height: vPaddingXL),
+          Text(
+            AppLocalizations.of(context)!.yourPasswordNeed,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontSize: 12,
+              color: Colors.grey,
+              fontFamily: "Roboto",
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          Text(
+            AppLocalizations.of(context)!.passwordInfo,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontSize: 12,
+              color: Colors.grey,
+              fontFamily: "Roboto",
+              fontWeight: FontWeight.w600,
             ),
           ),
           const SizedBox(height: vPaddingXL),
@@ -90,7 +99,7 @@ class ForgotPasswordVerified extends StatelessWidget {
                 submitCB!(context);
               }
             },
-            decoration: orangeGradientBtnDeco,
+            decoration: navyGradientBtnDeco,
             label: AppLocalizations.of(context)!.submit,
           ),
         ],

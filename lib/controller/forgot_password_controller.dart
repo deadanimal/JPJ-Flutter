@@ -8,7 +8,7 @@ import 'package:jpj_info/controller/http_request_controller.dart';
 import 'package:jpj_info/controller/tac_controller.dart';
 import 'package:jpj_info/model/reset_password_request.dart';
 import 'package:jpj_info/model/reset_password_response.dart';
-import 'package:jpj_info/view/common/color_scheme.dart';
+import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
 import 'package:jpj_info/view/forgotPassword/forgot_password.dart';
 import 'package:jpj_info/view/form/tooltip_info.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -43,8 +43,7 @@ class _ForgotPasswordController extends State<ForgotPasswordController> {
     return SafeArea(
       child: Scaffold(
         appBar: const AppBarController(
-          darkBtn: true,
-          iconColor: Color(themeNavy),
+          decor: customGradient,
         ),
         body: ForgotPassword(
           emailController: _email,
@@ -74,9 +73,16 @@ class _ForgotPasswordController extends State<ForgotPasswordController> {
             ),
           );
         } else {
+          List<String> errString = res.msg!.split("|");
+          String err;
+          if (AppLocalizations.of(context)!.localeName == "ms") {
+            err = errString[0];
+          } else {
+            err = errString[1];
+          }
           TooltipInfo().showInfo(
             context,
-            AppLocalizations.of(context)!.errorPleaseTryAgain,
+            err,
             "",
             (c) => () {},
           );

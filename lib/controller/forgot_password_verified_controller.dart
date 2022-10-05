@@ -8,6 +8,7 @@ import 'package:jpj_info/controller/http_request_controller.dart';
 import 'package:jpj_info/helper/account_manager.dart';
 import 'package:jpj_info/model/change_temp_password_request.dart';
 import 'package:jpj_info/model/change_temp_password_response.dart';
+import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
 import 'package:jpj_info/view/forgotPasswordVerified/forgot_password_verified.dart';
 import 'package:jpj_info/view/form/tooltip_info.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -45,7 +46,7 @@ class _ForgotPasswordVerifiedController
     return SafeArea(
       child: Scaffold(
         appBar: const AppBarController(
-          darkBtn: true,
+          decor: customGradient,
         ),
         body: ForgotPasswordVerified(
           passwordController: _password,
@@ -92,18 +93,27 @@ class _ForgotPasswordVerifiedController
 
   Future<void> _submitCallback(BuildContext context) async {
     if (_password.text == _passwordConfirm.text) {
-      SiteConfig conf = SiteConfig();
-      ChangeTempPasswordRequest req = ChangeTempPasswordRequest(
-        katalaluanBaru: _password.text,
-        nokp: widget.id,
-      );
-      jpjHttpRequest(
-        context,
-        Uri.parse(conf.changePasswordUri),
-        headers: conf.formHeader,
-        body: jsonEncode(req.toJson()),
-        callback: _responseHandler,
-      );
+      if (validateStructure(_password.text)) {
+        SiteConfig conf = SiteConfig();
+        ChangeTempPasswordRequest req = ChangeTempPasswordRequest(
+          katalaluanBaru: _password.text,
+          nokp: widget.id,
+        );
+        jpjHttpRequest(
+          context,
+          Uri.parse(conf.changePasswordUri),
+          headers: conf.formHeader,
+          body: jsonEncode(req.toJson()),
+          callback: _responseHandler,
+        );
+      } else {
+        TooltipInfo().showInfo(
+          context,
+          AppLocalizations.of(context)!.errorPleaseTryAgain,
+          AppLocalizations.of(context)!.passwordNotComplient,
+          (c) {},
+        );
+      }
     } else {
       TooltipInfo().showInfo(
         context,
@@ -112,5 +122,12 @@ class _ForgotPasswordVerifiedController
         (c) {},
       );
     }
+  }
+
+  bool validateStructure(String value) {
+    String pattern =
+        r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~.]).{8,}$';
+    RegExp regExp = RegExp(pattern);
+    return regExp.hasMatch(value);
   }
 }
