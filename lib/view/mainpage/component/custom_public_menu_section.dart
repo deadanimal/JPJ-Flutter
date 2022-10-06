@@ -1,4 +1,5 @@
 import 'package:badges/badges.dart';
+import 'package:flexible_scrollbar/flexible_scrollbar.dart';
 import 'package:flutter/material.dart';
 import 'package:jpj_info/model/mainpage_icon.dart';
 import 'package:jpj_info/model/page_size.dart';
@@ -7,7 +8,7 @@ import 'package:jpj_info/view/mainpage/component/custom_fav_button.dart';
 import 'package:jpj_info/view/mainpage/component/custom_public_button.dart';
 
 class CustomPublicMenuSection extends StatelessWidget {
-  const CustomPublicMenuSection({
+  CustomPublicMenuSection({
     Key? key,
     required this.serviceMenu,
     required this.subHeader,
@@ -16,6 +17,7 @@ class CustomPublicMenuSection extends StatelessWidget {
   final List<CustomMenuItem> serviceMenu;
   final String subHeader;
   final bool fav;
+  ScrollController sc = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -72,33 +74,36 @@ class CustomPublicMenuSection extends StatelessWidget {
             ),
           ),
           Container(
-            constraints: const BoxConstraints(maxHeight: 130),
+            padding: EdgeInsets.zero,
+            constraints: BoxConstraints(maxHeight: fav ? 110 : 100),
             width: mediaWidth,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: [
-                const SizedBox(width: vPaddingM),
-                Scrollbar(
-                  thumbVisibility: true,
-                  trackVisibility: true,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      return Row(
-                        children: [
-                          fav
-                              ? CustomFavButton(menu: serviceMenu[index])
-                              : CustomPublicButton(menu: serviceMenu[index]),
-                          const SizedBox(width: vPaddingXs),
-                        ],
-                      );
-                    },
-                    shrinkWrap: true,
-                    physics: const BouncingScrollPhysics(),
-                    itemCount: serviceMenu.length,
-                  ),
-                ),
-              ],
+            child: FlexibleScrollbar(
+              controller: sc,
+              alwaysVisible: true,
+              // scrollThumbBuilder: (ScrollbarInfo info) {
+              //   return Container(
+              //     color: Colors.green,
+              //     height: 15,
+              //     width: 20,
+              //   );
+              // },
+              child: ListView.builder(
+                controller: sc,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) {
+                  return Row(
+                    children: [
+                      fav
+                          ? CustomFavButton(menu: serviceMenu[index])
+                          : CustomPublicButton(menu: serviceMenu[index]),
+                      const SizedBox(width: vPaddingXs),
+                    ],
+                  );
+                },
+                shrinkWrap: true,
+                physics: const BouncingScrollPhysics(),
+                itemCount: serviceMenu.length,
+              ),
             ),
           ),
         ],

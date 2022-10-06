@@ -59,6 +59,7 @@ dependencies:
   geolocator: ^9.0.2
   advance_pdf_viewer: any
   video_thumbnail: ^0.5.3
+  flexible_scrollbar: ^0.1.2
 
 dev_dependencies:
   flutter_test:

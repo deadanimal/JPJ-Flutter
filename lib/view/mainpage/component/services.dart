@@ -34,28 +34,29 @@ class Services extends StatelessWidget {
       transectionMenu[5],
     ];
     return Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
         CustomPublicMenuSection(
           serviceMenu: favMenuList,
           subHeader: AppLocalizations.of(context)!.favourite,
           fav: true,
         ),
-        const SizedBox(height: vPaddingXs),
+        const SizedBox(height: vPaddingM),
         CustomPublicMenuSection(
           serviceMenu: licenseMenu,
           subHeader: AppLocalizations.of(context)!.licensesService,
         ),
-        const SizedBox(height: vPaddingXs),
+        const SizedBox(height: vPaddingM),
         CustomPublicMenuSection(
           serviceMenu: driverMenu,
           subHeader: AppLocalizations.of(context)!.driverService,
         ),
-        const SizedBox(height: vPaddingXs),
+        const SizedBox(height: vPaddingM),
         CustomPublicMenuSection(
           serviceMenu: kSectionMenu,
           subHeader: AppLocalizations.of(context)!.kSection,
         ),
-        const SizedBox(height: vPaddingXs),
+        const SizedBox(height: vPaddingM),
         CustomPublicMenuSection(
           serviceMenu: supportServiceMenu,
           subHeader: AppLocalizations.of(context)!.supportServices,

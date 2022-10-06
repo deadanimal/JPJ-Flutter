@@ -76,7 +76,7 @@ class _LatestRegistrationNumberController
     "PAHANG": "images/flag/n6.png",
     "PULAU PINANG": "images/flag/n7.png",
     "PERAK": "images/flag/n8.png",
-    "PERLIS": "images/flag/n8.png",
+    "PERLIS": "images/flag/n9.png",
     "SELANGOR": "images/flag/n10.png",
     "TERENGGANU": "images/flag/n11.png",
     "KOTA KINABALU": "images/flag/n12.png",
