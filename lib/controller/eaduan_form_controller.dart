@@ -92,6 +92,7 @@ class _EaduanFormController extends State<EaduanFormController> {
   late TextEditingController locationController;
   late TextEditingController stateController;
   late TextEditingController vehicleController;
+  late TextEditingController attachmentController;
   late MapController mapController;
 
   @override
@@ -111,6 +112,7 @@ class _EaduanFormController extends State<EaduanFormController> {
     locationController = TextEditingController();
     stateController = TextEditingController();
     vehicleController = TextEditingController();
+    attachmentController = TextEditingController();
     mapController = MapController();
     offenceId = {
       EaduanItem.redLight: 1,
@@ -145,6 +147,7 @@ class _EaduanFormController extends State<EaduanFormController> {
     locationController.dispose();
     stateController.dispose();
     vehicleController.dispose();
+    attachmentController.dispose();
   }
 
   @override
@@ -207,6 +210,7 @@ class _EaduanFormController extends State<EaduanFormController> {
           eraseImageCallback: _eraseImage,
           mapController: mapController,
           draftBtnCallback: _saveToDraftCallback,
+          attachmentController: attachmentController,
         ),
         bottomNavigationBar: BottomNavController(),
       ),
@@ -321,6 +325,7 @@ class _EaduanFormController extends State<EaduanFormController> {
         remarkController.text != "" &&
         locationController.text != "" &&
         stateController.text != "" &&
+        attachmentController.text != "" &&
         stateController.text != "Negeri" &&
         stateController.text != "State" &&
         vehicleController.text != "") {
@@ -344,7 +349,7 @@ class _EaduanFormController extends State<EaduanFormController> {
       request.fields['nokenderaan'] = vehicleController.text;
       request.fields['videoName'] = "";
       request.fields['imageName'] = "";
-      request.fields['pautan'] = "";
+      request.fields['pautan'] = attachmentController.text;
       request.fields['pengadu'] = MyJPJAccountManager().id;
 
       List<http.MultipartFile> newList = <http.MultipartFile>[];
@@ -408,6 +413,7 @@ class _EaduanFormController extends State<EaduanFormController> {
         negeri: stateController.text,
         nokenderaan: vehicleController.text,
         catatan: remarkController.text,
+        pautan: attachmentController.text,
       ),
     );
 
@@ -491,6 +497,7 @@ class _EaduanFormController extends State<EaduanFormController> {
       locationController.text = widget.draft!.details!.lokasi ?? "";
       stateController.text = widget.draft!.details!.negeri ?? "";
       vehicleController.text = widget.draft!.details!.nokenderaan ?? "";
+      attachmentController.text = widget.draft!.details!.pautan ?? "";
       dropdownValue = stateController.text;
       for (var el in widget.draft!.images!) {
         images.add(el);

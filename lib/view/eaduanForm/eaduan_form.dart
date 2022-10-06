@@ -40,6 +40,7 @@ class EaduanForm extends StatelessWidget {
     required this.eraseImageCallback,
     required this.mapController,
     required this.draftBtnCallback,
+    required this.attachmentController,
     required this.videos,
   }) : super(key: key);
   final String? title;
@@ -59,6 +60,7 @@ class EaduanForm extends StatelessWidget {
   final TextEditingController locationController;
   final TextEditingController stateController;
   final TextEditingController vehicleController;
+  final TextEditingController attachmentController;
   final Iterable<String> dropdownList;
   final String dropdownValue;
   final Function(BuildContext, dynamic) selectionCallback;
@@ -173,7 +175,7 @@ class EaduanForm extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: TextFieldForm(
                 label: AppLocalizations.of(context)!.videoAttachment,
-                // textController: idTextController,
+                textController: attachmentController,
                 width: mediaWidth,
               ),
             ),
