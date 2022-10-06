@@ -276,5 +276,7 @@
     "setPassword":"Penetapan Kata Laluan",
     "passwordNotComplient":"Kata laluan anda perlu mengandungi sekurang-kurangnya 8 aksara terdiri daripada gabungan huruf besar, huruf kecil, nombor dan simbol",
     "verifyPassword":"Sahkan Kata Laluan",
+    "haveDemerit":"Anda mempunyai mata demerit. Untuk maklumat lanjut sila semak di portal awam",
+    "noDemerit":"Tiada maklumat Demerit.",
     "pleaseWait": "Sila Tunggu..."
 }

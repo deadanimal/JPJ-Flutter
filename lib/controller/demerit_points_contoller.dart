@@ -71,32 +71,41 @@ class _DemeritPointsController extends State<DemeritPointsController> {
       DemeritStatusResponse respond = DemeritStatusResponse.fromJson(
         jsonDecode(response.body),
       );
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) {
-            List<Result2> dataSet = [];
-            dataSet.add(
-              Result2(
-                title: respond.kejaraPoint,
-                result: Container(),
-              ),
-            );
+      if (respond.status == 200) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) {
+              List<Result2> dataSet = [];
+              dataSet.add(
+                Result2(
+                  title: respond.kejaraPoint == "true"
+                      ? AppLocalizations.of(context)!.haveDemerit
+                      : AppLocalizations.of(context)!.noDemerit,
+                  result: Container(),
+                ),
+              );
 
-            ResultStyle2 resultData = ResultStyle2(
-              name: respond.name,
-              id: respond.idNo,
-              title: AppLocalizations.of(context)!.demeritNPoints,
-              subtitle: AppLocalizations.of(context)!.searchResult,
-              results: dataSet,
-              vehicalRegNumber: null,
-            );
-            return TemplateResult2(
-              data: resultData,
-            );
-          },
-        ),
-      );
+              ResultStyle2 resultData = ResultStyle2(
+                name: respond.name,
+                id: respond.idNo,
+                title: AppLocalizations.of(context)!.demeritNPoints,
+                subtitle: AppLocalizations.of(context)!.searchResult,
+                results: dataSet,
+                vehicalRegNumber: null,
+              );
+              return TemplateResult2(
+                data: resultData,
+              );
+            },
+          ),
+        );
+      } else {
+        AlertController(ctx: context)
+            .generalError(AppLocalizations.of(context)!.noRecord, () {
+          Navigator.pop(context);
+        });
+      }
     } else {
       AlertController(ctx: context).connectionError();
     }

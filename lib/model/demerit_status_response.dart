@@ -4,6 +4,8 @@ class DemeritStatusResponse {
   String? idNo;
   String? category;
   String? kejaraPoint;
+  int? statusCode;
+  String? statusMessage;
 
   DemeritStatusResponse({
     this.status,
@@ -11,6 +13,8 @@ class DemeritStatusResponse {
     this.idNo,
     this.category,
     this.kejaraPoint,
+    this.statusCode,
+    this.statusMessage,
   });
 
   DemeritStatusResponse.fromJson(Map<String, dynamic> json) {
@@ -19,6 +23,8 @@ class DemeritStatusResponse {
     idNo = json['idNo'];
     category = json['category'];
     kejaraPoint = json['kejaraPoint'];
+    statusCode = json['statusCode'];
+    statusMessage = json['statusMessage'];
   }
 
   Map<String, dynamic> toJson() {
@@ -28,6 +34,8 @@ class DemeritStatusResponse {
     data['idNo'] = idNo;
     data['category'] = category;
     data['kejaraPoint'] = kejaraPoint;
+    data['statusCode'] = statusCode;
+    data['statusMessage'] = statusMessage;
     return data;
   }
 }

@@ -276,5 +276,7 @@
     "setPassword":"Set Password",
     "passwordNotComplient":"Your password need to contains at least 8 characters consisting of a combination of uppercase, lowercase letters, numbers and symbols",
     "verifyPassword":"Verify Password",
+    "haveDemerit":"You have demerit points. For more information please check on the public portal",
+    "noDemerit":"No demerit information.",
     "pleaseWait": "Please wait..."
 }
