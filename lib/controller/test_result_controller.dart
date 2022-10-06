@@ -152,7 +152,7 @@ class _TestResultController extends State<TestResultController> {
     return _resultField(
       el.testDate!,
       el.testVenue!,
-      el.licenseType,
+      el.licenseClass,
       el.overAllResult!,
     );
   }
@@ -175,7 +175,7 @@ class _TestResultController extends State<TestResultController> {
                 textAlign: TextAlign.start,
                 style: const TextStyle(
                   color: Colors.black,
-                  fontSize: 13,
+                  fontSize: 15,
                   fontFamily: "Roboto",
                   fontWeight: FontWeight.w600,
                 ),
@@ -185,7 +185,7 @@ class _TestResultController extends State<TestResultController> {
                 textAlign: TextAlign.end,
                 style: const TextStyle(
                   color: Color(0xff4e4e4e),
-                  fontSize: 13,
+                  fontSize: 15,
                 ),
               ),
             ],
@@ -200,7 +200,7 @@ class _TestResultController extends State<TestResultController> {
                 textAlign: TextAlign.start,
                 style: const TextStyle(
                   color: Colors.black,
-                  fontSize: 13,
+                  fontSize: 15,
                   fontFamily: "Roboto",
                   fontWeight: FontWeight.w600,
                 ),
@@ -214,7 +214,7 @@ class _TestResultController extends State<TestResultController> {
                   maxLines: 4,
                   style: const TextStyle(
                       color: Color(0xff4e4e4e),
-                      fontSize: 13,
+                      fontSize: 15,
                       overflow: TextOverflow.ellipsis),
                 ),
               ),
@@ -229,7 +229,7 @@ class _TestResultController extends State<TestResultController> {
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   color: Colors.black,
-                  fontSize: 13,
+                  fontSize: 15,
                   fontFamily: "Roboto",
                   fontWeight: FontWeight.w600,
                 ),
@@ -239,7 +239,7 @@ class _TestResultController extends State<TestResultController> {
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   color: Color(0xff4e4e4e),
-                  fontSize: 13,
+                  fontSize: 15,
                 ),
               ),
             ],
@@ -253,7 +253,7 @@ class _TestResultController extends State<TestResultController> {
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   color: Colors.black,
-                  fontSize: 13,
+                  fontSize: 15,
                   fontFamily: "Roboto",
                   fontWeight: FontWeight.w600,
                 ),
@@ -263,7 +263,7 @@ class _TestResultController extends State<TestResultController> {
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   color: Color(0xff4e4e4e),
-                  fontSize: 13,
+                  fontSize: 15,
                 ),
               ),
             ],

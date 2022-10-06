@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:jpj_info/model/page_size.dart';
-import 'package:jpj_info/view/common/background.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/common/spacing.dart';
 import 'package:jpj_info/view/form/custom_button.dart';

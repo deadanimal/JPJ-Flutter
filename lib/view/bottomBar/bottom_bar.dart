@@ -31,8 +31,8 @@ class BottomBar extends StatelessWidget {
         showUnselectedLabels: true,
         showSelectedLabels: true,
         elevation: 0,
-        selectedFontSize: 10,
-        unselectedFontSize: 10,
+        selectedFontSize: 13,
+        unselectedFontSize: 13,
         items: items,
         selectedItemColor: textColor,
         onTap: (index) {

@@ -198,6 +198,7 @@ class _LatestRegistrationNumberController
                     ? respond.areaName
                     : respond.areaName!.contains("WILAYAH PERSEKUTUAN")
                         ? respond.areaName
+                            ?.replaceAll("WILAYAH PERSEKUTUAN", "W.P")
                         : "${respond.areaName!} , $stateSelected",
           ),
         );

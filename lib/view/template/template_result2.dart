@@ -131,7 +131,7 @@ class TemplateResult2 extends StatelessWidget {
                 data.name != null ? AppLocalizations.of(context)!.name : "",
                 style: const TextStyle(
                   color: Color(themeNavy),
-                  fontSize: 13,
+                  fontSize: 15,
                   fontFamily: "Roboto",
                   fontWeight: FontWeight.w600,
                 ),
@@ -140,7 +140,7 @@ class TemplateResult2 extends StatelessWidget {
                 data.name ?? "",
                 style: const TextStyle(
                   color: Color(themeNavy),
-                  fontSize: 13,
+                  fontSize: 15,
                 ),
               ),
             ],
@@ -153,7 +153,7 @@ class TemplateResult2 extends StatelessWidget {
                 AppLocalizations.of(context)!.nricNumber,
                 style: const TextStyle(
                   color: Color(themeNavy),
-                  fontSize: 13,
+                  fontSize: 15,
                   fontFamily: "Roboto",
                   fontWeight: FontWeight.w600,
                 ),
@@ -162,7 +162,7 @@ class TemplateResult2 extends StatelessWidget {
                 data.id!,
                 style: const TextStyle(
                   color: Color(themeNavy),
-                  fontSize: 13,
+                  fontSize: 15,
                 ),
               ),
             ],
