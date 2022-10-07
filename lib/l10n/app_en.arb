@@ -282,5 +282,6 @@
     "updateProfileInfo":"Please update your informations using JPJ portal",
     "wrongPassword":"Wrong password",
     "enterOnlyOneRegistrationNumber":"Enter only one vehicle registration number",
+    "noRecordInMySikap":"Record not exist in MySikap. Please go to the nearest JPJ counter",
     "pleaseWait": "Please wait..."
 }

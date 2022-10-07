@@ -82,13 +82,22 @@ class _NewUserCheckIdController extends State<NewUserCheckIdController> {
       );
       if (checkIdResponse.status != null) {
         if (checkIdResponse.status == "00") {
-          TooltipInfo().showInfo(
+          Navigator.push(
             context,
-            AppLocalizations.of(context)!.idHasRecord,
-            AppLocalizations.of(context)!.pleaseLogin,
-            (c) {
+            MaterialPageRoute(
+              builder: (context) {
+                return NewRegistrationController(
+                  userData: checkIdResponse,
+                );
+              },
+            ),
+          );
+        } else {
+          AlertController(ctx: context).generalError(
+            AppLocalizations.of(context)!.noRecordInMySikap,
+            () {
               Navigator.push(
-                c,
+                context,
                 MaterialPageRoute(
                   builder: (context) {
                     return const LoginController();
@@ -96,15 +105,6 @@ class _NewUserCheckIdController extends State<NewUserCheckIdController> {
                 ),
               );
             },
-          );
-        } else {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) {
-                return const NewRegistrationController();
-              },
-            ),
           );
         }
       } else {

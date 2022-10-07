@@ -7,6 +7,7 @@ import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/controller/http_request_controller.dart';
 import 'package:jpj_info/controller/login_controller.dart';
 import 'package:jpj_info/helper/id_types.dart';
+import 'package:jpj_info/model/check_id_response.dart';
 import 'package:jpj_info/model/new_user_registration_request.dart';
 import 'package:jpj_info/model/new_user_registration_response.dart';
 import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
@@ -16,7 +17,8 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:http/http.dart' as http;
 
 class NewRegistrationController extends StatefulWidget {
-  const NewRegistrationController({Key? key}) : super(key: key);
+  const NewRegistrationController({Key? key, this.userData}) : super(key: key);
+  final CheckIdResponse? userData;
 
   @override
   State<StatefulWidget> createState() => _NewRegistrationController();
@@ -40,6 +42,19 @@ class _NewRegistrationController extends State<NewRegistrationController> {
     _phone = TextEditingController();
     _id = TextEditingController();
     _name = TextEditingController();
+    if (widget.userData != null) {
+      _email.text = widget.userData?.email ?? "";
+      _emailVerification.text = widget.userData?.email ?? "";
+      _phone.text = widget.userData?.phone ?? "";
+      _id.text = widget.userData?.nokp ?? "";
+      _name.text = widget.userData?.name ?? "";
+
+      _email.text = _email.text.trim();
+      _emailVerification.text = _emailVerification.text.trim();
+      _phone.text = _phone.text.trim();
+      _id.text = _id.text.trim();
+      _name.text = _name.text.trim();
+    }
   }
 
   @override

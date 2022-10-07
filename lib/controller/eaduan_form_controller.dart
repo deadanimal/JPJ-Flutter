@@ -309,6 +309,9 @@ class _EaduanFormController extends State<EaduanFormController> {
         (value) {
           AduanSaveResponse res = AduanSaveResponse.fromJson(jsonDecode(value));
           if (res.status == "saved") {
+            if (widget.draft != null && widget.id != null) {
+              EAduanDraft().erase(widget.id!);
+            }
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(
