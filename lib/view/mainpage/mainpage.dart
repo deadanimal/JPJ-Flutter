@@ -62,8 +62,11 @@ class _MainPage extends State<MainPage> with TickerProviderStateMixin {
         child: ListView(
           shrinkWrap: true,
           children: [
-            TemplateHeader(
-              header: mainheader(context),
+            Hero(
+              tag: "headerAnim",
+              child: TemplateHeader(
+                header: mainheader(context),
+              ),
             ),
             const SizedBox(height: vPaddingM),
             populateButton(context),

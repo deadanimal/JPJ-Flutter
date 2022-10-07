@@ -31,16 +31,19 @@ class Login extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            TemplateHeader(
-              header: Center(
-                child: Text(
-                  AppLocalizations.of(context)!.logIn,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 32,
-                    fontFamily: "Roboto",
-                    fontWeight: FontWeight.w600,
+            Hero(
+              tag: "headerAnim",
+              child: TemplateHeader(
+                header: Center(
+                  child: Text(
+                    AppLocalizations.of(context)!.logIn,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 32,
+                      fontFamily: "Roboto",
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ),
               ),
