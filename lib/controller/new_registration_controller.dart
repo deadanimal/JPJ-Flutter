@@ -169,11 +169,11 @@ class _NewRegistrationController extends State<NewRegistrationController> {
   }
 
   void _moreTnc() {
-    TooltipInfo().showInfo(
-      context,
-      "",
+    AlertController(ctx: context).generalError(
       AppLocalizations.of(context)!.tncLong,
-      (c) => {},
+      () {
+        Navigator.of(context).pop();
+      },
     );
   }
 
