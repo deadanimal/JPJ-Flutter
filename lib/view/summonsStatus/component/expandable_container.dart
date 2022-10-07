@@ -161,15 +161,24 @@ class _CustomExpandableContainer extends State<CustomExpandableContainer> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       mainAxisSize: MainAxisSize.max,
       children: [
-        _summonInfoLabel(context, label),
-        amountField == true
-            ? _summonInfoDetail(
-                context,
-                detail,
-                textColor: const Color(errorRed),
-                fontWeight: FontWeight.w600,
-              )
-            : _summonInfoDetail(context, detail),
+        Expanded(
+          flex: 2,
+          child: _summonInfoLabel(context, label),
+        ),
+        Expanded(
+          flex: 6,
+          child: amountField == true
+              ? _summonInfoDetail(
+                  context,
+                  detail,
+                  textColor: const Color(errorRed),
+                  fontWeight: FontWeight.w600,
+                )
+              : SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: _summonInfoDetail(context, detail.trim()),
+                ),
+        )
       ],
     );
   }
