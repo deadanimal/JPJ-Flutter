@@ -35,7 +35,7 @@ class _WelcomePageController extends State<WelcomePageController> {
 
   void _proceessLoginInfo(BuildContext context) {
     Future.delayed(
-      const Duration(milliseconds: 2500),
+      const Duration(milliseconds: 1500),
       () {
         if (MyJPJAccountManager().isLoggedIn &&
             MyJPJAccountManager().firstTime == "A ") {

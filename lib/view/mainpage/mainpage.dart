@@ -69,7 +69,10 @@ class _MainPage extends State<MainPage> with TickerProviderStateMixin {
               ),
             ),
             const SizedBox(height: vPaddingM),
-            populateButton(context),
+            Padding(
+              padding: const EdgeInsets.all(6.0),
+              child: populateButton(context),
+            ),
           ],
         ),
       ),

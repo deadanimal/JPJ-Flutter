@@ -1,5 +1,4 @@
 import 'package:badges/badges.dart';
-import 'package:flexible_scrollbar/flexible_scrollbar.dart';
 import 'package:flutter/material.dart';
 import 'package:jpj_info/model/mainpage_icon.dart';
 import 'package:jpj_info/model/page_size.dart';
@@ -7,8 +6,8 @@ import 'package:jpj_info/view/common/spacing.dart';
 import 'package:jpj_info/view/mainpage/component/custom_fav_button.dart';
 import 'package:jpj_info/view/mainpage/component/custom_public_button.dart';
 
-class CustomPublicMenuSection extends StatelessWidget {
-  CustomPublicMenuSection({
+class CustomPublicMenuSection extends StatefulWidget {
+  const CustomPublicMenuSection({
     Key? key,
     required this.serviceMenu,
     required this.subHeader,
@@ -17,7 +16,37 @@ class CustomPublicMenuSection extends StatelessWidget {
   final List<CustomMenuItem> serviceMenu;
   final String subHeader;
   final bool fav;
-  ScrollController sc = ScrollController();
+
+  @override
+  State<StatefulWidget> createState() => _CustomPublicMenuSection();
+}
+
+class _CustomPublicMenuSection extends State<CustomPublicMenuSection> {
+  final ScrollController sc = ScrollController();
+  double _scrollInd = 0;
+
+  @override
+  void initState() {
+    sc.addListener(() {
+      double indOffsetSize = 43;
+      setState(() {
+        if (sc.position.pixels > sc.position.maxScrollExtent) {
+          _scrollInd = indOffsetSize;
+        } else if (0 > sc.position.pixels) {
+          _scrollInd = 0;
+        } else {
+          _scrollInd = (sc.position.pixels / sc.position.maxScrollExtent) *
+              indOffsetSize;
+        }
+      });
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +68,7 @@ class CustomPublicMenuSection extends StatelessWidget {
                 borderRadius: BorderRadius.circular(20),
                 color: const Color(0xFFF9F9F9),
               ),
-              child: fav
+              child: widget.fav
                   ? Badge(
                       badgeContent: const Text(
                         "Top\n5",
@@ -52,7 +81,7 @@ class CustomPublicMenuSection extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
-                          subHeader,
+                          widget.subHeader,
                           style: const TextStyle(
                             color: Color(0xff171f44),
                             fontSize: 16,
@@ -63,7 +92,7 @@ class CustomPublicMenuSection extends StatelessWidget {
                       ),
                     )
                   : Text(
-                      subHeader,
+                      widget.subHeader,
                       style: const TextStyle(
                         color: Color(0xff171f44),
                         fontSize: 16,
@@ -75,34 +104,46 @@ class CustomPublicMenuSection extends StatelessWidget {
           ),
           Container(
             padding: EdgeInsets.zero,
-            constraints: BoxConstraints(maxHeight: fav ? 110 : 100),
+            constraints: BoxConstraints(maxHeight: widget.fav ? 110 : 100),
             width: mediaWidth,
-            child: FlexibleScrollbar(
+            child: ListView.builder(
               controller: sc,
-              alwaysVisible: true,
-              // scrollThumbBuilder: (ScrollbarInfo info) {
-              //   return Container(
-              //     color: Colors.green,
-              //     height: 15,
-              //     width: 20,
-              //   );
-              // },
-              child: ListView.builder(
-                controller: sc,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) {
-                  return Row(
-                    children: [
-                      fav
-                          ? CustomFavButton(menu: serviceMenu[index])
-                          : CustomPublicButton(menu: serviceMenu[index]),
-                      const SizedBox(width: vPaddingXs),
-                    ],
-                  );
-                },
-                shrinkWrap: true,
-                physics: const BouncingScrollPhysics(),
-                itemCount: serviceMenu.length,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) {
+                return Row(
+                  children: [
+                    widget.fav
+                        ? CustomFavButton(menu: widget.serviceMenu[index])
+                        : CustomPublicButton(menu: widget.serviceMenu[index]),
+                    const SizedBox(width: vPaddingXs),
+                  ],
+                );
+              },
+              shrinkWrap: true,
+              physics: const BouncingScrollPhysics(),
+              itemCount: widget.serviceMenu.length,
+            ),
+          ),
+          Center(
+            child: Container(
+              height: 8,
+              width: 86,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: const Color(0xFFCDCECF),
+              ),
+              child: Row(
+                children: [
+                  Container(width: _scrollInd),
+                  Container(
+                    height: 8,
+                    width: 43,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: const Color(0xFF37A105),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
