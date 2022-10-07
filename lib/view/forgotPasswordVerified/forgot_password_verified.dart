@@ -58,7 +58,7 @@ class ForgotPasswordVerified extends StatelessWidget {
             AppLocalizations.of(context)!.yourPasswordNeed,
             textAlign: TextAlign.center,
             style: const TextStyle(
-              fontSize: 12,
+              fontSize: 13,
               color: Colors.grey,
               fontFamily: "Roboto",
               fontWeight: FontWeight.w600,
@@ -68,7 +68,7 @@ class ForgotPasswordVerified extends StatelessWidget {
             AppLocalizations.of(context)!.passwordInfo,
             textAlign: TextAlign.center,
             style: const TextStyle(
-              fontSize: 12,
+              fontSize: 13,
               color: Colors.grey,
               fontFamily: "Roboto",
               fontWeight: FontWeight.w600,

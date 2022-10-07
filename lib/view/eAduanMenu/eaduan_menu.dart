@@ -48,8 +48,8 @@ class EaduanMenu extends StatelessWidget {
                     draftStatusCallback(context);
                   },
                   decoration: navyGradientBtnDeco,
-                  label: AppLocalizations.of(context)!.draftSent,
-                  width: 150,
+                  label: AppLocalizations.of(context)!.listOfComplaint,
+                  width: 155,
                   textSize: 15,
                 ),
               ),

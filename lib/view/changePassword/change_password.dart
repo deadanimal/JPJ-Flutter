@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:jpj_info/model/page_size.dart';
-import 'package:jpj_info/view/common/background.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/common/spacing.dart';
 import 'package:jpj_info/view/form/custom_button.dart';
-import 'package:jpj_info/view/form/label.dart';
 import 'package:jpj_info/view/form/text_field.dart';
-import 'package:jpj_info/view/form/tooltip_info.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:jpj_info/view/template/template_header.dart';
 
 class ChangePassword extends StatelessWidget {
   const ChangePassword({
@@ -28,9 +27,23 @@ class ChangePassword extends StatelessWidget {
     return Container(
       height: double.infinity,
       width: double.infinity,
-      decoration: Background().themeBackground(context),
-      child: Center(
-        child: _foreground(context),
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage("images/main_bg.png"),
+          fit: BoxFit.fitWidth,
+          alignment: Alignment.bottomCenter,
+        ),
+      ),
+      child: ListView(
+        children: [
+          TemplateHeader(
+            headerTitle: AppLocalizations.of(context)!.changePassword,
+          ),
+          const SizedBox(height: vPaddingXL),
+          Center(
+            child: _foreground(context),
+          ),
+        ],
       ),
     );
   }
@@ -39,39 +52,41 @@ class ChangePassword extends StatelessWidget {
     return Container(
       constraints: const BoxConstraints(maxWidth: 400),
       width: mediaWidth,
-      height: mediaHeight / 2,
+      height: mediaHeight,
       child: Column(
         children: [
-          CustomLabel(
-            label: "Tukar Kata Laluan",
-            endWidget: InkWell(
-              onTap: () {
-                TooltipInfo().showInfo(
-                  context,
-                  "Kata laluan anda perlu",
-                  "mengandungi sekurang-kurangnya 8 aksara terdiri daripada gabungan huruf besar, huruf kecil, nombor dan simbol",
-                  (c) => {},
-                );
-              },
-              child: const Padding(
-                padding: EdgeInsets.only(
-                  left: 8.0,
-                  right: 8.0,
-                ),
-                child: Image(
-                  image: AssetImage("images/info_tooltip_btn.png"),
-                  width: 18,
-                  height: 18,
-                ),
+          const SizedBox(height: vPaddingXL),
+          Padding(
+            padding: const EdgeInsets.only(left: 32.0, right: 32.0),
+            child: Text(
+              AppLocalizations.of(context)!.yourPasswordNeed,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontSize: 13,
+                color: Colors.grey,
+                fontFamily: "Roboto",
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 32.0, right: 32.0),
+            child: Text(
+              AppLocalizations.of(context)!.passwordInfo,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontSize: 13,
+                color: Colors.grey,
+                fontFamily: "Roboto",
+                fontWeight: FontWeight.w600,
               ),
             ),
           ),
           const SizedBox(height: vPaddingXL),
-          const SizedBox(height: vPaddingM),
           TextFieldForm(
             textController: oldpasswordController,
             obscureText: true,
-            label: "Kata Laluan Lama",
+            label: AppLocalizations.of(context)!.yourPassword,
             width: mediaWidth - 64,
           ),
           const SizedBox(height: vPaddingM),
@@ -79,14 +94,14 @@ class ChangePassword extends StatelessWidget {
           TextFieldForm(
             textController: passwordController,
             obscureText: true,
-            label: "Kata Laluan Baru",
+            label: AppLocalizations.of(context)!.newPassword,
             width: mediaWidth - 64,
           ),
           const SizedBox(height: vPaddingM),
           TextFieldForm(
             textController: pwdConfirmController,
             obscureText: true,
-            label: "Pengesahan Kata Laluan Baru",
+            label: AppLocalizations.of(context)!.verifyNewPassword,
             width: mediaWidth - 64,
           ),
           const SizedBox(height: vPaddingXL),
@@ -98,7 +113,7 @@ class ChangePassword extends StatelessWidget {
                 submitCB!(context);
               }
             },
-            decoration: orangeGradientBtnDeco,
+            decoration: navyGradientBtnDecoSquare,
             label: "Hantar",
           ),
         ],

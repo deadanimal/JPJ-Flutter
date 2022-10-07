@@ -161,12 +161,12 @@ class MenuList {
         vehicleListPage,
         isSvg: true,
       ),
-      CustomMenuItem(
-        AppLocalizations.of(ctx)!.feedback,
-        "images/vector/feedback_icon.svg",
-        feedbackPage,
-        isSvg: true,
-      ),
+      // CustomMenuItem(
+      //   AppLocalizations.of(ctx)!.feedback,
+      //   "images/vector/feedback_icon.svg",
+      //   feedbackPage,
+      //   isSvg: true,
+      // ),
       CustomMenuItem(
         AppLocalizations.of(ctx)!.viewTNC,
         "images/vector/tnc_icon.svg",

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:jpj_info/controller/responsive.dart';
 import 'package:jpj_info/helper/account_manager.dart';
 import 'package:jpj_info/model/page_size.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/common/spacing.dart';
-import 'package:jpj_info/view/form/custom_button.dart';
 import 'package:jpj_info/view/form/text_field_with_label.dart';
 import 'package:jpj_info/view/template/template_header.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -74,70 +72,24 @@ class ProfileUpdate extends StatelessWidget {
             width: mediaWidth - 64,
           ),
           CustomTextFieldWithLabel(
-            controller: phoneController,
-            label: AppLocalizations.of(context)!.phoneNumber,
-            readOnly: false,
-            width: mediaWidth - 64,
-          ),
-          CustomTextFieldWithLabel(
             controller: emailController,
             label: AppLocalizations.of(context)!.email,
             readOnly:
                 MyJPJAccountManager().type == UserType.staff ? false : true,
             width: mediaWidth - 64,
           ),
-          CustomTextFieldWithLabel(
-            controller: addressController,
-            label: AppLocalizations.of(context)!.address,
-            readOnly: true,
-            width: mediaWidth - 64,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                flex: 5,
-                child: CustomTextFieldWithLabel(
-                  controller: districtController,
-                  label: AppLocalizations.of(context)!.district,
-                  readOnly: true,
-                  width: mediaWidth,
-                ),
+          const SizedBox(height: vPaddingXXL),
+          Center(
+            child: Text(
+              AppLocalizations.of(context)!.updateProfileInfo,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontSize: 15,
+                color: Color(themeNavy),
+                fontFamily: "Roboto",
+                fontWeight: FontWeight.w600,
               ),
-              Expanded(
-                flex: 5,
-                child: CustomTextFieldWithLabel(
-                  controller: stateController,
-                  label: AppLocalizations.of(context)!.state,
-                  readOnly: true,
-                  width: mediaWidth,
-                ),
-              ),
-            ],
-          ),
-          CustomTextFieldWithLabel(
-            controller: postcodeController,
-            label: AppLocalizations.of(context)!.postcode,
-            readOnly: true,
-            width:
-                ((Responsive().isMobile(context) ? mediaWidth : 400) / 2) - 64,
-          ),
-          const SizedBox(height: vPaddingXL),
-          CustomButton(
-            width: mediaWidth - 64,
-            onPressed: () => submitCallback(context),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8),
-              boxShadow: const [
-                BoxShadow(
-                  color: Color(btnShadow),
-                  blurRadius: 4,
-                  offset: Offset(0, 4),
-                ),
-              ],
-              color: const Color(btnColor),
             ),
-            label: AppLocalizations.of(context)!.submit,
           ),
         ],
       ),
