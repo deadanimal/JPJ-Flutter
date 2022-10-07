@@ -281,5 +281,6 @@
     "fileTooBigError":"Fail lebih besar daripada 20MB",
     "updateProfileInfo":"Sila kemaskini maklumat anda di portal Awam JPJ",
     "wrongPassword":"Kata laluan anda salah",
+    "enterOnlyOneRegistrationNumber":"Masukkan hanya satu nombor pendaftaran kenderaan",
     "pleaseWait": "Sila Tunggu..."
 }

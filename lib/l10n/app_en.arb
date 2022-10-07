@@ -281,5 +281,6 @@
     "fileTooBigError":"File is larger than 20MB",
     "updateProfileInfo":"Please update your informations using JPJ portal",
     "wrongPassword":"Wrong password",
+    "enterOnlyOneRegistrationNumber":"Enter only one vehicle registration number",
     "pleaseWait": "Please wait..."
 }

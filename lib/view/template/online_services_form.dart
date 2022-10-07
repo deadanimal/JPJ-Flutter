@@ -17,12 +17,14 @@ class ServiceForm extends StatelessWidget {
     required this.dropdownList,
     required this.dropdownValue,
     this.plateNumberTextController,
+    this.plateNumberHint,
   }) : super(key: key);
 
   final void Function(BuildContext) submitCallback;
   final Function selectionCallback;
   final TextEditingController idTextController;
   final TextEditingController? plateNumberTextController;
+  final String? plateNumberHint;
   final List<String> dropdownList;
   final String dropdownValue;
 
@@ -101,6 +103,22 @@ class ServiceForm extends StatelessWidget {
         textController: plateNumberTextController!,
         width: mediaWidth - 64,
       ),
+      plateNumberHint != null
+          ? Container(
+              padding: const EdgeInsets.all(8),
+              width: mediaWidth - 64,
+              child: Text(
+                plateNumberHint!,
+                style: const TextStyle(
+                  color: Color.fromARGB(255, 133, 133, 133),
+                  fontSize: 13,
+                  fontFamily: "Roboto",
+                  fontWeight: FontWeight.w600,
+                ),
+                textAlign: TextAlign.left,
+              ),
+            )
+          : Container(),
     ];
   }
 }

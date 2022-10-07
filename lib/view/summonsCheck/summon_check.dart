@@ -36,13 +36,13 @@ class SummonsCheck extends StatelessWidget {
           TemplateHeader(
             headerTitle: AppLocalizations.of(context)!.ticket,
           ),
-          _summonsForm(),
+          _summonsForm(context),
         ],
       ),
     );
   }
 
-  Widget _summonsForm() {
+  Widget _summonsForm(BuildContext context) {
     return ServiceForm(
       submitCallback: submitCallback,
       selectionCallback: selectionCallback,
@@ -50,6 +50,8 @@ class SummonsCheck extends StatelessWidget {
       dropdownList: dropdownList,
       dropdownValue: dropdownValue,
       plateNumberTextController: plateTextController,
+      plateNumberHint:
+          AppLocalizations.of(context)!.enterOnlyOneRegistrationNumber,
     );
   }
 }
