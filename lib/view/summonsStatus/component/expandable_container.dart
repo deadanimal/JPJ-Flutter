@@ -114,7 +114,7 @@ class _CustomExpandableContainer extends State<CustomExpandableContainer> {
         mainAxisSize: MainAxisSize.min,
         children: [
           _summonInfo(context),
-          _paymentStatus(context),
+          // _paymentStatus(context),
         ],
       ),
     );
