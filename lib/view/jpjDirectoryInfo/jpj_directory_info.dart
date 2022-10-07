@@ -201,15 +201,15 @@ class _JpjDirectoryInfo extends State<JpjDirectoryInfo> {
               ),
             ],
           ),
-          const SizedBox(height: vPaddingS),
-          _branchInfoLabel(
-            AppLocalizations.of(context)!.email,
-            locationData.email,
-          ),
+          // const SizedBox(height: vPaddingS),
+          // _branchInfoLabel(
+          //   AppLocalizations.of(context)!.email,
+          //   locationData.email,
+          // ),
           const SizedBox(height: vPaddingS),
           _branchInfoLabel(
             AppLocalizations.of(context)!.operationHour,
-            locationData.operationalHour,
+            locationData.operationalHour ?? "",
           ),
           const SizedBox(height: vPaddingS),
           _branchInfoLabel(
@@ -234,14 +234,16 @@ class _JpjDirectoryInfo extends State<JpjDirectoryInfo> {
           label,
           textAlign: TextAlign.start,
           style: const TextStyle(
-            fontSize: 11,
+            fontSize: 15,
+            fontFamily: "Roboto",
             fontWeight: FontWeight.bold,
           ),
         ),
         Text(
           info,
           style: const TextStyle(
-            fontSize: 11,
+            fontSize: 15,
+            fontFamily: "Roboto",
           ),
         ),
       ],
@@ -315,7 +317,7 @@ class _JpjDirectoryInfo extends State<JpjDirectoryInfo> {
   }
 
   void _locationBtnCallback() {
-    final splitted = locationData.coordinate!.split(',');
+    final splitted = locationData.coordinate!.replaceAll(" ", "").split(',');
     MapsLauncher.launchCoordinates(
       double.parse(splitted[0]),
       double.parse(splitted[1]),

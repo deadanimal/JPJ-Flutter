@@ -23,7 +23,7 @@ class JpjLocationResponseData {
   String? coordinate;
   String? coordinate2;
   String email = "";
-  String operationalHour = "9:00 pagi - 4.00 tengahari";
+  String? operationalHour;
 
   JpjLocationResponseData(
       {this.id,
@@ -33,7 +33,8 @@ class JpjLocationResponseData {
       this.phoneNo,
       this.faxNo,
       this.coordinate,
-      this.coordinate2});
+      this.coordinate2,
+      this.operationalHour = "9:00 pagi - 4.00 tengahari"});
 
   JpjLocationResponseData.fromJson(Map<String, dynamic> json) {
     id = json['id'];

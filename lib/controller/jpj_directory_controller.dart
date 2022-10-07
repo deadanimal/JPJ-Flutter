@@ -3,14 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:jpj_info/config/site_config.dart';
-import 'package:jpj_info/controller/alert_controller.dart';
 import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/controller/bottom_nav_controller.dart';
 import 'package:jpj_info/controller/http_request_controller.dart';
 import 'package:jpj_info/controller/mainpage_controller.dart';
 import 'package:jpj_info/helper/exit_prompt.dart';
+import 'package:jpj_info/model/jpj_directory_response.dart';
 import 'package:jpj_info/model/jpj_location_info.dart';
-import 'package:jpj_info/model/jpj_location_request.dart';
 import 'package:jpj_info/model/jpj_location_response.dart';
 import 'package:jpj_info/model/mainpage_icon.dart';
 import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
@@ -30,10 +29,15 @@ class _JpjDirectoryController extends State<JpjDirectoryController> {
   List<CustomMenuItem> dirctoryCustomMenuItem = [];
   late List<JpjLocationResponseData> results;
   late List<JpjLocationInfo> locationInputInfo;
+  List<JpjDirectoryResponse> directoryList = [];
 
   @override
   void initState() {
     locationInputInfo = [];
+    Future.delayed(
+      const Duration(milliseconds: 250),
+      _getDirectories,
+    );
     super.initState();
   }
 
@@ -92,41 +96,6 @@ class _JpjDirectoryController extends State<JpjDirectoryController> {
     );
   }
 
-  void _responseHandler(http.Response response, String locationId) {
-    if (response.statusCode == 200) {
-      JpjLocationResponse respond = JpjLocationResponse.fromJson(
-        jsonDecode(response.body),
-      );
-      if (respond.data != null && respond.data!.isNotEmpty) {
-        AssetImage flagIcon = const AssetImage("");
-        String stateName = "";
-        for (var element in locationInputInfo) {
-          if (element.id == locationId) {
-            flagIcon = AssetImage(element.flagPath!);
-            stateName = element.name!;
-          }
-        }
-        results = respond.data!;
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) {
-              return JpjDirectoryInfo(
-                stateFlag: flagIcon,
-                stateName: stateName,
-                data: results,
-              );
-            },
-          ),
-        );
-      } else {
-        AlertController(ctx: context).noDataFound();
-      }
-    } else {
-      AlertController(ctx: context).connectionError();
-    }
-  }
-
   Future<List<CustomMenuItem>> _getDirectoryInfo() async {
     final String response =
         await rootBundle.loadString('json/jpj_location.json');
@@ -150,16 +119,67 @@ class _JpjDirectoryController extends State<JpjDirectoryController> {
   }
 
   void _submitCallback(BuildContext context, String locationId) {
-    SiteConfig conf = SiteConfig();
-    JpjLocationRequest req = JpjLocationRequest(id: locationId);
+    String stateName = "";
+    AssetImage flagIcon = const AssetImage("");
+    for (var element in locationInputInfo) {
+      if (element.id == locationId) {
+        flagIcon = AssetImage(element.flagPath!);
+        stateName = element.name!;
+      }
+    }
+    JpjDirectoryResponse? directoryInfo;
+    for (var el in directoryList) {
+      if (el.namaNegeri == stateName) {
+        directoryInfo = el;
+      }
+    }
 
-    jpjHttpRequest(
+    List<JpjLocationResponseData> result = [];
+
+    if (directoryInfo != null) {
+      for (var el in directoryInfo.cawangan!) {
+        result.add(
+          JpjLocationResponseData(
+              address: el.alamatCawangan,
+              coordinate2: el.koordinatCawangan,
+              coordinate: el.koordinatCawangan,
+              faxNo: el.nofaksCawangan,
+              name: el.namaCawangan,
+              phoneNo: el.notelefonCawangan,
+              stateId: locationId,
+              operationalHour: el.waktuperkhidmatanCawangan),
+        );
+      }
+    }
+
+    Navigator.push(
       context,
-      Uri.parse(conf.locationCheckUri),
+      MaterialPageRoute(
+        builder: (context) {
+          return JpjDirectoryInfo(
+            stateFlag: flagIcon,
+            stateName: stateName,
+            data: result,
+          );
+        },
+      ),
+    );
+  }
+
+  void _getDirectories() {
+    SiteConfig conf = SiteConfig();
+    jpjHttpGetRequest(
+      context,
+      Uri.parse(conf.directory),
       headers: conf.formHeader,
-      body: jsonEncode(req.toJson()),
-      callback: (response) {
-        _responseHandler(response, locationId);
+      callback: (http.Response response) {
+        if (response.statusCode == 200) {
+          for (var el in jsonDecode(response.body)) {
+            directoryList.add(
+              JpjDirectoryResponse.fromJson(el),
+            );
+          }
+        }
       },
     );
   }

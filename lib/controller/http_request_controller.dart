@@ -31,3 +31,35 @@ void jpjHttpRequest(
     EasyLoading.dismiss();
   });
 }
+
+void jpjHttpGetRequest(
+  BuildContext context,
+  Uri url, {
+  Map<String, String>? headers,
+  Function(http.Response)? callback,
+}) {
+  EasyLoading.show(
+    status: AppLocalizations.of(context)!.pleaseWait,
+  );
+  http
+      .get(
+    url,
+    headers: headers,
+  )
+      .then(
+    (value) {
+      if (callback != null) {
+        callback(value);
+      }
+    },
+  ).onError((error, stackTrace) {
+    AlertController(ctx: context).connectionError();
+  }).timeout(
+    const Duration(seconds: 15),
+    onTimeout: (() {
+      AlertController(ctx: context).connectionError();
+    }),
+  ).whenComplete(() {
+    EasyLoading.dismiss();
+  });
+}

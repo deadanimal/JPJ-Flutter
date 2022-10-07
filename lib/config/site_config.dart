@@ -25,6 +25,7 @@ class SiteConfig {
   final String aduanImageUploadUri = "$prodUrl/upld_images/";
   final String resetPasswordUri = "$prodUrl/reset_password_id_awam/";
   final String faq = "$prodUrl/faq";
+  final String directory = "$prodUrl/direktori/";
 
   //staging api
   final String checkUserIdUrierr = "$prodUrl/semak-id-awam/err.php";

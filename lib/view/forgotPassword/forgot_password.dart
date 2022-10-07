@@ -50,7 +50,6 @@ class ForgotPassword extends StatelessWidget {
           const SizedBox(height: vPaddingXL),
           const SizedBox(height: vPaddingXL),
           CustomLabel(
-            deco: whiteBoxDecoRounded,
             label: AppLocalizations.of(context)!.enteric,
             fontWeight: FontWeight.normal,
             fontSize: 15,
@@ -64,7 +63,6 @@ class ForgotPassword extends StatelessWidget {
           ),
           const SizedBox(height: vPaddingM),
           CustomLabel(
-            deco: whiteBoxDecoRounded,
             label: AppLocalizations.of(context)!.enterEmail,
             fontWeight: FontWeight.normal,
             fontSize: 15,
