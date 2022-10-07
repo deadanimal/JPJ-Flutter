@@ -118,7 +118,10 @@ class _SummonsStatus extends State<SummonsStatus> {
       );
     } else {
       return Center(
-        child: Text(AppLocalizations.of(context)!.noRecord),
+        child: Text(
+          AppLocalizations.of(context)!.noRecord,
+          style: const TextStyle(fontSize: 15),
+        ),
       );
     }
   }

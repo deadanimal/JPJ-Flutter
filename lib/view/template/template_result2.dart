@@ -66,7 +66,12 @@ class TemplateResult2 extends StatelessWidget {
     } else {
       return [
         Center(
-          child: Text(AppLocalizations.of(context)!.noRecord),
+          child: Text(
+            AppLocalizations.of(context)!.noRecord,
+            style: const TextStyle(
+              fontSize: 15,
+            ),
+          ),
         ),
       ];
     }
@@ -182,7 +187,7 @@ class TemplateResult2 extends StatelessWidget {
             AppLocalizations.of(context)!.vehicleReg,
             style: const TextStyle(
               color: Color(themeNavy),
-              fontSize: 13,
+              fontSize: 15,
               fontFamily: "Roboto",
               fontWeight: FontWeight.w600,
             ),
@@ -191,7 +196,7 @@ class TemplateResult2 extends StatelessWidget {
             data.vehicalRegNumber!.toUpperCase(),
             style: const TextStyle(
               color: Color(themeNavy),
-              fontSize: 13,
+              fontSize: 15,
             ),
           ),
         ],

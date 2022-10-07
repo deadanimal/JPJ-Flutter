@@ -367,7 +367,7 @@ class _EaduanFormController extends State<EaduanFormController> {
         var length = await a.length();
 
         var multipartFile = http.MultipartFile("gambar", a.openRead(), length,
-            filename: "attachement_$i");
+            filename: "attachement_vid_$i");
         newList.add(multipartFile);
       }
 

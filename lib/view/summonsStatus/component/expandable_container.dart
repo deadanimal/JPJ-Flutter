@@ -81,8 +81,8 @@ class _CustomExpandableContainer extends State<CustomExpandableContainer> {
                 Text(
                   widget.data.notisId!,
                   style: const TextStyle(
-                    color: Color(0xff8b9eb0),
-                    fontSize: 13,
+                    color: Color(0xff354c96),
+                    fontSize: 15,
                   ),
                 ),
               ],
