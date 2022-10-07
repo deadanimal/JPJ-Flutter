@@ -42,6 +42,7 @@ class EaduanForm extends StatelessWidget {
     required this.draftBtnCallback,
     required this.attachmentController,
     required this.videos,
+    required this.phoneNumberController,
   }) : super(key: key);
   final String? title;
   final AssetImage image;
@@ -61,6 +62,7 @@ class EaduanForm extends StatelessWidget {
   final TextEditingController stateController;
   final TextEditingController vehicleController;
   final TextEditingController attachmentController;
+  final TextEditingController phoneNumberController;
   final Iterable<String> dropdownList;
   final String dropdownValue;
   final Function(BuildContext, dynamic) selectionCallback;
@@ -118,7 +120,7 @@ class EaduanForm extends StatelessWidget {
                           title!,
                           style: const TextStyle(
                             color: Colors.white,
-                            fontSize: 15,
+                            fontSize: 20,
                             fontFamily: "Roboto",
                             fontWeight: FontWeight.w600,
                             letterSpacing: 0.30,
@@ -249,6 +251,21 @@ class EaduanForm extends StatelessWidget {
               child: TextFieldForm(
                 label: AppLocalizations.of(context)!.vehicleReg,
                 textController: vehicleController,
+                width: mediaWidth,
+              ),
+            ),
+            const SizedBox(height: vPaddingM),
+            CustomLabel(
+              label: AppLocalizations.of(context)!.phoneNumber,
+              fontSize: 14,
+              fontWeight: FontWeight.w600,
+              align: TextAlign.start,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextFieldForm(
+                label: AppLocalizations.of(context)!.phoneNumber,
+                textController: phoneNumberController,
                 width: mediaWidth,
               ),
             ),

@@ -13,22 +13,25 @@ class AduanSaveRequest {
   String? imageName;
   String? videoName;
   String? onesignalId;
+  String? phone;
 
-  AduanSaveRequest(
-      {this.idkesalahan,
-      this.tarikh,
-      this.masa,
-      this.lokasi,
-      this.latitude,
-      this.longlitude,
-      this.nokenderaan,
-      this.catatan,
-      this.pengadu,
-      this.negeri,
-      this.pautan,
-      this.imageName,
-      this.videoName,
-      this.onesignalId});
+  AduanSaveRequest({
+    this.idkesalahan,
+    this.tarikh,
+    this.masa,
+    this.lokasi,
+    this.latitude,
+    this.longlitude,
+    this.nokenderaan,
+    this.catatan,
+    this.pengadu,
+    this.negeri,
+    this.pautan,
+    this.imageName,
+    this.videoName,
+    this.onesignalId,
+    this.phone,
+  });
 
   AduanSaveRequest.fromJson(Map<String, dynamic> json) {
     idkesalahan = json['idkesalahan'];
@@ -45,6 +48,7 @@ class AduanSaveRequest {
     imageName = json['image_name'];
     videoName = json['video_name'];
     onesignalId = json['onesignal_id'];
+    phone = json['phone'];
   }
 
   Map<String, dynamic> toJson() {
@@ -63,6 +67,7 @@ class AduanSaveRequest {
     data['image_name'] = imageName;
     data['video_name'] = videoName;
     data['onesignal_id'] = onesignalId;
+    data['phone'] = phone;
     return data;
   }
 }

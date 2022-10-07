@@ -33,6 +33,8 @@ class SiteConfig {
     'Content-Type': 'application/json; charset=UTF-8',
   };
 
+  final int maxFileUploadSize = 20000000;
+
   String jpjEbidAppStoreid = '1458846863';
   String jpjEbidPlayStoreid = 'my.gov.jpj.ebidding';
   String jpjEqAppStoreid = '1545069171';

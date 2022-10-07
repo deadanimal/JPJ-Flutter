@@ -149,6 +149,24 @@ Decoration yellowGradientBtnDeco = BoxDecoration(
   ),
 );
 
+Decoration blackGradientSquareBtnDeco = BoxDecoration(
+  borderRadius: BorderRadius.circular(8),
+  boxShadow: const [
+    BoxShadow(
+      color: Color(0x3f000000),
+      blurRadius: 4,
+      offset: Offset(0, 4),
+    ),
+  ],
+  gradient: const LinearGradient(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    colors: [
+      Color.fromARGB(255, 0, 0, 0),
+      Color.fromARGB(255, 46, 46, 46),
+    ],
+  ),
+);
 Decoration redGradientBtnDeco = BoxDecoration(
   borderRadius: BorderRadius.circular(15),
   boxShadow: const [

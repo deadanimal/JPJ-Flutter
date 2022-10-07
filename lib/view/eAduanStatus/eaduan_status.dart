@@ -40,7 +40,7 @@ class EaduanStatus extends StatelessWidget {
             textAlign: TextAlign.center,
             style: const TextStyle(
               color: Color(0xff171f44),
-              fontSize: 18,
+              fontSize: 24,
               fontFamily: "Roboto",
               fontWeight: FontWeight.w600,
               letterSpacing: 0.63,
@@ -110,7 +110,7 @@ class EaduanStatus extends StatelessWidget {
       shrinkWrap: true,
       itemBuilder: (context, index) {
         return StatusCardView(
-          complaintId: res[index].id.toString(),
+          complaintId: res[index].id.toString().trim(),
           date: res[index].tarikh!,
           time: res[index].masa!,
           offense: res[index].kesalahan!,
@@ -175,7 +175,7 @@ class EaduanStatus extends StatelessWidget {
       width: 95,
       onPressed: () {},
       label: AppLocalizations.of(context)!.draft,
-      decoration: yellowGradientBtnDeco,
+      decoration: blackGradientSquareBtnDeco,
       textSize: 10,
     );
   }

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:jpj_info/model/mainpage_icon.dart';
 import 'package:jpj_info/model/page_size.dart';
+import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/common/spacing.dart';
 import 'package:jpj_info/view/eAduanMenu/component/custom_icon_menu_list.dart';
+import 'package:jpj_info/view/form/custom_button.dart';
 import 'package:jpj_info/view/template/template_header.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -41,13 +43,14 @@ class EaduanMenu extends StatelessWidget {
               alignment: Alignment.topRight,
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: InkWell(
-                  onTap: () {
+                child: CustomButton(
+                  onPressed: () {
                     draftStatusCallback(context);
                   },
-                  child: Chip(
-                    label: Text(AppLocalizations.of(context)!.draftSent),
-                  ),
+                  decoration: navyGradientBtnDeco,
+                  label: AppLocalizations.of(context)!.draftSent,
+                  width: 150,
+                  textSize: 15,
                 ),
               ),
             ),

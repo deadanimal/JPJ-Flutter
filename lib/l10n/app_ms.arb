@@ -271,12 +271,13 @@
     "chooseLocationOnMap":"Pilih lokasi di peta",
     "chooseThisLocation":"Pilih Lokasi Ini",
     "saveAsDraftSuccess":"Berjaya disimpan",
-    "removeFromDraft":"Padam dari draf?",
+    "removeFromDraft":"Anda pasti utk hapuskan rekod?",
     "recordSaved":"Rekod Berjaya Disimpan",
     "setPassword":"Penetapan Kata Laluan",
     "passwordNotComplient":"Kata laluan anda perlu mengandungi sekurang-kurangnya 8 aksara terdiri daripada gabungan huruf besar, huruf kecil, nombor dan simbol",
     "verifyPassword":"Sahkan Kata Laluan",
     "haveDemerit":"Anda mempunyai mata demerit. Untuk maklumat lanjut sila semak di portal awam",
     "noDemerit":"Tiada maklumat Demerit.",
+    "fileTooBigError":"Fail lebih besar daripada 20MB",
     "pleaseWait": "Sila Tunggu..."
 }

@@ -38,12 +38,13 @@ class StatusCardView extends StatelessWidget {
           children: [
             complaintId != null
                 ? Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         "${AppLocalizations.of(context)!.complaintId}:",
                         style: const TextStyle(
                           color: Color(themeNavy),
-                          fontSize: 10,
+                          fontSize: 15,
                           fontFamily: "Roboto",
                           fontWeight: FontWeight.w600,
                         ),
@@ -53,7 +54,8 @@ class StatusCardView extends StatelessWidget {
                         complaintId!,
                         style: const TextStyle(
                           color: Color(0xff2e2e2e),
-                          fontSize: 13,
+                          fontSize: 15,
+                          fontFamily: "Roboto",
                         ),
                       ),
                       const SizedBox(height: vPaddingM),
@@ -70,7 +72,7 @@ class StatusCardView extends StatelessWidget {
                       "${AppLocalizations.of(context)!.date}:",
                       style: const TextStyle(
                         color: Color(themeNavy),
-                        fontSize: 10,
+                        fontSize: 15,
                         fontFamily: "Roboto",
                         fontWeight: FontWeight.w600,
                       ),
@@ -80,7 +82,8 @@ class StatusCardView extends StatelessWidget {
                       date,
                       style: const TextStyle(
                         color: Color(0xff2e2e2e),
-                        fontSize: 13,
+                        fontSize: 15,
+                        fontFamily: "Roboto",
                       ),
                     ),
                   ],
@@ -92,7 +95,7 @@ class StatusCardView extends StatelessWidget {
                       "${AppLocalizations.of(context)!.time}:",
                       style: const TextStyle(
                         color: Color(themeNavy),
-                        fontSize: 10,
+                        fontSize: 15,
                         fontFamily: "Roboto",
                         fontWeight: FontWeight.w600,
                       ),
@@ -102,7 +105,8 @@ class StatusCardView extends StatelessWidget {
                       time,
                       style: const TextStyle(
                         color: Color(0xff2e2e2e),
-                        fontSize: 13,
+                        fontSize: 15,
+                        fontFamily: "Roboto",
                       ),
                     ),
                   ],
@@ -114,7 +118,7 @@ class StatusCardView extends StatelessWidget {
               "${AppLocalizations.of(context)!.offense}:",
               style: const TextStyle(
                 color: Color(themeNavy),
-                fontSize: 10,
+                fontSize: 15,
                 fontFamily: "Roboto",
                 fontWeight: FontWeight.w600,
               ),
@@ -124,7 +128,8 @@ class StatusCardView extends StatelessWidget {
               offense,
               style: const TextStyle(
                 color: Color(0xff2e2e2e),
-                fontSize: 13,
+                fontSize: 15,
+                fontFamily: "Roboto",
               ),
             ),
             const SizedBox(height: vPaddingM),

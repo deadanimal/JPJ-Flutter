@@ -145,7 +145,7 @@ class _ScrollableImageContainer extends State<ScrollableImageContainer> {
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 7,
+                      fontSize: 13,
                     ),
                   ),
                 ),

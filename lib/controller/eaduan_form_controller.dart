@@ -93,6 +93,7 @@ class _EaduanFormController extends State<EaduanFormController> {
   late TextEditingController stateController;
   late TextEditingController vehicleController;
   late TextEditingController attachmentController;
+  late TextEditingController phoneNumberController;
   late MapController mapController;
 
   @override
@@ -113,6 +114,7 @@ class _EaduanFormController extends State<EaduanFormController> {
     stateController = TextEditingController();
     vehicleController = TextEditingController();
     attachmentController = TextEditingController();
+    phoneNumberController = TextEditingController();
     mapController = MapController();
     offenceId = {
       EaduanItem.redLight: 1,
@@ -148,6 +150,7 @@ class _EaduanFormController extends State<EaduanFormController> {
     stateController.dispose();
     vehicleController.dispose();
     attachmentController.dispose();
+    phoneNumberController.dispose();
   }
 
   @override
@@ -211,6 +214,7 @@ class _EaduanFormController extends State<EaduanFormController> {
           mapController: mapController,
           draftBtnCallback: _saveToDraftCallback,
           attachmentController: attachmentController,
+          phoneNumberController: phoneNumberController,
         ),
         bottomNavigationBar: BottomNavController(),
       ),
@@ -269,23 +273,34 @@ class _EaduanFormController extends State<EaduanFormController> {
       );
     }
     if (image != null) {
-      Uint8List rawImageData = await image.readAsBytes();
-      if (mediaType == "image") {
-        images.add(rawImageData);
+      int fileSize = await image.length();
+      if (fileSize < SiteConfig().maxFileUploadSize) {
+        Uint8List rawImageData = await image.readAsBytes();
+        if (mediaType == "image") {
+          images.add(rawImageData);
+        } else {
+          final uint8list = await VideoThumbnail.thumbnailData(
+            video: image.path,
+            imageFormat: ImageFormat.JPEG,
+            maxWidth: 128,
+            quality: 25,
+          );
+          videosThumbnail.add(uint8list!);
+          videos.add(rawImageData);
+        }
       } else {
-        final uint8list = await VideoThumbnail.thumbnailData(
-          video: image.path,
-          imageFormat: ImageFormat.JPEG,
-          maxWidth: 128,
-          quality: 25,
-        );
-
-        videosThumbnail.add(uint8list!);
-        videos.add(rawImageData);
+        _fileTooLargeAlert();
       }
       setState(() {});
     }
     // EasyLoading.dismiss();
+  }
+
+  void _fileTooLargeAlert() {
+    AlertController(ctx: context)
+        .generalError(AppLocalizations.of(context)!.fileTooBigError, () {
+      Navigator.pop(context);
+    });
   }
 
   void _fileUploadResponseHandler(http.StreamedResponse response) {
@@ -326,6 +341,7 @@ class _EaduanFormController extends State<EaduanFormController> {
         locationController.text != "" &&
         stateController.text != "" &&
         attachmentController.text != "" &&
+        phoneNumberController.text != "" &&
         stateController.text != "Negeri" &&
         stateController.text != "State" &&
         vehicleController.text != "") {
@@ -350,6 +366,7 @@ class _EaduanFormController extends State<EaduanFormController> {
       request.fields['videoName'] = "";
       request.fields['imageName'] = "";
       request.fields['pautan'] = attachmentController.text;
+      request.fields['phone'] = phoneNumberController.text;
       request.fields['pengadu'] = MyJPJAccountManager().id;
 
       List<http.MultipartFile> newList = <http.MultipartFile>[];
@@ -414,6 +431,7 @@ class _EaduanFormController extends State<EaduanFormController> {
         nokenderaan: vehicleController.text,
         catatan: remarkController.text,
         pautan: attachmentController.text,
+        phone: phoneNumberController.text,
       ),
     );
 
@@ -498,6 +516,7 @@ class _EaduanFormController extends State<EaduanFormController> {
       stateController.text = widget.draft!.details!.negeri ?? "";
       vehicleController.text = widget.draft!.details!.nokenderaan ?? "";
       attachmentController.text = widget.draft!.details!.pautan ?? "";
+      phoneNumberController.text = widget.draft!.details!.phone ?? "";
       dropdownValue = stateController.text;
       for (var el in widget.draft!.images!) {
         images.add(el);
