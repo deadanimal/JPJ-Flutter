@@ -77,14 +77,14 @@ class _TestResultController extends State<TestResultController> {
         MaterialPageRoute(
           builder: (context) {
             List<Result2> dataSet = [];
-            respond.theoryTest?.forEach((el) {
-              dataSet.add(
-                Result2(
-                  result: _parseTheoryTestResult(el),
-                  title: "${el.licenseType!} - ${el.testType!}",
-                ),
-              );
-            });
+            // respond.theoryTest?.forEach((el) {
+            //   dataSet.add(
+            //     Result2(
+            //       result: _parseTheoryTestResult(el),
+            //       title: "${el.licenseType!} - ${el.testType!}",
+            //     ),
+            //   );
+            // });
             respond.practicalTest?.forEach((el) {
               dataSet.add(
                 Result2(
@@ -139,14 +139,14 @@ class _TestResultController extends State<TestResultController> {
     }
   }
 
-  Widget _parseTheoryTestResult(TheoryTest el) {
-    return _resultField(
-      el.testDate!,
-      el.testVenue!,
-      el.classType,
-      el.testResult!,
-    );
-  }
+  // Widget _parseTheoryTestResult(TheoryTest el) {
+  //   return _resultField(
+  //     el.testDate!,
+  //     el.testVenue!,
+  //     el.classType,
+  //     el.testResult!,
+  //   );
+  // }
 
   Widget _parsePracticalTestResult(PracticalTest el) {
     return _resultField(

@@ -27,6 +27,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:http/http.dart' as http;
 import 'package:latlong2/latlong.dart';
 import 'package:video_thumbnail/video_thumbnail.dart';
+import 'package:path/path.dart' as p;
 
 enum EaduanItem {
   redLight,
@@ -84,6 +85,8 @@ class _EaduanFormController extends State<EaduanFormController> {
   late List<Uint8List> images;
   late List<Uint8List> videosThumbnail;
   late List<Uint8List> videos;
+  late List<String> imageExt;
+  late List<String> videoExt;
   late TextEditingController dateController;
   late TextEditingController timeController;
   late TextEditingController latitudeController;
@@ -103,6 +106,8 @@ class _EaduanFormController extends State<EaduanFormController> {
     images = [];
     videos = [];
     videosThumbnail = [];
+    imageExt = [];
+    videoExt = [];
     dateController = TextEditingController();
     timeController = TextEditingController();
     latitudeController = TextEditingController();
@@ -273,11 +278,13 @@ class _EaduanFormController extends State<EaduanFormController> {
       );
     }
     if (image != null) {
+      String extension = p.extension(image.name);
       int fileSize = await image.length();
       if (fileSize < SiteConfig().maxFileUploadSize) {
         Uint8List rawImageData = await image.readAsBytes();
         if (mediaType == "image") {
           images.add(rawImageData);
+          imageExt.add(extension);
         } else {
           final uint8list = await VideoThumbnail.thumbnailData(
             video: image.path,
@@ -287,6 +294,7 @@ class _EaduanFormController extends State<EaduanFormController> {
           );
           videosThumbnail.add(uint8list!);
           videos.add(rawImageData);
+          videoExt.add(extension);
         }
       } else {
         _fileTooLargeAlert();
@@ -376,18 +384,20 @@ class _EaduanFormController extends State<EaduanFormController> {
 
       for (int i = 0; i < images.length; i++) {
         XFile a = XFile.fromData(images[i]);
+        String ext = imageExt[i];
         var length = await a.length();
 
-        var multipartFile = http.MultipartFile("gambar", a.openRead(), length,
-            filename: "attachement_$i");
+        var multipartFile = http.MultipartFile("gambar[]", a.openRead(), length,
+            filename: "attachement_$i$ext");
         newList.add(multipartFile);
       }
       for (int i = 0; i < videos.length; i++) {
         XFile a = XFile.fromData(videos[i]);
+        String ext = videoExt[i];
         var length = await a.length();
 
-        var multipartFile = http.MultipartFile("gambar", a.openRead(), length,
-            filename: "attachement_vid_$i");
+        var multipartFile = http.MultipartFile("gambar[]", a.openRead(), length,
+            filename: "attachement_vid_$i$ext");
         newList.add(multipartFile);
       }
 
@@ -436,6 +446,8 @@ class _EaduanFormController extends State<EaduanFormController> {
         pautan: attachmentController.text,
         phone: phoneNumberController.text,
       ),
+      imageExt: imageExt,
+      videoExt: videoExt,
     );
 
     EAduanDraft().saveAsDraft(draftContent);
@@ -529,6 +541,16 @@ class _EaduanFormController extends State<EaduanFormController> {
       }
       for (var el in widget.draft!.videos!) {
         videos.add(el);
+      }
+      if (widget.draft!.videoExt != null) {
+        for (var el in widget.draft!.videoExt!) {
+          videoExt.add(el);
+        }
+      }
+      if (widget.draft!.imageExt != null) {
+        for (var el in widget.draft!.imageExt!) {
+          imageExt.add(el);
+        }
       }
     }
   }

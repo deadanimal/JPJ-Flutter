@@ -14,6 +14,8 @@ class EAduanDraft {
         el.images = item.images;
         el.videoThumbnails = item.videoThumbnails;
         el.videos = item.videos;
+        el.imageExt = item.imageExt;
+        el.videoExt = item.videoExt;
         updateDraft = true;
       }
     }
@@ -26,6 +28,8 @@ class EAduanDraft {
           videoThumbnails: item.videoThumbnails,
           videos: item.videos,
           details: item.details,
+          imageExt: item.imageExt,
+          videoExt: item.videoExt,
         ),
       );
     } else {}

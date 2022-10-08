@@ -60,6 +60,7 @@ dependencies:
   advance_pdf_viewer: any
   video_thumbnail: ^0.5.3
   flexible_scrollbar: ^0.1.2
+  path: ^1.8.1
 
 dev_dependencies:
   flutter_test:
