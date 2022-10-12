@@ -108,14 +108,17 @@ class _CustomExpandableContainer extends State<CustomExpandableContainer> {
   }
 
   Widget _expandedContent(BuildContext context) {
-    return SizedBox(
-      width: mediaWidth,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          _summonInfo(context),
-          // _paymentStatus(context),
-        ],
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 16),
+      child: SizedBox(
+        width: mediaWidth,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            _summonInfo(context),
+            // _paymentStatus(context),
+          ],
+        ),
       ),
     );
   }
@@ -189,7 +192,7 @@ class _CustomExpandableContainer extends State<CustomExpandableContainer> {
     Color textColor = const Color(0xff2e2e2e),
   }) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(2.0),
       child: Text(
         label,
         textAlign: TextAlign.right,

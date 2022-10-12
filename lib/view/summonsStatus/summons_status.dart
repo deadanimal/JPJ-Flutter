@@ -49,7 +49,7 @@ class _SummonsStatus extends State<SummonsStatus> {
           _subTitle(context),
           Container(
             constraints: const BoxConstraints(maxWidth: 400),
-            width: mediaWidth - 64,
+            width: mediaWidth - 16,
             child: _result(context, widget.data),
           ),
           const SizedBox(

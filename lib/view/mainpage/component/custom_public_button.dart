@@ -38,9 +38,12 @@ class CustomPublicButton extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    SizedBox(
+                    Container(
+                      constraints: const BoxConstraints(
+                        minHeight: 50,
+                        maxHeight: 64,
+                      ),
                       width: 96,
-                      height: 50,
                       child: Center(
                         child: Text(
                           menu.menu!,

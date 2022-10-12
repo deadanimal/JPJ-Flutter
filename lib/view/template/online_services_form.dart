@@ -115,7 +115,7 @@ class ServiceForm extends StatelessWidget {
                   fontFamily: "Roboto",
                   fontWeight: FontWeight.w600,
                 ),
-                textAlign: TextAlign.left,
+                textAlign: TextAlign.center,
               ),
             )
           : Container(),

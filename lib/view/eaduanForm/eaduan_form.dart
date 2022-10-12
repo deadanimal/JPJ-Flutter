@@ -247,13 +247,24 @@ class EaduanForm extends StatelessWidget {
               align: TextAlign.start,
             ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 4.0),
               child: TextFieldForm(
                 label: AppLocalizations.of(context)!.vehicleReg,
                 textController: vehicleController,
                 width: mediaWidth,
               ),
             ),
+            Text(
+              AppLocalizations.of(context)!.enterOnlyOneRegistrationNumber,
+              style: const TextStyle(
+                color: Color.fromARGB(255, 133, 133, 133),
+                fontSize: 13,
+                fontFamily: "Roboto",
+                fontWeight: FontWeight.w600,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: vPaddingM),
             const SizedBox(height: vPaddingM),
             CustomLabel(
               label: AppLocalizations.of(context)!.phoneNumber,
