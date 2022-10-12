@@ -24,16 +24,9 @@ class ChangePassword extends StatelessWidget {
   Widget build(BuildContext context) {
     mediaWidth = (MediaQuery.of(context).size.width);
     mediaHeight = (MediaQuery.of(context).size.height);
-    return Container(
+    return SizedBox(
       height: double.infinity,
       width: double.infinity,
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage("images/main_bg.png"),
-          fit: BoxFit.fitWidth,
-          alignment: Alignment.bottomCenter,
-        ),
-      ),
       child: ListView(
         children: [
           TemplateHeader(

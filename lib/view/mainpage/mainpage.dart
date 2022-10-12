@@ -111,10 +111,10 @@ class _MainPage extends State<MainPage> with TickerProviderStateMixin {
           ),
           Text(
             "${AppLocalizations.of(context)!.lastLoggedIn}: ${MyJPJAccountManager().lastLoggedIn}",
-            maxLines: 1,
+            maxLines: 2,
             style: const TextStyle(
               color: Colors.white,
-              fontSize: 16,
+              fontSize: 15,
               fontFamily: "Poppins",
             ),
           )
