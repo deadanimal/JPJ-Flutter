@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jpj_info/model/mainpage_icon.dart';
 import 'package:jpj_info/model/page_size.dart';
-import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/common/spacing.dart';
 import 'package:jpj_info/view/eAduanMenu/component/custom_icon_menu_list.dart';
 import 'package:jpj_info/view/form/custom_button.dart';
@@ -47,8 +46,26 @@ class EaduanMenu extends StatelessWidget {
                   onPressed: () {
                     draftStatusCallback(context);
                   },
-                  decoration: navyGradientBtnDeco,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Color(0x3f000000),
+                        blurRadius: 4,
+                        offset: Offset(0, 4),
+                      ),
+                    ],
+                    gradient: const LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        Color.fromARGB(255, 224, 218, 218),
+                        Color.fromARGB(255, 180, 180, 180),
+                      ],
+                    ),
+                  ),
                   label: AppLocalizations.of(context)!.listOfComplaint,
+                  textColor: Colors.black,
                   width: 155,
                   textSize: 15,
                 ),

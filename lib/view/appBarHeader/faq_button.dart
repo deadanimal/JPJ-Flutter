@@ -19,7 +19,8 @@ class FaqBtn extends StatelessWidget {
     }
     return InkWell(
       onTap: () async {
-        if (!await launchUrl(Uri.parse(SiteConfig().faq))) {
+        if (!await launchUrl(Uri.parse(SiteConfig().faq),
+            mode: LaunchMode.externalNonBrowserApplication)) {
           throw 'Could not launch $SiteConfig().faq';
         }
       },

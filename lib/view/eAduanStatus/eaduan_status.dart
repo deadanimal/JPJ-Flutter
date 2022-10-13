@@ -161,22 +161,36 @@ class EaduanStatus extends StatelessWidget {
         ),
       ],
     );
-    return CustomButton(
-      width: 95,
-      onPressed: () {},
-      label: status,
-      decoration: deco,
-      textSize: 10,
+    return Container(
+      color: statusMap[status],
+      child: Padding(
+        padding: const EdgeInsets.all(2.0),
+        child: Text(
+          status,
+          style: TextStyle(
+            backgroundColor: statusMap[status],
+            fontSize: 15,
+            fontFamily: "Roboto",
+          ),
+        ),
+      ),
     );
   }
 
   Widget _draftStatus(BuildContext context) {
-    return CustomButton(
-      width: 95,
-      onPressed: () {},
-      label: AppLocalizations.of(context)!.draft,
-      decoration: blackGradientSquareBtnDeco,
-      textSize: 10,
+    return Container(
+      color: Colors.black,
+      child: Padding(
+        padding: const EdgeInsets.all(4.0),
+        child: Text(
+          AppLocalizations.of(context)!.draft,
+          style: const TextStyle(
+            fontSize: 15,
+            fontFamily: "Roboto",
+            color: Colors.white,
+          ),
+        ),
+      ),
     );
   }
 

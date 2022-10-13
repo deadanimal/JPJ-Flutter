@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jpj_info/helper/account_manager.dart';
 import 'package:jpj_info/model/page_size.dart';
 import 'package:jpj_info/view/template/template_header.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({
@@ -31,27 +29,14 @@ class WelcomePage extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Column(
-                      children: [
-                        Text(
-                          AppLocalizations.of(context)!.welcome,
-                          style: const TextStyle(
-                              fontWeight: FontWeight.w700,
-                              fontFamily: "Poppins",
-                              fontSize: 24,
-                              color: Colors.white),
-                        ),
-                        MyJPJAccountManager().isLoggedIn
-                            ? Text(
-                                MyJPJAccountManager().name,
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.w700,
-                                    fontFamily: "Poppins",
-                                    fontSize: 15,
-                                    color: Colors.white),
-                              )
-                            : Container(),
-                      ],
+                    Image(
+                      image: const AssetImage("images/myjpj_logo_large.png"),
+                      height: mediaHeight / 3,
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: CircularProgressIndicator(
+                          backgroundColor: Colors.white),
                     ),
                   ],
                 ),

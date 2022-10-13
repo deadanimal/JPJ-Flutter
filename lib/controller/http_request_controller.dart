@@ -23,7 +23,7 @@ void jpjHttpRequest(
   ).onError((error, stackTrace) {
     AlertController(ctx: context).connectionError();
   }).timeout(
-    const Duration(seconds: 15),
+    const Duration(seconds: 60),
     onTimeout: (() {
       AlertController(ctx: context).connectionError();
     }),
@@ -55,7 +55,7 @@ void jpjHttpGetRequest(
   ).onError((error, stackTrace) {
     AlertController(ctx: context).connectionError();
   }).timeout(
-    const Duration(seconds: 15),
+    const Duration(seconds: 60),
     onTimeout: (() {
       AlertController(ctx: context).connectionError();
     }),

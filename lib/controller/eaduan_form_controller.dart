@@ -351,7 +351,7 @@ class _EaduanFormController extends State<EaduanFormController> {
         remarkController.text != "" &&
         locationController.text != "" &&
         stateController.text != "" &&
-        attachmentController.text != "" &&
+        // attachmentController.text != "" &&
         phoneNumberController.text != "" &&
         stateController.text != "Negeri" &&
         stateController.text != "State" &&

@@ -23,7 +23,10 @@ class PromptController {
       builder: (BuildContext context) {
         return AlertDialog(
           title: Center(
-            child: Text(label),
+            child: Text(
+              label,
+              textAlign: TextAlign.center,
+            ),
           ),
           content: content,
           actions: <Widget>[
