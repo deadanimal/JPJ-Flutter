@@ -3,15 +3,16 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/common/spacing.dart';
 
-class Exitprompter {
-  Future<bool> prompt(BuildContext context) async {
+class YesNoPrompter {
+  Future<bool> prompt(
+    BuildContext context,
+    Widget prompt, {
+    TextStyle? promptStyle,
+  }) async {
     bool? retVal = await showDialog<bool>(
       builder: (context) {
         return AlertDialog(
-          title: Text(
-            AppLocalizations.of(context)!.closeApp,
-            textAlign: TextAlign.center,
-          ),
+          title: prompt,
           alignment: Alignment.center,
           content: Padding(
             padding: const EdgeInsets.only(top: 16.0),

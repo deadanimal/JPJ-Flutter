@@ -2,6 +2,7 @@ import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:jpj_info/model/mainpage_icon.dart';
 import 'package:jpj_info/model/page_size.dart';
+import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/common/spacing.dart';
 import 'package:jpj_info/view/mainpage/component/custom_fav_button.dart';
 import 'package:jpj_info/view/mainpage/component/custom_public_button.dart';
@@ -28,7 +29,7 @@ class _CustomPublicMenuSection extends State<CustomPublicMenuSection> {
   @override
   void initState() {
     sc.addListener(() {
-      double indOffsetSize = 43;
+      double indOffsetSize = 16;
       setState(() {
         if (sc.position.pixels > sc.position.maxScrollExtent) {
           _scrollInd = indOffsetSize;
@@ -61,33 +62,31 @@ class _CustomPublicMenuSection extends State<CustomPublicMenuSection> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: 8, right: 8),
+            padding: const EdgeInsets.only(right: 8),
             child: Container(
-              padding: const EdgeInsets.only(right: 5, left: 5),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
-                color: const Color(0xFFF9F9F9),
               ),
               child: widget.fav
                   ? Badge(
                       badgeContent: const Text(
                         "Top\n5",
-                        style: TextStyle(fontSize: 8),
+                        style: TextStyle(
+                          fontSize: 8,
+                          color: Colors.white,
+                        ),
                         textAlign: TextAlign.center,
                       ),
                       borderRadius: BorderRadius.circular(25),
                       shape: BadgeShape.square,
                       stackFit: StackFit.passthrough,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          widget.subHeader,
-                          style: const TextStyle(
-                            color: Color(0xff171f44),
-                            fontSize: 16,
-                            fontFamily: "Poppins",
-                            fontWeight: FontWeight.w900,
-                          ),
+                      child: Text(
+                        "${widget.subHeader}    ",
+                        style: const TextStyle(
+                          color: Color(0xff171f44),
+                          fontSize: 16,
+                          fontFamily: "Poppins",
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     )
@@ -97,14 +96,14 @@ class _CustomPublicMenuSection extends State<CustomPublicMenuSection> {
                         color: Color(0xff171f44),
                         fontSize: 16,
                         fontFamily: "Poppins",
-                        fontWeight: FontWeight.w900,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
             ),
           ),
           Container(
             padding: EdgeInsets.zero,
-            constraints: BoxConstraints(maxHeight: widget.fav ? 110 : 100),
+            constraints: BoxConstraints(maxHeight: widget.fav ? 124 : 100),
             width: mediaWidth,
             child: ListView.builder(
               controller: sc,
@@ -124,10 +123,11 @@ class _CustomPublicMenuSection extends State<CustomPublicMenuSection> {
               itemCount: widget.serviceMenu.length,
             ),
           ),
+          widget.fav ? Container() : const SizedBox(height: verticalPadding),
           Center(
             child: Container(
-              height: 8,
-              width: 86,
+              height: 4,
+              width: 32,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
                 color: const Color(0xFFCDCECF),
@@ -136,11 +136,11 @@ class _CustomPublicMenuSection extends State<CustomPublicMenuSection> {
                 children: [
                   Container(width: _scrollInd),
                   Container(
-                    height: 8,
-                    width: 43,
+                    height: 4,
+                    width: 16,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-                      color: const Color(0xFF37A105),
+                      color: const Color(headerGradient1),
                     ),
                   ),
                 ],

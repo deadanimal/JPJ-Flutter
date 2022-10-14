@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:jpj_info/controller/welcome_controller.dart';
+import 'package:jpj_info/controller/first_time_login_controller.dart';
+import 'package:jpj_info/controller/login_controller.dart';
+import 'package:jpj_info/controller/mainpage_controller.dart';
+import 'package:jpj_info/helper/account_manager.dart';
 import 'package:jpj_info/view/landingPage/landing_page.dart';
 
 class LandingPageController extends StatefulWidget {
@@ -31,18 +34,66 @@ class _LandingPageController extends State<LandingPageController> {
   }
 
   void _proceessLoginInfo(BuildContext context) {
-    // todo: this is where APP should send request to server to verify user login token
     Future.delayed(
-      const Duration(milliseconds: 1000),
+      const Duration(milliseconds: 2500),
       () {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) {
-              return const WelcomePageController();
-            },
-          ),
-        );
+        if (MyJPJAccountManager().isLoggedIn &&
+            MyJPJAccountManager().firstTime == "A ") {
+          Navigator.pushReplacement(
+            context,
+            PageRouteBuilder(
+              transitionDuration: const Duration(milliseconds: 300),
+              transitionsBuilder:
+                  (context, animation, anotherAnimation, child) {
+                return SlideTransition(
+                  position: Tween(
+                    begin: const Offset(0.0, 1.0),
+                    end: const Offset(0.0, 0.0),
+                  ).animate(animation),
+                  child: child,
+                );
+              },
+              pageBuilder: (_, __, ___) => const MainpageController(),
+            ),
+          );
+        } else if (MyJPJAccountManager().isLoggedIn &&
+            MyJPJAccountManager().firstTime == "F ") {
+          Navigator.pushReplacement(
+            context,
+            PageRouteBuilder(
+              transitionDuration: const Duration(milliseconds: 300),
+              transitionsBuilder:
+                  (context, animation, anotherAnimation, child) {
+                return SlideTransition(
+                  position: Tween(
+                    begin: const Offset(0.0, 1.0),
+                    end: const Offset(0.0, 0.0),
+                  ).animate(animation),
+                  child: child,
+                );
+              },
+              pageBuilder: (_, __, ___) => const FirstTimeLoginController(),
+            ),
+          );
+        } else {
+          Navigator.pushReplacement(
+            context,
+            PageRouteBuilder(
+              transitionDuration: const Duration(milliseconds: 300),
+              transitionsBuilder:
+                  (context, animation, anotherAnimation, child) {
+                return SlideTransition(
+                  position: Tween(
+                    begin: const Offset(0.0, 1.0),
+                    end: const Offset(0.0, 0.0),
+                  ).animate(animation),
+                  child: child,
+                );
+              },
+              pageBuilder: (_, __, ___) => const LoginController(),
+            ),
+          );
+        }
       },
     );
   }

@@ -82,11 +82,12 @@ class _MainPage extends State<MainPage> with TickerProviderStateMixin {
   Widget userInfo(BuildContext context) {
     if (MyJPJAccountManager().isLoggedIn) {
       return Column(
-        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
           Container(
+            padding: EdgeInsets.zero,
             constraints: const BoxConstraints(maxWidth: 250),
             child: Text(
               MyJPJAccountManager().name,
@@ -94,7 +95,7 @@ class _MainPage extends State<MainPage> with TickerProviderStateMixin {
               overflow: TextOverflow.ellipsis,
               style: const TextStyle(
                 color: Colors.white,
-                fontSize: 24,
+                fontSize: 16,
                 fontFamily: "Poppins",
                 fontWeight: FontWeight.w700,
                 overflow: TextOverflow.ellipsis,
@@ -105,7 +106,7 @@ class _MainPage extends State<MainPage> with TickerProviderStateMixin {
             MyJPJAccountManager().email,
             style: const TextStyle(
               color: Colors.white,
-              fontSize: 16,
+              fontSize: 12,
               fontFamily: "Poppins",
             ),
           ),
@@ -114,7 +115,7 @@ class _MainPage extends State<MainPage> with TickerProviderStateMixin {
             maxLines: 2,
             style: const TextStyle(
               color: Colors.white,
-              fontSize: 15,
+              fontSize: 12,
               fontFamily: "Poppins",
             ),
           )
@@ -126,34 +127,37 @@ class _MainPage extends State<MainPage> with TickerProviderStateMixin {
   }
 
   Widget mainheader(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Container(
-          width: 55,
-          height: 55,
-          decoration: const BoxDecoration(
-            color: Color.fromARGB(255, 255, 223, 106),
-            shape: BoxShape.circle,
-          ),
-          child: Center(
-            child: Text(
-              MyJPJAccountManager().name[0].toUpperCase(),
-              style: const TextStyle(
-                fontWeight: FontWeight.w700,
-                fontFamily: "Poppins",
-                fontSize: 32,
+    return IntrinsicHeight(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+            width: 55,
+            decoration: const BoxDecoration(
+              color: Color.fromARGB(255, 255, 223, 106),
+              borderRadius: BorderRadius.all(
+                Radius.circular(5.0),
+              ),
+            ),
+            child: Center(
+              child: Text(
+                MyJPJAccountManager().name[0].toUpperCase(),
+                style: const TextStyle(
+                  fontWeight: FontWeight.w700,
+                  fontFamily: "Poppins",
+                  fontSize: 32,
+                ),
               ),
             ),
           ),
-        ),
-        const SizedBox(width: vPaddingM),
-        Expanded(
-          child: userInfo(context),
-        ),
-      ],
+          const SizedBox(width: vPaddingM),
+          Expanded(
+            child: userInfo(context),
+          ),
+        ],
+      ),
     );
   }
 

@@ -25,7 +25,7 @@ class CustomPublicButton extends StatelessWidget {
         child: Container(
           width: 160,
           decoration: BoxDecoration(
-            color: Colors.grey.shade100,
+            color: Colors.grey.shade200,
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -50,7 +50,7 @@ class CustomPublicButton extends StatelessWidget {
                           textAlign: TextAlign.start,
                           style: const TextStyle(
                             color: Color(0xff393939),
-                            fontSize: 15,
+                            fontSize: 14,
                             fontFamily: "Poppins",
                             fontWeight: FontWeight.w700,
                           ),

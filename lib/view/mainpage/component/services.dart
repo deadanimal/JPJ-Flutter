@@ -41,26 +41,27 @@ class Services extends StatelessWidget {
           subHeader: AppLocalizations.of(context)!.favourite,
           fav: true,
         ),
-        const SizedBox(height: vPaddingM),
+        const SizedBox(height: vPaddingXL),
         CustomPublicMenuSection(
           serviceMenu: licenseMenu,
           subHeader: AppLocalizations.of(context)!.licensesService,
         ),
-        const SizedBox(height: vPaddingM),
+        const SizedBox(height: vPaddingXL),
         CustomPublicMenuSection(
           serviceMenu: driverMenu,
           subHeader: AppLocalizations.of(context)!.driverService,
         ),
-        const SizedBox(height: vPaddingM),
+        const SizedBox(height: vPaddingXL),
         CustomPublicMenuSection(
           serviceMenu: kSectionMenu,
           subHeader: AppLocalizations.of(context)!.kSection,
         ),
-        const SizedBox(height: vPaddingM),
+        const SizedBox(height: vPaddingXL),
         CustomPublicMenuSection(
           serviceMenu: supportServiceMenu,
           subHeader: AppLocalizations.of(context)!.supportServices,
         ),
+        const SizedBox(height: vPaddingXL),
       ],
     );
   }

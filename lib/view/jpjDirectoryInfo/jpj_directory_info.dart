@@ -188,18 +188,22 @@ class _JpjDirectoryInfo extends State<JpjDirectoryInfo> {
             ),
           ),
           const SizedBox(height: vPaddingS),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              _branchInfoLabel(
-                AppLocalizations.of(context)!.phoneNumber,
-                locationData.phoneNo!,
-              ),
-              _branchInfoLabel(
-                AppLocalizations.of(context)!.faxNo,
-                locationData.faxNo!,
-              ),
-            ],
+          IntrinsicHeight(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                _branchInfoLabel(
+                  AppLocalizations.of(context)!.phoneNumber,
+                  locationData.phoneNo!
+                      .replaceAll(" ", "")
+                      .replaceAll("/", "\n"),
+                ),
+                _branchInfoLabel(
+                  AppLocalizations.of(context)!.faxNo,
+                  locationData.faxNo!,
+                ),
+              ],
+            ),
           ),
           // const SizedBox(height: vPaddingS),
           // _branchInfoLabel(

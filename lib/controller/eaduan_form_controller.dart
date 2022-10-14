@@ -17,6 +17,7 @@ import 'package:jpj_info/helper/account_manager.dart';
 import 'package:jpj_info/helper/eaduan_draft.dart';
 import 'package:jpj_info/helper/geolocation.dart';
 import 'package:jpj_info/helper/map_location_setter.dart';
+import 'package:jpj_info/helper/yes_no_prompt.dart';
 import 'package:jpj_info/model/aduan_draft.dart';
 import 'package:jpj_info/model/aduan_save_request.dart';
 import 'package:jpj_info/model/aduan_save_response.dart';
@@ -356,55 +357,21 @@ class _EaduanFormController extends State<EaduanFormController> {
         stateController.text != "Negeri" &&
         stateController.text != "State" &&
         vehicleController.text != "") {
-      EasyLoading.show(
-        status: AppLocalizations.of(context)!.pleaseWait,
-      );
-      SiteConfig conf = SiteConfig();
-      http.MultipartRequest request = http.MultipartRequest(
-        'POST',
-        Uri.parse(conf.saveAduanUri),
-      );
-
-      request.fields['catatan'] = remarkController.text;
-      request.fields['idkesalahan'] = offenceId[widget.itemClass]!.toString();
-      request.fields['latitude'] = latitudeController.text;
-      request.fields['longlitude'] = longitudeController.text;
-      request.fields['masa'] = timeController.text;
-      request.fields['tarikh'] = dateController.text;
-      request.fields['lokasi'] = locationController.text;
-      request.fields['negeri'] = stateController.text;
-      request.fields['nokenderaan'] = vehicleController.text;
-      request.fields['videoName'] = "";
-      request.fields['imageName'] = "";
-      request.fields['pautan'] = attachmentController.text;
-      request.fields['phone'] = phoneNumberController.text;
-      request.fields['pengadu'] = MyJPJAccountManager().id;
-
-      List<http.MultipartFile> newList = <http.MultipartFile>[];
-
-      for (int i = 0; i < images.length; i++) {
-        XFile a = XFile.fromData(images[i]);
-        String ext = imageExt[i];
-        var length = await a.length();
-
-        var multipartFile = http.MultipartFile("gambar[]", a.openRead(), length,
-            filename: "attachement_$i$ext");
-        newList.add(multipartFile);
-      }
-      for (int i = 0; i < videos.length; i++) {
-        XFile a = XFile.fromData(videos[i]);
-        String ext = videoExt[i];
-        var length = await a.length();
-
-        var multipartFile = http.MultipartFile("gambar[]", a.openRead(), length,
-            filename: "attachement_vid_$i$ext");
-        newList.add(multipartFile);
-      }
-
-      request.files.addAll(newList);
-      var response = await request.send();
-      EasyLoading.dismiss();
-      _fileUploadResponseHandler(response);
+      YesNoPrompter()
+          .prompt(
+              context,
+              Text(
+                AppLocalizations.of(context)!.aduanSubmitPrompt,
+                style: const TextStyle(
+                  fontSize: 15,
+                  fontFamily: "Roboto",
+                ),
+              ))
+          .then((bool selection) {
+        if (selection) {
+          _submitRequest();
+        } else {}
+      });
     } else {
       AlertController(ctx: context).generalError(
         AppLocalizations.of(context)!.pleaseFillAllInfo,
@@ -413,6 +380,58 @@ class _EaduanFormController extends State<EaduanFormController> {
         },
       );
     }
+  }
+
+  void _submitRequest() async {
+    EasyLoading.show(
+      status: AppLocalizations.of(context)!.pleaseWait,
+    );
+    SiteConfig conf = SiteConfig();
+    http.MultipartRequest request = http.MultipartRequest(
+      'POST',
+      Uri.parse(conf.saveAduanUri),
+    );
+
+    request.fields['catatan'] = remarkController.text;
+    request.fields['idkesalahan'] = offenceId[widget.itemClass]!.toString();
+    request.fields['latitude'] = latitudeController.text;
+    request.fields['longlitude'] = longitudeController.text;
+    request.fields['masa'] = timeController.text;
+    request.fields['tarikh'] = dateController.text;
+    request.fields['lokasi'] = locationController.text;
+    request.fields['negeri'] = stateController.text;
+    request.fields['nokenderaan'] = vehicleController.text;
+    request.fields['videoName'] = "";
+    request.fields['imageName'] = "";
+    request.fields['pautan'] = attachmentController.text;
+    request.fields['phone'] = phoneNumberController.text;
+    request.fields['pengadu'] = MyJPJAccountManager().id;
+
+    List<http.MultipartFile> newList = <http.MultipartFile>[];
+
+    for (int i = 0; i < images.length; i++) {
+      XFile a = XFile.fromData(images[i]);
+      String ext = imageExt[i];
+      var length = await a.length();
+
+      var multipartFile = http.MultipartFile("gambar[]", a.openRead(), length,
+          filename: "attachement_$i$ext");
+      newList.add(multipartFile);
+    }
+    for (int i = 0; i < videos.length; i++) {
+      XFile a = XFile.fromData(videos[i]);
+      String ext = videoExt[i];
+      var length = await a.length();
+
+      var multipartFile = http.MultipartFile("gambar[]", a.openRead(), length,
+          filename: "attachement_vid_$i$ext");
+      newList.add(multipartFile);
+    }
+
+    request.files.addAll(newList);
+    var response = await request.send();
+    EasyLoading.dismiss();
+    _fileUploadResponseHandler(response);
   }
 
   void _backBtnCallback(BuildContext context) {

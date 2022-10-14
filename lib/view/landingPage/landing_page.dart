@@ -28,13 +28,14 @@ class LandingPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image(
-                  image: const AssetImage("images/myjpj_logo_large_backup.png"),
-                  height: mediaHeight / 3,
+                  image: const AssetImage("images/my_jpj_icon.png"),
+                  height: mediaHeight / 5,
                 ),
                 const Padding(
                   padding: EdgeInsets.all(8.0),
-                  child:
-                      CircularProgressIndicator(backgroundColor: Colors.white),
+                  child: CircularProgressIndicator(
+                    backgroundColor: Colors.white,
+                  ),
                 ),
               ],
             ),
@@ -45,7 +46,7 @@ class LandingPage extends StatelessWidget {
               "JABATAN PENGANGKUTAN JALAN MALAYSIA",
               textAlign: TextAlign.center,
               style: TextStyle(
-                color: Colors.black,
+                color: Color.fromARGB(255, 255, 255, 255),
                 fontSize: 12,
                 fontFamily: "Roboto",
                 fontWeight: FontWeight.w600,

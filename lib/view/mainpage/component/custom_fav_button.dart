@@ -44,26 +44,15 @@ class CustomFavButton extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.only(left: 8.0, right: 8.0),
                     constraints: const BoxConstraints(maxWidth: 117),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Colors.grey,
-                          blurRadius: 4,
-                          offset: Offset(0, 4),
-                        ),
-                      ],
-                      color: const Color(0xFF202E5C),
-                    ),
                     child: Center(
                       child: Text(
                         menu.menu!,
                         textAlign: TextAlign.center,
                         overflow: TextOverflow.ellipsis,
-                        maxLines: 1,
+                        maxLines: 3,
                         style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 15,
+                          color: Color.fromARGB(255, 0, 0, 0),
+                          fontSize: 14,
                           fontFamily: "Roboto",
                         ),
                       ),

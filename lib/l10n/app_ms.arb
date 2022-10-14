@@ -283,5 +283,6 @@
     "wrongPassword":"Kata laluan anda salah",
     "enterOnlyOneRegistrationNumber":"Masukkan hanya satu nombor pendaftaran kenderaan",
     "noRecordInMySikap":"Rekod tidak wujud di MySikap. Sila ke kaunter JPJ berhampiran",
+    "aduanSubmitPrompt":"Saya mengesahkan maklumat yang diberikan adalah benar. Saya juga bersetuju menjadi saksi JPJ pada bila-bila masa apabila perlu.",
     "pleaseWait": "Sila Tunggu..."
 }

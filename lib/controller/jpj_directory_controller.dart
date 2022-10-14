@@ -129,7 +129,7 @@ class _JpjDirectoryController extends State<JpjDirectoryController> {
     }
     JpjDirectoryResponse? directoryInfo;
     for (var el in directoryList) {
-      if (el.namaNegeri == stateName) {
+      if (el.namaNegeri!.toLowerCase() == stateName.toLowerCase()) {
         directoryInfo = el;
       }
     }

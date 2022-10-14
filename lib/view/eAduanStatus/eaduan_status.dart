@@ -7,7 +7,6 @@ import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/common/spacing.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:jpj_info/view/eAduanStatus/component/status_card_view.dart';
-import 'package:jpj_info/view/form/custom_button.dart';
 
 class EaduanStatus extends StatelessWidget {
   const EaduanStatus({
@@ -110,7 +109,7 @@ class EaduanStatus extends StatelessWidget {
       shrinkWrap: true,
       itemBuilder: (context, index) {
         return StatusCardView(
-          complaintId: res[index].id.toString().trim(),
+          complaintId: res[index].noAduan.toString().trim(),
           date: res[index].tarikh!,
           time: res[index].masa!,
           offense: res[index].kesalahan!,
@@ -150,17 +149,6 @@ class EaduanStatus extends StatelessWidget {
       "SELESAI": Colors.purple,
       "TUTUP": Colors.grey,
     };
-    Decoration deco = BoxDecoration(
-      color: statusMap[status],
-      borderRadius: BorderRadius.circular(8),
-      boxShadow: const [
-        BoxShadow(
-          color: Color(0x3f000000),
-          blurRadius: 4,
-          offset: Offset(0, 4),
-        ),
-      ],
-    );
     return Container(
       color: statusMap[status],
       child: Padding(
