@@ -113,6 +113,7 @@ class _CustomExpandableContainer extends State<CustomExpandableContainer> {
       child: SizedBox(
         width: mediaWidth,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
             _summonInfo(context),
@@ -124,33 +125,37 @@ class _CustomExpandableContainer extends State<CustomExpandableContainer> {
   }
 
   Widget _summonInfo(BuildContext context) {
-    return Column(
-      children: [
-        _summonDetail(
-          context,
-          AppLocalizations.of(context)!.offense,
-          widget.data.offType!,
-          false,
-        ),
-        _summonDetail(
-          context,
-          AppLocalizations.of(context)!.ticketNo,
-          widget.data.notisId!,
-          false,
-        ),
-        _summonDetail(
-          context,
-          AppLocalizations.of(context)!.date,
-          widget.data.createDate!,
-          false,
-        ),
-        _summonDetail(
-          context,
-          AppLocalizations.of(context)!.amount,
-          widget.data.offAmount!,
-          true,
-        ),
-      ],
+    return Padding(
+      padding: const EdgeInsets.only(left: 8),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _summonDetail(
+            context,
+            AppLocalizations.of(context)!.offense,
+            widget.data.offType!,
+            false,
+          ),
+          _summonDetail(
+            context,
+            AppLocalizations.of(context)!.ticketNo,
+            widget.data.notisId!,
+            false,
+          ),
+          _summonDetail(
+            context,
+            AppLocalizations.of(context)!.date,
+            widget.data.createDate!,
+            false,
+          ),
+          _summonDetail(
+            context,
+            AppLocalizations.of(context)!.amount,
+            widget.data.offAmount!.split(" ")[0],
+            true,
+          ),
+        ],
+      ),
     );
   }
 
@@ -160,28 +165,23 @@ class _CustomExpandableContainer extends State<CustomExpandableContainer> {
     String detail,
     bool amountField,
   ) {
-    return Row(
+    return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      mainAxisSize: MainAxisSize.max,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
       children: [
-        Expanded(
-          flex: 2,
-          child: _summonInfoLabel(context, label),
-        ),
-        Expanded(
-          flex: 6,
-          child: amountField == true
-              ? _summonInfoDetail(
-                  context,
-                  detail,
-                  textColor: const Color(errorRed),
-                  fontWeight: FontWeight.w600,
-                )
-              : SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: _summonInfoDetail(context, detail.trim()),
-                ),
-        )
+        _summonInfoLabel(context, label),
+        amountField == true
+            ? _summonInfoDetail(
+                context,
+                detail,
+                textColor: const Color(errorRed),
+                fontWeight: FontWeight.w600,
+              )
+            : SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: _summonInfoDetail(context, detail.trim()),
+              )
       ],
     );
   }

@@ -1,8 +1,16 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_share/flutter_share.dart';
+import 'package:jpj_info/config/site_config.dart';
+import 'package:jpj_info/controller/http_request_controller.dart';
 import 'package:jpj_info/controller/menu_action.dart';
 import 'package:jpj_info/helper/account_manager.dart';
+import 'package:jpj_info/model/share_response.dart';
 import 'package:jpj_info/view/appBarHeader/custom_appbar.dart';
 import 'package:jpj_info/view/bottomDrawer/bottom_drawer.dart';
+import 'package:http/http.dart' as http;
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AppBarController extends StatefulWidget implements PreferredSizeWidget {
   const AppBarController({
@@ -59,7 +67,34 @@ class _AppBarController extends State<AppBarController> {
     inboxPage(context);
   }
 
-  void _shareApp(BuildContext context) {}
+  Future<void> _shareApp(BuildContext context) async {
+    SiteConfig conf = SiteConfig();
+    jpjHttpGetRequest(
+      context,
+      Uri.parse(conf.share),
+      headers: conf.formHeader,
+      callback: (http.Response response) async {
+        if (response.statusCode == 200) {
+          ShareResponse res = ShareResponse.fromJson(
+            jsonDecode(response.body),
+          );
+          String text = "";
+          if (AppLocalizations.of(context)!.localeName == "ms") {
+            text = res.textMs!;
+          } else {
+            text = res.textEn!;
+          }
+          Navigator.of(context).pop();
+          await FlutterShare.share(
+            title: text,
+            text: text,
+            linkUrl: res.link,
+            chooserTitle: text,
+          );
+        }
+      },
+    );
+  }
 
   void _logout(BuildContext context) {
     MyJPJAccountManager().logOut(context);

@@ -27,6 +27,7 @@ class SiteConfig {
   final String faq = "$prodUrl/faq";
   final String directory = "$prodUrl/direktori/";
   final String tnc = "$prodUrl/tnc/";
+  final String share = "$caravelUrl/share/";
 
   //staging api
   final String checkUserIdUrierr = "$prodUrl/semak-id-awam/err.php";
