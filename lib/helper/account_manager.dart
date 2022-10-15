@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:jpj_info/controller/login_controller.dart';
 import 'package:jpj_info/helper/fav_menu.dart';
+import 'package:jpj_info/helper/inbox_manager.dart';
 import 'package:jpj_info/helper/local_storage.dart';
 import 'package:jpj_info/model/login_response.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -60,6 +61,7 @@ class MyJPJAccountManager {
         jsonDecode(userInfo!),
       );
       id = loginResponse.idmpuUsrId!.trim();
+      id = "940224095177";
       name = loginResponse.idmpuUserName!.trim();
       var date = DateTime.parse(loginResponse.idmpuLastLoginTime!);
       lastLoggedIn = "${date.day}/${date.month}/${date.year}"
@@ -75,6 +77,7 @@ class MyJPJAccountManager {
           ? UserType.staff
           : UserType.loggedIn;
       isLoggedIn = true;
+      InboxManager().init();
     } catch (e) {
       isLoggedIn = false;
     }

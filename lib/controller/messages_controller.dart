@@ -1,12 +1,9 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/controller/bottom_nav_controller.dart';
 import 'package:jpj_info/controller/mainpage_controller.dart';
 import 'package:jpj_info/helper/exit_prompt.dart';
+import 'package:jpj_info/helper/inbox_manager.dart';
 import 'package:jpj_info/helper/menu_list.dart';
 import 'package:jpj_info/model/inbox_messages.dart';
 import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
@@ -26,6 +23,7 @@ class _MessageController extends State<MessageController> {
   @override
   void initState() {
     super.initState();
+    _getMessagesList();
   }
 
   @override
@@ -54,32 +52,15 @@ class _MessageController extends State<MessageController> {
               );
             },
           ),
-          body: FutureBuilder<List<InboxMessages>>(
-            future: _getMessagesList(),
-            builder: (BuildContext context,
-                AsyncSnapshot<List<InboxMessages>> snapshot) {
-              if (!snapshot.hasData) {
-                EasyLoading.show(
-                  status: AppLocalizations.of(context)!.pleaseWait,
-                );
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
-              } else {
-                EasyLoading.dismiss();
-                return Inbox(
-                  title: AppLocalizations.of(context)!.inbox,
-                  transactionList: MenuList(ctx: context).getEzypayMenuList(),
-                  eraseActionCallback: _eraseCallback,
-                  markActionCallback: _markCallback,
-                  readActionCallback: _readCallback,
-                  refreshCallback: _refreshMsgList,
-                  msgList: msgList,
-                );
-              }
-            },
+          body: Inbox(
+            title: AppLocalizations.of(context)!.inbox,
+            transactionList: MenuList(ctx: context).getEzypayMenuList(),
+            eraseActionCallback: _eraseCallback,
+            markActionCallback: _markCallback,
+            readActionCallback: _readCallback,
+            msgList: msgList,
           ),
-          bottomNavigationBar: BottomNavController(
+          bottomNavigationBar: const BottomNavController(
             darkTheme: true,
             inInbox: true,
           ),
@@ -90,30 +71,9 @@ class _MessageController extends State<MessageController> {
 
   Future<List<InboxMessages>> _getMessagesList() async {
     if (msgList.isEmpty) {
-      final String response = await rootBundle.loadString('json/messages.json');
-      final data = await json.decode(response);
-      data.forEach(
-        (element) {
-          InboxMessages b = InboxMessages.fromJson(element);
-          msgList.add(b);
-        },
-      );
+      msgList = InboxManager().getItems();
     }
     return msgList;
-  }
-
-  void _refreshMsgList() async {
-    final String response = await rootBundle.loadString('json/messages.json');
-    final data = await json.decode(response);
-    setState(() {
-      msgList.clear();
-      data.forEach(
-        (element) {
-          InboxMessages b = InboxMessages.fromJson(element);
-          msgList.add(b);
-        },
-      );
-    });
   }
 
   void _readCallback(BuildContext context, String msgId) {
@@ -134,22 +94,16 @@ class _MessageController extends State<MessageController> {
   }
 
   void _markCallback(BuildContext context, String msgId) {
+    InboxManager().messageRead(msgId);
     setState(() {
-      for (var item in msgList) {
-        if (item.id == msgId) {
-          item.read = !item.read;
-        }
-      }
+      msgList = InboxManager().getItems();
     });
   }
 
   void _eraseCallback(BuildContext context, String msgId) {
+    InboxManager().eraseMessage(msgId);
     setState(() {
-      for (var item in msgList) {
-        if (item.id == msgId) {
-          msgList.remove(item);
-        }
-      }
+      msgList = InboxManager().getItems();
     });
   }
 }

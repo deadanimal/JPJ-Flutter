@@ -63,3 +63,26 @@ void jpjHttpGetRequest(
     EasyLoading.dismiss();
   });
 }
+
+void jpjSilentHttpRequest(
+  Uri url, {
+  Map<String, String>? headers,
+  Object? body,
+  Function(http.Response)? callback,
+}) {
+  http
+      .post(url, headers: headers, body: body)
+      .then(
+        (value) {
+          if (callback != null) {
+            callback(value);
+          }
+        },
+      )
+      .onError((error, stackTrace) {})
+      .timeout(
+        const Duration(seconds: 60),
+        onTimeout: (() {}),
+      )
+      .whenComplete(() {});
+}

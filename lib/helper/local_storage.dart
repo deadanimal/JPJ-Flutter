@@ -4,4 +4,5 @@ class LocalStorageHelper {
   String userLoginInfo = "userLoginInfo";
   String vehicleList = "vehicleList";
   String favMenuItem = "favMenuItem";
+  String inboxItems = "inboxItems";
 }

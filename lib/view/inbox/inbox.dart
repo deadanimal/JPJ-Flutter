@@ -15,7 +15,6 @@ class Inbox extends StatelessWidget {
     required this.markActionCallback,
     required this.eraseActionCallback,
     required this.msgList,
-    required this.refreshCallback,
   }) : super(key: key);
   final List<CustomMenuItem> transactionList;
   final String title;
@@ -23,7 +22,6 @@ class Inbox extends StatelessWidget {
   final Function(BuildContext, String) readActionCallback;
   final Function(BuildContext, String) markActionCallback;
   final Function(BuildContext, String) eraseActionCallback;
-  final Function() refreshCallback;
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +42,7 @@ class Inbox extends StatelessWidget {
             TemplateHeader(
               headerTitle: title,
             ),
-            const SizedBox(height: vPaddingXL),
+            const SizedBox(height: vPaddingM),
             _bodyList(context),
             const SizedBox(height: vPaddingXL),
           ],
@@ -66,22 +64,20 @@ class Inbox extends StatelessWidget {
   }
 
   Widget _msgList(BuildContext context) {
-    return RefreshIndicator(
-      onRefresh: () => refreshCallback(),
-      child: ListView.builder(
-        scrollDirection: Axis.vertical,
-        itemCount: msgList.length,
-        shrinkWrap: true,
-        itemBuilder: (context, index) {
-          return _slidableMessage(
-            msgList[index].header,
-            msgList[index].body,
-            msgList[index].id,
-            msgList[index].read,
-            context,
-          );
-        },
-      ),
+    return ListView.builder(
+      scrollDirection: Axis.vertical,
+      itemCount: msgList.length,
+      physics: const NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
+      itemBuilder: (context, index) {
+        return _slidableMessage(
+          msgList[index].header,
+          msgList[index].body,
+          msgList[index].id,
+          msgList[index].read,
+          context,
+        );
+      },
     );
   }
 

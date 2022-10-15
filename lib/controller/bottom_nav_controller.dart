@@ -1,15 +1,17 @@
+import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:jpj_info/controller/administrative_menu_controller.dart';
 import 'package:jpj_info/controller/jpj_directory_controller.dart';
 import 'package:jpj_info/controller/mainpage_controller.dart';
 import 'package:jpj_info/controller/messages_controller.dart';
+import 'package:jpj_info/helper/inbox_manager.dart';
 import 'package:jpj_info/view/bottomBar/bottom_bar.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class BottomNavController extends StatelessWidget {
-  BottomNavController({
+class BottomNavController extends StatefulWidget {
+  const BottomNavController({
     Key? key,
     this.darkTheme = false,
     this.inHome = false,
@@ -18,13 +20,31 @@ class BottomNavController extends StatelessWidget {
     this.inDirectory = false,
   }) : super(key: key);
 
+  final bool darkTheme;
+  final bool inHome;
+  final bool inInbox;
+  final bool inDirectory;
+  final bool inProfile;
+
+  @override
+  State<StatefulWidget> createState() => _BottomNavController();
+}
+
+class _BottomNavController extends State<BottomNavController> {
   late List<void Function(BuildContext)> callbackList;
   late List<BottomNavigationBarItem> menuList;
-  late bool darkTheme;
-  late bool inHome;
-  late bool inInbox;
-  late bool inDirectory;
-  late bool inProfile;
+  int notificationCount = 0;
+
+  @override
+  void initState() {
+    _getNotificationCount();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +52,7 @@ class BottomNavController extends StatelessWidget {
     _initMenuList(context);
     Color bgColor = Colors.transparent;
     Color textColor = const Color(themeNavy);
-    if (darkTheme) {
+    if (widget.darkTheme) {
       bgColor = const Color(themeNavy);
       textColor = Colors.white;
     }
@@ -52,7 +72,7 @@ class BottomNavController extends StatelessWidget {
   }
 
   void _homeNavigation(BuildContext context) {
-    if (!inHome) {
+    if (!widget.inHome) {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
@@ -65,7 +85,7 @@ class BottomNavController extends StatelessWidget {
   }
 
   void _inboxNavigation(BuildContext context) {
-    if (!inInbox) {
+    if (!widget.inInbox) {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
@@ -78,7 +98,7 @@ class BottomNavController extends StatelessWidget {
   }
 
   void _directoryNavigation(BuildContext context) {
-    if (!inDirectory) {
+    if (!widget.inDirectory) {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
@@ -91,7 +111,7 @@ class BottomNavController extends StatelessWidget {
   }
 
   void _profileNavigation(BuildContext context) {
-    if (!inProfile) {
+    if (!widget.inProfile) {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
@@ -112,9 +132,20 @@ class BottomNavController extends StatelessWidget {
     ];
   }
 
+  void _getNotificationCount() {
+    if (notificationCount != InboxManager().getNumberOfUnreadItems()) {
+      notificationCount = InboxManager().getNumberOfUnreadItems();
+      setState(() {});
+    }
+    Future.delayed(
+      const Duration(milliseconds: 1000),
+      _getNotificationCount,
+    );
+  }
+
   void _initMenuList(BuildContext context) {
     Color tint;
-    if (darkTheme) {
+    if (widget.darkTheme) {
       tint = Colors.white;
     } else {
       tint = const Color(themeNavy);
@@ -125,15 +156,29 @@ class BottomNavController extends StatelessWidget {
         icon: SvgPicture.asset(
           "images/vector/btm_home_icon.svg",
           semanticsLabel: 'Home Icon',
-          color: inHome == false ? Colors.grey : tint,
+          color: widget.inHome == false ? Colors.grey : tint,
         ),
         label: AppLocalizations.of(context)!.main,
       ),
       BottomNavigationBarItem(
-        icon: SvgPicture.asset(
-          "images/vector/btm_inbox_icon.svg",
-          semanticsLabel: 'inbox Icon',
-          color: inInbox == false ? Colors.grey : tint,
+        icon: Badge(
+          showBadge: notificationCount > 0 ? true : false,
+          badgeContent: Text(
+            notificationCount.toString(),
+            style: const TextStyle(
+              fontSize: 10,
+              color: Colors.white,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          borderRadius: BorderRadius.circular(25),
+          shape: BadgeShape.square,
+          stackFit: StackFit.passthrough,
+          child: SvgPicture.asset(
+            "images/vector/btm_inbox_icon.svg",
+            semanticsLabel: 'inbox Icon',
+            color: widget.inInbox == false ? Colors.grey : tint,
+          ),
         ),
         label: AppLocalizations.of(context)!.inbox,
       ),
@@ -141,7 +186,7 @@ class BottomNavController extends StatelessWidget {
         icon: SvgPicture.asset(
           "images/vector/btm_directory_icon.svg",
           semanticsLabel: 'directory Icon',
-          color: inDirectory == false ? Colors.grey : tint,
+          color: widget.inDirectory == false ? Colors.grey : tint,
         ),
         label: AppLocalizations.of(context)!.directory,
       ),
@@ -149,7 +194,7 @@ class BottomNavController extends StatelessWidget {
         icon: SvgPicture.asset(
           "images/vector/btm_profile_icon_2.svg",
           semanticsLabel: 'Profile Icon',
-          color: inProfile == false ? Colors.grey : tint,
+          color: widget.inProfile == false ? Colors.grey : tint,
         ),
         label: AppLocalizations.of(context)!.profile,
       ),
