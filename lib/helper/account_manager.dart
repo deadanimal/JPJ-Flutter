@@ -61,7 +61,6 @@ class MyJPJAccountManager {
         jsonDecode(userInfo!),
       );
       id = loginResponse.idmpuUsrId!.trim();
-      id = "940224095177";
       name = loginResponse.idmpuUserName!.trim();
       var date = DateTime.parse(loginResponse.idmpuLastLoginTime!);
       lastLoggedIn = "${date.day}/${date.month}/${date.year}"

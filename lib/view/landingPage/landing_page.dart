@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jpj_info/model/page_size.dart';
+import 'package:jpj_info/view/common/color_scheme.dart';
 
 class LandingPage extends StatelessWidget {
   const LandingPage({
@@ -11,9 +12,11 @@ class LandingPage extends StatelessWidget {
     mediaWidth = (MediaQuery.of(context).size.width);
     mediaHeight = (MediaQuery.of(context).size.height);
     return Container(
+      padding: EdgeInsets.zero,
       height: double.infinity,
       width: double.infinity,
       decoration: const BoxDecoration(
+        color: Color(themeNavy),
         image: DecorationImage(
           image: AssetImage("images/splashscreen_bg.png"),
           fit: BoxFit.fill,

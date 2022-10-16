@@ -1,10 +1,42 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter/services.dart';
+import 'package:jpj_info/config/site_config.dart';
+import 'package:jpj_info/controller/http_request_controller.dart';
 import 'package:jpj_info/controller/landing_controller.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:jpj_info/helper/account_manager.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
+// import 'package:jpj_info/helper/local_notification.dart';
+// import 'package:jpj_info/model/inbox_request.dart';
+// import 'package:workmanager/workmanager.dart';
+
+// @pragma(
+//     'vm:entry-point') // Mandatory if the App is obfuscated or using Flutter 3.1+
+// void callbackDispatcher() {
+//   Workmanager().executeTask((task, inputData) async {
+//     print(task);
+//     print(
+//         "Hello there *************************************************************");
+//     SiteConfig conf = SiteConfig();
+//     InboxRequest req = InboxRequest(nokp: "940224095177");
+//     jpjSilentHttpRequest(
+//       Uri.parse(conf.unreadItem),
+//       headers: conf.formHeader,
+//       body: jsonEncode(req.toJson()),
+//       callback: (b) {
+//         print("Got the response");
+//         print(b.statusCode);
+//         print(b.body);
+//       },
+//     );
+
+//     print("after response");
+//     return Future.value(true);
+//   });
+// }
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,6 +45,18 @@ void main() {
       statusBarColor: Colors.transparent, // transparent status bar
     ),
   );
+  // Workmanager().initialize(
+  //   callbackDispatcher,
+  //   isInDebugMode: true,
+  // );
+  // Workmanager().cancelAll();
+  // Workmanager().registerPeriodicTask(
+  //   "task2",
+  //   "checkInbox",
+  //   frequency: const Duration(minutes: 15),
+  //   initialDelay: const Duration(seconds: 5),
+  //   constraints: Constraints(networkType: NetworkType.connected),
+  // );
   MyJPJAccountManager().init().then(
         (value) => runApp(
           MyJpj(),

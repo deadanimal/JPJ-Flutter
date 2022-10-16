@@ -128,35 +128,38 @@ class _MainPage extends State<MainPage> with TickerProviderStateMixin {
 
   Widget mainheader(BuildContext context) {
     return IntrinsicHeight(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Container(
-            width: 55,
-            decoration: const BoxDecoration(
-              color: Color.fromARGB(255, 255, 223, 106),
-              borderRadius: BorderRadius.all(
-                Radius.circular(5.0),
+      child: Container(
+        constraints: const BoxConstraints(minHeight: 84),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+              width: 55,
+              decoration: const BoxDecoration(
+                color: Color.fromARGB(255, 255, 223, 106),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(5.0),
+                ),
               ),
-            ),
-            child: Center(
-              child: Text(
-                MyJPJAccountManager().name[0].toUpperCase(),
-                style: const TextStyle(
-                  fontWeight: FontWeight.w700,
-                  fontFamily: "Poppins",
-                  fontSize: 32,
+              child: Center(
+                child: Text(
+                  MyJPJAccountManager().name[0].toUpperCase(),
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w700,
+                    fontFamily: "Poppins",
+                    fontSize: 32,
+                  ),
                 ),
               ),
             ),
-          ),
-          const SizedBox(width: vPaddingM),
-          Expanded(
-            child: userInfo(context),
-          ),
-        ],
+            const SizedBox(width: vPaddingM),
+            Expanded(
+              child: userInfo(context),
+            ),
+          ],
+        ),
       ),
     );
   }

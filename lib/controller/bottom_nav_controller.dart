@@ -166,13 +166,12 @@ class _BottomNavController extends State<BottomNavController> {
           badgeContent: Text(
             notificationCount.toString(),
             style: const TextStyle(
-              fontSize: 10,
+              fontSize: 13,
               color: Colors.white,
             ),
             textAlign: TextAlign.center,
           ),
-          borderRadius: BorderRadius.circular(25),
-          shape: BadgeShape.square,
+          shape: BadgeShape.circle,
           stackFit: StackFit.passthrough,
           child: SvgPicture.asset(
             "images/vector/btm_inbox_icon.svg",
