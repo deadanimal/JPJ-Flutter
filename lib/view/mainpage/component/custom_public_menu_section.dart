@@ -84,7 +84,7 @@ class _CustomPublicMenuSection extends State<CustomPublicMenuSection> {
                         "${widget.subHeader}    ",
                         style: const TextStyle(
                           color: Color(0xff171f44),
-                          fontSize: 16,
+                          fontSize: 17,
                           fontFamily: "Poppins",
                           fontWeight: FontWeight.bold,
                         ),
@@ -94,7 +94,7 @@ class _CustomPublicMenuSection extends State<CustomPublicMenuSection> {
                       widget.subHeader,
                       style: const TextStyle(
                         color: Color(0xff171f44),
-                        fontSize: 16,
+                        fontSize: 17,
                         fontFamily: "Poppins",
                         fontWeight: FontWeight.bold,
                       ),
@@ -103,7 +103,7 @@ class _CustomPublicMenuSection extends State<CustomPublicMenuSection> {
           ),
           Container(
             padding: EdgeInsets.zero,
-            constraints: BoxConstraints(maxHeight: widget.fav ? 124 : 100),
+            constraints: BoxConstraints(maxHeight: widget.fav ? 132 : 100),
             width: mediaWidth,
             child: ListView.builder(
               controller: sc,

@@ -24,7 +24,7 @@ class MenuList {
         id: 2,
       ),
       CustomMenuItem(
-        "eAduan",
+        "e-Aduan\n@JPJ",
         "images/icon/eaduan_icon.png",
         eAduanMenuPage,
         login: true,

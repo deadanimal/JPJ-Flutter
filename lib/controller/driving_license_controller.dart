@@ -71,35 +71,60 @@ class _DrivingLicenseController extends State<DrivingLicenseController> {
       LicenseStatusResponse respond = LicenseStatusResponse.fromJson(
         jsonDecode(response.body),
       );
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) {
-            List<Result1> dataSet = [];
-            respond.lesen?.forEach((el) {
-              dataSet.add(
-                Result1(
-                  leftTitle: AppLocalizations.of(context)!.licenseType,
-                  leftContent: el.jenisLesen,
-                  rightTitle: AppLocalizations.of(context)!.expiryDate,
-                  rightContent: el.tempohTamat,
-                ),
-              );
-            });
+      if (respond.status != null && respond.status == 200) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) {
+              List<Result1> dataSet = [];
+              respond.lesen?.forEach((el) {
+                dataSet.add(
+                  Result1(
+                    leftTitle: AppLocalizations.of(context)!.licenseType,
+                    leftContent: el.jenisLesen,
+                    rightTitle: AppLocalizations.of(context)!.expiryDate,
+                    rightContent: el.tempohTamat,
+                  ),
+                );
+              });
 
-            ResultStyle1 resultData = ResultStyle1(
-              name: respond.user,
-              id: respond.nokp,
-              title: AppLocalizations.of(context)!.drivingnLicense,
-              subtitle: AppLocalizations.of(context)!.searchResult,
-              results: dataSet,
-            );
-            return TemplateResult1(
-              data: resultData,
-            );
+              ResultStyle1 resultData = ResultStyle1(
+                name: respond.user,
+                id: respond.nokp,
+                title: AppLocalizations.of(context)!.drivingLicense,
+                subtitle: AppLocalizations.of(context)!.searchResult,
+                results: dataSet,
+              );
+              return TemplateResult1(
+                data: resultData,
+              );
+            },
+          ),
+        );
+      } else if (respond.statusMessage != null) {
+        List<String> errString = respond.statusMessage!.split("|");
+        String err;
+        if (errString.length == 1) {
+          err = errString[0];
+        } else if (AppLocalizations.of(context)!.localeName == "ms") {
+          err = errString[0];
+        } else {
+          err = errString[1];
+        }
+        AlertController(ctx: context).generalError(
+          err,
+          () {
+            Navigator.of(context).pop();
           },
-        ),
-      );
+        );
+      } else {
+        AlertController(ctx: context).generalError(
+          AppLocalizations.of(context)!.noRecord,
+          () {
+            Navigator.of(context).pop();
+          },
+        );
+      }
     } else {
       AlertController(ctx: context).connectionError();
     }

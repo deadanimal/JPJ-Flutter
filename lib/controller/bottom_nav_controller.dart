@@ -13,7 +13,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class BottomNavController extends StatefulWidget {
   const BottomNavController({
     Key? key,
-    this.darkTheme = false,
+    this.darkTheme = true,
     this.inHome = false,
     this.inInbox = false,
     this.inProfile = false,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:jpj_info/model/page_size.dart';
 import 'package:jpj_info/model/summons_response.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
@@ -125,6 +126,7 @@ class _CustomExpandableContainer extends State<CustomExpandableContainer> {
   }
 
   Widget _summonInfo(BuildContext context) {
+    var createDate = widget.data.createDate!.split(" ");
     return Padding(
       padding: const EdgeInsets.only(left: 8),
       child: Column(
@@ -145,7 +147,7 @@ class _CustomExpandableContainer extends State<CustomExpandableContainer> {
           _summonDetail(
             context,
             AppLocalizations.of(context)!.date,
-            widget.data.createDate!,
+            "${createDate[2]} ${createDate[1]} ${createDate[5]}",
             false,
           ),
           _summonDetail(
@@ -153,6 +155,14 @@ class _CustomExpandableContainer extends State<CustomExpandableContainer> {
             AppLocalizations.of(context)!.amount,
             widget.data.offAmount!.split(" ")[0],
             true,
+          ),
+          _summonDetail(
+            context,
+            AppLocalizations.of(context)!.status,
+            widget.data.status == "0"
+                ? AppLocalizations.of(context)!.active
+                : AppLocalizations.of(context)!.completed,
+            false,
           ),
         ],
       ),

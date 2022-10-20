@@ -24,7 +24,8 @@ class SiteConfig {
   final String saveAduanUri = "$prodUrl/simpan_aduan/";
   final String aduanImageUploadUri = "$prodUrl/upld_images/";
   final String resetPasswordUri = "$prodUrl/reset_password_id_awam/";
-  final String faq = "$prodUrl/faq";
+  final String faq = "http://stagportal.jpj.gov.my/soalan-lazim-lesen-memandu/";
+  // final String faq = "$prodUrl/faq";
   final String directory = "$prodUrl/direktori/";
   final String tnc = "$prodUrl/tnc/";
   final String share = "$prodUrl/share/";
@@ -45,4 +46,6 @@ class SiteConfig {
   String jpjEbidPlayStoreid = 'my.gov.jpj.ebidding';
   String jpjEqAppStoreid = '1545069171';
   String jpjEqPlayStoreid = 'my.gov.jpj.queue';
+  String eHadirAppStoreid = '1468511154';
+  String eHadirPlayStoreid = 'my.gov.jpj.mykedatangan';
 }

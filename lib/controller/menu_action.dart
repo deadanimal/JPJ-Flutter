@@ -254,15 +254,21 @@ void eAduanFormMenuPage(BuildContext context, EaduanItem item) {
   );
 }
 
-void eHadirMenuPage(BuildContext context) {
-  Navigator.push(
-    context,
-    MaterialPageRoute(
-      builder: (context) {
-        return const JpjEhadirMenuController();
-      },
-    ),
+void eHadirMenuPage(BuildContext context) async {
+  await LaunchApp.openApp(
+    androidPackageName: SiteConfig().eHadirPlayStoreid,
+    iosUrlScheme: 'jpjebid://',
+    appStoreLink:
+        'itms-apps://apps.apple.com/us/app/jpjebid/${SiteConfig().eHadirAppStoreid}',
   );
+  // Navigator.push(
+  //   context,
+  //   MaterialPageRoute(
+  //     builder: (context) {
+  //       return const JpjEhadirMenuController();
+  //     },
+  //   ),
+  // );
 }
 
 void eHadirMainPage(BuildContext context) {

@@ -46,7 +46,7 @@ class LanguageSelector {
                     ),
                     const SizedBox(width: horizontalPadding),
                     const Text(
-                      "Bahasa Malaysia",
+                      "Bahasa Melayu",
                       style: TextStyle(
                         color: Color(themeNavy),
                         fontSize: 15,

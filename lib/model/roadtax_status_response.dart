@@ -1,5 +1,7 @@
 class RoadTaxStatusResponse {
   List<Status>? status;
+  String? statusCode;
+  String? statusMsg;
   String? user;
   String? nokp;
   String? kategori;
@@ -13,6 +15,8 @@ class RoadTaxStatusResponse {
     this.kategori,
     this.bil,
     this.vehicleInfo,
+    this.statusCode,
+    this.statusMsg,
   });
 
   RoadTaxStatusResponse.fromJson(Map<String, dynamic> json) {
@@ -26,6 +30,8 @@ class RoadTaxStatusResponse {
     nokp = json['nokp'];
     kategori = json['kategori'];
     bil = json['bil'];
+    statusCode = json['status_code'];
+    statusMsg = json['status_msg'];
     if (json['vehicle_info'] != null) {
       vehicleInfo = <VehicleInfo>[];
       json['vehicle_info'].forEach((v) {
@@ -43,6 +49,8 @@ class RoadTaxStatusResponse {
     data['nokp'] = nokp;
     data['kategori'] = kategori;
     data['bil'] = bil;
+    data['status_code'] = statusCode;
+    data['status_msg'] = statusMsg;
     if (vehicleInfo != null) {
       data['vehicle_info'] = vehicleInfo?.map((v) => v.toJson()).toList();
     }

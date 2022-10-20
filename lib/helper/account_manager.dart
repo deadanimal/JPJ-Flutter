@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:intl/intl.dart';
 import 'package:jpj_info/controller/login_controller.dart';
 import 'package:jpj_info/helper/fav_menu.dart';
 import 'package:jpj_info/helper/inbox_manager.dart';
@@ -62,9 +63,10 @@ class MyJPJAccountManager {
       );
       id = loginResponse.idmpuUsrId!.trim();
       name = loginResponse.idmpuUserName!.trim();
-      var date = DateTime.parse(loginResponse.idmpuLastLoginTime!);
-      lastLoggedIn = "${date.day}/${date.month}/${date.year}"
-          " ${date.hour}:${date.minute}:${date.second}";
+      var date = DateFormat('dd/MM/yyyy hh:mm a').format(
+        DateTime.parse(loginResponse.idmpuLastLoginTime!).toLocal(),
+      );
+      lastLoggedIn = date.toString();
       email = loginResponse.idmpuUserEmail!.trim();
       phoneNumber = "";
       state = "";
@@ -110,6 +112,7 @@ class MyJPJAccountManager {
     SharedPreferences.getInstance().then((pref) {
       pref.remove(LocalStorageHelper().userLoginInfo);
       pref.remove(LocalStorageHelper().vehicleList);
+      pref.remove(LocalStorageHelper().inboxItems);
     });
 
     Navigator.pushAndRemoveUntil(

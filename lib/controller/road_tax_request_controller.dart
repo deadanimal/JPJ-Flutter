@@ -41,42 +41,58 @@ class RoadTaxRequestController {
       RoadTaxStatusResponse respond = RoadTaxStatusResponse.fromJson(
         jsonDecode(response.body),
       );
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) {
-            List<Result2> dataSet = [];
-            if (respond.vehicleInfo != null) {
-              for (int i = 0; i < respond.vehicleInfo!.length; i++) {
-                if (!MyJPJAccountManager().isLoggedIn && i == 0) {
-                } else {
-                  if (i == 0 && respond.nokp != MyJPJAccountManager().id) {
+      if (respond.status != null && respond.status![0].statusCode == "0") {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) {
+              List<Result2> dataSet = [];
+              if (respond.vehicleInfo != null) {
+                for (int i = 0; i < respond.vehicleInfo!.length; i++) {
+                  if (!MyJPJAccountManager().isLoggedIn && i == 0) {
                   } else {
-                    dataSet.add(
-                      Result2(
-                        result: _resultField(context, respond.vehicleInfo![i]),
-                        title: respond.vehicleInfo![i].vehicleInsurance,
-                      ),
-                    );
+                    if (i == 0 && respond.nokp != MyJPJAccountManager().id) {
+                    } else {
+                      dataSet.add(
+                        Result2(
+                          result:
+                              _resultField(context, respond.vehicleInfo![i]),
+                          title: respond.vehicleInfo![i].vehicleInsurance,
+                        ),
+                      );
+                    }
                   }
                 }
               }
-            }
 
-            ResultStyle2 result = ResultStyle2(
-              id: respond.nokp,
-              name: respond.user,
-              results: dataSet,
-              subtitle: AppLocalizations.of(context)!.searchResult,
-              title: AppLocalizations.of(context)!.lkm,
-              vehicalRegNumber: respond.vehicleInfo![1].vehicleInsurance,
-            );
-            return TemplateResult2(
-              data: result,
-            );
-          },
-        ),
-      );
+              ResultStyle2 result = ResultStyle2(
+                id: respond.nokp,
+                name: respond.user,
+                results: dataSet,
+                subtitle: AppLocalizations.of(context)!.searchResult,
+                title: AppLocalizations.of(context)!.lkm,
+                vehicalRegNumber: respond.vehicleInfo![1].vehicleInsurance,
+              );
+              return TemplateResult2(
+                data: result,
+              );
+            },
+          ),
+        );
+      } else {
+        List<String> errString = respond.statusMsg!.split("|");
+        String err;
+        if (errString.length == 1) {
+          err = errString[0];
+        } else if (AppLocalizations.of(context)!.localeName == "ms") {
+          err = errString[0];
+        } else {
+          err = errString[1];
+        }
+        AlertController(ctx: context).generalError(err, () {
+          Navigator.of(context).pop();
+        });
+      }
     } else {
       AlertController(ctx: context).connectionError();
     }

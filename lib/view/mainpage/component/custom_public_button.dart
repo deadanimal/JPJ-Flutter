@@ -52,7 +52,7 @@ class CustomPublicButton extends StatelessWidget {
                             color: Color(0xff393939),
                             fontSize: 14,
                             fontFamily: "Poppins",
-                            fontWeight: FontWeight.w700,
+                            fontWeight: FontWeight.w500,
                           ),
                         ),
                       ),

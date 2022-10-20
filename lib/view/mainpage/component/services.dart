@@ -16,11 +16,11 @@ class Services extends StatelessWidget {
     List<CustomMenuItem> transectionMenu =
         MenuList(ctx: context).getOnlineTransactionList();
     List<CustomMenuItem> supportServiceMenu = [
-      serviceMenu[0],
       serviceMenu[1],
       serviceMenu[2],
     ];
     List<CustomMenuItem> licenseMenu = [
+      serviceMenu[0],
       transectionMenu[0],
       transectionMenu[3],
     ];

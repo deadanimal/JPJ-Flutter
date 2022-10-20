@@ -92,9 +92,23 @@ class _NewUserCheckIdController extends State<NewUserCheckIdController> {
               },
             ),
           );
-        } else {
+        } else if (checkIdResponse.status == "01") {
           AlertController(ctx: context).generalError(
             AppLocalizations.of(context)!.noRecordInMySikap,
+            () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return const LoginController();
+                  },
+                ),
+              );
+            },
+          );
+        } else {
+          AlertController(ctx: context).generalError(
+            AppLocalizations.of(context)!.alreadyRegistered,
             () {
               Navigator.push(
                 context,

@@ -32,7 +32,7 @@ class _EaduanMenuController extends State<EaduanMenuController> {
           decor: customGradient,
         ),
         body: EaduanMenu(
-          title: "eAduan @JPJ",
+          title: "e-Aduan@JPJ",
           transactionList: MenuList(ctx: context).getEaduanMenuList(),
           draftStatusCallback: _draftStatusCallback,
         ),

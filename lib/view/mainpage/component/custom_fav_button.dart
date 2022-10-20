@@ -53,7 +53,7 @@ class CustomFavButton extends StatelessWidget {
                         style: const TextStyle(
                           color: Color.fromARGB(255, 0, 0, 0),
                           fontSize: 14,
-                          fontFamily: "Roboto",
+                          fontFamily: "Poppins",
                         ),
                       ),
                     ),

@@ -32,7 +32,7 @@ class LicenseCheck extends StatelessWidget {
       child: Column(
         children: [
           TemplateHeader(
-            headerTitle: AppLocalizations.of(context)!.drivingnLicense,
+            headerTitle: AppLocalizations.of(context)!.drivingLicense,
           ),
           _licenseForm(),
         ],

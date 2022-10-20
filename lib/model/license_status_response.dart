@@ -2,6 +2,7 @@ class LicenseStatusResponse {
   int? status;
   String? user;
   String? nokp;
+  String? statusMessage;
   int? bil;
   List<Lesen>? lesen;
 
@@ -18,6 +19,7 @@ class LicenseStatusResponse {
     user = json['user'];
     nokp = json['nokp'];
     bil = json['bil'];
+    statusMessage = json['status_message'];
     if (json['lesen'] != null) {
       lesen = <Lesen>[];
       json['lesen'].forEach((v) {
@@ -32,6 +34,7 @@ class LicenseStatusResponse {
     data['user'] = user;
     data['nokp'] = nokp;
     data['bil'] = bil;
+    data['status_message'] = statusMessage;
     if (lesen != null) {
       data['lesen'] = lesen?.map((v) => v.toJson()).toList();
     }

@@ -32,7 +32,7 @@ class TestResultCheck extends StatelessWidget {
       child: Column(
         children: [
           TemplateHeader(
-            headerTitle: AppLocalizations.of(context)!.testNResult,
+            headerTitle: AppLocalizations.of(context)!.testResult,
           ),
           _testResultForm(),
         ],

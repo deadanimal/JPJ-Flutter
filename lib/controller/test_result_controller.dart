@@ -98,7 +98,7 @@ class _TestResultController extends State<TestResultController> {
               vehicalRegNumber: null,
               name: respond.name,
               id: respond.icno,
-              title: AppLocalizations.of(context)!.testNResult,
+              title: AppLocalizations.of(context)!.testResult,
               subtitle: AppLocalizations.of(context)!.searchResult,
               results: dataSet,
             );

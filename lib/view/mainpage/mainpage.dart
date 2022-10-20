@@ -172,6 +172,7 @@ class _MainPage extends State<MainPage> with TickerProviderStateMixin {
             favMenuList: widget.favMenuList,
           ),
           const StaffMenu(),
+          const SizedBox(height: vPaddingXL),
         ],
       );
     } else {
