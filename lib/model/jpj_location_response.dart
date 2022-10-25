@@ -1,49 +1,66 @@
 class JpjLocationResponse {
-  List<JpjLocationResponseData>? data;
+  String? namaNegeri;
+  List<Cawangan>? cawangan;
 
-  JpjLocationResponse({this.data});
+  JpjLocationResponse({
+    this.namaNegeri,
+    this.cawangan,
+  });
 
   JpjLocationResponse.fromJson(Map<String, dynamic> json) {
-    if (json['data'] != null) {
-      data = <JpjLocationResponseData>[];
-      json['data'].forEach((v) {
-        data!.add(JpjLocationResponseData.fromJson(v));
+    namaNegeri = json['nama_negeri'];
+    if (json['cawangan'] != null) {
+      cawangan = <Cawangan>[];
+      json['cawangan'].forEach((v) {
+        cawangan!.add(Cawangan.fromJson(v));
       });
     }
   }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['nama_negeri'] = namaNegeri;
+    if (cawangan != null) {
+      data['cawangan'] = cawangan!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
 }
 
-class JpjLocationResponseData {
-  String? id;
-  String? stateId;
-  String? name;
-  String? address;
-  String? phoneNo;
-  String? faxNo;
-  String? coordinate;
-  String? coordinate2;
-  String email = "";
-  String? operationalHour;
+class Cawangan {
+  String? namaCawangan;
+  String? alamatCawangan;
+  String? notelefonCawangan;
+  String? nofaksCawangan;
+  String? waktuperkhidmatanCawangan;
+  String? koordinatCawangan;
 
-  JpjLocationResponseData(
-      {this.id,
-      this.stateId,
-      this.name,
-      this.address,
-      this.phoneNo,
-      this.faxNo,
-      this.coordinate,
-      this.coordinate2,
-      this.operationalHour = "9:00 pagi - 4.00 tengahari"});
+  Cawangan({
+    this.namaCawangan,
+    this.alamatCawangan,
+    this.notelefonCawangan,
+    this.nofaksCawangan,
+    this.waktuperkhidmatanCawangan,
+    this.koordinatCawangan,
+  });
 
-  JpjLocationResponseData.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    stateId = json['idnegeri'];
-    name = json['nama'];
-    address = json['alamat'];
-    phoneNo = json['nofon'];
-    faxNo = json['nofaks'];
-    coordinate = json['koordinat'];
-    coordinate2 = json['koordinat2'];
+  Cawangan.fromJson(Map<String, dynamic> json) {
+    namaCawangan = json['nama_cawangan'];
+    alamatCawangan = json['alamat_cawangan'];
+    notelefonCawangan = json['notelefon_cawangan'];
+    nofaksCawangan = json['nofaks_cawangan'];
+    waktuperkhidmatanCawangan = json['waktuperkhidmatan_cawangan'];
+    koordinatCawangan = json['koordinat_cawangan'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['nama_cawangan'] = namaCawangan;
+    data['alamat_cawangan'] = alamatCawangan;
+    data['notelefon_cawangan'] = notelefonCawangan;
+    data['nofaks_cawangan'] = nofaksCawangan;
+    data['waktuperkhidmatan_cawangan'] = waktuperkhidmatanCawangan;
+    data['koordinat_cawangan'] = koordinatCawangan;
+    return data;
   }
 }

@@ -19,7 +19,7 @@ class JpjDirectoryInfo extends StatefulWidget {
     required this.stateFlag,
     required this.stateName,
   }) : super(key: key);
-  final List<JpjLocationResponseData> data;
+  final List<Cawangan> data;
   final AssetImage stateFlag;
   final String stateName;
 
@@ -28,7 +28,7 @@ class JpjDirectoryInfo extends StatefulWidget {
 }
 
 class _JpjDirectoryInfo extends State<JpjDirectoryInfo> {
-  late JpjLocationResponseData locationData;
+  late Cawangan locationData;
   late List<String> dropdownList;
   late String dropdownValue;
 
@@ -38,7 +38,7 @@ class _JpjDirectoryInfo extends State<JpjDirectoryInfo> {
     locationData = widget.data[0];
     dropdownList = [];
     for (var branchInfo in widget.data) {
-      dropdownList.add(branchInfo.name!);
+      dropdownList.add(branchInfo.namaCawangan!);
     }
     dropdownValue = dropdownList[0];
   }
@@ -179,7 +179,7 @@ class _JpjDirectoryInfo extends State<JpjDirectoryInfo> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            locationData.name!,
+            locationData.namaCawangan!,
             style: const TextStyle(
               color: Color(0xff354c96),
               fontSize: 18,
@@ -194,13 +194,13 @@ class _JpjDirectoryInfo extends State<JpjDirectoryInfo> {
               children: [
                 _branchInfoLabel(
                   AppLocalizations.of(context)!.phoneNumber,
-                  locationData.phoneNo!
+                  locationData.notelefonCawangan!
                       .replaceAll(" ", "")
                       .replaceAll("/", "\n"),
                 ),
                 _branchInfoLabel(
                   AppLocalizations.of(context)!.faxNo,
-                  locationData.faxNo!,
+                  locationData.nofaksCawangan!,
                 ),
               ],
             ),
@@ -213,17 +213,17 @@ class _JpjDirectoryInfo extends State<JpjDirectoryInfo> {
           const SizedBox(height: vPaddingS),
           _branchInfoLabel(
             AppLocalizations.of(context)!.operationHour,
-            locationData.operationalHour ?? "",
+            locationData.waktuperkhidmatanCawangan ?? "",
           ),
           const SizedBox(height: vPaddingS),
           _branchInfoLabel(
             AppLocalizations.of(context)!.coordinate,
-            locationData.coordinate!,
+            locationData.koordinatCawangan!,
           ),
           const SizedBox(height: vPaddingS),
           _branchInfoLabel(
             AppLocalizations.of(context)!.address,
-            locationData.address!,
+            locationData.alamatCawangan!,
           ),
         ],
       ),
@@ -311,7 +311,7 @@ class _JpjDirectoryInfo extends State<JpjDirectoryInfo> {
 
   void _dropdownCallback(String? selectedBranch) {
     for (var item in widget.data) {
-      if (item.name == selectedBranch) {
+      if (item.namaCawangan == selectedBranch) {
         locationData = item;
       }
     }
@@ -321,7 +321,8 @@ class _JpjDirectoryInfo extends State<JpjDirectoryInfo> {
   }
 
   void _locationBtnCallback() {
-    final splitted = locationData.coordinate!.replaceAll(" ", "").split(',');
+    final splitted =
+        locationData.koordinatCawangan!.replaceAll(" ", "").split(',');
     MapsLauncher.launchCoordinates(
       double.parse(splitted[0]),
       double.parse(splitted[1]),

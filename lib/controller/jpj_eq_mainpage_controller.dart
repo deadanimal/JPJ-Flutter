@@ -50,11 +50,10 @@ class _JpjEqMainPageController extends State<JpjEqMainPageController> {
           qrData: "1231321654654545454848484777765465465432132165484797",
           scanQrBtnCallback: _scanQrBtnCallback,
           backBtnCallback: _backBtnCallback,
-          branchData: JpjLocationResponseData(
-              id: "1",
-              address: "Jalan Teknokrat 5, Cyberjaya",
-              coordinate: "123.1, 1.3",
-              name: "JPJ Cawangan Jempol (Bawah)"),
+          branchData: Cawangan(
+              alamatCawangan: "Jalan Teknokrat 5, Cyberjaya",
+              koordinatCawangan: "123.1, 1.3",
+              namaCawangan: "JPJ Cawangan Jempol (Bawah)"),
         ),
         bottomNavigationBar: BottomNavController(),
       ),

@@ -18,7 +18,7 @@ class JpjEqMainPage extends StatelessWidget {
   final String qrData;
   final void Function() scanQrBtnCallback;
   final void Function(BuildContext) backBtnCallback;
-  final JpjLocationResponseData branchData;
+  final Cawangan branchData;
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +77,7 @@ class JpjEqMainPage extends StatelessWidget {
     return Column(
       children: [
         Text(
-          branchData.name!,
+          branchData.namaCawangan!,
           textAlign: TextAlign.center,
           style: const TextStyle(
             color: Color(btnColor),
@@ -100,7 +100,7 @@ class JpjEqMainPage extends StatelessWidget {
               color: Colors.red,
             ),
             Text(
-              branchData.address!,
+              branchData.alamatCawangan!,
               textAlign: TextAlign.center,
               style: const TextStyle(
                 color: Color(btnColor),

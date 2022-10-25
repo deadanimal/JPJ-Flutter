@@ -5,84 +5,84 @@
   "method": "post",
   "data": [
     {
-      "id": "17",
+      "id": "johor",
       "flagPath": "images/flag/n1.png",
       "name": "Johor"
     },
     {
-      "id": "18",
+      "id": "kedah",
       "flagPath": "images/flag/n2.png",
       "name": "Kedah"
     },
     {
-      "id": "19",
+      "id": "kelantan",
       "flagPath": "images/flag/n3.png",
       "name": "Kelantan"
     },
     {
-      "id": "4",
+      "id": "melaka",
       "flagPath": "images/flag/n4.png",
       "name": "Melaka"
     },
     {
-      "id": "5",
+      "id": "negeri_sembilan",
       "flagPath": "images/flag/n5.png",
       "name": "Negeri Sembilan"
     },
     {
-      "id": "6",
+      "id": "pahang",
       "flagPath": "images/flag/n6.png",
       "name": "Pahang"
     },
     {
-      "id": "7",
+      "id": "pulau_pinang",
       "flagPath": "images/flag/n7.png",
       "name": "Pulau Pinang"
     },
     {
-      "id": "8",
+      "id": "perak",
       "flagPath": "images/flag/n8.png",
       "name": "Perak"
     },
     {
-      "id": "9",
+      "id": "perlis",
       "flagPath": "images/flag/n9.png",
       "name": "Perlis"
     },
     {
-      "id": "10",
+      "id": "selangor",
       "flagPath": "images/flag/n10.png",
       "name": "Selangor"
     },
     {
-      "id": "11",
+      "id": "terengganu",
       "flagPath": "images/flag/n11.png",
       "name": "Terengganu"
     },
     {
-      "id": "12",
+      "id": "sabah",
       "flagPath": "images/flag/n12.png",
       "name": "Sabah"
     },
     {
-      "id": "13",
+      "id": "sarawak",
       "flagPath": "images/flag/n13.png",
       "name": "Sarawak"
     },
     {
-      "id": "14",
+      "id": "kuala_lumpur",
       "flagPath": "images/flag/n14.png",
-      "name": "Kuala Lumpur"
+      "name": "W.P. Kuala Lumpur"
     },
     {
-      "id": "15",
+      "id": "labuan",
       "flagPath": "images/flag/n15.png",
-      "name": "Labuan"
+      "name": "W.P. Labuan"
     },
     {
-      "id": "16",
+      "id": "putrajaya",
       "flagPath": "images/flag/n16.png",
-      "name": "Putrajaya"
+      "name": "W.P. Putrajaya"
     }
   ]
 }
