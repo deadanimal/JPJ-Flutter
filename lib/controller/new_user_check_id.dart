@@ -81,7 +81,7 @@ class _NewUserCheckIdController extends State<NewUserCheckIdController> {
         jsonDecode(response.body),
       );
       if (checkIdResponse.status != null) {
-        if (checkIdResponse.status == "00") {
+        if (checkIdResponse.status == "01") {
           Navigator.push(
             context,
             MaterialPageRoute(
@@ -92,7 +92,7 @@ class _NewUserCheckIdController extends State<NewUserCheckIdController> {
               },
             ),
           );
-        } else if (checkIdResponse.status == "01") {
+        } else if (checkIdResponse.status == "55") {
           AlertController(ctx: context).generalError(
             AppLocalizations.of(context)!.noRecordInMySikap,
             () {
