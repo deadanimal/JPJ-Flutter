@@ -1,8 +1,10 @@
 class NewUserRegistrationResponse {
   String? userId;
+  String? statusCode;
   String? tempPwd;
   String? status;
   String? msg;
+  String? statusMsg;
 
   NewUserRegistrationResponse(
       {this.userId, this.tempPwd, this.status, this.msg});
@@ -12,6 +14,8 @@ class NewUserRegistrationResponse {
     tempPwd = json['tempPwd'];
     status = json['status'];
     msg = json['msg'];
+    statusCode = json['status_code'];
+    statusMsg = json['status_msg'];
   }
 
   Map<String, dynamic> toJson() {
@@ -20,6 +24,8 @@ class NewUserRegistrationResponse {
     data['tempPwd'] = tempPwd;
     data['status'] = status;
     data['msg'] = msg;
+    data['status_code'] = statusCode;
+    data['status_msg'] = statusMsg;
     return data;
   }
 }

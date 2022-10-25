@@ -26,10 +26,10 @@ class VehicleListController extends StatefulWidget {
 }
 
 class _VehicleListController extends State<VehicleListController> {
-  late List<String> vehicleNumber;
+  late Map<String, String> vehicleNumber;
+  late List<MaklumatKenderaan> vehicleInfo = [];
   @override
   void initState() {
-    vehicleNumber = [];
     Future.delayed(
       const Duration(milliseconds: 250),
       _getVehicleList,
@@ -39,12 +39,15 @@ class _VehicleListController extends State<VehicleListController> {
 
   @override
   void dispose() {
-    vehicleNumber = [];
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    List<String> numbers = [];
+    for (var el in vehicleInfo) {
+      numbers.add(el.noKenderaan!);
+    }
     return SafeArea(
       child: Scaffold(
         appBar: const AppBarController(
@@ -52,7 +55,7 @@ class _VehicleListController extends State<VehicleListController> {
         ),
         body: VehicleList(
             pageTitle: AppLocalizations.of(context)!.vehicleListNumber,
-            vehiclesNumber: vehicleNumber,
+            vehiclesNumber: numbers,
             onPressNumber: _onPressNumber),
         bottomNavigationBar: BottomNavController(),
         floatingActionButton: FloatingActionButton(
@@ -141,9 +144,23 @@ class _VehicleListController extends State<VehicleListController> {
   }
 
   void _removeVehicle(String plateNumber) {
-    setState(() {
-      MyJPJAccountManager().removeVehicle(plateNumber);
-    });
+    String? id;
+    for (var el in vehicleInfo) {
+      if (el.noKenderaan! == plateNumber) {
+        id = el.id.toString();
+      }
+    }
+    if (id != null) {
+      SiteConfig conf = SiteConfig();
+      jpjHttpDeleteRequest(
+        context,
+        Uri.parse(conf.vehicleInfo + id),
+        headers: conf.formHeader,
+        callback: (http.Response response) {
+          _getVehicleList();
+        },
+      );
+    }
   }
 
   void _checkLKM(String plateNumber) {
@@ -156,7 +173,7 @@ class _VehicleListController extends State<VehicleListController> {
   }
 
   void _getVehicleList() {
-    vehicleNumber = [];
+    vehicleInfo = [];
     SiteConfig conf = SiteConfig();
     jpjHttpGetRequest(
       context,
@@ -164,15 +181,20 @@ class _VehicleListController extends State<VehicleListController> {
       headers: conf.formHeader,
       callback: (http.Response response) {
         if (response.statusCode == 200) {
-          VehicleInfoResponse res = VehicleInfoResponse.fromJson(
-            jsonDecode(response.body),
-          );
-          if (res.statusCode != null && res.statusCode == "01") {
-            for (var el in res.maklumatKenderaan!) {
-              vehicleNumber.add(el.noKenderaan!);
+          try {
+            VehicleInfoResponse res = VehicleInfoResponse.fromJson(
+              jsonDecode(response.body),
+            );
+            if (res.statusCode != null && res.statusCode == "01") {
+              for (var el in res.maklumatKenderaan!) {
+                vehicleInfo.add(el);
+              }
             }
+            setState(() {});
+          } catch (e) {
+            setState(() {});
+            // print("error");
           }
-          setState(() {});
         }
       },
     );

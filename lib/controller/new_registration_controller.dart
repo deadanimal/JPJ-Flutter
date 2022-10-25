@@ -108,6 +108,22 @@ class _NewRegistrationController extends State<NewRegistrationController> {
             (c) => _onCloseSubmitInfo(c, res.tempPwd!),
           );
         }
+      } else if (res.statusMsg != null) {
+        List<String> errString = res.statusMsg!.split("|");
+        String err;
+        if (errString.length == 1) {
+          err = errString[0];
+        } else if (AppLocalizations.of(context)!.localeName == "ms") {
+          err = errString[0];
+        } else {
+          err = errString[1];
+        }
+        AlertController(ctx: context).generalError(
+          err,
+          () {
+            Navigator.of(context).pop();
+          },
+        );
       }
     } else {
       AlertController(ctx: context).connectionError();
