@@ -288,5 +288,7 @@
     "paymentDate":"Payment Date",
     "active":"Active",
     "completed":"Completed",
+    "noticeDate":"Notice Date",
+    "noticeId":"Notice ID",
     "pleaseWait": "Please wait..."
 }

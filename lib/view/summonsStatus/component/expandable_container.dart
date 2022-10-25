@@ -140,13 +140,13 @@ class _CustomExpandableContainer extends State<CustomExpandableContainer> {
           ),
           _summonDetail(
             context,
-            AppLocalizations.of(context)!.ticketNo,
+            AppLocalizations.of(context)!.noticeId,
             widget.data.notisId!,
             false,
           ),
           _summonDetail(
             context,
-            AppLocalizations.of(context)!.date,
+            AppLocalizations.of(context)!.noticeDate,
             "${createDate[2]} ${createDate[1]} ${createDate[5]}",
             false,
           ),

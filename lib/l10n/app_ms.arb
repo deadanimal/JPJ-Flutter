@@ -288,5 +288,7 @@
     "paymentDate":"Tarikh bayaran",
     "active":"Aktif",
     "completed":"Selesai",
+    "noticeDate":"Tarikh Notis",
+    "noticeId":"Notis ID",
     "pleaseWait": "Sila Tunggu..."
 }

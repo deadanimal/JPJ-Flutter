@@ -1,15 +1,22 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:jpj_info/config/site_config.dart';
 import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/controller/bottom_nav_controller.dart';
+import 'package:jpj_info/controller/http_request_controller.dart';
 import 'package:jpj_info/controller/popup_input_controller.dart';
 import 'package:jpj_info/controller/prompt_controller.dart';
 import 'package:jpj_info/controller/road_tax_request_controller.dart';
 import 'package:jpj_info/helper/account_manager.dart';
+import 'package:jpj_info/model/vehicle_info_response.dart';
+import 'package:jpj_info/model/vehicle_info_save_request.dart';
 import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/form/custom_button.dart';
 import 'package:jpj_info/view/vehicleList/vehicle_list.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:http/http.dart' as http;
 
 class VehicleListController extends StatefulWidget {
   const VehicleListController({Key? key}) : super(key: key);
@@ -22,12 +29,17 @@ class _VehicleListController extends State<VehicleListController> {
   late List<String> vehicleNumber;
   @override
   void initState() {
-    vehicleNumber = MyJPJAccountManager().vehicalRegNumber;
+    vehicleNumber = [];
+    Future.delayed(
+      const Duration(milliseconds: 250),
+      _getVehicleList,
+    );
     super.initState();
   }
 
   @override
   void dispose() {
+    vehicleNumber = [];
     super.dispose();
   }
 
@@ -67,10 +79,20 @@ class _VehicleListController extends State<VehicleListController> {
   }
 
   void _addVehicle(String plateNumber) {
-    setState(() {
-      MyJPJAccountManager()
-          .addVehicle(plateNumber.toUpperCase().replaceAll(' ', ''));
-    });
+    SiteConfig conf = SiteConfig();
+    VehicleInfoSaveReq req = VehicleInfoSaveReq(
+      nokp: MyJPJAccountManager().id,
+      nokenderaan: plateNumber,
+    );
+    jpjHttpRequest(
+      context,
+      Uri.parse(conf.vehicleInfo),
+      headers: conf.formHeader,
+      body: jsonEncode(req.toJson()),
+      callback: (http.Response response) {
+        _getVehicleList();
+      },
+    );
   }
 
   void _onPressNumber(String number) {
@@ -130,6 +152,29 @@ class _VehicleListController extends State<VehicleListController> {
       1,
       MyJPJAccountManager().id,
       plateNumber,
+    );
+  }
+
+  void _getVehicleList() {
+    vehicleNumber = [];
+    SiteConfig conf = SiteConfig();
+    jpjHttpGetRequest(
+      context,
+      Uri.parse(conf.vehicleInfo + MyJPJAccountManager().id),
+      headers: conf.formHeader,
+      callback: (http.Response response) {
+        if (response.statusCode == 200) {
+          VehicleInfoResponse res = VehicleInfoResponse.fromJson(
+            jsonDecode(response.body),
+          );
+          if (res.statusCode != null && res.statusCode == "01") {
+            for (var el in res.maklumatKenderaan!) {
+              vehicleNumber.add(el.noKenderaan!);
+            }
+          }
+          setState(() {});
+        }
+      },
     );
   }
 }

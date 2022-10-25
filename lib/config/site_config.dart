@@ -24,7 +24,7 @@ class SiteConfig {
   final String saveAduanUri = "$prodUrl/simpan_aduan/";
   final String aduanImageUploadUri = "$prodUrl/upld_images/";
   final String resetPasswordUri = "$prodUrl/reset_password_id_awam/";
-  final String faq = "http://stagportal.jpj.gov.my/soalan-lazim-lesen-memandu/";
+  final String faq = "https://www.jpj.gov.my/web/main-site/lesen-kenderaan";
   // final String faq = "$prodUrl/faq";
   final String directory = "$prodUrl/direktori/";
   final String tnc = "$prodUrl/tnc/";
@@ -32,6 +32,7 @@ class SiteConfig {
   final String allInboxItem = "$prodUrl/get_peti_masuk/";
   final String unreadItem = "$prodUrl/get_unread_noti/";
   final String updateInboxItem = "$prodUrl/update_status_noti/";
+  final String vehicleInfo = "$prodUrl/maklumat_kenderaan/";
 
   //staging api
   final String checkUserIdUrierr = "$prodUrl/semak-id-awam/err.php";

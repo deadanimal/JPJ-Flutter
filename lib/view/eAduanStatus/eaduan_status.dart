@@ -115,7 +115,8 @@ class EaduanStatus extends StatelessWidget {
           offense: res[index].kesalahan!,
           width: mediaWidth - 64,
           leading: _status(context, res[index].keteranganStatus!),
-          trailing: _searchIcon(),
+          trailing: _searchIcon(
+              res[index].id!.toString(), res[index].keteranganStatus!),
         );
       },
     );
@@ -182,8 +183,41 @@ class EaduanStatus extends StatelessWidget {
     );
   }
 
-  Widget _searchIcon() {
-    return Container();
+  Widget _searchIcon(String id, String status) {
+    return status == "MAKLUMAT TIDAK LENGKAP"
+        ? SizedBox(
+            child: Padding(
+              padding: const EdgeInsets.all(vPaddingM),
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      color: const Color(0xff157ad8),
+                    ),
+                    child: TextButton(
+                      style: ButtonStyle(
+                        foregroundColor:
+                            MaterialStateProperty.all<Color>(Colors.white),
+                      ),
+                      onPressed: () {
+                        editDraftCallback(id);
+                      },
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: const [
+                          Icon(Icons.edit_note_outlined),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          )
+        : Container();
   }
 
   Widget _draftIcon(String id) {
