@@ -19,8 +19,10 @@ import 'package:jpj_info/helper/geolocation.dart';
 import 'package:jpj_info/helper/map_location_setter.dart';
 import 'package:jpj_info/helper/yes_no_prompt.dart';
 import 'package:jpj_info/model/aduan_draft.dart';
+import 'package:jpj_info/model/aduan_get_response.dart';
 import 'package:jpj_info/model/aduan_save_request.dart';
 import 'package:jpj_info/model/aduan_save_response.dart';
+import 'package:jpj_info/model/aduan_update_response.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/eAduanSubmit/eaduan_submit.dart';
 import 'package:jpj_info/view/eaduanForm/eaduan_form.dart';
@@ -48,10 +50,12 @@ class EaduanFormController extends StatefulWidget {
     required this.itemClass,
     this.id,
     this.draft,
+    this.editData,
   }) : super(key: key);
   final EaduanItem itemClass;
   final String? id;
   final AduanDraft? draft;
+  final AduanGetResponse? editData;
 
   @override
   State<StatefulWidget> createState() => _EaduanFormController();
@@ -136,6 +140,8 @@ class _EaduanFormController extends State<EaduanFormController> {
 
     if (widget.draft != null) {
       populateItemFromDraft();
+    } else if (widget.editData != null) {
+      populateItemToEdit();
     } else {
       Future.delayed(
         const Duration(milliseconds: 250),
@@ -221,8 +227,9 @@ class _EaduanFormController extends State<EaduanFormController> {
           draftBtnCallback: _saveToDraftCallback,
           attachmentController: attachmentController,
           phoneNumberController: phoneNumberController,
+          isEdit: widget.editData != null ? true : false,
         ),
-        bottomNavigationBar: BottomNavController(),
+        bottomNavigationBar: const BottomNavController(),
       ),
     );
   }
@@ -316,8 +323,13 @@ class _EaduanFormController extends State<EaduanFormController> {
     if (response.statusCode == 200) {
       response.stream.bytesToString().then(
         (value) {
-          AduanSaveResponse res = AduanSaveResponse.fromJson(jsonDecode(value));
-          if (res.status == "saved") {
+          dynamic res;
+          if (widget.editData != null) {
+            res = AduanUpdateResponse.fromJson(jsonDecode(value));
+          } else {
+            res = AduanSaveResponse.fromJson(jsonDecode(value));
+          }
+          if (res.status == "saved" || res.status == "updated") {
             if (widget.draft != null && widget.id != null) {
               EAduanDraft().erase(widget.id!);
             }
@@ -387,9 +399,15 @@ class _EaduanFormController extends State<EaduanFormController> {
       status: AppLocalizations.of(context)!.pleaseWait,
     );
     SiteConfig conf = SiteConfig();
+    String uri;
+    if (widget.editData != null) {
+      uri = conf.updateAduan + widget.editData!.noAduan.toString();
+    } else {
+      uri = conf.saveAduanUri;
+    }
     http.MultipartRequest request = http.MultipartRequest(
       'POST',
-      Uri.parse(conf.saveAduanUri),
+      Uri.parse(uri),
     );
 
     request.fields['catatan'] = remarkController.text;
@@ -571,6 +589,22 @@ class _EaduanFormController extends State<EaduanFormController> {
           imageExt.add(el);
         }
       }
+    }
+  }
+
+  populateItemToEdit() {
+    if (widget.editData != null) {
+      dateController.text = widget.editData!.tarikhKesalahan ?? "";
+      timeController.text = widget.editData!.masaKesalahan ?? "";
+      latitudeController.text = widget.editData!.latitude ?? "";
+      longitudeController.text = widget.editData!.longitude ?? "";
+      remarkController.text = widget.editData!.catatan ?? "";
+      locationController.text = widget.editData!.lokasiKesalahan ?? "";
+      stateController.text = widget.editData!.negeri ?? "";
+      vehicleController.text = widget.editData!.noKenderaan ?? "";
+      attachmentController.text = widget.editData!.pautan ?? "";
+      phoneNumberController.text = widget.editData!.phone ?? "";
+      dropdownValue = stateController.text;
     }
   }
 }

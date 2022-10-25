@@ -43,6 +43,7 @@ class EaduanForm extends StatelessWidget {
     required this.attachmentController,
     required this.videos,
     required this.phoneNumberController,
+    required this.isEdit,
   }) : super(key: key);
   final String? title;
   final AssetImage image;
@@ -69,6 +70,7 @@ class EaduanForm extends StatelessWidget {
   final Function(int, bool) eraseImageCallback;
   final MapController mapController;
   final Function() draftBtnCallback;
+  final bool isEdit;
 
   @override
   Widget build(BuildContext context) {
@@ -319,15 +321,17 @@ class EaduanForm extends StatelessWidget {
                 submitCallback();
               },
             ),
-            CustomButton(
-              width: mediaWidth - 64,
-              label: AppLocalizations.of(context)!.saveAsDraft,
-              decoration: orangeGradientBtnDeco,
-              textColor: Colors.white,
-              onPressed: () {
-                draftBtnCallback();
-              },
-            ),
+            isEdit
+                ? const SizedBox(height: vPaddingXL)
+                : CustomButton(
+                    width: mediaWidth - 64,
+                    label: AppLocalizations.of(context)!.saveAsDraft,
+                    decoration: orangeGradientBtnDeco,
+                    textColor: Colors.white,
+                    onPressed: () {
+                      draftBtnCallback();
+                    },
+                  ),
           ],
         ),
       ),

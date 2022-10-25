@@ -33,6 +33,7 @@ class SiteConfig {
   final String unreadItem = "$prodUrl/get_unread_noti/";
   final String updateInboxItem = "$prodUrl/update_status_noti/";
   final String vehicleInfo = "$prodUrl/maklumat_kenderaan/";
+  final String updateAduan = "$prodUrl/kemaskini_aduan/";
 
   //staging api
   final String checkUserIdUrierr = "$prodUrl/semak-id-awam/err.php";

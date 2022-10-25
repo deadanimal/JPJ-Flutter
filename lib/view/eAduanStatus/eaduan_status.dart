@@ -16,12 +16,14 @@ class EaduanStatus extends StatelessWidget {
     required this.draftList,
     required this.eraseDraftCallback,
     required this.editDraftCallback,
+    required this.editSentCallback,
   }) : super(key: key);
   final TabController tabController;
   final List<AduanStatusResponse> res;
   final List<AduanDraft> draftList;
   final Function(String) eraseDraftCallback;
   final Function(String) editDraftCallback;
+  final Function(String) editSentCallback;
 
   @override
   Widget build(BuildContext context) {
@@ -116,7 +118,7 @@ class EaduanStatus extends StatelessWidget {
           width: mediaWidth - 64,
           leading: _status(context, res[index].keteranganStatus!),
           trailing: _searchIcon(
-              res[index].id!.toString(), res[index].keteranganStatus!),
+              res[index].noAduan!.toString(), res[index].keteranganStatus!),
         );
       },
     );
@@ -203,7 +205,7 @@ class EaduanStatus extends StatelessWidget {
                             MaterialStateProperty.all<Color>(Colors.white),
                       ),
                       onPressed: () {
-                        editDraftCallback(id);
+                        editSentCallback(id);
                       },
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.end,

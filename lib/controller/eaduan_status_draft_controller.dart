@@ -11,6 +11,7 @@ import 'package:jpj_info/controller/prompt_controller.dart';
 import 'package:jpj_info/helper/account_manager.dart';
 import 'package:jpj_info/helper/eaduan_draft.dart';
 import 'package:jpj_info/model/aduan_draft.dart';
+import 'package:jpj_info/model/aduan_get_response.dart';
 import 'package:jpj_info/model/aduan_status_response.dart';
 import 'package:jpj_info/model/check_id_request.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
@@ -65,8 +66,9 @@ class _EaduanStatusController extends State<EaduanStatusController>
           draftList: draftList,
           eraseDraftCallback: eraseDraft,
           editDraftCallback: editDraft,
+          editSentCallback: updateReport,
         ),
-        bottomNavigationBar: BottomNavController(),
+        bottomNavigationBar: const BottomNavController(),
       ),
     );
   }
@@ -171,5 +173,54 @@ class _EaduanStatusController extends State<EaduanStatusController>
         ),
       );
     });
+  }
+
+  void updateReport(String reportId) {
+    SiteConfig conf = SiteConfig();
+    jpjHttpGetRequest(
+      context,
+      Uri.parse(conf.updateAduan + reportId),
+      headers: conf.formHeader,
+      callback: (http.Response response) {
+        if (response.statusCode == 200) {
+          AduanGetResponse res = AduanGetResponse.fromJson(
+            jsonDecode(response.body),
+          );
+          if (res.id != null) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) {
+                  List<EaduanItem> items = [
+                    EaduanItem.redLight,
+                    EaduanItem.emergencyLane,
+                    EaduanItem.cutQueue,
+                    EaduanItem.leftOvertake,
+                    EaduanItem.doubleLine,
+                    EaduanItem.usingPhone,
+                    EaduanItem.fancyPlate,
+                    EaduanItem.darkTint,
+                    EaduanItem.seatBelt,
+                  ];
+                  return EaduanFormController(
+                    itemClass: items[res.jenisKesalahan! - 1],
+                    editData: res,
+                  );
+                },
+              ),
+            );
+          } else {
+            AlertController(ctx: context).generalError(
+              AppLocalizations.of(context)!.errorPleaseTryAgain,
+              () {
+                Navigator.pop(context);
+              },
+            );
+          }
+        } else {
+          AlertController(ctx: context).connectionError();
+        }
+      },
+    );
   }
 }
