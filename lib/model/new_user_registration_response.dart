@@ -6,8 +6,14 @@ class NewUserRegistrationResponse {
   String? msg;
   String? statusMsg;
 
-  NewUserRegistrationResponse(
-      {this.userId, this.tempPwd, this.status, this.msg});
+  NewUserRegistrationResponse({
+    this.userId,
+    this.tempPwd,
+    this.status,
+    this.msg,
+    this.statusMsg,
+    this.statusCode,
+  });
 
   NewUserRegistrationResponse.fromJson(Map<String, dynamic> json) {
     userId = json['userId'];

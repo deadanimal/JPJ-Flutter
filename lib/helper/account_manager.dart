@@ -113,17 +113,17 @@ class MyJPJAccountManager {
       pref.remove(LocalStorageHelper().userLoginInfo);
       pref.remove(LocalStorageHelper().vehicleList);
       pref.remove(LocalStorageHelper().inboxItems);
-    });
 
-    Navigator.pushAndRemoveUntil(
-      context,
-      MaterialPageRoute(
-        builder: (context) {
-          return const LoginController();
-        },
-      ),
-      (Route<dynamic> route) => false,
-    );
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(
+          builder: (context) {
+            return const LoginController();
+          },
+        ),
+        (Route<dynamic> route) => false,
+      );
+    });
   }
 
   void addVehicle(String regNumber) {
