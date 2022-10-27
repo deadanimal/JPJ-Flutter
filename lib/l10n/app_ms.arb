@@ -290,5 +290,7 @@
     "completed":"Selesai",
     "noticeDate":"Tarikh Notis",
     "noticeId":"Notis ID",
+    "useMySikapId":"Menggunakan ID Awam MySikap",
+    "standardMySikapId":"eID Standard MySikap",
     "pleaseWait": "Sila Tunggu..."
 }

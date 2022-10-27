@@ -290,5 +290,7 @@
     "completed":"Completed",
     "noticeDate":"Notice Date",
     "noticeId":"Notice ID",
+    "useMySikapId":"Using Public MySikap ID",
+    "standardMySikapId":"eID Standard MySikap",
     "pleaseWait": "Please wait..."
 }

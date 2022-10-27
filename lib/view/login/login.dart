@@ -35,15 +35,30 @@ class Login extends StatelessWidget {
               tag: "headerAnim",
               child: TemplateHeader(
                 header: Center(
-                  child: Text(
-                    AppLocalizations.of(context)!.logIn,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 32,
-                      fontFamily: "Roboto",
-                      fontWeight: FontWeight.w600,
-                    ),
+                  child: Column(
+                    children: [
+                      Text(
+                        AppLocalizations.of(context)!.logIn,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 32,
+                          fontFamily: "Roboto",
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      const SizedBox(height: vPaddingM),
+                      Text(
+                        AppLocalizations.of(context)!.useMySikapId,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontFamily: "Roboto",
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),

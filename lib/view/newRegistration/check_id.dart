@@ -33,7 +33,30 @@ class CheckId extends StatelessWidget {
       child: Column(
         children: [
           TemplateHeader(
-            headerTitle: AppLocalizations.of(context)!.regNewAcc,
+            header: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  AppLocalizations.of(context)!.regNewAcc,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 32,
+                    fontFamily: "Roboto",
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                const SizedBox(height: vPaddingM),
+                Text(
+                  AppLocalizations.of(context)!.standardMySikapId,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontFamily: "Roboto",
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ],
+            ),
           ),
           const SizedBox(height: vPaddingXL),
           Container(
