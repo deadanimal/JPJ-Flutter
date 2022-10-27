@@ -27,6 +27,7 @@ class AduanGetResponse {
   String? updatedAt;
   String? updateBy;
   String? namaKesalahan;
+  List<String>? linkBahan;
 
   AduanGetResponse({
     this.id,
@@ -57,6 +58,7 @@ class AduanGetResponse {
     this.updatedAt,
     this.updateBy,
     this.namaKesalahan,
+    this.linkBahan,
   });
 
   AduanGetResponse.fromJson(Map<String, dynamic> json) {
@@ -88,6 +90,7 @@ class AduanGetResponse {
     updatedAt = json['updated_at'];
     updateBy = json['update_by'];
     namaKesalahan = json['nama_kesalahan'];
+    linkBahan = json['link_bahan'].cast<String>();
   }
 
   Map<String, dynamic> toJson() {
@@ -120,6 +123,7 @@ class AduanGetResponse {
     data['updated_at'] = updatedAt;
     data['update_by'] = updateBy;
     data['nama_kesalahan'] = namaKesalahan;
+    data['link_bahan'] = linkBahan;
     return data;
   }
 }

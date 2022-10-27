@@ -44,6 +44,8 @@ class EaduanForm extends StatelessWidget {
     required this.videos,
     required this.phoneNumberController,
     required this.isEdit,
+    required this.savedImagePath,
+    required this.eraseServerImageCallback,
   }) : super(key: key);
   final String? title;
   final AssetImage image;
@@ -51,6 +53,7 @@ class EaduanForm extends StatelessWidget {
   final Function() submitCallback;
   final List<Uint8List> imagesPath;
   final List<Uint8List> videos;
+  final List<String> savedImagePath;
   final TextEditingController dateController;
   final TextEditingController timeController;
   final TextEditingController latitudeController;
@@ -71,6 +74,7 @@ class EaduanForm extends StatelessWidget {
   final MapController mapController;
   final Function() draftBtnCallback;
   final bool isEdit;
+  final Function(int) eraseServerImageCallback;
 
   @override
   Widget build(BuildContext context) {
@@ -346,7 +350,9 @@ class EaduanForm extends StatelessWidget {
       child: ScrollableImageContainer(
         videoPath: videos,
         eraseImageCallback: eraseImageCallback,
+        eraseServerImageCallback: eraseServerImageCallback,
         imagesPath: imagesPath,
+        savedImagePath: savedImagePath,
         openGalleryCallback: () {
           NewMediaSelector().promptUser(
             context,

@@ -12,12 +12,16 @@ class ScrollableImageContainer extends StatefulWidget {
     required this.scrollController,
     required this.eraseImageCallback,
     required this.videoPath,
+    required this.savedImagePath,
+    required this.eraseServerImageCallback,
   }) : super(key: key);
   final List<Uint8List> imagesPath;
   final List<Uint8List> videoPath;
+  final List<String> savedImagePath;
   final Function openGalleryCallback;
   final ScrollController scrollController;
   final Function(int, bool) eraseImageCallback;
+  final Function(int) eraseServerImageCallback;
 
   @override
   State<StatefulWidget> createState() => _ScrollableImageContainer();
@@ -44,6 +48,9 @@ class _ScrollableImageContainer extends State<ScrollableImageContainer> {
     }
     for (var i = 0; i < widget.videoPath.length; i++) {
       children.add(_videoContainer(widget.videoPath[i], i));
+    }
+    for (var i = 0; i < widget.savedImagePath.length; i++) {
+      children.add(_networkImageContainer(widget.savedImagePath[i], i));
     }
     children.add(_addImageBtn());
     return Padding(
@@ -106,6 +113,33 @@ class _ScrollableImageContainer extends State<ScrollableImageContainer> {
                 widget.eraseImageCallback(index, true);
               },
               child: Image.memory(imageData)),
+        ),
+      ),
+    );
+  }
+
+  Widget _networkImageContainer(String imagePath, int index) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Badge(
+        badgeContent: InkWell(
+          child: const Text("X"),
+          onTap: () {
+            widget.eraseImageCallback(index, true);
+          },
+        ),
+        child: Container(
+          width: 174,
+          height: 174,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: InkWell(
+            onTap: () {
+              widget.eraseServerImageCallback(index);
+            },
+            child: Image.network(imagePath),
+          ),
         ),
       ),
     );

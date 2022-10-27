@@ -103,6 +103,8 @@ class _EaduanFormController extends State<EaduanFormController> {
   late TextEditingController attachmentController;
   late TextEditingController phoneNumberController;
   late MapController mapController;
+  late List<String> savedImagePath;
+  late List<String> deleteSavedImagePath;
 
   @override
   void initState() {
@@ -112,7 +114,9 @@ class _EaduanFormController extends State<EaduanFormController> {
     videos = [];
     videosThumbnail = [];
     imageExt = [];
+    savedImagePath = [];
     videoExt = [];
+    deleteSavedImagePath = [];
     dateController = TextEditingController();
     timeController = TextEditingController();
     latitudeController = TextEditingController();
@@ -228,6 +232,8 @@ class _EaduanFormController extends State<EaduanFormController> {
           attachmentController: attachmentController,
           phoneNumberController: phoneNumberController,
           isEdit: widget.editData != null ? true : false,
+          savedImagePath: savedImagePath,
+          eraseServerImageCallback: _eraseServerImageCallback,
         ),
         bottomNavigationBar: const BottomNavController(),
       ),
@@ -425,6 +431,14 @@ class _EaduanFormController extends State<EaduanFormController> {
     request.fields['phone'] = phoneNumberController.text;
     request.fields['pengadu'] = MyJPJAccountManager().id;
 
+    if (deleteSavedImagePath.isNotEmpty) {
+      String deleteFromServer = "";
+      for (var el in deleteSavedImagePath) {
+        deleteFromServer = "$deleteFromServer$el|";
+      }
+      request.fields['delete'] = deleteFromServer;
+    }
+
     List<http.MultipartFile> newList = <http.MultipartFile>[];
 
     for (int i = 0; i < images.length; i++) {
@@ -605,6 +619,16 @@ class _EaduanFormController extends State<EaduanFormController> {
       attachmentController.text = widget.editData!.pautan ?? "";
       phoneNumberController.text = widget.editData!.phone ?? "";
       dropdownValue = stateController.text;
+
+      if (widget.editData!.linkBahan != null) {
+        savedImagePath.addAll(widget.editData!.linkBahan!);
+      }
     }
+  }
+
+  _eraseServerImageCallback(int i) {
+    deleteSavedImagePath.add(savedImagePath[i]);
+    savedImagePath.removeAt(i);
+    setState(() {});
   }
 }
