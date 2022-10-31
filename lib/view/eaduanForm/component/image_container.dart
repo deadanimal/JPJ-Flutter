@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:video_thumbnail/video_thumbnail.dart';
 
 class ScrollableImageContainer extends StatefulWidget {
   const ScrollableImageContainer({
@@ -28,6 +29,7 @@ class ScrollableImageContainer extends StatefulWidget {
 }
 
 class _ScrollableImageContainer extends State<ScrollableImageContainer> {
+  List<Image> savedImages = [];
   @override
   void initState() {
     super.initState();
@@ -38,6 +40,7 @@ class _ScrollableImageContainer extends State<ScrollableImageContainer> {
         duration: const Duration(milliseconds: 1000),
       );
     });
+    _getImages();
   }
 
   @override
@@ -49,8 +52,8 @@ class _ScrollableImageContainer extends State<ScrollableImageContainer> {
     for (var i = 0; i < widget.videoPath.length; i++) {
       children.add(_videoContainer(widget.videoPath[i], i));
     }
-    for (var i = 0; i < widget.savedImagePath.length; i++) {
-      children.add(_networkImageContainer(widget.savedImagePath[i], i));
+    for (var i = 0; i < savedImages.length; i++) {
+      children.add(_networkImageContainer(savedImages[i], i));
     }
     children.add(_addImageBtn());
     return Padding(
@@ -118,7 +121,7 @@ class _ScrollableImageContainer extends State<ScrollableImageContainer> {
     );
   }
 
-  Widget _networkImageContainer(String imagePath, int index) {
+  Widget _networkImageContainer(Image imagePath, int index) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Badge(
@@ -138,7 +141,7 @@ class _ScrollableImageContainer extends State<ScrollableImageContainer> {
             onTap: () {
               widget.eraseServerImageCallback(index);
             },
-            child: Image.network(imagePath),
+            child: imagePath,
           ),
         ),
       ),
@@ -189,5 +192,24 @@ class _ScrollableImageContainer extends State<ScrollableImageContainer> {
         ),
       ),
     );
+  }
+
+  Future<void> _getImages() async {
+    for (var el in widget.savedImagePath) {
+      Image image;
+      if (el.contains(RegExp('vid'))) {
+        final uint8list = await VideoThumbnail.thumbnailData(
+          video: el,
+          imageFormat: ImageFormat.JPEG,
+          maxWidth: 128,
+          quality: 10,
+        );
+        image = Image.memory(uint8list!);
+      } else {
+        image = Image.network(el);
+      }
+      savedImages.add(image);
+    }
+    setState(() {});
   }
 }
