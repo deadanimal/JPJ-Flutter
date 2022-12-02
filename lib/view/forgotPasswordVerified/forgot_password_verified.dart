@@ -50,7 +50,6 @@ class ForgotPasswordVerified extends StatelessWidget {
     return Container(
       constraints: const BoxConstraints(maxWidth: 400),
       width: mediaWidth,
-      height: mediaHeight / 2,
       child: Column(
         children: [
           const SizedBox(height: vPaddingXL),
