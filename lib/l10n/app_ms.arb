@@ -290,7 +290,8 @@
     "completed":"Selesai",
     "noticeDate":"Tarikh Notis",
     "noticeId":"Notis ID",
-    "useMySikapId":"Menggunakan ID Awam MySikap",
+    "useMySikapId":"Menggunakan ID (JPJeID) MySikap",
     "standardMySikapId":"eID Standard MySikap",
+    "splashscreenText":"Aplikasi Mudah Alih (SUPERAPPS) Jabatan Pengangkutan Jalan Malaysia",
     "pleaseWait": "Sila Tunggu..."
 }

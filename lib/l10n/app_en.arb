@@ -85,7 +85,7 @@
     "pleaseTypeHere": "Please type here",
     "yourRecord": "Your Record",
     "successfullySaved": "Successfully saved",
-    "tncN": "Temrs and\nConditions",
+    "tncN": "Terms and\nConditions",
     "vehicleListNumber": "List of\nVehicle\nRegistration",
     "offense": "Offense",
     "ticketNo": "Ticket No.",
@@ -290,7 +290,8 @@
     "completed":"Completed",
     "noticeDate":"Notice Date",
     "noticeId":"Notice ID",
-    "useMySikapId":"Using Public MySikap ID",
+    "useMySikapId":"Using MySikap public ID(JPJeID)",
     "standardMySikapId":"eID Standard MySikap",
+    "splashscreenText":"Mobile Application (SUPERAPPS) Department of Road Transport Malaysia",
     "pleaseWait": "Please wait..."
 }

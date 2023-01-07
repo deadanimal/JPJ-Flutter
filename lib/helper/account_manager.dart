@@ -110,9 +110,7 @@ class MyJPJAccountManager {
     isLoggedIn = false;
     notificationCount = 0;
     SharedPreferences.getInstance().then((pref) {
-      pref.remove(LocalStorageHelper().userLoginInfo);
-      pref.remove(LocalStorageHelper().vehicleList);
-      pref.remove(LocalStorageHelper().inboxItems);
+      pref.clear();
 
       Navigator.pushAndRemoveUntil(
         context,
