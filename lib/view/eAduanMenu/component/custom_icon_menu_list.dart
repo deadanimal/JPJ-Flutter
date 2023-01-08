@@ -3,6 +3,7 @@ import 'package:jpj_info/helper/account_manager.dart';
 import 'package:jpj_info/model/mainpage_icon.dart';
 import 'package:jpj_info/model/page_size.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
+import 'package:jpj_info/helper/string_extension.dart';
 
 class CustomIconMenuButton extends StatelessWidget {
   const CustomIconMenuButton({
@@ -53,7 +54,7 @@ class CustomIconMenuButton extends StatelessWidget {
                     child: Center(
                       child: FittedBox(
                         child: Text(
-                          item.menu!,
+                          item.menu!.toTitleCase(),
                           textAlign: TextAlign.center,
                           style: const TextStyle(
                             color: Color(themeNavy),
