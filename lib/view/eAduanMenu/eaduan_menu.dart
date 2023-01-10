@@ -39,7 +39,7 @@ class EaduanMenu extends StatelessWidget {
             ),
             const SizedBox(height: vPaddingM),
             Container(
-              alignment: Alignment.topRight,
+              alignment: Alignment.topLeft,
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: CustomButton(

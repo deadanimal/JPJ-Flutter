@@ -143,7 +143,7 @@
     "leftOvertake": "Memotong sebelah kiri",
     "doubleLineOvertake": "Memotong garisan\nberkembar",
     "usingPhoneWhileDriving": "Menggunakan telefon\nbimbit semasa memandu",
-    "fancyPlateNumber": "No plat fancy",
+    "fancyPlateNumber": "Nombor pendaftaran fancy",
     "darkTint": "Cermin gelap",
     "notWearingSeatbelt": "Tidak memakai tali\npinggang/topi keledar",
     "videoPicture": "Gambar / Video",
@@ -282,7 +282,7 @@
     "updateProfileInfo":"Sila kemaskini maklumat anda di Portal Awam JPJ",
     "wrongPassword":"Kata laluan anda salah",
     "enterOnlyOneRegistrationNumber":"Masukkan satu nombor pendaftaran kenderaan",
-    "noRecordInMySikap":"Rekod tidak wujud di MySikap. Sila ke kaunter JPJ berhampiran",
+    "noRecordInMySikap":"Rekod tidak wujud di MySIKAP. Sila ke kaunter JPJ berhampiran",
     "aduanSubmitPrompt":"Saya mengesahkan maklumat yang diberikan adalah benar. Saya juga bersetuju menjadi saksi JPJ pada bila-bila masa apabila perlu.",
     "alreadyRegistered":"ID pengguna telah didaftarkan, Sila log masuk",
     "paymentDate":"Tarikh bayaran",
@@ -290,8 +290,8 @@
     "completed":"Selesai",
     "noticeDate":"Tarikh Notis",
     "noticeId":"Notis ID",
-    "useMySikapId":"Menggunakan ID (JPJeID) MySikap",
+    "useMySikapId":"Menggunakan ID (JPJeID) MySIKAP",
     "standardMySikapId":"MySIKAP ID awam (JPJeID)",
-    "splashscreenText":"Aplikasi Mudah Alih (SUPERAPPS) Jabatan Pengangkutan Jalan Malaysia",
+    "splashscreenText":"Aplikasi Mudah Alih (SuperApps) Jabatan Pengangkutan Jalan Malaysia",
     "pleaseWait": "Sila Tunggu..."
 }

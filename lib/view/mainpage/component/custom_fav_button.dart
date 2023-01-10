@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jpj_info/helper/fav_menu.dart';
 import 'package:jpj_info/model/mainpage_icon.dart';
+import 'package:jpj_info/model/page_size.dart';
 import 'package:jpj_info/view/common/spacing.dart';
 
 class CustomFavButton extends StatelessWidget {
@@ -13,10 +14,11 @@ class CustomFavButton extends StatelessWidget {
 
   @override
   Widget build(Object context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Container(
-        constraints: const BoxConstraints(maxWidth: 117, maxHeight: 180),
+    return SizedBox(
+      width: (mediaWidth - vPaddingXs * 6) / 3,
+      height: 115,
+      child: Padding(
+        padding: const EdgeInsets.all(vPaddingXs),
         child: InkWell(
           onTap: () {
             if (menu.serviceId != null) {
@@ -24,43 +26,46 @@ class CustomFavButton extends StatelessWidget {
             }
             menu.cbFunc(context);
           },
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Image(
-                image: menu.icon!,
-                width: 48,
-                height: 48,
-                fit: BoxFit.fitWidth,
-              ),
-              const SizedBox(
-                height: vPaddingS,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-                    constraints: const BoxConstraints(maxWidth: 117),
-                    child: Center(
-                      child: Text(
-                        menu.menu!,
-                        textAlign: TextAlign.center,
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 3,
-                        style: const TextStyle(
-                          color: Color.fromARGB(255, 0, 0, 0),
-                          fontSize: 14,
-                          fontFamily: "Poppins",
-                        ),
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.grey.shade200,
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisSize: MainAxisSize.max,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(right: 8.0),
+                      child: Image(
+                        image: menu.icon!,
+                        width: 48,
+                        fit: BoxFit.fitWidth,
+                        alignment: Alignment.topRight,
+                      ),
+                    ),
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+                  child: Center(
+                    child: Text(
+                      menu.menu!,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        color: Color(0xff393939),
+                        fontSize: 12,
+                        fontFamily: "Poppins",
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                   ),
-                ],
-              ),
-            ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

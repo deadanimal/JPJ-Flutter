@@ -57,6 +57,11 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     const SizedBox(width: horizontalPadding),
+                    const Image(
+                      image: AssetImage("images/jpj_official_icon.png"),
+                      height: 30,
+                    ),
+                    const SizedBox(width: horizontalPadding),
                     LanguageBtn(
                       dark: darkBtn,
                     ),

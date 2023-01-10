@@ -12,6 +12,40 @@ class CustomIconMenuButton extends StatelessWidget {
   }) : super(key: key);
   final CustomMenuItem item;
 
+  Widget formatString(String val) {
+    Widget retVal;
+    if (val == "Nombor pendaftaran fancy") {
+      retVal = RichText(
+        text: const TextSpan(
+          style: TextStyle(
+            color: Color(themeNavy),
+            fontSize: 18,
+            fontFamily: "Roboto",
+            fontWeight: FontWeight.w600,
+          ),
+          children: <TextSpan>[
+            TextSpan(text: 'Nombor Pendaftaran'),
+            TextSpan(
+                text: ' Fancy', style: TextStyle(fontStyle: FontStyle.italic)),
+          ],
+        ),
+      );
+    } else {
+      retVal = Text(
+        val.toTitleCase(),
+        textAlign: TextAlign.center,
+        style: const TextStyle(
+          color: Color(themeNavy),
+          fontSize: 18,
+          fontFamily: "Roboto",
+          fontWeight: FontWeight.w600,
+        ),
+      );
+    }
+
+    return retVal;
+  }
+
   @override
   Widget build(BuildContext context) {
     Widget btn = Padding(
@@ -51,17 +85,11 @@ class CustomIconMenuButton extends StatelessWidget {
                     width: 64,
                   ),
                   Expanded(
-                    child: Center(
-                      child: FittedBox(
-                        child: Text(
-                          item.menu!.toTitleCase(),
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            color: Color(themeNavy),
-                            fontSize: 18,
-                            fontFamily: "Roboto",
-                            fontWeight: FontWeight.w600,
-                          ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Center(
+                        child: FittedBox(
+                          child: formatString(item.menu!),
                         ),
                       ),
                     ),
