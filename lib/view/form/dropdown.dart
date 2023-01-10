@@ -6,13 +6,13 @@ class CustomDropdown extends StatefulWidget {
   const CustomDropdown({
     Key? key,
     required this.dropdownValue,
-    required this.cbFunc,
+    this.cbFunc,
     required this.dropdownList,
     this.width,
   }) : super(key: key);
   final String dropdownValue;
   final dynamic dropdownList;
-  final Function cbFunc;
+  final Function? cbFunc;
   final double? width;
 
   @override
@@ -66,13 +66,15 @@ class _CustomDropdown extends State<CustomDropdown> {
               underline: Container(
                 height: 2,
               ),
-              onChanged: (String? newValue) {
-                val = newValue!;
-                setState(() {
-                  widget.dropdownValue;
-                });
-                widget.cbFunc(newValue);
-              },
+              onChanged: widget.cbFunc != null
+                  ? (String? newValue) {
+                      val = newValue!;
+                      setState(() {
+                        widget.dropdownValue;
+                      });
+                      widget.cbFunc!(newValue);
+                    }
+                  : null,
               items: widget.dropdownList
                   .map<DropdownMenuItem<String>>((String value) {
                 return DropdownMenuItem<String>(

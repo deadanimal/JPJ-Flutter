@@ -43,7 +43,7 @@ class TestResultCheck extends StatelessWidget {
   Widget _testResultForm() {
     return ServiceForm(
       submitCallback: submitCallback,
-      selectionCallback: selectionCallback,
+      selectionCallback: null,
       idTextController: textController,
       dropdownList: dropdownList,
       dropdownValue: dropdownValue,

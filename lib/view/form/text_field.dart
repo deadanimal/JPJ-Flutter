@@ -41,7 +41,8 @@ class TextFieldForm extends StatelessWidget {
           shadowColor: Colors.grey,
           child: TextField(
             onTap: onTap,
-            style: TextStyle(color: textColor),
+            enabled: !readOnly ? true : false,
+            style: TextStyle(color: !readOnly ? textColor : Colors.grey),
             maxLength: maxLength,
             readOnly: readOnly,
             minLines: minLines,
