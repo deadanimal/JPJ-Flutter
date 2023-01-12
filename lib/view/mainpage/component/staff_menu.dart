@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:jpj_info/helper/menu_list.dart';
 import 'package:jpj_info/model/mainpage_icon.dart';
@@ -11,9 +12,12 @@ class StaffMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     List<CustomMenuItem> serviceMenu =
         MenuList(ctx: context).getStaffMenuList();
-    return CustomPublicMenuSection(
-      serviceMenu: serviceMenu,
-      subHeader: AppLocalizations.of(context)!.staff,
+    return Container(
+      color: Colors.grey.shade200,
+      child: CustomPublicMenuSection(
+        serviceMenu: serviceMenu,
+        subHeader: AppLocalizations.of(context)!.staff,
+      ),
     );
   }
 }

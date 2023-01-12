@@ -15,10 +15,10 @@ class CustomFavButton extends StatelessWidget {
   @override
   Widget build(Object context) {
     return SizedBox(
-      width: (mediaWidth - vPaddingXs * 6) / 3,
-      height: 115,
+      width: (mediaWidth - vPaddingXs * 6) / 4,
+      height: 125,
       child: Padding(
-        padding: const EdgeInsets.all(vPaddingXs),
+        padding: const EdgeInsets.all(vPaddingM),
         child: InkWell(
           onTap: () {
             if (menu.serviceId != null) {
@@ -28,18 +28,28 @@ class CustomFavButton extends StatelessWidget {
           },
           child: Container(
             decoration: BoxDecoration(
-              color: Colors.grey.shade200,
+              // color: Color.fromARGB(255, 213, 217, 255),
+              color: Color.fromARGB(255, 255, 240, 213),
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.2),
+                  spreadRadius: 2,
+                  blurRadius: 7,
+                  offset: Offset(0, 2), // changes position of shadow
+                ),
+              ],
             ),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisAlignment: MainAxisAlignment.start,
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
+                Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(right: 8.0),
+                      padding: const EdgeInsets.only(right: 8.0, top: 8.0),
                       child: Image(
                         image: menu.icon!,
                         width: 48,
@@ -47,22 +57,25 @@ class CustomFavButton extends StatelessWidget {
                         alignment: Alignment.topRight,
                       ),
                     ),
-                  ],
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-                  child: Center(
-                    child: Text(
-                      menu.menu!,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        color: Color(0xff393939),
-                        fontSize: 12,
-                        fontFamily: "Poppins",
-                        fontWeight: FontWeight.w500,
+                    const SizedBox(height: verticalPadding),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+                      child: Center(
+                        child: Text(
+                          menu.menu!,
+                          textAlign: TextAlign.center,
+                          // overflow: TextOverflow.clip,
+                          style: const TextStyle(
+                            color: Color(0xff393939),
+                            fontSize: 12,
+                            height: 0.9,
+                            fontFamily: "Poppins",
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
                       ),
                     ),
-                  ),
+                  ],
                 ),
               ],
             ),
