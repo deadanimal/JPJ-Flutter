@@ -45,6 +45,7 @@ class EhadirMainPage extends StatelessWidget {
                 const SizedBox(height: vPaddingM),
                 _qrCode(),
                 const SizedBox(height: vPaddingM),
+                // _staffInfoField(context),
                 const SizedBox(height: vPaddingM),
                 CustomButton(
                   width: 200,
@@ -62,6 +63,7 @@ class EhadirMainPage extends StatelessWidget {
           AppLocalizations.of(context)!.activity,
           const AssetImage("images/icon/ehadir/ehadir_main_icon_activity.png"),
         ),
+        const SizedBox(height: verticalPadding),
         menuButton(
           AppLocalizations.of(context)!.comittee,
           const AssetImage("images/icon/ehadir/ehadir_main_icon_comitee.png"),
@@ -72,9 +74,9 @@ class EhadirMainPage extends StatelessWidget {
   }
 
   Widget menuButton(String label, AssetImage icon) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
+    return Center(
       child: RoundedCornerContainer(
+        width: mediaWidth - 64,
         cornerRadius: 5,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
