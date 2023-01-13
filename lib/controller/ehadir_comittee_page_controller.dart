@@ -7,6 +7,7 @@ import 'package:jpj_info/controller/bottom_nav_controller.dart';
 import 'package:jpj_info/controller/menu_action.dart';
 import 'package:jpj_info/controller/prompt_controller.dart';
 import 'package:jpj_info/model/ehadir_event_info.dart';
+import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/eHadirComitteePage/ehadir_comittee_page.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -39,8 +40,7 @@ class _EhadirComitteePageController
     return SafeArea(
       child: Scaffold(
         appBar: const AppBarController(
-          iconColor: Color(themeNavy),
-          darkBtn: true,
+          decor: customGradient,
         ),
         body: EhadirComitteePage(
           refreshCallback: _refreshMsgList,
@@ -55,7 +55,7 @@ class _EhadirComitteePageController
           backgroundColor: const Color(themeNavy),
           child: const Icon(Icons.add),
         ),
-        bottomNavigationBar: BottomNavController(),
+        bottomNavigationBar: const BottomNavController(),
       ),
     );
   }

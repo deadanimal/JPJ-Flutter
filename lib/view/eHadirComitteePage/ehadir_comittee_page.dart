@@ -5,6 +5,7 @@ import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:jpj_info/view/common/spacing.dart';
 import 'package:jpj_info/view/summonsVerification/component/bordered_container.dart';
+import 'package:jpj_info/view/template/template_header.dart';
 
 class EhadirComitteePage extends StatelessWidget {
   const EhadirComitteePage({
@@ -25,16 +26,9 @@ class EhadirComitteePage extends StatelessWidget {
     mediaHeight = (MediaQuery.of(context).size.height);
     return Column(
       children: [
-        Text(
-          AppLocalizations.of(context)!.comittee,
-          textAlign: TextAlign.center,
-          style: const TextStyle(
-            color: Color(0xff171f44),
-            fontSize: 18,
-            fontFamily: "Roboto",
-            fontWeight: FontWeight.w600,
-            letterSpacing: 0.63,
-          ),
+        TemplateHeader(
+          headerTitle: AppLocalizations.of(context)!.comittee,
+          headerTitleFontSize: 48,
         ),
         const SizedBox(height: vPaddingM),
         Expanded(
@@ -51,7 +45,7 @@ class EhadirComitteePage extends StatelessWidget {
                         itemCount: events.length,
                         shrinkWrap: true,
                         itemBuilder: (context, index) {
-                          return _activities(context, events[index]);
+                          return _comitee(context, events[index]);
                         },
                       )
                     : ListView(
@@ -79,7 +73,7 @@ class EhadirComitteePage extends StatelessWidget {
     );
   }
 
-  Widget _activities(BuildContext context, EHadirEventInfo event) {
+  Widget _comitee(BuildContext context, EHadirEventInfo event) {
     return Center(
       child: Container(
         constraints: const BoxConstraints(maxWidth: 400),
@@ -95,15 +89,14 @@ class EhadirComitteePage extends StatelessWidget {
   Widget _cardContent(BuildContext context, EHadirEventInfo event) {
     return Container(
       width: mediaWidth - 64,
-      decoration: BoxDecoration(
-        borderRadius: const BorderRadius.all(Radius.circular(9)),
-        color: Colors.green.shade900,
-      ),
+      decoration: const BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(5)),
+          color: Color(themeNavy)),
       child: Row(
         children: [
           const Spacer(flex: 1),
           Expanded(
-            flex: 20,
+            flex: 15,
             child: Container(
               padding: const EdgeInsets.only(left: 8.0),
               color: Colors.white,
