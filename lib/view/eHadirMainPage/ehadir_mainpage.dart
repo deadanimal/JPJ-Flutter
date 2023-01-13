@@ -33,6 +33,7 @@ class EhadirMainPage extends StatelessWidget {
       children: [
         const TemplateHeader(
           headerTitle: "JPJeHadir",
+          headerTitleFontSize: 48,
         ),
         const SizedBox(
           height: vPaddingXL,
