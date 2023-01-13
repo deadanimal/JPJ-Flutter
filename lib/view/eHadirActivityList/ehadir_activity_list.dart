@@ -204,39 +204,12 @@ class EhadirActivityList extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: vPaddingS),
-                    Container(
-                      alignment: Alignment.bottomRight,
-                      child: _searchIcon(context, event),
-                    ),
                   ],
                 ),
               ),
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  Widget _searchIcon(BuildContext context, EHadirEventInfo event) {
-    return SizedBox(
-      child: Container(
-        width: 40,
-        height: 28,
-        decoration: navyGradientBtnDecoSquare,
-        child: TextButton(
-          style: ButtonStyle(
-            foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-          ),
-          onPressed: () {
-            viewActivityCallback(context, event);
-          },
-          child: const FittedBox(
-            child: Center(
-              child: Icon(Icons.remove_red_eye_outlined),
-            ),
-          ),
-        ),
       ),
     );
   }
