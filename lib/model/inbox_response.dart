@@ -29,6 +29,7 @@ class PetiMasuk {
   String? perkara;
   int? jenisNoti;
   String? createDate;
+  String? status;
 
   PetiMasuk({
     this.id,
@@ -36,6 +37,7 @@ class PetiMasuk {
     this.perkara,
     this.jenisNoti,
     this.createDate,
+    this.status,
   });
 
   PetiMasuk.fromJson(Map<String, dynamic> json) {
@@ -44,6 +46,7 @@ class PetiMasuk {
     perkara = json['perkara'];
     jenisNoti = json['jenis_noti'];
     createDate = json['create_date'];
+    status = json['status'];
   }
 
   Map<String, dynamic> toJson() {
@@ -53,6 +56,7 @@ class PetiMasuk {
     data['perkara'] = perkara;
     data['jenis_noti'] = jenisNoti;
     data['create_date'] = createDate;
+    data['status'] = status;
     return data;
   }
 }
