@@ -5,6 +5,7 @@ import 'package:jpj_info/view/common/rounded_corner_container.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:jpj_info/view/common/spacing.dart';
 import 'package:jpj_info/view/form/custom_button.dart';
+import 'package:jpj_info/view/template/template_header.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 class EhadirMainPage extends StatelessWidget {
@@ -24,27 +25,71 @@ class EhadirMainPage extends StatelessWidget {
   Widget build(BuildContext context) {
     mediaWidth = (MediaQuery.of(context).size.width);
     mediaHeight = (MediaQuery.of(context).size.height);
-    return Center(
-      child: RoundedCornerContainer(
-        width: mediaWidth - 64,
-        constraints: const BoxConstraints(maxWidth: 400),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            _heading(context),
-            const SizedBox(height: vPaddingM),
-            _qrCode(),
-            const SizedBox(height: vPaddingM),
-            _staffInfoField(context),
-            const SizedBox(height: vPaddingM),
-            CustomButton(
-              width: 200,
-              onPressed: scanQrBtnCallback,
-              decoration: navyGradientBtnDecoSquare,
-              label: AppLocalizations.of(context)!.scanQrCode,
+    return ListView(
+      children: [
+        const TemplateHeader(
+          headerTitle: "JPJeHadir",
+        ),
+        const SizedBox(
+          height: vPaddingXL,
+        ),
+        Center(
+          child: RoundedCornerContainer(
+            cornerRadius: 5,
+            width: mediaWidth - 64,
+            constraints: const BoxConstraints(maxWidth: 400),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                _heading(context),
+                const SizedBox(height: vPaddingM),
+                _qrCode(),
+                const SizedBox(height: vPaddingM),
+                const SizedBox(height: vPaddingM),
+                CustomButton(
+                  width: 200,
+                  onPressed: scanQrBtnCallback,
+                  decoration: navyGradientBtnDecoSquare,
+                  label: AppLocalizations.of(context)!.scanQrCode,
+                ),
+                const SizedBox(height: vPaddingM),
+              ],
             ),
-            const SizedBox(height: vPaddingM),
-          ],
+          ),
+        ),
+        const SizedBox(height: vPaddingXL),
+        menuButton(
+          AppLocalizations.of(context)!.activity,
+          const AssetImage("images/icon/ehadir/ehadir_main_icon_activity.png"),
+        ),
+        menuButton(
+          AppLocalizations.of(context)!.comittee,
+          const AssetImage("images/icon/ehadir/ehadir_main_icon_comitee.png"),
+        ),
+        const SizedBox(height: vPaddingXL),
+      ],
+    );
+  }
+
+  Widget menuButton(String label, AssetImage icon) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: RoundedCornerContainer(
+        cornerRadius: 5,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            children: [
+              Image(
+                image: icon,
+                height: 48,
+              ),
+              const SizedBox(
+                width: vPaddingXL,
+              ),
+              Text(label),
+            ],
+          ),
         ),
       ),
     );
@@ -55,8 +100,8 @@ class EhadirMainPage extends StatelessWidget {
       width: double.infinity,
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(20),
-          topRight: Radius.circular(20),
+          topLeft: Radius.circular(5),
+          topRight: Radius.circular(5),
         ),
         gradient: LinearGradient(
           begin: Alignment.bottomLeft,
@@ -85,64 +130,7 @@ class EhadirMainPage extends StatelessWidget {
     return QrImage(
       data: "1234567890",
       version: QrVersions.auto,
-      size: 200.0,
-    );
-  }
-
-  Widget _staffInfoField(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        children: [
-          _textField(AppLocalizations.of(context)!.name, staffName),
-          _textField(AppLocalizations.of(context)!.nokp, nric),
-          _textField(AppLocalizations.of(context)!.section, ""),
-        ],
-      ),
-    );
-  }
-
-  Widget _textField(String label, String content) {
-    return Row(
-      children: [
-        Expanded(
-          flex: 3,
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              label,
-              textAlign: TextAlign.start,
-              style: const TextStyle(
-                fontSize: 15,
-                fontFamily: "Roboto",
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ),
-        ),
-        const Expanded(
-          flex: 1,
-          child: Text(
-            ":",
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 15,
-              fontFamily: "Roboto",
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-        ),
-        Expanded(
-          flex: 7,
-          child: Text(
-            content,
-            style: const TextStyle(
-              color: Color(0xff2e2e2e),
-              fontSize: 15,
-            ),
-          ),
-        ),
-      ],
+      size: 150.0,
     );
   }
 }

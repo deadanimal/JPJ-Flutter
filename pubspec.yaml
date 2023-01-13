@@ -200,6 +200,8 @@ flutter:
     - images/vector/btm_inbox_icon.svg
     - images/splashscreen_bg.png
     - images/myjpj_logo_large_backup.png
+    - images/icon/ehadir/ehadir_main_icon_activity.png
+    - images/icon/ehadir/ehadir_main_icon_comitee.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

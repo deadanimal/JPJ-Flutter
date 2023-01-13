@@ -9,7 +9,7 @@ import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/controller/bottom_nav_controller.dart';
 import 'package:jpj_info/helper/qr_scanner.dart';
 import 'package:jpj_info/model/ehadir_event_info.dart';
-import 'package:jpj_info/view/common/color_scheme.dart';
+import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
 import 'package:jpj_info/view/eHadirConfirmedAttendance/ehadir_confirmed_attendance.dart';
 import 'package:jpj_info/view/eHadirMainPage/ehadir_mainpage.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
@@ -44,8 +44,7 @@ class _EhadirMainPageController extends State<EhadirMainPageController> {
     return SafeArea(
       child: Scaffold(
         appBar: const AppBarController(
-          iconColor: Color(themeNavy),
-          darkBtn: true,
+          decor: customGradient,
         ),
         body: EhadirMainPage(
           qrData: "1231321654654545454848484777765465465432132165484797",
@@ -53,7 +52,7 @@ class _EhadirMainPageController extends State<EhadirMainPageController> {
           nric: "000000000000",
           scanQrBtnCallback: _scanQrBtnCallback,
         ),
-        bottomNavigationBar: BottomNavController(),
+        bottomNavigationBar: const BottomNavController(),
       ),
     );
   }
