@@ -15,11 +15,15 @@ class EhadirMainPage extends StatelessWidget {
     required this.staffName,
     required this.nric,
     required this.scanQrBtnCallback,
+    required this.activityBtnCb,
+    required this.comiteeBtnCb,
   }) : super(key: key);
   final String qrData;
   final String staffName;
   final String nric;
   final void Function() scanQrBtnCallback;
+  final void Function() activityBtnCb;
+  final void Function() comiteeBtnCb;
 
   @override
   Widget build(BuildContext context) {
@@ -62,35 +66,40 @@ class EhadirMainPage extends StatelessWidget {
         menuButton(
           AppLocalizations.of(context)!.activity,
           const AssetImage("images/icon/ehadir/ehadir_main_icon_activity.png"),
+          activityBtnCb,
         ),
         const SizedBox(height: verticalPadding),
         menuButton(
           AppLocalizations.of(context)!.comittee,
           const AssetImage("images/icon/ehadir/ehadir_main_icon_comitee.png"),
+          comiteeBtnCb,
         ),
         const SizedBox(height: vPaddingXL),
       ],
     );
   }
 
-  Widget menuButton(String label, AssetImage icon) {
-    return Center(
-      child: RoundedCornerContainer(
-        width: mediaWidth - 64,
-        cornerRadius: 5,
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            children: [
-              Image(
-                image: icon,
-                height: 48,
-              ),
-              const SizedBox(
-                width: vPaddingXL,
-              ),
-              Text(label),
-            ],
+  Widget menuButton(String label, AssetImage icon, Function() cb) {
+    return InkWell(
+      onTap: cb,
+      child: Center(
+        child: RoundedCornerContainer(
+          width: mediaWidth - 64,
+          cornerRadius: 5,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              children: [
+                Image(
+                  image: icon,
+                  height: 48,
+                ),
+                const SizedBox(
+                  width: vPaddingXL,
+                ),
+                Text(label),
+              ],
+            ),
           ),
         ),
       ),

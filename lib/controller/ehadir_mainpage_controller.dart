@@ -7,6 +7,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:jpj_info/controller/alert_controller.dart';
 import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/controller/bottom_nav_controller.dart';
+import 'package:jpj_info/controller/ehadir_activity_list_controller.dart';
+import 'package:jpj_info/controller/ehadir_comittee_page_controller.dart';
 import 'package:jpj_info/helper/qr_scanner.dart';
 import 'package:jpj_info/model/ehadir_event_info.dart';
 import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
@@ -51,6 +53,8 @@ class _EhadirMainPageController extends State<EhadirMainPageController> {
           staffName: "Test Name longTest Name longTest Name long",
           nric: "000000000000",
           scanQrBtnCallback: _scanQrBtnCallback,
+          activityBtnCb: _navToActivityPage,
+          comiteeBtnCb: _navToComiteePage,
         ),
         bottomNavigationBar: const BottomNavController(),
       ),
@@ -65,6 +69,28 @@ class _EhadirMainPageController extends State<EhadirMainPageController> {
           return QrScanner(
             qrScanCallback: _qrScanCallback,
           );
+        },
+      ),
+    );
+  }
+
+  void _navToActivityPage() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) {
+          return const EhadirActivityListController();
+        },
+      ),
+    );
+  }
+
+  void _navToComiteePage() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) {
+          return const EhadirComitteePageController();
         },
       ),
     );
