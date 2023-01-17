@@ -43,7 +43,7 @@ class DemeritPointsCheck extends StatelessWidget {
   Widget _demeritPointForm() {
     return ServiceForm(
       submitCallback: submitCallback,
-      selectionCallback: selectionCallback,
+      selectionCallback: null,
       idTextController: textController,
       dropdownList: dropdownList,
       dropdownValue: dropdownValue,

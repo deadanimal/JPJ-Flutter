@@ -12,8 +12,8 @@ class ServiceForm extends StatelessWidget {
   const ServiceForm({
     Key? key,
     required this.submitCallback,
-    required this.selectionCallback,
-    required this.idTextController,
+    this.selectionCallback,
+    this.idTextController,
     required this.dropdownList,
     required this.dropdownValue,
     this.plateNumberTextController,
@@ -21,8 +21,8 @@ class ServiceForm extends StatelessWidget {
   }) : super(key: key);
 
   final void Function(BuildContext) submitCallback;
-  final Function selectionCallback;
-  final TextEditingController idTextController;
+  final Function? selectionCallback;
+  final TextEditingController? idTextController;
   final TextEditingController? plateNumberTextController;
   final String? plateNumberHint;
   final List<String> dropdownList;
@@ -67,6 +67,7 @@ class ServiceForm extends StatelessWidget {
         label: AppLocalizations.of(context)!.identification,
         textController: idTextController,
         width: mediaWidth - 64,
+        readOnly: true,
       ),
     ];
   }

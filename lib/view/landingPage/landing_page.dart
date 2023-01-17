@@ -46,7 +46,7 @@ class LandingPage extends StatelessWidget {
           const Padding(
             padding: EdgeInsets.all(8.0),
             child: Text(
-              "JABATAN PENGANGKUTAN JALAN MALAYSIA",
+              "Aplikasi Mudah Alih (SuperApps)\nJABATAN PENGANGKUTAN JALAN MALAYSIA",
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Color.fromARGB(255, 255, 255, 255),

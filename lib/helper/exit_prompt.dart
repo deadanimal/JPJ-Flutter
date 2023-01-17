@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/common/spacing.dart';
@@ -21,6 +22,7 @@ class Exitprompter {
                 InkWell(
                   onTap: () {
                     Navigator.pop(context, true);
+                    SystemNavigator.pop();
                   },
                   child: Text(
                     AppLocalizations.of(context)!.yes,

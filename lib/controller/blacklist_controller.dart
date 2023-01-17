@@ -62,7 +62,7 @@ class _BlacklistController extends State<BlacklistController> {
           selectionCallback: _setSelection,
           submitCallback: _submitCallback,
         ),
-        bottomNavigationBar: BottomNavController(),
+        bottomNavigationBar: const BottomNavController(),
       ),
     );
   }

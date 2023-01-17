@@ -45,7 +45,7 @@ class SummonsCheck extends StatelessWidget {
   Widget _summonsForm(BuildContext context) {
     return ServiceForm(
       submitCallback: submitCallback,
-      selectionCallback: selectionCallback,
+      selectionCallback: null,
       idTextController: textController,
       dropdownList: dropdownList,
       dropdownValue: dropdownValue,

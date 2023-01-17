@@ -3,6 +3,7 @@ import 'package:jpj_info/helper/account_manager.dart';
 import 'package:jpj_info/model/mainpage_icon.dart';
 import 'package:jpj_info/model/page_size.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
+import 'package:jpj_info/helper/string_extension.dart';
 
 class CustomIconMenuButton extends StatelessWidget {
   const CustomIconMenuButton({
@@ -10,6 +11,40 @@ class CustomIconMenuButton extends StatelessWidget {
     required this.item,
   }) : super(key: key);
   final CustomMenuItem item;
+
+  Widget formatString(String val) {
+    Widget retVal;
+    if (val == "Nombor pendaftaran fancy") {
+      retVal = RichText(
+        text: const TextSpan(
+          style: TextStyle(
+            color: Color(themeNavy),
+            fontSize: 18,
+            fontFamily: "Roboto",
+            fontWeight: FontWeight.w600,
+          ),
+          children: <TextSpan>[
+            TextSpan(text: 'Nombor Pendaftaran'),
+            TextSpan(
+                text: ' Fancy', style: TextStyle(fontStyle: FontStyle.italic)),
+          ],
+        ),
+      );
+    } else {
+      retVal = Text(
+        val.toTitleCase(),
+        textAlign: TextAlign.center,
+        style: const TextStyle(
+          color: Color(themeNavy),
+          fontSize: 18,
+          fontFamily: "Roboto",
+          fontWeight: FontWeight.w600,
+        ),
+      );
+    }
+
+    return retVal;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,17 +85,11 @@ class CustomIconMenuButton extends StatelessWidget {
                     width: 64,
                   ),
                   Expanded(
-                    child: Center(
-                      child: FittedBox(
-                        child: Text(
-                          item.menu!,
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            color: Color(themeNavy),
-                            fontSize: 18,
-                            fontFamily: "Roboto",
-                            fontWeight: FontWeight.w600,
-                          ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Center(
+                        child: FittedBox(
+                          child: formatString(item.menu!),
                         ),
                       ),
                     ),

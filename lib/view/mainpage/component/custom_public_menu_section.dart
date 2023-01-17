@@ -103,7 +103,7 @@ class _CustomPublicMenuSection extends State<CustomPublicMenuSection> {
           ),
           Container(
             padding: EdgeInsets.zero,
-            constraints: BoxConstraints(maxHeight: widget.fav ? 132 : 100),
+            constraints: BoxConstraints(maxHeight: widget.fav ? 132 : 128),
             width: mediaWidth,
             child: ListView.builder(
               controller: sc,
@@ -147,6 +147,13 @@ class _CustomPublicMenuSection extends State<CustomPublicMenuSection> {
               ),
             ),
           ),
+          const Padding(
+            padding: EdgeInsets.fromLTRB(16, 8, 16, 0),
+            child: Divider(
+              color: Colors.grey,
+              height: 1,
+            ),
+          )
         ],
       ),
     );

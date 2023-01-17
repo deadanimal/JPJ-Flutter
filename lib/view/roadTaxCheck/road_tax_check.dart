@@ -48,7 +48,7 @@ class RoadTaxCheck extends StatelessWidget {
     return SingleChildScrollView(
       child: ServiceForm(
         submitCallback: submitCallback,
-        selectionCallback: selectionCallback,
+        selectionCallback: null,
         idTextController: nric,
         plateNumberTextController: plateNumber,
         dropdownList: dropdownList,

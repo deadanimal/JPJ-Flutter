@@ -26,7 +26,7 @@ class TemplateResult1 extends StatelessWidget with TemplateForm {
           decor: customGradient,
         ),
         body: showResultPage(context),
-        bottomNavigationBar: BottomNavController(),
+        bottomNavigationBar: const BottomNavController(),
       ),
     );
   }
@@ -176,20 +176,24 @@ class TemplateResult1 extends StatelessWidget with TemplateForm {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  AppLocalizations.of(context)!.name,
-                  style: const TextStyle(
-                    color: Color(themeNavy),
-                    fontSize: 15,
-                    fontFamily: "Roboto",
-                    fontWeight: FontWeight.w600,
+                Expanded(
+                  child: Text(
+                    "${AppLocalizations.of(context)!.name}:",
+                    style: const TextStyle(
+                      color: Color(themeNavy),
+                      fontSize: 15,
+                      fontFamily: "Roboto",
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ),
-                Text(
-                  data.name!,
-                  style: const TextStyle(
-                    color: Color(themeNavy),
-                    fontSize: 15,
+                Expanded(
+                  child: Text(
+                    data.name!,
+                    style: const TextStyle(
+                      color: Color(themeNavy),
+                      fontSize: 15,
+                    ),
                   ),
                 ),
               ],
@@ -198,20 +202,24 @@ class TemplateResult1 extends StatelessWidget with TemplateForm {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  AppLocalizations.of(context)!.nricNumber,
-                  style: const TextStyle(
-                    color: Color(themeNavy),
-                    fontSize: 15,
-                    fontFamily: "Roboto",
-                    fontWeight: FontWeight.w600,
+                Expanded(
+                  child: Text(
+                    "${AppLocalizations.of(context)!.nricNumber}:",
+                    style: const TextStyle(
+                      color: Color(themeNavy),
+                      fontSize: 15,
+                      fontFamily: "Roboto",
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ),
-                Text(
-                  data.id!,
-                  style: const TextStyle(
-                    color: Color(themeNavy),
-                    fontSize: 15,
+                Expanded(
+                  child: Text(
+                    data.id!,
+                    style: const TextStyle(
+                      color: Color(themeNavy),
+                      fontSize: 15,
+                    ),
                   ),
                 ),
               ],

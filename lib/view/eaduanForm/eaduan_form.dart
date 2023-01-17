@@ -14,6 +14,7 @@ import 'package:jpj_info/view/form/dropdown.dart';
 import 'package:jpj_info/view/form/label.dart';
 import 'package:jpj_info/view/form/text_field.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:jpj_info/helper/string_extension.dart';
 
 class EaduanForm extends StatelessWidget {
   const EaduanForm({
@@ -123,7 +124,7 @@ class EaduanForm extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
-                          title!,
+                          title!.toTitleCase(),
                           style: const TextStyle(
                             color: Colors.white,
                             fontSize: 20,
