@@ -53,13 +53,13 @@ class InboxManager {
       InboxResponse res = InboxResponse.fromJson(jsonDecode(response.body));
       if (res.petiMasuk!.isNotEmpty) {
         for (var el in res.petiMasuk!) {
-          if (!_isInTheList(el.id!)) {
+          if (!_isInTheList(el.id!) && el.status != "erased") {
             inboxItems.add(
               InboxMessages(
                 id: el.id!.toString(),
                 header: el.tajuk!,
                 body: el.perkara!,
-                read: false,
+                read: el.status == "read",
                 date: el.createDate ?? "",
                 time: el.createDate ?? "",
               ),
