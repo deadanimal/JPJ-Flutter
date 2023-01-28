@@ -11,7 +11,6 @@ import 'package:jpj_info/controller/prompt_controller.dart';
 import 'package:jpj_info/helper/account_manager.dart';
 import 'package:jpj_info/model/ehadir/activity_list_req.dart';
 import 'package:jpj_info/model/ehadir/activity_list_res.dart';
-import 'package:jpj_info/model/ehadir/attending_activity_list_res.dart';
 import 'package:jpj_info/model/ehadir_event_info.dart';
 import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';

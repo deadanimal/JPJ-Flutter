@@ -1,11 +1,19 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:jpj_info/config/site_config.dart';
+import 'package:jpj_info/controller/alert_controller.dart';
 import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/controller/bottom_nav_controller.dart';
+import 'package:jpj_info/controller/http_request_controller.dart';
 import 'package:jpj_info/helper/qr_scanner.dart';
+import 'package:jpj_info/model/ehadir/comittee_list_req.dart';
+import 'package:jpj_info/model/ehadir/comittee_list_res.dart';
 import 'package:jpj_info/model/ehadir_event_info.dart';
 import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
 import 'package:jpj_info/view/eHadirActivityInfo/ehadir_activity_info.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
+import 'package:http/http.dart' as http;
 
 class EhadirActivityInfoDetailsController extends StatefulWidget {
   const EhadirActivityInfoDetailsController({
@@ -23,6 +31,7 @@ class _EhadirActivityInfoDetailsController
     extends State<EhadirActivityInfoDetailsController>
     with TickerProviderStateMixin {
   late TabController tabController;
+  late List<ComitteeListRes> comitteeList;
   @override
   void initState() {
     super.initState();
@@ -30,6 +39,12 @@ class _EhadirActivityInfoDetailsController
       initialIndex: 0,
       length: 3,
       vsync: this,
+    );
+    Future.delayed(
+      const Duration(milliseconds: 250),
+      () {
+        _getComitteeList(widget.event.id!);
+      },
     );
   }
 
@@ -76,5 +91,31 @@ class _EhadirActivityInfoDetailsController
 
   void _qrScanCallback(Barcode barcode) {
     Navigator.pop(context);
+  }
+
+  void _committeeListCallback(http.Response response) {
+    if (response.statusCode == 200) {
+      comitteeList = [];
+      for (var el in jsonDecode(response.body)) {
+        comitteeList.add(ComitteeListRes.fromJson(el));
+      }
+      setState(() {});
+    } else {
+      AlertController(ctx: context).connectionError();
+    }
+  }
+
+  void _getComitteeList(int activityId) {
+    SiteConfig conf = SiteConfig();
+    ComitteeListReq req = ComitteeListReq(
+      idAktiviti: activityId,
+    );
+    return jpjHttpRequest(
+      context,
+      Uri.parse(conf.eHadirActivityList),
+      headers: conf.formHeader,
+      body: jsonEncode(req.toJson()),
+      callback: _committeeListCallback,
+    );
   }
 }
