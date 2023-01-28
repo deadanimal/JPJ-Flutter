@@ -75,10 +75,10 @@ class MyJPJAccountManager {
       postcode = "";
       address = "";
       firstTime = loginResponse.idmpuStatus!;
-      // type = loginResponse.idmpuStaffInd!.trim() == "true"
-      //     ? UserType.staff
-      //     : UserType.loggedIn;
-      type = UserType.staff;
+      type = loginResponse.idmpuStaffInd!.trim() == "true"
+          ? UserType.staff
+          : UserType.loggedIn;
+      // type = UserType.staff;
       isLoggedIn = true;
       InboxManager().init();
     } catch (e) {
