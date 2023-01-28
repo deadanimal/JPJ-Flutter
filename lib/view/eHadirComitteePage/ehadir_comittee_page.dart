@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jpj_info/helper/string_helper.dart';
 import 'package:jpj_info/model/ehadir_event_info.dart';
 import 'package:jpj_info/model/page_size.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
@@ -110,7 +111,7 @@ class EhadirComitteePage extends StatelessWidget {
                         Expanded(
                           flex: 8,
                           child: Text(
-                            event.eventName!,
+                            capitalize(event.eventName!),
                             maxLines: 3,
                             style: const TextStyle(
                               color: Color(0xff171f44),
@@ -146,7 +147,7 @@ class EhadirComitteePage extends StatelessWidget {
                               ),
                               const SizedBox(height: vPaddingS),
                               Text(
-                                event.venue!,
+                                capitalize(event.venue!),
                                 textAlign: TextAlign.start,
                                 style: const TextStyle(
                                   color: Color(0xff2e2e2e),
