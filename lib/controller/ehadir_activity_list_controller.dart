@@ -9,6 +9,7 @@ import 'package:jpj_info/controller/http_request_controller.dart';
 import 'package:jpj_info/helper/account_manager.dart';
 import 'package:jpj_info/model/ehadir/activity_list_req.dart';
 import 'package:jpj_info/model/ehadir/activity_list_res.dart';
+import 'package:jpj_info/model/ehadir/attending_activity_list_res.dart';
 import 'package:jpj_info/model/ehadir_event_info.dart';
 import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
 import 'package:jpj_info/view/eHadirActivityDetail/ehadir_event_details.dart';
@@ -61,25 +62,24 @@ class _EhadirActivityListController
 
   void _refreshMsgList(http.Response response) {
     if (response.statusCode == 200) {
-      ActivityListRes res = ActivityListRes.fromJson(
-        jsonDecode(response.body),
-      );
+      List<AttendingActivityListRes> res = [];
+      for (var el in jsonDecode(response.body)) {
+        res.add(AttendingActivityListRes.fromJson(el));
+      }
       setState(() {
         events.clear();
-        if (res.aktiviti != null) {
-          for (var item in res.aktiviti!) {
-            events.add(
-              EHadirEventInfo(
-                date: item.tarikhMula,
-                endTime: item.masaSesi![0].masaTamat,
-                eventName: item.namaAktiviti,
-                id: item.id,
-                organizer: item.urusetia,
-                startTime: item.masaSesi![0].masaMula!,
-                venue: item.lokasi,
-              ),
-            );
-          }
+        for (var item in res) {
+          events.add(
+            EHadirEventInfo(
+              date: item.tarikhMula,
+              endTime: item.masaTamat,
+              eventName: item.namaAktiviti,
+              id: item.id,
+              organizer: item.urusetiaId,
+              startTime: item.masaMula,
+              venue: item.lokasi,
+            ),
+          );
         }
       });
     } else {
@@ -91,11 +91,12 @@ class _EhadirActivityListController
     SiteConfig conf = SiteConfig();
     ActivityListReq req = ActivityListReq(
       nokp: MyJPJAccountManager().id,
+      // nokp: "001223011546",
     );
 
     return jpjHttpRequest(
       context,
-      Uri.parse(conf.eHadirActivityList),
+      Uri.parse(conf.eHadirAttendingActivityList),
       headers: conf.formHeader,
       body: jsonEncode(req.toJson()),
       callback: _refreshMsgList,
