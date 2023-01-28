@@ -56,7 +56,7 @@ class _EhadirActivityInfoDetailsController
           qrScanCallback: _scanQrBtnCallback,
           event: widget.event,
         ),
-        bottomNavigationBar: BottomNavController(),
+        bottomNavigationBar: const BottomNavController(),
       ),
     );
   }
