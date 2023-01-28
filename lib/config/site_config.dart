@@ -38,6 +38,9 @@ class SiteConfig {
   //staging api
   final String checkUserIdUrierr = "$prodUrl/semak-id-awam/err.php";
 
+  //ehadir
+  final String eHadirActivityList = "$prodUrl/senarai_aktiviti/";
+
   Map<String, String> formHeader = {
     'Content-Type': 'application/json; charset=UTF-8',
   };

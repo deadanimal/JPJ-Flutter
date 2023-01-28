@@ -1,5 +1,5 @@
 class EHadirEventInfo {
-  String? id;
+  int? id;
   String? key;
   String? eventName;
   String? organizer;

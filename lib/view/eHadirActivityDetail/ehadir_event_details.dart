@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/controller/bottom_nav_controller.dart';
+import 'package:jpj_info/helper/string_helper.dart';
 import 'package:jpj_info/model/ehadir_event_info.dart';
 import 'package:jpj_info/model/page_size.dart';
 import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
@@ -33,7 +34,7 @@ class EhadirActivityDetails extends StatelessWidget {
           },
         ),
         body: _body(context),
-        bottomNavigationBar: BottomNavController(),
+        bottomNavigationBar: const BottomNavController(),
       ),
     );
   }
@@ -60,7 +61,7 @@ class EhadirActivityDetails extends StatelessWidget {
                     child: Column(
                       children: [
                         Text(
-                          event.eventName!,
+                          capitalize(event.eventName!),
                           textAlign: TextAlign.center,
                           style: const TextStyle(
                             fontSize: 35,
@@ -71,7 +72,7 @@ class EhadirActivityDetails extends StatelessWidget {
                         ),
                         const SizedBox(height: vPaddingM),
                         Text(
-                          "${event.venue!}\n${event.date!}\n${event.startTime!} - ${event.endTime!}",
+                          "${capitalize(event.venue!)}\n${event.date!}\n${event.startTime!} - ${event.endTime!}",
                           textAlign: TextAlign.center,
                           style: const TextStyle(
                             color: Colors.black,

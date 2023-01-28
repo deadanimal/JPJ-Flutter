@@ -140,7 +140,7 @@ class EhadirMainPage extends StatelessWidget {
 
   Widget _qrCode() {
     return QrImage(
-      data: "1234567890",
+      data: qrData,
       version: QrVersions.auto,
       size: 150.0,
     );

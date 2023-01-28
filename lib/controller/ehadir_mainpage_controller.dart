@@ -9,6 +9,7 @@ import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/controller/bottom_nav_controller.dart';
 import 'package:jpj_info/controller/ehadir_activity_list_controller.dart';
 import 'package:jpj_info/controller/ehadir_comittee_page_controller.dart';
+import 'package:jpj_info/helper/account_manager.dart';
 import 'package:jpj_info/helper/qr_scanner.dart';
 import 'package:jpj_info/model/ehadir_event_info.dart';
 import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
@@ -49,7 +50,7 @@ class _EhadirMainPageController extends State<EhadirMainPageController> {
           decor: customGradient,
         ),
         body: EhadirMainPage(
-          qrData: "1231321654654545454848484777765465465432132165484797",
+          qrData: MyJPJAccountManager().id,
           staffName: "Test Name longTest Name longTest Name long",
           nric: "000000000000",
           scanQrBtnCallback: _scanQrBtnCallback,

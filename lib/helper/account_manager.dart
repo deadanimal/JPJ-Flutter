@@ -61,7 +61,8 @@ class MyJPJAccountManager {
       LoginResponse loginResponse = LoginResponse.fromJson(
         jsonDecode(userInfo!),
       );
-      id = loginResponse.idmpuUsrId!.trim();
+      // id = loginResponse.idmpuUsrId!.trim();
+      id = "981018035002";
       name = loginResponse.idmpuUserName!.trim();
       var date = DateFormat('dd/MM/yyyy hh:mm a').format(
         DateTime.parse(loginResponse.idmpuLastLoginTime!).toLocal(),
@@ -74,9 +75,10 @@ class MyJPJAccountManager {
       postcode = "";
       address = "";
       firstTime = loginResponse.idmpuStatus!;
-      type = loginResponse.idmpuStaffInd!.trim() == "true"
-          ? UserType.staff
-          : UserType.loggedIn;
+      // type = loginResponse.idmpuStaffInd!.trim() == "true"
+      //     ? UserType.staff
+      //     : UserType.loggedIn;
+      type = UserType.staff;
       isLoggedIn = true;
       InboxManager().init();
     } catch (e) {
