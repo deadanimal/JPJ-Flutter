@@ -5,6 +5,7 @@ import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/common/spacing.dart';
 import 'package:jpj_info/view/form/custom_button.dart';
 import 'package:jpj_info/view/form/text_field_with_label.dart';
+import 'package:jpj_info/view/template/template_header.dart';
 
 class EhadirAddActivity extends StatelessWidget {
   const EhadirAddActivity({
@@ -16,6 +17,12 @@ class EhadirAddActivity extends StatelessWidget {
     required this.sessionPerDay,
     required this.startTime,
     required this.endTime,
+    required this.startTime1,
+    required this.endTime1,
+    required this.startTime2,
+    required this.endTime2,
+    required this.startTime3,
+    required this.endTime3,
     required this.location,
     required this.latitude,
     required this.longitude,
@@ -31,13 +38,19 @@ class EhadirAddActivity extends StatelessWidget {
   final TextEditingController sessionPerDay;
   final TextEditingController startTime;
   final TextEditingController endTime;
+  final TextEditingController startTime1;
+  final TextEditingController endTime1;
+  final TextEditingController startTime2;
+  final TextEditingController endTime2;
+  final TextEditingController startTime3;
+  final TextEditingController endTime3;
   final TextEditingController location;
   final TextEditingController latitude;
   final TextEditingController longitude;
   final TextEditingController agenda;
   final Function() datePicker;
-  final Function() startTimePicker;
-  final Function() endTimePicker;
+  final Function(int) startTimePicker;
+  final Function(int) endTimePicker;
 
   @override
   Widget build(BuildContext context) {
@@ -45,34 +58,27 @@ class EhadirAddActivity extends StatelessWidget {
     mediaHeight = (MediaQuery.of(context).size.height);
     return SingleChildScrollView(
       child: Center(
-        child: Container(
-          width: mediaWidth - 64,
-          constraints: const BoxConstraints(maxWidth: 400),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              _title(context),
-              const SizedBox(height: vPaddingXL),
-              _icon(),
-              const SizedBox(height: vPaddingXL),
-              _form(context),
-            ],
-          ),
+        child: Column(
+          children: [
+            TemplateHeader(
+              headerTitle: AppLocalizations.of(context)!.newActivity,
+              headerTitleFontSize: 48,
+            ),
+            const SizedBox(height: vPaddingM),
+            Container(
+              width: mediaWidth - 64,
+              constraints: const BoxConstraints(maxWidth: 400),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  _icon(),
+                  const SizedBox(height: vPaddingXL),
+                  _form(context),
+                ],
+              ),
+            ),
+          ],
         ),
-      ),
-    );
-  }
-
-  Widget _title(BuildContext context) {
-    return Text(
-      AppLocalizations.of(context)!.newActivity,
-      textAlign: TextAlign.center,
-      style: const TextStyle(
-        color: Color(0xff171f44),
-        fontSize: 18,
-        fontFamily: "Roboto",
-        fontWeight: FontWeight.w600,
-        letterSpacing: 0.63,
       ),
     );
   }
@@ -107,17 +113,105 @@ class EhadirAddActivity extends StatelessWidget {
           label: AppLocalizations.of(context)!.noOfSessionPerDays,
           width: mediaWidth - 64,
         ),
+        const SizedBox(height: vPaddingM),
+        SizedBox(
+          width: mediaWidth,
+          child: Text(
+            "${AppLocalizations.of(context)!.session} 1",
+            textAlign: TextAlign.start,
+          ),
+        ),
+        const SizedBox(height: vPaddingM),
         CustomTextFieldWithLabel(
           controller: startTime,
           label: AppLocalizations.of(context)!.startTime,
           width: mediaWidth - 64,
-          ontap: startTimePicker,
+          ontap: () {
+            startTimePicker(1);
+          },
         ),
         CustomTextFieldWithLabel(
           controller: endTime,
           label: AppLocalizations.of(context)!.endTime,
           width: mediaWidth - 64,
-          ontap: endTimePicker,
+          ontap: () {
+            endTimePicker(1);
+          },
+        ),
+        const SizedBox(height: vPaddingM),
+        SizedBox(
+          width: mediaWidth,
+          child: Text(
+            "${AppLocalizations.of(context)!.session} 2",
+            textAlign: TextAlign.start,
+          ),
+        ),
+        const SizedBox(height: vPaddingM),
+        CustomTextFieldWithLabel(
+          controller: startTime1,
+          label: AppLocalizations.of(context)!.startTime,
+          width: mediaWidth - 64,
+          ontap: () {
+            startTimePicker(2);
+          },
+        ),
+        CustomTextFieldWithLabel(
+          controller: endTime1,
+          label: AppLocalizations.of(context)!.endTime,
+          width: mediaWidth - 64,
+          ontap: () {
+            endTimePicker(2);
+          },
+        ),
+        const SizedBox(height: vPaddingM),
+        SizedBox(
+          width: mediaWidth,
+          child: Text(
+            "${AppLocalizations.of(context)!.session} 3",
+            textAlign: TextAlign.start,
+          ),
+        ),
+        const SizedBox(height: vPaddingM),
+        CustomTextFieldWithLabel(
+          controller: startTime2,
+          label: AppLocalizations.of(context)!.startTime,
+          width: mediaWidth - 64,
+          ontap: () {
+            startTimePicker(3);
+          },
+        ),
+        CustomTextFieldWithLabel(
+          controller: endTime2,
+          label: AppLocalizations.of(context)!.endTime,
+          width: mediaWidth - 64,
+          ontap: () {
+            endTimePicker(3);
+          },
+        ),
+        const SizedBox(height: vPaddingM),
+        SizedBox(
+          width: mediaWidth,
+          child: Text(
+            "${AppLocalizations.of(context)!.session} 4",
+            textAlign: TextAlign.start,
+          ),
+        ),
+        const SizedBox(height: vPaddingM),
+        CustomTextFieldWithLabel(
+          controller: startTime3,
+          label: AppLocalizations.of(context)!.startTime,
+          width: mediaWidth - 64,
+          ontap: () {
+            startTimePicker(4);
+          },
+        ),
+        CustomTextFieldWithLabel(
+          controller: endTime3,
+          label: AppLocalizations.of(context)!.endTime,
+          width: mediaWidth - 64,
+          ontap: () {
+            endTimePicker(4);
+          },
         ),
         CustomTextFieldWithLabel(
           controller: location,

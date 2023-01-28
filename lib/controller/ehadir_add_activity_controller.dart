@@ -1,11 +1,20 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:jpj_info/config/site_config.dart';
 import 'package:jpj_info/controller/alert_controller.dart';
 import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/controller/bottom_nav_controller.dart';
-import 'package:jpj_info/view/common/color_scheme.dart';
+import 'package:jpj_info/controller/http_request_controller.dart';
+import 'package:jpj_info/helper/account_manager.dart';
+import 'package:jpj_info/helper/string_helper.dart';
+import 'package:jpj_info/model/ehadir/new_activity_req.dart';
+import 'package:jpj_info/model/ehadir/new_activity_res.dart';
+import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
 import 'package:jpj_info/view/eHadirAddActivity/ehadir_add_activity.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:http/http.dart' as http;
 
 class EhadirAddActivityController extends StatefulWidget {
   const EhadirAddActivityController({
@@ -23,6 +32,12 @@ class _EhadirAddActivityController extends State<EhadirAddActivityController> {
   late TextEditingController sessionPerDay;
   late TextEditingController startTime;
   late TextEditingController endTime;
+  late TextEditingController startTime1;
+  late TextEditingController endTime1;
+  late TextEditingController startTime2;
+  late TextEditingController endTime2;
+  late TextEditingController startTime3;
+  late TextEditingController endTime3;
   late TextEditingController location;
   late TextEditingController latitude;
   late TextEditingController longitude;
@@ -37,6 +52,12 @@ class _EhadirAddActivityController extends State<EhadirAddActivityController> {
     sessionPerDay = TextEditingController();
     startTime = TextEditingController();
     endTime = TextEditingController();
+    startTime1 = TextEditingController();
+    endTime1 = TextEditingController();
+    startTime2 = TextEditingController();
+    endTime2 = TextEditingController();
+    startTime3 = TextEditingController();
+    endTime3 = TextEditingController();
     location = TextEditingController();
     latitude = TextEditingController();
     longitude = TextEditingController();
@@ -52,6 +73,12 @@ class _EhadirAddActivityController extends State<EhadirAddActivityController> {
     sessionPerDay.dispose();
     startTime.dispose();
     endTime.dispose();
+    startTime1.dispose();
+    endTime1.dispose();
+    startTime2.dispose();
+    endTime2.dispose();
+    startTime3.dispose();
+    endTime3.dispose();
     location.dispose();
     latitude.dispose();
     longitude.dispose();
@@ -63,8 +90,7 @@ class _EhadirAddActivityController extends State<EhadirAddActivityController> {
     return SafeArea(
       child: Scaffold(
         appBar: const AppBarController(
-          iconColor: Color(themeNavy),
-          darkBtn: true,
+          decor: customGradient,
         ),
         body: EhadirAddActivity(
           submitCallback: _submitCallback,
@@ -74,6 +100,12 @@ class _EhadirAddActivityController extends State<EhadirAddActivityController> {
           sessionPerDay: sessionPerDay,
           startTime: startTime,
           endTime: endTime,
+          startTime1: startTime1,
+          endTime1: endTime1,
+          startTime2: startTime2,
+          endTime2: endTime2,
+          startTime3: startTime3,
+          endTime3: endTime3,
           location: location,
           latitude: latitude,
           longitude: longitude,
@@ -82,18 +114,75 @@ class _EhadirAddActivityController extends State<EhadirAddActivityController> {
           endTimePicker: _endTimePicker,
           startTimePicker: _startTimePicker,
         ),
-        bottomNavigationBar: BottomNavController(),
+        bottomNavigationBar: const BottomNavController(),
       ),
     );
   }
 
+  _submitActivityCallback(http.Response response) {
+    if (response.statusCode == 200) {
+      NewActivityRes res = NewActivityRes.fromJson(
+        jsonDecode(response.body),
+      );
+      if (res.kod == 0) {
+        AlertController(ctx: context).generalError(
+            capitalize(
+              AppLocalizations.of(context)!.successfullySaved,
+            ), () {
+          Navigator.pop(context);
+          Navigator.pop(context);
+        });
+      } else {
+        AlertController(ctx: context).generalError(
+          AppLocalizations.of(context)!.errorPleaseTryAgain,
+          () {},
+        );
+      }
+    } else {
+      AlertController(ctx: context).connectionError();
+    }
+  }
+
   void _submitCallback(BuildContext context) {
-    // todo: add processing of input to update activity list
-    AlertController(ctx: context)
-        .generalError(AppLocalizations.of(context)!.successfullySaved, () {
-      Navigator.pop(context);
-      Navigator.pop(context);
-    });
+    if (activityName.text.isNotEmpty &&
+        noOfDays.text.isNotEmpty &&
+        date.text.isNotEmpty &&
+        sessionPerDay.text.isNotEmpty &&
+        startTime.text.isNotEmpty &&
+        endTime.text.isNotEmpty &&
+        location.text.isNotEmpty &&
+        latitude.text.isNotEmpty &&
+        longitude.text.isNotEmpty &&
+        agenda.text.isNotEmpty) {
+      SiteConfig conf = SiteConfig();
+      NewActivityReq req = NewActivityReq(
+        nokp: MyJPJAccountManager().id,
+        bilanganHari: noOfDays.text,
+        lokasi: location.text,
+        keterangan: agenda.text,
+        nama: activityName.text,
+        bilanganSesi: sessionPerDay.text,
+        tarikhMula: date.text,
+        latitude: latitude.text,
+        longitude: longitude.text,
+        masaMula: startTime.text,
+        masaTamat: endTime.text,
+        masaMula1: startTime1.text,
+        masaTamat1: endTime1.text,
+        masaMula2: startTime2.text,
+        masaTamat2: endTime2.text,
+        masaMula3: startTime3.text,
+        masaTamat3: endTime3.text,
+      );
+
+      return jpjHttpRequest(
+        context,
+        Uri.parse(conf.eHadirNewActivity),
+        headers: conf.formHeader,
+        body: jsonEncode(req.toJson()),
+        callback: _submitActivityCallback,
+      );
+    } else {}
   }
 
   void _pickDate() async {
@@ -115,12 +204,28 @@ class _EhadirAddActivityController extends State<EhadirAddActivityController> {
     }
   }
 
-  void _startTimePicker() {
-    _pickTime(startTime);
+  void _startTimePicker(int number) {
+    TextEditingController controller = startTime;
+    if (number == 2) {
+      controller = startTime1;
+    } else if (number == 3) {
+      controller = startTime2;
+    } else if (number == 4) {
+      controller = startTime3;
+    }
+    _pickTime(controller);
   }
 
-  void _endTimePicker() {
-    _pickTime(endTime);
+  void _endTimePicker(int number) {
+    TextEditingController controller = endTime;
+    if (number == 2) {
+      controller = endTime1;
+    } else if (number == 3) {
+      controller = endTime2;
+    } else if (number == 4) {
+      controller = endTime3;
+    }
+    _pickTime(controller);
   }
 
   void _pickTime(TextEditingController timeController) async {
@@ -130,7 +235,7 @@ class _EhadirAddActivityController extends State<EhadirAddActivityController> {
     );
 
     if (pickedTime != null) {
-      String formattedDate = pickedTime.format(context);
+      String formattedDate = "${pickedTime.hour}:${pickedTime.minute}:00";
 
       setState(() {
         timeController.text = formattedDate;
