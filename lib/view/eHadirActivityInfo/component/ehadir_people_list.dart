@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:jpj_info/helper/string_helper.dart';
 import 'package:jpj_info/model/ehadir_comittee_info.dart';
+import 'package:jpj_info/view/summonsVerification/component/bordered_container.dart';
 
 class PeopleList extends StatelessWidget {
   const PeopleList({
@@ -25,26 +27,65 @@ class PeopleList extends StatelessWidget {
   }
 
   Widget _comitteeInfo(BuildContext context, ComitteeInfo info) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          info.name,
-          style: const TextStyle(
-            fontSize: 15,
-            color: Color(0xff171f44),
-            fontWeight: FontWeight.w900,
+    return CustomBorderedContainer(
+      width: double.infinity,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                capitalize(info.name),
+                style: const TextStyle(
+                  fontSize: 18,
+                  color: Color(0xff171f44),
+                  fontWeight: FontWeight.w900,
+                ),
+              ),
+              Text(
+                capitalize(info.department),
+                style: const TextStyle(
+                  color: Color(0xff171f44),
+                  fontSize: 15,
+                ),
+              ),
+            ],
+          ),
+          _eraseIcon(context),
+        ],
+      ),
+    );
+  }
+
+  Widget _eraseIcon(
+    BuildContext context,
+  ) {
+    return Container(
+      width: 32,
+      height: 32,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8),
+        boxShadow: const [
+          BoxShadow(
+            color: Color(0x3f000000),
+            blurRadius: 4,
+            offset: Offset(0, 4),
+          ),
+        ],
+        color: Colors.red,
+      ),
+      child: TextButton(
+        style: ButtonStyle(
+          foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+        ),
+        onPressed: () {},
+        child: const FittedBox(
+          child: Center(
+            child: Icon(Icons.delete),
           ),
         ),
-        Text(
-          info.department,
-          style: const TextStyle(
-            color: Color(0xff171f44),
-            fontSize: 10,
-          ),
-        ),
-        const Divider(color: Colors.black),
-      ],
+      ),
     );
   }
 }
