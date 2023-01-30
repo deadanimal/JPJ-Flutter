@@ -118,6 +118,8 @@ class EhadirActivityInfo extends StatelessWidget {
           ),
           AttendanceList(
             qrScanCallback: qrScanCallback,
+            activityId: event.id!,
+            transidAktiviti: event.transidAktiviti!,
             comitteeList: [
               ComitteeInfo(1, "name1", "department3"),
               ComitteeInfo(1, "name2", "department2"),

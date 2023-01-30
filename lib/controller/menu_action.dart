@@ -327,12 +327,19 @@ void eHadirAddComitteePage(
   );
 }
 
-void eHadirManualRegisterPage(BuildContext context) {
+void eHadirManualRegisterPage(
+  BuildContext context,
+  int activityId,
+  String transidAktiviti,
+) {
   Navigator.push(
     context,
     MaterialPageRoute(
       builder: (context) {
-        return const EhadirManualRegistrationController();
+        return EhadirManualRegistrationController(
+          activityId: activityId,
+          transidAktiviti: transidAktiviti,
+        );
       },
     ),
   );

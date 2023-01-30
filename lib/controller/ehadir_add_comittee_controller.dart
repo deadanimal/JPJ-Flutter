@@ -10,7 +10,6 @@ import 'package:jpj_info/helper/string_helper.dart';
 import 'package:jpj_info/model/ehadir/add_comittee_req.dart';
 import 'package:jpj_info/model/ehadir/add_comittee_res.dart';
 import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
-import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/eHadirAddComittee/ehadir_add_comittee.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 

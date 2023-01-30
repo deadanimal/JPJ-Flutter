@@ -11,9 +11,13 @@ class AttendanceList extends StatelessWidget {
     Key? key,
     required this.comitteeList,
     required this.qrScanCallback,
+    required this.activityId,
+    required this.transidAktiviti,
   }) : super(key: key);
   final List<ComitteeInfo> comitteeList;
   final Function qrScanCallback;
+  final int activityId;
+  final String transidAktiviti;
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +46,11 @@ class AttendanceList extends StatelessWidget {
           child: _addBtn(
             context,
             AppLocalizations.of(context)!.manualRegistration,
-            () => eHadirManualRegisterPage(context),
+            () => eHadirManualRegisterPage(
+              context,
+              activityId,
+              transidAktiviti,
+            ),
             const AssetImage("images/icon/ehadir_manual_register_icon.png"),
           ),
         ),
