@@ -91,7 +91,6 @@ class _EhadirActivityListController
     SiteConfig conf = SiteConfig();
     ActivityListReq req = ActivityListReq(
       nokp: MyJPJAccountManager().id,
-      // nokp: "001223011546",
     );
 
     return jpjHttpRequest(

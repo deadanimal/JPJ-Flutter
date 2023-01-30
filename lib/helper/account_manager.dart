@@ -61,8 +61,8 @@ class MyJPJAccountManager {
       LoginResponse loginResponse = LoginResponse.fromJson(
         jsonDecode(userInfo!),
       );
-      // id = loginResponse.idmpuUsrId!.trim();
-      id = "981018035002";
+      id = loginResponse.idmpuUsrId!.trim();
+      // id = "001223011549";
       name = loginResponse.idmpuUserName!.trim();
       var date = DateFormat('dd/MM/yyyy hh:mm a').format(
         DateTime.parse(loginResponse.idmpuLastLoginTime!).toLocal(),

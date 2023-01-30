@@ -1,4 +1,4 @@
-import 'package:badges/badges.dart';
+import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
 import 'package:jpj_info/model/mainpage_icon.dart';
 import 'package:jpj_info/model/page_size.dart';
@@ -68,7 +68,7 @@ class _CustomPublicMenuSection extends State<CustomPublicMenuSection> {
                 borderRadius: BorderRadius.circular(20),
               ),
               child: widget.fav
-                  ? Badge(
+                  ? badges.Badge(
                       badgeContent: const Text(
                         "Top\n5",
                         style: TextStyle(
@@ -77,8 +77,10 @@ class _CustomPublicMenuSection extends State<CustomPublicMenuSection> {
                         ),
                         textAlign: TextAlign.center,
                       ),
-                      borderRadius: BorderRadius.circular(25),
-                      shape: BadgeShape.square,
+                      badgeStyle: badges.BadgeStyle(
+                        borderRadius: BorderRadius.circular(25),
+                        shape: badges.BadgeShape.square,
+                      ),
                       stackFit: StackFit.passthrough,
                       child: Text(
                         "${widget.subHeader}    ",

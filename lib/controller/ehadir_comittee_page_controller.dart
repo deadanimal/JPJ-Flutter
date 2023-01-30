@@ -82,11 +82,11 @@ class _EhadirComitteePageController
             events.add(
               EHadirEventInfo(
                 date: item.tarikhMula,
-                endTime: item.masaSesi![0].masaTamat,
+                endTime: item.masaSesi![0].masaTamat ?? "",
                 eventName: item.namaAktiviti,
                 id: item.id,
                 organizer: item.urusetia,
-                startTime: item.masaSesi![0].masaMula!,
+                startTime: item.masaSesi![0].masaMula ?? "",
                 venue: item.lokasi,
               ),
             );
