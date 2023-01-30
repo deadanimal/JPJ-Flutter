@@ -45,6 +45,8 @@ class SiteConfig {
   final String eHadirRemoveComittee = "$prodUrl/padam_urusetia/";
   final String eHadirComitteeList = "$prodUrl/senarai_urusetia1/";
   final String eHadirAddComittee = "$prodUrl/tambah_urusetia/";
+  final String eHadirActivityById = "$prodUrl/aktiviti_byid/";
+  final String eHadirUpdateActivity = "$prodUrl/kemaskini_aktiviti";
 
   Map<String, String> formHeader = {
     'Content-Type': 'application/json; charset=UTF-8',

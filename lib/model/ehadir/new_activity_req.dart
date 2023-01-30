@@ -17,6 +17,7 @@ class NewActivityReq {
   String? masaTamat2;
   String? masaMula3;
   String? masaTamat3;
+  int? idAktiviti;
 
   NewActivityReq({
     this.nokp,
@@ -37,6 +38,7 @@ class NewActivityReq {
     this.masaTamat2,
     this.masaMula3,
     this.masaTamat3,
+    this.idAktiviti,
   });
 
   NewActivityReq.fromJson(Map<String, dynamic> json) {
@@ -80,6 +82,7 @@ class NewActivityReq {
     data['masa_tamat2'] = masaTamat2;
     data['masa_mula3'] = masaMula3;
     data['masa_tamat3'] = masaTamat3;
+    data['id_aktiviti'] = idAktiviti;
     return data;
   }
 }

@@ -6,6 +6,7 @@ import 'package:jpj_info/view/form/custom_button.dart';
 import 'package:jpj_info/view/form/no_trailing_label.dart';
 import 'package:jpj_info/view/form/text_field.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:jpj_info/view/template/template_header.dart';
 
 class EhadirAddStaff extends StatelessWidget {
   const EhadirAddStaff({
@@ -28,47 +29,46 @@ class EhadirAddStaff extends StatelessWidget {
   }
 
   Widget _body(BuildContext context) {
-    return Center(
-      child: Container(
-        width: mediaWidth,
-        constraints: const BoxConstraints(maxWidth: 400),
+    return SingleChildScrollView(
+      child: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Text(
-              title,
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                color: Color(0xff171f44),
-                fontSize: 18,
-                fontFamily: "Roboto",
-                fontWeight: FontWeight.w600,
-                letterSpacing: 0.63,
-              ),
+            TemplateHeader(
+              headerTitle: title,
+              headerTitleFontSize: 48,
             ),
             const SizedBox(height: vPaddingM),
-            Image(
-              image: image,
-            ),
-            const SizedBox(height: vPaddingM),
-            _textField(
-              context,
-              staffNricController,
-              AppLocalizations.of(context)!.nricNumber,
-              mediaWidth - 64,
-            ),
-            const SizedBox(height: vPaddingXL),
-            Center(
-              child: CustomButton(
-                width: mediaWidth - 128,
-                onPressed: () {
-                  submitCallback(context);
-                },
-                decoration: navyGradientBtnDeco,
-                label: AppLocalizations.of(context)!.submit,
+            Container(
+              width: mediaWidth,
+              constraints: const BoxConstraints(maxWidth: 400),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Image(
+                    image: image,
+                  ),
+                  const SizedBox(height: vPaddingM),
+                  _textField(
+                    context,
+                    staffNricController,
+                    AppLocalizations.of(context)!.nricNumber,
+                    mediaWidth - 64,
+                  ),
+                  const SizedBox(height: vPaddingXL),
+                  Center(
+                    child: CustomButton(
+                      width: mediaWidth - 128,
+                      onPressed: () {
+                        submitCallback(context);
+                      },
+                      decoration: navyGradientBtnDeco,
+                      label: AppLocalizations.of(context)!.submit,
+                    ),
+                  ),
+                  const SizedBox(height: vPaddingXXL),
+                ],
               ),
             ),
-            const SizedBox(height: vPaddingXXL),
           ],
         ),
       ),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:jpj_info/controller/ehadir_mainpage_controller.dart';
 import 'package:jpj_info/controller/first_time_login_controller.dart';
 import 'package:jpj_info/controller/login_controller.dart';
 import 'package:jpj_info/controller/mainpage_controller.dart';
@@ -73,7 +72,7 @@ class _LandingPageController extends State<LandingPageController> {
                   child: child,
                 );
               },
-              pageBuilder: (_, __, ___) => const EhadirMainPageController(),
+              pageBuilder: (_, __, ___) => const FirstTimeLoginController(),
             ),
           );
         } else {

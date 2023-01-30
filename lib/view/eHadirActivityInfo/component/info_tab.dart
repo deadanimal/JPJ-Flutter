@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:jpj_info/controller/menu_action.dart';
 import 'package:jpj_info/helper/string_helper.dart';
 import 'package:jpj_info/model/ehadir/activity_list_res.dart';
 import 'package:jpj_info/model/page_size.dart';
+import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/common/spacing.dart';
 import 'package:jpj_info/view/summonsVerification/component/bordered_container.dart';
 import 'package:qr_flutter/qr_flutter.dart';
@@ -63,7 +65,21 @@ class InfoTab extends StatelessWidget {
                   fontSize: 18,
                 ),
               ),
-              const SizedBox(height: vPaddingXL),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: FloatingActionButton(
+                      onPressed: () {
+                        eHadirEditActivityPage(context, event.id!);
+                      },
+                      backgroundColor: const Color(themeNavy),
+                      child: const Icon(Icons.edit),
+                    ),
+                  ),
+                ],
+              ),
             ],
           ),
         ),

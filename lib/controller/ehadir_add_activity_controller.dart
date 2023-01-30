@@ -9,6 +9,7 @@ import 'package:jpj_info/controller/bottom_nav_controller.dart';
 import 'package:jpj_info/controller/http_request_controller.dart';
 import 'package:jpj_info/helper/account_manager.dart';
 import 'package:jpj_info/helper/string_helper.dart';
+import 'package:jpj_info/model/ehadir/activity_by_id_res.dart';
 import 'package:jpj_info/model/ehadir/new_activity_req.dart';
 import 'package:jpj_info/model/ehadir/new_activity_res.dart';
 import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
@@ -19,7 +20,10 @@ import 'package:http/http.dart' as http;
 class EhadirAddActivityController extends StatefulWidget {
   const EhadirAddActivityController({
     Key? key,
+    this.activityId,
   }) : super(key: key);
+
+  final int? activityId;
 
   @override
   State<StatefulWidget> createState() => _EhadirAddActivityController();
@@ -62,6 +66,13 @@ class _EhadirAddActivityController extends State<EhadirAddActivityController> {
     latitude = TextEditingController();
     longitude = TextEditingController();
     agenda = TextEditingController();
+
+    if (widget.activityId != null) {
+      Future.delayed(
+        const Duration(milliseconds: 250),
+        _getActivity,
+      );
+    }
   }
 
   @override
@@ -135,7 +146,9 @@ class _EhadirAddActivityController extends State<EhadirAddActivityController> {
       } else {
         AlertController(ctx: context).generalError(
           AppLocalizations.of(context)!.errorPleaseTryAgain,
-          () {},
+          () {
+            Navigator.pop(context);
+          },
         );
       }
     } else {
@@ -144,45 +157,11 @@ class _EhadirAddActivityController extends State<EhadirAddActivityController> {
   }
 
   void _submitCallback(BuildContext context) {
-    if (activityName.text.isNotEmpty &&
-        noOfDays.text.isNotEmpty &&
-        date.text.isNotEmpty &&
-        sessionPerDay.text.isNotEmpty &&
-        startTime.text.isNotEmpty &&
-        endTime.text.isNotEmpty &&
-        location.text.isNotEmpty &&
-        latitude.text.isNotEmpty &&
-        longitude.text.isNotEmpty &&
-        agenda.text.isNotEmpty) {
-      SiteConfig conf = SiteConfig();
-      NewActivityReq req = NewActivityReq(
-        nokp: MyJPJAccountManager().id,
-        bilanganHari: noOfDays.text,
-        lokasi: location.text,
-        keterangan: agenda.text,
-        nama: activityName.text,
-        bilanganSesi: sessionPerDay.text,
-        tarikhMula: date.text,
-        latitude: latitude.text,
-        longitude: longitude.text,
-        masaMula: startTime.text,
-        masaTamat: endTime.text,
-        masaMula1: startTime1.text,
-        masaTamat1: endTime1.text,
-        masaMula2: startTime2.text,
-        masaTamat2: endTime2.text,
-        masaMula3: startTime3.text,
-        masaTamat3: endTime3.text,
-      );
-
-      return jpjHttpRequest(
-        context,
-        Uri.parse(conf.eHadirNewActivity),
-        headers: conf.formHeader,
-        body: jsonEncode(req.toJson()),
-        callback: _submitActivityCallback,
-      );
-    } else {}
+    if (widget.activityId != null) {
+      _update();
+    } else {
+      _create();
+    }
   }
 
   void _pickDate() async {
@@ -243,5 +222,122 @@ class _EhadirAddActivityController extends State<EhadirAddActivityController> {
     } else {
       // print("Date is not selected");
     }
+  }
+
+  void _getActivity() {
+    SiteConfig conf = SiteConfig();
+    jpjHttpGetRequest(
+      context,
+      Uri.parse(conf.eHadirActivityById + widget.activityId.toString()),
+      headers: conf.formHeader,
+      callback: (res) {
+        if (res.statusCode == 200) {
+          ActivityByIdRes response =
+              ActivityByIdRes.fromJson(jsonDecode(res.body));
+          activityName.text = response.namaAktiviti ?? "";
+          noOfDays.text = response.bilanganHari!.toString();
+          date.text = response.tarikhMula ?? "";
+          sessionPerDay.text = response.bilanganSesi!.toString();
+          startTime.text = response.masaMula ?? "";
+          endTime.text = response.masaTamat ?? "";
+          location.text = response.lokasi ?? "";
+          latitude.text = response.latitude ?? "";
+          longitude.text = response.longitude ?? "";
+          agenda.text = response.keterangan ?? "";
+        } else {
+          AlertController(ctx: context).generalError(
+            AppLocalizations.of(context)!.errorPleaseTryAgain,
+            () {
+              Navigator.pop(context);
+            },
+          );
+        }
+      },
+    );
+  }
+
+  _update() {
+    if (activityName.text.isNotEmpty &&
+        noOfDays.text.isNotEmpty &&
+        date.text.isNotEmpty &&
+        sessionPerDay.text.isNotEmpty &&
+        startTime.text.isNotEmpty &&
+        endTime.text.isNotEmpty &&
+        location.text.isNotEmpty &&
+        latitude.text.isNotEmpty &&
+        longitude.text.isNotEmpty &&
+        agenda.text.isNotEmpty) {
+      SiteConfig conf = SiteConfig();
+      NewActivityReq req = NewActivityReq(
+        nokp: MyJPJAccountManager().id,
+        bilanganHari: noOfDays.text,
+        lokasi: location.text,
+        keterangan: agenda.text,
+        nama: activityName.text,
+        bilanganSesi: sessionPerDay.text,
+        tarikhMula: date.text,
+        latitude: latitude.text,
+        longitude: longitude.text,
+        masaMula: startTime.text,
+        masaTamat: endTime.text,
+        masaMula1: startTime1.text,
+        masaTamat1: endTime1.text,
+        masaMula2: startTime2.text,
+        masaTamat2: endTime2.text,
+        masaMula3: startTime3.text,
+        masaTamat3: endTime3.text,
+        idAktiviti: widget.activityId,
+      );
+
+      return jpjHttpRequest(
+        context,
+        Uri.parse(conf.eHadirUpdateActivity),
+        headers: conf.formHeader,
+        body: jsonEncode(req.toJson()),
+        callback: _submitActivityCallback,
+      );
+    } else {}
+  }
+
+  _create() {
+    if (activityName.text.isNotEmpty &&
+        noOfDays.text.isNotEmpty &&
+        date.text.isNotEmpty &&
+        sessionPerDay.text.isNotEmpty &&
+        startTime.text.isNotEmpty &&
+        endTime.text.isNotEmpty &&
+        location.text.isNotEmpty &&
+        latitude.text.isNotEmpty &&
+        longitude.text.isNotEmpty &&
+        agenda.text.isNotEmpty) {
+      SiteConfig conf = SiteConfig();
+      NewActivityReq req = NewActivityReq(
+        nokp: MyJPJAccountManager().id,
+        bilanganHari: noOfDays.text,
+        lokasi: location.text,
+        keterangan: agenda.text,
+        nama: activityName.text,
+        bilanganSesi: sessionPerDay.text,
+        tarikhMula: date.text,
+        latitude: latitude.text,
+        longitude: longitude.text,
+        masaMula: startTime.text,
+        masaTamat: endTime.text,
+        masaMula1: startTime1.text,
+        masaTamat1: endTime1.text,
+        masaMula2: startTime2.text,
+        masaTamat2: endTime2.text,
+        masaMula3: startTime3.text,
+        masaTamat3: endTime3.text,
+      );
+
+      return jpjHttpRequest(
+        context,
+        Uri.parse(conf.eHadirNewActivity),
+        headers: conf.formHeader,
+        body: jsonEncode(req.toJson()),
+        callback: _submitActivityCallback,
+      );
+    } else {}
   }
 }

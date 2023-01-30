@@ -287,6 +287,17 @@ void eHadirActivityListPage(BuildContext context) {
   );
 }
 
+void eHadirEditActivityPage(BuildContext context, int activityId) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) {
+        return EhadirAddActivityController(activityId: activityId);
+      },
+    ),
+  );
+}
+
 void eHadirActivityInfoPage(BuildContext context, Aktiviti event) {
   Navigator.push(
     context,
