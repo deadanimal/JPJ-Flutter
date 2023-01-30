@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jpj_info/helper/string_helper.dart';
-import 'package:jpj_info/model/ehadir_event_info.dart';
+import 'package:jpj_info/model/ehadir/activity_list_res.dart';
 import 'package:jpj_info/model/page_size.dart';
 import 'package:jpj_info/view/common/spacing.dart';
 import 'package:jpj_info/view/summonsVerification/component/bordered_container.dart';
@@ -11,7 +11,7 @@ class InfoTab extends StatelessWidget {
     Key? key,
     required this.event,
   }) : super(key: key);
-  final EHadirEventInfo event;
+  final Aktiviti event;
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,7 @@ class InfoTab extends StatelessWidget {
                   ),
                 ),
                 child: Text(
-                  capitalize(event.eventName!),
+                  capitalize(event.namaAktiviti!),
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                     color: Colors.white,
@@ -56,7 +56,7 @@ class InfoTab extends StatelessWidget {
               ),
               const SizedBox(height: vPaddingXL),
               Text(
-                "${capitalize(event.venue!)}\n${event.date!}\nSESI 1 ${event.startTime!} - ${event.endTime!}",
+                "${capitalize(event.lokasi!)}\n${event.tarikhMula ?? ""}\nSESI 1 ${event.masaSesi![0].masaMula ?? ""} - ${event.masaSesi![0].masaTamat ?? ""}",
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   color: Colors.black,

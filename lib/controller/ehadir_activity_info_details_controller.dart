@@ -7,9 +7,9 @@ import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/controller/bottom_nav_controller.dart';
 import 'package:jpj_info/controller/http_request_controller.dart';
 import 'package:jpj_info/helper/qr_scanner.dart';
+import 'package:jpj_info/model/ehadir/activity_list_res.dart';
 import 'package:jpj_info/model/ehadir/comittee_list_req.dart';
 import 'package:jpj_info/model/ehadir/comittee_list_res.dart';
-import 'package:jpj_info/model/ehadir_event_info.dart';
 import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
 import 'package:jpj_info/view/eHadirActivityInfo/ehadir_activity_info.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
@@ -21,7 +21,7 @@ class EhadirActivityInfoDetailsController extends StatefulWidget {
     required this.event,
   }) : super(key: key);
 
-  final EHadirEventInfo event;
+  final Aktiviti event;
 
   @override
   State<StatefulWidget> createState() => _EhadirActivityInfoDetailsController();
@@ -35,6 +35,7 @@ class _EhadirActivityInfoDetailsController
   @override
   void initState() {
     super.initState();
+    comitteeList = [];
     tabController = TabController(
       initialIndex: 0,
       length: 3,
@@ -46,11 +47,6 @@ class _EhadirActivityInfoDetailsController
         _getComitteeList(widget.event.id!);
       },
     );
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
   }
 
   @override
@@ -70,6 +66,7 @@ class _EhadirActivityInfoDetailsController
           tabController: tabController,
           qrScanCallback: _scanQrBtnCallback,
           event: widget.event,
+          comitteeList: comitteeList,
         ),
         bottomNavigationBar: const BottomNavController(),
       ),
@@ -112,7 +109,7 @@ class _EhadirActivityInfoDetailsController
     );
     return jpjHttpRequest(
       context,
-      Uri.parse(conf.eHadirActivityList),
+      Uri.parse(conf.eHadirComitteeList),
       headers: conf.formHeader,
       body: jsonEncode(req.toJson()),
       callback: _committeeListCallback,

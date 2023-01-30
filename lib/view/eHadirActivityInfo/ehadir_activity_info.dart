@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:jpj_info/model/ehadir/activity_list_res.dart';
+import 'package:jpj_info/model/ehadir/comittee_list_res.dart';
 import 'package:jpj_info/model/ehadir_comittee_info.dart';
-import 'package:jpj_info/model/ehadir_event_info.dart';
 import 'package:jpj_info/model/page_size.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/common/spacing.dart';
@@ -16,10 +17,12 @@ class EhadirActivityInfo extends StatelessWidget {
     required this.tabController,
     required this.qrScanCallback,
     required this.event,
+    required this.comitteeList,
   }) : super(key: key);
   final TabController tabController;
   final Function qrScanCallback;
-  final EHadirEventInfo event;
+  final Aktiviti event;
+  final List<ComitteeListRes> comitteeList;
 
   @override
   Widget build(BuildContext context) {
@@ -94,6 +97,14 @@ class EhadirActivityInfo extends StatelessWidget {
   }
 
   Widget _tabView(BuildContext context) {
+    List<ComitteeInfo> comittees = [];
+    for (var el in comitteeList) {
+      comittees.add(ComitteeInfo(
+        el.id!,
+        el.nama!,
+        el.namabahagian!,
+      ));
+    }
     return SizedBox(
       width: mediaWidth - 64,
       child: TabBarView(
@@ -101,18 +112,16 @@ class EhadirActivityInfo extends StatelessWidget {
         children: [
           InfoTab(event: event),
           ComitteeList(
-            comitteeList: [
-              ComitteeInfo("nameA", "departmentC"),
-              ComitteeInfo("nameB", "departmentB"),
-              ComitteeInfo("nameC", "departmentA"),
-            ],
+            activityId: event.id!,
+            comitteeList: comittees,
+            transidAktiviti: event.transidAktiviti!,
           ),
           AttendanceList(
             qrScanCallback: qrScanCallback,
             comitteeList: [
-              ComitteeInfo("name1", "department3"),
-              ComitteeInfo("name2", "department2"),
-              ComitteeInfo("name3", "department1"),
+              ComitteeInfo(1, "name1", "department3"),
+              ComitteeInfo(1, "name2", "department2"),
+              ComitteeInfo(1, "name3", "department1"),
             ],
           ),
         ],

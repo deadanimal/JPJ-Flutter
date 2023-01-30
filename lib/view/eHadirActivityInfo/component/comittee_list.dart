@@ -11,8 +11,12 @@ class ComitteeList extends StatelessWidget {
   const ComitteeList({
     Key? key,
     required this.comitteeList,
+    required this.activityId,
+    required this.transidAktiviti,
   }) : super(key: key);
   final List<ComitteeInfo> comitteeList;
+  final int activityId;
+  final String transidAktiviti;
 
   @override
   Widget build(BuildContext context) {
@@ -32,13 +36,17 @@ class ComitteeList extends StatelessWidget {
       width: mediaWidth - 64,
       constraints: const BoxConstraints(maxWidth: 400),
       child: InkWell(
-        onTap: () => eHadirAddComitteePage(context),
+        onTap: () => eHadirAddComitteePage(
+          context,
+          activityId,
+          transidAktiviti,
+        ),
         child: Row(
           children: [
             ElevatedButton(
               onPressed: () {},
               style: ElevatedButton.styleFrom(
-                primary: const Color(themeNavy),
+                backgroundColor: const Color(themeNavy),
                 shape: const CircleBorder(),
                 padding: const EdgeInsets.all(19),
               ),

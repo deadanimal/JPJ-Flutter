@@ -32,7 +32,7 @@ import 'package:jpj_info/controller/test_result_controller.dart';
 import 'package:jpj_info/controller/tnc_controller.dart';
 import 'package:jpj_info/controller/transaction_history_controller.dart';
 import 'package:jpj_info/controller/vehicle_list_controller.dart';
-import 'package:jpj_info/model/ehadir_event_info.dart';
+import 'package:jpj_info/model/ehadir/activity_list_res.dart';
 
 void licensePage(BuildContext context) {
   Navigator.push(
@@ -287,7 +287,7 @@ void eHadirActivityListPage(BuildContext context) {
   );
 }
 
-void eHadirActivityInfoPage(BuildContext context, EHadirEventInfo event) {
+void eHadirActivityInfoPage(BuildContext context, Aktiviti event) {
   Navigator.push(
     context,
     MaterialPageRoute(
@@ -298,12 +298,19 @@ void eHadirActivityInfoPage(BuildContext context, EHadirEventInfo event) {
   );
 }
 
-void eHadirAddComitteePage(BuildContext context) {
+void eHadirAddComitteePage(
+  BuildContext context,
+  int activityId,
+  String transidAktiviti,
+) {
   Navigator.push(
     context,
     MaterialPageRoute(
       builder: (context) {
-        return const EhadirAddComitteeController();
+        return EhadirAddComitteeController(
+          activityId: activityId,
+          transidAktiviti: transidAktiviti,
+        );
       },
     ),
   );

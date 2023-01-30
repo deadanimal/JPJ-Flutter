@@ -11,7 +11,6 @@ import 'package:jpj_info/controller/prompt_controller.dart';
 import 'package:jpj_info/helper/account_manager.dart';
 import 'package:jpj_info/model/ehadir/activity_list_req.dart';
 import 'package:jpj_info/model/ehadir/activity_list_res.dart';
-import 'package:jpj_info/model/ehadir_event_info.dart';
 import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/eHadirComitteePage/ehadir_comittee_page.dart';
@@ -29,7 +28,7 @@ class EhadirComitteePageController extends StatefulWidget {
 
 class _EhadirComitteePageController
     extends State<EhadirComitteePageController> {
-  late List<EHadirEventInfo> events;
+  late List<Aktiviti> events;
   @override
   void initState() {
     super.initState();
@@ -78,19 +77,7 @@ class _EhadirComitteePageController
       setState(() {
         events.clear();
         if (res.aktiviti != null) {
-          for (var item in res.aktiviti!) {
-            events.add(
-              EHadirEventInfo(
-                date: item.tarikhMula,
-                endTime: item.masaSesi![0].masaTamat ?? "",
-                eventName: item.namaAktiviti,
-                id: item.id,
-                organizer: item.urusetia,
-                startTime: item.masaSesi![0].masaMula ?? "",
-                venue: item.lokasi,
-              ),
-            );
-          }
+          events = res.aktiviti!;
         }
       });
     } else {
@@ -113,11 +100,11 @@ class _EhadirComitteePageController
     );
   }
 
-  void _viewActivityDetails(BuildContext context, EHadirEventInfo event) {
+  void _viewActivityDetails(BuildContext context, Aktiviti event) {
     eHadirActivityInfoPage(context, event);
   }
 
-  void _erasectivity(BuildContext context, EHadirEventInfo event) {
+  void _erasectivity(BuildContext context, Aktiviti event) {
     PromptController(ctx: context).prompt(
       "${AppLocalizations.of(context)!.erase} ${AppLocalizations.of(context)!.event}?",
       () {
@@ -130,9 +117,18 @@ class _EhadirComitteePageController
     );
   }
 
-  void _confirmErase(EHadirEventInfo event) {
-    setState(() {
-      events.remove(event);
-    });
+  void _confirmErase(Aktiviti event) {
+    SiteConfig conf = SiteConfig();
+    jpjHttpDeleteRequest(
+      context,
+      Uri.parse(conf.eHadirRemoveComittee + event.id.toString()),
+      headers: conf.formHeader,
+      callback: (res) {
+        setState(() {
+          // events.remove(event);
+          _checkForActivity();
+        });
+      },
+    );
   }
 }
