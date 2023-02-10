@@ -35,16 +35,18 @@ class PeopleList extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                capitalize(info.name),
-                style: const TextStyle(
-                  fontSize: 18,
-                  color: Color(0xff171f44),
-                  fontWeight: FontWeight.w900,
+              FittedBox(
+                child: Text(
+                  capitalize(info.name.trim()),
+                  style: const TextStyle(
+                    fontSize: 15,
+                    color: Color(0xff171f44),
+                    fontWeight: FontWeight.w900,
+                  ),
                 ),
               ),
               Text(
-                capitalize(info.department ?? ""),
+                info.department != null ? capitalize(info.department!) : "",
                 style: const TextStyle(
                   color: Color(0xff171f44),
                   fontSize: 15,

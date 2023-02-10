@@ -58,7 +58,7 @@ class InfoTab extends StatelessWidget {
               ),
               const SizedBox(height: vPaddingXL),
               Text(
-                "${capitalize(event.lokasi!)}\n${event.tarikhMula ?? ""}\nSESI 1 ${event.masaSesi![0].masaMula ?? ""} - ${event.masaSesi![0].masaTamat ?? ""}",
+                "${capitalize(event.lokasi!)}\n${_parseDateString(event.tarikhMula ?? "")}\nSESI 1 ${event.masaSesi![0].masaMula ?? ""} - ${event.masaSesi![0].masaTamat ?? ""}",
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   color: Colors.black,
@@ -85,5 +85,11 @@ class InfoTab extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  String _parseDateString(String raw) {
+    List<String> retVal = raw.split('-');
+
+    return "${retVal[2]}-${retVal[1]}-${retVal[0]}";
   }
 }

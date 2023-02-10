@@ -105,7 +105,7 @@ class EhadirAddStaff extends StatelessWidget {
             AppLocalizations.of(context)!.addComitteeInfo,
             style: const TextStyle(
               color: Color(0xff707070),
-              fontSize: 8,
+              fontSize: 12,
             ),
           ),
           const SizedBox(height: vPaddingM),
