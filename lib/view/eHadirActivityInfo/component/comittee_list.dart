@@ -44,7 +44,11 @@ class ComitteeList extends StatelessWidget {
         child: Row(
           children: [
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () => eHadirAddComitteePage(
+                context,
+                activityId,
+                transidAktiviti,
+              ),
               style: ElevatedButton.styleFrom(
                 primary: const Color(themeNavy),
                 shape: const CircleBorder(),

@@ -4,6 +4,8 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/common/spacing.dart';
 import 'package:jpj_info/view/form/custom_button.dart';
+import 'package:jpj_info/view/form/no_trailing_label.dart';
+import 'package:jpj_info/view/form/text_field.dart';
 import 'package:jpj_info/view/form/text_field_with_label.dart';
 import 'package:jpj_info/view/template/template_header.dart';
 
@@ -30,6 +32,8 @@ class EhadirAddActivity extends StatelessWidget {
     required this.datePicker,
     required this.startTimePicker,
     required this.endTimePicker,
+    required this.addSession,
+    required this.removeSession,
   }) : super(key: key);
   final Function(BuildContext) submitCallback;
   final TextEditingController activityName;
@@ -51,6 +55,8 @@ class EhadirAddActivity extends StatelessWidget {
   final Function() datePicker;
   final Function(int) startTimePicker;
   final Function(int) endTimePicker;
+  final Function() addSession;
+  final Function() removeSession;
 
   @override
   Widget build(BuildContext context) {
@@ -96,23 +102,32 @@ class EhadirAddActivity extends StatelessWidget {
           controller: activityName,
           label: AppLocalizations.of(context)!.activityName,
           width: mediaWidth - 64,
+          endWidget: const Text(
+            "*",
+            style: TextStyle(color: Colors.red),
+          ),
         ),
         CustomTextFieldWithLabel(
           controller: noOfDays,
           label: AppLocalizations.of(context)!.noOfDays,
           width: mediaWidth - 64,
+          ontap: datePicker,
+          endWidget: const Text(
+            "*",
+            style: TextStyle(color: Colors.red),
+          ),
         ),
         CustomTextFieldWithLabel(
           controller: date,
           label: AppLocalizations.of(context)!.date,
           width: mediaWidth - 64,
           ontap: datePicker,
+          endWidget: const Text(
+            "*",
+            style: TextStyle(color: Colors.red),
+          ),
         ),
-        CustomTextFieldWithLabel(
-          controller: sessionPerDay,
-          label: AppLocalizations.of(context)!.noOfSessionPerDays,
-          width: mediaWidth - 64,
-        ),
+        _numberOfSessionField(context, sessionPerDay),
         const SizedBox(height: vPaddingM),
         SizedBox(
           width: mediaWidth,
@@ -129,6 +144,10 @@ class EhadirAddActivity extends StatelessWidget {
           ontap: () {
             startTimePicker(1);
           },
+          endWidget: const Text(
+            "*",
+            style: TextStyle(color: Colors.red),
+          ),
         ),
         CustomTextFieldWithLabel(
           controller: endTime,
@@ -137,82 +156,128 @@ class EhadirAddActivity extends StatelessWidget {
           ontap: () {
             endTimePicker(1);
           },
-        ),
-        const SizedBox(height: vPaddingM),
-        SizedBox(
-          width: mediaWidth,
-          child: Text(
-            "${AppLocalizations.of(context)!.session} 2",
-            textAlign: TextAlign.start,
+          endWidget: const Text(
+            "*",
+            style: TextStyle(color: Colors.red),
           ),
         ),
-        const SizedBox(height: vPaddingM),
-        CustomTextFieldWithLabel(
-          controller: startTime1,
-          label: AppLocalizations.of(context)!.startTime,
-          width: mediaWidth - 64,
-          ontap: () {
-            startTimePicker(2);
-          },
-        ),
-        CustomTextFieldWithLabel(
-          controller: endTime1,
-          label: AppLocalizations.of(context)!.endTime,
-          width: mediaWidth - 64,
-          ontap: () {
-            endTimePicker(2);
-          },
-        ),
-        const SizedBox(height: vPaddingM),
-        SizedBox(
-          width: mediaWidth,
-          child: Text(
-            "${AppLocalizations.of(context)!.session} 3",
-            textAlign: TextAlign.start,
-          ),
-        ),
-        const SizedBox(height: vPaddingM),
-        CustomTextFieldWithLabel(
-          controller: startTime2,
-          label: AppLocalizations.of(context)!.startTime,
-          width: mediaWidth - 64,
-          ontap: () {
-            startTimePicker(3);
-          },
-        ),
-        CustomTextFieldWithLabel(
-          controller: endTime2,
-          label: AppLocalizations.of(context)!.endTime,
-          width: mediaWidth - 64,
-          ontap: () {
-            endTimePicker(3);
-          },
-        ),
-        const SizedBox(height: vPaddingM),
-        SizedBox(
-          width: mediaWidth,
-          child: Text(
-            "${AppLocalizations.of(context)!.session} 4",
-            textAlign: TextAlign.start,
-          ),
-        ),
-        const SizedBox(height: vPaddingM),
-        CustomTextFieldWithLabel(
-          controller: startTime3,
-          label: AppLocalizations.of(context)!.startTime,
-          width: mediaWidth - 64,
-          ontap: () {
-            startTimePicker(4);
-          },
-        ),
-        CustomTextFieldWithLabel(
-          controller: endTime3,
-          label: AppLocalizations.of(context)!.endTime,
-          width: mediaWidth - 64,
-          ontap: () {
-            endTimePicker(4);
-          },
-        ),
+        int.parse(sessionPerDay.text) > 1
+            ? Column(
+                children: [
+                  const SizedBox(height: vPaddingM),
+                  SizedBox(
+                    width: mediaWidth,
+                    child: Text(
+                      "${AppLocalizations.of(context)!.session} 2",
+                      textAlign: TextAlign.start,
+                    ),
+                  ),
+                  const SizedBox(height: vPaddingM),
+                  CustomTextFieldWithLabel(
+                    controller: startTime1,
+                    label: AppLocalizations.of(context)!.startTime,
+                    width: mediaWidth - 64,
+                    ontap: () {
+                      startTimePicker(2);
+                    },
+                    endWidget: const Text(
+                      "*",
+                      style: TextStyle(color: Colors.red),
+                    ),
+                  ),
+                  CustomTextFieldWithLabel(
+                    controller: endTime1,
+                    label: AppLocalizations.of(context)!.endTime,
+                    width: mediaWidth - 64,
+                    ontap: () {
+                      endTimePicker(2);
+                    },
+                    endWidget: const Text(
+                      "*",
+                      style: TextStyle(color: Colors.red),
+                    ),
+                  ),
+                ],
+              )
+            : Container(),
+        int.parse(sessionPerDay.text) > 2
+            ? Column(
+                children: [
+                  const SizedBox(height: vPaddingM),
+                  SizedBox(
+                    width: mediaWidth,
+                    child: Text(
+                      "${AppLocalizations.of(context)!.session} 3",
+                      textAlign: TextAlign.start,
+                    ),
+                  ),
+                  const SizedBox(height: vPaddingM),
+                  CustomTextFieldWithLabel(
+                    controller: startTime2,
+                    label: AppLocalizations.of(context)!.startTime,
+                    width: mediaWidth - 64,
+                    ontap: () {
+                      startTimePicker(3);
+                    },
+                    endWidget: const Text(
+                      "*",
+                      style: TextStyle(color: Colors.red),
+                    ),
+                  ),
+                  CustomTextFieldWithLabel(
+                    controller: endTime2,
+                    label: AppLocalizations.of(context)!.endTime,
+                    width: mediaWidth - 64,
+                    ontap: () {
+                      endTimePicker(3);
+                    },
+                    endWidget: const Text(
+                      "*",
+                      style: TextStyle(color: Colors.red),
+                    ),
+                  ),
+                ],
+              )
+            : Container(),
+        int.parse(sessionPerDay.text) > 3
+            ? Column(
+                children: [
+                  const SizedBox(height: vPaddingM),
+                  SizedBox(
+                    width: mediaWidth,
+                    child: Text(
+                      "${AppLocalizations.of(context)!.session} 4",
+                      textAlign: TextAlign.start,
+                    ),
+                  ),
+                  const SizedBox(height: vPaddingM),
+                  CustomTextFieldWithLabel(
+                    controller: startTime3,
+                    label: AppLocalizations.of(context)!.startTime,
+                    width: mediaWidth - 64,
+                    ontap: () {
+                      startTimePicker(4);
+                    },
+                    endWidget: const Text(
+                      "*",
+                      style: TextStyle(color: Colors.red),
+                    ),
+                  ),
+                  CustomTextFieldWithLabel(
+                    controller: endTime3,
+                    label: AppLocalizations.of(context)!.endTime,
+                    width: mediaWidth - 64,
+                    ontap: () {
+                      endTimePicker(4);
+                    },
+                    endWidget: const Text(
+                      "*",
+                      style: TextStyle(color: Colors.red),
+                    ),
+                  ),
+                ],
+              )
+            : Container(),
         CustomTextFieldWithLabel(
           controller: location,
           label: AppLocalizations.of(context)!.location,
@@ -234,6 +299,10 @@ class EhadirAddActivity extends StatelessWidget {
           width: mediaWidth - 64,
           minLines: 3,
           maxLines: 3,
+          endWidget: const Text(
+            "*",
+            style: TextStyle(color: Colors.red),
+          ),
         ),
         CustomButton(
           width: mediaWidth - 128,
@@ -242,6 +311,91 @@ class EhadirAddActivity extends StatelessWidget {
           },
           decoration: navyGradientBtnDeco,
           label: AppLocalizations.of(context)!.submit,
+        ),
+      ],
+    );
+  }
+
+  Widget _numberOfSessionField(
+    BuildContext context,
+    TextEditingController controller,
+  ) {
+    return Column(
+      children: [
+        CustomNoTrailingLabel(
+          label: AppLocalizations.of(context)!.noOfSessionPerDays,
+          fontSize: 15,
+          align: TextAlign.start,
+          width: mediaWidth - 64,
+          endWidget: const Text(
+            "*",
+            style: TextStyle(color: Colors.red),
+          ),
+        ),
+        const SizedBox(height: vPaddingS),
+        Padding(
+          padding: const EdgeInsets.all(4.0),
+          child: Container(
+            width: mediaWidth - 64,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              color: Colors.white,
+              border: Border.all(
+                color: Colors.grey.shade500,
+              ),
+            ),
+            child: Material(
+              color: Colors.white,
+              shadowColor: Colors.grey,
+              borderRadius: BorderRadius.circular(15),
+              elevation: 4.0,
+              child: Row(
+                children: [
+                  SizedBox(
+                    width: (mediaWidth - 64) / 4,
+                    child: TextButton(
+                      onPressed: () {
+                        addSession();
+                      },
+                      style: ButtonStyle(
+                        foregroundColor:
+                            MaterialStateProperty.all<Color>(Colors.black),
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(Colors.white),
+                      ),
+                      child: const Icon(Icons.remove),
+                    ),
+                  ),
+                  Expanded(
+                    child: TextField(
+                      controller: controller,
+                      textAlign: TextAlign.center,
+                      readOnly: true,
+                      decoration: const InputDecoration(
+                        fillColor: Colors.white,
+                        border: InputBorder.none,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: (mediaWidth - 64) / 4,
+                    child: TextButton(
+                      onPressed: () {
+                        removeSession();
+                      },
+                      style: ButtonStyle(
+                        foregroundColor:
+                            MaterialStateProperty.all<Color>(Colors.black),
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(Colors.white),
+                      ),
+                      child: const Icon(Icons.add),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
         ),
       ],
     );

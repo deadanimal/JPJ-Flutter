@@ -54,6 +54,7 @@ class _EhadirAddActivityController extends State<EhadirAddActivityController> {
     noOfDays = TextEditingController();
     date = TextEditingController();
     sessionPerDay = TextEditingController();
+    sessionPerDay.text = '1';
     startTime = TextEditingController();
     endTime = TextEditingController();
     startTime1 = TextEditingController();
@@ -124,6 +125,8 @@ class _EhadirAddActivityController extends State<EhadirAddActivityController> {
           datePicker: _pickDate,
           endTimePicker: _endTimePicker,
           startTimePicker: _startTimePicker,
+          addSession: _addSession,
+          removeSession: _removeSession,
         ),
         bottomNavigationBar: const BottomNavController(),
       ),
@@ -306,9 +309,6 @@ class _EhadirAddActivityController extends State<EhadirAddActivityController> {
         sessionPerDay.text.isNotEmpty &&
         startTime.text.isNotEmpty &&
         endTime.text.isNotEmpty &&
-        location.text.isNotEmpty &&
-        latitude.text.isNotEmpty &&
-        longitude.text.isNotEmpty &&
         agenda.text.isNotEmpty) {
       SiteConfig conf = SiteConfig();
       NewActivityReq req = NewActivityReq(
@@ -339,5 +339,21 @@ class _EhadirAddActivityController extends State<EhadirAddActivityController> {
         callback: _submitActivityCallback,
       );
     } else {}
+  }
+
+  _addSession() {
+    setState(() {
+      if (int.parse(sessionPerDay.text) > 1) {
+        sessionPerDay.text = (int.parse(sessionPerDay.text) - 1).toString();
+      }
+    });
+  }
+
+  _removeSession() {
+    setState(() {
+      if (int.parse(sessionPerDay.text) <= 3) {
+        sessionPerDay.text = (int.parse(sessionPerDay.text) + 1).toString();
+      }
+    });
   }
 }

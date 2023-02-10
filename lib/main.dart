@@ -3,9 +3,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter/services.dart';
-import 'package:jpj_info/config/site_config.dart';
-import 'package:jpj_info/controller/ehadir_comittee_page_controller.dart';
-import 'package:jpj_info/controller/http_request_controller.dart';
 import 'package:jpj_info/controller/landing_controller.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:jpj_info/helper/account_manager.dart';
@@ -106,7 +103,7 @@ class _MyJpjState extends State<MyJpj> {
       locale: locale,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      home: const EhadirComitteePageController(),
+      home: const LandingPageController(),
       builder: EasyLoading.init(),
     );
   }

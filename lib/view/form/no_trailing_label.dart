@@ -24,15 +24,20 @@ class CustomNoTrailingLabel extends StatelessWidget {
     return Container(
       width: width,
       alignment: Alignment.centerLeft,
-      child: Text(
-        label,
-        textAlign: align,
-        style: TextStyle(
-          color: const Color(themeNavy),
-          fontSize: fontSize,
-          fontFamily: "Roboto",
-          fontWeight: fontWeight,
-        ),
+      child: Row(
+        children: [
+          Text(
+            label,
+            textAlign: align,
+            style: TextStyle(
+              color: const Color(themeNavy),
+              fontSize: fontSize,
+              fontFamily: "Roboto",
+              fontWeight: fontWeight,
+            ),
+          ),
+          endWidget,
+        ],
       ),
     );
   }
