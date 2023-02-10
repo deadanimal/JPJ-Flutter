@@ -98,15 +98,20 @@ class EhadirMainPage extends StatelessWidget {
                 const SizedBox(
                   width: vPaddingXL,
                 ),
-                Text(
-                  label,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    color: Color(themeNavy),
-                    fontSize: 18,
-                    fontFamily: "Roboto",
-                    fontWeight: FontWeight.w600,
+                Expanded(
+                  child: Text(
+                    label,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      color: Color(themeNavy),
+                      fontSize: 18,
+                      fontFamily: "Roboto",
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
+                ),
+                const SizedBox(
+                  width: vPaddingXXL,
                 ),
               ],
             ),

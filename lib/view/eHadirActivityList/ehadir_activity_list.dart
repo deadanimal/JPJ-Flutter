@@ -28,21 +28,9 @@ class EhadirActivityList extends StatelessWidget {
         TemplateHeader(
           headerTitle: AppLocalizations.of(context)!.activityList,
           headerTitleFontSize: 48,
+          headerSubTitle: AppLocalizations.of(context)!.last10Activity,
         ),
         const SizedBox(height: vPaddingXL),
-        SizedBox(
-          width: mediaWidth - 64,
-          child: Text(
-            AppLocalizations.of(context)!.last10Activity,
-            textAlign: TextAlign.start,
-            style: const TextStyle(
-              color: Color(0xff171f44),
-              fontSize: 25,
-              fontFamily: "Roboto",
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-        ),
         Expanded(
           flex: 1,
           child: RefreshIndicator(
