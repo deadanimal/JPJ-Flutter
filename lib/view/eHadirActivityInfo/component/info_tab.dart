@@ -6,7 +6,7 @@ import 'package:jpj_info/model/page_size.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/common/spacing.dart';
 import 'package:jpj_info/view/summonsVerification/component/bordered_container.dart';
-import 'package:qr_flutter/qr_flutter.dart';
+import 'package:pretty_qr_code/pretty_qr_code.dart';
 
 class InfoTab extends StatelessWidget {
   const InfoTab({
@@ -51,10 +51,13 @@ class InfoTab extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: vPaddingXL),
-              QrImage(
+              PrettyQr(
+                image: const AssetImage("images/icon/jpjehadir.png"),
+                size: 200,
                 data: "1234567890",
-                version: QrVersions.auto,
-                size: 200.0,
+                errorCorrectLevel: QrErrorCorrectLevel.M,
+                roundEdges: true,
+                elementColor: const Color(themeNavy),
               ),
               const SizedBox(height: vPaddingXL),
               Text(

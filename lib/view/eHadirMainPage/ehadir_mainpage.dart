@@ -6,7 +6,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:jpj_info/view/common/spacing.dart';
 import 'package:jpj_info/view/form/custom_button.dart';
 import 'package:jpj_info/view/template/template_header.dart';
-import 'package:qr_flutter/qr_flutter.dart';
+import 'package:pretty_qr_code/pretty_qr_code.dart';
 
 class EhadirMainPage extends StatelessWidget {
   const EhadirMainPage({
@@ -98,7 +98,16 @@ class EhadirMainPage extends StatelessWidget {
                 const SizedBox(
                   width: vPaddingXL,
                 ),
-                Text(label),
+                Text(
+                  label,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    color: Color(themeNavy),
+                    fontSize: 18,
+                    fontFamily: "Roboto",
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
               ],
             ),
           ),
@@ -139,10 +148,13 @@ class EhadirMainPage extends StatelessWidget {
   }
 
   Widget _qrCode() {
-    return QrImage(
+    return PrettyQr(
+      image: const AssetImage("images/icon/jpjehadir.png"),
+      size: 150,
       data: qrData,
-      version: QrVersions.auto,
-      size: 150.0,
+      errorCorrectLevel: QrErrorCorrectLevel.M,
+      roundEdges: true,
+      elementColor: const Color(themeNavy),
     );
   }
 }

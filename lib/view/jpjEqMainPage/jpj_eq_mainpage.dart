@@ -5,7 +5,8 @@ import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:jpj_info/view/common/spacing.dart';
 import 'package:jpj_info/view/form/custom_button.dart';
-import 'package:qr_flutter/qr_flutter.dart';
+import 'package:pretty_qr_code/pretty_qr_code.dart';
+// import 'package:qr_flutter/qr_flutter.dart';
 
 class JpjEqMainPage extends StatelessWidget {
   const JpjEqMainPage({
@@ -86,10 +87,13 @@ class JpjEqMainPage extends StatelessWidget {
             fontWeight: FontWeight.w500,
           ),
         ),
-        QrImage(
+        PrettyQr(
+          // image: const AssetImage("images/icon/jpjehadir.png"),
+          size: 200,
           data: qrData,
-          version: QrVersions.auto,
-          size: 200.0,
+          errorCorrectLevel: QrErrorCorrectLevel.M,
+          roundEdges: true,
+          elementColor: const Color(themeNavy),
         ),
         const SizedBox(height: vPaddingM),
         Row(

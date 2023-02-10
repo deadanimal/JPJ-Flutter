@@ -29,6 +29,7 @@ class MyJPJAccountManager {
   late String postcode;
   late String lastLoggedIn;
   late String firstTime;
+  late String jsonInfo;
   List<String> vehicalRegNumber = [];
   String preferredLanguage = "en";
   bool isLoggedIn = false;
@@ -61,6 +62,8 @@ class MyJPJAccountManager {
       LoginResponse loginResponse = LoginResponse.fromJson(
         jsonDecode(userInfo!),
       );
+      jsonInfo =
+          '{"name":"${loginResponse.idmpuUserName!.trim()}","nric":"${loginResponse.idmpuUsrId!.trim()}","email":"${loginResponse.idmpuUserEmail!.trim()}"}';
       id = loginResponse.idmpuUsrId!.trim();
       // id = "001223011549";
       name = loginResponse.idmpuUserName!.trim();

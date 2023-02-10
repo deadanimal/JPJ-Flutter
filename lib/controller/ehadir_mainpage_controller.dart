@@ -50,7 +50,7 @@ class _EhadirMainPageController extends State<EhadirMainPageController> {
           decor: customGradient,
         ),
         body: EhadirMainPage(
-          qrData: MyJPJAccountManager().id,
+          qrData: MyJPJAccountManager().jsonInfo,
           staffName: "Test Name longTest Name longTest Name long",
           nric: "000000000000",
           scanQrBtnCallback: _scanQrBtnCallback,
