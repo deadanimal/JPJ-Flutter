@@ -102,7 +102,7 @@ class EhadirActivityInfo extends StatelessWidget {
       comittees.add(ComitteeInfo(
         el.id!,
         el.nama!,
-        el.namabahagian!,
+        el.namabahagian,
       ));
     }
     return SizedBox(

@@ -3,5 +3,5 @@ class ComitteeInfo {
 
   late int id;
   late String name;
-  late String department;
+  late String? department;
 }

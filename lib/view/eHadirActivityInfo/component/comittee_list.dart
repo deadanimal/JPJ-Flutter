@@ -46,7 +46,7 @@ class ComitteeList extends StatelessWidget {
             ElevatedButton(
               onPressed: () {},
               style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(themeNavy),
+                primary: const Color(themeNavy),
                 shape: const CircleBorder(),
                 padding: const EdgeInsets.all(19),
               ),

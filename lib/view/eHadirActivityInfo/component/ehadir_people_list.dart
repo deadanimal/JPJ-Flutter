@@ -44,7 +44,7 @@ class PeopleList extends StatelessWidget {
                 ),
               ),
               Text(
-                capitalize(info.department),
+                capitalize(info.department ?? ""),
                 style: const TextStyle(
                   color: Color(0xff171f44),
                   fontSize: 15,
