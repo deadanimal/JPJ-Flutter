@@ -193,7 +193,7 @@
     "erase": "Padam",
     "event": "Aktiviti",
     "welcomeTo": "Selamat Datang Ke",
-    "jpjEqTitle": "SISTEM NOMBOR GILIRAN &\nTEMUJANJU BERSEPADU JPJ\n(JPJeQ)",
+    "jpjEqTitle": "SISTEM NOMBOR GILIRAN TEMUJANJI & BERSEPADU JPJ (JPJeQ)",
     "getLocation": "Dapatkan Lokasi",
     "scanQrInPermittedTime":"Sila scan kod QR didalam waktu operasi yang dibenarkan",
     "start":"Mula",
@@ -295,5 +295,7 @@
     "splashscreenText":"Aplikasi Mudah Alih (SuperApps) Jabatan Pengangkutan Jalan Malaysia",
     "last10Activity":"10 aktiviti terkini:",
     "scan":"Imbas",
+    "nearestBranch":"Cawangan Terdekat",
+    "eqInfoMainPage":"Sila imbas kod QR di cawangan JPJ. Sebarang pertanyaan sila maklumkan kepada pegawai khidmat pelanggan yang bertugas.",
     "pleaseWait": "Sila Tunggu..."
 }

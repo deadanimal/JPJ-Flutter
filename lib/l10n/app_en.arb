@@ -193,7 +193,7 @@
     "erase": "Erase",
     "event": "Event",
     "welcomeTo": "Welcome To",
-    "jpjEqTitle": "JPJ INTEGRATED QUEUE NUMBERING SYSTEM &\nAPPOINTMENT(JPJeQ)",
+    "jpjEqTitle": "JPJ INTEGRATED QUEUE NUMBERING SYSTEM & APPOINTMENT(JPJeQ)",
     "getLocation": "Get Location",
     "scanQrInPermittedTime":"Please scan the QR code in the permitted operating hour",
     "start":"Start",
@@ -295,5 +295,7 @@
     "splashscreenText":"Mobile Application (SuperApps) Department of Road Transport Malaysia",
     "last10Activity":"10 last activity:",
     "scan":"Scan",
+    "nearestBranch":"Neerest Branch",
+    "eqInfoMainPage":"Please scan the QR code at the JPJ branch. Any questions please inform the customer service officer on duty.",
     "pleaseWait": "Please wait..."
 }
