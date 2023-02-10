@@ -203,6 +203,20 @@ flutter:
     - images/myjpj_logo_large_backup.png
     - images/icon/ehadir/ehadir_main_icon_activity.png
     - images/icon/ehadir/ehadir_main_icon_comitee.png
+    - images/jpjeq/animation_no.gif
+    - images/jpjeq/building.png
+    - images/jpjeq/complete.png
+    - images/jpjeq/flag-jpj.png
+    - images/jpjeq/logosmartq.png
+    - images/jpjeq/notify.png
+    - images/jpjeq/qr-code.png
+    - images/jpjeq/qr_code_animation.gif
+    - images/jpjeq/smartq.png
+    - images/jpjeq/bottom_nav_bar/information-circle.svg
+    - images/jpjeq/bottom_nav_bar/map.svg
+    - images/jpjeq/bottom_nav_bar/notifications.svg
+    - images/jpjeq/bottom_nav_bar/qr-code.svg
+    - images/jpjeq/bottom_nav_bar/ticket.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
