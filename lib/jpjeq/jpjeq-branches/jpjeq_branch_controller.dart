@@ -3,6 +3,9 @@ import 'package:jpj_info/jpjeq/common/navbar.dart';
 import 'package:jpj_info/jpjeq/jpjeq-branches/jpjeq_branch.dart';
 import 'dart:math' show cos, sqrt, asin;
 
+import 'package:jpj_info/jpjeq/jpjeq-branches/jpjeq_branch_popup.dart';
+import 'package:maps_launcher/maps_launcher.dart';
+
 class JpjEqBranchController extends StatefulWidget {
   const JpjEqBranchController({Key? key}) : super(key: key);
 
@@ -47,5 +50,24 @@ class _JpjEqBranchController extends State<JpjEqBranchController> {
     return 12742 * asin(sqrt(a));
   }
 
-  void _showBranchDetails(BuildContext context) {}
+  void _showBranchDetails(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) {
+          return JpjEqBranchPopup(
+            openMapFx: _openMap,
+          );
+        },
+      ),
+    );
+  }
+
+  void _openMap(String coordinate) {
+    final splitted = coordinate.split(',');
+    MapsLauncher.launchCoordinates(
+      double.parse(splitted[0]),
+      double.parse(splitted[1]),
+    );
+  }
 }
