@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:jpj_info/jpjeq/common/navbar.dart';
-import 'package:jpj_info/jpjeq/jpjeq-homepage/jpjeq_homepage.dart';
 import 'package:jpj_info/jpjeq/jpjeq-info/jpjeq_info.dart';
 
 class JpjEqInfoController extends StatefulWidget {
