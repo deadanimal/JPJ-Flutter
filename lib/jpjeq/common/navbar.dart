@@ -6,6 +6,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:jpj_info/jpjeq/jpjeq-branches/jpjeq_branch_controller.dart';
 import 'package:jpj_info/jpjeq/jpjeq-homepage/jpjeq_homepage_controller.dart';
 import 'package:jpj_info/jpjeq/jpjeq-info/jpjeq_info_controller.dart';
+import 'package:jpj_info/jpjeq/jpjeq-notification/jpjeq_notification_controller.dart';
 
 class JpjEqBottomNavController extends StatefulWidget {
   const JpjEqBottomNavController({
@@ -60,7 +61,7 @@ class _JpjEqBottomNavController extends State<JpjEqBottomNavController> {
     List<Widget> jpjEqPages = [
       const JpjEqHomepageController(),
       const JpjEqBranchController(),
-      const JpjEqHomepageController(),
+      const JpjEqNotificationController(),
       const JpjEqHomepageController(),
       const JpjEqInfoController(),
     ];
