@@ -156,7 +156,7 @@ class InboxManager {
     );
 
     Future.delayed(
-      const Duration(milliseconds: 5000),
+      const Duration(milliseconds: 60000),
       _checkNewMessage,
     );
   }

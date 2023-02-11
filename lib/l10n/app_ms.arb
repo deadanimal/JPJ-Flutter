@@ -297,5 +297,8 @@
     "scan":"Imbas",
     "nearestBranch":"Cawangan Terdekat",
     "eqInfoMainPage":"Sila imbas kod QR di cawangan JPJ. Sebarang pertanyaan sila maklumkan kepada pegawai khidmat pelanggan yang bertugas.",
+    "appInfo":"Info Applikasi",
+    "appInfoBody":"PENTING!!!!\nSila pastikan tetapan lokasi telah dipasang sebelum menggunakan aplikasi ini",
+    "version":"Versi: 8.0.0",
     "pleaseWait": "Sila Tunggu..."
 }

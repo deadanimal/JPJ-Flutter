@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:jpj_info/jpjeq/common/navbar.dart';
 import 'package:jpj_info/jpjeq/jpjeq-homepage/jpjeq_homepage.dart';
+import 'package:jpj_info/jpjeq/jpjeq-info/jpjeq_info.dart';
 
-class JpjEqHomepageController extends StatefulWidget {
-  const JpjEqHomepageController({Key? key}) : super(key: key);
+class JpjEqInfoController extends StatefulWidget {
+  const JpjEqInfoController({Key? key}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _JpjEqHomepageController();
+  State<StatefulWidget> createState() => _JpjEqInfoController();
 }
 
-class _JpjEqHomepageController extends State<JpjEqHomepageController> {
+class _JpjEqInfoController extends State<JpjEqInfoController> {
   @override
   void initState() {
     super.initState();
@@ -24,8 +25,8 @@ class _JpjEqHomepageController extends State<JpjEqHomepageController> {
   Widget build(BuildContext context) {
     return const SafeArea(
       child: Scaffold(
-        body: JpjEqHomepage(),
-        bottomNavigationBar: JpjEqBottomNavController(),
+        body: JpjEqInfo(),
+        bottomNavigationBar: JpjEqBottomNavController(pageNumber: 4),
       ),
     );
   }

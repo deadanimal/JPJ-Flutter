@@ -3,6 +3,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:jpj_info/controller/administrative_menu_controller.dart';
 import 'package:jpj_info/jpjeq/common/view/theme.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:jpj_info/jpjeq/jpjeq-homepage/jpjeq_homepage_controller.dart';
+import 'package:jpj_info/jpjeq/jpjeq-info/jpjeq_info_controller.dart';
 
 class JpjEqBottomNavController extends StatefulWidget {
   const JpjEqBottomNavController({
@@ -54,6 +56,21 @@ class _JpjEqBottomNavController extends State<JpjEqBottomNavController> {
   }
 
   void _navCallback(int index, BuildContext context) {
+    List<Widget> jpjEqPages = [
+      const JpjEqHomepageController(),
+      const JpjEqHomepageController(),
+      const JpjEqHomepageController(),
+      const JpjEqHomepageController(),
+      const JpjEqInfoController(),
+    ];
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) {
+          return jpjEqPages[index];
+        },
+      ),
+    );
     // callbackList[index](context);
   }
 
