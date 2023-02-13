@@ -6,7 +6,14 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:jpj_info/view/common/rounded_corner_container.dart';
 
 class JpjEqHomepage extends StatelessWidget {
-  const JpjEqHomepage({Key? key}) : super(key: key);
+  const JpjEqHomepage({
+    Key? key,
+    required this.getLocation,
+    required this.scanBtnCallback,
+  }) : super(key: key);
+
+  final Function getLocation;
+  final Function scanBtnCallback;
 
   @override
   Widget build(BuildContext context) {
@@ -135,7 +142,9 @@ class JpjEqHomepage extends StatelessWidget {
             ),
             const SizedBox(height: 12),
             InkWell(
-              onTap: () {},
+              onTap: () {
+                getLocation();
+              },
               child: Container(
                 width: 200,
                 decoration: BoxDecoration(
@@ -174,24 +183,29 @@ class JpjEqHomepage extends StatelessWidget {
   }
 
   Widget _scanButton(BuildContext context) {
-    return Container(
-      width: mediaWidth - 128,
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.all(
-          Radius.circular(24),
+    return InkWell(
+      onTap: () {
+        scanBtnCallback();
+      },
+      child: Container(
+        width: mediaWidth - 128,
+        decoration: const BoxDecoration(
+          borderRadius: BorderRadius.all(
+            Radius.circular(24),
+          ),
+          color: Color(eqThemeNavy),
         ),
-        color: Color(eqThemeNavy),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: Text(
-          AppLocalizations.of(context)!.scanQrCode,
-          textAlign: TextAlign.center,
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 18,
-            fontFamily: "Roboto",
-            fontWeight: FontWeight.w500,
+        child: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Text(
+            AppLocalizations.of(context)!.scanQrCode,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+              fontFamily: "Roboto",
+              fontWeight: FontWeight.w500,
+            ),
           ),
         ),
       ),

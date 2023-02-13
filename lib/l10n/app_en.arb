@@ -302,5 +302,6 @@
     "version":"Version: 8.0.0",
     "queueCounter":"Counter",
     "callTime":"Call Time",
+    "branchCode":"Branch Code",
     "pleaseWait": "Please wait..."
 }

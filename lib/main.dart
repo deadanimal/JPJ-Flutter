@@ -6,6 +6,9 @@ import 'package:flutter/services.dart';
 import 'package:jpj_info/controller/landing_controller.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:jpj_info/helper/account_manager.dart';
+import 'package:jpj_info/jpjeq/jpjeq-homepage/jpjeq_homepage.dart';
+import 'package:jpj_info/jpjeq/jpjeq-homepage/jpjeq_homepage_controller.dart';
+import 'package:jpj_info/jpjeq/jpjeq-homepage/jpjeq_wrong_operating_hour.dart';
 import 'package:jpj_info/jpjeq/jpjeq-notification/jpjeq_notification_controller.dart';
 import 'package:jpj_info/jpjeq/jpjeq-transaction/jpjeq_transaction_controller.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
@@ -105,7 +108,11 @@ class _MyJpjState extends State<MyJpj> {
       locale: locale,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      home: const JpjEqTransactionController(),
+      home: const JpjEqWrongOperatingHour(
+        branchCode: "-",
+        endTime: "16:10:00",
+        startTime: "08:10:00",
+      ),
       builder: EasyLoading.init(),
     );
   }
