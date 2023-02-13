@@ -303,5 +303,6 @@
     "queueCounter":"Kaunter",
     "callTime":"Masa Panggil",
     "branchCode":"Kod Cawangan",
+    "pleaseProceedToCounter":"Sila ke kaunter",
     "pleaseWait": "Sila Tunggu..."
 }

@@ -303,5 +303,6 @@
     "queueCounter":"Counter",
     "callTime":"Call Time",
     "branchCode":"Branch Code",
+    "pleaseProceedToCounter":"please proceed to counter",
     "pleaseWait": "Please wait..."
 }
