@@ -32,6 +32,7 @@ import 'package:jpj_info/controller/test_result_controller.dart';
 import 'package:jpj_info/controller/tnc_controller.dart';
 import 'package:jpj_info/controller/transaction_history_controller.dart';
 import 'package:jpj_info/controller/vehicle_list_controller.dart';
+import 'package:jpj_info/jpjeq/jpjeq-homepage/jpjeq_homepage_controller.dart';
 import 'package:jpj_info/model/ehadir/activity_list_res.dart';
 
 void licensePage(BuildContext context) {
@@ -222,12 +223,20 @@ void transactionHistoryPage(BuildContext context) {
 }
 
 Future<void> jpjEqMenuPage(BuildContext context) async {
-  await LaunchApp.openApp(
-    androidPackageName: SiteConfig().jpjEqPlayStoreid,
-    iosUrlScheme: 'jpjeq://',
-    appStoreLink:
-        'itms-apps://apps.apple.com/us/app/jpjeq/${SiteConfig().jpjEqAppStoreid}',
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) {
+        return const JpjEqHomepageController();
+      },
+    ),
   );
+  // await LaunchApp.openApp(
+  //   androidPackageName: SiteConfig().jpjEqPlayStoreid,
+  //   iosUrlScheme: 'jpjeq://',
+  //   appStoreLink:
+  //       'itms-apps://apps.apple.com/us/app/jpjeq/${SiteConfig().jpjEqAppStoreid}',
+  // );
 }
 
 void eAduanMenuPage(BuildContext context) {
