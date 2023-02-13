@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:jpj_info/controller/administrative_menu_controller.dart';
 import 'package:jpj_info/jpjeq/common/view/theme.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:jpj_info/jpjeq/jpjeq-branches/jpjeq_branch_controller.dart';
@@ -19,7 +18,6 @@ class JpjEqBottomNavController extends StatefulWidget {
 }
 
 class _JpjEqBottomNavController extends State<JpjEqBottomNavController> {
-  late List<void Function(BuildContext)> callbackList;
   late List<BottomNavigationBarItem> menuList;
   int notificationCount = 0;
 
@@ -35,7 +33,6 @@ class _JpjEqBottomNavController extends State<JpjEqBottomNavController> {
 
   @override
   Widget build(BuildContext context) {
-    _initCallback();
     _initMenuList(context);
     Color bgColor = const Color(eqBottomNav);
     Color textColor = Colors.white;
@@ -65,34 +62,16 @@ class _JpjEqBottomNavController extends State<JpjEqBottomNavController> {
       const JpjEqHomepageController(),
       const JpjEqInfoController(),
     ];
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-        builder: (context) {
-          return jpjEqPages[index];
-        },
-      ),
-    );
-    // callbackList[index](context);
-  }
-
-  void _profileNavigation(BuildContext context) {
-    if (widget.pageNumber == 3) {
+    if (index != widget.pageNumber) {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
           builder: (context) {
-            return const AdministrativeMenuController();
+            return jpjEqPages[index];
           },
         ),
       );
     }
-  }
-
-  void _initCallback() {
-    callbackList = [
-      _profileNavigation,
-    ];
   }
 
   BottomNavigationBarItem _navBarItem({

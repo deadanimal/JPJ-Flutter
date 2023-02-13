@@ -12,10 +12,16 @@ class JpjEqHomepage extends StatelessWidget {
   Widget build(BuildContext context) {
     mediaWidth = (MediaQuery.of(context).size.width);
     mediaHeight = (MediaQuery.of(context).size.height);
-    return ListView(
+    return Column(
       children: [
         const EqHeader(),
-        _body(context),
+        Expanded(
+          child: ListView(
+            children: [
+              _body(context),
+            ],
+          ),
+        ),
       ],
     );
   }
