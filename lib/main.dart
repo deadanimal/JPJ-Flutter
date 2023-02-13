@@ -1,16 +1,9 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter/services.dart';
-import 'package:jpj_info/controller/landing_controller.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:jpj_info/helper/account_manager.dart';
-import 'package:jpj_info/jpjeq/jpjeq-homepage/jpjeq_homepage.dart';
 import 'package:jpj_info/jpjeq/jpjeq-homepage/jpjeq_homepage_controller.dart';
-import 'package:jpj_info/jpjeq/jpjeq-homepage/jpjeq_wrong_operating_hour.dart';
-import 'package:jpj_info/jpjeq/jpjeq-notification/jpjeq_notification_controller.dart';
-import 'package:jpj_info/jpjeq/jpjeq-transaction/jpjeq_transaction_controller.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 // import 'package:jpj_info/helper/local_notification.dart';
 // import 'package:jpj_info/model/inbox_request.dart';
@@ -108,11 +101,7 @@ class _MyJpjState extends State<MyJpj> {
       locale: locale,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      home: const JpjEqWrongOperatingHour(
-        branchCode: "-",
-        endTime: "16:10:00",
-        startTime: "08:10:00",
-      ),
+      home: const JpjEqHomepageController(),
       builder: EasyLoading.init(),
     );
   }

@@ -64,21 +64,26 @@ class JpjEqWrongOperatingHour extends StatelessWidget {
   }
 
   Widget _infoText(BuildContext context) {
-    return Column(
-      children: [
-        Text(
-          AppLocalizations.of(context)!.scanQrInPermittedTime,
-          style: const TextStyle(
-            fontWeight: FontWeight.w600,
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        children: [
+          Text(
+            AppLocalizations.of(context)!.scanQrInPermittedTime,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontWeight: FontWeight.w600,
+            ),
           ),
-        ),
-        Text(
-          "${AppLocalizations.of(context)!.branchCode} $branchCode",
-          style: const TextStyle(
-            fontWeight: FontWeight.w600,
+          Text(
+            "${AppLocalizations.of(context)!.branchCode} $branchCode",
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontWeight: FontWeight.w600,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
