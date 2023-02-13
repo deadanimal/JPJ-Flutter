@@ -300,5 +300,7 @@
     "appInfo":"App Info",
     "appInfoBody":"IMPORTANT!!!!\nPlease make sure location settings are allowed before using this app",
     "version":"Version: 8.0.0",
+    "queueCounter":"Counter",
+    "callTime":"Call Time",
     "pleaseWait": "Please wait..."
 }

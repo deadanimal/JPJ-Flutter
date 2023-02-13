@@ -300,5 +300,7 @@
     "appInfo":"Info Applikasi",
     "appInfoBody":"PENTING!!!!\nSila pastikan tetapan lokasi telah dipasang sebelum menggunakan aplikasi ini",
     "version":"Versi: 8.0.0",
+    "queueCounter":"Kaunter",
+    "callTime":"Masa Panggil",
     "pleaseWait": "Sila Tunggu..."
 }
