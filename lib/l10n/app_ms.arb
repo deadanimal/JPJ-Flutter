@@ -198,7 +198,7 @@
     "scanQrInPermittedTime":"Sila scan kod QR didalam waktu operasi yang dibenarkan",
     "start":"Mula",
     "end":"Tamat",
-    "chooseServiceInfo":"Sila pilih Kategori Perkhidmatan.\nPastikan perkhidmatan yang diperlukan terdapat dalam kumpulan tersebut.\nRujuk staf JPJ jika memerlukan maklumat lebih lanjut.",
+    "chooseServiceInfo":"Sila pilih Kategori Perkhidmatan. Pastikan perkhidmatan yang diperlukan terdapat dalam kumpulan tersebut. Rujuk staf JPJ jika memerlukan maklumat lebih lanjut.",
     "hours":"Jam",
     "minutes":"Minit",
     "seconds":"Saat",

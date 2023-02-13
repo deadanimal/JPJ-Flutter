@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jpj_info/jpjeq/common/view/theme.dart';
+import 'package:jpj_info/jpjeq/jpjeq-homepage/jpjeq_choose_service.dart';
 import 'package:jpj_info/model/page_size.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:jpj_info/view/common/rounded_corner_container.dart';
@@ -170,6 +171,21 @@ class JpjEqWrongOperatingHour extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: InkWell(
+        //todo: onTap should just pop navigator
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) {
+                return JpjEqChooseService(
+                  dropdownList: ['PELBAGAI', 'SERVICE 1', 'SERVICE 2'],
+                  selectionChange: (s) {},
+                  submitCallback: (s) {},
+                );
+              },
+            ),
+          );
+        },
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),

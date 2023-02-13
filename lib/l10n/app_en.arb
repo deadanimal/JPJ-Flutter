@@ -198,7 +198,7 @@
     "scanQrInPermittedTime":"Please scan the QR code in the permitted operating hour",
     "start":"Start",
     "end":"End",
-    "chooseServiceInfo":"Please Choose Service Category.\nMake Sure The Service You Need Is In The Category.\nRefer Staff For Further Assistance.",
+    "chooseServiceInfo":"Please Choose Service Category. Make Sure The Service You Need Is In The Category. Refer Staff For Further Assistance.",
     "hours":"Hours",
     "minutes":"Minutes",
     "seconds":"Seconds",
