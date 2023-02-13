@@ -6,6 +6,7 @@ import 'package:jpj_info/helper/account_manager.dart';
 import 'package:jpj_info/jpjeq/jpjeq-homepage/jpjeq_choose_service.dart';
 import 'package:jpj_info/jpjeq/jpjeq-homepage/jpjeq_homepage_controller.dart';
 import 'package:jpj_info/jpjeq/jpjeq-number-called/jpjeq_number_call_controller.dart';
+import 'package:jpj_info/jpjeq/jpjeq-number-queue/jpjeq_number_queue_controller.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 // import 'package:jpj_info/helper/local_notification.dart';
 // import 'package:jpj_info/model/inbox_request.dart';
@@ -103,7 +104,7 @@ class _MyJpjState extends State<MyJpj> {
       locale: locale,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      home: JpjEqNumberCallController(),
+      home: JpjEqNumberQueueController(),
       builder: EasyLoading.init(),
     );
   }

@@ -304,5 +304,6 @@
     "callTime":"Call Time",
     "branchCode":"Branch Code",
     "pleaseProceedToCounter":"please proceed to counter",
+    "yourQNumber":"Your Turn Number",
     "pleaseWait": "Please wait..."
 }
