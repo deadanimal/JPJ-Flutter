@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:jpj_info/helper/geolocation.dart';
 import 'package:jpj_info/jpjeq/common/navbar.dart';
 import 'package:jpj_info/jpjeq/jpjeq-branches/jpjeq_branch.dart';
 import 'dart:math' show cos, sqrt, asin;
@@ -18,6 +20,10 @@ class _JpjEqBranchController extends State<JpjEqBranchController> {
   @override
   void initState() {
     super.initState();
+    Future.delayed(
+      const Duration(milliseconds: 250),
+      getUserLocation,
+    );
   }
 
   @override
@@ -69,5 +75,13 @@ class _JpjEqBranchController extends State<JpjEqBranchController> {
       double.parse(splitted[0]),
       double.parse(splitted[1]),
     );
+  }
+
+  Future<void> getUserLocation() async {
+    Position userLocation = await Geolocation().determinePosition();
+    setState(() {
+      currentLong = userLocation.longitude;
+      currentLat = userLocation.latitude;
+    });
   }
 }
