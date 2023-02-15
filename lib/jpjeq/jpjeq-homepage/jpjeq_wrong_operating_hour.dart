@@ -21,17 +21,21 @@ class JpjEqWrongOperatingHour extends StatelessWidget {
   Widget build(BuildContext context) {
     mediaWidth = (MediaQuery.of(context).size.width);
     mediaHeight = (MediaQuery.of(context).size.height);
-    return Padding(
-      padding: const EdgeInsets.only(top: 8.0),
-      child: Column(
-        children: [
-          _topIcon(context),
-          const SizedBox(height: 48),
-          _image(context),
-          _infoText(context),
-          _operationHour(context),
-          _backButton(context),
-        ],
+    return SafeArea(
+      child: Scaffold(
+        body: Padding(
+          padding: const EdgeInsets.only(top: 8.0),
+          child: Column(
+            children: [
+              _topIcon(context),
+              const SizedBox(height: 48),
+              _image(context),
+              _infoText(context),
+              _operationHour(context),
+              _backButton(context),
+            ],
+          ),
+        ),
       ),
     );
   }

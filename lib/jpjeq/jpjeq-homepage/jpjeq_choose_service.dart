@@ -20,18 +20,22 @@ class JpjEqChooseService extends StatelessWidget {
   Widget build(BuildContext context) {
     mediaWidth = (MediaQuery.of(context).size.width);
     mediaHeight = (MediaQuery.of(context).size.height);
-    return Padding(
-      padding: const EdgeInsets.only(top: 8.0),
-      child: Column(
-        children: [
-          _topIcon(context),
-          const SizedBox(height: 48),
-          _info(context),
-          const SizedBox(height: 48),
-          _serviceDropdown(context),
-          const SizedBox(height: 24),
-          _submitButton(context),
-        ],
+    return SafeArea(
+      child: Scaffold(
+        body: Padding(
+          padding: const EdgeInsets.only(top: 8.0),
+          child: Column(
+            children: [
+              _topIcon(context),
+              const SizedBox(height: 48),
+              _info(context),
+              const SizedBox(height: 48),
+              _serviceDropdown(context),
+              const SizedBox(height: 24),
+              _submitButton(context),
+            ],
+          ),
+        ),
       ),
     );
   }
