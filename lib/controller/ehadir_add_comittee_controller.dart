@@ -80,6 +80,7 @@ class _EhadirAddComitteeController extends State<EhadirAddComitteeController> {
                   AppLocalizations.of(context)!.successfullySaved,
                 ), () {
               Navigator.pop(context);
+              Navigator.pop(context);
             });
           } else {
             List<String> errString = response.message!.split("|");

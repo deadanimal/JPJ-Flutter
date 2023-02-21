@@ -147,7 +147,9 @@ class EhadirComitteePage extends StatelessWidget {
                               ),
                               const SizedBox(height: vPaddingS),
                               Text(
-                                capitalize(event.lokasi!),
+                                event.lokasi == null
+                                    ? ""
+                                    : capitalize(event.lokasi!),
                                 textAlign: TextAlign.start,
                                 style: const TextStyle(
                                   color: Color(0xff2e2e2e),

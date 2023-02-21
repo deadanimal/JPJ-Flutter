@@ -5,6 +5,7 @@ import 'package:jpj_info/config/site_config.dart';
 import 'package:jpj_info/controller/alert_controller.dart';
 import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/controller/bottom_nav_controller.dart';
+import 'package:jpj_info/controller/ehadir_add_comittee_controller.dart';
 import 'package:jpj_info/controller/http_request_controller.dart';
 import 'package:jpj_info/helper/qr_scanner.dart';
 import 'package:jpj_info/model/ehadir/activity_list_res.dart';
@@ -67,6 +68,7 @@ class _EhadirActivityInfoDetailsController
           qrScanCallback: _scanQrBtnCallback,
           event: widget.event,
           comitteeList: comitteeList,
+          addMemberFx: addMemberFx,
         ),
         bottomNavigationBar: const BottomNavController(),
       ),
@@ -114,5 +116,23 @@ class _EhadirActivityInfoDetailsController
       body: jsonEncode(req.toJson()),
       callback: _committeeListCallback,
     );
+  }
+
+  addMemberFx(
+    BuildContext context,
+    int activityId,
+    String transidAktiviti,
+  ) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) {
+          return EhadirAddComitteeController(
+            activityId: activityId,
+            transidAktiviti: transidAktiviti,
+          );
+        },
+      ),
+    ).then((value) => {_getComitteeList(widget.event.id!)});
   }
 }

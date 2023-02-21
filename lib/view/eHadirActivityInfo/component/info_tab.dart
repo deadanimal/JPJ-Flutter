@@ -61,7 +61,7 @@ class InfoTab extends StatelessWidget {
               ),
               const SizedBox(height: vPaddingXL),
               Text(
-                "${capitalize(event.user!.nama!)}\n${capitalize(event.lokasi!)}\n${_parseDateString(event.tarikhMula ?? "")}\nSESI 1 ${event.masaSesi![0].masaMula ?? ""} - ${event.masaSesi![0].masaTamat ?? ""}",
+                "${event.user != null ? capitalize(event.user!) : ""}\n${event.lokasi == null ? "" : capitalize(event.lokasi!)}\n${_parseDateString(event.tarikhMula ?? "")}\n${_getEventSessions()}",
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   color: Colors.black,
@@ -88,6 +88,17 @@ class InfoTab extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  String _getEventSessions() {
+    String retVal = '';
+    if (event.masaSesi != null) {
+      for (int i = 0; i < event.masaSesi!.length; i++) {
+        retVal +=
+            'SESI ${i + 1}: ${event.masaSesi![i].masaMula!}-${event.masaSesi![i].masaTamat!}\n';
+      }
+    }
+    return retVal;
   }
 
   String _parseDateString(String raw) {

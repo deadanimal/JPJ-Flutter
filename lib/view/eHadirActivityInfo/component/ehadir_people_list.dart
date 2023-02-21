@@ -37,7 +37,9 @@ class PeopleList extends StatelessWidget {
             children: [
               FittedBox(
                 child: Text(
-                  capitalize(info.name.trim()),
+                  info.name.trim() != ''
+                      ? capitalize(info.name.trim())
+                      : 'No Name',
                   style: const TextStyle(
                     fontSize: 15,
                     color: Color(0xff171f44),
@@ -46,7 +48,9 @@ class PeopleList extends StatelessWidget {
                 ),
               ),
               Text(
-                info.department != null ? capitalize(info.department!) : "",
+                info.department != null
+                    ? capitalize(info.department!)
+                    : "No Department Info",
                 style: const TextStyle(
                   color: Color(0xff171f44),
                   fontSize: 15,

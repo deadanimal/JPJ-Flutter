@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:jpj_info/controller/menu_action.dart';
 import 'package:jpj_info/model/ehadir_comittee_info.dart';
 import 'package:jpj_info/model/page_size.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
@@ -13,10 +12,12 @@ class ComitteeList extends StatelessWidget {
     required this.comitteeList,
     required this.activityId,
     required this.transidAktiviti,
+    required this.addMemberFx,
   }) : super(key: key);
   final List<ComitteeInfo> comitteeList;
   final int activityId;
   final String transidAktiviti;
+  final Function(BuildContext, int, String) addMemberFx;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +37,7 @@ class ComitteeList extends StatelessWidget {
       width: mediaWidth - 64,
       constraints: const BoxConstraints(maxWidth: 400),
       child: InkWell(
-        onTap: () => eHadirAddComitteePage(
+        onTap: () => addMemberFx(
           context,
           activityId,
           transidAktiviti,
@@ -44,7 +45,7 @@ class ComitteeList extends StatelessWidget {
         child: Row(
           children: [
             ElevatedButton(
-              onPressed: () => eHadirAddComitteePage(
+              onPressed: () => addMemberFx(
                 context,
                 activityId,
                 transidAktiviti,
