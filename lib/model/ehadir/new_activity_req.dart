@@ -9,8 +9,8 @@ class NewActivityReq {
   String? tarikhTamat;
   String? latitude;
   String? longitude;
-  String? masaMula;
-  String? masaTamat;
+  String? masaMula4;
+  String? masaTamat4;
   String? masaMula1;
   String? masaTamat1;
   String? masaMula2;
@@ -30,8 +30,8 @@ class NewActivityReq {
     this.tarikhTamat,
     this.latitude,
     this.longitude,
-    this.masaMula,
-    this.masaTamat,
+    this.masaMula4,
+    this.masaTamat4,
     this.masaMula1,
     this.masaTamat1,
     this.masaMula2,
@@ -52,8 +52,8 @@ class NewActivityReq {
     tarikhTamat = json['tarikh_tamat'];
     latitude = json['latitude'];
     longitude = json['longitude'];
-    masaMula = json['masa_mula'];
-    masaTamat = json['masa_tamat'];
+    masaMula4 = json['masa_mula4'];
+    masaTamat4 = json['masa_tamat4'];
     masaMula1 = json['masa_mula1'];
     masaTamat1 = json['masa_tamat1'];
     masaMula2 = json['masa_mula2'];
@@ -74,8 +74,8 @@ class NewActivityReq {
     data['tarikh_tamat'] = tarikhTamat;
     data['latitude'] = latitude;
     data['longitude'] = longitude;
-    data['masa_mula'] = masaMula;
-    data['masa_tamat'] = masaTamat;
+    data['masa_mula4'] = masaMula4;
+    data['masa_tamat4'] = masaTamat4;
     data['masa_mula1'] = masaMula1;
     data['masa_tamat1'] = masaTamat1;
     data['masa_mula2'] = masaMula2;

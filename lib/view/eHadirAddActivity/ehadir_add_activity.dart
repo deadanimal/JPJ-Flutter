@@ -5,7 +5,6 @@ import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/common/spacing.dart';
 import 'package:jpj_info/view/form/custom_button.dart';
 import 'package:jpj_info/view/form/no_trailing_label.dart';
-import 'package:jpj_info/view/form/text_field.dart';
 import 'package:jpj_info/view/form/text_field_with_label.dart';
 import 'package:jpj_info/view/template/template_header.dart';
 
@@ -111,7 +110,6 @@ class EhadirAddActivity extends StatelessWidget {
           controller: noOfDays,
           label: AppLocalizations.of(context)!.noOfDays,
           width: mediaWidth - 64,
-          ontap: datePicker,
           endWidget: const Text(
             "*",
             style: TextStyle(color: Colors.red),

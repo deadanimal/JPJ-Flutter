@@ -5,6 +5,7 @@ import 'package:jpj_info/config/site_config.dart';
 import 'package:jpj_info/controller/alert_controller.dart';
 import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/controller/bottom_nav_controller.dart';
+import 'package:jpj_info/controller/ehadir_add_activity_controller.dart';
 import 'package:jpj_info/controller/http_request_controller.dart';
 import 'package:jpj_info/controller/menu_action.dart';
 import 'package:jpj_info/controller/prompt_controller.dart';
@@ -59,7 +60,7 @@ class _EhadirComitteePageController
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            ehadirAddActivityPage(context);
+            ehadirAddActivityPage();
           },
           backgroundColor: const Color(themeNavy),
           child: const Icon(Icons.add),
@@ -67,6 +68,17 @@ class _EhadirComitteePageController
         bottomNavigationBar: const BottomNavController(),
       ),
     );
+  }
+
+  ehadirAddActivityPage() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) {
+          return const EhadirAddActivityController();
+        },
+      ),
+    ).then((value) => {_checkForActivity()});
   }
 
   void _refreshMsgList(http.Response response) {
