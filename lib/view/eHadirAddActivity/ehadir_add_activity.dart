@@ -33,6 +33,7 @@ class EhadirAddActivity extends StatelessWidget {
     required this.endTimePicker,
     required this.addSession,
     required this.removeSession,
+    required this.title,
   }) : super(key: key);
   final Function(BuildContext) submitCallback;
   final TextEditingController activityName;
@@ -56,6 +57,7 @@ class EhadirAddActivity extends StatelessWidget {
   final Function(int) endTimePicker;
   final Function() addSession;
   final Function() removeSession;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +68,7 @@ class EhadirAddActivity extends StatelessWidget {
         child: Column(
           children: [
             TemplateHeader(
-              headerTitle: AppLocalizations.of(context)!.newActivity,
+              headerTitle: title,
               headerTitleFontSize: 48,
             ),
             const SizedBox(height: vPaddingM),

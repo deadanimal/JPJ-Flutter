@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jpj_info/model/ehadir_comittee_info.dart';
+import 'package:jpj_info/model/ehadir_basic_user_info.dart';
 import 'package:jpj_info/model/page_size.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -14,7 +14,7 @@ class ComitteeList extends StatelessWidget {
     required this.transidAktiviti,
     required this.addMemberFx,
   }) : super(key: key);
-  final List<ComitteeInfo> comitteeList;
+  final List<BasicUserInfo> comitteeList;
   final int activityId;
   final String transidAktiviti;
   final Function(BuildContext, int, String) addMemberFx;

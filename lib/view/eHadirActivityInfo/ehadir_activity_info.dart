@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jpj_info/model/ehadir/activity_list_res.dart';
 import 'package:jpj_info/model/ehadir/comittee_list_res.dart';
-import 'package:jpj_info/model/ehadir_comittee_info.dart';
+import 'package:jpj_info/model/ehadir_basic_user_info.dart';
 import 'package:jpj_info/model/page_size.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/common/spacing.dart';
@@ -19,12 +19,16 @@ class EhadirActivityInfo extends StatelessWidget {
     required this.event,
     required this.comitteeList,
     required this.addMemberFx,
+    required this.refreshFx,
+    required this.attendeeList,
   }) : super(key: key);
   final TabController tabController;
   final Function qrScanCallback;
   final Aktiviti event;
   final List<ComitteeListRes> comitteeList;
+  final List<BasicUserInfo> attendeeList;
   final Function(BuildContext, int, String) addMemberFx;
+  final Function() refreshFx;
 
   @override
   Widget build(BuildContext context) {
@@ -99,9 +103,9 @@ class EhadirActivityInfo extends StatelessWidget {
   }
 
   Widget _tabView(BuildContext context) {
-    List<ComitteeInfo> comittees = [];
+    List<BasicUserInfo> comittees = [];
     for (var el in comitteeList) {
-      comittees.add(ComitteeInfo(
+      comittees.add(BasicUserInfo(
         el.id!,
         el.nama!,
         el.namabahagian,
@@ -112,7 +116,10 @@ class EhadirActivityInfo extends StatelessWidget {
       child: TabBarView(
         controller: tabController,
         children: [
-          InfoTab(event: event),
+          InfoTab(
+            event: event,
+            refreshFx: refreshFx,
+          ),
           ComitteeList(
             activityId: event.id!,
             comitteeList: comittees,
@@ -123,11 +130,7 @@ class EhadirActivityInfo extends StatelessWidget {
             qrScanCallback: qrScanCallback,
             activityId: event.id!,
             transidAktiviti: event.transidAktiviti!,
-            comitteeList: [
-              ComitteeInfo(1, "name1", "department3"),
-              ComitteeInfo(1, "name2", "department2"),
-              ComitteeInfo(1, "name3", "department1"),
-            ],
+            attendeeList: attendeeList,
           ),
         ],
       ),

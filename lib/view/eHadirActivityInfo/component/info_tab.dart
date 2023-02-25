@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jpj_info/controller/menu_action.dart';
+import 'package:jpj_info/controller/ehadir_add_activity_controller.dart';
 import 'package:jpj_info/helper/string_helper.dart';
 import 'package:jpj_info/model/ehadir/activity_list_res.dart';
 import 'package:jpj_info/model/page_size.dart';
@@ -12,8 +12,10 @@ class InfoTab extends StatelessWidget {
   const InfoTab({
     Key? key,
     required this.event,
+    required this.refreshFx,
   }) : super(key: key);
   final Aktiviti event;
+  final Function() refreshFx;
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +63,7 @@ class InfoTab extends StatelessWidget {
               ),
               const SizedBox(height: vPaddingXL),
               Text(
-                "${event.user != null ? capitalize(event.user!) : ""}\n${event.lokasi == null ? "" : capitalize(event.lokasi!)}\n${_parseDateString(event.tarikhMula ?? "")}\n${_getEventSessions()}",
+                "${event.user != null ? capitalize(event.user!.nama!) : ""}\n${event.lokasi == null ? "" : capitalize(event.lokasi!)}\n${_parseDateString(event.tarikhMula ?? "")}\n${_getEventSessions()}",
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   color: Colors.black,
@@ -75,7 +77,15 @@ class InfoTab extends StatelessWidget {
                     padding: const EdgeInsets.all(8.0),
                     child: FloatingActionButton(
                       onPressed: () {
-                        eHadirEditActivityPage(context, event.id!);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return EhadirAddActivityController(
+                                  activityId: event.id!);
+                            },
+                          ),
+                        ).then((value) => {refreshFx()});
                       },
                       backgroundColor: const Color(themeNavy),
                       child: const Icon(Icons.edit),

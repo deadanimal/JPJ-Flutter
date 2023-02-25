@@ -29,8 +29,11 @@ class Aktiviti {
   String? tarikhTamat;
   List<MasaSesi>? masaSesi;
   String? lokasi;
+  String? keterangan;
+  String? longitude;
+  String? latitude;
   String? urusetia;
-  String? user;
+  User? user;
 
   Aktiviti({
     this.id,
@@ -41,6 +44,9 @@ class Aktiviti {
     this.masaSesi,
     this.lokasi,
     this.urusetia,
+    this.keterangan,
+    this.longitude,
+    this.latitude,
     this.user,
   });
 
@@ -50,17 +56,18 @@ class Aktiviti {
     namaAktiviti = json['nama_aktiviti'];
     tarikhMula = json['tarikh_mula'];
     tarikhTamat = json['tarikh_tamat'];
+    keterangan = json['keterangan'];
+    longitude = json['longitude'];
+    latitude = json['latitude'];
     if (json['masa_sesi'] != null) {
       masaSesi = <MasaSesi>[];
-      if (json['masa_sesi'] != "tiada") {
-        json['masa_sesi'].forEach((v) {
-          masaSesi!.add(MasaSesi.fromJson(v));
-        });
-      }
+      json['masa_sesi'].forEach((v) {
+        masaSesi!.add(MasaSesi.fromJson(v));
+      });
     }
     lokasi = json['lokasi'];
     urusetia = json['urusetia'];
-    user = json['user'];
+    user = json['user'] != null ? User.fromJson(json['user']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -70,12 +77,17 @@ class Aktiviti {
     data['nama_aktiviti'] = namaAktiviti;
     data['tarikh_mula'] = tarikhMula;
     data['tarikh_tamat'] = tarikhTamat;
+    data['longitude'] = longitude;
+    data['latitude'] = latitude;
+    data['keterangan'] = keterangan;
     if (masaSesi != null) {
       data['masa_sesi'] = masaSesi!.map((v) => v.toJson()).toList();
     }
     data['lokasi'] = lokasi;
     data['urusetia'] = urusetia;
-    data['user'] = user;
+    if (user != null) {
+      data['user'] = user!.toJson();
+    }
     return data;
   }
 }
@@ -98,6 +110,92 @@ class MasaSesi {
     data['sesi'] = sesi;
     data['masa_mula'] = masaMula;
     data['masa_tamat'] = masaTamat;
+    return data;
+  }
+}
+
+class User {
+  int? id;
+  String? username;
+  String? nama;
+  String? nokp;
+  String? alamat;
+  String? negeri;
+  String? email;
+  String? emailVerifiedAt;
+  String? telefon;
+  String? statusLogin;
+  String? role;
+  String? hqStatus;
+  String? branchId;
+  String? playerId;
+  String? createdAt;
+  String? updatedAt;
+  String? namabahagian;
+  String? refNo;
+
+  User({
+    this.id,
+    this.username,
+    this.nama,
+    this.nokp,
+    this.alamat,
+    this.negeri,
+    this.email,
+    this.emailVerifiedAt,
+    this.telefon,
+    this.statusLogin,
+    this.role,
+    this.hqStatus,
+    this.branchId,
+    this.playerId,
+    this.createdAt,
+    this.updatedAt,
+    this.namabahagian,
+    this.refNo,
+  });
+
+  User.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    username = json['username'];
+    nama = json['nama'];
+    nokp = json['nokp'];
+    alamat = json['alamat'];
+    negeri = json['negeri'];
+    email = json['email'];
+    emailVerifiedAt = json['email_verified_at'];
+    telefon = json['telefon'];
+    statusLogin = json['status_login'];
+    role = json['role'];
+    hqStatus = json['hq_status'];
+    branchId = json['branch_id'];
+    playerId = json['player_id'];
+    createdAt = json['created_at'];
+    updatedAt = json['updated_at'];
+    namabahagian = json['namabahagian'];
+    refNo = json['ref_no'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['username'] = username;
+    data['nama'] = nama;
+    data['nokp'] = nokp;
+    data['alamat'] = alamat;
+    data['negeri'] = negeri;
+    data['email'] = email;
+    data['email_verified_at'] = emailVerifiedAt;
+    data['telefon'] = telefon;
+    data['status_login'] = statusLogin;
+    data['role'] = role;
+    data['hq_status'] = hqStatus;
+    data['branch_id'] = branchId;
+    data['player_id'] = playerId;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
+    data['namabahagian'] = namabahagian;
+    data['ref_no'] = refNo;
     return data;
   }
 }

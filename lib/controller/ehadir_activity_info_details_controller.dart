@@ -11,6 +11,7 @@ import 'package:jpj_info/helper/qr_scanner.dart';
 import 'package:jpj_info/model/ehadir/activity_list_res.dart';
 import 'package:jpj_info/model/ehadir/comittee_list_req.dart';
 import 'package:jpj_info/model/ehadir/comittee_list_res.dart';
+import 'package:jpj_info/model/ehadir_basic_user_info.dart';
 import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
 import 'package:jpj_info/view/eHadirActivityInfo/ehadir_activity_info.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
@@ -33,10 +34,13 @@ class _EhadirActivityInfoDetailsController
     with TickerProviderStateMixin {
   late TabController tabController;
   late List<ComitteeListRes> comitteeList;
+  late List<BasicUserInfo> attendeeList = [];
+  late Aktiviti currentActivity = widget.event;
   @override
   void initState() {
     super.initState();
     comitteeList = [];
+    attendeeList = [];
     tabController = TabController(
       initialIndex: 0,
       length: 3,
@@ -45,7 +49,8 @@ class _EhadirActivityInfoDetailsController
     Future.delayed(
       const Duration(milliseconds: 250),
       () {
-        _getComitteeList(widget.event.id!);
+        _getAttendeeList();
+        _getComitteeList(currentActivity.id!);
       },
     );
   }
@@ -66,9 +71,11 @@ class _EhadirActivityInfoDetailsController
         body: EhadirActivityInfo(
           tabController: tabController,
           qrScanCallback: _scanQrBtnCallback,
-          event: widget.event,
+          event: currentActivity,
           comitteeList: comitteeList,
           addMemberFx: addMemberFx,
+          refreshFx: _getActivity,
+          attendeeList: attendeeList,
         ),
         bottomNavigationBar: const BottomNavController(),
       ),
@@ -134,5 +141,55 @@ class _EhadirActivityInfoDetailsController
         },
       ),
     ).then((value) => {_getComitteeList(widget.event.id!)});
+  }
+
+  _getActivity() {
+    SiteConfig conf = SiteConfig();
+    jpjHttpRequest(
+      context,
+      Uri.parse(conf.eHadirActivityById),
+      headers: conf.formHeader,
+      body: jsonEncode({
+        'id': currentActivity.id,
+      }),
+      callback: (res) {
+        if (res.statusCode == 200) {
+          ActivityListRes response =
+              ActivityListRes.fromJson(jsonDecode(res.body));
+          setState(() {
+            currentActivity = response.aktiviti![0];
+          });
+        }
+      },
+    );
+  }
+
+  _getAttendeeList() {
+    SiteConfig conf = SiteConfig();
+    jpjHttpRequest(
+      context,
+      Uri.parse(conf.eHadirAttendee),
+      headers: conf.formHeader,
+      body: jsonEncode({
+        'id': currentActivity.id,
+      }),
+      callback: (res) {
+        if (res.statusCode == 200) {
+          setState(() {
+            attendeeList = [];
+            for (var el in jsonDecode(res.body)) {
+              User user = User.fromJson(jsonDecode(el));
+              attendeeList.add(
+                BasicUserInfo(
+                  user.id!,
+                  user.nama!,
+                  user.namabahagian!,
+                ),
+              );
+            }
+          });
+        }
+      },
+    );
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jpj_info/helper/string_helper.dart';
-import 'package:jpj_info/model/ehadir_comittee_info.dart';
+import 'package:jpj_info/model/ehadir_basic_user_info.dart';
 import 'package:jpj_info/view/common/spacing.dart';
 import 'package:jpj_info/view/summonsVerification/component/bordered_container.dart';
 
@@ -9,7 +9,7 @@ class PeopleList extends StatelessWidget {
     Key? key,
     required this.comitteeList,
   }) : super(key: key);
-  final List<ComitteeInfo> comitteeList;
+  final List<BasicUserInfo> comitteeList;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class PeopleList extends StatelessWidget {
     );
   }
 
-  Widget _comitteeInfo(BuildContext context, ComitteeInfo info) {
+  Widget _comitteeInfo(BuildContext context, BasicUserInfo info) {
     return CustomBorderedContainer(
       topPadding: verticalPadding,
       width: double.infinity,

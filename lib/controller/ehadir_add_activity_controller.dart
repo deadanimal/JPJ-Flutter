@@ -9,7 +9,7 @@ import 'package:jpj_info/controller/bottom_nav_controller.dart';
 import 'package:jpj_info/controller/http_request_controller.dart';
 import 'package:jpj_info/helper/account_manager.dart';
 import 'package:jpj_info/helper/string_helper.dart';
-import 'package:jpj_info/model/ehadir/activity_by_id_res.dart';
+import 'package:jpj_info/model/ehadir/activity_list_res.dart';
 import 'package:jpj_info/model/ehadir/new_activity_req.dart';
 import 'package:jpj_info/model/ehadir/new_activity_res.dart';
 import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
@@ -127,6 +127,9 @@ class _EhadirAddActivityController extends State<EhadirAddActivityController> {
           startTimePicker: _startTimePicker,
           addSession: _addSession,
           removeSession: _removeSession,
+          title: widget.activityId == null
+              ? AppLocalizations.of(context)!.newActivity
+              : AppLocalizations.of(context)!.editActivity,
         ),
         bottomNavigationBar: const BottomNavController(),
       ),
@@ -229,24 +232,48 @@ class _EhadirAddActivityController extends State<EhadirAddActivityController> {
 
   void _getActivity() {
     SiteConfig conf = SiteConfig();
-    jpjHttpGetRequest(
+    jpjHttpRequest(
       context,
-      Uri.parse(conf.eHadirActivityById + widget.activityId.toString()),
+      Uri.parse(conf.eHadirActivityById),
       headers: conf.formHeader,
+      body: jsonEncode({
+        'id': widget.activityId,
+      }),
       callback: (res) {
         if (res.statusCode == 200) {
-          ActivityByIdRes response =
-              ActivityByIdRes.fromJson(jsonDecode(res.body));
-          activityName.text = response.namaAktiviti ?? "";
-          noOfDays.text = response.bilanganHari!.toString();
-          date.text = response.tarikhMula ?? "";
-          sessionPerDay.text = response.bilanganSesi!.toString();
-          startTime.text = response.masaMula ?? "";
-          endTime.text = response.masaTamat ?? "";
-          location.text = response.lokasi ?? "";
-          latitude.text = response.latitude ?? "";
-          longitude.text = response.longitude ?? "";
-          agenda.text = response.keterangan ?? "";
+          ActivityListRes response =
+              ActivityListRes.fromJson(jsonDecode(res.body));
+          activityName.text = response.aktiviti![0].namaAktiviti ?? "";
+          noOfDays.text = '1';
+          date.text = response.aktiviti![0].tarikhMula ?? "";
+          sessionPerDay.text =
+              response.aktiviti![0].masaSesi!.length.toString();
+          for (int i = 0; i < response.aktiviti![0].masaSesi!.length; i++) {
+            String tempStartTime;
+            String tempEndTime;
+            tempStartTime =
+                response.aktiviti![0].masaSesi![i].masaMula.toString();
+            tempEndTime =
+                response.aktiviti![0].masaSesi![i].masaTamat.toString();
+            if (i == 0) {
+              startTime.text = tempStartTime;
+              endTime.text = tempEndTime;
+            } else if (i == 1) {
+              startTime1.text = tempStartTime;
+              endTime1.text = tempEndTime;
+            } else if (i == 2) {
+              startTime2.text = tempStartTime;
+              endTime2.text = tempEndTime;
+            } else {
+              startTime3.text = tempStartTime;
+              endTime3.text = tempEndTime;
+            }
+          }
+          location.text = response.aktiviti![0].lokasi ?? "";
+          latitude.text = response.aktiviti![0].latitude ?? "";
+          longitude.text = response.aktiviti![0].longitude ?? "";
+          agenda.text = response.aktiviti![0].keterangan ?? "";
+          setState(() {});
         } else {
           AlertController(ctx: context).generalError(
             AppLocalizations.of(context)!.errorPleaseTryAgain,
@@ -266,9 +293,6 @@ class _EhadirAddActivityController extends State<EhadirAddActivityController> {
         sessionPerDay.text.isNotEmpty &&
         startTime.text.isNotEmpty &&
         endTime.text.isNotEmpty &&
-        location.text.isNotEmpty &&
-        latitude.text.isNotEmpty &&
-        longitude.text.isNotEmpty &&
         agenda.text.isNotEmpty) {
       SiteConfig conf = SiteConfig();
       NewActivityReq req = NewActivityReq(
@@ -281,14 +305,14 @@ class _EhadirAddActivityController extends State<EhadirAddActivityController> {
         tarikhMula: date.text,
         latitude: latitude.text,
         longitude: longitude.text,
-        masaMula4: startTime.text,
-        masaTamat4: endTime.text,
-        masaMula1: startTime1.text,
-        masaTamat1: endTime1.text,
-        masaMula2: startTime2.text,
-        masaTamat2: endTime2.text,
-        masaMula3: startTime3.text,
-        masaTamat3: endTime3.text,
+        masaMula1: startTime.text,
+        masaTamat1: endTime.text,
+        masaMula2: startTime1.text,
+        masaTamat2: endTime1.text,
+        masaMula3: startTime2.text,
+        masaTamat3: endTime2.text,
+        masaMula4: startTime3.text,
+        masaTamat4: endTime3.text,
         idAktiviti: widget.activityId,
       );
 

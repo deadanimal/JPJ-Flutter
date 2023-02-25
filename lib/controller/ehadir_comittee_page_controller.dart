@@ -131,13 +131,16 @@ class _EhadirComitteePageController
 
   void _confirmErase(Aktiviti event) {
     SiteConfig conf = SiteConfig();
-    jpjHttpDeleteRequest(
+
+    jpjHttpRequest(
       context,
-      Uri.parse(conf.eHadirRemoveComittee + event.id.toString()),
+      Uri.parse(conf.eHadirRemoveComittee),
       headers: conf.formHeader,
+      body: jsonEncode({
+        "id": event.id,
+      }),
       callback: (res) {
         setState(() {
-          // events.remove(event);
           _checkForActivity();
         });
       },

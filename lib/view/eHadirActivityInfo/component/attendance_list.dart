@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jpj_info/controller/menu_action.dart';
-import 'package:jpj_info/model/ehadir_comittee_info.dart';
+import 'package:jpj_info/model/ehadir_basic_user_info.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/common/spacing.dart';
 import 'package:jpj_info/view/eHadirActivityInfo/component/ehadir_people_list.dart';
@@ -9,12 +9,12 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class AttendanceList extends StatelessWidget {
   const AttendanceList({
     Key? key,
-    required this.comitteeList,
+    required this.attendeeList,
     required this.qrScanCallback,
     required this.activityId,
     required this.transidAktiviti,
   }) : super(key: key);
-  final List<ComitteeInfo> comitteeList;
+  final List<BasicUserInfo> attendeeList;
   final Function qrScanCallback;
   final int activityId;
   final String transidAktiviti;
@@ -24,7 +24,7 @@ class AttendanceList extends StatelessWidget {
     return Column(
       children: [
         _addAttendanceBtn(context),
-        PeopleList(comitteeList: comitteeList),
+        PeopleList(comitteeList: attendeeList),
       ],
     );
   }
