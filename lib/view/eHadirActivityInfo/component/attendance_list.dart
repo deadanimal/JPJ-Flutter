@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:jpj_info/controller/menu_action.dart';
 import 'package:jpj_info/model/ehadir_basic_user_info.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/common/spacing.dart';
@@ -13,11 +12,13 @@ class AttendanceList extends StatelessWidget {
     required this.qrScanCallback,
     required this.activityId,
     required this.transidAktiviti,
+    required this.addAttendeeManual,
   }) : super(key: key);
   final List<BasicUserInfo> attendeeList;
   final Function qrScanCallback;
   final int activityId;
   final String transidAktiviti;
+  final Function() addAttendeeManual;
 
   @override
   Widget build(BuildContext context) {
@@ -46,11 +47,14 @@ class AttendanceList extends StatelessWidget {
           child: _addBtn(
             context,
             AppLocalizations.of(context)!.manualRegistration,
-            () => eHadirManualRegisterPage(
-              context,
-              activityId,
-              transidAktiviti,
-            ),
+            // () => eHadirManualRegisterPage(
+            //   context,
+            //   activityId,
+            //   transidAktiviti,
+            // ),
+            () {
+              addAttendeeManual();
+            },
             const AssetImage("images/icon/ehadir_manual_register_icon.png"),
           ),
         ),

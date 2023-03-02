@@ -1,6 +1,7 @@
 class ManualRegisterReq {
   String? nokp;
   int? idAktiviti;
+  String? userId;
   String? jenis;
   String? transidAktiviti;
   String? transidSesi;
@@ -11,6 +12,7 @@ class ManualRegisterReq {
     this.idAktiviti,
     this.transidAktiviti,
     this.transidSesi,
+    this.userId,
   });
 
   ManualRegisterReq.fromJson(Map<String, dynamic> json) {
@@ -19,6 +21,7 @@ class ManualRegisterReq {
     jenis = json['jenis'];
     transidAktiviti = json['transid_aktiviti'];
     nokp = json['nokp'];
+    userId = json['user_id'];
   }
 
   Map<String, dynamic> toJson() {
@@ -28,6 +31,7 @@ class ManualRegisterReq {
     data['nokp'] = nokp;
     data['transid_aktiviti'] = transidAktiviti;
     data['transid_sesi'] = transidSesi;
+    data['user_id'] = userId;
     return data;
   }
 }

@@ -6,11 +6,14 @@ import 'package:jpj_info/controller/alert_controller.dart';
 import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/controller/bottom_nav_controller.dart';
 import 'package:jpj_info/controller/http_request_controller.dart';
-import 'package:jpj_info/model/ehadir/activity_by_id_res.dart';
+import 'package:jpj_info/helper/account_manager.dart';
+import 'package:jpj_info/model/ehadir/activity_list_res.dart';
+import 'package:jpj_info/model/ehadir/add_comittee_res.dart';
 import 'package:jpj_info/model/ehadir/manual_register_req.dart';
 import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
 import 'package:jpj_info/view/eHadirManualRegister/ehadir_manual_register.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:jpj_info/helper/string_helper.dart';
 
 class EhadirManualRegistrationController extends StatefulWidget {
   const EhadirManualRegistrationController({
@@ -28,13 +31,13 @@ class EhadirManualRegistrationController extends StatefulWidget {
 class _EhadirManualRegistrationController
     extends State<EhadirManualRegistrationController> {
   late TextEditingController staffNric;
-  late ActivityByIdRes activityInfo;
+  late Aktiviti activityInfo;
 
   @override
   void initState() {
     super.initState();
     staffNric = TextEditingController();
-    activityInfo = ActivityByIdRes();
+    activityInfo = Aktiviti();
     Future.delayed(
       const Duration(milliseconds: 250),
       _getActivity,
@@ -65,13 +68,13 @@ class _EhadirManualRegistrationController
 
   void _submitCallback(BuildContext context) {
     // todo: add processing of input to update comittee list
-    // print(staffNric.text);
     SiteConfig conf = SiteConfig();
     ManualRegisterReq req = ManualRegisterReq(
       idAktiviti: widget.activityId,
       nokp: staffNric.text,
       transidAktiviti: widget.transidAktiviti,
-      transidSesi: activityInfo.transidSesi,
+      transidSesi: activityInfo.transidAktiviti,
+      userId: MyJPJAccountManager().id,
       // jenis: activityInfo
     );
     return jpjHttpRequest(
@@ -81,33 +84,32 @@ class _EhadirManualRegistrationController
       body: jsonEncode(req.toJson()),
       callback: (res) {
         if (res.statusCode == 200) {
-          print(res.body);
-          // AddComitteeRes response =
-          //     AddComitteeRes.fromJson(jsonDecode(res.body));
-          // if (response.kod == 0) {
-          //   AlertController(ctx: context).generalError(
-          //       capitalize(
-          //         AppLocalizations.of(context)!.successfullySaved,
-          //       ), () {
-          //     Navigator.pop(context);
-          //   });
-          // } else {
-          //   List<String> errString = response.message!.split("|");
-          //   String err;
-          //   if (errString.length == 1) {
-          //     err = errString[0];
-          //   } else if (AppLocalizations.of(context)!.localeName == "ms") {
-          //     err = errString[0];
-          //   } else {
-          //     err = errString[1];
-          //   }
-          //   AlertController(ctx: context).generalError(
-          //     err,
-          //     () {
-          //       Navigator.pop(context);
-          //     },
-          //   );
-          // }
+          AddComitteeRes response =
+              AddComitteeRes.fromJson(jsonDecode(res.body));
+          if (response.kod == 0) {
+            AlertController(ctx: context).generalError(
+                capitalize(
+                  AppLocalizations.of(context)!.successfullySaved,
+                ), () {
+              Navigator.pop(context);
+            });
+          } else {
+            List<String> errString = response.message!.split("|");
+            String err;
+            if (errString.length == 1) {
+              err = errString[0];
+            } else if (AppLocalizations.of(context)!.localeName == "ms") {
+              err = errString[0];
+            } else {
+              err = errString[1];
+            }
+            AlertController(ctx: context).generalError(
+              err,
+              () {
+                Navigator.pop(context);
+              },
+            );
+          }
         } else {
           AlertController(ctx: context).generalError(
             AppLocalizations.of(context)!.errorPleaseTryAgain,
@@ -122,20 +124,22 @@ class _EhadirManualRegistrationController
 
   void _getActivity() {
     SiteConfig conf = SiteConfig();
-    jpjHttpGetRequest(
+
+    jpjHttpRequest(
       context,
-      Uri.parse(conf.eHadirActivityById + widget.activityId.toString()),
+      Uri.parse(conf.eHadirActivityById),
       headers: conf.formHeader,
+      body: jsonEncode({
+        'id': widget.activityId.toString(),
+      }),
       callback: (res) {
         if (res.statusCode == 200) {
-          activityInfo = ActivityByIdRes.fromJson(jsonDecode(res.body));
-        } else {
-          AlertController(ctx: context).generalError(
-            AppLocalizations.of(context)!.errorPleaseTryAgain,
-            () {
-              Navigator.pop(context);
-            },
-          );
+          ActivityListRes response =
+              ActivityListRes.fromJson(jsonDecode(res.body));
+          activityInfo = response.aktiviti![0];
+          setState(() {
+            activityInfo = response.aktiviti![0];
+          });
         }
       },
     );

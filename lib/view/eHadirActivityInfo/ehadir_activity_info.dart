@@ -21,6 +21,7 @@ class EhadirActivityInfo extends StatelessWidget {
     required this.addMemberFx,
     required this.refreshFx,
     required this.attendeeList,
+    required this.addAttendeeManual,
   }) : super(key: key);
   final TabController tabController;
   final Function qrScanCallback;
@@ -29,6 +30,7 @@ class EhadirActivityInfo extends StatelessWidget {
   final List<BasicUserInfo> attendeeList;
   final Function(BuildContext, int, String) addMemberFx;
   final Function() refreshFx;
+  final Function() addAttendeeManual;
 
   @override
   Widget build(BuildContext context) {
@@ -131,6 +133,7 @@ class EhadirActivityInfo extends StatelessWidget {
             activityId: event.id!,
             transidAktiviti: event.transidAktiviti!,
             attendeeList: attendeeList,
+            addAttendeeManual: addAttendeeManual,
           ),
         ],
       ),

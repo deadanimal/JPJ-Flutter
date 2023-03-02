@@ -6,6 +6,7 @@ import 'package:jpj_info/controller/alert_controller.dart';
 import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/controller/bottom_nav_controller.dart';
 import 'package:jpj_info/controller/ehadir_add_comittee_controller.dart';
+import 'package:jpj_info/controller/ehadir_manual_registration.dart';
 import 'package:jpj_info/controller/http_request_controller.dart';
 import 'package:jpj_info/helper/qr_scanner.dart';
 import 'package:jpj_info/model/ehadir/activity_list_res.dart';
@@ -76,6 +77,7 @@ class _EhadirActivityInfoDetailsController
           addMemberFx: addMemberFx,
           refreshFx: _getActivity,
           attendeeList: attendeeList,
+          addAttendeeManual: addAttendeeManual,
         ),
         bottomNavigationBar: const BottomNavController(),
       ),
@@ -191,5 +193,19 @@ class _EhadirActivityInfoDetailsController
         }
       },
     );
+  }
+
+  addAttendeeManual() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) {
+          return EhadirManualRegistrationController(
+            activityId: currentActivity.id!,
+            transidAktiviti: currentActivity.transidAktiviti!,
+          );
+        },
+      ),
+    ).then((value) => {_getAttendeeList()});
   }
 }
