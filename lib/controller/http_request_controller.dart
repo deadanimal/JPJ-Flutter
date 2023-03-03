@@ -21,6 +21,7 @@ void jpjHttpRequest(
       }
     },
   ).onError((error, stackTrace) {
+    print(error);
     AlertController(ctx: context).connectionError();
   }).timeout(
     const Duration(seconds: 60),

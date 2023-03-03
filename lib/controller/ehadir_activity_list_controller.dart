@@ -61,6 +61,7 @@ class _EhadirActivityListController
 
   void _refreshMsgList(http.Response response) {
     if (response.statusCode == 200) {
+      print(response.body);
       List<AttendingActivityListRes> res = [];
       for (var el in jsonDecode(response.body)) {
         res.add(AttendingActivityListRes.fromJson(el));

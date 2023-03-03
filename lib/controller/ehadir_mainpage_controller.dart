@@ -4,11 +4,13 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:jpj_info/config/site_config.dart';
 import 'package:jpj_info/controller/alert_controller.dart';
 import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/controller/bottom_nav_controller.dart';
 import 'package:jpj_info/controller/ehadir_activity_list_controller.dart';
 import 'package:jpj_info/controller/ehadir_comittee_page_controller.dart';
+import 'package:jpj_info/controller/http_request_controller.dart';
 import 'package:jpj_info/helper/account_manager.dart';
 import 'package:jpj_info/helper/qr_scanner.dart';
 import 'package:jpj_info/model/ehadir_event_info.dart';
@@ -30,9 +32,14 @@ class EhadirMainPageController extends StatefulWidget {
 class _EhadirMainPageController extends State<EhadirMainPageController> {
   late ImagePicker picker;
   late List<Uint8List> images;
+  String qrData = '';
   @override
   void initState() {
     super.initState();
+    Future.delayed(
+      const Duration(milliseconds: 250),
+      _generateQr,
+    );
     picker = ImagePicker();
     images = [];
   }
@@ -50,7 +57,7 @@ class _EhadirMainPageController extends State<EhadirMainPageController> {
           decor: customGradient,
         ),
         body: EhadirMainPage(
-          qrData: MyJPJAccountManager().jsonInfo,
+          qrData: qrData,
           staffName: "Test Name longTest Name longTest Name long",
           nric: "000000000000",
           scanQrBtnCallback: _scanQrBtnCallback,
@@ -129,5 +136,26 @@ class _EhadirMainPageController extends State<EhadirMainPageController> {
         },
       );
     }
+  }
+
+  _generateQr() {
+    // qrData
+    SiteConfig conf = SiteConfig();
+
+    jpjHttpRequest(
+      context,
+      Uri.parse(conf.eHadirAttendeeQr),
+      headers: conf.formHeader,
+      body: jsonEncode({
+        'nokp': MyJPJAccountManager().id,
+      }),
+      callback: (res) {
+        if (res.statusCode == 200) {
+          setState(() {
+            qrData = res.body;
+          });
+        }
+      },
+    );
   }
 }

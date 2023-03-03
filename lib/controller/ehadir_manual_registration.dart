@@ -92,6 +92,7 @@ class _EhadirManualRegistrationController
                   AppLocalizations.of(context)!.successfullySaved,
                 ), () {
               Navigator.pop(context);
+              Navigator.pop(context);
             });
           } else {
             List<String> errString = response.message!.split("|");
@@ -106,6 +107,7 @@ class _EhadirManualRegistrationController
             AlertController(ctx: context).generalError(
               err,
               () {
+                Navigator.pop(context);
                 Navigator.pop(context);
               },
             );

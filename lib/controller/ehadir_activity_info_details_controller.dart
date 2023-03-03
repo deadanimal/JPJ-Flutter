@@ -8,15 +8,22 @@ import 'package:jpj_info/controller/bottom_nav_controller.dart';
 import 'package:jpj_info/controller/ehadir_add_comittee_controller.dart';
 import 'package:jpj_info/controller/ehadir_manual_registration.dart';
 import 'package:jpj_info/controller/http_request_controller.dart';
+import 'package:jpj_info/helper/account_manager.dart';
 import 'package:jpj_info/helper/qr_scanner.dart';
+import 'package:jpj_info/helper/string_helper.dart';
 import 'package:jpj_info/model/ehadir/activity_list_res.dart';
+import 'package:jpj_info/model/ehadir/add_comittee_res.dart';
+import 'package:jpj_info/model/ehadir/attendee_response.dart';
 import 'package:jpj_info/model/ehadir/comittee_list_req.dart';
 import 'package:jpj_info/model/ehadir/comittee_list_res.dart';
+import 'package:jpj_info/model/ehadir/manual_register_req.dart';
+import 'package:jpj_info/model/ehadir/qr_code_format.dart';
 import 'package:jpj_info/model/ehadir_basic_user_info.dart';
 import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
 import 'package:jpj_info/view/eHadirActivityInfo/ehadir_activity_info.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:http/http.dart' as http;
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class EhadirActivityInfoDetailsController extends StatefulWidget {
   const EhadirActivityInfoDetailsController({
@@ -98,7 +105,78 @@ class _EhadirActivityInfoDetailsController
   }
 
   void _qrScanCallback(Barcode barcode) {
-    Navigator.pop(context);
+    String? rawQRCode = barcode.rawValue;
+    if (rawQRCode != null) {
+      Navigator.pop(context);
+      try {
+        QrCodeFormat qr = QrCodeFormat.fromJson(jsonDecode(rawQRCode));
+        SiteConfig conf = SiteConfig();
+        ManualRegisterReq req = ManualRegisterReq(
+          idAktiviti: currentActivity.id,
+          nokp: qr.nokp,
+          transidAktiviti: currentActivity.transidAktiviti,
+          transidSesi: currentActivity.transidAktiviti,
+          userId: MyJPJAccountManager().id,
+          // jenis: activityInfo
+        );
+        return jpjHttpRequest(
+          context,
+          Uri.parse(conf.eHadirManualRegister),
+          headers: conf.formHeader,
+          body: jsonEncode(req.toJson()),
+          callback: (res) {
+            if (res.statusCode == 200) {
+              AddComitteeRes response =
+                  AddComitteeRes.fromJson(jsonDecode(res.body));
+              if (response.kod == 0) {
+                AlertController(ctx: context).generalError(
+                    capitalize(
+                      AppLocalizations.of(context)!.successfullySaved,
+                    ), () {
+                  Navigator.pop(context);
+                  _getAttendeeList();
+                });
+              } else {
+                List<String> errString = response.message!.split("|");
+                String err;
+                if (errString.length == 1) {
+                  err = errString[0];
+                } else if (AppLocalizations.of(context)!.localeName == "ms") {
+                  err = errString[0];
+                } else {
+                  err = errString[1];
+                }
+                AlertController(ctx: context).generalError(
+                  err,
+                  () {
+                    Navigator.pop(context);
+                    _getAttendeeList();
+                  },
+                );
+              }
+            } else {
+              AlertController(ctx: context).generalError(
+                AppLocalizations.of(context)!.errorPleaseTryAgain,
+                () {
+                  Navigator.pop(context);
+                  _getAttendeeList();
+                },
+              );
+            }
+          },
+        );
+      } catch (e) {
+        // Navigator.pop(context);
+        AlertController(ctx: context).generalError('Error', () {
+          Navigator.pop(context);
+        });
+      }
+    } else {
+      Navigator.pop(context);
+      AlertController(ctx: context).generalError('Error', () {
+        Navigator.pop(context);
+      });
+    }
   }
 
   void _committeeListCallback(http.Response response) {
@@ -173,19 +251,19 @@ class _EhadirActivityInfoDetailsController
       Uri.parse(conf.eHadirAttendee),
       headers: conf.formHeader,
       body: jsonEncode({
-        'id': currentActivity.id,
+        'id_aktiviti': currentActivity.id,
       }),
       callback: (res) {
         if (res.statusCode == 200) {
           setState(() {
             attendeeList = [];
             for (var el in jsonDecode(res.body)) {
-              User user = User.fromJson(jsonDecode(el));
+              AttendeeResponse user = AttendeeResponse.fromJson((el));
               attendeeList.add(
                 BasicUserInfo(
-                  user.id!,
-                  user.nama!,
-                  user.namabahagian!,
+                  user.id ?? 0,
+                  user.nama ?? '',
+                  user.namabahagian ?? 'No Info',
                 ),
               );
             }
