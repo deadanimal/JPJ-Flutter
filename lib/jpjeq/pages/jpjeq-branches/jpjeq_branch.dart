@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jpj_info/jpjeq/common/view/theme.dart';
+import 'package:jpj_info/jpjeq/model/jpjeq_nearby_branches_response.dart';
 import 'package:jpj_info/model/page_size.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:jpj_info/view/common/rounded_corner_container.dart';
@@ -9,10 +10,12 @@ class JpjEqBranch extends StatelessWidget {
     Key? key,
     required this.showBranchDetails,
     required this.calculateDistanceFx,
+    required this.branchList,
   }) : super(key: key);
 
   final Function(BuildContext) showBranchDetails;
   final double Function(String) calculateDistanceFx;
+  final JpjEqNearbyBranchesResponse branchList;
 
   @override
   Widget build(BuildContext context) {
@@ -58,29 +61,33 @@ class JpjEqBranch extends StatelessWidget {
   }
 
   Widget _branchList(BuildContext context) {
-    return Expanded(
-      child: Container(
-        width: mediaWidth - 16,
-        constraints: const BoxConstraints(maxWidth: 400),
-        child: ListView.builder(
-          physics: const AlwaysScrollableScrollPhysics(),
-          scrollDirection: Axis.vertical,
-          itemCount: 200,
-          shrinkWrap: true,
-          itemBuilder: (context, index) {
-            return _branchInfoCard(
-              context,
-              // branches[index],
-            );
-          },
+    if (branchList.data != null) {
+      return Expanded(
+        child: Container(
+          width: mediaWidth - 16,
+          constraints: const BoxConstraints(maxWidth: 400),
+          child: ListView.builder(
+            physics: const AlwaysScrollableScrollPhysics(),
+            scrollDirection: Axis.vertical,
+            itemCount: branchList.data?.length,
+            shrinkWrap: true,
+            itemBuilder: (context, index) {
+              return _branchInfoCard(
+                context,
+                branchList.data![index],
+              );
+            },
+          ),
         ),
-      ),
-    );
+      );
+    } else {
+      return Container();
+    }
   }
 
   Widget _branchInfoCard(
     BuildContext context,
-    // JpjEqBranchInfo info,
+    JpjBranchData info,
   ) {
     return Padding(
       padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
@@ -101,30 +108,33 @@ class JpjEqBranch extends StatelessWidget {
                     padding: const EdgeInsets.all(16.0),
                     child: Row(
                       children: [
-                        const Expanded(
+                        Expanded(
                           child: Text(
-                            "Cawangan JB",
+                            info.namaCawangan ?? '',
                             textAlign: TextAlign.start,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 15,
                               fontFamily: "Roboto",
                               fontWeight: FontWeight.w600,
                             ),
                           ),
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "${calculateDistanceFx("10.3,100.2").toStringAsFixed(2)} KM",
-                              style: const TextStyle(
-                                color: Color(0xff707070),
-                                fontSize: 15,
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "${calculateDistanceFx("${info.latitud},${info.longitud}").toStringAsFixed(2)} KM",
+                                style: const TextStyle(
+                                  color: Color(0xff707070),
+                                  fontSize: 15,
+                                ),
                               ),
-                            ),
-                            const SizedBox(width: 24),
-                            const Icon(Icons.near_me, size: 15),
-                          ],
+                              const SizedBox(width: 24),
+                              const Icon(Icons.near_me, size: 15),
+                            ],
+                          ),
                         )
                       ],
                     ),

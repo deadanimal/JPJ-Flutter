@@ -1,11 +1,16 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:http/http.dart';
 import 'package:jpj_info/helper/geolocation.dart';
 import 'package:jpj_info/jpjeq/common/navbar.dart';
+import 'package:jpj_info/jpjeq/model/jpjeq_nearby_branches_response.dart';
 import 'package:jpj_info/jpjeq/pages/jpjeq-branches/jpjeq_branch.dart';
 import 'dart:math' show cos, sqrt, asin;
 
 import 'package:jpj_info/jpjeq/pages/jpjeq-branches/jpjeq_branch_popup.dart';
+import 'package:jpj_info/jpjeq/services/branch_service.dart';
 import 'package:maps_launcher/maps_launcher.dart';
 
 class JpjEqBranchController extends StatefulWidget {
@@ -17,6 +22,7 @@ class JpjEqBranchController extends StatefulWidget {
 
 class _JpjEqBranchController extends State<JpjEqBranchController> {
   double currentLat = 1.857434, currentLong = 103.082021;
+  late JpjEqNearbyBranchesResponse branchList = JpjEqNearbyBranchesResponse();
   @override
   void initState() {
     super.initState();
@@ -38,6 +44,7 @@ class _JpjEqBranchController extends State<JpjEqBranchController> {
         body: JpjEqBranch(
           calculateDistanceFx: _calculateDistance,
           showBranchDetails: _showBranchDetails,
+          branchList: branchList,
         ),
         bottomNavigationBar: const JpjEqBottomNavController(pageNumber: 1),
       ),
@@ -82,6 +89,28 @@ class _JpjEqBranchController extends State<JpjEqBranchController> {
     setState(() {
       currentLong = userLocation.longitude;
       currentLat = userLocation.latitude;
+      getNearbyBranchList();
     });
+  }
+
+  getNearbyBranchList() {
+    BranchService().getNearbyBranchList(
+      context,
+      currentLat,
+      currentLong,
+      (Response res) {
+        if (res.statusCode == 200) {
+          if (res.body != '') {
+            setState(() {
+              branchList = JpjEqNearbyBranchesResponse.fromJson(
+                jsonDecode(
+                  res.body,
+                ),
+              );
+            });
+          }
+        }
+      },
+    );
   }
 }

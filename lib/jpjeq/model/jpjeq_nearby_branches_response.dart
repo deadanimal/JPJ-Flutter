@@ -1,13 +1,13 @@
 class JpjEqNearbyBranchesResponse {
-  List<Data>? data;
+  List<JpjBranchData>? data;
 
   JpjEqNearbyBranchesResponse({this.data});
 
   JpjEqNearbyBranchesResponse.fromJson(Map<String, dynamic> json) {
     if (json['data'] != null) {
-      data = <Data>[];
+      data = <JpjBranchData>[];
       json['data'].forEach((v) {
-        data!.add(Data.fromJson(v));
+        data!.add(JpjBranchData.fromJson(v));
       });
     }
   }
@@ -21,7 +21,7 @@ class JpjEqNearbyBranchesResponse {
   }
 }
 
-class Data {
+class JpjBranchData {
   String? idCawangan;
   String? namaCawangan;
   String? latitud;
@@ -38,7 +38,7 @@ class Data {
   String? radius;
   String? distance;
 
-  Data({
+  JpjBranchData({
     this.idCawangan,
     this.namaCawangan,
     this.latitud,
@@ -56,7 +56,7 @@ class Data {
     this.distance,
   });
 
-  Data.fromJson(Map<String, dynamic> json) {
+  JpjBranchData.fromJson(Map<String, dynamic> json) {
     idCawangan = json['id_cawangan'];
     namaCawangan = json['nama_cawangan'];
     latitud = json['latitud'];
