@@ -1,10 +1,15 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:http/http.dart';
 import 'package:jpj_info/helper/geolocation.dart';
 import 'package:jpj_info/jpjeq/common/navbar.dart';
+import 'package:jpj_info/jpjeq/model/jpjeq_nearby_branches_response.dart';
 import 'package:jpj_info/jpjeq/pages/jpjeq-homepage/jpjeq_homepage.dart';
 import 'package:jpj_info/jpjeq/pages/jpjeq-homepage/jpjeq_wrong_operating_hour.dart';
+import 'package:jpj_info/jpjeq/services/branch_service.dart';
 
 class JpjEqHomepageController extends StatefulWidget {
   const JpjEqHomepageController({Key? key}) : super(key: key);
@@ -16,6 +21,7 @@ class JpjEqHomepageController extends StatefulWidget {
 class _JpjEqHomepageController extends State<JpjEqHomepageController> {
   double currentLat = 1.857434, currentLong = 103.082021;
   String locationName = '';
+  String nearestBranch = '';
   @override
   void initState() {
     super.initState();
@@ -38,6 +44,7 @@ class _JpjEqHomepageController extends State<JpjEqHomepageController> {
           getLocation: getUserLocation,
           scanBtnCallback: scan,
           locationName: locationName,
+          nearestBranch: nearestBranch,
         ),
         bottomNavigationBar: const JpjEqBottomNavController(),
       ),
@@ -47,6 +54,7 @@ class _JpjEqHomepageController extends State<JpjEqHomepageController> {
   Future<void> getUserLocation() async {
     setState(() {
       locationName = '';
+      nearestBranch = '';
     });
     try {
       Position userLocation = await Geolocation().determinePosition();
@@ -65,8 +73,10 @@ class _JpjEqHomepageController extends State<JpjEqHomepageController> {
           locationName = el.street!;
         }
       }
+      getNearbyBranchList();
     } catch (e) {
       locationName = 'Ralat';
+      nearestBranch = 'Ralat';
     }
     setState(() {});
   }
@@ -103,5 +113,23 @@ class _JpjEqHomepageController extends State<JpjEqHomepageController> {
     );
   }
 
-  getNearbyBranchList() {}
+  getNearbyBranchList() {
+    BranchService().getNearbyBranchList(context, currentLat, currentLong,
+        (Response res) {
+      if (res.statusCode == 200) {
+        if (res.body == '') {
+          setState(() {
+            nearestBranch = 'Ralat';
+          });
+        }
+        JpjEqNearbyBranchesResponse response =
+            JpjEqNearbyBranchesResponse.fromJson(jsonDecode(res.body));
+        if (response.data != null && response.data!.isNotEmpty) {
+          setState(() {
+            nearestBranch = response.data![0].namaCawangan!;
+          });
+        }
+      }
+    });
+  }
 }

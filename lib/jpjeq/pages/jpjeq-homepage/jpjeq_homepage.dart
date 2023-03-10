@@ -11,11 +11,13 @@ class JpjEqHomepage extends StatelessWidget {
     required this.getLocation,
     required this.scanBtnCallback,
     required this.locationName,
+    required this.nearestBranch,
   }) : super(key: key);
 
   final Function getLocation;
   final Function scanBtnCallback;
   final String locationName;
+  final String nearestBranch;
 
   @override
   Widget build(BuildContext context) {
@@ -133,48 +135,66 @@ class JpjEqHomepage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 12),
-                const Expanded(
-                  child: Text(
-                    "JPJ Negeri Johor",
-                    maxLines: 2,
-                    textAlign: TextAlign.end,
-                    overflow: TextOverflow.clip,
-                    style: TextStyle(
-                      color: Color(eqThemeNavy),
-                      fontSize: 15,
-                      fontFamily: "Roboto",
-                    ),
-                  ),
-                ),
+                nearestBranch != ''
+                    ? Expanded(
+                        child: Text(
+                          nearestBranch,
+                          maxLines: 2,
+                          textAlign: TextAlign.end,
+                          overflow: TextOverflow.clip,
+                          style: const TextStyle(
+                            color: Color(eqThemeNavy),
+                            fontSize: 15,
+                            fontFamily: "Roboto",
+                          ),
+                        ),
+                      )
+                    : const SizedBox(
+                        width: 18,
+                        height: 18,
+                        child: CircularProgressIndicator(),
+                      ),
               ],
             ),
             const SizedBox(height: 12),
-            InkWell(
-              onTap: () {
-                getLocation();
-              },
-              child: Container(
-                width: 200,
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.all(Radius.circular(20)),
-                  border: Border.all(
-                    color: const Color(eqThemeNavy),
-                    width: 2,
+            locationName != ''
+                ? InkWell(
+                    onTap: () {
+                      if (locationName != '') {
+                        getLocation();
+                      }
+                    },
+                    child: Container(
+                      width: 200,
+                      decoration: BoxDecoration(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(20)),
+                        border: Border.all(
+                          color: const Color(eqThemeNavy),
+                          width: 2,
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(6.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const [
+                            Text("Dapatkan Lokasi"),
+                            SizedBox(width: 8),
+                            Icon(Icons.refresh),
+                          ],
+                        ),
+                      ),
+                    ),
+                  )
+                : const Padding(
+                    padding: EdgeInsets.all(4.0),
+                    child: SizedBox(
+                      width: 32,
+                      height: 32,
+                      child: CircularProgressIndicator(),
+                    ),
                   ),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(6.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      Text("Dapatkan Lokasi"),
-                      SizedBox(width: 8),
-                      Icon(Icons.refresh),
-                    ],
-                  ),
-                ),
-              ),
-            ),
           ],
         ),
       ),
