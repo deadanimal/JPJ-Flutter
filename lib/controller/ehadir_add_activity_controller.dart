@@ -46,6 +46,7 @@ class _EhadirAddActivityController extends State<EhadirAddActivityController> {
   late TextEditingController latitude;
   late TextEditingController longitude;
   late TextEditingController agenda;
+  late String selectedDate;
 
   @override
   void initState() {
@@ -67,6 +68,7 @@ class _EhadirAddActivityController extends State<EhadirAddActivityController> {
     latitude = TextEditingController();
     longitude = TextEditingController();
     agenda = TextEditingController();
+    selectedDate = '';
 
     if (widget.activityId != null) {
       Future.delayed(
@@ -173,16 +175,18 @@ class _EhadirAddActivityController extends State<EhadirAddActivityController> {
   void _pickDate() async {
     DateTime? pickedDate = await showDatePicker(
         context: context,
-        initialDate: DateTime.now(),
+        initialDate:
+            selectedDate != '' ? DateTime.parse(selectedDate) : DateTime.now(),
         firstDate: DateTime(
             2000), //DateTime.now() - not to allow to choose before today.
         lastDate: DateTime(2101));
 
     if (pickedDate != null) {
-      String formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate);
+      String tempDate = DateFormat('dd-MM-yyyy').format(pickedDate);
+      selectedDate = DateFormat('yyyy-MM-dd').format(pickedDate);
 
       setState(() {
-        date.text = formattedDate;
+        date.text = tempDate;
       });
     } else {
       // print("Date is not selected");
@@ -220,7 +224,19 @@ class _EhadirAddActivityController extends State<EhadirAddActivityController> {
     );
 
     if (pickedTime != null) {
-      String formattedDate = "${pickedTime.hour}:${pickedTime.minute}:00";
+      String hour;
+      String minute;
+      if (pickedTime.hour < 10) {
+        hour = ('0${pickedTime.hour}');
+      } else {
+        hour = pickedTime.hour.toString();
+      }
+      if (pickedTime.minute < 10) {
+        minute = ('0${pickedTime.minute}');
+      } else {
+        minute = pickedTime.minute.toString();
+      }
+      String formattedDate = "$hour:$minute:00";
 
       setState(() {
         timeController.text = formattedDate;
@@ -245,7 +261,8 @@ class _EhadirAddActivityController extends State<EhadirAddActivityController> {
               ActivityListRes.fromJson(jsonDecode(res.body));
           activityName.text = response.aktiviti![0].namaAktiviti ?? "";
           noOfDays.text = '1';
-          date.text = response.aktiviti![0].tarikhMula ?? "";
+          selectedDate = response.aktiviti![0].tarikhMula ?? "";
+          date.text = dateDisplay(selectedDate);
           sessionPerDay.text =
               response.aktiviti![0].masaSesi!.length.toString();
           for (int i = 0; i < response.aktiviti![0].masaSesi!.length; i++) {
@@ -302,7 +319,7 @@ class _EhadirAddActivityController extends State<EhadirAddActivityController> {
         keterangan: agenda.text,
         nama: activityName.text,
         bilanganSesi: sessionPerDay.text,
-        tarikhMula: date.text,
+        tarikhMula: selectedDate,
         latitude: latitude.text,
         longitude: longitude.text,
         masaMula1: startTime.text,
@@ -342,7 +359,7 @@ class _EhadirAddActivityController extends State<EhadirAddActivityController> {
         keterangan: agenda.text,
         nama: activityName.text,
         bilanganSesi: sessionPerDay.text,
-        tarikhMula: date.text,
+        tarikhMula: selectedDate,
         latitude: latitude.text,
         longitude: longitude.text,
         masaMula1: startTime.text,
@@ -379,5 +396,11 @@ class _EhadirAddActivityController extends State<EhadirAddActivityController> {
         sessionPerDay.text = (int.parse(sessionPerDay.text) + 1).toString();
       }
     });
+  }
+
+  dateDisplay(String rawDate) {
+    List<String> tempVal = rawDate.split('-');
+
+    return '${tempVal[2]}-${tempVal[1]}-${tempVal[0]}';
   }
 }

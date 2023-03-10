@@ -63,6 +63,7 @@ dependencies:
   path: ^1.8.1
   flutter_share: ^2.0.0
   pretty_qr_code: ^2.0.3
+  geocoding: ^2.0.5
   # workmanager: ^0.5.0
   # flutter_local_notifications: ^12.0.2
 
@@ -217,6 +218,8 @@ flutter:
     - images/jpjeq/bottom_nav_bar/notifications.svg
     - images/jpjeq/bottom_nav_bar/qr-code.svg
     - images/jpjeq/bottom_nav_bar/ticket.svg
+    - images/icon/ic_icon.png
+    - images/icon/new_activity_icon.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

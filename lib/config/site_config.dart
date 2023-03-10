@@ -51,6 +51,10 @@ class SiteConfig {
   final String eHadirAttendee = "$prodUrl/senarai_kehadiran";
   final String eHadirAttendeeQr = "$prodUrl/daftarQR";
 
+  //JpjeQ
+  static String jpjEqUrl = "https://egate.jpj.gov.my/smartqv2-pnsb/api";
+  final String eQGetBranchList = "$jpjEqUrl/getListCawangan/";
+
   Map<String, String> formHeader = {
     'Content-Type': 'application/json; charset=UTF-8',
   };

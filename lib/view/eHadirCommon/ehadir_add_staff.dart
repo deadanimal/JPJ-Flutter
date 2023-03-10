@@ -44,6 +44,7 @@ class EhadirAddStaff extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
+                  const SizedBox(height: vPaddingM),
                   Image(
                     image: image,
                   ),

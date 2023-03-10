@@ -24,7 +24,7 @@ class AttendingActivityListRes {
   String? updateBy;
   String? updatedAt;
   String? nokp;
-  String? isurusetia;
+  int? isurusetia;
 
   AttendingActivityListRes({
     this.id,

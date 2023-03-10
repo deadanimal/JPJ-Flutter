@@ -11,7 +11,7 @@ import 'package:jpj_info/model/ehadir/activity_list_req.dart';
 import 'package:jpj_info/model/ehadir/attending_activity_list_res.dart';
 import 'package:jpj_info/model/ehadir_event_info.dart';
 import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
-import 'package:jpj_info/view/eHadirActivityDetail/ehadir_event_details.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:jpj_info/view/eHadirActivityList/ehadir_activity_list.dart';
 import 'package:http/http.dart' as http;
 
@@ -61,10 +61,17 @@ class _EhadirActivityListController
 
   void _refreshMsgList(http.Response response) {
     if (response.statusCode == 200) {
-      print(response.body);
       List<AttendingActivityListRes> res = [];
       for (var el in jsonDecode(response.body)) {
         res.add(AttendingActivityListRes.fromJson(el));
+      }
+      if (res.isEmpty) {
+        AlertController(ctx: context).generalError(
+          AppLocalizations.of(context)!.noRecord,
+          () {
+            Navigator.pop(context);
+          },
+        );
       }
       setState(() {
         events.clear();
@@ -103,15 +110,15 @@ class _EhadirActivityListController
   }
 
   void _viewActivityDetails(BuildContext context, EHadirEventInfo event) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) {
-          return EhadirActivityDetails(
-            event: event,
-          );
-        },
-      ),
-    );
+    // Navigator.push(
+    //   context,
+    //   MaterialPageRoute(
+    //     builder: (context) {
+    //       return EhadirActivityDetails(
+    //         event: event,
+    //       );
+    //     },
+    //   ),
+    // );
   }
 }

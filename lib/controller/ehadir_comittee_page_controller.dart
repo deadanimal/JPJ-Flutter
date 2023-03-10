@@ -86,6 +86,14 @@ class _EhadirComitteePageController
       ActivityListRes res = ActivityListRes.fromJson(
         jsonDecode(response.body),
       );
+      if (res.aktiviti == null) {
+        AlertController(ctx: context).generalError(
+          AppLocalizations.of(context)!.noRecord,
+          () {
+            Navigator.pop(context);
+          },
+        );
+      }
       setState(() {
         events.clear();
         if (res.aktiviti != null) {

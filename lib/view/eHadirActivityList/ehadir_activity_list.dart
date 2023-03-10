@@ -164,7 +164,7 @@ class EhadirActivityList extends StatelessWidget {
                                 ),
                                 const SizedBox(height: vPaddingS),
                                 Text(
-                                  "${event.startTime!} - ${event.endTime!}",
+                                  "${event.startTime ?? ''} - ${event.endTime ?? ''}",
                                   textAlign: TextAlign.start,
                                   style: const TextStyle(
                                     color: Color(0xff2e2e2e),

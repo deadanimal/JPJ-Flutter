@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:jpj_info/helper/geolocation.dart';
 import 'package:jpj_info/jpjeq/common/navbar.dart';
@@ -43,12 +44,18 @@ class _JpjEqHomepageController extends State<JpjEqHomepageController> {
 
   Future<void> getUserLocation() async {
     Position userLocation = await Geolocation().determinePosition();
+    currentLong = userLocation.longitude;
+    currentLat = userLocation.latitude;
+
+    List<Placemark> placemarks =
+        await placemarkFromCoordinates(currentLat, currentLong);
+    for (var el in placemarks) {
+      print('Location: ' + el.name! + ' ' + el.street!);
+    }
     setState(() {
       //todo: query to get nearby location based on lat long.
       //Consider serving google places or similar API in the back end
       //as google services cant be used in huawei product
-      currentLong = userLocation.longitude;
-      currentLat = userLocation.latitude;
     });
   }
 

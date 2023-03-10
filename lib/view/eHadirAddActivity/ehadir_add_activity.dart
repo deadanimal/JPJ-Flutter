@@ -78,6 +78,7 @@ class EhadirAddActivity extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  const SizedBox(height: vPaddingXL),
                   _icon(),
                   const SizedBox(height: vPaddingXL),
                   _form(context),
@@ -92,7 +93,7 @@ class EhadirAddActivity extends StatelessWidget {
 
   Widget _icon() {
     return const Image(
-      image: AssetImage("images/icon/ehadir_new_activity_icon.png"),
+      image: AssetImage("images/icon/new_activity_icon.png"),
     );
   }
 
@@ -349,50 +350,53 @@ class EhadirAddActivity extends StatelessWidget {
               shadowColor: Colors.grey,
               borderRadius: BorderRadius.circular(15),
               elevation: 4.0,
-              child: Row(
-                children: [
-                  SizedBox(
-                    width: (mediaWidth - 64) / 4,
-                    child: TextButton(
-                      onPressed: () {
-                        addSession();
-                      },
-                      style: ButtonStyle(
-                        foregroundColor:
-                            MaterialStateProperty.all<Color>(Colors.black),
-                        backgroundColor:
-                            MaterialStateProperty.all<Color>(Colors.white),
-                      ),
-                      child: const Icon(Icons.remove),
-                    ),
-                  ),
-                  Expanded(
-                    child: TextField(
-                      controller: controller,
-                      textAlign: TextAlign.center,
-                      readOnly: true,
-                      decoration: const InputDecoration(
-                        fillColor: Colors.white,
-                        border: InputBorder.none,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: (mediaWidth - 64) / 4,
+                      child: TextButton(
+                        onPressed: () {
+                          addSession();
+                        },
+                        style: ButtonStyle(
+                          foregroundColor:
+                              MaterialStateProperty.all<Color>(Colors.black),
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                              Colors.transparent),
+                        ),
+                        child: const Icon(Icons.remove),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    width: (mediaWidth - 64) / 4,
-                    child: TextButton(
-                      onPressed: () {
-                        removeSession();
-                      },
-                      style: ButtonStyle(
-                        foregroundColor:
-                            MaterialStateProperty.all<Color>(Colors.black),
-                        backgroundColor:
-                            MaterialStateProperty.all<Color>(Colors.white),
+                    Expanded(
+                      child: TextField(
+                        controller: controller,
+                        textAlign: TextAlign.center,
+                        readOnly: true,
+                        decoration: const InputDecoration(
+                          fillColor: Colors.white,
+                          border: InputBorder.none,
+                        ),
                       ),
-                      child: const Icon(Icons.add),
                     ),
-                  ),
-                ],
+                    SizedBox(
+                      width: (mediaWidth - 64) / 4,
+                      child: TextButton(
+                        onPressed: () {
+                          removeSession();
+                        },
+                        style: ButtonStyle(
+                          foregroundColor:
+                              MaterialStateProperty.all<Color>(Colors.black),
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                              Colors.transparent),
+                        ),
+                        child: const Icon(Icons.add),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

@@ -129,11 +129,7 @@ class EhadirMainPage extends StatelessWidget {
           topLeft: Radius.circular(5),
           topRight: Radius.circular(5),
         ),
-        gradient: LinearGradient(
-          begin: Alignment.bottomLeft,
-          end: Alignment.topRight,
-          colors: [Color(0xff171f44), Color(0xff2b388d)],
-        ),
+        color: Color(0xfff54d2a),
       ),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
