@@ -11,11 +11,13 @@ class JpjEqBranch extends StatelessWidget {
     required this.showBranchDetails,
     required this.calculateDistanceFx,
     required this.branchList,
+    required this.locationIdentified,
   }) : super(key: key);
 
-  final Function(BuildContext) showBranchDetails;
+  final Function(BuildContext, JpjBranchData) showBranchDetails;
   final double Function(String) calculateDistanceFx;
   final JpjEqNearbyBranchesResponse branchList;
+  final bool locationIdentified;
 
   @override
   Widget build(BuildContext context) {
@@ -80,6 +82,13 @@ class JpjEqBranch extends StatelessWidget {
           ),
         ),
       );
+    } else if (!locationIdentified) {
+      return const Padding(
+        padding: EdgeInsets.all(8.0),
+        child: Expanded(
+          child: Text('Sila tunggu'),
+        ),
+      );
     } else {
       return Container();
     }
@@ -93,7 +102,7 @@ class JpjEqBranch extends StatelessWidget {
       padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
       child: InkWell(
         onTap: () {
-          showBranchDetails(context);
+          showBranchDetails(context, info);
         },
         child: RoundedCornerContainer(
           cornerRadius: 4,

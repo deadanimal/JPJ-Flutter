@@ -54,6 +54,7 @@ class SiteConfig {
   //JpjeQ
   static String jpjEqUrl = "https://egate.jpj.gov.my/smartqv2-pnsb/api";
   final String eQGetBranchList = "$jpjEqUrl/getListCawangan/";
+  final String eQGetBranchService = "$jpjEqUrl/getKategoriServis/";
 
   Map<String, String> formHeader = {
     'Content-Type': 'application/json; charset=UTF-8',

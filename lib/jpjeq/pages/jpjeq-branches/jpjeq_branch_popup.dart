@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jpj_info/jpjeq/common/view/theme.dart';
+import 'package:jpj_info/jpjeq/model/jpjeq_branch_service_response.dart';
+import 'package:jpj_info/jpjeq/model/jpjeq_nearby_branches_response.dart';
 import 'package:jpj_info/model/page_size.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:jpj_info/view/common/rounded_corner_container.dart';
@@ -8,8 +10,12 @@ class JpjEqBranchPopup extends StatelessWidget {
   const JpjEqBranchPopup({
     Key? key,
     required this.openMapFx,
+    required this.branchInfo,
+    required this.serviceInfo,
   }) : super(key: key);
   final Function(String) openMapFx;
+  final JpjBranchData branchInfo;
+  final JpjEqBranchServiceResponse serviceInfo;
 
   @override
   Widget build(BuildContext context) {
@@ -62,11 +68,11 @@ class JpjEqBranchPopup extends StatelessWidget {
               color: Color(eqThemeOrange),
             ),
             width: mediaWidth,
-            child: const Padding(
-              padding: EdgeInsets.all(15.0),
+            child: Padding(
+              padding: const EdgeInsets.all(15.0),
               child: Text(
-                "JPJ Cawangan Putrajaya",
-                style: TextStyle(
+                branchInfo.namaCawangan!,
+                style: const TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.w600,
                 ),
@@ -80,32 +86,32 @@ class JpjEqBranchPopup extends StatelessWidget {
                 const SizedBox(height: 24),
                 _branchInfoText(
                   AppLocalizations.of(context)!.address,
-                  'branch.address',
+                  '${branchInfo.alamat1!},${branchInfo.alamat2!},${branchInfo.alamat3!},${branchInfo.alamat4!}',
                 ),
                 const SizedBox(height: 24),
                 _branchInfoText(
                   AppLocalizations.of(context)!.phoneNumber,
-                  'branch.phoneNumber',
+                  branchInfo.noTelefon,
                 ),
                 const SizedBox(height: 24),
                 _branchInfoText(
                   AppLocalizations.of(context)!.faxNo,
-                  'branch.faxNumber',
+                  branchInfo.noFaks,
                 ),
                 const SizedBox(height: 24),
                 _branchInfoText(
                   AppLocalizations.of(context)!.coordinate,
-                  'branch.coordinate',
+                  '${double.parse(branchInfo.latitud ?? '').toStringAsFixed(3)}, ${double.parse(branchInfo.longitud ?? '').toStringAsFixed(3)}',
                 ),
                 const SizedBox(height: 24),
                 _branchInfoText(
                   AppLocalizations.of(context)!.operationHour,
-                  'branch.operationHour',
+                  '',
                 ),
                 const SizedBox(height: 24),
                 InkWell(
                   onTap: () {
-                    openMapFx('10.3,10.3');
+                    openMapFx('${branchInfo.latitud},${branchInfo.longitud}');
                   },
                   child: Container(
                     width: mediaWidth / 5,
@@ -131,7 +137,7 @@ class JpjEqBranchPopup extends StatelessWidget {
                 const SizedBox(height: 24),
                 _branchInfoText(
                   AppLocalizations.of(context)!.noOfWaiting,
-                  'branch.waitingListCount',
+                  serviceInfo.quota,
                 ),
                 const SizedBox(height: 24),
               ],

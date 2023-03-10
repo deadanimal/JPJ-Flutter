@@ -5,6 +5,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart';
 import 'package:jpj_info/helper/geolocation.dart';
 import 'package:jpj_info/jpjeq/common/navbar.dart';
+import 'package:jpj_info/jpjeq/model/jpjeq_branch_service_response.dart';
 import 'package:jpj_info/jpjeq/model/jpjeq_nearby_branches_response.dart';
 import 'package:jpj_info/jpjeq/pages/jpjeq-branches/jpjeq_branch.dart';
 import 'dart:math' show cos, sqrt, asin;
@@ -23,6 +24,8 @@ class JpjEqBranchController extends StatefulWidget {
 class _JpjEqBranchController extends State<JpjEqBranchController> {
   double currentLat = 1.857434, currentLong = 103.082021;
   late JpjEqNearbyBranchesResponse branchList = JpjEqNearbyBranchesResponse();
+  bool locationIdentified = false;
+
   @override
   void initState() {
     super.initState();
@@ -45,6 +48,7 @@ class _JpjEqBranchController extends State<JpjEqBranchController> {
           calculateDistanceFx: _calculateDistance,
           showBranchDetails: _showBranchDetails,
           branchList: branchList,
+          locationIdentified: locationIdentified,
         ),
         bottomNavigationBar: const JpjEqBottomNavController(pageNumber: 1),
       ),
@@ -63,16 +67,35 @@ class _JpjEqBranchController extends State<JpjEqBranchController> {
     return 12742 * asin(sqrt(a));
   }
 
-  void _showBranchDetails(BuildContext context) {
-    Navigator.push(
+  void _showBranchDetails(BuildContext context, JpjBranchData branchInfo) {
+    BranchService().getServices(
       context,
-      MaterialPageRoute(
-        builder: (context) {
-          return JpjEqBranchPopup(
-            openMapFx: _openMap,
-          );
-        },
-      ),
+      branchInfo.idCawangan!,
+      (Response res) {
+        if (res.statusCode == 200) {
+          if (res.body != '') {
+            JpjEqBranchServiceResponse serviceInfo =
+                JpjEqBranchServiceResponse.fromJson(
+              jsonDecode(
+                res.body,
+              ),
+            );
+
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) {
+                  return JpjEqBranchPopup(
+                    openMapFx: _openMap,
+                    branchInfo: branchInfo,
+                    serviceInfo: serviceInfo,
+                  );
+                },
+              ),
+            );
+          }
+        }
+      },
     );
   }
 
@@ -89,6 +112,7 @@ class _JpjEqBranchController extends State<JpjEqBranchController> {
     setState(() {
       currentLong = userLocation.longitude;
       currentLat = userLocation.latitude;
+      locationIdentified = true;
       getNearbyBranchList();
     });
   }
