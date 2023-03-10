@@ -35,11 +35,7 @@ class InfoTab extends StatelessWidget {
                     topLeft: Radius.circular(5),
                     topRight: Radius.circular(5),
                   ),
-                  gradient: LinearGradient(
-                    begin: Alignment.bottomLeft,
-                    end: Alignment.topRight,
-                    colors: [Color(0xff171f44), Color(0xff2b388d)],
-                  ),
+                  color: Color(0xfff54d2a),
                 ),
                 child: Text(
                   capitalize(event.namaAktiviti!),
@@ -56,7 +52,7 @@ class InfoTab extends StatelessWidget {
               PrettyQr(
                 image: const AssetImage("images/icon/jpjehadir.png"),
                 size: 200,
-                data: "1234567890",
+                data: "https://myjpj.jpj.gov.my/api/daftar_manual/${event.id}",
                 errorCorrectLevel: QrErrorCorrectLevel.M,
                 roundEdges: true,
                 elementColor: const Color(themeNavy),

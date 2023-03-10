@@ -13,6 +13,7 @@ import 'package:jpj_info/controller/ehadir_comittee_page_controller.dart';
 import 'package:jpj_info/controller/http_request_controller.dart';
 import 'package:jpj_info/helper/account_manager.dart';
 import 'package:jpj_info/helper/qr_scanner.dart';
+import 'package:jpj_info/model/ehadir/activity_by_id_res.dart';
 import 'package:jpj_info/model/ehadir_event_info.dart';
 import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
 import 'package:jpj_info/view/eHadirConfirmedAttendance/ehadir_confirmed_attendance.dart';
@@ -107,27 +108,52 @@ class _EhadirMainPageController extends State<EhadirMainPageController> {
   void _qrScanCallback(Barcode barcode) {
     Navigator.pop(context);
     try {
-      // String? qrData = barcode.rawValue;
-      // todo: use qrData to query the event information
-      rootBundle.loadString('json/ehadir_event.json').then((response) {
-        final data = json.decode(response);
-        EHadirEventInfo eventInfo = EHadirEventInfo.fromJson(data);
-        // todo: parse Data and move to next screen
-        Navigator.push(
+      String? qrData = barcode.rawValue;
+
+      if (qrData != null &&
+          qrData
+                  .toString()
+                  .indexOf('https://myjpj.jpj.gov.my/api/daftar_manual/') ==
+              0) {
+        SiteConfig conf = SiteConfig();
+
+        return jpjHttpRequest(
           context,
-          MaterialPageRoute(
-            builder: (context) {
-              return EhadirConfirmAttendance(
-                eventName: eventInfo.eventName!,
-                vanue: eventInfo.venue!,
-                date: eventInfo.date!,
-                startTime: eventInfo.startTime!,
-                endTime: eventInfo.endTime!,
-              );
-            },
-          ),
+          Uri.parse(conf.eHadirActivityById),
+          headers: conf.formHeader,
+          body: jsonEncode({
+            "id": qrData.replaceAll(
+                'https://myjpj.jpj.gov.my/api/daftar_manual/', '')
+          }),
+          callback: (res) {
+            if (res.statusCode == 200) {
+              _navToActivityPage();
+              // EHadirEventInfo eventInfo = EHadirEventInfo(
+              //   date: response.tarikhMula,
+              //   endTime: response.masaTamat,
+              //   eventName: response.namaAktiviti,
+              //   organizer: response.penganjur,
+              //   startTime: response.masaMula,
+              //   venue: response.lokasi,
+              // );
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //     builder: (context) {
+              //       return EhadirConfirmAttendance(
+              //         eventName: response.namaAktiviti ?? '',
+              //         vanue: eventInfo.venue ?? '',
+              //         date: eventInfo.date ?? '',
+              //         startTime: eventInfo.startTime ?? '',
+              //         endTime: eventInfo.endTime ?? '',
+              //       );
+              //     },
+              //   ),
+              // );
+            }
+          },
         );
-      });
+      }
     } catch (e) {
       AlertController(ctx: context).generalError(
         AppLocalizations.of(context)!.invalidQrCode,
