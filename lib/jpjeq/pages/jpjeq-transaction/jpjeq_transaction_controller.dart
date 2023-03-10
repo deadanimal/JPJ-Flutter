@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jpj_info/jpjeq/common/navbar.dart';
-import 'package:jpj_info/jpjeq/jpjeq-transaction/jpjeq_transaction.dart';
+import 'package:jpj_info/jpjeq/pages/jpjeq-transaction/jpjeq_transaction.dart';
 
 class JpjEqTransactionController extends StatefulWidget {
   const JpjEqTransactionController({Key? key}) : super(key: key);

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jpj_info/jpjeq/jpjeq-number-called/jpjeq_number_call.dart';
+import 'package:jpj_info/jpjeq/pages/jpjeq-number-called/jpjeq_number_call.dart';
 
 class JpjEqNumberCallController extends StatefulWidget {
   const JpjEqNumberCallController({Key? key}) : super(key: key);

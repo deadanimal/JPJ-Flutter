@@ -3,8 +3,8 @@ import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:jpj_info/helper/geolocation.dart';
 import 'package:jpj_info/jpjeq/common/navbar.dart';
-import 'package:jpj_info/jpjeq/jpjeq-homepage/jpjeq_homepage.dart';
-import 'package:jpj_info/jpjeq/jpjeq-homepage/jpjeq_wrong_operating_hour.dart';
+import 'package:jpj_info/jpjeq/pages/jpjeq-homepage/jpjeq_homepage.dart';
+import 'package:jpj_info/jpjeq/pages/jpjeq-homepage/jpjeq_wrong_operating_hour.dart';
 
 class JpjEqHomepageController extends StatefulWidget {
   const JpjEqHomepageController({Key? key}) : super(key: key);
@@ -15,6 +15,7 @@ class JpjEqHomepageController extends StatefulWidget {
 
 class _JpjEqHomepageController extends State<JpjEqHomepageController> {
   double currentLat = 1.857434, currentLong = 103.082021;
+  String locationName = '';
   @override
   void initState() {
     super.initState();
@@ -36,6 +37,7 @@ class _JpjEqHomepageController extends State<JpjEqHomepageController> {
         body: JpjEqHomepage(
           getLocation: getUserLocation,
           scanBtnCallback: scan,
+          locationName: locationName,
         ),
         bottomNavigationBar: const JpjEqBottomNavController(),
       ),
@@ -43,20 +45,46 @@ class _JpjEqHomepageController extends State<JpjEqHomepageController> {
   }
 
   Future<void> getUserLocation() async {
-    Position userLocation = await Geolocation().determinePosition();
-    currentLong = userLocation.longitude;
-    currentLat = userLocation.latitude;
-
-    List<Placemark> placemarks =
-        await placemarkFromCoordinates(currentLat, currentLong);
-    for (var el in placemarks) {
-      print('Location: ' + el.name! + ' ' + el.street!);
-    }
     setState(() {
-      //todo: query to get nearby location based on lat long.
-      //Consider serving google places or similar API in the back end
-      //as google services cant be used in huawei product
+      locationName = '';
     });
+    try {
+      Position userLocation = await Geolocation().determinePosition();
+      currentLong = userLocation.longitude;
+      currentLat = userLocation.latitude;
+
+      List<Placemark> placemarks = await placemarkFromCoordinates(
+        currentLat,
+        currentLong,
+        localeIdentifier: 'ms_MY',
+      );
+      for (var el in placemarks) {
+        if (el.street != null &&
+            !_isNumber(el.street![0]) &&
+            locationName == '') {
+          locationName = el.street!;
+        }
+      }
+    } catch (e) {
+      locationName = 'Ralat';
+    }
+    setState(() {});
+  }
+
+  bool _isNumber(String character) {
+    List<String> numbers = [
+      '0',
+      '1',
+      '2',
+      '3',
+      '4',
+      '5',
+      '6',
+      '7',
+      '8',
+      '9',
+    ];
+    return numbers.contains(character);
   }
 
   void scan() {
@@ -74,4 +102,6 @@ class _JpjEqHomepageController extends State<JpjEqHomepageController> {
       ),
     );
   }
+
+  getNearbyBranchList() {}
 }

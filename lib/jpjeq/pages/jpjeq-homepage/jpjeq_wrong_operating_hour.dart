@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jpj_info/jpjeq/common/view/theme.dart';
-import 'package:jpj_info/jpjeq/jpjeq-homepage/jpjeq_choose_service.dart';
+import 'package:jpj_info/jpjeq/pages/jpjeq-homepage/jpjeq_choose_service.dart';
 import 'package:jpj_info/model/page_size.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:jpj_info/view/common/rounded_corner_container.dart';

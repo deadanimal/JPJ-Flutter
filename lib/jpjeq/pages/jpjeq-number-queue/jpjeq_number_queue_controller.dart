@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jpj_info/jpjeq/common/navbar.dart';
-import 'package:jpj_info/jpjeq/jpjeq-number-queue/jpjeq_number_queue.dart';
+import 'package:jpj_info/jpjeq/pages/jpjeq-number-queue/jpjeq_number_queue.dart';
 
 class JpjEqNumberQueueController extends StatefulWidget {
   const JpjEqNumberQueueController({Key? key}) : super(key: key);

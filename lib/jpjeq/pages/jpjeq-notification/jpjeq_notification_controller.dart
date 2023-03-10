@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jpj_info/jpjeq/common/navbar.dart';
-import 'package:jpj_info/jpjeq/jpjeq-notification/jpjeq_notification.dart';
+import 'package:jpj_info/jpjeq/pages/jpjeq-notification/jpjeq_notification.dart';
 
 class JpjEqNotificationController extends StatefulWidget {
   const JpjEqNotificationController({Key? key}) : super(key: key);

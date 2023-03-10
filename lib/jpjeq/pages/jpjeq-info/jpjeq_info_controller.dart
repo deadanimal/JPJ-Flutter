@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jpj_info/jpjeq/common/navbar.dart';
-import 'package:jpj_info/jpjeq/jpjeq-info/jpjeq_info.dart';
+import 'package:jpj_info/jpjeq/pages/jpjeq-info/jpjeq_info.dart';
 
 class JpjEqInfoController extends StatefulWidget {
   const JpjEqInfoController({Key? key}) : super(key: key);

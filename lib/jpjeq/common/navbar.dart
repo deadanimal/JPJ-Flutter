@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:jpj_info/jpjeq/common/view/theme.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:jpj_info/jpjeq/jpjeq-branches/jpjeq_branch_controller.dart';
-import 'package:jpj_info/jpjeq/jpjeq-homepage/jpjeq_homepage_controller.dart';
-import 'package:jpj_info/jpjeq/jpjeq-info/jpjeq_info_controller.dart';
-import 'package:jpj_info/jpjeq/jpjeq-notification/jpjeq_notification_controller.dart';
-import 'package:jpj_info/jpjeq/jpjeq-transaction/jpjeq_transaction_controller.dart';
+import 'package:jpj_info/jpjeq/pages/jpjeq-branches/jpjeq_branch_controller.dart';
+import 'package:jpj_info/jpjeq/pages/jpjeq-homepage/jpjeq_homepage_controller.dart';
+import 'package:jpj_info/jpjeq/pages/jpjeq-info/jpjeq_info_controller.dart';
+import 'package:jpj_info/jpjeq/pages/jpjeq-notification/jpjeq_notification_controller.dart';
+import 'package:jpj_info/jpjeq/pages/jpjeq-transaction/jpjeq_transaction_controller.dart';
 
 class JpjEqBottomNavController extends StatefulWidget {
   const JpjEqBottomNavController({

@@ -10,10 +10,12 @@ class JpjEqHomepage extends StatelessWidget {
     Key? key,
     required this.getLocation,
     required this.scanBtnCallback,
+    required this.locationName,
   }) : super(key: key);
 
   final Function getLocation;
   final Function scanBtnCallback;
+  final String locationName;
 
   @override
   Widget build(BuildContext context) {
@@ -84,8 +86,8 @@ class JpjEqHomepage extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               mainAxisSize: MainAxisSize.max,
-              children: const [
-                Text(
+              children: [
+                const Text(
                   "Lokasi Anda",
                   style: TextStyle(
                     color: Color(eqThemeNavy),
@@ -94,20 +96,26 @@ class JpjEqHomepage extends StatelessWidget {
                     fontWeight: FontWeight.w800,
                   ),
                 ),
-                SizedBox(width: 12),
-                Expanded(
-                  child: Text(
-                    "Jalan Teknokrat 5 Cyberjaya",
-                    maxLines: 2,
-                    textAlign: TextAlign.center,
-                    overflow: TextOverflow.clip,
-                    style: TextStyle(
-                      color: Color(eqThemeNavy),
-                      fontSize: 15,
-                      fontFamily: "Roboto",
-                    ),
-                  ),
-                ),
+                const SizedBox(width: 12),
+                locationName != ''
+                    ? Expanded(
+                        child: Text(
+                          locationName,
+                          maxLines: 2,
+                          textAlign: TextAlign.end,
+                          overflow: TextOverflow.clip,
+                          style: const TextStyle(
+                            color: Color(eqThemeNavy),
+                            fontSize: 15,
+                            fontFamily: "Roboto",
+                          ),
+                        ),
+                      )
+                    : const SizedBox(
+                        width: 18,
+                        height: 18,
+                        child: CircularProgressIndicator(),
+                      ),
               ],
             ),
             const SizedBox(height: 12),
@@ -129,7 +137,7 @@ class JpjEqHomepage extends StatelessWidget {
                   child: Text(
                     "JPJ Negeri Johor",
                     maxLines: 2,
-                    textAlign: TextAlign.center,
+                    textAlign: TextAlign.end,
                     overflow: TextOverflow.clip,
                     style: TextStyle(
                       color: Color(eqThemeNavy),

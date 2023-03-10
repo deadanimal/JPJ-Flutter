@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:jpj_info/helper/geolocation.dart';
 import 'package:jpj_info/jpjeq/common/navbar.dart';
-import 'package:jpj_info/jpjeq/jpjeq-branches/jpjeq_branch.dart';
+import 'package:jpj_info/jpjeq/pages/jpjeq-branches/jpjeq_branch.dart';
 import 'dart:math' show cos, sqrt, asin;
 
-import 'package:jpj_info/jpjeq/jpjeq-branches/jpjeq_branch_popup.dart';
+import 'package:jpj_info/jpjeq/pages/jpjeq-branches/jpjeq_branch_popup.dart';
 import 'package:maps_launcher/maps_launcher.dart';
 
 class JpjEqBranchController extends StatefulWidget {
