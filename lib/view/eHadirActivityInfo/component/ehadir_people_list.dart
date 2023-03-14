@@ -8,8 +8,10 @@ class PeopleList extends StatelessWidget {
   const PeopleList({
     Key? key,
     required this.comitteeList,
+    required this.eraseItem,
   }) : super(key: key);
   final List<BasicUserInfo> comitteeList;
+  final Function(int) eraseItem;
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +62,7 @@ class PeopleList extends StatelessWidget {
               ),
             ],
           ),
-          _eraseIcon(context),
+          _eraseIcon(context, info.id),
         ],
       ),
     );
@@ -68,6 +70,7 @@ class PeopleList extends StatelessWidget {
 
   Widget _eraseIcon(
     BuildContext context,
+    int id,
   ) {
     return Container(
       width: 32,
@@ -87,7 +90,9 @@ class PeopleList extends StatelessWidget {
         style: ButtonStyle(
           foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
         ),
-        onPressed: () {},
+        onPressed: () {
+          eraseItem(id);
+        },
         child: const FittedBox(
           child: Center(
             child: Icon(Icons.delete),

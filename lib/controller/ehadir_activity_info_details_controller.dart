@@ -85,6 +85,8 @@ class _EhadirActivityInfoDetailsController
           refreshFx: _getActivity,
           attendeeList: attendeeList,
           addAttendeeManual: addAttendeeManual,
+          eraseAttendee: eraseAttendee,
+          eraseCommittee: eraseCommittee,
         ),
         bottomNavigationBar: const BottomNavController(),
       ),
@@ -285,5 +287,39 @@ class _EhadirActivityInfoDetailsController
         },
       ),
     ).then((value) => {_getAttendeeList()});
+  }
+
+  eraseCommittee(int id) {
+    SiteConfig conf = SiteConfig();
+    jpjHttpRequest(
+      context,
+      Uri.parse(conf.eHadirEraseCommitee),
+      headers: conf.formHeader,
+      body: jsonEncode({
+        'id': id,
+      }),
+      callback: (res) {
+        if (res.statusCode == 200) {
+          _getComitteeList(currentActivity.id!);
+        }
+      },
+    );
+  }
+
+  eraseAttendee(int id) {
+    SiteConfig conf = SiteConfig();
+    jpjHttpRequest(
+      context,
+      Uri.parse(conf.eHadirEraseAttendee),
+      headers: conf.formHeader,
+      body: jsonEncode({
+        'id': id,
+      }),
+      callback: (res) {
+        if (res.statusCode == 200) {
+          _getAttendeeList();
+        }
+      },
+    );
   }
 }

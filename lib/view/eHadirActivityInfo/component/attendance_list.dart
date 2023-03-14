@@ -13,19 +13,24 @@ class AttendanceList extends StatelessWidget {
     required this.activityId,
     required this.transidAktiviti,
     required this.addAttendeeManual,
+    required this.eraseItem,
   }) : super(key: key);
   final List<BasicUserInfo> attendeeList;
   final Function qrScanCallback;
   final int activityId;
   final String transidAktiviti;
   final Function() addAttendeeManual;
+  final Function(int) eraseItem;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         _addAttendanceBtn(context),
-        PeopleList(comitteeList: attendeeList),
+        PeopleList(
+          comitteeList: attendeeList,
+          eraseItem: eraseItem,
+        ),
       ],
     );
   }

@@ -13,11 +13,13 @@ class ComitteeList extends StatelessWidget {
     required this.activityId,
     required this.transidAktiviti,
     required this.addMemberFx,
+    required this.eraseItem,
   }) : super(key: key);
   final List<BasicUserInfo> comitteeList;
   final int activityId;
   final String transidAktiviti;
   final Function(BuildContext, int, String) addMemberFx;
+  final Function(int) eraseItem;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +29,10 @@ class ComitteeList extends StatelessWidget {
         const SizedBox(height: vPaddingM),
         _addComitteeBtn(context),
         const SizedBox(height: vPaddingM),
-        PeopleList(comitteeList: comitteeList),
+        PeopleList(
+          comitteeList: comitteeList,
+          eraseItem: eraseItem,
+        ),
       ],
     );
   }

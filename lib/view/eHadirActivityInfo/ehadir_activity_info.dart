@@ -22,6 +22,8 @@ class EhadirActivityInfo extends StatelessWidget {
     required this.refreshFx,
     required this.attendeeList,
     required this.addAttendeeManual,
+    required this.eraseAttendee,
+    required this.eraseCommittee,
   }) : super(key: key);
   final TabController tabController;
   final Function qrScanCallback;
@@ -31,6 +33,8 @@ class EhadirActivityInfo extends StatelessWidget {
   final Function(BuildContext, int, String) addMemberFx;
   final Function() refreshFx;
   final Function() addAttendeeManual;
+  final Function(int) eraseAttendee;
+  final Function(int) eraseCommittee;
 
   @override
   Widget build(BuildContext context) {
@@ -127,6 +131,7 @@ class EhadirActivityInfo extends StatelessWidget {
             comitteeList: comittees,
             transidAktiviti: event.transidAktiviti!,
             addMemberFx: addMemberFx,
+            eraseItem: eraseCommittee,
           ),
           AttendanceList(
             qrScanCallback: qrScanCallback,
@@ -134,6 +139,7 @@ class EhadirActivityInfo extends StatelessWidget {
             transidAktiviti: event.transidAktiviti!,
             attendeeList: attendeeList,
             addAttendeeManual: addAttendeeManual,
+            eraseItem: eraseAttendee,
           ),
         ],
       ),
