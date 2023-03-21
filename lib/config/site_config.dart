@@ -1,3 +1,9 @@
+import 'dart:convert';
+
+import 'package:device_information/device_information.dart';
+import 'package:hash/hash.dart';
+import 'package:jpj_info/jpjeq/model/jpjeq_request_token.dart';
+
 class SiteConfig {
   static String appStoreUrl = 'itms-apps://apps.apple.com/us/app';
   static String playStoreUrl = 'market://details?id';
@@ -70,4 +76,24 @@ class SiteConfig {
   String jpjEqPlayStoreid = 'my.gov.jpj.queue';
   String eHadirAppStoreid = '1468511154';
   String eHadirPlayStoreid = 'my.gov.jpj.mykedatangan';
+  String eHadirKey = 'jpjit2020';
+
+  Future<JpjEqRequestToken> getJpjEqToken() async {
+    String timestamp = DateTime.now().millisecondsSinceEpoch.toString();
+    String imeiNo = await DeviceInformation.deviceIMEINumber;
+    String token = '';
+    String value = imeiNo + timestamp + eHadirKey;
+
+    var raw = SHA256().update(utf8.encode(value)).digest();
+    for (var el in raw) {
+      token += el.toRadixString(16).padLeft(2, '0');
+    }
+    JpjEqRequestToken retVal = JpjEqRequestToken(
+      date: timestamp,
+      imei: imeiNo,
+      token: token,
+    );
+
+    return retVal;
+  }
 }

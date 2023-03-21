@@ -10,6 +10,7 @@ import 'package:jpj_info/jpjeq/model/jpjeq_nearby_branches_response.dart';
 import 'package:jpj_info/jpjeq/pages/jpjeq-homepage/jpjeq_homepage.dart';
 import 'package:jpj_info/jpjeq/pages/jpjeq-homepage/jpjeq_wrong_operating_hour.dart';
 import 'package:jpj_info/jpjeq/services/branch_service.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class JpjEqHomepageController extends StatefulWidget {
   const JpjEqHomepageController({Key? key}) : super(key: key);
@@ -75,8 +76,8 @@ class _JpjEqHomepageController extends State<JpjEqHomepageController> {
       }
       getNearbyBranchList();
     } catch (e) {
-      locationName = 'Ralat';
-      nearestBranch = 'Ralat';
+      locationName = AppLocalizations.of(context)!.error;
+      nearestBranch = AppLocalizations.of(context)!.error;
     }
     setState(() {});
   }
@@ -119,7 +120,7 @@ class _JpjEqHomepageController extends State<JpjEqHomepageController> {
       if (res.statusCode == 200) {
         if (res.body == '') {
           setState(() {
-            nearestBranch = 'Ralat';
+            nearestBranch = AppLocalizations.of(context)!.error;
           });
         }
         JpjEqNearbyBranchesResponse response =

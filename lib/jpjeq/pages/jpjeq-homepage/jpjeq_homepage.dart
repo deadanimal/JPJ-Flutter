@@ -89,9 +89,9 @@ class JpjEqHomepage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               mainAxisSize: MainAxisSize.max,
               children: [
-                const Text(
-                  "Lokasi Anda",
-                  style: TextStyle(
+                Text(
+                  AppLocalizations.of(context)!.yourLocation,
+                  style: const TextStyle(
                     color: Color(eqThemeNavy),
                     fontSize: 15,
                     fontFamily: "Roboto",
@@ -178,10 +178,10 @@ class JpjEqHomepage extends StatelessWidget {
                         padding: const EdgeInsets.all(6.0),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
-                            Text("Dapatkan Lokasi"),
-                            SizedBox(width: 8),
-                            Icon(Icons.refresh),
+                          children: [
+                            Text(AppLocalizations.of(context)!.getLocation),
+                            const SizedBox(width: 8),
+                            const Icon(Icons.refresh),
                           ],
                         ),
                       ),

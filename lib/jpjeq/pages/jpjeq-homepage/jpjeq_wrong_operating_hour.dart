@@ -182,7 +182,7 @@ class JpjEqWrongOperatingHour extends StatelessWidget {
             MaterialPageRoute(
               builder: (context) {
                 return JpjEqChooseService(
-                  dropdownList: ['PELBAGAI', 'SERVICE 1', 'SERVICE 2'],
+                  dropdownList: const ['PELBAGAI', 'SERVICE 1', 'SERVICE 2'],
                   selectionChange: (s) {},
                   submitCallback: (s) {},
                 );

@@ -306,5 +306,8 @@
     "pleaseProceedToCounter":"please proceed to counter",
     "yourQNumber":"Your Turn Number",
     "editActivity":"Edit Aktivity",
-    "pleaseWait": "Please wait..."
+    "pleaseWait": "Please wait...",
+    "error":"Error",
+    "yourNumberShort":"Your No.",
+    "yourLocation":"Your Location"
 }

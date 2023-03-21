@@ -83,10 +83,10 @@ class JpjEqBranch extends StatelessWidget {
         ),
       );
     } else if (!locationIdentified) {
-      return const Padding(
-        padding: EdgeInsets.all(8.0),
+      return Padding(
+        padding: const EdgeInsets.all(8.0),
         child: Expanded(
-          child: Text('Sila tunggu'),
+          child: Text(AppLocalizations.of(context)!.pleaseWait),
         ),
       );
     } else {

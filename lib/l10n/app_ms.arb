@@ -306,5 +306,8 @@
     "pleaseProceedToCounter":"Sila ke kaunter",
     "yourQNumber":"Nombor Giliran anda",
     "editActivity":"Kemaskini Aktiviti",
-    "pleaseWait": "Sila Tunggu..."
+    "pleaseWait": "Sila Tunggu...",
+    "error":"Ralat",
+    "yourNumberShort":"No anda",
+    "yourLocation":"Lokasi Anda"
 }

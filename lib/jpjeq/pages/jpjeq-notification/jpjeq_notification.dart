@@ -87,18 +87,18 @@ class JpjEqNotification extends StatelessWidget {
                   padding: const EdgeInsets.all(16.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      Text(
+                    children: [
+                      const Text(
                         "30 Jan 2023 05:25:06 PM",
                         style: TextStyle(
                           color: Colors.grey,
                           fontStyle: FontStyle.italic,
                         ),
                       ),
-                      SizedBox(height: 8),
+                      const SizedBox(height: 8),
                       Text(
-                        "No anda 8001 telah dipanggil. Sila ke kaunter 8",
-                        style: TextStyle(
+                        '${AppLocalizations.of(context)!.yourNumber} /8001 ${AppLocalizations.of(context)!.hasBeenCalled}${AppLocalizations.of(context)!.pleaseProceedToCounter} 8',
+                        style: const TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.w700,
                         ),

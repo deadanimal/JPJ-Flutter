@@ -9,11 +9,29 @@ class EqHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: const Color(eqThemeOrange),
-      height: (mediaHeight * 0.1),
+      height: (mediaHeight * 0.15),
       width: mediaWidth,
-      child: const Image(
-        image: AssetImage("images/jpjeq/smartq.png"),
-        width: 64,
+      child: Column(
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              children: [
+                InkWell(
+                  child: const Icon(Icons.arrow_back),
+                  onTap: () {
+                    Navigator.popUntil(context, (route) => route.isFirst);
+                  },
+                ),
+              ],
+            ),
+          ),
+          Image(
+            image: const AssetImage("images/jpjeq/smartq.png"),
+            height: mediaHeight * 0.1,
+          ),
+        ],
       ),
     );
   }
