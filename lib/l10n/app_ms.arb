@@ -309,5 +309,6 @@
     "pleaseWait": "Sila Tunggu...",
     "error":"Ralat",
     "yourNumberShort":"No anda",
+    "fillRequiredField":"Isi medan yg bertanda",
     "yourLocation":"Lokasi Anda"
 }

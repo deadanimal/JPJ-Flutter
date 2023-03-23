@@ -9,9 +9,11 @@ class JpjEqChooseService extends StatelessWidget {
     required this.dropdownList,
     required this.submitCallback,
     required this.selectionChange,
+    required this.dropdownItemList,
   }) : super(key: key);
 
   final List<String> dropdownList;
+  final List<DropdownMenuItem<String>> dropdownItemList;
   final Function(String?) submitCallback;
   final Function(String?) selectionChange;
   late String selectedService = '';
@@ -106,15 +108,7 @@ class JpjEqChooseService extends StatelessWidget {
               onChanged: (String? val) {
                 selectedService = val ?? dropdownList[0];
               },
-              items: dropdownList.map<DropdownMenuItem<String>>((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(
-                    value,
-                    overflow: TextOverflow.clip,
-                  ),
-                );
-              }).toList(),
+              items: dropdownItemList,
             ),
           ),
         ),

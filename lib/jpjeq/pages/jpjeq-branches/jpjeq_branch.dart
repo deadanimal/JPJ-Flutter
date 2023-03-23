@@ -85,9 +85,7 @@ class JpjEqBranch extends StatelessWidget {
     } else if (!locationIdentified) {
       return Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Expanded(
-          child: Text(AppLocalizations.of(context)!.pleaseWait),
-        ),
+        child: Text(AppLocalizations.of(context)!.pleaseWait),
       );
     } else {
       return Container();

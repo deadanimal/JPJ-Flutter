@@ -7,6 +7,7 @@ import 'package:jpj_info/helper/geolocation.dart';
 import 'package:jpj_info/jpjeq/common/navbar.dart';
 import 'package:jpj_info/jpjeq/model/jpjeq_branch_service_response.dart';
 import 'package:jpj_info/jpjeq/model/jpjeq_nearby_branches_response.dart';
+import 'package:jpj_info/jpjeq/model/jpjeq_service_category_response.dart';
 import 'package:jpj_info/jpjeq/pages/jpjeq-branches/jpjeq_branch.dart';
 import 'dart:math' show cos, sqrt, asin;
 
@@ -68,19 +69,18 @@ class _JpjEqBranchController extends State<JpjEqBranchController> {
   }
 
   void _showBranchDetails(BuildContext context, JpjBranchData branchInfo) {
-    BranchService().getServices(
+    BranchService().getServicesKategory(
       context,
       branchInfo.idCawangan!,
       (Response res) {
         if (res.statusCode == 200) {
           if (res.body != '') {
-            JpjEqBranchServiceResponse serviceInfo =
-                JpjEqBranchServiceResponse.fromJson(
+            ServiceCategoryResponse serviceInfo =
+                ServiceCategoryResponse.fromJson(
               jsonDecode(
                 res.body,
               ),
             );
-
             Navigator.push(
               context,
               MaterialPageRoute(

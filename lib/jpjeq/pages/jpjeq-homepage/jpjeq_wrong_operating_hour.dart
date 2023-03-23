@@ -8,14 +8,14 @@ import 'package:jpj_info/view/common/rounded_corner_container.dart';
 class JpjEqWrongOperatingHour extends StatelessWidget {
   const JpjEqWrongOperatingHour({
     Key? key,
-    required this.branchCode,
     required this.startTime,
     required this.endTime,
+    required this.reason,
   }) : super(key: key);
 
-  final String branchCode;
   final String startTime;
   final String endTime;
+  final String reason;
 
   @override
   Widget build(BuildContext context) {
@@ -74,14 +74,7 @@ class JpjEqWrongOperatingHour extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            AppLocalizations.of(context)!.scanQrInPermittedTime,
-            textAlign: TextAlign.center,
-            style: const TextStyle(
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-          Text(
-            "${AppLocalizations.of(context)!.branchCode} $branchCode",
+            reason,
             textAlign: TextAlign.center,
             style: const TextStyle(
               fontWeight: FontWeight.w600,
@@ -175,20 +168,8 @@ class JpjEqWrongOperatingHour extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: InkWell(
-        //todo: onTap should just pop navigator
         onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) {
-                return JpjEqChooseService(
-                  dropdownList: const ['PELBAGAI', 'SERVICE 1', 'SERVICE 2'],
-                  selectionChange: (s) {},
-                  submitCallback: (s) {},
-                );
-              },
-            ),
-          );
+          Navigator.pop(context);
         },
         child: Container(
           decoration: BoxDecoration(

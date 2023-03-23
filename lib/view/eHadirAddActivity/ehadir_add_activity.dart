@@ -81,6 +81,8 @@ class EhadirAddActivity extends StatelessWidget {
                   const SizedBox(height: vPaddingXL),
                   _icon(),
                   const SizedBox(height: vPaddingXL),
+                  _validation(context),
+                  const SizedBox(height: vPaddingM),
                   _form(context),
                 ],
               ),
@@ -91,9 +93,23 @@ class EhadirAddActivity extends StatelessWidget {
     );
   }
 
+  Widget _validation(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Text(AppLocalizations.of(context)!.fillRequiredField),
+        const Text(
+          " *",
+          style: TextStyle(color: Colors.red),
+        ),
+      ],
+    );
+  }
+
   Widget _icon() {
     return const Image(
       image: AssetImage("images/icon/new_activity_icon.png"),
+      height: 120,
     );
   }
 
@@ -113,6 +129,7 @@ class EhadirAddActivity extends StatelessWidget {
           controller: noOfDays,
           label: AppLocalizations.of(context)!.noOfDays,
           width: mediaWidth - 64,
+          inputType: TextInputType.number,
           endWidget: const Text(
             "*",
             style: TextStyle(color: Colors.red),
@@ -123,6 +140,7 @@ class EhadirAddActivity extends StatelessWidget {
           label: AppLocalizations.of(context)!.date,
           width: mediaWidth - 64,
           ontap: datePicker,
+          inputType: TextInputType.datetime,
           endWidget: const Text(
             "*",
             style: TextStyle(color: Colors.red),
@@ -141,6 +159,7 @@ class EhadirAddActivity extends StatelessWidget {
         CustomTextFieldWithLabel(
           controller: startTime,
           label: AppLocalizations.of(context)!.startTime,
+          inputType: TextInputType.datetime,
           width: mediaWidth - 64,
           ontap: () {
             startTimePicker(1);
@@ -153,6 +172,7 @@ class EhadirAddActivity extends StatelessWidget {
         CustomTextFieldWithLabel(
           controller: endTime,
           label: AppLocalizations.of(context)!.endTime,
+          inputType: TextInputType.datetime,
           width: mediaWidth - 64,
           ontap: () {
             endTimePicker(1);
@@ -287,11 +307,13 @@ class EhadirAddActivity extends StatelessWidget {
         CustomTextFieldWithLabel(
           controller: latitude,
           label: AppLocalizations.of(context)!.latitude,
+          inputType: TextInputType.number,
           width: mediaWidth - 64,
         ),
         CustomTextFieldWithLabel(
           controller: longitude,
           label: AppLocalizations.of(context)!.longitude,
+          inputType: TextInputType.number,
           width: mediaWidth - 64,
         ),
         CustomTextFieldWithLabel(

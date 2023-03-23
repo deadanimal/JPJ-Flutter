@@ -52,7 +52,8 @@ class InfoTab extends StatelessWidget {
               PrettyQr(
                 image: const AssetImage("images/icon/jpjehadir.png"),
                 size: 200,
-                data: "https://myjpj.jpj.gov.my/api/daftar_manual/${event.id}",
+                data:
+                    "https://egate.jpj.gov.my/ehadir/umum/daftar_pengguna_qr/${event.transidAktiviti}",
                 errorCorrectLevel: QrErrorCorrectLevel.M,
                 roundEdges: true,
                 elementColor: const Color(themeNavy),
@@ -70,7 +71,8 @@ class InfoTab extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding:
+                        const EdgeInsets.fromLTRB(8, 2, 16, 16), // all(8.0),
                     child: FloatingActionButton(
                       onPressed: () {
                         Navigator.push(
@@ -101,9 +103,13 @@ class InfoTab extends StatelessWidget {
     if (event.masaSesi != null) {
       for (int i = 0; i < event.masaSesi!.length; i++) {
         retVal +=
-            'SESI ${i + 1}: ${event.masaSesi![i].masaMula!}-${event.masaSesi![i].masaTamat!}\n';
+            'SESI ${i + 1}: ${event.masaSesi![i].masaMula!}-${event.masaSesi![i].masaTamat!}';
+        if (i != event.masaSesi!.length - 1) {
+          retVal += '\n';
+        }
       }
     }
+    retVal = retVal;
     return retVal;
   }
 

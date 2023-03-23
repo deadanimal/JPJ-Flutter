@@ -4,13 +4,22 @@ import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart';
+import 'package:jpj_info/controller/alert_controller.dart';
 import 'package:jpj_info/helper/geolocation.dart';
+import 'package:jpj_info/helper/local_storage.dart';
+import 'package:jpj_info/helper/qr_scanner.dart';
 import 'package:jpj_info/jpjeq/common/navbar.dart';
+import 'package:jpj_info/jpjeq/model/jpjeq_branch_by_qr_response.dart';
 import 'package:jpj_info/jpjeq/model/jpjeq_nearby_branches_response.dart';
+import 'package:jpj_info/jpjeq/model/jpjeq_qr_format.dart';
+import 'package:jpj_info/jpjeq/model/jpjeq_service_group_response.dart';
+import 'package:jpj_info/jpjeq/pages/jpjeq-homepage/jpjeq_choose_service.dart';
 import 'package:jpj_info/jpjeq/pages/jpjeq-homepage/jpjeq_homepage.dart';
 import 'package:jpj_info/jpjeq/pages/jpjeq-homepage/jpjeq_wrong_operating_hour.dart';
 import 'package:jpj_info/jpjeq/services/branch_service.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:mobile_scanner/mobile_scanner.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class JpjEqHomepageController extends StatefulWidget {
   const JpjEqHomepageController({Key? key}) : super(key: key);
@@ -98,16 +107,102 @@ class _JpjEqHomepageController extends State<JpjEqHomepageController> {
     return numbers.contains(character);
   }
 
+  void _qrScanCallback(Barcode barcode) {
+    Navigator.pop(context);
+    try {
+      String? qrData = barcode.rawValue;
+      JpjEqQrFormat qr = JpjEqQrFormat.fromJson(jsonDecode(qrData!));
+
+      BranchService().getBranchByQr(context, qr.param ?? '', (Response res) {
+        if (res.statusCode == 200) {
+          JpjEqGetBrancheByQrResponse response =
+              JpjEqGetBrancheByQrResponse.fromJson(jsonDecode(res.body));
+
+          if (response.data != null && response.data!.isNotEmpty) {
+            SharedPreferences.getInstance().then((pref) {
+              pref.setString(
+                LocalStorageHelper().jpjEqTime,
+                response.data![0].selaMasa.toString(),
+              );
+
+              BranchService()
+                  .getServiceGroup(context, qr.param ?? '', qr.idCawangan ?? '',
+                      (Response res2) {
+                if (res2.statusCode == 200) {
+                  JpjEqServiceGroupResponse serviceGroupResponse =
+                      JpjEqServiceGroupResponse.fromJson(
+                    jsonDecode(
+                      res2.body,
+                    ),
+                  );
+
+                  if (serviceGroupResponse.status == '0') {
+                    serviceGroupResponse.data2 ??= [];
+                    List<String> dropdownValue = [];
+                    List<DropdownMenuItem<String>> dropdownItems = [];
+                    for (var el in serviceGroupResponse.data2!) {
+                      dropdownValue.add(el.keterangan ?? "");
+                      dropdownItems.add(
+                        DropdownMenuItem<String>(
+                          value: el.id,
+                          child: Text(
+                            el.keterangan ?? "",
+                            overflow: TextOverflow.clip,
+                          ),
+                        ),
+                      );
+                    }
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return JpjEqChooseService(
+                            dropdownList: dropdownValue,
+                            dropdownItemList: dropdownItems,
+                            selectionChange: (s) {},
+                            submitCallback: (s) {},
+                          );
+                        },
+                      ),
+                    );
+                  } else {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return JpjEqWrongOperatingHour(
+                            reason: serviceGroupResponse.msg ?? "",
+                            endTime: serviceGroupResponse.waktuTamat ?? "",
+                            startTime: serviceGroupResponse.waktuMula ?? "",
+                          );
+                        },
+                      ),
+                    );
+                  }
+                }
+              });
+            });
+          }
+        }
+      });
+    } catch (e) {
+      AlertController(ctx: context).generalError(
+        AppLocalizations.of(context)!.invalidQrCode,
+        () {
+          Navigator.pop(context);
+        },
+      );
+    }
+  }
+
   void scan() {
     // todo: check if allowed to scan, if no show error message
     Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) {
-          return const JpjEqWrongOperatingHour(
-            branchCode: "-",
-            endTime: "16:10:00",
-            startTime: "08:10:00",
+          return QrScanner(
+            qrScanCallback: _qrScanCallback,
           );
         },
       ),

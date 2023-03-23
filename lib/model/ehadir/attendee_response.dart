@@ -1,7 +1,90 @@
 class AttendeeResponse {
   int? id;
+  String? transidAktiviti;
+  String? transidSesi;
+  String? tarikh;
+  String? masa;
+  String? nokp;
+  String? kodbahagian;
+  String? latitude;
+  String? longitude;
+  String? agensi;
+  int? aktivitiId;
+  int? userId;
+  String? stafId;
+  String? stafBahagianId;
+  String? createdAt;
+  String? updatedAt;
+  User? user;
+
+  AttendeeResponse({
+    this.id,
+    this.transidAktiviti,
+    this.transidSesi,
+    this.tarikh,
+    this.masa,
+    this.nokp,
+    this.kodbahagian,
+    this.latitude,
+    this.longitude,
+    this.agensi,
+    this.aktivitiId,
+    this.userId,
+    this.stafId,
+    this.stafBahagianId,
+    this.createdAt,
+    this.updatedAt,
+    this.user,
+  });
+
+  AttendeeResponse.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    transidAktiviti = json['transid_aktiviti'];
+    transidSesi = json['transid_sesi'];
+    tarikh = json['tarikh'];
+    masa = json['masa'];
+    nokp = json['nokp'];
+    kodbahagian = json['kodbahagian'];
+    latitude = json['latitude'];
+    longitude = json['longitude'];
+    agensi = json['agensi'];
+    aktivitiId = json['aktiviti_id'];
+    userId = json['user_id'];
+    stafId = json['staf_id'];
+    stafBahagianId = json['staf_bahagian_id'];
+    createdAt = json['created_at'];
+    updatedAt = json['updated_at'];
+    user = json['user'] != null ? User.fromJson(json['user']) : null;
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['transid_aktiviti'] = transidAktiviti;
+    data['transid_sesi'] = transidSesi;
+    data['tarikh'] = tarikh;
+    data['masa'] = masa;
+    data['nokp'] = nokp;
+    data['kodbahagian'] = kodbahagian;
+    data['latitude'] = latitude;
+    data['longitude'] = longitude;
+    data['agensi'] = agensi;
+    data['aktiviti_id'] = aktivitiId;
+    data['user_id'] = userId;
+    data['staf_id'] = stafId;
+    data['staf_bahagian_id'] = stafBahagianId;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
+    if (user != null) {
+      data['user'] = user!.toJson();
+    }
+    return data;
+  }
+}
+
+class User {
+  int? id;
   String? username;
-  String? password;
   String? nama;
   String? nokp;
   String? alamat;
@@ -9,7 +92,6 @@ class AttendeeResponse {
   String? email;
   String? emailVerifiedAt;
   String? telefon;
-  String? rememberToken;
   String? statusLogin;
   String? role;
   String? hqStatus;
@@ -20,10 +102,9 @@ class AttendeeResponse {
   String? namabahagian;
   String? refNo;
 
-  AttendeeResponse(
+  User(
       {this.id,
       this.username,
-      this.password,
       this.nama,
       this.nokp,
       this.alamat,
@@ -31,7 +112,6 @@ class AttendeeResponse {
       this.email,
       this.emailVerifiedAt,
       this.telefon,
-      this.rememberToken,
       this.statusLogin,
       this.role,
       this.hqStatus,
@@ -42,10 +122,9 @@ class AttendeeResponse {
       this.namabahagian,
       this.refNo});
 
-  AttendeeResponse.fromJson(Map<String, dynamic> json) {
+  User.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     username = json['username'];
-    password = json['password'];
     nama = json['nama'];
     nokp = json['nokp'];
     alamat = json['alamat'];
@@ -53,7 +132,6 @@ class AttendeeResponse {
     email = json['email'];
     emailVerifiedAt = json['email_verified_at'];
     telefon = json['telefon'];
-    rememberToken = json['remember_token'];
     statusLogin = json['status_login'];
     role = json['role'];
     hqStatus = json['hq_status'];
@@ -69,7 +147,6 @@ class AttendeeResponse {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['username'] = username;
-    data['password'] = password;
     data['nama'] = nama;
     data['nokp'] = nokp;
     data['alamat'] = alamat;
@@ -77,7 +154,6 @@ class AttendeeResponse {
     data['email'] = email;
     data['email_verified_at'] = emailVerifiedAt;
     data['telefon'] = telefon;
-    data['remember_token'] = rememberToken;
     data['status_login'] = statusLogin;
     data['role'] = role;
     data['hq_status'] = hqStatus;

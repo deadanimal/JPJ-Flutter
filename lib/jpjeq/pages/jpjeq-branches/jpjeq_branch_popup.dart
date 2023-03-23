@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jpj_info/jpjeq/common/view/theme.dart';
-import 'package:jpj_info/jpjeq/model/jpjeq_branch_service_response.dart';
 import 'package:jpj_info/jpjeq/model/jpjeq_nearby_branches_response.dart';
+import 'package:jpj_info/jpjeq/model/jpjeq_service_category_response.dart';
 import 'package:jpj_info/model/page_size.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:jpj_info/view/common/rounded_corner_container.dart';
@@ -15,20 +15,24 @@ class JpjEqBranchPopup extends StatelessWidget {
   }) : super(key: key);
   final Function(String) openMapFx;
   final JpjBranchData branchInfo;
-  final JpjEqBranchServiceResponse serviceInfo;
+  final ServiceCategoryResponse serviceInfo;
 
   @override
   Widget build(BuildContext context) {
     mediaWidth = (MediaQuery.of(context).size.width);
     mediaHeight = (MediaQuery.of(context).size.height);
-    return Padding(
-      padding: const EdgeInsets.only(top: 8.0),
-      child: Column(
-        children: [
-          _topIcon(context),
-          const SizedBox(height: 48),
-          _branchInfo(context),
-        ],
+    return SafeArea(
+      child: Scaffold(
+        body: Padding(
+          padding: const EdgeInsets.only(top: 8.0),
+          child: Column(
+            children: [
+              _topIcon(context),
+              const SizedBox(height: 48),
+              _branchInfo(context),
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -149,7 +153,7 @@ class JpjEqBranchPopup extends StatelessWidget {
   }
 
   Widget _branchInfoText(String label, String? info) {
-    if (info != null) {
+    if (1 == 1) {
       return Row(
         children: [
           Expanded(
@@ -168,7 +172,7 @@ class JpjEqBranchPopup extends StatelessWidget {
           Expanded(
             flex: 6,
             child: Text(
-              info,
+              info ?? "",
               style: const TextStyle(
                 fontFamily: "Roboto",
                 fontSize: 12,

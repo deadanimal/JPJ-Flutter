@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:jpj_info/helper/string_helper.dart';
 import 'package:jpj_info/model/ehadir_event_info.dart';
 import 'package:jpj_info/model/page_size.dart';
@@ -137,7 +138,7 @@ class EhadirActivityList extends StatelessWidget {
                                 ),
                                 const SizedBox(height: vPaddingS),
                                 Text(
-                                  capitalize(event.venue!),
+                                  capitalize(event.venue ?? "-"),
                                   textAlign: TextAlign.start,
                                   style: const TextStyle(
                                     color: Color(0xff2e2e2e),
@@ -189,7 +190,11 @@ class EhadirActivityList extends StatelessWidget {
                       ),
                       const SizedBox(height: vPaddingS),
                       Text(
-                        event.date!,
+                        DateFormat('dd-MM-yyyy').format(
+                          DateTime.parse(
+                            event.date!,
+                          ),
+                        ),
                         textAlign: TextAlign.start,
                         style: const TextStyle(
                           color: Color(0xff2e2e2e),

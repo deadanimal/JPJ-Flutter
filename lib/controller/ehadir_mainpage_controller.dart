@@ -109,11 +109,9 @@ class _EhadirMainPageController extends State<EhadirMainPageController> {
     Navigator.pop(context);
     try {
       String? qrData = barcode.rawValue;
-
       if (qrData != null &&
-          qrData
-                  .toString()
-                  .indexOf('https://myjpj.jpj.gov.my/api/daftar_manual/') ==
+          qrData.toString().indexOf(
+                  'https://egate.jpj.gov.my/ehadir/umum/daftar_pengguna_qr/') ==
               0) {
         SiteConfig conf = SiteConfig();
 
@@ -123,7 +121,7 @@ class _EhadirMainPageController extends State<EhadirMainPageController> {
           headers: conf.formHeader,
           body: jsonEncode({
             "id": qrData.replaceAll(
-                'https://myjpj.jpj.gov.my/api/daftar_manual/', '')
+                'https://egate.jpj.gov.my/ehadir/umum/daftar_pengguna_qr/', '')
           }),
           callback: (res) {
             if (res.statusCode == 200) {

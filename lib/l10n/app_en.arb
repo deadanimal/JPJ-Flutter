@@ -309,5 +309,6 @@
     "pleaseWait": "Please wait...",
     "error":"Error",
     "yourNumberShort":"Your No.",
+    "fillRequiredField":"Fill in the marked field",
     "yourLocation":"Your Location"
 }

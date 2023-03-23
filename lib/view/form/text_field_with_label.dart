@@ -14,6 +14,7 @@ class CustomTextFieldWithLabel extends StatelessWidget {
     required this.width,
     this.ontap,
     this.endWidget = const SizedBox(),
+    this.inputType = TextInputType.emailAddress,
   }) : super(key: key);
   final TextEditingController controller;
   final String label;
@@ -23,6 +24,7 @@ class CustomTextFieldWithLabel extends StatelessWidget {
   final int? maxLines;
   final Function()? ontap;
   final Widget endWidget;
+  final TextInputType inputType;
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +44,7 @@ class CustomTextFieldWithLabel extends StatelessWidget {
           textColor: readOnly ? Colors.grey : Colors.black,
           textController: controller,
           readOnly: readOnly,
-          inputType: TextInputType.emailAddress,
+          inputType: inputType,
           label: label,
           width: width,
           onTap: ontap,

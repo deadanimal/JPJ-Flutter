@@ -264,8 +264,8 @@ class _EhadirActivityInfoDetailsController
               attendeeList.add(
                 BasicUserInfo(
                   user.id ?? 0,
-                  user.nama ?? '',
-                  user.namabahagian ?? 'No Info',
+                  user.user!.nama ?? '',
+                  user.user!.namabahagian ?? 'No Info',
                 ),
               );
             }
