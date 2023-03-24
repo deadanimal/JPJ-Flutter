@@ -58,6 +58,7 @@ class SiteConfig {
   final String eHadirAttendeeQr = "$prodUrl/daftarQR";
   final String eHadirEraseAttendee = "$prodUrl/padam_kehadiran/";
   final String eHadirEraseCommitee = "$prodUrl/padam_urusetia2/";
+  final String eHadirGetActivityByTransId = "$prodUrl/aktiviti_by_transid/";
 
   //JpjeQ
   static String jpjEqUrl = "https://egate.jpj.gov.my/smartqv2-pnsb/api";

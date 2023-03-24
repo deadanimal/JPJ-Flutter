@@ -13,10 +13,9 @@ import 'package:jpj_info/controller/ehadir_comittee_page_controller.dart';
 import 'package:jpj_info/controller/http_request_controller.dart';
 import 'package:jpj_info/helper/account_manager.dart';
 import 'package:jpj_info/helper/qr_scanner.dart';
-import 'package:jpj_info/model/ehadir/activity_by_id_res.dart';
-import 'package:jpj_info/model/ehadir_event_info.dart';
+import 'package:jpj_info/model/ehadir/activity_by_transid_res.dart';
+import 'package:jpj_info/model/ehadir/manual_register_req.dart';
 import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
-import 'package:jpj_info/view/eHadirConfirmedAttendance/ehadir_confirmed_attendance.dart';
 import 'package:jpj_info/view/eHadirMainPage/ehadir_mainpage.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -117,37 +116,38 @@ class _EhadirMainPageController extends State<EhadirMainPageController> {
 
         return jpjHttpRequest(
           context,
-          Uri.parse(conf.eHadirActivityById),
+          Uri.parse(conf.eHadirGetActivityByTransId),
           headers: conf.formHeader,
           body: jsonEncode({
-            "id": qrData.replaceAll(
+            "transid_aktiviti": qrData.replaceAll(
                 'https://egate.jpj.gov.my/ehadir/umum/daftar_pengguna_qr/', '')
           }),
           callback: (res) {
             if (res.statusCode == 200) {
-              _navToActivityPage();
-              // EHadirEventInfo eventInfo = EHadirEventInfo(
-              //   date: response.tarikhMula,
-              //   endTime: response.masaTamat,
-              //   eventName: response.namaAktiviti,
-              //   organizer: response.penganjur,
-              //   startTime: response.masaMula,
-              //   venue: response.lokasi,
-              // );
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(
-              //     builder: (context) {
-              //       return EhadirConfirmAttendance(
-              //         eventName: response.namaAktiviti ?? '',
-              //         vanue: eventInfo.venue ?? '',
-              //         date: eventInfo.date ?? '',
-              //         startTime: eventInfo.startTime ?? '',
-              //         endTime: eventInfo.endTime ?? '',
-              //       );
-              //     },
-              //   ),
-              // );
+              ActivityByTransIdRes eventInfo = ActivityByTransIdRes.fromJson(
+                jsonDecode(
+                  res.body,
+                ),
+              );
+
+              ManualRegisterReq req = ManualRegisterReq(
+                idAktiviti: eventInfo.aktiviti![0].id,
+                nokp: MyJPJAccountManager().id,
+                transidAktiviti: eventInfo.aktiviti![0].transidAktiviti,
+                transidSesi: eventInfo.aktiviti![0].transidAktiviti,
+                userId: MyJPJAccountManager().id,
+              );
+              return jpjHttpRequest(
+                context,
+                Uri.parse(conf.eHadirManualRegister),
+                headers: conf.formHeader,
+                body: jsonEncode(req.toJson()),
+                callback: (res2) {
+                  if (res2.statusCode == 200) {
+                    _navToActivityPage();
+                  }
+                },
+              );
             }
           },
         );

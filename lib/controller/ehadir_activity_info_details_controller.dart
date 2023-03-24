@@ -119,7 +119,6 @@ class _EhadirActivityInfoDetailsController
           transidAktiviti: currentActivity.transidAktiviti,
           transidSesi: currentActivity.transidAktiviti,
           userId: MyJPJAccountManager().id,
-          // jenis: activityInfo
         );
         return jpjHttpRequest(
           context,
