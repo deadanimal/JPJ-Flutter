@@ -3,8 +3,8 @@ import 'package:jpj_info/jpjeq/common/view/theme.dart';
 import 'package:jpj_info/model/page_size.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class JpjEqChooseService extends StatelessWidget {
-  JpjEqChooseService({
+class JpjEqChooseService extends StatefulWidget {
+  const JpjEqChooseService({
     Key? key,
     required this.dropdownList,
     required this.submitCallback,
@@ -12,10 +12,16 @@ class JpjEqChooseService extends StatelessWidget {
     required this.dropdownItemList,
   }) : super(key: key);
 
-  final List<String> dropdownList;
+  final String? dropdownList;
   final List<DropdownMenuItem<String>> dropdownItemList;
   final Function(String?) submitCallback;
   final Function(String?) selectionChange;
+
+  @override
+  State<JpjEqChooseService> createState() => _JpjEqChooseServiceState();
+}
+
+class _JpjEqChooseServiceState extends State<JpjEqChooseService> {
   late String selectedService = '';
 
   @override
@@ -98,7 +104,7 @@ class JpjEqChooseService extends StatelessWidget {
           child: ButtonTheme(
             alignedDropdown: true,
             child: DropdownButton<String>(
-              value: dropdownList[0],
+              value: widget.dropdownList,
               icon: const Icon(Icons.arrow_downward),
               elevation: 16,
               isExpanded: true,
@@ -106,9 +112,11 @@ class JpjEqChooseService extends StatelessWidget {
                 height: 2,
               ),
               onChanged: (String? val) {
-                selectedService = val ?? dropdownList[0];
+                setState(() {
+                  selectedService = val ?? "";
+                });
               },
-              items: dropdownItemList,
+              items: widget.dropdownItemList,
             ),
           ),
         ),
@@ -121,7 +129,7 @@ class JpjEqChooseService extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: InkWell(
         onTap: () {
-          submitCallback(selectedService);
+          widget.submitCallback(selectedService);
         },
         child: Container(
           width: mediaWidth - 64,
