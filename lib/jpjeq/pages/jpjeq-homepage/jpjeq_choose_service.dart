@@ -1,28 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:jpj_info/jpjeq/common/view/theme.dart';
+import 'package:jpj_info/jpjeq/model/jpjeq_service_group_response.dart';
 import 'package:jpj_info/model/page_size.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class JpjEqChooseService extends StatefulWidget {
   const JpjEqChooseService({
     Key? key,
-    required this.dropdownList,
-    required this.submitCallback,
-    required this.selectionChange,
-    required this.dropdownItemList,
+    required this.serviceItems,
   }) : super(key: key);
 
-  final String? dropdownList;
-  final List<DropdownMenuItem<String>> dropdownItemList;
-  final Function(String?) submitCallback;
-  final Function(String?) selectionChange;
+  final JpjEqServiceGroupResponse serviceItems;
 
   @override
   State<JpjEqChooseService> createState() => _JpjEqChooseServiceState();
 }
 
 class _JpjEqChooseServiceState extends State<JpjEqChooseService> {
-  late String selectedService = '';
+  String? selectedItem;
+  late List<String> selectedItemDetails;
+  List<DropdownMenuItem<String>> dropdownItemList = [];
+
+  @override
+  void initState() {
+    super.initState();
+    widget.serviceItems.data2 ??= [];
+    selectedItemDetails = [];
+    populateDropdownList();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +42,7 @@ class _JpjEqChooseServiceState extends State<JpjEqChooseService> {
       child: Scaffold(
         body: Padding(
           padding: const EdgeInsets.only(top: 8.0),
-          child: Column(
+          child: ListView(
             children: [
               _topIcon(context),
               const SizedBox(height: 48),
@@ -46,6 +56,36 @@ class _JpjEqChooseServiceState extends State<JpjEqChooseService> {
         ),
       ),
     );
+  }
+
+  populateDropdownList() {
+    for (var el in widget.serviceItems.data2!) {
+      dropdownItemList.add(
+        DropdownMenuItem<String>(
+          value: el.id,
+          child: Text(
+            el.keterangan ?? "",
+            overflow: TextOverflow.clip,
+          ),
+        ),
+      );
+    }
+    if (widget.serviceItems.data2!.isNotEmpty) {
+      selectedItem = widget.serviceItems.data2![0].id;
+    }
+  }
+
+  List<String> getDetails() {
+    List<String> retVal = [];
+    selectedItemDetails = [];
+    for (var el in widget.serviceItems.data2!) {
+      if (el.id == selectedItem) {
+        for (var element in el.info!) {
+          selectedItemDetails.add(element.keterangan!);
+        }
+      }
+    }
+    return retVal;
   }
 
   Widget _topIcon(BuildContext context) {
@@ -90,6 +130,11 @@ class _JpjEqChooseServiceState extends State<JpjEqChooseService> {
         constraints: const BoxConstraints(maxWidth: 400),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
+          border: Border.all(
+            color: selectedItemDetails.isEmpty
+                ? Colors.white
+                : const Color(0xffEBA658),
+          ),
           boxShadow: [
             BoxShadow(
               color: Colors.grey.shade400,
@@ -97,27 +142,61 @@ class _JpjEqChooseServiceState extends State<JpjEqChooseService> {
               offset: const Offset(0, 4),
             ),
           ],
-          color: Colors.white,
+          color: selectedItemDetails.isEmpty
+              ? Colors.white
+              : const Color(0xffFCF1E1),
         ),
         child: Padding(
           padding: const EdgeInsets.fromLTRB(8.0, 16, 8, 16),
-          child: ButtonTheme(
-            alignedDropdown: true,
-            child: DropdownButton<String>(
-              value: widget.dropdownList,
-              icon: const Icon(Icons.arrow_downward),
-              elevation: 16,
-              isExpanded: true,
-              underline: Container(
-                height: 2,
+          child: Column(
+            children: [
+              ButtonTheme(
+                alignedDropdown: true,
+                child: DropdownButton<String>(
+                  value: selectedItem,
+                  icon: const Icon(Icons.arrow_downward),
+                  elevation: 16,
+                  isExpanded: true,
+                  underline: Container(
+                    height: 2,
+                  ),
+                  onChanged: (String? val) {
+                    setState(() {
+                      selectedItem = val;
+                      getDetails();
+                    });
+                  },
+                  items: dropdownItemList,
+                ),
               ),
-              onChanged: (String? val) {
-                setState(() {
-                  selectedService = val ?? "";
-                });
-              },
-              items: widget.dropdownItemList,
-            ),
+              ListView.builder(
+                scrollDirection: Axis.vertical,
+                itemCount: selectedItemDetails.length,
+                shrinkWrap: true,
+                physics: const ClampingScrollPhysics(),
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Icon(Icons.circle, size: 8),
+                        const SizedBox(width: 4),
+                        Flexible(
+                          child: Text(
+                            '${selectedItemDetails[index]}\n',
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontStyle: FontStyle.italic,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              )
+            ],
           ),
         ),
       ),
@@ -129,7 +208,7 @@ class _JpjEqChooseServiceState extends State<JpjEqChooseService> {
       padding: const EdgeInsets.all(8.0),
       child: InkWell(
         onTap: () {
-          widget.submitCallback(selectedService);
+          // submitCallback(selectedItem);
         },
         child: Container(
           width: mediaWidth - 64,
