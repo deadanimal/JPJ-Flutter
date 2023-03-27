@@ -7,4 +7,5 @@ class LocalStorageHelper {
   String inboxItems = "inboxItems";
   String jpjEqTime = "jpjEqTime";
   String jpjEqQrPayload = "jpjEqQrPayload";
+  String jpjOneSignalPlayerId = "jpjOneSignalPlayerId";
 }

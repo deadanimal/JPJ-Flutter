@@ -3,6 +3,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:jpj_info/controller/landing_controller.dart';
+import 'package:jpj_info/controller/one_signal_controller.dart';
 import 'package:jpj_info/helper/account_manager.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 // import 'package:jpj_info/helper/local_notification.dart';
@@ -53,6 +54,8 @@ void main() {
   //   initialDelay: const Duration(seconds: 5),
   //   constraints: Constraints(networkType: NetworkType.connected),
   // );
+
+  OneSignalController().init();
   MyJPJAccountManager().init().then(
         (value) => runApp(
           MyJpj(),

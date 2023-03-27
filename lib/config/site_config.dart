@@ -2,7 +2,9 @@ import 'dart:convert';
 
 import 'package:device_information/device_information.dart';
 import 'package:hash/hash.dart';
+import 'package:jpj_info/helper/local_storage.dart';
 import 'package:jpj_info/jpjeq/model/jpjeq_request_token.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SiteConfig {
   static String appStoreUrl = 'itms-apps://apps.apple.com/us/app';
@@ -82,10 +84,15 @@ class SiteConfig {
   String eHadirAppStoreid = '1468511154';
   String eHadirPlayStoreid = 'my.gov.jpj.mykedatangan';
   String eHadirKey = 'jpjit2020';
+  String oneSignalAppId =
+      "214eeb2e-e4b5-4ccf-b3f6-bb118bee513f"; // todo: change to actual app id
 
   Future<JpjEqRequestToken> getJpjEqToken() async {
     String timestamp = DateTime.now().millisecondsSinceEpoch.toString();
     String imeiNo = await DeviceInformation.deviceIMEINumber;
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    imeiNo =
+        pref.getString(LocalStorageHelper().jpjOneSignalPlayerId) ?? imeiNo;
     String token = '';
     String value = imeiNo + timestamp + eHadirKey;
 
