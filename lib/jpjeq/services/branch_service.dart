@@ -5,6 +5,7 @@ import 'package:jpj_info/config/site_config.dart';
 import 'package:jpj_info/controller/http_request_controller.dart';
 import 'package:jpj_info/jpjeq/model/jpjeq_branch_by_qr_request.dart';
 import 'package:jpj_info/jpjeq/model/jpjeq_branch_service_request.dart';
+import 'package:jpj_info/jpjeq/model/jpjeq_get_ticket_number_request.dart';
 import 'package:jpj_info/jpjeq/model/jpjeq_nearby_branches_request.dart';
 import 'package:jpj_info/jpjeq/model/jpjeq_request_token.dart';
 import 'package:jpj_info/jpjeq/model/jpjeq_service_category_request.dart';
@@ -127,11 +128,39 @@ class BranchService {
           token: value.token,
         );
 
-        print(req.toJson());
-
         jpjHttpRequest(
           context,
           Uri.parse(conf.eQGetServiceGroup),
+          headers: conf.formHeader,
+          body: jsonEncode(req.toJson()),
+          callback: callback,
+        );
+      },
+    );
+  }
+
+  getTicketNumber(
+    BuildContext context,
+    String param,
+    String branchId,
+    int serviceId,
+    dynamic Function(Response) callback,
+  ) {
+    SiteConfig conf = SiteConfig();
+    conf.getJpjEqToken().then(
+      (JpjEqRequestToken value) {
+        JpjEqGetTicketNumberRequest req = JpjEqGetTicketNumberRequest(
+          param: param,
+          playerId: value.imei,
+          tarikh: value.date,
+          token: value.token,
+          cawangan: branchId,
+          idKumpulanPerkhidmatan: serviceId,
+        );
+
+        jpjHttpRequest(
+          context,
+          Uri.parse(conf.eQGetTicketNumber),
           headers: conf.formHeader,
           body: jsonEncode(req.toJson()),
           callback: callback,

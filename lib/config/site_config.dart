@@ -67,6 +67,7 @@ class SiteConfig {
   final String eQGetBranchByQr = "$jpjEqUrl/getCawanganByQr/";
   final String eQGetServiceKategory = "$jpjEqUrl/getKategoriServis/";
   final String eQGetServiceGroup = "$jpjEqUrl/getServiceGroup/";
+  final String eQGetTicketNumber = "$jpjEqUrl/getTicketNo/";
 
   Map<String, String> formHeader = {
     'Content-Type': 'application/json; charset=UTF-8',

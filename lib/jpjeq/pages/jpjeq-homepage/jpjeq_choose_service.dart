@@ -1,8 +1,17 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
+import 'package:jpj_info/controller/alert_controller.dart';
+import 'package:jpj_info/helper/local_storage.dart';
 import 'package:jpj_info/jpjeq/common/view/theme.dart';
+import 'package:jpj_info/jpjeq/model/jpjeq_get_ticket_number_response.dart';
+import 'package:jpj_info/jpjeq/model/jpjeq_qr_format.dart';
 import 'package:jpj_info/jpjeq/model/jpjeq_service_group_response.dart';
+import 'package:jpj_info/jpjeq/services/branch_service.dart';
 import 'package:jpj_info/model/page_size.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class JpjEqChooseService extends StatefulWidget {
   const JpjEqChooseService({
@@ -51,6 +60,7 @@ class _JpjEqChooseServiceState extends State<JpjEqChooseService> {
               _serviceDropdown(context),
               const SizedBox(height: 24),
               _submitButton(context),
+              const SizedBox(height: 48),
             ],
           ),
         ),
@@ -134,6 +144,7 @@ class _JpjEqChooseServiceState extends State<JpjEqChooseService> {
             color: selectedItemDetails.isEmpty
                 ? Colors.white
                 : const Color(0xffEBA658),
+            width: selectedItemDetails.isEmpty ? 1 : 3,
           ),
           boxShadow: [
             BoxShadow(
@@ -180,7 +191,10 @@ class _JpjEqChooseServiceState extends State<JpjEqChooseService> {
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Icon(Icons.circle, size: 8),
+                        const Padding(
+                          padding: EdgeInsets.all(2.0),
+                          child: Icon(Icons.circle, size: 12),
+                        ),
                         const SizedBox(width: 4),
                         Flexible(
                           child: Text(
@@ -207,9 +221,7 @@ class _JpjEqChooseServiceState extends State<JpjEqChooseService> {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: InkWell(
-        onTap: () {
-          // submitCallback(selectedItem);
-        },
+        onTap: _submitCallback,
         child: Container(
           width: mediaWidth - 64,
           decoration: BoxDecoration(
@@ -229,6 +241,48 @@ class _JpjEqChooseServiceState extends State<JpjEqChooseService> {
           ),
         ),
       ),
+    );
+  }
+
+  void _submitCallback() {
+    SharedPreferences.getInstance().then(
+      (pref) {
+        var qrPayload = pref.getString(LocalStorageHelper().jpjEqQrPayload);
+        JpjEqQrFormat qr = JpjEqQrFormat.fromJson(jsonDecode(qrPayload ?? ""));
+        BranchService().getTicketNumber(
+          context,
+          qr.param ?? "",
+          qr.idCawangan ?? "",
+          int.parse(selectedItem ?? ''),
+          (Response res) {
+            if (res.statusCode == 200) {
+              JpjEqGetTicketNumberResponse ticketResponse =
+                  JpjEqGetTicketNumberResponse.fromJson(
+                jsonDecode(res.body),
+              );
+
+              if (ticketResponse.status == '0') {
+              } else {
+                List<String> errString = ticketResponse.mesej!.split("|");
+                String err;
+                if (errString.length == 1) {
+                  err = errString[0];
+                } else if (AppLocalizations.of(context)!.localeName == "ms") {
+                  err = errString[0];
+                } else {
+                  err = errString[1];
+                }
+                AlertController(ctx: context).generalError(
+                  err,
+                  () {
+                    Navigator.pop(context);
+                  },
+                );
+              }
+            }
+          },
+        );
+      },
     );
   }
 }

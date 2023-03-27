@@ -6,4 +6,5 @@ class LocalStorageHelper {
   String favMenuItem = "favMenuItem";
   String inboxItems = "inboxItems";
   String jpjEqTime = "jpjEqTime";
+  String jpjEqQrPayload = "jpjEqQrPayload";
 }

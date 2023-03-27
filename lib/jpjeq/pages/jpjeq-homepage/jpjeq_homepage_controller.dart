@@ -139,6 +139,10 @@ class _JpjEqHomepageController extends State<JpjEqHomepageController> {
                   );
 
                   if (serviceGroupResponse.status == '0') {
+                    pref.setString(
+                      LocalStorageHelper().jpjEqQrPayload,
+                      jsonEncode(qr.toJson()),
+                    );
                     Navigator.push(
                       context,
                       MaterialPageRoute(
