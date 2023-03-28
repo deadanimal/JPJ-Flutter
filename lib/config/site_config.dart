@@ -84,8 +84,8 @@ class SiteConfig {
   String eHadirAppStoreid = '1468511154';
   String eHadirPlayStoreid = 'my.gov.jpj.mykedatangan';
   String eHadirKey = 'jpjit2020';
-  String oneSignalAppId =
-      "214eeb2e-e4b5-4ccf-b3f6-bb118bee513f"; // todo: change to actual app id
+  // String oneSignalAppId = "214eeb2e-e4b5-4ccf-b3f6-bb118bee513f";
+  String oneSignalAppId = "bbf1b5f8-4d3a-4405-9d55-3937ff588b6a"; // jpj
 
   Future<JpjEqRequestToken> getJpjEqToken() async {
     String timestamp = DateTime.now().millisecondsSinceEpoch.toString();
