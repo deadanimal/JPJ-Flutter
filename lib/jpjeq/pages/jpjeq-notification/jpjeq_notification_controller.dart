@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:jpj_info/helper/local_storage.dart';
 import 'package:jpj_info/jpjeq/common/navbar.dart';
 import 'package:jpj_info/jpjeq/pages/jpjeq-notification/jpjeq_notification.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class JpjEqNotificationController extends StatefulWidget {
   const JpjEqNotificationController({Key? key}) : super(key: key);
@@ -10,9 +12,11 @@ class JpjEqNotificationController extends StatefulWidget {
 }
 
 class _JpjEqNotificationController extends State<JpjEqNotificationController> {
+  List<String> notificationList = [];
   @override
   void initState() {
     super.initState();
+    getNotification();
   }
 
   @override
@@ -22,11 +26,26 @@ class _JpjEqNotificationController extends State<JpjEqNotificationController> {
 
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(
+    return SafeArea(
       child: Scaffold(
-        body: JpjEqNotification(),
-        bottomNavigationBar: JpjEqBottomNavController(pageNumber: 2),
+        body: JpjEqNotification(
+          notificationList: notificationList,
+        ),
+        bottomNavigationBar: const JpjEqBottomNavController(pageNumber: 2),
       ),
+    );
+  }
+
+  getNotification() {
+    SharedPreferences.getInstance().then(
+      (value) {
+        notificationList = value.getStringList(
+              LocalStorageHelper().jpjeQNotificationHistory,
+            ) ??
+            [];
+
+        setState(() {});
+      },
     );
   }
 }

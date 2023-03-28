@@ -1,11 +1,19 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:jpj_info/jpjeq/common/view/theme.dart';
+import 'package:jpj_info/jpjeq/model/jpjeq_notification_history.dart';
 import 'package:jpj_info/model/page_size.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:jpj_info/view/common/rounded_corner_container.dart';
 
 class JpjEqNotification extends StatelessWidget {
-  const JpjEqNotification({Key? key}) : super(key: key);
+  const JpjEqNotification({
+    Key? key,
+    required this.notificationList,
+  }) : super(key: key);
+  final List<String> notificationList;
 
   @override
   Widget build(BuildContext context) {
@@ -51,11 +59,22 @@ class JpjEqNotification extends StatelessWidget {
         child: ListView.builder(
           physics: const AlwaysScrollableScrollPhysics(),
           scrollDirection: Axis.vertical,
-          itemCount: 200,
+          itemCount: notificationList.length,
           shrinkWrap: true,
           itemBuilder: (context, index) {
+            NotificationHistoryModel item = NotificationHistoryModel.fromJson(
+              jsonDecode(
+                notificationList[notificationList.length - index - 1],
+              ),
+            );
+            DateTime dateTime =
+                DateTime.fromMillisecondsSinceEpoch(item.timestamp ?? 0);
+            String timestamp =
+                DateFormat('dd-MM-yyyy kk:mm a').format(dateTime);
             return _notificationCart(
               context,
+              item.notification ?? "",
+              timestamp,
             );
           },
         ),
@@ -65,6 +84,8 @@ class JpjEqNotification extends StatelessWidget {
 
   Widget _notificationCart(
     BuildContext context,
+    String notification,
+    String dateTime,
   ) {
     return Padding(
       padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
@@ -88,16 +109,16 @@ class JpjEqNotification extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
-                        "30 Jan 2023 05:25:06 PM",
-                        style: TextStyle(
+                      Text(
+                        dateTime,
+                        style: const TextStyle(
                           color: Colors.grey,
                           fontStyle: FontStyle.italic,
                         ),
                       ),
                       const SizedBox(height: 8),
                       Text(
-                        '${AppLocalizations.of(context)!.yourNumber} /8001 ${AppLocalizations.of(context)!.hasBeenCalled}${AppLocalizations.of(context)!.pleaseProceedToCounter} 8',
+                        notification,
                         style: const TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.w700,

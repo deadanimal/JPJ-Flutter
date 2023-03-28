@@ -5,6 +5,7 @@ import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart';
 import 'package:jpj_info/controller/alert_controller.dart';
+import 'package:jpj_info/controller/one_signal_controller.dart';
 import 'package:jpj_info/helper/geolocation.dart';
 import 'package:jpj_info/helper/local_storage.dart';
 import 'package:jpj_info/helper/qr_scanner.dart';
@@ -35,6 +36,7 @@ class _JpjEqHomepageController extends State<JpjEqHomepageController> {
   String? selectedServiceId;
   @override
   void initState() {
+    OneSignalController().promnptForNotification();
     super.initState();
     Future.delayed(
       const Duration(milliseconds: 250),
