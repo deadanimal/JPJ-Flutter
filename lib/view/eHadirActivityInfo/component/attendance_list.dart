@@ -30,6 +30,7 @@ class AttendanceList extends StatelessWidget {
         PeopleList(
           comitteeList: attendeeList,
           eraseItem: eraseItem,
+          canDelete: false,
         ),
       ],
     );
@@ -94,14 +95,18 @@ class AttendanceList extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image(image: icon),
+                  Image(
+                    image: icon,
+                    height: 24,
+                  ),
+                  const SizedBox(width: 4),
                   FittedBox(
                     child: Text(
                       label,
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                         color: Color(themeNavy),
-                        fontSize: 12,
+                        fontSize: 15,
                         fontFamily: "Roboto",
                         fontWeight: FontWeight.w700,
                       ),

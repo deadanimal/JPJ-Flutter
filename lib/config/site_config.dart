@@ -89,7 +89,8 @@ class SiteConfig {
 
   Future<JpjEqRequestToken> getJpjEqToken() async {
     String timestamp = DateTime.now().millisecondsSinceEpoch.toString();
-    String imeiNo = await DeviceInformation.deviceIMEINumber;
+    // String imeiNo = await DeviceInformation.deviceIMEINumber;
+    String imeiNo = '';
     SharedPreferences pref = await SharedPreferences.getInstance();
     imeiNo =
         pref.getString(LocalStorageHelper().jpjOneSignalPlayerId) ?? imeiNo;

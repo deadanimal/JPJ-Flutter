@@ -58,7 +58,7 @@ class ComitteeList extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                 primary: const Color(themeNavy),
                 shape: const CircleBorder(),
-                padding: const EdgeInsets.all(19),
+                padding: const EdgeInsets.all(12),
               ),
               child: const Icon(Icons.add),
             ),
@@ -66,7 +66,7 @@ class ComitteeList extends StatelessWidget {
               AppLocalizations.of(context)!.addComittee,
               style: const TextStyle(
                 color: Color(0xff171f44),
-                fontSize: 12,
+                fontSize: 15,
                 fontFamily: "Roboto",
                 fontWeight: FontWeight.w600,
                 letterSpacing: 0.42,

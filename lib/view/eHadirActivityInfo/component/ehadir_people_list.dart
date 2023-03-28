@@ -9,9 +9,11 @@ class PeopleList extends StatelessWidget {
     Key? key,
     required this.comitteeList,
     required this.eraseItem,
+    this.canDelete = true,
   }) : super(key: key);
   final List<BasicUserInfo> comitteeList;
   final Function(int) eraseItem;
+  final bool canDelete;
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +64,7 @@ class PeopleList extends StatelessWidget {
               ),
             ],
           ),
-          _eraseIcon(context, info.id),
+          canDelete ? _eraseIcon(context, info.id) : Container(),
         ],
       ),
     );

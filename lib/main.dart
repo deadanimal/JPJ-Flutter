@@ -35,6 +35,7 @@ import 'package:jpj_info/view/common/color_scheme.dart';
 //   });
 // }
 
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setSystemUIOverlayStyle(
@@ -102,6 +103,7 @@ class _MyJpjState extends State<MyJpj> {
     );
     return MaterialApp(
       locale: locale,
+      navigatorKey: navigatorKey,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       home: const LandingPageController(),

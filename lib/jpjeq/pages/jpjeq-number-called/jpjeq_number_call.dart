@@ -38,6 +38,7 @@ class JpjEqNumberCall extends StatelessWidget {
       textAlign: TextAlign.center,
       text: TextSpan(
         style: const TextStyle(
+          color: Colors.black,
           height: 2,
           fontSize: 16,
           fontWeight: FontWeight.w600,
