@@ -64,9 +64,9 @@ class OneSignalController {
         // Display Notification, pass null param for not displaying the notification
 
         // save notification in shared prefs
+        event.complete(event.notification);
         storeNotification(event.notification);
         showNotification(event.notification);
-        event.complete(event.notification);
       },
     );
   }
@@ -78,7 +78,7 @@ class OneSignalController {
   // This method will show JpjEqNumberCallController
   showNotification(OSNotification notification) {
     // Nombor 3295. Sila ke kaunter 22
-    String notificationText = notification.body!.toUpperCase();
+    String notificationText = notification.body ?? "";
     List<String> rawText = notificationText.split('.');
 
     int number = int.parse(rawText[0].replaceAll('Nombor ', ''));
