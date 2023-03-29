@@ -271,17 +271,22 @@ class _JpjEqChooseServiceState extends State<JpjEqChooseService> {
                 // Store it into shared prefs, So that later we can use it.
                 SharedPreferences.getInstance().then(
                   (value) {
-                    value.setString(
+                    value
+                        .setString(
                       LocalStorageHelper().jpjeQNumberInfo,
                       jsonEncode(ticketResponse.toJson()),
-                    );
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return const JpjEqNumberQueueController();
-                        },
-                      ),
+                    )
+                        .then(
+                      (value1) {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return const JpjEqNumberQueueController();
+                            },
+                          ),
+                        );
+                      },
                     );
                   },
                 );

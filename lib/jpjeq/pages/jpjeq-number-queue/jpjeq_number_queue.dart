@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:jpj_info/jpjeq/common/header.dart';
 import 'package:jpj_info/jpjeq/common/view/theme.dart';
+import 'package:jpj_info/jpjeq/model/jpjeq_get_ticket_number_response.dart';
 import 'package:jpj_info/model/page_size.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class JpjEqNumberQueue extends StatelessWidget {
   const JpjEqNumberQueue({
     Key? key,
+    required this.ticketInfo,
   }) : super(key: key);
+
+  final JpjEqGetTicketNumberResponse ticketInfo;
 
   @override
   Widget build(BuildContext context) {
@@ -76,32 +81,32 @@ class JpjEqNumberQueue extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            const Text(
-              "JPJ CAWANGAN JEMPOL (Bawah)",
-              style: TextStyle(
+            Text(
+              ticketInfo.cawangan ?? "",
+              style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w600,
-                fontSize: 16,
+                fontSize: 20,
               ),
             ),
             const SizedBox(height: 16),
-            const Text(
-              "30 JAN 2023",
-              style: TextStyle(
+            Text(
+              DateFormat('yyyy-MM-dd').format(DateTime.now()),
+              style: const TextStyle(
                 color: Colors.white,
-                fontSize: 16,
+                fontSize: 18,
               ),
             ),
             const SizedBox(height: 8),
             Container(
               color: Colors.amber,
-              child: const Padding(
-                padding: EdgeInsets.all(4.0),
+              child: Padding(
+                padding: const EdgeInsets.all(4.0),
                 child: Text(
-                  "Sesi 1 - 16:00:00 - 22:00:00",
-                  style: TextStyle(
+                  "${AppLocalizations.of(context)!.session} ${ticketInfo.sesi} - ${ticketInfo.waktuMula} - ${ticketInfo.waktuTamat}",
+                  style: const TextStyle(
                     fontWeight: FontWeight.w600,
-                    fontSize: 12,
+                    fontSize: 15,
                   ),
                 ),
               ),
@@ -123,9 +128,9 @@ class JpjEqNumberQueue extends StatelessWidget {
             color: Color(eqThemeNavy),
           ),
         ),
-        const Text(
-          '6001',
-          style: TextStyle(
+        Text(
+          ticketInfo.noTiketAnda ?? "",
+          style: const TextStyle(
             fontWeight: FontWeight.w700,
             fontSize: 64,
             color: Color(eqThemeNavy),
@@ -149,7 +154,7 @@ class JpjEqNumberQueue extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Center(
           child: SizedBox(
-            height: 86,
+            height: 64,
             child: Text(
               headerText,
               textAlign: TextAlign.center,
@@ -214,13 +219,14 @@ class JpjEqNumberQueue extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Expanded(
-              child: _infoContent(''),
+              child: _infoContent(ticketInfo.noSekarang ?? ""),
             ),
             Expanded(
-              child: _infoContent('1'),
+              child: _infoContent(ticketInfo.kedudukanMenunggu.toString()),
             ),
             Expanded(
-              child: _infoContent('2\nMinit'),
+              child: _infoContent(
+                  "${ticketInfo.masaMenunggu}\n${AppLocalizations.of(context)!.minutes}"),
             ),
           ],
         ),
@@ -234,14 +240,15 @@ class JpjEqNumberQueue extends StatelessWidget {
       child: InkWell(
         onTap: () {},
         child: Container(
-          width: mediaWidth / 4,
+          width: mediaWidth / 3,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
             color: Colors.red,
           ),
           child: Padding(
-            padding: const EdgeInsets.fromLTRB(16, 4, 16, 4),
+            padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Icon(
                   Icons.cancel_outlined,
