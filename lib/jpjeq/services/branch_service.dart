@@ -7,6 +7,7 @@ import 'package:jpj_info/jpjeq/model/jpjeq_branch_by_qr_request.dart';
 import 'package:jpj_info/jpjeq/model/jpjeq_branch_service_request.dart';
 import 'package:jpj_info/jpjeq/model/jpjeq_get_ticket_number_request.dart';
 import 'package:jpj_info/jpjeq/model/jpjeq_nearby_branches_request.dart';
+import 'package:jpj_info/jpjeq/model/jpjeq_refresh_waiting_time_request.dart';
 import 'package:jpj_info/jpjeq/model/jpjeq_request_token.dart';
 import 'package:jpj_info/jpjeq/model/jpjeq_service_category_request.dart';
 import 'package:jpj_info/jpjeq/model/jpjeq_service_group_request.dart';
@@ -166,5 +167,30 @@ class BranchService {
         );
       },
     );
+  }
+
+  Future<Response> refreshWaitingTime(
+    String noSiri,
+    String branchId,
+    String serviceId,
+  ) async {
+    SiteConfig conf = SiteConfig();
+    JpjEqRequestToken value = await conf.getJpjEqToken();
+    JpjEqRefreshWaitingTimeRequest req = JpjEqRefreshWaitingTimeRequest(
+      playerId: value.imei,
+      tarikh: value.date,
+      token: value.token,
+      cawangan: branchId,
+      idKumpulanPerkhidmatan: serviceId,
+      noSiri: noSiri,
+    );
+
+    Response response = await post(
+      Uri.parse(conf.eQRefreshWaitingTime),
+      headers: conf.formHeader,
+      body: jsonEncode(req.toJson()),
+    );
+
+    return response;
   }
 }

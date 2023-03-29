@@ -278,14 +278,25 @@ class _JpjEqChooseServiceState extends State<JpjEqChooseService> {
                     )
                         .then(
                       (value1) {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return const JpjEqNumberQueueController();
-                            },
-                          ),
-                        );
+                        if (value1) {
+                          value
+                              .setString(
+                            LocalStorageHelper().jpjeQSelectedService,
+                            selectedItem ?? "",
+                          )
+                              .then((value2) {
+                            if (value2) {
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    return const JpjEqNumberQueueController();
+                                  },
+                                ),
+                              );
+                            }
+                          });
+                        }
                       },
                     );
                   },

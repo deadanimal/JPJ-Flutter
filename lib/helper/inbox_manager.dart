@@ -24,7 +24,7 @@ class InboxManager {
     final prefs = await SharedPreferences.getInstance();
     String? rawStrings = prefs.getString(LocalStorageHelper().inboxItems);
     if (rawStrings == null || rawStrings == "") {
-      _getInboxItemsFromServer();
+      // _getInboxItemsFromServer();
     } else {
       try {
         for (var el in jsonDecode(rawStrings)) {
@@ -32,7 +32,7 @@ class InboxManager {
         }
         _checkNewMessage();
       } catch (e) {
-        _getInboxItemsFromServer();
+        // _getInboxItemsFromServer();
       }
     }
   }
@@ -157,7 +157,7 @@ class InboxManager {
 
     Future.delayed(
       const Duration(milliseconds: 60000),
-      _checkNewMessage,
+      // _checkNewMessage,
     );
   }
 }
