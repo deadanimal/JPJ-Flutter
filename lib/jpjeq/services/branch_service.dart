@@ -150,7 +150,6 @@ class BranchService {
     conf.getJpjEqToken().then(
       (JpjEqRequestToken value) {
         JpjEqGetTicketNumberRequest req = JpjEqGetTicketNumberRequest(
-          param: param,
           playerId: value.imei,
           tarikh: value.date,
           token: value.token,

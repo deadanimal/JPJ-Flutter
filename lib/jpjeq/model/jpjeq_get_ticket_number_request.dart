@@ -3,7 +3,6 @@ class JpjEqGetTicketNumberRequest {
   String? tarikh;
   String? token;
   int? idKumpulanPerkhidmatan;
-  String? param;
   String? cawangan;
 
   JpjEqGetTicketNumberRequest({
@@ -11,7 +10,6 @@ class JpjEqGetTicketNumberRequest {
     this.tarikh,
     this.token,
     this.idKumpulanPerkhidmatan,
-    this.param,
     this.cawangan,
   });
 
@@ -20,7 +18,6 @@ class JpjEqGetTicketNumberRequest {
     tarikh = json['tarikh'];
     token = json['token'];
     idKumpulanPerkhidmatan = json['id_kumpulan_perkhidmatan'];
-    param = json['param'];
     cawangan = json['cawangan'];
   }
 
@@ -30,7 +27,6 @@ class JpjEqGetTicketNumberRequest {
     data['tarikh'] = tarikh;
     data['token'] = token;
     data['id_kumpulan_perkhidmatan'] = idKumpulanPerkhidmatan;
-    data['param'] = param;
     data['cawangan'] = cawangan;
     return data;
   }

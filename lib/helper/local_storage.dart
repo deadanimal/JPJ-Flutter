@@ -9,4 +9,5 @@ class LocalStorageHelper {
   String jpjEqQrPayload = "jpjEqQrPayload";
   String jpjOneSignalPlayerId = "jpjOneSignalPlayerId";
   String jpjeQNotificationHistory = "jpjeQNotificationHistory";
+  String jpjeQNumberInfo = "jpjeQNumberInfo";
 }

@@ -5,9 +5,11 @@ import 'package:http/http.dart';
 import 'package:jpj_info/controller/alert_controller.dart';
 import 'package:jpj_info/helper/local_storage.dart';
 import 'package:jpj_info/jpjeq/common/view/theme.dart';
+import 'package:jpj_info/jpjeq/dummy.dart';
 import 'package:jpj_info/jpjeq/model/jpjeq_get_ticket_number_response.dart';
 import 'package:jpj_info/jpjeq/model/jpjeq_qr_format.dart';
 import 'package:jpj_info/jpjeq/model/jpjeq_service_group_response.dart';
+import 'package:jpj_info/jpjeq/pages/jpjeq-number-queue/jpjeq_number_queue_controller.dart';
 import 'package:jpj_info/jpjeq/services/branch_service.dart';
 import 'package:jpj_info/model/page_size.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -258,10 +260,31 @@ class _JpjEqChooseServiceState extends State<JpjEqChooseService> {
             if (res.statusCode == 200) {
               JpjEqGetTicketNumberResponse ticketResponse =
                   JpjEqGetTicketNumberResponse.fromJson(
-                jsonDecode(res.body),
+                jsonDecode(
+                  // res.body,
+                  Dummy().getTicketResponse,
+                ),
               );
 
-              if (ticketResponse.status == '0') {
+              if (ticketResponse.status == null ||
+                  ticketResponse.status == '0') {
+                // Store it into shared prefs, So that later we can use it.
+                SharedPreferences.getInstance().then(
+                  (value) {
+                    value.setString(
+                      LocalStorageHelper().jpjeQNumberInfo,
+                      jsonEncode(ticketResponse.toJson()),
+                    );
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return const JpjEqNumberQueueController();
+                        },
+                      ),
+                    );
+                  },
+                );
               } else {
                 List<String> errString = ticketResponse.mesej!.split("|");
                 String err;
