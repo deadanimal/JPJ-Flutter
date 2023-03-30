@@ -19,7 +19,7 @@ class EhadirManualRegistration extends StatelessWidget {
     return EhadirAddStaff(
       submitCallback: submitCallback,
       staffNricController: staffNricController,
-      image: const AssetImage("images/icon/ehadir_add_attendee_icon.png"),
+      image: const AssetImage("images/icon/ic_icon.png"),
       title: AppLocalizations.of(context)!.manualRegistration,
     );
   }

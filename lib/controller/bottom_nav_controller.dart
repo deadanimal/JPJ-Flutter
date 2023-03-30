@@ -1,4 +1,4 @@
-import 'package:badges/badges.dart';
+import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:jpj_info/controller/administrative_menu_controller.dart';
@@ -161,7 +161,7 @@ class _BottomNavController extends State<BottomNavController> {
         label: AppLocalizations.of(context)!.main,
       ),
       BottomNavigationBarItem(
-        icon: Badge(
+        icon: badges.Badge(
           showBadge: notificationCount > 0 ? true : false,
           badgeContent: Text(
             notificationCount.toString(),
@@ -171,7 +171,9 @@ class _BottomNavController extends State<BottomNavController> {
             ),
             textAlign: TextAlign.center,
           ),
-          shape: BadgeShape.circle,
+          badgeStyle: const badges.BadgeStyle(
+            shape: badges.BadgeShape.circle,
+          ),
           stackFit: StackFit.passthrough,
           child: SvgPicture.asset(
             "images/vector/btm_inbox_icon.svg",

@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:jpj_info/helper/string_helper.dart';
 import 'package:jpj_info/model/ehadir_event_info.dart';
 import 'package:jpj_info/model/page_size.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:jpj_info/view/common/spacing.dart';
 import 'package:jpj_info/view/summonsVerification/component/bordered_container.dart';
+import 'package:jpj_info/view/template/template_header.dart';
 
 class EhadirActivityList extends StatelessWidget {
   const EhadirActivityList({
@@ -23,17 +26,12 @@ class EhadirActivityList extends StatelessWidget {
     mediaHeight = (MediaQuery.of(context).size.height);
     return Column(
       children: [
-        Text(
-          AppLocalizations.of(context)!.activityList,
-          textAlign: TextAlign.center,
-          style: const TextStyle(
-            color: Color(0xff171f44),
-            fontSize: 18,
-            fontFamily: "Roboto",
-            fontWeight: FontWeight.w600,
-            letterSpacing: 0.63,
-          ),
+        TemplateHeader(
+          headerTitle: AppLocalizations.of(context)!.activityList,
+          headerTitleFontSize: 48,
+          headerSubTitle: AppLocalizations.of(context)!.last10Activity,
         ),
+        const SizedBox(height: vPaddingXL),
         Expanded(
           flex: 1,
           child: RefreshIndicator(
@@ -89,15 +87,15 @@ class EhadirActivityList extends StatelessWidget {
   Widget _cardContent(BuildContext context, EHadirEventInfo event) {
     return Container(
       width: mediaWidth - 64,
-      decoration: BoxDecoration(
-        borderRadius: const BorderRadius.all(Radius.circular(9)),
-        color: Colors.green.shade900,
+      decoration: const BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(5)),
+        color: Color(themeNavy),
       ),
       child: Row(
         children: [
           const Spacer(flex: 1),
           Expanded(
-            flex: 20,
+            flex: 15,
             child: Container(
               padding: const EdgeInsets.only(left: 8.0),
               color: Colors.white,
@@ -107,7 +105,7 @@ class EhadirActivityList extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      event.eventName!,
+                      capitalize(event.eventName!),
                       style: const TextStyle(
                         color: Color(0xff171f44),
                         fontSize: 20,
@@ -136,7 +134,7 @@ class EhadirActivityList extends StatelessWidget {
                               ),
                               const SizedBox(height: vPaddingS),
                               Text(
-                                event.venue!,
+                                capitalize(event.venue ?? "-"),
                                 textAlign: TextAlign.start,
                                 style: const TextStyle(
                                   color: Color(0xff2e2e2e),
@@ -163,7 +161,7 @@ class EhadirActivityList extends StatelessWidget {
                               ),
                               const SizedBox(height: vPaddingS),
                               Text(
-                                "${event.startTime!} - ${event.endTime!}",
+                                "${event.startTime ?? ''} - ${event.endTime ?? ''}",
                                 textAlign: TextAlign.start,
                                 style: const TextStyle(
                                   color: Color(0xff2e2e2e),
@@ -176,59 +174,65 @@ class EhadirActivityList extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(height: vPaddingM),
-                    Text(
-                      "${AppLocalizations.of(context)!.date}:",
-                      textAlign: TextAlign.start,
-                      style: const TextStyle(
-                        color: Color(themeNavy),
-                        fontSize: 10,
-                        fontFamily: "Roboto",
-                        fontWeight: FontWeight.w600,
-                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "${AppLocalizations.of(context)!.date}:",
+                              textAlign: TextAlign.start,
+                              style: const TextStyle(
+                                color: Color(themeNavy),
+                                fontSize: 10,
+                                fontFamily: "Roboto",
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            const SizedBox(height: vPaddingS),
+                            Text(
+                              DateFormat('dd-MM-yyyy').format(
+                                DateTime.parse(
+                                  event.date!,
+                                ),
+                              ),
+                              textAlign: TextAlign.start,
+                              style: const TextStyle(
+                                color: Color(0xff2e2e2e),
+                                fontSize: 13,
+                              ),
+                            ),
+                          ],
+                        ),
+                        InkWell(
+                          onTap: () {
+                            viewActivityCallback(context, event);
+                          },
+                          child: Container(
+                            decoration: const BoxDecoration(
+                                color: Color(themeNavy),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(6))),
+                            child: const Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Icon(
+                                Icons.remove_red_eye,
+                                size: 16,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                     const SizedBox(height: vPaddingS),
-                    Text(
-                      event.date!,
-                      textAlign: TextAlign.start,
-                      style: const TextStyle(
-                        color: Color(0xff2e2e2e),
-                        fontSize: 13,
-                      ),
-                    ),
-                    const SizedBox(height: vPaddingS),
-                    Container(
-                      alignment: Alignment.bottomRight,
-                      child: _searchIcon(context, event),
-                    ),
                   ],
                 ),
               ),
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  Widget _searchIcon(BuildContext context, EHadirEventInfo event) {
-    return SizedBox(
-      child: Container(
-        width: 40,
-        height: 28,
-        decoration: navyGradientBtnDecoSquare,
-        child: TextButton(
-          style: ButtonStyle(
-            foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-          ),
-          onPressed: () {
-            viewActivityCallback(context, event);
-          },
-          child: const FittedBox(
-            child: Center(
-              child: Icon(Icons.remove_red_eye_outlined),
-            ),
-          ),
-        ),
       ),
     );
   }

@@ -32,7 +32,8 @@ import 'package:jpj_info/controller/test_result_controller.dart';
 import 'package:jpj_info/controller/tnc_controller.dart';
 import 'package:jpj_info/controller/transaction_history_controller.dart';
 import 'package:jpj_info/controller/vehicle_list_controller.dart';
-import 'package:jpj_info/model/ehadir_event_info.dart';
+import 'package:jpj_info/jpjeq/pages/jpjeq-homepage/jpjeq_homepage_controller.dart';
+import 'package:jpj_info/model/ehadir/activity_list_res.dart';
 
 void licensePage(BuildContext context) {
   Navigator.push(
@@ -222,12 +223,20 @@ void transactionHistoryPage(BuildContext context) {
 }
 
 Future<void> jpjEqMenuPage(BuildContext context) async {
-  await LaunchApp.openApp(
-    androidPackageName: SiteConfig().jpjEqPlayStoreid,
-    iosUrlScheme: 'jpjeq://',
-    appStoreLink:
-        'itms-apps://apps.apple.com/us/app/jpjeq/${SiteConfig().jpjEqAppStoreid}',
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) {
+        return const JpjEqHomepageController();
+      },
+    ),
   );
+  // await LaunchApp.openApp(
+  //   androidPackageName: SiteConfig().jpjEqPlayStoreid,
+  //   iosUrlScheme: 'jpjeq://',
+  //   appStoreLink:
+  //       'itms-apps://apps.apple.com/us/app/jpjeq/${SiteConfig().jpjEqAppStoreid}',
+  // );
 }
 
 void eAduanMenuPage(BuildContext context) {
@@ -255,20 +264,14 @@ void eAduanFormMenuPage(BuildContext context, EaduanItem item) {
 }
 
 void eHadirMenuPage(BuildContext context) async {
-  await LaunchApp.openApp(
-    androidPackageName: SiteConfig().eHadirPlayStoreid,
-    iosUrlScheme: 'jpjebid://',
-    appStoreLink:
-        'itms-apps://apps.apple.com/us/app/jpjebid/${SiteConfig().eHadirAppStoreid}',
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) {
+        return const JpjEhadirMenuController();
+      },
+    ),
   );
-  // Navigator.push(
-  //   context,
-  //   MaterialPageRoute(
-  //     builder: (context) {
-  //       return const JpjEhadirMenuController();
-  //     },
-  //   ),
-  // );
 }
 
 void eHadirMainPage(BuildContext context) {
@@ -293,7 +296,18 @@ void eHadirActivityListPage(BuildContext context) {
   );
 }
 
-void eHadirActivityInfoPage(BuildContext context, EHadirEventInfo event) {
+void eHadirEditActivityPage(BuildContext context, int activityId) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) {
+        return EhadirAddActivityController(activityId: activityId);
+      },
+    ),
+  );
+}
+
+void eHadirActivityInfoPage(BuildContext context, Aktiviti event) {
   Navigator.push(
     context,
     MaterialPageRoute(
@@ -304,23 +318,39 @@ void eHadirActivityInfoPage(BuildContext context, EHadirEventInfo event) {
   );
 }
 
-void eHadirAddComitteePage(BuildContext context) {
+void eHadirAddComitteePage(
+  BuildContext context,
+  int activityId,
+  String transidAktiviti,
+) {
   Navigator.push(
     context,
     MaterialPageRoute(
       builder: (context) {
-        return const EhadirAddComitteeController();
+        return EhadirAddComitteeController(
+          activityId: activityId,
+          transidAktiviti: transidAktiviti,
+        );
       },
     ),
   );
 }
 
-void eHadirManualRegisterPage(BuildContext context) {
+void eHadirManualRegisterPage(
+  BuildContext context,
+  int activityId,
+  String transidAktiviti,
+  String transidSesi,
+) {
   Navigator.push(
     context,
     MaterialPageRoute(
       builder: (context) {
-        return const EhadirManualRegistrationController();
+        return EhadirManualRegistrationController(
+          activityId: activityId,
+          transidAktiviti: transidAktiviti,
+          transidSesi: transidSesi,
+        );
       },
     ),
   );

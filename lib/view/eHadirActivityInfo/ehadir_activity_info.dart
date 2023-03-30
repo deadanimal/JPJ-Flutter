@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:jpj_info/model/ehadir_comittee_info.dart';
-import 'package:jpj_info/model/ehadir_event_info.dart';
+import 'package:jpj_info/model/ehadir/activity_list_res.dart';
+import 'package:jpj_info/model/ehadir/comittee_list_res.dart';
+import 'package:jpj_info/model/ehadir_basic_user_info.dart';
 import 'package:jpj_info/model/page_size.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:jpj_info/view/common/spacing.dart';
@@ -16,10 +17,24 @@ class EhadirActivityInfo extends StatelessWidget {
     required this.tabController,
     required this.qrScanCallback,
     required this.event,
+    required this.comitteeList,
+    required this.addMemberFx,
+    required this.refreshFx,
+    required this.attendeeList,
+    required this.addAttendeeManual,
+    required this.eraseAttendee,
+    required this.eraseCommittee,
   }) : super(key: key);
   final TabController tabController;
   final Function qrScanCallback;
-  final EHadirEventInfo event;
+  final Aktiviti event;
+  final List<ComitteeListRes> comitteeList;
+  final List<BasicUserInfo> attendeeList;
+  final Function(BuildContext, int, String) addMemberFx;
+  final Function() refreshFx;
+  final Function() addAttendeeManual;
+  final Function(int) eraseAttendee;
+  final Function(int) eraseCommittee;
 
   @override
   Widget build(BuildContext context) {
@@ -94,26 +109,37 @@ class EhadirActivityInfo extends StatelessWidget {
   }
 
   Widget _tabView(BuildContext context) {
+    List<BasicUserInfo> comittees = [];
+    for (var el in comitteeList) {
+      comittees.add(BasicUserInfo(
+        el.id!,
+        el.nama!,
+        el.namabahagian,
+      ));
+    }
     return SizedBox(
       width: mediaWidth - 64,
       child: TabBarView(
         controller: tabController,
         children: [
-          InfoTab(event: event),
+          InfoTab(
+            event: event,
+            refreshFx: refreshFx,
+          ),
           ComitteeList(
-            comitteeList: [
-              ComitteeInfo("nameA", "departmentC"),
-              ComitteeInfo("nameB", "departmentB"),
-              ComitteeInfo("nameC", "departmentA"),
-            ],
+            activityId: event.id!,
+            comitteeList: comittees,
+            transidAktiviti: event.transidAktiviti!,
+            addMemberFx: addMemberFx,
+            eraseItem: eraseCommittee,
           ),
           AttendanceList(
             qrScanCallback: qrScanCallback,
-            comitteeList: [
-              ComitteeInfo("name1", "department3"),
-              ComitteeInfo("name2", "department2"),
-              ComitteeInfo("name3", "department1"),
-            ],
+            activityId: event.id!,
+            transidAktiviti: event.transidAktiviti!,
+            attendeeList: attendeeList,
+            addAttendeeManual: addAttendeeManual,
+            eraseItem: eraseAttendee,
           ),
         ],
       ),

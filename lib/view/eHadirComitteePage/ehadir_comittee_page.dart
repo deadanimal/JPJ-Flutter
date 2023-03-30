@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:jpj_info/model/ehadir_event_info.dart';
+import 'package:jpj_info/helper/string_helper.dart';
+import 'package:jpj_info/model/ehadir/activity_list_res.dart';
 import 'package:jpj_info/model/page_size.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:jpj_info/view/common/spacing.dart';
 import 'package:jpj_info/view/summonsVerification/component/bordered_container.dart';
+import 'package:jpj_info/view/template/template_header.dart';
 
 class EhadirComitteePage extends StatelessWidget {
   const EhadirComitteePage({
@@ -15,9 +17,9 @@ class EhadirComitteePage extends StatelessWidget {
     required this.eraseActivityCallback,
   }) : super(key: key);
   final Function() refreshCallback;
-  final Function(BuildContext, EHadirEventInfo) eraseActivityCallback;
-  final Function(BuildContext, EHadirEventInfo) viewActivityCallback;
-  final List<EHadirEventInfo> events;
+  final Function(BuildContext, Aktiviti) eraseActivityCallback;
+  final Function(BuildContext, Aktiviti) viewActivityCallback;
+  final List<Aktiviti> events;
 
   @override
   Widget build(BuildContext context) {
@@ -25,16 +27,9 @@ class EhadirComitteePage extends StatelessWidget {
     mediaHeight = (MediaQuery.of(context).size.height);
     return Column(
       children: [
-        Text(
-          AppLocalizations.of(context)!.comittee,
-          textAlign: TextAlign.center,
-          style: const TextStyle(
-            color: Color(0xff171f44),
-            fontSize: 18,
-            fontFamily: "Roboto",
-            fontWeight: FontWeight.w600,
-            letterSpacing: 0.63,
-          ),
+        TemplateHeader(
+          headerTitle: AppLocalizations.of(context)!.comittee,
+          headerTitleFontSize: 48,
         ),
         const SizedBox(height: vPaddingM),
         Expanded(
@@ -51,7 +46,7 @@ class EhadirComitteePage extends StatelessWidget {
                         itemCount: events.length,
                         shrinkWrap: true,
                         itemBuilder: (context, index) {
-                          return _activities(context, events[index]);
+                          return _comitee(context, events[index]);
                         },
                       )
                     : ListView(
@@ -79,7 +74,7 @@ class EhadirComitteePage extends StatelessWidget {
     );
   }
 
-  Widget _activities(BuildContext context, EHadirEventInfo event) {
+  Widget _comitee(BuildContext context, Aktiviti event) {
     return Center(
       child: Container(
         constraints: const BoxConstraints(maxWidth: 400),
@@ -92,18 +87,17 @@ class EhadirComitteePage extends StatelessWidget {
     );
   }
 
-  Widget _cardContent(BuildContext context, EHadirEventInfo event) {
+  Widget _cardContent(BuildContext context, Aktiviti event) {
     return Container(
       width: mediaWidth - 64,
-      decoration: BoxDecoration(
-        borderRadius: const BorderRadius.all(Radius.circular(9)),
-        color: Colors.green.shade900,
-      ),
+      decoration: const BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(5)),
+          color: Color(themeNavy)),
       child: Row(
         children: [
           const Spacer(flex: 1),
           Expanded(
-            flex: 20,
+            flex: 15,
             child: Container(
               padding: const EdgeInsets.only(left: 8.0),
               color: Colors.white,
@@ -117,7 +111,7 @@ class EhadirComitteePage extends StatelessWidget {
                         Expanded(
                           flex: 8,
                           child: Text(
-                            event.eventName!,
+                            capitalize(event.namaAktiviti!),
                             maxLines: 3,
                             style: const TextStyle(
                               color: Color(0xff171f44),
@@ -153,7 +147,9 @@ class EhadirComitteePage extends StatelessWidget {
                               ),
                               const SizedBox(height: vPaddingS),
                               Text(
-                                event.venue!,
+                                event.lokasi == null
+                                    ? ""
+                                    : capitalize(event.lokasi!),
                                 textAlign: TextAlign.start,
                                 style: const TextStyle(
                                   color: Color(0xff2e2e2e),
@@ -179,7 +175,7 @@ class EhadirComitteePage extends StatelessWidget {
     );
   }
 
-  Widget _searchIcon(BuildContext context, EHadirEventInfo event) {
+  Widget _searchIcon(BuildContext context, Aktiviti event) {
     return Container(
       width: 32,
       height: 32,
@@ -200,7 +196,7 @@ class EhadirComitteePage extends StatelessWidget {
     );
   }
 
-  Widget _eraseIcon(BuildContext context, EHadirEventInfo event) {
+  Widget _eraseIcon(BuildContext context, Aktiviti event) {
     return Container(
       width: 32,
       height: 32,

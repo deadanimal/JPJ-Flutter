@@ -7,10 +7,12 @@ class TemplateHeader extends StatelessWidget {
     Key? key,
     this.headerTitle = "",
     this.headerSubTitle = "",
+    this.headerTitleFontSize = 32,
     this.header,
   }) : super(key: key);
   final String headerTitle;
   final String headerSubTitle;
+  final double headerTitleFontSize;
   final Widget? header;
 
   Widget title() {
@@ -47,9 +49,9 @@ class TemplateHeader extends StatelessWidget {
           children: [
             Text(
               headerTitle,
-              style: const TextStyle(
+              style: TextStyle(
                 color: Colors.white,
-                fontSize: 32,
+                fontSize: headerTitleFontSize,
                 fontFamily: "Roboto",
                 fontWeight: FontWeight.w600,
               ),

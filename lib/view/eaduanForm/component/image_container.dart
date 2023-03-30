@@ -1,6 +1,6 @@
 import 'dart:typed_data';
 
-import 'package:badges/badges.dart';
+import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:video_thumbnail/video_thumbnail.dart';
@@ -72,7 +72,7 @@ class _ScrollableImageContainer extends State<ScrollableImageContainer> {
   Widget _imageContainer(Uint8List imageData, int index) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Badge(
+      child: badges.Badge(
         badgeContent: InkWell(
           child: const Text("X", style: TextStyle(fontSize: 24)),
           onTap: () {
@@ -98,7 +98,7 @@ class _ScrollableImageContainer extends State<ScrollableImageContainer> {
   Widget _videoContainer(Uint8List imageData, int index) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Badge(
+      child: badges.Badge(
         badgeContent: InkWell(
           child: const Text("X"),
           onTap: () {
@@ -124,7 +124,7 @@ class _ScrollableImageContainer extends State<ScrollableImageContainer> {
   Widget _networkImageContainer(Image imagePath, int index) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Badge(
+      child: badges.Badge(
         badgeContent: InkWell(
           child: const Text("X"),
           onTap: () {

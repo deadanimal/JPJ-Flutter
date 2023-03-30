@@ -1,13 +1,20 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:jpj_info/config/site_config.dart';
+import 'package:jpj_info/controller/alert_controller.dart';
 import 'package:jpj_info/controller/appbar_controller.dart';
 import 'package:jpj_info/controller/bottom_nav_controller.dart';
+import 'package:jpj_info/controller/http_request_controller.dart';
+import 'package:jpj_info/helper/account_manager.dart';
+import 'package:jpj_info/model/ehadir/activity_list_req.dart';
+import 'package:jpj_info/model/ehadir/attending_activity_list_res.dart';
 import 'package:jpj_info/model/ehadir_event_info.dart';
-import 'package:jpj_info/view/common/color_scheme.dart';
+import 'package:jpj_info/view/appBarHeader/gradient_decor.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:jpj_info/view/eHadirActivityDetail/ehadir_event_details.dart';
 import 'package:jpj_info/view/eHadirActivityList/ehadir_activity_list.dart';
+import 'package:http/http.dart' as http;
 
 class EhadirActivityListController extends StatefulWidget {
   const EhadirActivityListController({
@@ -25,6 +32,10 @@ class _EhadirActivityListController
   void initState() {
     super.initState();
     events = [];
+    Future.delayed(
+      const Duration(milliseconds: 250),
+      _checkForActivity,
+    );
   }
 
   @override
@@ -37,31 +48,66 @@ class _EhadirActivityListController
     return SafeArea(
       child: Scaffold(
         appBar: const AppBarController(
-          iconColor: Color(themeNavy),
-          darkBtn: true,
+          decor: customGradient,
         ),
         body: EhadirActivityList(
-          refreshCallback: _refreshMsgList,
+          refreshCallback: _checkForActivity,
           viewActivityCallback: _viewActivityDetails,
           events: events,
         ),
-        bottomNavigationBar: BottomNavController(),
+        bottomNavigationBar: const BottomNavController(),
       ),
     );
   }
 
-  void _refreshMsgList() async {
-    final String response =
-        await rootBundle.loadString('json/ehadir_activity_list.json');
-    final data = await json.decode(response);
-    setState(() {
-      events.clear();
-      for (var item in data) {
-        events.add(
-          EHadirEventInfo.fromJson(item),
+  void _refreshMsgList(http.Response response) {
+    if (response.statusCode == 200) {
+      List<AttendingActivityListRes> res = [];
+      for (var el in jsonDecode(response.body)) {
+        res.add(AttendingActivityListRes.fromJson(el));
+      }
+      if (res.isEmpty) {
+        AlertController(ctx: context).generalError(
+          AppLocalizations.of(context)!.noRecord,
+          () {
+            Navigator.pop(context);
+          },
         );
       }
-    });
+      setState(() {
+        events.clear();
+        for (var item in res) {
+          events.add(
+            EHadirEventInfo(
+              date: item.tarikhMula,
+              endTime: item.masaTamat,
+              eventName: item.namaAktiviti,
+              id: item.id,
+              organizer: item.urusetiaId,
+              startTime: item.masaMula,
+              venue: item.lokasi,
+            ),
+          );
+        }
+      });
+    } else {
+      AlertController(ctx: context).connectionError();
+    }
+  }
+
+  void _checkForActivity() async {
+    SiteConfig conf = SiteConfig();
+    ActivityListReq req = ActivityListReq(
+      nokp: MyJPJAccountManager().id,
+    );
+
+    return jpjHttpRequest(
+      context,
+      Uri.parse(conf.eHadirAttendingActivityList),
+      headers: conf.formHeader,
+      body: jsonEncode(req.toJson()),
+      callback: _refreshMsgList,
+    );
   }
 
   void _viewActivityDetails(BuildContext context, EHadirEventInfo event) {

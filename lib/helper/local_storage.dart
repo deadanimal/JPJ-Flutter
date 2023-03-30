@@ -5,4 +5,10 @@ class LocalStorageHelper {
   String vehicleList = "vehicleList";
   String favMenuItem = "favMenuItem";
   String inboxItems = "inboxItems";
+  String jpjEqTime = "jpjEqTime";
+  String jpjEqQrPayload = "jpjEqQrPayload";
+  String jpjOneSignalPlayerId = "jpjOneSignalPlayerId";
+  String jpjeQNotificationHistory = "jpjeQNotificationHistory";
+  String jpjeQNumberInfo = "jpjeQNumberInfo";
+  String jpjeQSelectedService = "jpjeQSelectedService";
 }

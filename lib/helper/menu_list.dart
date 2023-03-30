@@ -142,7 +142,7 @@ class MenuList {
       CustomMenuItem(
         "JPJeHadir",
         "images/icon/jpjehadir.png",
-        eHadirMenuPage,
+        eHadirMainPage,
       ),
     ];
   }
