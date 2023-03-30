@@ -23,42 +23,48 @@ class ActivityListRes {
 
 class Aktiviti {
   int? id;
+  int? bilanganHari;
+  int? bilanganSesi;
   String? transidAktiviti;
   String? namaAktiviti;
   String? tarikhMula;
   String? tarikhTamat;
+  String? latitude;
+  String? longitude;
+  String? keterangan;
   List<MasaSesi>? masaSesi;
   String? lokasi;
-  String? keterangan;
-  String? longitude;
-  String? latitude;
   String? urusetia;
   User? user;
 
   Aktiviti({
     this.id,
+    this.bilanganHari,
+    this.bilanganSesi,
     this.transidAktiviti,
     this.namaAktiviti,
     this.tarikhMula,
     this.tarikhTamat,
+    this.latitude,
+    this.longitude,
+    this.keterangan,
     this.masaSesi,
     this.lokasi,
     this.urusetia,
-    this.keterangan,
-    this.longitude,
-    this.latitude,
     this.user,
   });
 
   Aktiviti.fromJson(Map<String, dynamic> json) {
     id = json['id'];
+    bilanganHari = json['bilangan_hari'];
+    bilanganSesi = json['bilangan_sesi'];
     transidAktiviti = json['transid_aktiviti'];
     namaAktiviti = json['nama_aktiviti'];
     tarikhMula = json['tarikh_mula'];
     tarikhTamat = json['tarikh_tamat'];
-    keterangan = json['keterangan'];
-    longitude = json['longitude'];
     latitude = json['latitude'];
+    longitude = json['longitude'];
+    keterangan = json['keterangan'];
     if (json['masa_sesi'] != null) {
       masaSesi = <MasaSesi>[];
       json['masa_sesi'].forEach((v) {
@@ -73,12 +79,14 @@ class Aktiviti {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
+    data['bilangan_hari'] = bilanganHari;
+    data['bilangan_sesi'] = bilanganSesi;
     data['transid_aktiviti'] = transidAktiviti;
     data['nama_aktiviti'] = namaAktiviti;
     data['tarikh_mula'] = tarikhMula;
     data['tarikh_tamat'] = tarikhTamat;
-    data['longitude'] = longitude;
     data['latitude'] = latitude;
+    data['longitude'] = longitude;
     data['keterangan'] = keterangan;
     if (masaSesi != null) {
       data['masa_sesi'] = masaSesi!.map((v) => v.toJson()).toList();
@@ -94,13 +102,20 @@ class Aktiviti {
 
 class MasaSesi {
   int? sesi;
+  String? transidSesi;
   String? masaMula;
   String? masaTamat;
 
-  MasaSesi({this.sesi, this.masaMula, this.masaTamat});
+  MasaSesi({
+    this.sesi,
+    this.transidSesi,
+    this.masaMula,
+    this.masaTamat,
+  });
 
   MasaSesi.fromJson(Map<String, dynamic> json) {
     sesi = json['sesi'];
+    transidSesi = json['transid_sesi'];
     masaMula = json['masa_mula'];
     masaTamat = json['masa_tamat'];
   }
@@ -108,6 +123,7 @@ class MasaSesi {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['sesi'] = sesi;
+    data['transid_sesi'] = transidSesi;
     data['masa_mula'] = masaMula;
     data['masa_tamat'] = masaTamat;
     return data;

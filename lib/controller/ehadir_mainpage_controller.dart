@@ -12,6 +12,7 @@ import 'package:jpj_info/controller/ehadir_activity_list_controller.dart';
 import 'package:jpj_info/controller/ehadir_comittee_page_controller.dart';
 import 'package:jpj_info/controller/http_request_controller.dart';
 import 'package:jpj_info/helper/account_manager.dart';
+import 'package:jpj_info/helper/ehadir_session_check.dart';
 import 'package:jpj_info/helper/qr_scanner.dart';
 import 'package:jpj_info/model/ehadir/activity_by_transid_res.dart';
 import 'package:jpj_info/model/ehadir/manual_register_req.dart';
@@ -130,24 +131,35 @@ class _EhadirMainPageController extends State<EhadirMainPageController> {
                 ),
               );
 
-              ManualRegisterReq req = ManualRegisterReq(
-                idAktiviti: eventInfo.aktiviti![0].id,
-                nokp: MyJPJAccountManager().id,
-                transidAktiviti: eventInfo.aktiviti![0].transidAktiviti,
-                transidSesi: eventInfo.aktiviti![0].transidAktiviti,
-                userId: MyJPJAccountManager().id,
-              );
-              return jpjHttpRequest(
-                context,
-                Uri.parse(conf.eHadirManualRegister),
-                headers: conf.formHeader,
-                body: jsonEncode(req.toJson()),
-                callback: (res2) {
-                  if (res2.statusCode == 200) {
-                    _navToActivityPage();
-                  }
-                },
-              );
+              var sessionTransId = getSession(eventInfo.aktiviti![0]);
+
+              if (sessionTransId != null) {
+                ManualRegisterReq req = ManualRegisterReq(
+                  idAktiviti: eventInfo.aktiviti![0].id,
+                  nokp: MyJPJAccountManager().id,
+                  transidAktiviti: eventInfo.aktiviti![0].transidAktiviti,
+                  transidSesi: eventInfo.aktiviti![0].transidAktiviti,
+                  userId: MyJPJAccountManager().id,
+                );
+                return jpjHttpRequest(
+                  context,
+                  Uri.parse(conf.eHadirManualRegister),
+                  headers: conf.formHeader,
+                  body: jsonEncode(req.toJson()),
+                  callback: (res2) {
+                    if (res2.statusCode == 200) {
+                      _navToActivityPage();
+                    }
+                  },
+                );
+              } else {
+                AlertController(ctx: context).generalError(
+                  AppLocalizations.of(context)!.scanOnTime,
+                  () {
+                    Navigator.pop(context);
+                  },
+                );
+              }
             }
           },
         );

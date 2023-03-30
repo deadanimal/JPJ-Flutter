@@ -20,9 +20,11 @@ class EhadirManualRegistrationController extends StatefulWidget {
     Key? key,
     required this.activityId,
     required this.transidAktiviti,
+    required this.transidSesi,
   }) : super(key: key);
   final int activityId;
   final String transidAktiviti;
+  final String transidSesi;
 
   @override
   State<StatefulWidget> createState() => _EhadirManualRegistrationController();
@@ -73,7 +75,7 @@ class _EhadirManualRegistrationController
       idAktiviti: widget.activityId,
       nokp: staffNric.text,
       transidAktiviti: widget.transidAktiviti,
-      transidSesi: activityInfo.transidAktiviti,
+      transidSesi: widget.transidSesi,
       userId: MyJPJAccountManager().id,
       // jenis: activityInfo
     );

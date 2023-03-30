@@ -340,6 +340,7 @@ void eHadirManualRegisterPage(
   BuildContext context,
   int activityId,
   String transidAktiviti,
+  String transidSesi,
 ) {
   Navigator.push(
     context,
@@ -348,6 +349,7 @@ void eHadirManualRegisterPage(
         return EhadirManualRegistrationController(
           activityId: activityId,
           transidAktiviti: transidAktiviti,
+          transidSesi: transidSesi,
         );
       },
     ),

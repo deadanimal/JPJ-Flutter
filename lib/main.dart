@@ -7,6 +7,7 @@ import 'package:jpj_info/controller/one_signal_controller.dart';
 import 'package:jpj_info/helper/account_manager.dart';
 import 'package:jpj_info/jpjeq/services/background_service.dart';
 import 'package:jpj_info/view/common/color_scheme.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:workmanager/workmanager.dart';
 
 @pragma(
@@ -21,7 +22,7 @@ void callbackDispatcher() {
 }
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
@@ -34,6 +35,9 @@ void main() {
   );
 
   OneSignalController().init();
+
+  final prefs = await SharedPreferences.getInstance();
+  prefs.reload();
   MyJPJAccountManager().init().then(
         (value) => runApp(
           MyJpj(),

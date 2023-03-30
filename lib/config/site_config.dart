@@ -55,7 +55,7 @@ class SiteConfig {
   final String eHadirAddComittee = "$prodUrl/tambah_urusetia/";
   final String eHadirActivityById = "$prodUrl/aktiviti_byid/";
   final String eHadirUpdateActivity = "$prodUrl/kemaskini_aktiviti";
-  final String eHadirManualRegister = "$prodUrl/daftar_manual";
+  final String eHadirManualRegister = "$prodUrl/daftar_manual2";
   final String eHadirAttendee = "$prodUrl/senarai_kehadiran";
   final String eHadirAttendeeQr = "$prodUrl/daftarQR";
   final String eHadirEraseAttendee = "$prodUrl/padam_kehadiran/";

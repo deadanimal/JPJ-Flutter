@@ -1,3 +1,5 @@
+import 'package:jpj_info/model/ehadir/activity_list_res.dart';
+
 class ActivityByTransIdRes {
   List<Aktiviti>? aktiviti;
 
@@ -17,99 +19,6 @@ class ActivityByTransIdRes {
     if (aktiviti != null) {
       data['aktiviti'] = aktiviti!.map((v) => v.toJson()).toList();
     }
-    return data;
-  }
-}
-
-class Aktiviti {
-  int? id;
-  String? transidAktiviti;
-  String? namaAktiviti;
-  String? tarikhMula;
-  String? tarikhTamat;
-  String? latitude;
-  String? longitude;
-  String? keterangan;
-  List<MasaSesi>? masaSesi;
-  String? lokasi;
-  String? urusetia;
-  User? user;
-
-  Aktiviti({
-    this.id,
-    this.transidAktiviti,
-    this.namaAktiviti,
-    this.tarikhMula,
-    this.tarikhTamat,
-    this.latitude,
-    this.longitude,
-    this.keterangan,
-    this.masaSesi,
-    this.lokasi,
-    this.urusetia,
-    this.user,
-  });
-
-  Aktiviti.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    transidAktiviti = json['transid_aktiviti'];
-    namaAktiviti = json['nama_aktiviti'];
-    tarikhMula = json['tarikh_mula'];
-    tarikhTamat = json['tarikh_tamat'];
-    latitude = json['latitude'];
-    longitude = json['longitude'];
-    keterangan = json['keterangan'];
-    if (json['masa_sesi'] != null) {
-      masaSesi = <MasaSesi>[];
-      json['masa_sesi'].forEach((v) {
-        masaSesi!.add(MasaSesi.fromJson(v));
-      });
-    }
-    lokasi = json['lokasi'];
-    urusetia = json['urusetia'];
-    user = json['user'] != null ? User.fromJson(json['user']) : null;
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['transid_aktiviti'] = transidAktiviti;
-    data['nama_aktiviti'] = namaAktiviti;
-    data['tarikh_mula'] = tarikhMula;
-    data['tarikh_tamat'] = tarikhTamat;
-    data['latitude'] = latitude;
-    data['longitude'] = longitude;
-    data['keterangan'] = keterangan;
-    if (masaSesi != null) {
-      data['masa_sesi'] = masaSesi!.map((v) => v.toJson()).toList();
-    }
-    data['lokasi'] = lokasi;
-    data['urusetia'] = urusetia;
-    if (user != null) {
-      data['user'] = user!.toJson();
-    }
-    return data;
-  }
-}
-
-class MasaSesi {
-  int? sesi;
-  String? masaMula;
-  String? masaTamat;
-
-  MasaSesi({this.sesi, this.masaMula, this.masaTamat});
-
-  MasaSesi.fromJson(Map<String, dynamic> json) {
-    sesi = json['sesi'];
-    masaMula = json['masa_mula'];
-    masaTamat = json['masa_tamat'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['sesi'] = sesi;
-    data['masa_mula'] = masaMula;
-    data['masa_tamat'] = masaTamat;
     return data;
   }
 }

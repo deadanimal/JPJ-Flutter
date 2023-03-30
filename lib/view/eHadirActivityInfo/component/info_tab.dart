@@ -19,6 +19,10 @@ class InfoTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var date = _parseDateString(event.tarikhMula ?? "");
+    if (event.tarikhTamat != null && event.tarikhTamat != event.tarikhMula) {
+      date += ' - ${_parseDateString(event.tarikhTamat ?? "")}';
+    }
     return ListView(
       children: [
         CustomBorderedContainer(
@@ -60,7 +64,7 @@ class InfoTab extends StatelessWidget {
               ),
               const SizedBox(height: vPaddingXL),
               Text(
-                "${event.user != null ? capitalize(event.user!.nama!) : ""}\n${event.lokasi == null ? "" : capitalize(event.lokasi!)}\n${_parseDateString(event.tarikhMula ?? "")}\n${_getEventSessions()}",
+                "${event.user != null ? capitalize(event.user!.nama!) : ""}\n${event.lokasi == null ? "" : capitalize(event.lokasi!)}\n$date\n${_getEventSessions()}",
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   color: Colors.black,

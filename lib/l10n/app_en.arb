@@ -310,5 +310,7 @@
     "error":"Error",
     "yourNumberShort":"Your No.",
     "fillRequiredField":"Fill in the marked field",
+    "scanOnTime":"Please scan within the allowed time",
+    "regOnTime":"Please register within the allowed time",
     "yourLocation":"Your Location"
 }

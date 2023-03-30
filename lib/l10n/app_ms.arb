@@ -310,5 +310,7 @@
     "error":"Ralat",
     "yourNumberShort":"No anda",
     "fillRequiredField":"Isi medan yg bertanda",
+    "scanOnTime":"Sila imbas dalam waktu dibenarkan",
+    "regOnTime":"Sila daftar dalam waktu dibenarkan",
     "yourLocation":"Lokasi Anda"
 }

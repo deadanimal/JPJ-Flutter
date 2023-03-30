@@ -44,7 +44,6 @@ class BackgroundService {
 
         print("Amir save to storage: " + jsonEncode(ticketInfo.toJson()));
 
-        sharedPreferences.reload();
         var success = await sharedPreferences.setString(
           LocalStorageHelper().jpjeQNumberInfo,
           jsonEncode(ticketInfo.toJson()),

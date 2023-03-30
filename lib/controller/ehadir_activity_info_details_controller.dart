@@ -9,6 +9,7 @@ import 'package:jpj_info/controller/ehadir_add_comittee_controller.dart';
 import 'package:jpj_info/controller/ehadir_manual_registration.dart';
 import 'package:jpj_info/controller/http_request_controller.dart';
 import 'package:jpj_info/helper/account_manager.dart';
+import 'package:jpj_info/helper/ehadir_session_check.dart';
 import 'package:jpj_info/helper/qr_scanner.dart';
 import 'package:jpj_info/helper/string_helper.dart';
 import 'package:jpj_info/model/ehadir/activity_list_res.dart';
@@ -78,7 +79,9 @@ class _EhadirActivityInfoDetailsController
         ),
         body: EhadirActivityInfo(
           tabController: tabController,
-          qrScanCallback: _scanQrBtnCallback,
+          qrScanCallback: () {
+            _scanQrBtnCallback(context);
+          },
           event: currentActivity,
           comitteeList: comitteeList,
           addMemberFx: addMemberFx,
@@ -93,7 +96,7 @@ class _EhadirActivityInfoDetailsController
     );
   }
 
-  void _scanQrBtnCallback() {
+  void _scanQrBtnCallback(BuildContext context) {
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -110,67 +113,77 @@ class _EhadirActivityInfoDetailsController
     String? rawQRCode = barcode.rawValue;
     if (rawQRCode != null) {
       Navigator.pop(context);
-      try {
-        QrCodeFormat qr = QrCodeFormat.fromJson(jsonDecode(rawQRCode));
-        SiteConfig conf = SiteConfig();
-        ManualRegisterReq req = ManualRegisterReq(
-          idAktiviti: currentActivity.id,
-          nokp: qr.nokp,
-          transidAktiviti: currentActivity.transidAktiviti,
-          transidSesi: currentActivity.transidAktiviti,
-          userId: MyJPJAccountManager().id,
-        );
-        return jpjHttpRequest(
-          context,
-          Uri.parse(conf.eHadirManualRegister),
-          headers: conf.formHeader,
-          body: jsonEncode(req.toJson()),
-          callback: (res) {
-            if (res.statusCode == 200) {
-              AddComitteeRes response =
-                  AddComitteeRes.fromJson(jsonDecode(res.body));
-              if (response.kod == 0) {
-                AlertController(ctx: context).generalError(
-                    capitalize(
-                      AppLocalizations.of(context)!.successfullySaved,
-                    ), () {
-                  Navigator.pop(context);
-                  _getAttendeeList();
-                });
-              } else {
-                List<String> errString = response.message!.split("|");
-                String err;
-                if (errString.length == 1) {
-                  err = errString[0];
-                } else if (AppLocalizations.of(context)!.localeName == "ms") {
-                  err = errString[0];
+      var sessionTransId = getSession(currentActivity);
+      if (sessionTransId != null) {
+        try {
+          QrCodeFormat qr = QrCodeFormat.fromJson(jsonDecode(rawQRCode));
+          SiteConfig conf = SiteConfig();
+          ManualRegisterReq req = ManualRegisterReq(
+            idAktiviti: currentActivity.id,
+            nokp: qr.nokp,
+            transidAktiviti: currentActivity.transidAktiviti,
+            transidSesi: sessionTransId,
+            userId: MyJPJAccountManager().id,
+          );
+          return jpjHttpRequest(
+            context,
+            Uri.parse(conf.eHadirManualRegister),
+            headers: conf.formHeader,
+            body: jsonEncode(req.toJson()),
+            callback: (res) {
+              if (res.statusCode == 200) {
+                AddComitteeRes response =
+                    AddComitteeRes.fromJson(jsonDecode(res.body));
+                if (response.kod == 0) {
+                  AlertController(ctx: context).generalError(
+                      capitalize(
+                        AppLocalizations.of(context)!.successfullySaved,
+                      ), () {
+                    Navigator.pop(context);
+                    _getAttendeeList();
+                  });
                 } else {
-                  err = errString[1];
+                  List<String> errString = response.message!.split("|");
+                  String err;
+                  if (errString.length == 1) {
+                    err = errString[0];
+                  } else if (AppLocalizations.of(context)!.localeName == "ms") {
+                    err = errString[0];
+                  } else {
+                    err = errString[1];
+                  }
+                  AlertController(ctx: context).generalError(
+                    err,
+                    () {
+                      Navigator.pop(context);
+                      _getAttendeeList();
+                    },
+                  );
                 }
+              } else {
                 AlertController(ctx: context).generalError(
-                  err,
+                  AppLocalizations.of(context)!.errorPleaseTryAgain,
                   () {
                     Navigator.pop(context);
                     _getAttendeeList();
                   },
                 );
               }
-            } else {
-              AlertController(ctx: context).generalError(
-                AppLocalizations.of(context)!.errorPleaseTryAgain,
-                () {
-                  Navigator.pop(context);
-                  _getAttendeeList();
-                },
-              );
-            }
+            },
+          );
+        } catch (e) {
+          // Navigator.pop(context);
+          AlertController(ctx: context).generalError('Error', () {
+            Navigator.pop(context);
+          });
+        }
+      } else {
+        AlertController(ctx: context).generalError(
+          AppLocalizations.of(context)!.scanOnTime,
+          () {
+            Navigator.pop(context);
           },
         );
-      } catch (e) {
-        // Navigator.pop(context);
-        AlertController(ctx: context).generalError('Error', () {
-          Navigator.pop(context);
-        });
       }
     } else {
       Navigator.pop(context);
@@ -275,17 +288,28 @@ class _EhadirActivityInfoDetailsController
   }
 
   addAttendeeManual() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) {
-          return EhadirManualRegistrationController(
-            activityId: currentActivity.id!,
-            transidAktiviti: currentActivity.transidAktiviti!,
-          );
+    var sessionTransId = getSession(currentActivity);
+    if (sessionTransId != null) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) {
+            return EhadirManualRegistrationController(
+              activityId: currentActivity.id!,
+              transidAktiviti: currentActivity.transidAktiviti!,
+              transidSesi: sessionTransId,
+            );
+          },
+        ),
+      ).then((value) => {_getAttendeeList()});
+    } else {
+      AlertController(ctx: context).generalError(
+        AppLocalizations.of(context)!.regOnTime,
+        () {
+          Navigator.pop(context);
         },
-      ),
-    ).then((value) => {_getAttendeeList()});
+      );
+    }
   }
 
   eraseCommittee(int id) {

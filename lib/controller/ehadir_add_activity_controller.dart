@@ -47,6 +47,7 @@ class _EhadirAddActivityController extends State<EhadirAddActivityController> {
   late TextEditingController longitude;
   late TextEditingController agenda;
   late String selectedDate;
+  late String endDate;
 
   @override
   void initState() {
@@ -184,6 +185,20 @@ class _EhadirAddActivityController extends State<EhadirAddActivityController> {
     if (pickedDate != null) {
       String tempDate = DateFormat('dd-MM-yyyy').format(pickedDate);
       selectedDate = DateFormat('yyyy-MM-dd').format(pickedDate);
+      if (noOfDays.text != '') {
+        endDate = DateFormat('yyyy-MM-dd').format(
+          pickedDate.add(
+            Duration(
+              days: int.parse(
+                    noOfDays.text,
+                  ) -
+                  1,
+            ),
+          ),
+        );
+      } else {
+        endDate = selectedDate;
+      }
 
       setState(() {
         date.text = tempDate;
@@ -260,9 +275,12 @@ class _EhadirAddActivityController extends State<EhadirAddActivityController> {
           ActivityListRes response =
               ActivityListRes.fromJson(jsonDecode(res.body));
           activityName.text = response.aktiviti![0].namaAktiviti ?? "";
-          noOfDays.text = '1';
           selectedDate = response.aktiviti![0].tarikhMula ?? "";
           date.text = dateDisplay(selectedDate);
+          noOfDays.text = response.aktiviti![0].bilanganHari?.toString() ?? "";
+          latitude.text = response.aktiviti![0].latitude?.toString() ?? "";
+          longitude.text = response.aktiviti![0].longitude?.toString() ?? "";
+          endDate = response.aktiviti![0].tarikhTamat ?? "";
           sessionPerDay.text =
               response.aktiviti![0].masaSesi!.length.toString();
           for (int i = 0; i < response.aktiviti![0].masaSesi!.length; i++) {
@@ -320,6 +338,7 @@ class _EhadirAddActivityController extends State<EhadirAddActivityController> {
         nama: activityName.text,
         bilanganSesi: sessionPerDay.text,
         tarikhMula: selectedDate,
+        tarikhTamat: endDate,
         latitude: latitude.text,
         longitude: longitude.text,
         masaMula1: startTime.text,
