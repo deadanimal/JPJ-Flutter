@@ -261,8 +261,8 @@ class _JpjEqChooseServiceState extends State<JpjEqChooseService> {
               JpjEqGetTicketNumberResponse ticketResponse =
                   JpjEqGetTicketNumberResponse.fromJson(
                 jsonDecode(
-                  // res.body,
-                  Dummy().getTicketResponse,
+                  res.body,
+                  // Dummy().getTicketResponse,
                 ),
               );
 

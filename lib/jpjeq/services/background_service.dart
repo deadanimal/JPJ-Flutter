@@ -33,8 +33,8 @@ class BackgroundService {
         JpjEqRefreshWaitingTimeResponse refreshData =
             JpjEqRefreshWaitingTimeResponse.fromJson(
           jsonDecode(
-            // response.body,
-            Dummy().refreshWaitingTime,
+            response.body,
+            // Dummy().refreshWaitingTime,
           ),
         );
         ticketInfo.cawangan = refreshData.cawangan;

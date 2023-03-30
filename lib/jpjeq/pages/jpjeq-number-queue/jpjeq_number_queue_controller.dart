@@ -101,8 +101,8 @@ class _JpjEqNumberQueueController extends State<JpjEqNumberQueueController> {
       JpjEqRefreshWaitingTimeResponse refreshData =
           JpjEqRefreshWaitingTimeResponse.fromJson(
         jsonDecode(
-          // response.body,
-          Dummy().refreshWaitingTime,
+          response.body,
+          // Dummy().refreshWaitingTime,
         ),
       );
       setState(() {
@@ -124,8 +124,8 @@ class _JpjEqNumberQueueController extends State<JpjEqNumberQueueController> {
               JpjEqGetCounterNumberResponse response =
                   JpjEqGetCounterNumberResponse.fromJson(
                 jsonDecode(
-                  // res.body,
-                  Dummy().getCounterResponse,
+                  res.body,
+                  // Dummy().getCounterResponse,
                 ),
               );
               if (response.status == 0) {

@@ -144,8 +144,8 @@ class _JpjEqHomepageController extends State<JpjEqHomepageController> {
                   JpjEqServiceGroupResponse serviceGroupResponse =
                       JpjEqServiceGroupResponse.fromJson(
                     jsonDecode(
-                      // res2.body,
-                      Dummy().getServiceGroupResponse,
+                      res2.body,
+                      // Dummy().getServiceGroupResponse,
                     ),
                   );
 
