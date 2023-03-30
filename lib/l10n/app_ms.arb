@@ -312,5 +312,7 @@
     "fillRequiredField":"Isi medan yg bertanda",
     "scanOnTime":"Sila imbas dalam waktu dibenarkan",
     "regOnTime":"Sila daftar dalam waktu dibenarkan",
+    "pleaseFillInRequired":"Sila isi semua maklumat bertanda",
+    "invalidTime":"Masa yang di isi adalah salah. Sila pastikan masa tamat adalah selepas masa mula",
     "yourLocation":"Lokasi Anda"
 }

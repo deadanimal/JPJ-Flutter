@@ -312,5 +312,7 @@
     "fillRequiredField":"Fill in the marked field",
     "scanOnTime":"Please scan within the allowed time",
     "regOnTime":"Please register within the allowed time",
+    "pleaseFillInRequired":"Please fill in all required field marked with",
+    "invalidTime":"The time entered is wrong. Please make sure the end time is after the start time",
     "yourLocation":"Your Location"
 }
