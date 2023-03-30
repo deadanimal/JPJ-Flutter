@@ -18,6 +18,7 @@ import 'package:jpj_info/jpjeq/model/jpjeq_service_group_response.dart';
 import 'package:jpj_info/jpjeq/pages/jpjeq-homepage/jpjeq_choose_service.dart';
 import 'package:jpj_info/jpjeq/pages/jpjeq-homepage/jpjeq_homepage.dart';
 import 'package:jpj_info/jpjeq/pages/jpjeq-homepage/jpjeq_wrong_operating_hour.dart';
+import 'package:jpj_info/jpjeq/pages/jpjeq-number-queue/jpjeq_number_queue_controller.dart';
 import 'package:jpj_info/jpjeq/services/branch_service.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
@@ -42,6 +43,10 @@ class _JpjEqHomepageController extends State<JpjEqHomepageController> {
     Future.delayed(
       const Duration(milliseconds: 250),
       getUserLocation,
+    );
+    Future.delayed(
+      const Duration(milliseconds: 500),
+      _checkForActiveQueue,
     );
   }
 
@@ -220,6 +225,24 @@ class _JpjEqHomepageController extends State<JpjEqHomepageController> {
         setState(() {
           nearestBranch = AppLocalizations.of(context)!.error;
         });
+      }
+    });
+  }
+
+  _checkForActiveQueue() {
+    SharedPreferences.getInstance().then((value) async {
+      String? rawValue = value.getString(
+        LocalStorageHelper().jpjeQNumberInfo,
+      );
+      if (rawValue != null) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) {
+              return const JpjEqNumberQueueController();
+            },
+          ),
+        );
       }
     });
   }
