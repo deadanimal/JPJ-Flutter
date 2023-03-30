@@ -36,6 +36,8 @@ class _JpjEqHomepageController extends State<JpjEqHomepageController> {
   String locationName = '';
   String nearestBranch = '';
   String? selectedServiceId;
+  DateTime? waitScanTime;
+  Duration? waitingTime;
   @override
   void initState() {
     OneSignalController().promnptForNotification();
@@ -64,6 +66,7 @@ class _JpjEqHomepageController extends State<JpjEqHomepageController> {
           scanBtnCallback: scan,
           locationName: locationName,
           nearestBranch: nearestBranch,
+          waitingTime: waitingTime,
         ),
         bottomNavigationBar: const JpjEqBottomNavController(),
       ),
@@ -160,7 +163,9 @@ class _JpjEqHomepageController extends State<JpjEqHomepageController> {
                           );
                         },
                       ),
-                    );
+                    ).then((value) {
+                      _checkForWaitingTime();
+                    });
                   } else {
                     Navigator.push(
                       context,
@@ -173,7 +178,9 @@ class _JpjEqHomepageController extends State<JpjEqHomepageController> {
                           );
                         },
                       ),
-                    );
+                    ).then((value) {
+                      _checkForWaitingTime();
+                    });
                   }
                 }
               });
@@ -202,7 +209,9 @@ class _JpjEqHomepageController extends State<JpjEqHomepageController> {
           );
         },
       ),
-    );
+    ).then((value) {
+      _checkForWaitingTime();
+    });
   }
 
   getNearbyBranchList() {
@@ -242,8 +251,65 @@ class _JpjEqHomepageController extends State<JpjEqHomepageController> {
               return const JpjEqNumberQueueController();
             },
           ),
-        );
+        ).then((value) {
+          _checkForWaitingTime();
+        });
+      } else {
+        _checkForWaitingTime();
       }
     });
+  }
+
+  _checkForWaitingTime() {
+    SharedPreferences.getInstance().then((value) async {
+      String? rawValue = value.getString(
+        LocalStorageHelper().jpjEqTime,
+      );
+      if (rawValue != null) {
+        _handleWaitingTime(int.parse(rawValue));
+      }
+    });
+  }
+
+  _handleWaitingTime(waitTime) {
+    DateTime now = DateTime.now();
+    waitScanTime = now.add(
+      Duration(seconds: waitTime),
+    );
+    _refreshWaitingTime();
+  }
+
+  _refreshWaitingTime() {
+    DateTime now = DateTime.now();
+    if (waitScanTime != null) {
+      if (now.isAfter(waitScanTime!)) {
+        setState(() {
+          waitScanTime = null;
+          SharedPreferences.getInstance().then((value) async {
+            value.remove(LocalStorageHelper().jpjEqTime);
+            getWaitingTime();
+          });
+        });
+      } else {
+        getWaitingTime();
+        Future.delayed(
+          const Duration(milliseconds: 1000),
+          _refreshWaitingTime,
+        );
+      }
+    }
+  }
+
+  getWaitingTime() {
+    DateTime now = DateTime.now();
+    if (waitScanTime != null) {
+      setState(() {
+        waitingTime = waitScanTime!.difference(now);
+      });
+    } else {
+      setState(() {
+        waitingTime = null;
+      });
+    }
   }
 }

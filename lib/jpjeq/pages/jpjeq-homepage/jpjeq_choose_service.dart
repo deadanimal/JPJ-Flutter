@@ -286,7 +286,7 @@ class _JpjEqChooseServiceState extends State<JpjEqChooseService> {
                           )
                               .then((value2) {
                             if (value2) {
-                              Navigator.pushReplacement(
+                              Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) {

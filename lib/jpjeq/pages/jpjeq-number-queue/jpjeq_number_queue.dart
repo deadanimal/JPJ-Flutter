@@ -93,7 +93,7 @@ class JpjEqNumberQueue extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             Text(
-              DateFormat('yyyy-MM-dd').format(DateTime.now()),
+              DateFormat('dd-MM-yyy').format(DateTime.now()),
               style: const TextStyle(
                 color: Colors.white,
                 fontSize: 18,

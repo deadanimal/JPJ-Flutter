@@ -314,5 +314,6 @@
     "regOnTime":"Sila daftar dalam waktu dibenarkan",
     "pleaseFillInRequired":"Sila isi semua maklumat bertanda",
     "invalidTime":"Masa yang di isi adalah salah. Sila pastikan masa tamat adalah selepas masa mula",
+    "scanQrIn": "Imbas QR Dalam Masa",
     "yourLocation":"Lokasi Anda"
 }

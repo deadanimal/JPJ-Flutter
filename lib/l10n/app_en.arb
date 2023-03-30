@@ -314,5 +314,6 @@
     "regOnTime":"Please register within the allowed time",
     "pleaseFillInRequired":"Please fill in all required field marked with",
     "invalidTime":"The time entered is wrong. Please make sure the end time is after the start time",
+    "scanQrIn": "Scan QR In",
     "yourLocation":"Your Location"
 }

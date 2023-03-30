@@ -4,6 +4,7 @@ import 'package:jpj_info/jpjeq/common/view/theme.dart';
 import 'package:jpj_info/model/page_size.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:jpj_info/view/common/rounded_corner_container.dart';
+import 'package:jpj_info/view/common/spacing.dart';
 
 class JpjEqHomepage extends StatelessWidget {
   const JpjEqHomepage({
@@ -12,12 +13,14 @@ class JpjEqHomepage extends StatelessWidget {
     required this.scanBtnCallback,
     required this.locationName,
     required this.nearestBranch,
+    required this.waitingTime,
   }) : super(key: key);
 
   final Function getLocation;
   final Function scanBtnCallback;
   final String locationName;
   final String nearestBranch;
+  final Duration? waitingTime;
 
   @override
   Widget build(BuildContext context) {
@@ -211,33 +214,71 @@ class JpjEqHomepage extends StatelessWidget {
   }
 
   Widget _scanButton(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        scanBtnCallback();
-      },
-      child: Container(
-        width: mediaWidth - 128,
-        decoration: const BoxDecoration(
-          borderRadius: BorderRadius.all(
-            Radius.circular(24),
+    if (waitingTime == null) {
+      return InkWell(
+        onTap: () {
+          scanBtnCallback();
+        },
+        child: Container(
+          width: mediaWidth - 128,
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.all(
+              Radius.circular(24),
+            ),
+            color: Color(eqThemeNavy),
           ),
-          color: Color(eqThemeNavy),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: Text(
-            AppLocalizations.of(context)!.scanQrCode,
-            textAlign: TextAlign.center,
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 18,
-              fontFamily: "Roboto",
-              fontWeight: FontWeight.w500,
+          child: Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Text(
+              AppLocalizations.of(context)!.scanQrCode,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+                fontFamily: "Roboto",
+                fontWeight: FontWeight.w500,
+              ),
             ),
           ),
         ),
-      ),
-    );
+      );
+    } else {
+      return Column(
+        children: [
+          Text(
+            AppLocalizations.of(context)!.scanQrIn,
+            style: const TextStyle(
+              color: Color(0xffce6774),
+            ),
+          ),
+          const SizedBox(
+            height: vPaddingS,
+          ),
+          Container(
+            width: mediaWidth - 128,
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.all(
+                Radius.circular(24),
+              ),
+              color: Color(0xfffcf0f2),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Text(
+                "${waitingTime!.inMinutes} ${AppLocalizations.of(context)!.minutes} ${waitingTime!.inSeconds} ${AppLocalizations.of(context)!.seconds}",
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  color: Color(0xffce6774),
+                  fontSize: 18,
+                  fontFamily: "Roboto",
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
+            ),
+          ),
+        ],
+      );
+    }
   }
 
   Widget _textInfo(BuildContext context) {

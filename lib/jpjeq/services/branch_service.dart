@@ -5,6 +5,7 @@ import 'package:jpj_info/config/site_config.dart';
 import 'package:jpj_info/controller/http_request_controller.dart';
 import 'package:jpj_info/jpjeq/model/jpjeq_branch_by_qr_request.dart';
 import 'package:jpj_info/jpjeq/model/jpjeq_branch_service_request.dart';
+import 'package:jpj_info/jpjeq/model/jpjeq_get_counter_number_request.dart';
 import 'package:jpj_info/jpjeq/model/jpjeq_get_ticket_number_request.dart';
 import 'package:jpj_info/jpjeq/model/jpjeq_nearby_branches_request.dart';
 import 'package:jpj_info/jpjeq/model/jpjeq_refresh_waiting_time_request.dart';
@@ -192,5 +193,30 @@ class BranchService {
     );
 
     return response;
+  }
+
+  getCounterNumber(
+    String branchId,
+    String transid,
+    dynamic Function(Response) callback,
+  ) {
+    SiteConfig conf = SiteConfig();
+    conf.getJpjEqToken().then(
+      (JpjEqRequestToken value) {
+        JpjEqGetCounterNumberRequest req = JpjEqGetCounterNumberRequest(
+            playerId: value.imei,
+            tarikh: value.date,
+            token: value.token,
+            cawangan: branchId,
+            transid: transid);
+
+        jpjSilentHttpRequest(
+          Uri.parse(conf.eQgetCounterNumber),
+          headers: conf.formHeader,
+          body: jsonEncode(req.toJson()),
+          callback: callback,
+        );
+      },
+    );
   }
 }

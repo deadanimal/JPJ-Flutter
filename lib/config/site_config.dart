@@ -70,6 +70,7 @@ class SiteConfig {
   final String eQGetServiceKategory = "$jpjEqUrl/getKategoriServis/";
   final String eQGetServiceGroup = "$jpjEqUrl/getServiceGroup/";
   final String eQGetTicketNumber = "$jpjEqUrl/getTicketNo/";
+  final String eQgetCounterNumber = "$jpjEqUrl/getNoKaunter/";
   final String eQRefreshWaitingTime = "$jpjEqUrl/refreshMasaMenunggu/";
 
   Map<String, String> formHeader = {

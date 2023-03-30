@@ -6,8 +6,11 @@ import 'package:jpj_info/helper/local_storage.dart';
 import 'package:jpj_info/helper/yes_no_prompt.dart';
 import 'package:jpj_info/jpjeq/common/navbar.dart';
 import 'package:jpj_info/jpjeq/dummy.dart';
+import 'package:jpj_info/jpjeq/model/jpjeq_get_counter_number_response.dart';
 import 'package:jpj_info/jpjeq/model/jpjeq_get_ticket_number_response.dart';
+import 'package:jpj_info/jpjeq/model/jpjeq_qr_format.dart';
 import 'package:jpj_info/jpjeq/model/jpjeq_refresh_waiting_time_response.dart';
+import 'package:jpj_info/jpjeq/pages/jpjeq-number-called/jpjeq_number_call_controller.dart';
 import 'package:jpj_info/jpjeq/pages/jpjeq-number-queue/jpjeq_number_queue.dart';
 import 'package:jpj_info/jpjeq/services/branch_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -108,9 +111,50 @@ class _JpjEqNumberQueueController extends State<JpjEqNumberQueueController> {
         ticketInfo.noSekarang = refreshData.noSekarang;
         ticketInfo.masaMenunggu = refreshData.masaMenunggu;
       });
+
+      if (refreshData.noSekarang == ticketInfo.noTiketAnda) {
+        var qrPayload =
+            sharedPreferences.getString(LocalStorageHelper().jpjEqQrPayload);
+        JpjEqQrFormat qr = JpjEqQrFormat.fromJson(jsonDecode(qrPayload ?? ""));
+        BranchService().getCounterNumber(
+          qr.idCawangan.toString(),
+          ticketInfo.transid.toString(),
+          (res) {
+            if (res.statusCode == 200) {
+              JpjEqGetCounterNumberResponse response =
+                  JpjEqGetCounterNumberResponse.fromJson(
+                jsonDecode(
+                  // res.body,
+                  Dummy().getCounterResponse,
+                ),
+              );
+              if (response.status == 0) {
+                if (t != null) {
+                  t!.cancel();
+                }
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return JpjEqNumberCallController(
+                        counter: int.parse(response.kaunter ?? ""),
+                        number: int.parse(ticketInfo.noTiketAnda ?? ""),
+                      );
+                    },
+                  ),
+                ).then((value) {
+                  t = Timer(const Duration(seconds: 15), () {
+                    checkForChanges();
+                  });
+                });
+              }
+            }
+          },
+        );
+      }
     }
 
-    t = Timer(const Duration(seconds: 10), () {
+    t = Timer(const Duration(seconds: 15), () {
       checkForChanges();
     });
   }

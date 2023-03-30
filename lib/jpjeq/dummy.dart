@@ -13,12 +13,20 @@ class Dummy {
 
   String refreshWaitingTime = '''
     {
-        "no_sekarang": null,
+        "no_sekarang": "6001",
         "masa_menunggu": 1,
         "cawangan": "0105041A",
         "kedudukan_menunggu": 3,
         "sesiTiket": null,
         "sesi": "3"
+    }''';
+
+  String getCounterResponse = '''
+    {
+      "status":0,
+      "msg":"SUCCESS",
+      "no_tiket":null,
+      "kaunter":"4"
     }''';
 
   String getServiceGroupResponse =
