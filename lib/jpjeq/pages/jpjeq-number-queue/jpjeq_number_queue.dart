@@ -10,9 +10,11 @@ class JpjEqNumberQueue extends StatelessWidget {
   const JpjEqNumberQueue({
     Key? key,
     required this.ticketInfo,
+    required this.cancelCB,
   }) : super(key: key);
 
   final JpjEqGetTicketNumberResponse ticketInfo;
+  final Function cancelCB;
 
   @override
   Widget build(BuildContext context) {
@@ -238,7 +240,9 @@ class JpjEqNumberQueue extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          cancelCB();
+        },
         child: Container(
           width: mediaWidth / 3,
           decoration: BoxDecoration(

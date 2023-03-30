@@ -42,8 +42,6 @@ class BackgroundService {
         ticketInfo.noSekarang = refreshData.noSekarang;
         ticketInfo.masaMenunggu = refreshData.masaMenunggu;
 
-        print("Amir save to storage: " + jsonEncode(ticketInfo.toJson()));
-
         var success = await sharedPreferences.setString(
           LocalStorageHelper().jpjeQNumberInfo,
           jsonEncode(ticketInfo.toJson()),
