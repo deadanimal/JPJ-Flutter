@@ -10,6 +10,7 @@ import 'package:jpj_info/jpjeq/model/jpjeq_get_counter_number_response.dart';
 import 'package:jpj_info/jpjeq/model/jpjeq_get_ticket_number_response.dart';
 import 'package:jpj_info/jpjeq/model/jpjeq_qr_format.dart';
 import 'package:jpj_info/jpjeq/model/jpjeq_refresh_waiting_time_response.dart';
+import 'package:jpj_info/jpjeq/pages/jpjeq-homepage/jpjeq_homepage_controller.dart';
 import 'package:jpj_info/jpjeq/pages/jpjeq-number-called/jpjeq_number_call_controller.dart';
 import 'package:jpj_info/jpjeq/pages/jpjeq-number-queue/jpjeq_number_queue.dart';
 import 'package:jpj_info/jpjeq/services/branch_service.dart';
@@ -112,7 +113,8 @@ class _JpjEqNumberQueueController extends State<JpjEqNumberQueueController> {
         ticketInfo.masaMenunggu = refreshData.masaMenunggu;
       });
 
-      if (refreshData.noSekarang == ticketInfo.noTiketAnda) {
+      if (refreshData.noSekarang != null &&
+          refreshData.noSekarang == ticketInfo.noTiketAnda) {
         var qrPayload =
             sharedPreferences.getString(LocalStorageHelper().jpjEqQrPayload);
         JpjEqQrFormat qr = JpjEqQrFormat.fromJson(jsonDecode(qrPayload ?? ""));
@@ -173,10 +175,42 @@ class _JpjEqNumberQueueController extends State<JpjEqNumberQueueController> {
         .then(
       (bool selection) async {
         if (selection) {
-          var sharedPreff = await SharedPreferences.getInstance();
-          sharedPreff.remove(LocalStorageHelper().jpjeQNumberInfo).then(
-                (value) => {Navigator.pop(context)},
+          SharedPreferences.getInstance().then(
+            (pref) async {
+              var qrPayload =
+                  pref.getString(LocalStorageHelper().jpjEqQrPayload);
+              String? selectedService = pref.getString(
+                LocalStorageHelper().jpjeQSelectedService,
               );
+              JpjEqQrFormat qr =
+                  JpjEqQrFormat.fromJson(jsonDecode(qrPayload ?? ""));
+              BranchService().cancelTicket(
+                context,
+                qr.param ?? "",
+                qr.idCawangan ?? "",
+                selectedService ?? "",
+                (p0) async {
+                  var sharedPreff = await SharedPreferences.getInstance();
+                  sharedPreff
+                      .remove(
+                        LocalStorageHelper().jpjeQNumberInfo,
+                      )
+                      .then(
+                        (value) => {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return const JpjEqHomepageController();
+                              },
+                            ),
+                          )
+                        },
+                      );
+                },
+              );
+            },
+          );
         }
       },
     );

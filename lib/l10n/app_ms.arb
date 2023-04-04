@@ -315,5 +315,6 @@
     "pleaseFillInRequired":"Sila isi semua maklumat bertanda",
     "invalidTime":"Masa yang di isi adalah salah. Sila pastikan masa tamat adalah selepas masa mula",
     "scanQrIn": "Imbas QR Dalam Masa",
+    "locationPermissionError": "Sila pastikan tetapan lokasi anda diaktifkan dan diberi akses kepada applikasi MyJPJ",
     "yourLocation":"Lokasi Anda"
 }

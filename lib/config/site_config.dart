@@ -55,7 +55,8 @@ class SiteConfig {
   final String eHadirAddComittee = "$prodUrl/tambah_urusetia/";
   final String eHadirActivityById = "$prodUrl/aktiviti_byid/";
   final String eHadirUpdateActivity = "$prodUrl/kemaskini_aktiviti";
-  final String eHadirManualRegister = "$prodUrl/daftar_manual2";
+  final String eHadirManualRegister = "$prodUrl/daftar_manual";
+  final String eHadirManualRegister2 = "$prodUrl/daftar_manual2";
   final String eHadirAttendee = "$prodUrl/senarai_kehadiran";
   final String eHadirAttendeeQr = "$prodUrl/daftarQR";
   final String eHadirEraseAttendee = "$prodUrl/padam_kehadiran/";
@@ -71,6 +72,7 @@ class SiteConfig {
   final String eQGetServiceGroup = "$jpjEqUrl/getServiceGroup/";
   final String eQGetTicketNumber = "$jpjEqUrl/getTicketNo/";
   final String eQgetCounterNumber = "$jpjEqUrl/getNoKaunter/";
+  final String eQCancelNumber = "$jpjEqUrl/batalNombor/";
   final String eQRefreshWaitingTime = "$jpjEqUrl/refreshMasaMenunggu/";
 
   Map<String, String> formHeader = {

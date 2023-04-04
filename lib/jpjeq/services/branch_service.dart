@@ -156,7 +156,7 @@ class BranchService {
           tarikh: value.date,
           token: value.token,
           cawangan: branchId,
-          idKumpulanPerkhidmatan: serviceId,
+          idKumpulanPerkhidmatan: serviceId.toString(),
         );
 
         jpjHttpRequest(
@@ -212,6 +212,35 @@ class BranchService {
 
         jpjSilentHttpRequest(
           Uri.parse(conf.eQgetCounterNumber),
+          headers: conf.formHeader,
+          body: jsonEncode(req.toJson()),
+          callback: callback,
+        );
+      },
+    );
+  }
+
+  cancelTicket(
+    BuildContext context,
+    String param,
+    String branchId,
+    String serviceId,
+    dynamic Function(Response) callback,
+  ) {
+    SiteConfig conf = SiteConfig();
+    conf.getJpjEqToken().then(
+      (JpjEqRequestToken value) {
+        JpjEqGetTicketNumberRequest req = JpjEqGetTicketNumberRequest(
+          playerId: value.imei,
+          tarikh: value.date,
+          token: value.token,
+          cawangan: branchId,
+          idKumpulanPerkhidmatan: serviceId,
+        );
+
+        jpjHttpRequest(
+          context,
+          Uri.parse(conf.eQCancelNumber),
           headers: conf.formHeader,
           body: jsonEncode(req.toJson()),
           callback: callback,

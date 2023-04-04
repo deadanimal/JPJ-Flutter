@@ -193,7 +193,7 @@
     "erase": "Erase",
     "event": "Event",
     "welcomeTo": "Welcome To",
-    "jpjEqTitle": "JPJ INTEGRATED QUEUE NUMBERING SYSTEM & APPOINTMENT(JPJeQ)",
+    "jpjEqTitle": "SISTEM NOMBOR GILIRAN TEMUJANJI & BERSEPADU JPJ (JPJeQ)",
     "getLocation": "Get Location",
     "scanQrInPermittedTime":"Please scan the QR code in the permitted operating hour",
     "start":"Start",
@@ -315,5 +315,6 @@
     "pleaseFillInRequired":"Please fill in all required field marked with",
     "invalidTime":"The time entered is wrong. Please make sure the end time is after the start time",
     "scanQrIn": "Scan QR In",
+    "locationPermissionError": "Please make sure your location settings are activated and access is given to MyJPJ application",
     "yourLocation":"Your Location"
 }

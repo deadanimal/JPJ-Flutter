@@ -143,7 +143,7 @@ class _EhadirMainPageController extends State<EhadirMainPageController> {
                 );
                 return jpjHttpRequest(
                   context,
-                  Uri.parse(conf.eHadirManualRegister),
+                  Uri.parse(conf.eHadirManualRegister2),
                   headers: conf.formHeader,
                   body: jsonEncode(req.toJson()),
                   callback: (res2) {

@@ -99,6 +99,12 @@ class _JpjEqHomepageController extends State<JpjEqHomepageController> {
     } catch (e) {
       locationName = AppLocalizations.of(context)!.error;
       nearestBranch = AppLocalizations.of(context)!.error;
+      AlertController(ctx: context).generalError(
+        AppLocalizations.of(context)!.locationPermissionError,
+        () {
+          Navigator.pop(context);
+        },
+      );
     }
     setState(() {});
   }

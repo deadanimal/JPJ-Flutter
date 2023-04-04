@@ -72,7 +72,7 @@ class EhadirActivityDetails extends StatelessWidget {
                         ),
                         const SizedBox(height: vPaddingM),
                         Text(
-                          "${capitalize(event.venue!)}\n${event.date!}\n${event.startTime ?? ''} - ${event.endTime ?? ''}",
+                          "${capitalize(event.venue ?? " ")}\n${_parseDateString(event.date ?? "")}\n${event.startTime ?? ''} - ${event.endTime ?? ''}",
                           textAlign: TextAlign.center,
                           style: const TextStyle(
                             color: Colors.black,
@@ -89,5 +89,14 @@ class EhadirActivityDetails extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  String _parseDateString(String raw) {
+    List<String> retVal = raw.split('-');
+    if (retVal.length < 3) {
+      return raw;
+    } else {
+      return "${retVal[2]}-${retVal[1]}-${retVal[0]}";
+    }
   }
 }
