@@ -114,76 +114,72 @@ class _EhadirActivityInfoDetailsController
     if (rawQRCode != null) {
       Navigator.pop(context);
       var sessionTransId = getSession(currentActivity);
-      if (sessionTransId != null) {
-        try {
-          QrCodeFormat qr = QrCodeFormat.fromJson(jsonDecode(rawQRCode));
-          SiteConfig conf = SiteConfig();
-          ManualRegisterReq req = ManualRegisterReq(
-            idAktiviti: currentActivity.id,
-            nokp: qr.nokp,
-            transidAktiviti: currentActivity.transidAktiviti,
-            transidSesi: sessionTransId,
-            userId: MyJPJAccountManager().id,
-          );
-          return jpjHttpRequest(
-            context,
-            Uri.parse(conf.eHadirManualRegister),
-            headers: conf.formHeader,
-            body: jsonEncode(req.toJson()),
-            callback: (res) {
-              if (res.statusCode == 200) {
-                AddComitteeRes response =
-                    AddComitteeRes.fromJson(jsonDecode(res.body));
-                if (response.kod == 0) {
-                  AlertController(ctx: context).generalError(
-                      capitalize(
-                        AppLocalizations.of(context)!.successfullySaved,
-                      ), () {
-                    Navigator.pop(context);
-                    _getAttendeeList();
-                  });
-                } else {
-                  List<String> errString = response.message!.split("|");
-                  String err;
-                  if (errString.length == 1) {
-                    err = errString[0];
-                  } else if (AppLocalizations.of(context)!.localeName == "ms") {
-                    err = errString[0];
-                  } else {
-                    err = errString[1];
-                  }
-                  AlertController(ctx: context).generalError(
-                    err,
-                    () {
-                      Navigator.pop(context);
-                      _getAttendeeList();
-                    },
-                  );
-                }
-              } else {
+      if (sessionTransId == null &&
+          currentActivity.masaSesi != null &&
+          currentActivity.masaSesi!.isNotEmpty) {
+        sessionTransId = currentActivity.masaSesi![0].transidSesi;
+      }
+      try {
+        QrCodeFormat qr = QrCodeFormat.fromJson(jsonDecode(rawQRCode));
+        SiteConfig conf = SiteConfig();
+        ManualRegisterReq req = ManualRegisterReq(
+          idAktiviti: currentActivity.id,
+          nokp: qr.nokp,
+          transidAktiviti: currentActivity.transidAktiviti,
+          transidSesi: sessionTransId,
+          userId: MyJPJAccountManager().id,
+        );
+        return jpjHttpRequest(
+          context,
+          Uri.parse(conf.eHadirManualRegister),
+          headers: conf.formHeader,
+          body: jsonEncode(req.toJson()),
+          callback: (res) {
+            if (res.statusCode == 200) {
+              AddComitteeRes response =
+                  AddComitteeRes.fromJson(jsonDecode(res.body));
+              if (response.kod == 0) {
                 AlertController(ctx: context).generalError(
-                  AppLocalizations.of(context)!.errorPleaseTryAgain,
+                    capitalize(
+                      AppLocalizations.of(context)!.successfullySaved,
+                    ), () {
+                  Navigator.pop(context);
+                  _getAttendeeList();
+                });
+              } else {
+                List<String> errString = response.message!.split("|");
+                String err;
+                if (errString.length == 1) {
+                  err = errString[0];
+                } else if (AppLocalizations.of(context)!.localeName == "ms") {
+                  err = errString[0];
+                } else {
+                  err = errString[1];
+                }
+                AlertController(ctx: context).generalError(
+                  err,
                   () {
                     Navigator.pop(context);
                     _getAttendeeList();
                   },
                 );
               }
-            },
-          );
-        } catch (e) {
-          // Navigator.pop(context);
-          AlertController(ctx: context).generalError('Error', () {
-            Navigator.pop(context);
-          });
-        }
-      } else {
-        AlertController(ctx: context).generalError(
-          AppLocalizations.of(context)!.scanOnTime,
-          () {
-            Navigator.pop(context);
+            } else {
+              AlertController(ctx: context).generalError(
+                AppLocalizations.of(context)!.errorPleaseTryAgain,
+                () {
+                  Navigator.pop(context);
+                  _getAttendeeList();
+                },
+              );
+            }
           },
         );
+      } catch (e) {
+        // Navigator.pop(context);
+        AlertController(ctx: context).generalError('Error', () {
+          Navigator.pop(context);
+        });
       }
     } else {
       Navigator.pop(context);
@@ -289,27 +285,23 @@ class _EhadirActivityInfoDetailsController
 
   addAttendeeManual() {
     var sessionTransId = getSession(currentActivity);
-    if (sessionTransId != null) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) {
-            return EhadirManualRegistrationController(
-              activityId: currentActivity.id!,
-              transidAktiviti: currentActivity.transidAktiviti!,
-              transidSesi: sessionTransId,
-            );
-          },
-        ),
-      ).then((value) => {_getAttendeeList()});
-    } else {
-      AlertController(ctx: context).generalError(
-        AppLocalizations.of(context)!.regOnTime,
-        () {
-          Navigator.pop(context);
-        },
-      );
+    if (sessionTransId == null &&
+        currentActivity.masaSesi != null &&
+        currentActivity.masaSesi!.isNotEmpty) {
+      sessionTransId = currentActivity.masaSesi![0].transidSesi;
     }
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) {
+          return EhadirManualRegistrationController(
+            activityId: currentActivity.id!,
+            transidAktiviti: currentActivity.transidAktiviti!,
+            transidSesi: sessionTransId,
+          );
+        },
+      ),
+    ).then((value) => {_getAttendeeList()});
   }
 
   eraseCommittee(int id) {

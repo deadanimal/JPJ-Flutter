@@ -2,7 +2,7 @@ class JpjEqGetTicketNumberRequest {
   String? playerId;
   String? tarikh;
   String? token;
-  int? idKumpulanPerkhidmatan;
+  String? idKumpulanPerkhidmatan;
   String? cawangan;
 
   JpjEqGetTicketNumberRequest({

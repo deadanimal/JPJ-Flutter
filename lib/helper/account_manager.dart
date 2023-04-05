@@ -64,8 +64,7 @@ class MyJPJAccountManager {
       );
       jsonInfo =
           '{"name":"${loginResponse.idmpuUserName!.trim()}","nric":"830622026110","email":"${loginResponse.idmpuUserEmail!.trim()}"}';
-      // id = loginResponse.idmpuUsrId!.trim();
-      id = "830622026110";
+      id = loginResponse.idmpuUsrId!.trim();
       name = loginResponse.idmpuUserName!.trim();
       var date = DateFormat('dd/MM/yyyy hh:mm a').format(
         DateTime.parse(loginResponse.idmpuLastLoginTime!).toLocal(),
@@ -81,7 +80,6 @@ class MyJPJAccountManager {
       type = loginResponse.idmpuStaffInd!.trim() == "true"
           ? UserType.staff
           : UserType.loggedIn;
-      type = UserType.staff;
       isLoggedIn = true;
       InboxManager().init();
     } catch (e) {

@@ -27,6 +27,7 @@ class OneSignalController {
     // Store it into shared prefs, So that later we can use it.
     SharedPreferences.getInstance().then(
       (value) {
+        print("Save one signal id");
         value.setString(
           LocalStorageHelper().jpjOneSignalPlayerId,
           osUserID.toString(),

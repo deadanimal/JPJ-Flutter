@@ -523,6 +523,7 @@ class _EhadirAddActivityController extends State<EhadirAddActivityController> {
           nama: activityName.text,
           bilanganSesi: sessionPerDay.text,
           tarikhMula: selectedDate,
+          tarikhTamat: endDate,
           latitude: latitude.text,
           longitude: longitude.text,
           masaMula1: startTime.text,

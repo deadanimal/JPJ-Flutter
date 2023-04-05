@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:jpj_info/model/ehadir/activity_list_res.dart';
 
 getSession(Aktiviti currentActivity) {
+  currentActivity.tarikhTamat ??= currentActivity.tarikhMula;
   String? sessionId;
   DateTime now = DateTime.now();
   DateTime startDate = DateTime.parse(currentActivity.tarikhMula ?? "");
@@ -11,7 +12,7 @@ getSession(Aktiviti currentActivity) {
       days: 1,
     ),
   );
-  if (now.isBefore(endDate) && now.isAfter(startDate)) {
+  if ((now.isBefore(endDate) && now.isAfter(startDate))) {
     var time = TimeOfDay.now();
     for (var el in currentActivity.masaSesi!) {
       var rawStart = el.masaMula?.split(':');
