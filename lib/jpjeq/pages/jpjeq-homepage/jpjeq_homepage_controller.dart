@@ -38,6 +38,8 @@ class _JpjEqHomepageController extends State<JpjEqHomepageController> {
   String? selectedServiceId;
   DateTime? waitScanTime;
   Duration? waitingTime;
+  int? waitingTimeMinute;
+  int? waitingTimeSecond;
   @override
   void initState() {
     OneSignalController().promnptForNotification();
@@ -67,6 +69,8 @@ class _JpjEqHomepageController extends State<JpjEqHomepageController> {
           locationName: locationName,
           nearestBranch: nearestBranch,
           waitingTime: waitingTime,
+          waitingTimeMinute: waitingTimeMinute,
+          waitingTimeSecond: waitingTimeSecond,
         ),
         bottomNavigationBar: const JpjEqBottomNavController(),
       ),
@@ -141,6 +145,11 @@ class _JpjEqHomepageController extends State<JpjEqHomepageController> {
               pref.setString(
                 LocalStorageHelper().jpjEqTime,
                 response.data![0].selaMasa.toString(),
+              );
+
+              pref.setString(
+                LocalStorageHelper().jpjEqBranchInfo,
+                jsonEncode(response.toJson()),
               );
 
               BranchService()
@@ -311,6 +320,14 @@ class _JpjEqHomepageController extends State<JpjEqHomepageController> {
     if (waitScanTime != null) {
       setState(() {
         waitingTime = waitScanTime!.difference(now);
+        waitingTimeMinute = waitingTime?.inMinutes;
+        waitingTimeSecond = waitingTime?.inSeconds;
+
+        waitingTimeMinute ??= 0;
+        waitingTimeSecond ??= 0;
+
+        waitingTimeSecond =
+            (waitingTimeSecond! - ((waitingTimeMinute!) * 60)).toInt();
       });
     } else {
       setState(() {

@@ -14,6 +14,8 @@ class JpjEqHomepage extends StatelessWidget {
     required this.locationName,
     required this.nearestBranch,
     required this.waitingTime,
+    this.waitingTimeMinute,
+    this.waitingTimeSecond,
   }) : super(key: key);
 
   final Function getLocation;
@@ -21,6 +23,8 @@ class JpjEqHomepage extends StatelessWidget {
   final String locationName;
   final String nearestBranch;
   final Duration? waitingTime;
+  final int? waitingTimeMinute;
+  final int? waitingTimeSecond;
 
   @override
   Widget build(BuildContext context) {
@@ -265,7 +269,7 @@ class JpjEqHomepage extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(15.0),
               child: Text(
-                "${waitingTime!.inMinutes} ${AppLocalizations.of(context)!.minutes} ${waitingTime!.inSeconds} ${AppLocalizations.of(context)!.seconds}",
+                "$waitingTimeMinute ${AppLocalizations.of(context)!.minutes} $waitingTimeSecond ${AppLocalizations.of(context)!.seconds}",
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   color: Color(0xffce6774),

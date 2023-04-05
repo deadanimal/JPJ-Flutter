@@ -6,6 +6,7 @@ class LocalStorageHelper {
   String favMenuItem = "favMenuItem";
   String inboxItems = "inboxItems";
   String jpjEqTime = "jpjEqTime";
+  String jpjEqBranchInfo = "jpjEqBranchInfo";
   String jpjEqQrPayload = "jpjEqQrPayload";
   String jpjOneSignalPlayerId = "jpjOneSignalPlayerId";
   String jpjeQNotificationHistory = "jpjeQNotificationHistory";
