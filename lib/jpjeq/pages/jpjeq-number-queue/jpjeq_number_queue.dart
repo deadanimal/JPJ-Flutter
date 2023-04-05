@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:jpj_info/jpjeq/common/header.dart';
 import 'package:jpj_info/jpjeq/common/view/theme.dart';
+import 'package:jpj_info/jpjeq/model/jpjeq_branch_by_qr_response.dart';
 import 'package:jpj_info/jpjeq/model/jpjeq_get_ticket_number_response.dart';
 import 'package:jpj_info/model/page_size.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -10,10 +11,12 @@ class JpjEqNumberQueue extends StatelessWidget {
   const JpjEqNumberQueue({
     Key? key,
     required this.ticketInfo,
+    required this.branchInfo,
     required this.cancelCB,
   }) : super(key: key);
 
   final JpjEqGetTicketNumberResponse ticketInfo;
+  final JpjEqGetBrancheByQrResponse branchInfo;
   final Function cancelCB;
 
   @override
@@ -84,7 +87,7 @@ class JpjEqNumberQueue extends StatelessWidget {
         child: Column(
           children: [
             Text(
-              ticketInfo.cawangan ?? "",
+              branchInfo.data?[0].namaCawangan ?? "",
               style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w600,

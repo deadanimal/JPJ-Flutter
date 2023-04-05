@@ -6,6 +6,7 @@ import 'package:jpj_info/helper/local_storage.dart';
 import 'package:jpj_info/helper/yes_no_prompt.dart';
 import 'package:jpj_info/jpjeq/common/navbar.dart';
 import 'package:jpj_info/jpjeq/dummy.dart';
+import 'package:jpj_info/jpjeq/model/jpjeq_branch_by_qr_response.dart';
 import 'package:jpj_info/jpjeq/model/jpjeq_get_counter_number_response.dart';
 import 'package:jpj_info/jpjeq/model/jpjeq_get_ticket_number_response.dart';
 import 'package:jpj_info/jpjeq/model/jpjeq_qr_format.dart';
@@ -27,6 +28,7 @@ class JpjEqNumberQueueController extends StatefulWidget {
 
 class _JpjEqNumberQueueController extends State<JpjEqNumberQueueController> {
   JpjEqGetTicketNumberResponse ticketInfo = JpjEqGetTicketNumberResponse();
+  JpjEqGetBrancheByQrResponse branchInfo = JpjEqGetBrancheByQrResponse();
   late Timer? t;
   @override
   void initState() {
@@ -46,7 +48,11 @@ class _JpjEqNumberQueueController extends State<JpjEqNumberQueueController> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: JpjEqNumberQueue(ticketInfo: ticketInfo, cancelCB: cancel),
+        body: JpjEqNumberQueue(
+          ticketInfo: ticketInfo,
+          cancelCB: cancel,
+          branchInfo: branchInfo,
+        ),
         bottomNavigationBar: const JpjEqBottomNavController(),
       ),
     );
@@ -58,6 +64,15 @@ class _JpjEqNumberQueueController extends State<JpjEqNumberQueueController> {
         String? rawValue = value.getString(
           LocalStorageHelper().jpjeQNumberInfo,
         );
+
+        String? rawValueBranch = value.getString(
+          LocalStorageHelper().jpjEqBranchInfo,
+        );
+        if (rawValueBranch != null) {
+          branchInfo =
+              JpjEqGetBrancheByQrResponse.fromJson(jsonDecode(rawValueBranch));
+        }
+
         if (rawValue != null) {
           setState(() {
             ticketInfo = JpjEqGetTicketNumberResponse.fromJson(
