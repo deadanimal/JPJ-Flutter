@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:jpj_info/jpjeq/common/view/theme.dart';
+import 'package:jpj_info/jpjeq/model/jpjeq_history_model.dart';
 import 'package:jpj_info/model/page_size.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:jpj_info/view/common/rounded_corner_container.dart';
 
 class JpjEqTransaction extends StatelessWidget {
-  const JpjEqTransaction({Key? key}) : super(key: key);
+  const JpjEqTransaction({
+    Key? key,
+    required this.history,
+  }) : super(key: key);
+
+  final List<JPJEqHistory> history;
 
   @override
   Widget build(BuildContext context) {
@@ -48,18 +55,19 @@ class JpjEqTransaction extends StatelessWidget {
       child: ListView.builder(
         physics: const AlwaysScrollableScrollPhysics(),
         scrollDirection: Axis.vertical,
-        itemCount: 20,
+        itemCount: history.length,
         shrinkWrap: true,
         itemBuilder: (context, index) {
           return _transactionInfo(
             context,
+            history[index],
           );
         },
       ),
     );
   }
 
-  Widget _transactionInfo(BuildContext context) {
+  Widget _transactionInfo(BuildContext context, JPJEqHistory item) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: RoundedCornerContainer(
@@ -76,12 +84,16 @@ class JpjEqTransaction extends StatelessWidget {
                 color: Color(eqThemeOrange),
               ),
               width: mediaWidth,
-              child: const Padding(
-                padding: EdgeInsets.all(15.0),
+              child: Padding(
+                padding: const EdgeInsets.all(15.0),
                 child: Text(
-                  "30 Januari 2023",
+                  DateFormat('dd MMMM yyyy').format(
+                    DateTime.parse(
+                      item.date ?? "",
+                    ),
+                  ),
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.w600,
                   ),
@@ -95,33 +107,43 @@ class JpjEqTransaction extends StatelessWidget {
                   const SizedBox(height: 24),
                   _transactionInfoText(
                     AppLocalizations.of(context)!.branch,
-                    'trx.branch',
+                    item.branchName,
                   ),
                   const SizedBox(height: 24),
                   _transactionInfoText(
                     AppLocalizations.of(context)!.registerTime,
-                    'trx.registerTime',
+                    DateFormat('HH:mm:ss').format(
+                      DateTime.parse(
+                        item.registrationTime ?? "",
+                      ),
+                    ),
                   ),
                   const SizedBox(height: 24),
                   _transactionInfoText(
                     AppLocalizations.of(context)!.queueNumber,
-                    'trx.queueNumber',
+                    item.queueNumber,
                   ),
                   const SizedBox(height: 24),
                   _transactionInfoText(
                     AppLocalizations.of(context)!.queueCounter,
-                    'trx.queueCounter',
+                    item.counter,
                   ),
                   const SizedBox(height: 24),
                   _transactionInfoText(
                     AppLocalizations.of(context)!.status,
-                    'trx.status',
+                    item.status,
                     isStatus: true,
                   ),
                   const SizedBox(height: 24),
                   _transactionInfoText(
                     AppLocalizations.of(context)!.callTime,
-                    'trx.callTime',
+                    item.callTime != null
+                        ? DateFormat('HH:mm:ss').format(
+                            DateTime.parse(
+                              item.callTime!,
+                            ),
+                          )
+                        : "",
                   ),
                   const SizedBox(height: 24),
                 ],
@@ -161,38 +183,38 @@ class JpjEqTransaction extends StatelessWidget {
 
   Widget _transactionInfoText(String label, String? info,
       {bool isStatus = false}) {
-    if (info != null) {
-      return Row(
-        children: [
-          Expanded(
-            flex: 3,
-            child: Text(
-              label,
-              textAlign: TextAlign.right,
-              style: const TextStyle(
-                fontSize: 12,
-                fontFamily: "Roboto",
-                fontWeight: FontWeight.w600,
-              ),
+    // if (info != null) {
+    return Row(
+      children: [
+        Expanded(
+          flex: 3,
+          child: Text(
+            label,
+            textAlign: TextAlign.right,
+            style: const TextStyle(
+              fontSize: 12,
+              fontFamily: "Roboto",
+              fontWeight: FontWeight.w600,
             ),
           ),
-          const Spacer(flex: 1),
-          Expanded(
-            flex: 6,
-            child: isStatus
-                ? _statusText(info)
-                : Text(
-                    info,
-                    style: const TextStyle(
-                      fontFamily: "Roboto",
-                      fontSize: 12,
-                    ),
+        ),
+        const Spacer(flex: 1),
+        Expanded(
+          flex: 6,
+          child: isStatus
+              ? _statusText(info)
+              : Text(
+                  info ?? "",
+                  style: const TextStyle(
+                    fontFamily: "Roboto",
+                    fontSize: 12,
                   ),
-          ),
-        ],
-      );
-    } else {
-      return Container();
-    }
+                ),
+        ),
+      ],
+    );
+    // } else {
+    //   return Container();
+    // }
   }
 }

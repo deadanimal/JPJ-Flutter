@@ -9,12 +9,14 @@ import 'package:jpj_info/jpjeq/dummy.dart';
 import 'package:jpj_info/jpjeq/model/jpjeq_branch_by_qr_response.dart';
 import 'package:jpj_info/jpjeq/model/jpjeq_get_counter_number_response.dart';
 import 'package:jpj_info/jpjeq/model/jpjeq_get_ticket_number_response.dart';
+import 'package:jpj_info/jpjeq/model/jpjeq_history_model.dart';
 import 'package:jpj_info/jpjeq/model/jpjeq_qr_format.dart';
 import 'package:jpj_info/jpjeq/model/jpjeq_refresh_waiting_time_response.dart';
 import 'package:jpj_info/jpjeq/pages/jpjeq-homepage/jpjeq_homepage_controller.dart';
 import 'package:jpj_info/jpjeq/pages/jpjeq-number-called/jpjeq_number_call_controller.dart';
 import 'package:jpj_info/jpjeq/pages/jpjeq-number-queue/jpjeq_number_queue.dart';
 import 'package:jpj_info/jpjeq/services/branch_service.dart';
+import 'package:jpj_info/jpjeq/services/history_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:workmanager/workmanager.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -71,6 +73,9 @@ class _JpjEqNumberQueueController extends State<JpjEqNumberQueueController> {
         if (rawValueBranch != null) {
           branchInfo =
               JpjEqGetBrancheByQrResponse.fromJson(jsonDecode(rawValueBranch));
+          JPJEqHistory item = await JPJEqHistoryService.getLatest();
+          item.branchName = branchInfo.data![0].namaCawangan;
+          await JPJEqHistoryService.update(item);
         }
 
         if (rawValue != null) {
@@ -136,7 +141,7 @@ class _JpjEqNumberQueueController extends State<JpjEqNumberQueueController> {
         BranchService().getCounterNumber(
           qr.idCawangan.toString(),
           ticketInfo.transid.toString(),
-          (res) {
+          (res) async {
             if (res.statusCode == 200) {
               JpjEqGetCounterNumberResponse response =
                   JpjEqGetCounterNumberResponse.fromJson(
@@ -149,19 +154,26 @@ class _JpjEqNumberQueueController extends State<JpjEqNumberQueueController> {
                 if (t != null) {
                   t!.cancel();
                 }
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return JpjEqNumberCallController(
-                        counter: int.parse(response.kaunter ?? ""),
-                        number: int.parse(ticketInfo.noTiketAnda ?? ""),
-                      );
-                    },
-                  ),
-                ).then((value) {
-                  t = Timer(const Duration(seconds: 15), () {
-                    checkForChanges();
+
+                JPJEqHistory item = await JPJEqHistoryService.getLatest();
+                item.callTime = DateTime.now().toString();
+                item.counter = response.kaunter;
+                item.status = "Called";
+                JPJEqHistoryService.update(item).then((value) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return JpjEqNumberCallController(
+                          counter: int.parse(response.kaunter ?? ""),
+                          number: int.parse(ticketInfo.noTiketAnda ?? '0'),
+                        );
+                      },
+                    ),
+                  ).then((value) {
+                    t = Timer(const Duration(seconds: 15), () {
+                      checkForChanges();
+                    });
                   });
                 });
               }
@@ -208,20 +220,25 @@ class _JpjEqNumberQueueController extends State<JpjEqNumberQueueController> {
                   var sharedPreff = await SharedPreferences.getInstance();
                   sharedPreff
                       .remove(
-                        LocalStorageHelper().jpjeQNumberInfo,
-                      )
+                    LocalStorageHelper().jpjeQNumberInfo,
+                  )
                       .then(
-                        (value) => {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) {
-                                return const JpjEqHomepageController();
-                              },
-                            ),
-                          )
-                        },
-                      );
+                    (value) async {
+                      JPJEqHistory item = await JPJEqHistoryService.getLatest();
+                      item.callTime = DateTime.now().toString();
+                      item.status = "Canceled";
+                      JPJEqHistoryService.update(item).then((value) {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return const JpjEqHomepageController();
+                            },
+                          ),
+                        );
+                      });
+                    },
+                  );
                 },
               );
             },

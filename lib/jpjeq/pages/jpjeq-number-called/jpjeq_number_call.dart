@@ -30,7 +30,10 @@ class JpjEqNumberCall extends StatelessWidget {
   }
 
   Widget _image(BuildContext context) {
-    return const Image(image: AssetImage("images/jpjeq/complete.png"));
+    return Image(
+      image: const AssetImage("images/jpjeq/complete.png"),
+      width: mediaWidth - 64,
+    );
   }
 
   Widget _text(BuildContext context) {
