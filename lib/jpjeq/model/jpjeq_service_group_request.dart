@@ -1,18 +1,18 @@
 class JpjEqServiceGroupRequest {
-  String? param;
+  String? cawangan;
   String? playerId;
   String? tarikh;
   String? token;
 
   JpjEqServiceGroupRequest({
-    this.param,
+    this.cawangan,
     this.playerId,
     this.tarikh,
     this.token,
   });
 
   JpjEqServiceGroupRequest.fromJson(Map<String, dynamic> json) {
-    param = json['param'];
+    cawangan = json['cawangan'];
     playerId = json['player_id'];
     tarikh = json['tarikh'];
     token = json['token'];
@@ -20,7 +20,7 @@ class JpjEqServiceGroupRequest {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['param'] = param;
+    data['cawangan'] = cawangan;
     data['player_id'] = playerId;
     data['tarikh'] = tarikh;
     data['token'] = token;

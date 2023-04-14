@@ -124,7 +124,7 @@ class BranchService {
     conf.getJpjEqToken().then(
       (JpjEqRequestToken value) {
         JpjEqServiceGroupRequest req = JpjEqServiceGroupRequest(
-          param: param,
+          cawangan: branchId,
           playerId: value.imei,
           tarikh: value.date,
           token: value.token,
