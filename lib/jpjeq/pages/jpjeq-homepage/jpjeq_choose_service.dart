@@ -7,10 +7,12 @@ import 'package:jpj_info/helper/local_storage.dart';
 import 'package:jpj_info/jpjeq/common/view/theme.dart';
 import 'package:jpj_info/jpjeq/dummy.dart';
 import 'package:jpj_info/jpjeq/model/jpjeq_get_ticket_number_response.dart';
+import 'package:jpj_info/jpjeq/model/jpjeq_history_model.dart';
 import 'package:jpj_info/jpjeq/model/jpjeq_qr_format.dart';
 import 'package:jpj_info/jpjeq/model/jpjeq_service_group_response.dart';
 import 'package:jpj_info/jpjeq/pages/jpjeq-number-queue/jpjeq_number_queue_controller.dart';
 import 'package:jpj_info/jpjeq/services/branch_service.dart';
+import 'package:jpj_info/jpjeq/services/history_service.dart';
 import 'package:jpj_info/model/page_size.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -284,16 +286,27 @@ class _JpjEqChooseServiceState extends State<JpjEqChooseService> {
                             LocalStorageHelper().jpjeQSelectedService,
                             selectedItem ?? "",
                           )
-                              .then((value2) {
+                              .then((value2) async {
                             if (value2) {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) {
-                                    return const JpjEqNumberQueueController();
-                                  },
-                                ),
+                              JPJEqHistory historyItem = JPJEqHistory(
+                                date: DateTime.now().toString(),
+                                branchName: ticketResponse.cawangan,
+                                registrationTime: DateTime.now().toString(),
+                                status: "Queue",
                               );
+                              JPJEqHistoryService.save(historyItem)
+                                  .then((value3) {
+                                if (value3) {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) {
+                                        return const JpjEqNumberQueueController();
+                                      },
+                                    ),
+                                  );
+                                }
+                              });
                             }
                           });
                         }
