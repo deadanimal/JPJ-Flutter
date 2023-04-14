@@ -293,6 +293,7 @@ class _JpjEqChooseServiceState extends State<JpjEqChooseService> {
                                 branchName: ticketResponse.cawangan,
                                 registrationTime: DateTime.now().toString(),
                                 status: "Queue",
+                                queueNumber: ticketResponse.noTiketAnda,
                               );
                               JPJEqHistoryService.save(historyItem)
                                   .then((value3) {
