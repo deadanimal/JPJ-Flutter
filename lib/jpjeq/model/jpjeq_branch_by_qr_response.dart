@@ -25,7 +25,7 @@ class Data {
   String? id;
   String? idCawangan;
   String? namaCawangan;
-  String? selaMasa;
+  dynamic selaMasa;
   String? kodQR;
 
   Data({
